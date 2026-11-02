@@ -61,6 +61,33 @@ def main():
         else:
             print(f"  ! assets 缺失: {ad}")
 
+    # 真题 PDF：从 00_AI/00_真题库.html 的数据抽路径，复制到 00_AI/_zhenti/（安全文件名）
+    import json
+    zt_page = SRC / "00_AI" / "00_真题库.html"
+    pdf_copied = 0
+    if zt_page.exists():
+        zh = zt_page.read_text(encoding="utf-8", errors="ignore")
+        mm = re.search(r'<script id="zt-data" type="application/json">(.*?)</script>', zh, re.S)
+        if mm:
+            rows = json.loads(mm.group(1).replace("<\\/", "</"))
+            seen = set()
+            for row in rows:
+                key = (row.get("subject"), row.get("year"))
+                for kind in ("test", "ans"):
+                    ref = row.get(kind)
+                    if not ref or (key, kind) in seen:
+                        continue
+                    seen.add((key, kind))
+                    srcf = (zt_page.parent / ref).resolve()
+                    if not srcf.exists():
+                        print(f"  ! 真题缺失: {ref}")
+                        continue
+                    out = DST / "00_AI" / "_zhenti" / f"{key[0]}-{key[1]}-{kind}.pdf"
+                    out.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(srcf, out)
+                    pdf_copied += 1
+    print(f"真题 PDF {pdf_copied} 个已复制")
+
     print(f"页面 {copied} 个已复制到 {DST}")
 
     # 3. 校验：每个页面的 assets 引用在目标里都能解析
