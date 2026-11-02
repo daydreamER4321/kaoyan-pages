@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第07章 积分学的应用 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style id="ann-reply-style">
+.ann-reply{border-left:3px solid #c2410c;background:rgba(194,65,12,.07);border-radius:6px;
+padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
+.ann-reply>summary{cursor:pointer;color:#9a3412;font-weight:600;list-style:none;}
+.ann-reply>summary::-webkit-details-marker{display:none;}
+.ann-reply>summary::before{content:"❓ ";}
+.ann-reply[open]>summary{margin-bottom:8px;padding-bottom:6px;border-bottom:1px dashed rgba(194,65,12,.35);}
+.ann-reply p{margin:6px 0;}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+</style>
+
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第07章<br>积分学的应用</div>
+  <nav class="toc">
+    <a href="#kaogang">考纲对照</a>
+    <a href="#map">知识地图</a>
+    <div class="toc-sec">逐节讲解</div>
+    <a href="#pin">本章考频</a>
+    <a href="#s71">§7.1 几何应用（微元法）</a>
+    <a href="#s72">§7.2 物理应用</a>
+    <a href="#s73">§7.3 面积原理（证明）</a>
+    <a href="#s74">§7.4 Wallis 与 Stirling</a>
+    <div class="toc-sec">回收</div>
+    <a href="#exercises">课本习题（全录 29 题）</a>
+    <a href="#zhenti">真题链接</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版（常庚哲、史济怀）为准。公式离线渲染。</div>
+</aside>
+
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本 · 上册</div>
+    <h1>第07章 积分学的应用</h1>
+    <p class="hero-sub">面积 · 弧长 · 体积 · 旋转曲面面积 · 功、引力等物理量的积分表达 · 面积原理 · Wallis 与 Stirling 公式</p>
+    <div class="hero-tags">
+      <span class="tag">考纲 3. 一元函数积分学 · d</span>
+      <span class="tag">课本 §7.1–§7.4（印刷页 1–25）</span>
+      <span class="tag">几何量的系统训练章</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 考纲对照 ============ -->
+<section id="kaogang">
+  <h2><span class="h2-no">00</span>考纲对照</h2>
+  <p>610 考纲「3) 一元函数积分学」第 d 条原文：</p>
+  <div class="note n-exam"><span class="note-t">考纲原文</span>用定积分表达和计算一些几何量与物理量（平面图形的面积，平面曲线的弧长，旋转体的体积与侧面积，平行截面面积已知的立体体积，变力做功和物体的质量与质心）。</div>
+  <table class="tbl">
+    <tr><th>考纲要素</th><th>课本位置</th><th>要达到的程度</th></tr>
+    <tr><td>平面图形的面积</td><td>§7.1.1（课本 p.1–3）</td><td>直角坐标（对 $x$、对 $y$）与极坐标三套公式；先画图、找交点、定上下限</td></tr>
+    <tr><td>平面曲线的弧长</td><td>§7.1.2（课本 p.3–8，标题为「空间曲线的弧长」，含平面与极坐标特例）</td><td>写出显式、参数、极坐标三类弧长公式；能解释定理 7.1.1 的折线逼近思想</td></tr>
+    <tr><td>旋转体的体积</td><td>§7.1.3（课本 p.8–9）</td><td>由截面公式推出 $V=\pi\int f^{2}\,\mathrm{d}x$，并会处理空心、异轴等变形</td></tr>
+    <tr><td>平行截面面积已知的立体体积</td><td>§7.1.3 公式 (11)（课本 p.8）</td><td>会选切片方向、写出截面面积函数 $g(x)$ 再积分</td></tr>
+    <tr><td>旋转体的侧面积</td><td>§7.1.4（课本 p.9–11）</td><td>记住公式含弧长因子；能说出它与「圆柱侧面积」写法的区别</td></tr>
+    <tr><td>变力做功 / 质量与质心</td><td>§7.2（课本 p.12–13）</td><td>掌握微元建模：质量元 = 密度 × 长度元，功元 = 力 × 位移元；质心的系统处理见 §15.9</td></tr>
+  </table>
+  <div class="note n-exam"><span class="note-t">真题视角</span>在 2019–2026 已整理的 610 样本中，本章没有以几何量计算为全部内容的独立大题；它更多以「几何对象及其度量」的身份为其他章节提供背景语言——三题条件极值真题（2020 第 3、2022 第 3、2024 第 9）的主体都在第 9 章，见下方真题链接。本章的独立验收点即考纲 d 条本身：给定曲线或区域，能写出积分表达式并算得准。</div>
+</section>
+
+<!-- ============ 知识地图 ============ -->
+<section id="map">
+  <h2><span class="h2-no">01</span>知识地图</h2>
+  <div class="map">
+    <div class="map-node"><b>统一方法</b>：分割—近似—求和—取极限。任何几何量、物理量先写出「微元」，再积分求和。</div>
+    <div class="map-node"><b>几何四模块（§7.1）</b>：面积（直角坐标 → 极坐标）；弧长（内接折线逼近 → 弧长元 $\mathrm{d}s=\sqrt{x'^2+y'^2+z'^2}\,\mathrm{d}t$）；体积（截面法 → 旋转体）；旋转曲面面积（窄带 $2\pi y\,\mathrm{d}s$）。</div>
+    <div class="map-node"><b>物理微元（§7.2）</b>：质量元、功元、引力元——细棒引力、逃逸功、第二宇宙速度是三个样板。</div>
+    <div class="map-node"><b>方向反转（§7.3）</b>：面积原理——用积分（面积）估计和式，产出 Euler 常数、积分判别法、对数平均不等式、Young 与 Hölder 不等式。</div>
+    <div class="map-node"><b>交汇与出圈（§7.4）</b>：由 $\sin^{n}$ 幂积分的夹逼得 Wallis 公式，再推出 Stirling 公式 $n!\sim\sqrt{2n\pi}\,(n/\mathrm{e})^{n}$。</div>
+  </div>
+  <div class="note n-key"><span class="note-t">一条主线</span>公式记忆不能替代区域与量纲检查：先画出积分变量对应的切片（或曲线草图），说清微元代表什么，再定上下限；算完用退化情形抽查（如令 $a\to b$ 退化为圆、令 $l\to+\infty$ 与无穷棒对照）。</div>
+</section>
+
+<!-- ============ §7.1 ============ -->
+<section id="pin">
+  <h2><span class="h2-no">02</span>本章考频（2019–2026 样本）</h2>
+  <table class="tbl">
+    <tr><th style="width:14%">节</th><th style="width:10%">频度</th><th>证据与用法</th></tr>
+    <tr><td>§7.1 几何应用（面积／弧长／体积／旋转面）</td><td>★★</td><td>没有以“求面积／弧长”为主考点的整题；但极坐标面积公式是 <b>2023 第 3 题</b>（圆盘上 $|3x+4y|$ 的二重积分）与第 10 章换元的前置。要求：四类公式认得出、会套。</td></tr>
+    <tr><td>§7.2 物理应用</td><td>★</td><td>样本零命中。只认“微元→积分”三步，不背具体物理模型。</td></tr>
+    <tr><td>§7.3 面积原理</td><td>★★★</td><td>和式—积分夹逼是高频手法：<b>2026 第 9 题</b>（$a_n=\int_0^{\pi/4}\tan^n x\,\mathrm{d}x$ 的双边估计）就是同一套。本节的两条定理条件要能默写。</td></tr>
+    <tr><td>§7.4 Wallis 与 Stirling</td><td>★</td><td>公式本身零命中（逐题检索“Wallis／Stirling”无结果）；但“递推＋夹逼”手法同上。Wallis 要会推，Stirling 只认形式。</td></tr>
+  </table>
+  <div class="note">频度是<b>投入排序</b>，不是掌握证据；缺年（2021 仅回忆提纲、2025 单一来源、2026 回忆版）不构成“不考”的证据。</div>
+</section>
+
+<section id="s71">
+  <h2><span class="h2-no">03</span>§7.1 积分学在几何学中的应用</h2>
+
+  <h3>1.1 微元法：四个步骤，四类应用题共用</h3>
+  <ol>
+    <li><b>分割</b>：把所求量对应的区域切成 $n$ 个小块；</li>
+    <li><b>近似</b>：在每个小块上用“常量代替变量”写出近似值（这一步决定你用哪个端点、要不要加 $\tfrac12$）；</li>
+    <li><b>求和</b>：得到 Riemann 和；</li>
+    <li><b>取极限</b>：说明误差是 $o(\Delta)$，和式收敛到积分。</li>
+  </ol>
+  <p>四步里真正决定对错的是第 2 步：<b>近似必须是“一阶正确”</b>（误差比小块尺寸高阶）。这就是为什么极坐标面积元是 $\tfrac12r^2\mathrm d\theta$ 而不是 $r^2\mathrm d\theta$，也是为什么旋转曲面面积要乘 $\mathrm ds$ 而不是 $\mathrm dx$。</p>
+
+  <h3>1.2 面积</h3>
+  <p><b>直角坐标</b>（上减下）：</p>
+  <div class="formula">$$S=\int_a^b\bigl[g(x)-f(x)\bigr]\mathrm dx,\qquad g(x)\geqslant f(x)$$</div>
+  <p>对 $y$ 积分同理（右减左），分块与否看边界是否换函数。</p>
+  <p><b>极坐标</b>：在 $[\theta,\theta+\mathrm d\theta]$ 上取“扇形微元”，半径近似为常数 $r(\theta)$，面积</p>
+  <div class="formula">$$\mathrm dS=\tfrac12 r^2(\theta)\,\mathrm d\theta\ \Longrightarrow\ S=\frac12\int_\alpha^\beta r^2(\theta)\,\mathrm d\theta$$</div>
+  <p><b>它与二重积分的关系</b>（很多人在这里混）：$\displaystyle\iint_D r\,\mathrm dr\,\mathrm d\theta=\int_\alpha^\beta\!\left(\int_0^{r(\theta)} r\,\mathrm dr\right)\mathrm d\theta=\frac12\int_\alpha^\beta r^2(\theta)\,\mathrm d\theta$。也就是说，定积分版是把内层对 $r$ 先积掉了；“半径恒为 $r$ 的扇形”只是 $r(\theta)\equiv r$ 的特例。</p>
+<details class="ann-reply"><summary>回应：扇形面积是不是 $r$ 不变的特例？</summary><div class="ann-reply-body"><p>方向对，措辞要精确：$\frac12\int r^2\,\mathrm d\theta$ 是<b>二重积分把内层对 $r$ 积到底</b>的结果，$\int_0^{r(\theta)}r\,\mathrm dr=\frac12r^2(\theta)$；“半径恒定的扇形”只是 $r(\theta)\equiv r$ 这一个特例。</p></div></details>
+  <p><b>例（椭圆面积）</b>：$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$。用参数方程最快：</p>
+  <div class="formula">$$S=\frac12\oint(x\,\mathrm dy-y\,\mathrm dx)=\frac12\int_0^{2\pi}\bigl(a\cos t\cdot b\cos t+b\sin t\cdot a\sin t\bigr)\mathrm dt=\pi ab$$</div>
+  <p>用极坐标也能做：代入得 $r^2\left(\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2}\right)=1$，于是 $S=\frac12\int_0^{2\pi}\frac{\mathrm d\theta}{\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2}}=\pi ab$。<b>能一路积到 $2\pi$ 的前提见 §7.1.6 的“星形判据”。</b></p>
+
+  <h3>1.3 弧长</h3>
+  <p>用内接折线逼近：把 $[a,b]$ 分成 $n$ 段，折线长</p>
+  <div class="formula">$$L_n=\sum_{k=1}^{n}\sqrt{(\Delta x_k)^2+(\Delta y_k)^2}=\sum_{k=1}^{n}\sqrt{1+\bigl(f'(\xi_k)\bigr)^2}\,\Delta x_k$$</div>
+  <p>第二步用了中值定理 $\Delta y_k=f'(\xi_k)\Delta x_k$。右端是连续函数 $\sqrt{1+f'^2}$ 的 Riemann 和，故</p>
+  <div class="formula">$$L=\int_a^b\sqrt{1+\bigl(f'(x)\bigr)^2}\,\mathrm dx$$</div>
+  <p><b>条件在哪用掉</b>：要 $\sqrt{1+f'^2}$ 连续（才能积分）、要折线和收敛到积分，就需要 <b>$f'$ 在 $[a,b]$ 上连续</b>。这正是页面上“连续可导”出现的原因——闭区间上的连续导函数由 Cantor 定理自动一致连续，但<b>不能反过来说“导函数天然一致连续”</b>。</p>
+<details class="ann-reply"><summary>回应：导函数有一致连续性吗？</summary><div class="ann-reply-body"><p>不是导函数的固有性质，是<b>条件</b>推出来的：$f'(x)$ 在闭区间连续 ＋ Cantor 定理 ⇒ $f'$ 一致连续。反例说明不能一般化：$f(x)=x^2$ 在 $\mathbb R$ 上，$f'=2x$ 并不一致连续。所以凡是页面上出现“一致连续”，条件一定是“连续可导”。</p></div></details>
+  <table class="tbl">
+    <tr><th>形式</th><th>弧长微元</th></tr>
+    <tr><td>显式 $y=f(x)$</td><td>$\mathrm ds=\sqrt{1+f'^2}\,\mathrm dx$</td></tr>
+    <tr><td>参数 $x=x(t),y=y(t)$</td><td>$\mathrm ds=\sqrt{x'^2+y'^2}\,\mathrm dt$</td></tr>
+    <tr><td>极坐标 $r=r(\theta)$</td><td>$\mathrm ds=\sqrt{r^2+r'^2}\,\mathrm d\theta$</td></tr>
+  </table>
+  <p><b>例（星形线）</b>：$x=a\cos^3t,\ y=a\sin^3t$，$t\in[0,2\pi]$。$x'=-3a\cos^2t\sin t$，$y'=3a\sin^2t\cos t$，故 $\mathrm ds=3a|\sin t\cos t|\,\mathrm dt$，四分之一段积出 $\frac{3a}{2}$，全长为 $6a$。</p>
+
+  <h3>1.4 体积（截面法）</h3>
+  <p>设垂直于 $x$ 轴、过 $x$ 的截面面积为 $A(x)$，则</p>
+  <div class="formula">$$V=\int_a^b A(x)\,\mathrm dx$$</div>
+  <p><b>这就是祖暅原理的解析版</b>：两个立体若同方向、同高度的截面面积相等，则 $A(x)$ 相同、积分相同、体积相等，<b>不要求截面形状相同</b>。旋转体是特例：截面是半径 $f(x)$ 的圆，$A=\pi f^2$，于是 $V=\pi\int_a^b f^2\,\mathrm dx$。</p>
+  <p><b>易错</b>：绕 $y$ 轴旋转不能直接套 $\pi\int f^2\mathrm dx$（那是对 $x$ 轴）；要么换元成 $x=g(y)$ 再积，要么用柱壳法 $V=2\pi\int x f(x)\,\mathrm dx$。</p>
+<details class="ann-reply"><summary>回应：祖暅原理是不是截面面积相同就体积相等？</summary><div class="ann-reply-body"><p>是，但三个条件要同时满足：<b>同一方向</b>、<b>同高度一一对应</b>、<b>截面面积作为高度的函数相等</b>。不要求截面形状相同。$V=\int A(x)\,\mathrm dx$ 就是它的解析版。</p></div></details>
+
+  <h3>1.5 旋转曲面面积</h3>
+  <div class="formula">$$S=2\pi\int_a^b f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,\mathrm dx\qquad(f\geqslant0)$$</div>
+  <p><b>为什么不是 $2\pi\int f\,\mathrm dx$</b>：表面是“弧长元素 $\mathrm ds$ 绕轴转出来的一条斜带”，展开后宽是 $\mathrm ds$ 而不是 $\mathrm dx$；用 $\mathrm dx$ 相当于把斜带压成竖直的柱面，面积会偏小。这是本章最经典的错法。</p>
+
+  <h3>1.6 什么时候可以把 $\theta$ 一路积到 $2\pi$（星形判据）</h3>
+  <p>把曲线写成 $r=r(\theta)$ 并用 $S=\frac12\int r^2\mathrm d\theta$ 时，必须保证：<b>从原点出发的每条射线与曲线只交于一点</b>（原点在区域内部、区域关于原点是“星形”的）。满足时 $\theta$ 取一个完整周期即可；不满足就要拆区间或换方法。</p>
+  <p>反例：圆环（同一条射线交两点）、双曲线的一支（要剔除 $1-e\cos\theta\leqslant0$ 的方向）、$r=2a\cos\theta$（只能取 $\left[-\frac\pi2,\frac\pi2\right]$）。</p>
+<details class="ann-reply"><summary>回应：椭圆换极坐标凭什么能积到 $2\pi$？</summary><div class="ann-reply-body"><p>因为每条射线只与椭圆交于一点：原点在内部、区域是星形，所以 $\theta$ 取一个完整周期正好描完整条曲线。注意 $x=a\cos t,\ y=b\sin t$ 是<b>参数方程</b>，$t$ 不是极角——两件事别混。</p></div></details>
+</section>
+
+<section id="s72">
+  <h2><span class="h2-no">04</span>§7.2 物理应用（只要求会用微元）</h2>
+  <p>三步固定：<b>取位置 $x$ 处的微元 $\mathrm dx$ → 写出这个微元的贡献（功 $\mathrm dW=F(x)\mathrm dx$、引力 $\mathrm dF=G\frac{m\lambda\,\mathrm dx}{r^2}$ 的轴向分量）→ 积分</b>。物理模型不必背，微元写对就赢。</p>
+  <p>课本三个例子的结论：细棒对质点的引力（沿轴向分量积分）、克服地球引力的功（$\int_R^{\infty}\frac{GMm}{r^2}\mathrm dr$）、第二宇宙速度 $v=\sqrt{2gR}\approx11.2\ \mathrm{km/s}$。</p>
+  <p><b>考频</b>：样本零命中，只到“会写微元”这一层，不安排刷题。</p>
+</section>
+
+<section id="s73">
+  <h2><span class="h2-no">05</span>§7.3 面积原理（本章重心）</h2>
+  <p>这一节不计算面积，而是<b>用积分去夹和式</b>：把 $\sum f(k)$ 与 $\int f$ 的差控制住，于是和式的渐近行为可以读出来。</p>
+
+  <h3>3.0 先把记号钉死：$[\xi]$ 是取整</h3>
+  <p>$[\xi]$ 表示<b>不超过 $\xi$ 的最大整数</b>（Gauss 记号，即 $\lfloor\xi\rfloor$），<b>不是</b> $\varepsilon$、也不是绝对值。所以当 $n=[\xi]$ 时恒有</p>
+  <div class="formula">$$0\leqslant\xi-n&lt;1$$</div>
+  <p>这个“小于 1”在后面的证明里是承重的：它把 $\xi-n$ 这把长度压到 1 以内，才能把 $f(\xi)(\xi-n)$ 换成 $f(\xi)$。<b>离开 $n=[\xi]$，那一步就不成立</b>。</p>
+<details class="ann-reply"><summary>回应：累加符号上那个符号是 $\varepsilon$ 还是绝对值？</summary><div class="ann-reply-body"><p>都不是。$[\xi]$ 是<b>取整</b>（Gauss 记号，即 $\lfloor\xi\rfloor$），既不是 $\varepsilon$ 也不是绝对值。</p></div></details>
+
+  <h3>3.1 定理 7.3.1（非负递增）</h3>
+  <p><b>条件</b>：$x\geqslant m$（$m\in\mathbb N^*$）时 $f$ 非负且递增。<b>结论</b>：对 $\xi\geqslant m$，</p>
+  <div class="formula">$$\left|\sum_{k=m}^{[\xi]}f(k)-\int_m^{\xi}f(x)\,\mathrm dx\right|\leqslant f(\xi)$$</div>
+  <p><b>证明（四步，逐段列出）</b>。记 $n=[\xi]$。</p>
+  <p>① 每一格：在 $[k-1,k]$ 上 $f$ 递增，故 $f(k-1)\leqslant f(x)\leqslant f(k)$，积分得</p>
+  <div class="formula">$$f(k-1)\leqslant\int_{k-1}^{k}f(x)\,\mathrm dx\leqslant f(k)$$</div>
+  <p>② 对 $k=m+1,\dots,n$ 累加：</p>
+  <div class="formula">$$\sum_{k=m}^{n-1}f(k)\leqslant\int_m^{n}f(x)\,\mathrm dx\leqslant\sum_{k=m+1}^{n}f(k)$$</div>
+  <p>③ 记 $D_n=\sum_{k=m}^{n}f(k)-\int_m^{n}f$。由②的左半得 $D_n\leqslant f(n)$，由右半得 $D_n\geqslant f(m)\geqslant0$。于是</p>
+  <div class="formula">$$0\leqslant D_n\leqslant f(n)$$</div>
+  <p>④ 尾段：$n=[\xi]$ 且 $0\leqslant\xi-n&lt;1$，$f$ 递增给出 $f(x)\leqslant f(\xi)$，故</p>
+  <div class="formula">$$0\leqslant\int_n^{\xi}f(x)\,\mathrm dx\leqslant f(\xi)(\xi-n)\leqslant f(\xi)$$</div>
+  <p>把③④合起来：$\sum_{k=m}^{n}f(k)-\int_m^{\xi}f=D_n-\int_n^{\xi}f$，上界 $\leqslant f(n)\leqslant f(\xi)$，下界 $\geqslant -f(\xi)$——即得要证的不等式。</p>
+  <div class="note"><b>你之前问的两点，正好都在这两处</b>：$[\xi]$ 是取整（3.0）；$f(\xi)(\xi-n)\leqslant f(\xi)$ 只因为 $\xi-n&lt;1$，<b>不是</b>对任意 $n$ 都成立（3.1 ④）。所以“间隔超过 1 就被破坏”这个直觉是对的——正因为如此，证明里必须先钉死 $n=[\xi]$。</div>
+
+  <h3>3.2 定理 7.3.2（非负递减：Euler 型常数）</h3>
+  <p><b>条件</b>：$x\geqslant m$ 时 $f$ 非负递减。<b>结论</b>：</p>
+  <div class="formula">$$\lim_{n\to\infty}\Bigl(\sum_{k=m}^{n}f(k)-\int_m^{n}f(x)\,\mathrm dx\Bigr)=\alpha\ \text{存在},\qquad 0\leqslant\alpha\leqslant f(m)$$</div>
+  <p><b>证明思路</b>：令 $g(n)=\sum_{k=m}^{n}f(k)-\int_m^{n}f$。① <b>单调</b>：$g(n)-g(n+1)=-f(n+1)+\int_n^{n+1}f\geqslant -f(n+1)+f(n+1)=0$（递减函数在 $[n,n+1]$ 上积分不小于右端点的值）。② <b>有界</b>：由 $\int_m^n f\leqslant\sum_{k=m}^{n-1}f(k)$ 得 $g(n)\geqslant f(n)\geqslant0$。③ 单调递减且下有界 ⇒ 极限存在，且 $0\leqslant\alpha\leqslant g(m)=f(m)$。</p>
+  <p>进一步的精度估计（课本式 (5)）：若还满足 $f(x)\to0\ (x\to+\infty)$，则 $\left|\sum_{k=m}^{[\xi]}f(k)-\int_m^\xi f-\alpha\right|\leqslant f(\xi-1)$。证明细节在课本 p.15–16，本页只记结论与用途。</p>
+<details class="ann-reply"><summary>回应：为什么 $f\to0$ 才有这条尾项估计？</summary><div class="ann-reply-body"><p>差就是面积。$f$ 递减时阶梯在曲线上方，每格多出一块“月牙”$\delta_k=f(k)-\int_k^{k+1}f\,\mathrm dx\geqslant0$，而 $g(n)=f(n)+\sum_{k=m}^{n-1}\delta_k$。若 $f(n)\to0$，则 $\alpha=\sum_{k=m}^{\infty}\delta_k$——<b>$\alpha$ 就是阶梯与曲线之间的总面积</b>。误差是剩下的月牙：$0\leqslant\alpha-g(n)=\sum_{k\geqslant n}\delta_k\leqslant\sum_{k\geqslant n}\bigl[f(k)-f(k+1)\bigr]=f(n)$（望远镜求和）。所以 $f\to0$ 只干一件事：保证尾部月牙能加完且越加越少。</p></div></details>
+
+  <h3>3.3 三条现成结论（会背、会用）</h3>
+  <ul>
+    <li><b>Euler 常数</b>：取 $f(x)=1/x$ 得 $\lim_{n\to\infty}\left(\sum_{k=1}^{n}\frac1k-\ln n\right)=\gamma$，并由此得 $\sum_{k=1}^{n}\frac1k=\ln n+\gamma+O\!\left(\frac1n\right)$。</li>
+<details class="ann-reply"><summary>回应：套公式不该是 $\ln(n/m)$ 吗，$m$ 去哪了？</summary><div class="ann-reply-body"><p>一般式确实是 $\int_m^n\frac{\mathrm dx}{x}=\ln\frac nm$；这里是<b>取 $m=1$</b> 的特例，$\ln\frac n1=\ln n$。同时 $\alpha$ 也随 $m$ 变：$\alpha_m=\gamma-\bigl(H_{m-1}-\ln m\bigr)$，取 $m=1$ 才回到 $\gamma$。从 $k=m$ 求和却写 $\ln n$ 是常见漏项。</p></div></details>
+    <li><b>积分判别法</b>：$f\geqslant0$ 递减时，$\sum_{n\ge1}f(n)$ 与 $\int_1^{+\infty}f$ 同时收敛、同时发散。</li>
+    <li><b>对数平均不等式</b>：$\dfrac{2}{a+b}&lt;\dfrac{\ln b-\ln a}{b-a}&lt;\dfrac{1}{\sqrt{ab}}$（$0&lt;a&lt;b$），下一节 Wallis 的夹逼要用。</li>
+  </ul>
+  <h3>3.4 例题详解（例 1–例 8，逐题给推导）</h3>
+  <p><b>要掌握到哪一层</b>：例 1、2、4、6 是“定理怎么落地”的模板，<b>要能闭卷复现</b>；例 7、8 是工具（Young／Hölder），<b>要会证</b>；例 3 记结论与数值；例 5 记判据形式。</p>
+
+  <h4>例 1（幂和估计）</h4>
+  <p>取 $f(x)=x^\lambda\ (\lambda&gt;0)$，在 $[1,+\infty)$ 非负递增，对 $m=1$、$\xi=n$ 用定理 7.3.1：</p>
+  <div class="formula">$$\left|\sum_{k=1}^{n}k^\lambda-\int_1^{n}x^\lambda\,\mathrm dx\right|\leqslant n^\lambda,\qquad \int_1^n x^\lambda\mathrm dx=\frac{n^{\lambda+1}-1}{\lambda+1}$$</div>
+  <div class="formula">$$\Longrightarrow\quad \sum_{k=1}^{n}k^\lambda=\frac{n^{\lambda+1}}{\lambda+1}+O(n^\lambda)$$</div>
+  <p>主项就是积分，误差是最后一项量级。验算 $\lambda=1$：$\frac{n^2}2+O(n)$，而真值是 $\frac{n(n+1)}2$ ✓。</p>
+
+  <h4>例 2（$n!$ 的粗估）</h4>
+  <p>取 $f(x)=\ln x$（递增、非负于 $x\geqslant1$），$\xi=n$：</p>
+  <div class="formula">$$\left|\ln n!-\int_1^{n}\ln x\,\mathrm dx\right|\leqslant\ln n,\qquad \int_1^n\ln x\,\mathrm dx=n\ln n-n+1$$</div>
+  <p>即 $\ln n!=n\ln n-n+1+\theta\ln n$，$|\theta|\leqslant1$。取指数，注意 $\mathrm e^{\theta\ln n}=n^{\theta}\in[n^{-1},n]$：</p>
+  <div class="formula">$$n^{\,n-1}\mathrm e^{-n+1}\ \leqslant\ n!\ \leqslant\ n^{\,n+1}\mathrm e^{-n+1}$$</div>
+  <p>这就是“不用 Stirling 也能把 $n!$ 夹在 $n^n$ 量级”的标准做法；精确常数 $\sqrt{2\pi n}$ 要靠 §7.4。</p>
+
+  <h4>例 3（Euler 常数 $\gamma$）</h4>
+  <p>取 $f(x)=\frac1x$（递减、非负），$m=1$，用定理 7.3.2：$\alpha=\lim\left(\sum_{k=1}^{n}\frac1k-\ln n\right)$ 存在，且 $0\leqslant\alpha\leqslant f(1)=1$。这个 $\alpha$ 记为 $\gamma=0.5772156649\ldots$，于是</p>
+  <div class="formula">$$H_n=\ln n+\gamma+O\!\left(\frac1n\right)$$</div>
+  <p>换成一般的 $m$：$\int_m^n\frac{\mathrm dx}{x}=\ln\frac nm$，相应的常数是 $\alpha_m=\gamma-(H_{m-1}-\ln m)$。</p>
+
+  <h4>例 4（交错调和级数）</h4>
+  <p>部分和可以拼成两个调和数之差：$\sum_{k=1}^{2n}\frac{(-1)^{k-1}}{k}=H_{2n}-H_n$。用例 3 的展开：</p>
+  <div class="formula">$$H_{2n}-H_n=\bigl(\ln 2n+\gamma\bigr)-\bigl(\ln n+\gamma\bigr)+O\!\left(\frac1n\right)=\ln2+O\!\left(\frac1n\right)\ \longrightarrow\ \ln2$$</div>
+  <p>所以 $\sum_{k\geqslant1}\frac{(-1)^{k-1}}{k}=\ln2$。要点：<b>把交错和重排成两个单调和之差</b>，再用同一个定理估两次。</p>
+
+  <h4>例 5（积分判别法）</h4>
+  <p>$f\geqslant0$ 递减时，在 $[k,k+1]$ 上 $f(k+1)\leqslant f\leqslant f(k)$，积分得</p>
+  <div class="formula">$$f(k+1)\leqslant\int_k^{k+1}f(x)\,\mathrm dx\leqslant f(k)$$</div>
+  <p>对 $k=1,\dots,n-1$ 累加：$\sum_{k=2}^{n}f(k)\leqslant\int_1^{n}f\leqslant\sum_{k=1}^{n-1}f(k)$——两边夹着同一个量，故 $\sum f(n)$ 与 $\int_1^\infty f$ <b>同时收敛、同时发散</b>。</p>
+  <p>用法：$\sum\frac1{n\ln n}$ 发散（$\int_2^N\frac{\mathrm dx}{x\ln x}=\ln\ln N\to\infty$）；$\sum\frac1{n\ln^2n}$ 收敛（$\int_2^\infty\frac{\mathrm dx}{x\ln^2x}=\frac1{\ln2}$）。</p>
+
+  <h4>例 6（对数平均不等式）</h4>
+  <p>设 $0&lt;a&lt;b$，要证 $\dfrac{2}{a+b}&lt;\dfrac{\ln b-\ln a}{b-a}&lt;\dfrac1{\sqrt{ab}}$。</p>
+  <p><b>弱界（先做容易的）</b>：$\frac1x$ 在 $[a,b]$ 递减，故 $\frac{b-a}{b}&lt;\displaystyle\int_a^b\frac{\mathrm dx}{x}=\ln\frac ba&lt;\frac{b-a}{a}$。</p>
+  <p><b>强界</b>：令 $t=\dfrac{b-a}{a+b}\in(0,1)$，则 $\dfrac ba=\dfrac{1+t}{1-t}$，且 $\dfrac{b-a}{\sqrt{ab}}=\dfrac{2t}{\sqrt{1-t^2}}$。于是只需证</p>
+  <div class="formula">$$2t\ &lt;\ \ln\frac{1+t}{1-t}\ &lt;\ \frac{2t}{\sqrt{1-t^2}}$$</div>
+  <p>左：$\ln\frac{1+t}{1-t}=2\left(t+\frac{t^3}3+\frac{t^5}5+\cdots\right)&gt;2t$。右：令 $g(t)=\dfrac{2t}{\sqrt{1-t^2}}-\ln\dfrac{1+t}{1-t}$，则 $g(0)=0$，且</p>
+  <div class="formula">$$g'(t)=\frac{2}{(1-t^2)^{3/2}}-\frac{2}{1-t^2}=\frac{2}{1-t^2}\left(\frac1{\sqrt{1-t^2}}-1\right)&gt;0$$</div>
+  <p>故 $g&gt;0$，右半得证。<b>这是“构造辅助函数＋求导判号”的模板题</b>，和例 7 是同一手法。</p>
+
+  <h4>例 7（Young 不等式）</h4>
+  <p>设 $\varphi$ 在 $[0,+\infty)$ 连续、严格递增，$\varphi(0)=0$，$a,b&gt;0$，则</p>
+  <div class="formula">$$ab\leqslant\int_0^{a}\varphi(x)\,\mathrm dx+\int_0^{b}\varphi^{-1}(y)\,\mathrm dy,\qquad\text{等号}\iff b=\varphi(a)$$</div>
+  <p><b>证明</b>（几何：两块面积盖住矩形）。先看 $b&gt;\varphi(a)$ 的情形。由 $\varphi^{-1}$ 递增，$y\geqslant\varphi(a)$ 时 $\varphi^{-1}(y)\geqslant a$，所以</p>
+  <div class="formula">$$\int_0^{a}\varphi+\int_0^{b}\varphi^{-1}=\underbrace{\int_0^{a}\varphi+\int_0^{\varphi(a)}\varphi^{-1}}_{=\,a\varphi(a)}+\int_{\varphi(a)}^{b}\varphi^{-1}\ \geqslant\ a\varphi(a)+a\bigl(b-\varphi(a)\bigr)=ab$$</div>
+  <p>其中最后一步用了 $\varphi^{-1}(y)\geqslant a$（等号只在 $y$ 区间退化时成立）。$b&lt;\varphi(a)$ 对称地做（改从 $\int_0^{b}\varphi^{-1}$ 拆）。等号当且仅当 $b=\varphi(a)$。</p>
+  <p><b>推论（常用形式）</b>：取 $\varphi(x)=x^{p-1}$（$p&gt;1$），$\varphi^{-1}(y)=y^{q-1}$，$\frac1p+\frac1q=1$：</p>
+  <div class="formula">$$ab\leqslant\frac{a^p}{p}+\frac{b^q}{q}$$</div>
+
+  <h4>例 8（Hölder 与 Cauchy–Schwarz）</h4>
+  <p>对 $u,v\geqslant0$ 用例 7 的推论（$a=u/A$，$b=v/B$）并求和／积分：</p>
+  <div class="formula">$$\int_a^b|fg|\,\mathrm dx\leqslant\left(\int_a^b|f|^p\,\mathrm dx\right)^{1/p}\left(\int_a^b|g|^q\,\mathrm dx\right)^{1/q},\qquad \frac1p+\frac1q=1$$</div>
+  <p>取 $p=q=2$ 即 Cauchy–Schwarz：$\left(\int|fg|\right)^2\leqslant\int f^2\int g^2$，等号当 $|f|^p=B|g|^q$。</p>
+  <div class="note"><b>与第 06 章的接口</b>：§6.2 练习 10 用 $\int(f+\lambda g)^2\geqslant0$ 的判别式证的，就是 $p=q=2$ 这一支；那里是初等做法，这里是 Young→Hölder 的一般做法。两条路都要能走。</div>
+
+</section>
+
+<section id="s74">
+  <h2><span class="h2-no">06</span>§7.4 Wallis 公式与 Stirling 公式</h2>
+  <p><b>考频</b>：公式本身零命中；但“递推＋夹逼”是高频手法。所以要求：<b>Wallis 会推</b>，Stirling 只认形式。</p>
+
+  <h3>4.1 递推：分部积分一步出</h3>
+  <p>记 $I_n=\displaystyle\int_0^{\pi/2}\sin^n x\,\mathrm dx$。对 $n\geqslant2$，把 $\sin^n x=\sin^{n-1}x\cdot\sin x$，令 $u=\sin^{n-1}x$，$\mathrm dv=\sin x\,\mathrm dx$：</p>
+  <div class="formula">$$\begin{aligned}I_n&=-\sin^{n-1}x\cos x\Big|_0^{\pi/2}+(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,\mathrm dx\\&=(n-1)\bigl(I_{n-2}-I_n\bigr)\end{aligned}$$</div>
+  <p>（边界项为 0；再用 $\cos^2=1-\sin^2$。）于是</p>
+  <div class="formula">$$I_n=\frac{n-1}{n}I_{n-2},\qquad I_0=\frac\pi2,\quad I_1=1$$</div>
+
+  <h3>4.2 夹逼：为什么两个奇偶子列能夹到一起</h3>
+  <p>$x\in(0,\frac\pi2)$ 时 $\sin^{n+1}x\leqslant\sin^n x$，故 $I_{n+1}\leqslant I_n$（$I_n$ 单调递减）。于是</p>
+  <div class="formula">$$I_{2n+1}\leqslant I_{2n}\leqslant I_{2n-1}\ \Longrightarrow\ \frac{I_{2n+1}}{I_{2n-1}}\leqslant\frac{I_{2n}}{I_{2n-1}}\leqslant1$$</div>
+  <p>而由递推 $\dfrac{I_{2n+1}}{I_{2n-1}}=\dfrac{2n}{2n+1}\to1$，夹逼得 $\dfrac{I_{2n}}{I_{2n-1}}\to1$。</p>
+
+  <h3>4.3 Wallis 乘积：写出来</h3>
+  <p>由递推可得两个显式式：$I_{2n}=\dfrac{(2n-1)!!}{(2n)!!}\cdot\dfrac\pi2$，$I_{2n+1}=\dfrac{(2n)!!}{(2n+1)!!}$。用 $\frac{I_{2n}}{I_{2n+1}}\to1$：</p>
+  <div class="formula">$$\frac\pi2=\lim_{n\to\infty}\frac{(2n)!!^2}{(2n-1)!!(2n+1)!!}$$</div>
+  <p>这就是 Wallis 公式。它的用途不是“背”，而是：<b>求 $\pi$ 的近似、估二项式系数 $\binom{2n}{n}$ 的阶、给 Stirling 公式铺路</b>。</p>
+
+  <h3>4.4 Stirling 公式（只认形式）</h3>
+  <div class="formula">$$n!\sim\sqrt{2\pi n}\left(\frac ne\right)^{n}\qquad(n\to\infty)$$</div>
+  <p>常数 $\sqrt{2\pi}$ 正是从 Wallis 乘积里出来的。考试中若要用，写“由 Stirling 公式”即可；<b>不需要</b>在本章推它的误差项。</p>
+<h3>4.5 π 到底是从哪里来的（练习 7.4 第 2 题的关键）</h3>
+  <p>这题最容易卡住的地方不是换元，是<b>“π 凭什么出现在极限里”</b>。先把 π 的位置找出来。记 $J_m=\int_0^{\pi/2}\sin^m t\,\mathrm dt$，两个初值是</p>
+  <div class="formula">$$J_0=\int_0^{\pi/2}1\,\mathrm dt=\frac{\pi}{2},\qquad J_1=\int_0^{\pi/2}\sin t\,\mathrm dt=1$$</div>
+  <p>递推 $J_m=\frac{m-1}{m}J_{m-2}$ 是<b>纯比例</b>，不含任何常数。所以 π 只能留在初值里，并且只留在<b>偶数</b>那一支：</p>
+  <div class="formula">$$\text{偶：}E_n=\int_0^{\pi/2}\sin^{2n}t\,\mathrm dt=\frac{(2n-1)!!}{(2n)!!}\cdot\frac{\pi}{2}\qquad\text{奇：}O_n=\int_0^{\pi/2}\sin^{2n+1}t\,\mathrm dt=\frac{(2n)!!}{(2n+1)!!}$$</div>
+  <p><b>奇数支的闭式里一个 π 都没有</b>——这不是算错，是真的没有。那 $\sqrt\pi$ 从哪来？来自两支被夹在一起：$\sin^{2n+1}t\leqslant\sin^{2n}t\leqslant\sin^{2n-1}t$ 逐点成立，积分得</p>
+  <div class="formula">$$O_n\leqslant E_n\leqslant O_{n-1}\ \Longrightarrow\ \frac{2n}{2n+1}=\frac{O_n}{O_{n-1}}\leqslant\frac{E_n}{O_{n-1}}\leqslant1\ \Longrightarrow\ \frac{E_n}{O_{n-1}}\to1$$</div>
+  <p>即 $E_n\sim O_{n-1}$：<b>偶数的 π 被“摊”到了奇数一支上</b>。把它写成乘积形式，就是 Wallis：</p>
+  <div class="formula">$$(2n+1)O_n^2=\frac{(2n)!!^2}{(2n+1)!!(2n-1)!!}\ \longrightarrow\ \frac{\pi}{2}\qquad(\text{右端的 }\tfrac\pi2\text{ 来自 }E_n\text{ 那一支})$$</div>
+  <p>于是 $nO_n^2\sim\frac{\pi}{4}$。原题 $I_n=\int_{-1}^1(1-x^2)^n\mathrm dx=2O_n$（换元 $x=\cos t$），所以</p>
+  <div class="formula">$$nI_n^2=4nO_n^2\longrightarrow\pi\qquad\Longleftrightarrow\qquad I_n\sim\sqrt{\frac{\pi}{n}},\quad \sqrt n\,I_n\to\sqrt\pi$$</div>
+  <h3>4.6 记号表（先看这张再看上面的推导）</h3>
+  <table class="tbl">
+    <tr><th>记号</th><th>定义</th><th>递推</th><th>初值</th><th>含 π 吗</th></tr>
+    <tr><td>$I_n$</td><td>$\displaystyle\int_{-1}^{1}(1-x^2)^n\,\mathrm dx$</td><td>$(2n+1)I_n=2nI_{n-1}$（<b>一阶</b>，一条链）</td><td>$I_0=2$</td><td>否，闭式 $2\frac{(2n)!!}{(2n+1)!!}$ 里没有 π</td></tr>
+    <tr><td>$J_m$</td><td>$\displaystyle\int_0^{\pi/2}\sin^m t\,\mathrm dt$</td><td>$J_m=\frac{m-1}{m}J_{m-2}$（<b>二阶</b>，跳两步）</td><td>$J_0=\frac\pi2,\ J_1=1$</td><td>看 $m$ 的奇偶</td></tr>
+    <tr><td>$E_n$</td><td>$J_{2n}=\displaystyle\int_0^{\pi/2}\sin^{2n}t\,\mathrm dt$</td><td>$E_n=\frac{2n-1}{2n}E_{n-1}$</td><td>$E_0=\frac\pi2$</td><td><b>含</b> $\frac\pi2$</td></tr>
+    <tr><td>$O_n$</td><td>$J_{2n+1}=\displaystyle\int_0^{\pi/2}\sin^{2n+1}t\,\mathrm dt$</td><td>$O_n=\frac{2n}{2n+1}O_{n-1}$</td><td>$O_0=1$</td><td><b>不含</b></td></tr>
+  </table>
+  <p>关系只有一条：$I_n\xlongequal{x=\cos t}2J_{2n+1}=2O_n$。<b>分奇偶的是 $J_m$，不是 $I_n$</b>——$I_n$ 是一阶递推，一条链走到底；$J_m$ 是二阶递推，才需要分成 $E$、$O$ 两支，而 π 恰好只挂在 $E$ 的初值上。最后一步只用 $O$ 那一行：$O_n=\frac{2n}{2n+1}O_{n-1}$ 与 Wallis 乘积。</p>
+
+<div class="note"><b>一句话记法</b>：$I_n=2\frac{(2n)!!}{(2n+1)!!}$ 这个闭式里没有 π，它的<b>极限</b>却有 π——π 不在通项里，而在“奇数支与偶数支的比值”里。所以这题必须用夹逼（把两支夹成一致），再用 Wallis（把 $\frac\pi2$ 落地）；只用递推和闭式，永远看不到 $\sqrt\pi$。</div>
+
+</section>
+
+
+
+<section id="exercises">
+  <h2><span class="h2-no">07</span>课本习题（全录 29 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>练习题 7.1（7 题）</h3>
+  <ol>
+    <li>求由下列方程所表示的曲线围成的区域的面积：（1）$ax=y^2$，$ay=x^2$（$a>0$）；（2）$y=2x-x^2$，$x+y=2$；（3）$y=x$，$y=x+\sin^2x$（$0\leqslant x\leqslant\pi$）；（4）$ax^2+2bxy+cy^2=1$（$ac-b^2>0$，$c>0$）；（5）三叶线：$r=a\sin3\theta$（$a>0$）；（6）双纽线：$r^2=a^2\cos2\theta$。原书 PDF 314</li>
+    <li>（1）求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}\leqslant1$ 的面积；（2）求椭球 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}\leqslant1$ 的体积。原书 PDF 314</li>
+    <li>计算下列曲线的弧长：（1）$x=e^t\cos t$，$y=e^t\sin t$（$0\leqslant t\leqslant2\pi$）；（2）$\begin{cases}x=a(\cos t+t\sin t),\\y=a(\sin t-t\cos t),\end{cases}$（$0\leqslant t\leqslant2\pi$，$a>0$）；（3）$\begin{cases}x=\dfrac{c^2}{a}\cos^3t,\\y=\dfrac{c^2}{b}\sin^3t,\end{cases}$（$a>b>0$，且 $c^2=a^2-b^2$，$0\leqslant t\leqslant2\pi$）；（4）$x=\sin t$，$y=t$，$z=1-\cos t$（$0\leqslant t\leqslant2\pi$）；（5）$x=t$，$y=3t^2$，$z=6t^3$（$0\leqslant t\leqslant2$）；（6）$y^2=2px$（$p>0$，$0\leqslant x\leqslant a$）；（7）$y=\ln\cos x$（$0\leqslant x\leqslant\pi/3$）；（8）$y=\sqrt{25-x^2}$（$0\leqslant x\leqslant5\sqrt2/2$）。原书 PDF 314</li>
+    <li><span class="star">★★</span> 设心脏线的极坐标方程为 $r=a(1+\cos\theta)$（$a>0$）。试计算：（1）它的长度；（2）它绕极轴旋转一周所产生的立体的体积；（3）它绕极轴旋转一周所产生的立体的侧面积。原书 PDF 314</li>
+    <li>求曲线 $y=\sin x$（$0<x\leqslant\pi$）绕 $x$ 轴旋转一周所产生的旋转面的面积。原书 PDF 314</li>
+    <li>设曲线 $y=\sin x$ 与直线 $x=0$、$x=\pi/2$ 和 $y=t$（$0\leqslant t\leqslant1$）所围部分的面积为 $s(t)$。求 $s(t)$ 的最大值和最小值。原书 PDF 314</li>
+    <li>已知 $f(x)$ 在 $[0,1]$ 上可导，且满足方程 $xf'(x)=f(x)+3x^2$。若已知由曲线 $y=f(x)$ 与直线 $x=0$、$x=1$、$y=0$ 所围平面图形绕 $x$ 轴旋转一周所得旋转体的体积达到最小值，试求此时该平面图形的面积。原书 PDF 314续页 PDF 315</li>
+  </ol>
+<h3>练习题 7.2（3 题）</h3>
+  <ol>
+    <li>有一底半径为 $5\,\mathrm m$、高为 $10\,\mathrm m$ 的圆柱形水桶，其中盛满了水。试计算排完桶中的水所需做的功。原书 PDF 316</li>
+    <li>有一无限长的均匀细棒，密度为 $\rho$，在距离 $a$ 处放置一单位质量的质点，计算棒对质点的引力。原书 PDF 316</li>
+    <li>有一直径为 $1\,\mathrm m$、高为 $2\,\mathrm m$ 的直立圆柱桶盛满了水。桶底有一个直径为 $1\,\mathrm{cm}$ 的小孔。水从小孔流出的速度为 $v=0.6\sqrt{2gh}$，其中 $h$ 是瞬时水深，$g$ 为重力加速度。问水全部流完需多长时间？原书 PDF 316</li>
+  </ol>
+<h3>练习题 7.3（9 题）</h3>
+  <ol>
+    <li><span class="star">★★</span> 设 $a,b\geqslant1$。试证：$ab\leqslant e^{a-1}+b\ln b$，并讨论不等式中等号成立的条件。原书 PDF 323</li>
+    <li><span class="star">★★</span> 对任意的 $a>0$，证明：$\displaystyle\sum_{k=1}^{\infty}\frac{1}{k+a}\sqrt{\frac{a}{k}}<\pi$。（提示：证明不等式 $\displaystyle\sum_{k=1}^{\infty}\frac{1}{(k+a)\sqrt{k}}<\int_0^{+\infty}\frac{\mathrm dx}{(x+a)\sqrt{x}}$。）原书 PDF 323</li>
+    <li><span class="star">★★★</span> 设 $f,g$ 在 $[a,b]$ 上连续，$p>1$，$1/p+1/q=1$。证明 Hölder 不等式：$\displaystyle\int_a^b|fg|\,\mathrm dx\leqslant\left(\int_a^b|f|^p\,\mathrm dx\right)^{1/p}\left(\int_a^b|g|^q\,\mathrm dx\right)^{1/q}$，式中等号当且仅当 $|f|^p=B|g|^q$（$B$ 为常数）时成立。（提示：将 $\displaystyle\frac{|f|}{\left(\int_a^b|f|^p\,\mathrm dx\right)^{1/p}}$、$\displaystyle\frac{|g|}{\left(\int_a^b|g|^q\,\mathrm dx\right)^{1/q}}$ 分别当作 Young 不等式推论中的 $a$ 和 $b$。）原书 PDF 323续页 PDF 324</li>
+    <li>设 $f,g$ 在 $[a,b]$ 上连续，$p\geqslant1$。证明 Minkowski（闵可夫斯基，1864～1909）不等式：$\displaystyle\left(\int_a^b|f+g|^p\,\mathrm dx\right)^{1/p}\leqslant\left(\int_a^b|f|^p\,\mathrm dx\right)^{1/p}+\left(\int_a^b|g|^p\,\mathrm dx\right)^{1/p}$。（提示：先证 $\displaystyle\int_a^b|f+g|^p\,\mathrm dx\leqslant\int_a^b|f+g|^{p-1}|f|\,\mathrm dx+\int_a^b|f+g|^{p-1}|g|\,\mathrm dx$，再利用 Hölder 不等式。）原书 PDF 324</li>
+    <li><span class="star">★★</span> 设 $0<p<1$，证明：$\displaystyle\sum_{k=1}^{n}\frac{1}{k^p}=\frac{n^{1-p}}{1-p}+\beta+O\!\left(\frac{1}{n^p}\right)$，这里 $\beta$ 是一个常数。原书 PDF 324</li>
+    <li>设 $\xi$ 为正整数，利用面积原理，研究和式 $\displaystyle\sum_{k=2}^{n}\ln\ln k$。**[待核验：原书 PDF 第 324 页题干印作 $\xi$，和式上限印作 $n$，保留原样；需查勘误确认变量是否误植。]** 原书 PDF 324</li>
+    <li>证明：$\displaystyle\sum_{k=1}^{n}\frac{\ln k}{k}=\frac12\ln^2n+\alpha+O\!\left(\frac{\ln n}{n}\right)$，这里 $\alpha$ 是某个常数。原书 PDF 324</li>
+    <li>利用第 7 题的结果，证明：$\displaystyle\sum_{k=1}^{\infty}(-1)^k\frac{\ln k}{k}=\left(\gamma-\frac12\ln2\right)\ln2$，这里 $\gamma$ 是 Euler 常数。原书 PDF 324</li>
+    <li>不用图 7.10，请给出不等式（11）的分析证明。原书 PDF 324</li>
+  </ol>
+<h3>问题 7.3（3 题）</h3>
+  <ol>
+    <li>（1）设 $a_1\geqslant a_2\geqslant\cdots\geqslant a_n\geqslant0$，$f(0)=0$，$f'(0)\geqslant0$，又设 $f'$ 为递增的连续函数，则 $\displaystyle f\!\left(\sum_{k=1}^{n}(-1)^{k+1}a_k\right)\leqslant\sum_{k=1}^{n}(-1)^{k+1}f(a_k)$。（2）求证：当 $r>1$ 时，成立不等式 $\displaystyle\left(\sum_{k=1}^{n}(-1)^{k+1}a_k\right)^r\leqslant\sum_{k=1}^{n}(-1)^{k+1}a_k^r$。原书 PDF 324续页 PDF 325</li>
+    <li>计算 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^{n}\left(\left[\frac{2n}{k}\right]-2\left[\frac{n}{k}\right]\right)$。原书 PDF 325</li>
+    <li>设 $-f$ 是 $[a,b]$ 上的凸函数，$f(a)=f(b)=0$，且 $f'(a)=\alpha>0$，$f'(b)=\beta<0$。求证：$\displaystyle0\leqslant\int_a^b f(x)\,\mathrm dx\leqslant\frac12\alpha\beta\frac{(b-a)^2}{\beta-\alpha}$。原书 PDF 325</li>
+  </ol>
+<h3>练习题 7.4（5 题）</h3>
+  <ol>
+    <li><span class="star">★★</span> 当 $n\to\infty$ 时，估计 $\displaystyle\binom{2n}{n}$ 的无穷大的阶。原书 PDF 327</li>
+    <li><span class="star">★★★</span> 求证：$\displaystyle\lim_{n\to\infty}\sqrt n\int_{-1}^{1}(1-x^2)^n\,\mathrm dx=\sqrt\pi$。原书 PDF 327</li>
+    <li>求证：$\displaystyle\lim_{n\to\infty}(-1)^n\binom{-1/2}{n}\sqrt n=\frac1{\sqrt\pi}$。原书 PDF 328</li>
+    <li>设 $\gamma$ 为 Euler 常数。求证：$\displaystyle\lim_{n\to\infty}\sqrt n\prod_{k=1}^{n}\frac{e^{1-1/k}}{(1+1/k)^k}=\frac{\sqrt{2\pi}}{e^{1+\gamma}}$。原书 PDF 328</li>
+    <li><span class="star">★★</span> 设数列 $\{x_n\}$ 满足 $x_nx_{n+1}=n$（$n\geqslant1$），且 $\displaystyle\lim_{n\to\infty}\frac{x_n}{x_{n+1}}=1$。证明：$\pi x_1^2=2$。（提示：利用 Wallis 公式。）原书 PDF 328</li>
+  </ol>
+<h3>问题 7.4（2 题）</h3>
+  <ol>
+    <li>利用不等式 $1-x^2\leqslant e^{-x^2}$（$0\leqslant x\leqslant1$），$e^{-x^2}\leqslant\dfrac1{1+x^2}$（$x\geqslant0$），证明：$\displaystyle\int_0^{+\infty}e^{-x^2}\,\mathrm dx=\frac{\sqrt\pi}{2}$。原书 PDF 328</li>
+    <li>对 $n\in\mathbb N^*$，令 $\displaystyle S_n=1+\frac{n-1}{n+2}+\frac{n-1}{n+2}\cdot\frac{n-2}{n+3}+\cdots+\frac{n-1}{n+2}\cdot\frac{n-2}{n+3}\cdots\frac1{2n}$。求证：$\displaystyle\lim_{n\to\infty}\frac{S_n}{\sqrt n}=\frac{\sqrt\pi}{2}$。原书 PDF 328</li>
+  </ol>
+</section>
+
+<!-- ============ 真题链接 ============ -->
+<section id="zhenti">
+  <h2><span class="h2-no">08</span>真题链接（南科大 610）</h2>
+  <p>依据 <span class="kbd">考研/00_AI/真题分析_2026-09-13</span> 账本中与「几何对象及其度量」相关的条目。以下三道题的<b>条件极值主体属于第 9 章（多变量微分学）</b>，本章提供的是「几何对象及其度量」的背景语言；本章的独立命题点仍为考纲 d 条：面积、弧长、体积、侧面积与物理量的定积分表达与计算。</p>
+  <ul class="exam-list">
+    <li><span class="exam-year">2020</span><b>第 3 题（D3）</b>：在抛物面上取点，使该点到给定平面的距离最小（拉格朗日乘数法 / 几何背景）。<span class="meta-row"><span class="m">主战场：第 9 章</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+    <li><span class="exam-year">2022</span><b>第 3 题（D3）</b>：用 Lagrange 乘数法求原点到两平面交线的距离。<span class="meta-row"><span class="m">主战场：第 9 章</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+    <li><span class="exam-year">2024</span><b>第 9 题（D3）</b>：椭球型约束区域上线性函数的最大值与最小值。<span class="meta-row"><span class="m">主战场：第 9 章</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+  </ul>
+  <div class="note n-warn"><span class="note-t">边界</span>这三题的条件极值主体属第 9 章，本章只提供「曲面、距离、区域」的几何直觉与度量语言，不构成本章的练习；本页引用它们只为标注考点流向。题面来自回忆版整理，题面以原卷为准。</div>
+  <div class="note n-exam"><span class="note-t">命题点提示</span>已整理样本中，本章的独立命题点集中在面积/弧长/体积/物理量的定积分表达与计算（考纲 d 条）；这些积分表达同时是后续章节（重积分、曲线曲面积分、条件极值的几何解释）的底层能力。因此本章验收以「算得准」为准：每题写出积分式、算到数，并用退化情形抽查。</div>
+</section>
+
+<!-- ============ 自测清单 ============ -->
+<section id="checklist">
+  <h2><span class="h2-no">09</span>自测清单</h2>
+  <p>合上课本与讲解，逐条在纸上/口头完成，勾选表示「当场已验证」。勾选记录保存在本机浏览器中。</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox"><span>写出直角坐标下两曲线间的面积公式（对 $x$、对 $y$ 两种版本），并推导极坐标面积公式 $S=\frac12\int_\alpha^\beta r^2\,\mathrm{d}\theta$</span></label></li>
+    <li><label><input type="checkbox"><span>独立完成例 1（$S=18$），并解释为什么对 $x$ 积分要分块</span></label></li>
+    <li><label><input type="checkbox"><span>叙述弧长的内接折线逼近，并说明式 (3) 为什么不是标准 Riemann 和</span></label></li>
+    <li><label><input type="checkbox"><span>写出空间参数、平面参数、显式、极坐标四类弧长公式（含适用条件）</span></label></li>
+    <li><label><input type="checkbox"><span>计算星形线弧长 $6a$ 与心脏线弧长 $8a$（不看提示）</span></label></li>
+    <li><label><input type="checkbox"><span>解释椭圆周长为何没有初等公式（椭圆积分），并与椭圆面积对照</span></label></li>
+    <li><label><input type="checkbox"><span>写出已知截面面积的体积公式 (11)，并用它重算两正交圆柱公共部分的体积 $\frac{16}{3}a^3$</span></label></li>
+    <li><label><input type="checkbox"><span>由截面法推出旋转体体积 $V=\pi\int f^2\,\mathrm{d}x$，并用它算球体体积</span></label></li>
+    <li><label><input type="checkbox"><span>写出旋转曲面面积公式 (14)(15)，说明它与 $2\pi\int f\,\mathrm{d}x$ 的区别</span></label></li>
+    <li><label><input type="checkbox"><span>用定积分表达细棒引力、逃逸功与第二宇宙速度（三个微元各写一遍）</span></label></li>
+    <li><label><input type="checkbox"><span>叙述定理 7.3.1、7.3.2 的条件与结论，并说明 $\alpha$ 为何存在</span></label></li>
+    <li><label><input type="checkbox"><span>写出调和级数渐近式 (8)，并用它推出交错调和级数之和 $\ln 2$</span></label></li>
+    <li><label><input type="checkbox"><span>用面积论证复述对数平均不等式 (9)，并写出特例 (10)</span></label></li>
+    <li><label><input type="checkbox"><span>从 Young 不等式的幂特例推到 Hölder 不等式，并写出等号条件</span></label></li>
+    <li><label><input type="checkbox"><span>默写 Wallis 公式（两种形式）与 Stirling 公式（含 $O$ 型精确形式），并独立完成 §7.4 例 1</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ 来源与边界 ============ -->
+<section id="source">
+  <h2><span class="h2-no">10</span>来源与边界</h2>
+  <div class="src-note">
+    <p><b>内容依据</b>：常庚哲、史济怀《数学分析教程》第三版上册第 7 章（印刷页 1–25）。定理、公式编号、例题编号与「课本说明」均与课本核对；页内「课本 p.X」指该章印刷页码。</p>
+    <p><b>真题依据</b>：<span class="kbd">真题分析_2026-09-13</span>（基于南科大 610 回忆版与原始题面整理；部分年份缺整卷或存在回忆误差，题面以原卷为准）。</p>
+    <p><b>证据边界</b>：本页是复习讲解材料，由 Hermes 生成于 2026-10-13；「★」沿用课本骨架中的内容级重要例题标记（§7.1 例 4、例 6，§7.3 例 3、例 5、例 6、例 7、例 8，§7.4 例 1）。本页不构成任何学习进度或掌握度记录——是否掌握以独立作答与间隔复现为准。</p>
+  </div>
+</section>
+
+<div class="foot">本页为 Hermes 生成的复习讲解材料（仅供参考），以指定课本原文为准。生成日期 2026-10-13。</div>
+</div><!-- /.wrap -->
+</main>
+</div><!-- /.app -->
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

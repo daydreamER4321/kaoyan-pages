@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高等代数 第十章 双线性函数与辛空间 · 讲解页</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<style>
+:root{
+  --bg:#f8f6f2; --card:#ffffff; --ink:#26221c; --muted:#6b6357; --line:#eae4da;
+  --acc:#b45309; --acc-soft:#fdf0e1; --acc-ink:#9a4a06;
+  --def:#1971c2; --def-bg:#eef6fc;
+  --thm:#e8590c; --thm-bg:#fdf2ea;
+  --lem:#0b7285; --lem-bg:#e9f6f8;
+  --cor:#1098ad; --cor-bg:#ebf7fa;
+  --ex:#2f9e44; --ex-bg:#eefaf0;
+  --warn:#e03131; --warn-bg:#fdefee;
+  --exam:#9c36b5; --exam-bg:#f9eefc;
+  --how:#4263eb; --how-bg:#eef2fe;
+  --idea:#946800; --idea-bg:#fdf6e0;
+  --code-bg:#f4f0e9;
+  --radius:14px; --sidebar:288px;
+  --shadow:0 1px 2px rgba(60,44,20,.05),0 6px 24px -12px rgba(60,44,20,.15);
+}
+[data-theme="dark"]{
+  --bg:#171512; --card:#211d18; --ink:#efe9df; --muted:#a89e8d; --line:#35302a;
+  --acc:#f0b429; --acc-soft:#33280f; --acc-ink:#f5c95a;
+  --def:#74b3ea; --def-bg:#182330;
+  --thm:#f59f6a; --thm-bg:#2f2118;
+  --lem:#4fc3d4; --lem-bg:#152b2f;
+  --cor:#59c1d4; --cor-bg:#152b30;
+  --ex:#69c17c; --ex-bg:#17291a;
+  --warn:#f08080; --warn-bg:#331b1b;
+  --exam:#cf9ae8; --exam-bg:#2b1e33;
+  --how:#8fa8f8; --how-bg:#1c2337;
+  --idea:#e3c05c; --idea-bg:#2c2717;
+  --code-bg:#2a251d;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 28px -14px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  font-size:16.5px; line-height:1.95;}
+a{color:var(--acc-ink); text-decoration:none}
+a:hover{text-decoration:underline}
+code{background:var(--code-bg); border:1px solid var(--line); border-radius:6px; padding:0 .35em; font-family:Consolas,Menlo,monospace; font-size:.92em}
+.topbar{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1280px; margin:0 auto; padding:.55rem 1.2rem; display:flex; align-items:center; gap:.9rem; flex-wrap:wrap}
+.brand{font-weight:700; white-space:nowrap}
+.brand .badge{background:var(--acc-soft); color:var(--acc-ink); border:1px solid color-mix(in srgb, var(--acc) 30%, var(--line)); border-radius:999px; padding:.08rem .6rem; font-size:.82rem; margin-left:.4rem; white-space:nowrap}
+.top-links{margin-left:auto; display:flex; gap:.45rem; flex-wrap:wrap}
+.tlink{border:1px solid var(--line); border-radius:999px; padding:.16rem .7rem; font-size:.83rem; color:var(--muted); background:var(--card)}
+.tlink:hover{color:var(--acc-ink); border-color:var(--acc); text-decoration:none}
+.tbtn{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:10px; padding:.22rem .65rem; font-size:.85rem; cursor:pointer}
+.tbtn:hover{border-color:var(--acc)}
+.progress{height:3px}
+.progress i{display:block; height:3px; width:0; background:linear-gradient(90deg,var(--acc),#e8a33d)}
+.layout{max-width:1280px; margin:0 auto; display:grid; grid-template-columns:var(--sidebar) minmax(0,1fr); gap:2rem; padding:1.4rem 1.2rem 6rem}
+.side-in{position:sticky; top:74px; max-height:calc(100vh - 96px); overflow:auto; padding-right:.4rem}
+.side h4{margin:.2rem 0 .5rem; font-size:.82rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+#toc{display:flex; flex-direction:column; gap:1px; border-left:2px solid var(--line); padding-left:.65rem; margin-bottom:1rem}
+#toc a{color:var(--muted); font-size:.92rem; padding:.14rem .3rem; border-radius:6px; line-height:1.5}
+#toc a:hover{color:var(--ink); text-decoration:none; background:var(--card)}
+#toc a.on{color:var(--acc-ink); font-weight:600; background:var(--acc-soft)}
+.side-note{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.7rem .85rem; font-size:.83rem; color:var(--muted); line-height:1.7}
+main{min-width:0}
+.hero{border:1px solid var(--line); background:linear-gradient(160deg, var(--acc-soft), var(--card) 55%); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.6rem 1.7rem 1.4rem; margin-bottom:1.6rem}
+.hero h1{margin:0 0 .3rem; font-size:1.85rem}
+.hero .sub{color:var(--muted); font-size:.98rem; margin-bottom:.9rem}
+.meta{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.9rem}
+.chip{display:inline-flex; align-items:center; gap:.35rem; border-radius:999px; border:1px solid var(--line); background:var(--card); padding:.18rem .75rem; font-size:.84rem; color:var(--muted)}
+.chip b{color:var(--ink); font-weight:600}
+.chip.acc{border-color:color-mix(in srgb, var(--acc) 40%, var(--line)); color:var(--acc-ink); background:var(--acc-soft)}
+.chip.red{border-color:color-mix(in srgb, var(--warn) 45%, var(--line)); color:var(--warn); background:var(--warn-bg)}
+section.sec{margin:2.6rem 0 0; scroll-margin-top:84px}
+h2{font-size:1.42rem; margin:0 0 .35rem; padding-top:.4rem; display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+h2 .secnum{color:var(--acc-ink); font-size:1.1rem}
+h2 .h-anchor{color:var(--muted); font-size:.9rem; opacity:0; transition:.15s}
+h2:hover .h-anchor{opacity:1}
+.h-note{color:var(--muted); font-size:.9rem; margin:.1rem 0 1rem}
+.card{border:1px solid var(--line); border-left-width:4px; border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0; overflow:hidden}
+.card-h{display:flex; align-items:center; gap:.55rem; padding:.5rem .9rem; border-bottom:1px dashed var(--line); font-weight:600; flex-wrap:wrap}
+.card-b{padding:.75rem 1rem .9rem}
+.tag{font-size:.8rem; font-weight:700; border-radius:8px; padding:.1rem .55rem; white-space:nowrap}
+.card.def{border-left-color:var(--def)} .card.def .tag{background:var(--def-bg); color:var(--def)}
+.card.thm{border-left-color:var(--thm)} .card.thm .tag{background:var(--thm-bg); color:var(--thm)}
+.card.lem{border-left-color:var(--lem)} .card.lem .tag{background:var(--lem-bg); color:var(--lem)}
+.card.cor{border-left-color:var(--cor)} .card.cor .tag{background:var(--cor-bg); color:var(--cor)}
+.card.ex{border-left-color:var(--ex)} .card.ex .tag{background:var(--ex-bg); color:var(--ex)}
+.card.rem{border-left-color:var(--muted)} .card.rem .tag{background:var(--code-bg); color:var(--muted)}
+.card.warn{border-left-color:var(--warn); background:linear-gradient(180deg,var(--warn-bg), var(--card) 65%)}
+.card.warn .tag{background:var(--warn-bg); color:var(--warn)}
+.card.exam{border-left-color:var(--exam)} .card.exam .tag{background:var(--exam-bg); color:var(--exam)}
+.card.how{border-left-color:var(--how)} .card.how .tag{background:var(--how-bg); color:var(--how)}
+.card.idea{border-left-color:var(--idea)} .card.idea .tag{background:var(--idea-bg); color:var(--idea)}
+.card .src{color:var(--muted); font-size:.8rem; margin-left:auto; white-space:nowrap}
+details.proof{margin:.6rem 0 0; border:1px solid var(--line); border-radius:10px; background:color-mix(in srgb, var(--card) 92%, var(--bg))}
+details.proof summary{cursor:pointer; padding:.42rem .85rem; font-size:.9rem; color:var(--acc-ink); user-select:none}
+details.proof .pb{padding:.35rem .95rem .85rem; border-top:1px dashed var(--line); font-size:.95rem}
+details.plain{margin:.6rem 0; border:1px solid var(--line); border-radius:10px; background:var(--card)}
+details.plain summary{cursor:pointer; padding:.45rem .9rem; font-weight:600}
+details.plain .pb{padding:.4rem 1rem .9rem; border-top:1px dashed var(--line)}
+.flow{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1rem 1.1rem; box-shadow:var(--shadow); margin:1rem 0}
+.frow{display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.45rem 0}
+.fnode{border:1.5px solid color-mix(in srgb, var(--acc) 45%, var(--line)); background:var(--acc-soft); border-radius:10px; padding:.34rem .7rem; font-size:.9rem; font-weight:600; line-height:1.5}
+.fnode small{display:block; font-weight:400; color:var(--muted); font-size:.78rem; line-height:1.4}
+.fnode.alt{border-color:color-mix(in srgb, var(--exam) 45%, var(--line)); background:var(--exam-bg)}
+.fnode.warm{border-color:color-mix(in srgb, var(--ex) 45%, var(--line)); background:var(--ex-bg)}
+.farr{color:var(--muted); font-weight:700}
+.fcaption{color:var(--muted); font-size:.85rem; margin-top:.5rem}
+.tbl{overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th,td{border-bottom:1px solid var(--line); padding:.5rem .8rem; text-align:left; vertical-align:top; line-height:1.75}
+th{background:color-mix(in srgb, var(--acc-soft) 55%, var(--card)); font-weight:600; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center; white-space:nowrap}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0}
+@media (max-width:1000px){.grid2{grid-template-columns:1fr}}
+.list-card{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.8rem 1rem .9rem; box-shadow:var(--shadow)}
+.list-card h5{margin:.15rem 0 .5rem; font-size:.98rem}
+.list-card ul,.list-card ol{margin:.2rem 0 .3rem; padding-left:1.3rem}
+.list-card li{margin:.2rem 0}
+.dim{color:var(--muted)}
+.small{font-size:.87rem}
+.widget{border:1px solid color-mix(in srgb, var(--acc) 35%, var(--line)); background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem 1.1rem; margin:1.2rem 0}
+.widget h4{margin:0 0 .5rem; font-size:1.02rem; color:var(--acc-ink)}
+canvas#func{width:100%; max-width:780px; display:block; margin:0 auto; border:1px solid var(--line); border-radius:12px; background:var(--card); touch-action:none; cursor:crosshair}
+.ctrls{display:flex; flex-wrap:wrap; gap:.9rem; align-items:center; margin:.6rem 0}
+.ctrls label{font-size:.9rem; color:var(--muted); display:flex; align-items:center; gap:.4rem}
+.ctrls input[type=range]{width:170px; accent-color:var(--acc)}
+.readout{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.4rem .9rem; margin-top:.5rem; font-size:.92rem}
+.readout div{border:1px solid var(--line); border-radius:10px; padding:.3rem .7rem; background:color-mix(in srgb, var(--card) 90%, var(--bg))}
+.readout b{color:var(--acc-ink)}
+.hint{color:var(--muted); font-size:.86rem; margin-top:.45rem}
+.qi{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:.55rem .9rem; margin:.5rem 0}
+.qi .q{margin:0; font-weight:600}
+.qi .q .qn{color:var(--acc-ink); margin-right:.3rem}
+.qbtn{margin-top:.35rem; border:1px dashed var(--line); background:transparent; color:var(--acc-ink); border-radius:8px; padding:.15rem .6rem; font-size:.84rem; cursor:pointer}
+.qi .qa{display:none; margin-top:.5rem; border-top:1px dashed var(--line); padding-top:.5rem; font-size:.95rem}
+.qi.open .qa{display:block}
+.foot{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin-top:3rem; font-size:.88rem; color:var(--muted); line-height:1.85}
+.foot h4{margin:.1rem 0 .5rem; color:var(--ink); font-size:1rem}
+.toTop{position:fixed; right:1.4rem; bottom:1.4rem; z-index:60; width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--acc-ink); font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:none}
+.toTop.on{display:block}
+mark{background:color-mix(in srgb, var(--idea-bg) 80%, transparent); color:inherit; border-radius:4px; padding:0 .2em}
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr; padding-top:.8rem}
+  .side{display:none}
+}
+@media print{
+  .topbar,.side,.toTop,.qbtn,.ctrls{display:none !important}
+  .layout{display:block; padding:0}
+  body{font-size:12.5px; background:#fff}
+  .card,details.proof,.tbl,.widget{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">高等代数 · 第十章 <span class="badge">双线性函数与辛空间</span></div>
+    <div class="top-links">
+      <a class="tlink" href="../08_第八章_λ-矩阵/06_第八章_λ-矩阵_HTML讲解.html">→ 第八章 λ-矩阵</a>
+      <a class="tlink" href="../09_第九章_欧几里得空间/06_第九章_欧几里得空间_HTML讲解.html">→ 第九章 欧几里得空间</a>
+      <button class="tbtn" id="expandAll">展开全部证明</button>
+      <button class="tbtn" id="themeToggle">🌗 主题</button>
+    </div>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+
+<div class="layout">
+  <aside class="side">
+    <div class="side-in">
+      <h4>本页目录</h4>
+      <nav id="toc">
+        <a href="#intro">导读 · 考纲边界说明</a>
+        <a href="#map">全章逻辑地图</a>
+        <a href="#s1">§1 线性函数</a>
+        <a href="#s2">§2 对偶空间</a>
+        <a href="#s3">§3 双线性函数</a>
+        <a href="#s4">§4* 辛空间（选读）</a>
+        <a href="#links">与已学内容的连接</a>
+        <a href="#widget">交互 · 线性函数长什么样</a>
+        <a href="#pitfalls">易错点清单</a>
+        <a href="#quiz">自测 10 问</a>
+        <a href="#hw">教材习题地图</a>
+        <a href="#src">来源与边界</a>
+      </nav>
+      <div class="side-note">
+        <b>先读导读里的「考纲边界」。</b>本章不在 2027 级 801 考纲的独立必学清单里；本页按「保底覆盖」标准制作：概念层次 + 与二次型/欧氏空间的连接 + 典型入口，不要求整章精读与刷题。
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+  <div class="hero" id="intro">
+    <h1>第十章 双线性函数与辛空间 · 讲解页</h1>
+    <div class="sub">王萼芳《高等代数》第四版 第十章（印刷页 395–419）｜按「保底覆盖」标准整理的概览讲解</div>
+    <div class="meta">
+      <span class="chip red">📌 考纲核验 <b>未列为独立必学章（2027 级 801）</b></span>
+      <span class="chip acc">定位 <b>保底覆盖 · 概念导览 + 连接</b></span>
+      <span class="chip">🧮 四块内容 <b>线性函数 · 对偶空间 · 双线性函数 · 辛空间</b></span>
+      <span class="chip">✍️ 课本结构 <b>定义 9 · 定理 12 · 习题 18（无补充题）</b></span>
+    </div>
+    <p class="lead">
+      本章是一张「统一地图」：把二次型、欧氏空间、酉空间里出现过的各种结构，统一收进<b>双线性函数</b>的概念框架里讨论。
+      读者会看到熟悉的影子：内积就是「对称 + 正定」的双线性函数；二次型是双线性函数在 \(\alpha=\beta\) 处的取值；而对偶空间则解释了「坐标」「转置」到底在做什么。
+      课本最后用一节介绍<b>辛空间</b>——非退化反称双线性函数的世界，它要求空间维数为偶数，是现代几何与力学里辛几何的雏形。
+    </p>
+  </div>
+
+  <section class="sec" id="map">
+    <h2><span class="secnum">0</span>全章逻辑地图与考纲边界 <a class="h-anchor" href="#map">#</a></h2>
+
+    <div class="card warn">
+      <div class="card-h"><span class="tag">考纲边界（重要）</span><span>先看这里再决定投入</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>事实依据：</b>本地已核验的 2027 级南科大 801《线性代数》考纲（参考书目即王萼芳第四版）逐条列出多项式、行列式、线性方程组、矩阵、二次型、线性空间、线性变换、欧几里得空间等范围，<b>没有</b>列出本章的线性函数专章、对偶空间、双线性函数与辛空间。</li>
+          <li><b>当前取舍：</b>不把本章作为独立必学章、不布置整章精读与章末习题；<mark>按「保底覆盖」处理</mark>：理解四个概念、知道它们与二次型 / 内积的关系、认识典型题目入口即可。</li>
+          <li><b>边界说明：</b>这不是「大纲写着一律不考」的原文，而是按逐条考试内容做的安排；若某道题需要相邻概念（如线性函数、对偶基），再按题补充。</li>
+          <li><b>本页定位：</b>给出概念层次与连接，供了解与查漏；<b>不属于</b>当前主线任务。</li>
+        </ul>
+        <p class="small dim">依据：<code>10_第十章_双线性函数与辛空间/state.md</code>（2026-10-07 核验记录）与 `04_学习记录/` 中的概览记录。</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="frow">
+        <div class="fnode">线性函数 \(f:V\to P\)<small>§1 · 到数域的线性映射</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">对偶空间 \(V^*=L(V,P)\)<small>§2 · 线性函数也是向量</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">对偶基 \(f_i(\varepsilon_j)=\delta_{ij}\)<small>坐标提取器 · 过渡矩阵 \((A')^{-1}\)</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">\(V\cong V^{**}\)<small>定理 4 · “互为函数空间”</small></div>
+      </div>
+      <div class="frow">
+        <div class="fnode alt">双线性函数 \(f(\alpha,\beta)\)<small>§3 · 固定一边对另一边线性</small></div>
+        <span class="farr">→</span>
+        <div class="fnode alt">度量矩阵 \(A=(f(\varepsilon_i,\varepsilon_j))\)<small>合同变换 \(B=C'AC\) · 非退化 ⇔ A 可逆</small></div>
+        <span class="farr">→</span>
+        <div class="fnode warm">对称 → 对角基（定理 5）<small>⇒ 实数域：惯性指数规范形；对应二次型</small></div>
+        <span class="farr">/</span>
+        <div class="fnode warm">反称 → 辛基（定理 6）<small>⇒ 辛空间（偶数维）· §4 选读</small></div>
+      </div>
+      <div class="fcaption">一句话总纲：<b>双线性函数 = 把「内积」的对称正定性拆掉之后剩下的骨架</b>。对称的留二次型，反称的留辛几何，正定再回来就是欧氏空间。</div>
+    </div>
+  </section>
+
+  <!-- ===== §1 ===== -->
+  <section class="sec" id="s1">
+    <h2><span class="secnum">§1</span>线性函数：把向量变成数 <a class="h-anchor" href="#s1">#</a></h2>
+    <p class="h-note">课本 p.395–398。全章最基础的对象：取值在数域里的线性映射。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 1</span><span>线性函数</span><span class="src">课本 §1</span></div>
+      <div class="card-b">
+        <p>\(f:V\to P\) 若满足</p>
+        $$f(\alpha+\beta)=f(\alpha)+f(\beta),\qquad f(k\alpha)=kf(\alpha),$$
+        <p>称为 \(V\) 上的<b>线性函数</b>。</p>
+        <p class="small">直接性质：\(f(\mathbf{0})=0\)，\(f(-\alpha)=-f(\alpha)\)；对线性组合 \(f(k_1\alpha_1+\cdots+k_s\alpha_s)=k_1f(\alpha_1)+\cdots+k_sf(\alpha_s)\)。</p>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">例 1–3</span><span>三个标准例子</span><span class="src">课本 §1</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>\(P^n\) 上：</b>\(f(X)=a_1x_1+\cdots+a_nx_n\)。反过来，\(P^n\) 上每个线性函数都是这个形状：取自然基 \(\varepsilon_i\)，令 \(a_i=f(\varepsilon_i)\) 即可。</li>
+          <li><b>矩阵空间上：</b>迹 \(\operatorname{Tr}(A)=a_{11}+\cdots+a_{nn}\) 是 \(P^{n\times n}\) 上的线性函数。</li>
+          <li><b>多项式空间上：</b>取值函数 \(L_t(p(x))=p(t)\) 是 \(P[x]\) 上的线性函数。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 1</span><span>基上的取值唯一决定线性函数</span><span class="src">课本 §1</span></div>
+      <div class="card-b">
+        <p>设 \(\varepsilon_1,\dots,\varepsilon_n\) 是 \(n\) 维空间 \(V\) 的一组基，\(a_1,\dots,a_n\) 是 \(P\) 中任意 \(n\) 个数，则存在<b>唯一</b>的线性函数 \(f\) 使 \(f(\varepsilon_i)=a_i\ (i=1,\dots,n)\)。</p>
+        <p class="small dim">构造：\(f(\sum x_i\varepsilon_i)=\sum a_ix_i\)。这条定理是下一节「对偶基」能存在的原因。</p>
+      </div>
+    </div>
+
+    <div class="card idea">
+      <div class="card-h"><span class="tag">理解提示</span><span>与线性变换的关系</span></div>
+      <div class="card-b">
+        <p>线性函数就是「像空间的维数为 1」的线性映射：\(\dim V\to\dim P=1\)。所以它是所有线性映射中最简单的一类；但正因为它简单，才适合用来<b>读取坐标</b>（下一节）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §2 ===== -->
+  <section class="sec" id="s2">
+    <h2><span class="secnum">§2</span>对偶空间：线性函数自己也组成空间 <a class="h-anchor" href="#s2">#</a></h2>
+    <p class="h-note">课本 p.398–412。把 \(V\) 上所有线性函数收集起来，定义加法和数乘，就得到对偶空间 \(V^*\)；它的维数与 \(V\) 相同，两者的基由「对偶基」配对。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 2</span><span>对偶空间与对偶基</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>记 \(L(V,P)\) 为 \(V\) 上全体线性函数组成的集合。定义</p>
+        $$(f+g)(\alpha)=f(\alpha)+g(\alpha),\qquad (kf)(\alpha)=k\,f(\alpha),$$
+        <p>则 \(L(V,P)\) 成为数域 \(P\) 上的线性空间，称为 \(V\) 的<b>对偶空间</b>，简记 \(V^*\)。</p>
+        <p>对基 \(\varepsilon_1,\dots,\varepsilon_n\)，由 \(f_i(\varepsilon_j)=\delta_{ij}\) 唯一定出的 \(f_1,\dots,f_n\) 称为它的<b>对偶基</b>。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">核心观察</span><span>对偶基 = 坐标提取器</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>对 \(\alpha=x_1\varepsilon_1+\cdots+x_n\varepsilon_n\)，有</p>
+        $$f_i(\alpha)=x_i,\qquad \alpha=\sum_{i=1}^{n}f_i(\alpha)\varepsilon_i;\qquad f=\sum_{i=1}^{n}f(\varepsilon_i)f_i.$$
+        <p class="dim small">第一条说：\(f_i\) 就是「取第 \(i\) 个坐标」这个动作。第二条说：任何线性函数 \(f\) 可用对偶基展开，系数是它在原基上的取值——完全对偶的形式。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 2</span><span>维数相等</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>\(\dim V^{*}=\dim V=n\)，且 \(f_1,\dots,f_n\) 是 \(V^*\) 的一组基。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <p>若 \(c_1f_1+\cdots+c_nf_n=0\)，依次代入 \(\varepsilon_1,\dots,\varepsilon_n\) 得 \(c_1=\cdots=c_n=0\)，故线性无关；又由展开公式每个 \(f\) 都可由 \(f_i\) 线性表出，故构成基，维数 \(=n\)。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例</span><span>取值函数族构成对偶基</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>取 \(V=P[x]_n\)（次数 \(&lt;n\) 的多项式）与互异实数 \(a_1,\dots,a_n\)。拉格朗日插值多项式 \(p_1,\dots,p_n\) 满足 \(p_i(a_j)=\delta_{ij}\)；取值函数 \(L_i(p)=p(a_i)\) 满足 \(L_i(p_j)=\delta_{ij}\)。</p>
+        <p>于是：\(p_1,\dots,p_n\) 是 \(V\) 的基，\(L_1,\dots,L_n\) 恰是它的对偶基。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 3</span><span>换基时对偶基怎么变</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>若基的过渡矩阵为 \((\eta_1,\dots,\eta_n)=(\varepsilon_1,\dots,\varepsilon_n)A\)，则对偶基的过渡矩阵为 \((A')^{-1}\)：</p>
+        $$(g_1,\dots,g_n)=(f_1,\dots,f_n)(A')^{-1}.$$
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <p>设 \((g_1,\dots,g_n)=(f_1,\dots,f_n)B\)，用 \(g_j(\eta_i)=\delta_{ij}\) 逐个计算得 \(B'A=E\)，即 \(B'=A^{-1}\)，也就是 \(B=(A')^{-1}\)。∎</p>
+            <p class="dim small">记忆锚点：「向量换基用 \(A\)，对偶基换基用 \((A')^{-1}\)」——转置的来源。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 4</span><span>二次对偶与自然同构</span><span class="src">课本 §2</span></div>
+      <div class="card-b">
+        <p>对 \(V^*\) 中的 \(f\)，定义 \(V^*\) 上的函数 \(x^{**}(f)=f(x)\)，则 \(x^{**}\in V^{**}\)，且映射 \(x\mapsto x^{**}\) 是 \(V\to V^{**}\) 的<b>同构映射</b>。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <p>先验证 \((x_1+x_2)^{**}=x_1^{**}+x_2^{**}\)、\((kx)^{**}=kx^{**}\)（直接按定义展开）；再证单射：若 \(x^{**}\) 是零函数，则对一切 \(f\in V^*\) 有 \(f(x)=0\)，由展开式得 \(x=0\)；又维数相同，故同构。</p>
+          </div>
+        </details>
+        <p class="small"><b>意义：</b>「\(V\) 与 \(V^{*}\) 互为线性函数空间」——这就是「对偶」一词的来由，也是「向量也可以看成函数」的合法化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §3 ===== -->
+  <section class="sec" id="s3">
+    <h2><span class="secnum">§3</span>双线性函数：两变元的线性引擎 <a class="h-anchor" href="#s3">#</a></h2>
+    <p class="h-note">课本 p.412–426。本章核心：定义、度量矩阵、非退化、对称/反称、以及对角化与辛标准形。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 3</span><span>双线性函数</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>二元函数 \(f(\alpha,\beta)\) 若对两个变元分别线性：</p>
+        $$f(\alpha,\ k_1\beta_1+k_2\beta_2)=k_1f(\alpha,\beta_1)+k_2f(\alpha,\beta_2);$$
+        $$f(k_1\alpha_1+k_2\alpha_2,\ \beta)=k_1f(\alpha_1,\beta)+k_2f(\alpha_2,\beta),$$
+        <p>则称 \(f\) 为 \(V\) 上的<b>双线性函数</b>。即：固定一个变元，对另一个变元是线性函数。</p>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">例 1–3</span><span>你其实早就见过它们</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <ul>
+          <li>欧氏空间的内积 \((\alpha,\beta)\)；</li>
+          <li>两个线性函数的乘积 \(f(\alpha,\beta)=f_1(\alpha)f_2(\beta)\)；</li>
+          <li>\(P^n\) 上：\(f(X,Y)=X'AY\)（一般形式）。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 4</span><span>度量矩阵</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>取基 \(\varepsilon_1,\dots,\varepsilon_n\)，矩阵 \(A=(f(\varepsilon_i,\varepsilon_j))\) 称为 \(f\) 在这组基下的<b>度量矩阵</b>；此时</p>
+        $$f(\alpha,\beta)=X'AY.$$
+        <p>取定基后，<b>双线性函数与 \(n\) 级矩阵一一对应</b>；换基 \((\eta)=(\varepsilon)C\) 时</p>
+        $$B=C'AC,$$
+        <p>即不同基下度量矩阵<b>合同</b>。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 5</span><span>非退化</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>若「\(f(\alpha,\beta)=0\) 对一切 \(\beta\in V\)」只能推出 \(\alpha=0\)，则称 \(f\) <b>非退化</b>。</p>
+        <p>判据：\(f\) 非退化 ⟺ 度量矩阵 \(A\) 是可逆矩阵。（\(X'AY=0\ \forall Y\Rightarrow X'A=0\)，有非零解 ⟺ \(A\) 退化。）</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 6</span><span>对称与反称</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <ul>
+          <li>\(f(\alpha,\beta)=f(\beta,\alpha)\ \forall\alpha,\beta\)：<b>对称双线性函数</b> ⟺ 度量矩阵对称；</li>
+          <li>\(f(\alpha,\beta)=-f(\beta,\alpha)\ \forall\alpha,\beta\)：<b>反称双线性函数</b> ⟺ 度量矩阵反称。</li>
+        </ul>
+        <p class="dim small">欧氏内积 = 「对称 + 度量矩阵正定」的双线性函数——三道条件一起才配得上「内积」。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 5</span><span>对称双线性函数可对角化</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>设 \(f\) 是 \(n\) 维空间上的对称双线性函数，则存在基使 \(f\) 的度量矩阵为对角矩阵；此时</p>
+        $$f(\alpha,\beta)=d_1x_1y_1+d_2x_2y_2+\cdots+d_nx_ny_n.$$
+        <details class="proof">
+          <summary>课本证明路线（Schmidt 型归纳，展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>若 \(f\equiv0\) 结论显然；否则先证存在 \(\varepsilon_1\) 使 \(f(\varepsilon_1,\varepsilon_1)\neq0\)：否则由
+              $$f(\alpha,\beta)=\tfrac12\bigl[f(\alpha+\beta,\alpha+\beta)-f(\alpha,\alpha)-f(\beta,\beta)\bigr]=0$$
+              对一切 \(\alpha,\beta\) 成立，与 \(f\not\equiv0\) 矛盾；</li>
+              <li>把 \(\varepsilon_1\) 扩充成基，令 \(\varepsilon_i'=\eta_i-\dfrac{f(\varepsilon_1,\eta_i)}{f(\varepsilon_1,\varepsilon_1)}\varepsilon_1\)，则 \(f(\varepsilon_1,\varepsilon_i')=0\)；</li>
+              <li>在 \(n-1\) 维子空间 \(L(\varepsilon_2',\dots,\varepsilon_n')\) 上限制仍是 <b>对称</b> 双线性函数，归纳。</li>
+            </ol>
+            <p class="dim small">（另一条路：直接用二次型一章「对称矩阵合同对角化」的结论。）</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card cor">
+      <div class="card-h"><span class="tag">推论 1 / 2</span><span>复、实域上的规范形</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>复数域：</b>存在基使 \(f(\alpha,\beta)=x_1y_1+\cdots+x_ry_r\)（\(0\leqslant r\leqslant n\)）。</li>
+          <li><b>实数域：</b>存在基使 \(f(\alpha,\beta)=x_1y_1+\cdots+x_py_p-x_{p+1}y_{p+1}-\cdots-x_ry_r\)——与二次型惯性定理完全平行。</li>
+        </ul>
+        <p class="dim small">这就解释了：对称双线性函数的世界 ≈ 二次型的世界（下一张卡给出精确的对应）。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">定义 7 + 对照</span><span>二次齐次函数与二次型</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>取 \(\alpha=\beta\) 得 \(f(\alpha,\alpha)\)，称为与 \(f\) 对应的<b>二次齐次函数</b>；其坐标表达式恰是二次型。要点：</p>
+        <ul>
+          <li>不同双线性函数可对应同一二次齐次函数（例如任意反称部分不贡献）；</li>
+          <li><b>限制在对称双线性函数上，则一一对应</b>：每个二次型恰由一个对称双线性函数（其矩阵为对称矩阵）给出。</li>
+        </ul>
+        <p class="dim small">所以：本章 §3 前半 = 二次型理论的「上提」；第五章的内容在这里找到了更一般的解释。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 6</span><span>反称双线性函数的辛基（标准形）</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <p>设 \(f\) 是 \(n\) 维空间上的反称双线性函数，则存在基 \(\varepsilon_1,\varepsilon_{-1},\dots,\varepsilon_r,\varepsilon_{-r},\eta_1,\dots,\eta_s\) 使</p>
+        $$f(\varepsilon_i,\varepsilon_{-i})=1,\quad f(\varepsilon_i,\varepsilon_j)=0\ (i+j\neq0),\quad f(\alpha,\eta_k)=0\ \forall\alpha.$$
+        <p>若 \(f\) 非退化，则 \(\eta\) 块消失，且空间维数必为<b>偶数</b> \(2r\)。</p>
+        <details class="proof">
+          <summary>课本证明路线（速览，展开）</summary>
+          <div class="pb">
+            <p>非零时先取 \(\varepsilon_1\) 与 \(\varepsilon_{-1}=\lambda\beta\) 使 \(f(\varepsilon_1,\varepsilon_{-1})=1\)（缩放实现）；把这对向量扩充成基后，像对称情形一样「减去投影」改造其余基向量，使它们与这对向量辛正交；再对低维子空间归纳。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 8</span><span>双线性度量空间家族</span><span class="src">课本 §3</span></div>
+      <div class="card-b">
+        <ul>
+          <li>定义了非退化双线性函数 \(f\) 的 \(V\) 称为<b>双线性度量空间</b> \((V,f)\)；</li>
+          <li>\(f\) 非退化<b>对称</b>：称<b>正交空间</b>；实线性空间上再称<b>准欧氏空间</b>（对称 + 正定即欧氏空间）；</li>
+          <li>\(f\) 非退化<b>反称</b>：称<b>辛空间</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §4 ===== -->
+  <section class="sec" id="s4">
+    <h2><span class="secnum">§4*</span>辛空间（选读）：反称世界的几何 <a class="h-anchor" href="#s4">#</a></h2>
+    <p class="h-note">课本 p.420–426（带星号选读节）。按保底标准，本节只需到「概念 + 标准形 + 一句话结论」层。以下内容压缩呈现，供扩展阅读。</p>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">标准形</span><span>辛正交基与 J 矩阵</span><span class="src">课本 §4</span></div>
+      <div class="card-b">
+        <p>辛空间 \((V,f)\)（\(\dim V=2n\)）存在<b>辛正交基</b> \(\varepsilon_1,\dots,\varepsilon_n,\varepsilon_{-1},\dots,\varepsilon_{-n}\)：</p>
+        $$f(\varepsilon_i,\varepsilon_{-i})=1,\qquad f(\varepsilon_i,\varepsilon_j)=0\ (i+j\neq0).$$
+        <p>在这组基下度量矩阵为</p>
+        $$J=\begin{pmatrix}O&E\\ -E&O\end{pmatrix}_{2n\times2n}.$$
+        <p>结论：任一 \(2n\) 级非退化反称矩阵都<b>合同于 \(J\)</b>；辛空间的维数必为偶数。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">辛同构 / 辛变换</span><span>定义与矩阵条件</span><span class="src">课本 §4</span></div>
+      <div class="card-b">
+        <p>保持 \(f\) 的线性同构称为<b>辛同构</b>（到自身称<b>辛变换</b>）；两个辛空间辛同构 ⟺ 维数相同。</p>
+        <p>线性变换 \(K\)（矩阵 \(K=\begin{pmatrix}A&B\\ C&D\end{pmatrix}\)）是辛变换 ⟺</p>
+        $$K'JK=J\quad\Longleftrightarrow\quad A'C=C'A,\quad B'D=D'B,\quad A'D-C'B=E.$$
+        <p>且 \(|K|\neq0\)（事实上辛变换的行列式为 1）；辛变换的乘积与逆仍为辛变换。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">定理 7</span><span>辛正交补的维数公式</span><span class="src">课本 §4</span></div>
+      <div class="card-b">
+        <p>对子空间 \(W\)，定义 \(W^{\perp}=\{u\mid f(u,w)=0,\ \forall w\in W\}\)，则</p>
+        $$\dim W^{\perp}=\dim V-\dim W.$$
+        <p class="small dim">证明思路：把「与 \(W\) 的基向量辛正交」写成齐次线性方程组 \(X_i'AY=0\)，解空间维数自然出现。（与欧氏空间不同：这里 \(W\cap W^{\perp}\) 未必为零——这正是迷向子空间存在的原因。）</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">定义 9 + 性质</span><span>迷向、拉格朗日、辛子空间</span><span class="src">课本 §4</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>迷向子空间：</b>\(W\subset W^{\perp}\)；</li>
+          <li><b>拉格朗日子空间：</b>\(W=W^{\perp}\)（极大迷向）；</li>
+          <li><b>辛子空间：</b>\(W\cap W^{\perp}=\{0\}\)。</li>
+        </ul>
+        <p>基本性质：\((W^{\perp})^{\perp}=W\)；\(U\subset W\Rightarrow W^{\perp}\subset U^{\perp}\)；辛子空间时 \(V=U\oplus U^{\perp}\)；迷向子空间 \(\dim U\leqslant\frac12\dim V\)，拉格朗日时取等号。</p>
+        <p class="small dim">例（辛正交基下）：\(L(\varepsilon_1,\dots,\varepsilon_k)\) 迷向；\(L(\varepsilon_1,\dots,\varepsilon_n)\) 拉格朗日；\(L(\varepsilon_1,\dots,\varepsilon_k,\varepsilon_{-1},\dots,\varepsilon_{-k})\) 辛子空间。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">定理 8–12（结论速览）</span><span>扩充、等距与特征值</span><span class="src">课本 §4</span></div>
+      <div class="card-b">
+        <ul>
+          <li>拉格朗日子空间的基可扩充成辛正交基（定理 8）；迷向子空间、辛子空间同理（定理 9）；</li>
+          <li>两个拉格朗日子空间（或同维辛子空间）之间可用辛变换互化（定理 10）；Witt 定理：子空间间的等距可扩充为整体辛变换；</li>
+          <li>辛变换行列式为 1；特征多项式满足 \(f(\lambda)=\lambda^{2n}f(1/\lambda)\)——特征值成对出现（\(\lambda\) 与 \(1/\lambda\) 同重数），\(-1\) 的重数为偶（定理 11）；</li>
+          <li>若 \(\lambda_i\lambda_j\neq1\)，对应特征子空间辛正交；\(\lambda\neq\pm1\) 的特征子空间是迷向的（定理 12）。</li>
+        </ul>
+        <p class="small dim">直观例子（平面有向面积）：\(f(u,v)=x_1y_2-x_2y_1\) 是二维反称非退化双线性函数——最简单辛空间；它是「面积」而非「长度」的世界。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LINKS ===== -->
+  <section class="sec" id="links">
+    <h2><span class="secnum">连接</span>与已学内容的对照表 <a class="h-anchor" href="#links">#</a></h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>本章概念</th><th>对应的已学内容</th><th>关系</th></tr></thead>
+        <tbody>
+          <tr><td>线性函数 \(f:V\to P\)</td><td>线性映射（第 7 章）的特例</td><td>像是 1 维的情形；由基上取值唯一决定</td></tr>
+          <tr><td>对偶基 \(f_i(\varepsilon_j)=\delta_{ij}\)</td><td>坐标、线性方程组的行、转置矩阵</td><td>\(f_i\) 就是「取第 \(i\) 个坐标」；换基矩阵 \((A')^{-1}\) 解释转置的来源</td></tr>
+          <tr><td>双线性函数（对称）</td><td>二次型（第 5 章）</td><td>对称双线性函数与二次型一一对应；对角化 = 合同对角化</td></tr>
+          <tr><td>双线性函数（对称正定）</td><td>内积、欧氏空间（第 9 章）</td><td>内积 = 对称 + 正定；度量矩阵合同 = 第 9 章度量矩阵结论</td></tr>
+          <tr><td>复内积的共轭版本</td><td>酉空间（第 9 章 §8）</td><td>埃尔米特型是「复对称」的对应物</td></tr>
+          <tr><td>反称非退化</td><td>（新增内容）辛空间</td><td>偶数维；标准形 J；几何直观是有向面积</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card idea">
+      <div class="card-h"><span class="tag">理解提示</span><span>值不值得学？— 分三档</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>该知道（低投入）：</b>线性函数与对偶空间的概念、对偶基是坐标提取器、双线性函数与「内积/二次型」的关系——这级理解能反向加深对第 5、9 章的认识。</li>
+          <li><b>可选（中等投入）：</b>对偶基换基公式 \((A')^{-1}\)、非退化判据（度量矩阵可逆）、对称/反称与矩阵条件的对应。</li>
+          <li><b>暂缓（高投入、低优先级）：</b>辛空间的子空间理论（定理 7–12）、Witt 定理、辛变换特征值配对等内容——了解名词与结论框架即可，不背诵证明。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WIDGET ===== -->
+  <section class="sec" id="widget">
+    <h2><span class="secnum">交互</span>线性函数长什么样？ <a class="h-anchor" href="#widget">#</a></h2>
+    <div class="widget">
+      <h4>\(f(x,y)=a\,x+b\,y\) 的等高线与梯度</h4>
+      <p class="small dim" style="margin:.2rem 0 .6rem">拖动滑条改变系数 \(a,b\)；<b>拖动黄点 P</b> 移动测试点。观察：等高线（\(f=\text{常数}\)）永远垂直于向量 \((a,b)\)，且沿等高线移动时 \(f(P)\) 不变。</p>
+      <canvas id="func" width="1560" height="1040"></canvas>
+      <div class="ctrls">
+        <label>a = <input type="range" id="ra" min="-2" max="2" step="0.1" value="1.2"><b id="rav">1.2</b></label>
+        <label>b = <input type="range" id="rb" min="-2" max="2" step="0.1" value="0.6"><b id="rbv">0.6</b></label>
+        <button class="tbtn" id="resetP">重置 P</button>
+      </div>
+      <div class="readout" id="ro"></div>
+      <div class="hint">对偶视角：\((a,b)\) 本身就是 \(P^2\) 上级数组合的系数——「\(f\) 的坐标」。把 \(f\) 看成向量、把 \(P\) 看成「给每个 \(f\) 打分」的函数，就得到定理 4 的 \(V\cong V^{**}\)。</div>
+    </div>
+  </section>
+
+  <!-- ===== PITFALLS ===== -->
+  <section class="sec" id="pitfalls">
+    <h2><span class="secnum">⚠</span>易错点清单（概念级） <a class="h-anchor" href="#pitfalls">#</a></h2>
+    <div class="card warn">
+      <div class="card-h"><span class="tag">概念陷阱</span></div>
+      <div class="card-b">
+        <ol>
+          <li><b>对偶空间不是「把原向量改个名字」</b>：\(V^*\) 的元素是函数。虽然有限维时 \(\dim V^*=\dim V\)，但「同维」不等于「自然同一」——只有选了基（或给定内积）才有具体对应。</li>
+          <li><b>非退化 ≠ 每个向量都非零配对</b>：「非退化」说的是「与所有向量配对为零的只能是自己」；单个非零向量与其自身配对完全可能为零（迷向向量）。</li>
+          <li><b>反称 vs 对称在偶/奇维数上的差别：</b>非退化反称必偶数维（辛空间）；对称没有这个限制。奇数维反称矩阵行列式必为 0（必退化）。</li>
+          <li><b>度量矩阵的合同变换 \(B=C'AC\)</b>：与二次型一致，但注意「不同基下双线性函数度量矩阵合同」是结论，别与相似混淆。</li>
+          <li><b>「二次齐次函数 ← 双线性函数」不是一对一</b>，要一对一并要求对称性（反称部分对 \(f(\alpha,\alpha)\) 没有贡献）。</li>
+          <li><b>辛正交补与欧氏正交补不同：</b>欧氏中 \(V=W\oplus W^{\perp}\) 恒成立；辛空间中只有辛子空间才有 \(V=W\oplus W^{\perp}\)（迷向子空间满足 \(W\subset W^{\perp}\)）。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="sec" id="quiz">
+    <h2><span class="secnum">自测</span>概念自测 10 问 <a class="h-anchor" href="#quiz">#</a></h2>
+    <p class="h-note">本章按保底标准，能答出概念层即可。</p>
+    <div id="quizbox"></div>
+  </section>
+
+  <!-- ===== HW ===== -->
+  <section class="sec" id="hw">
+    <h2><span class="secnum">习题</span>教材习题地图（第十章，18 题） <a class="h-anchor" href="#hw">#</a></h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th class="c">题号</th><th>主题</th><th>对应内容</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1–2</td><td>由取值条件求线性函数 / 找满足条件的线性函数</td><td>§1 定理 1 的直接应用</td></tr>
+          <tr><td class="c">3</td><td>新基的对偶基（用旧对偶基表出）</td><td>§2 定理 3</td></tr>
+          <tr><td class="c">4–5</td><td>存在性：有限个非零线性函数 / 向量可同时「不被零化」</td><td>§2 对偶技巧</td></tr>
+          <tr><td class="c">6</td><td>积分函数族找对偶基（\(P[x]_3\)）</td><td>§2 对偶基（与插值例同构）</td></tr>
+          <tr><td class="c">7</td><td>内积给出 \(V\to V^*\) 的同构（欧氏空间可看成自身对偶）</td><td>§2 定理 4 + §3 对称正定</td></tr>
+          <tr><td class="c">8</td><td>转置映射 \(\mathcal{A}^*\)：对偶空间上的线性变换，矩阵为 \(A'\)</td><td>§2 + 转置的来源</td></tr>
+          <tr><td class="c">9</td><td>零化子空间：交/核视角</td><td>§1–§2 应用</td></tr>
+          <tr><td class="c">10</td><td>\(\operatorname{Tr}(X'AY)\) 的双线性性与度量矩阵</td><td>§3 度量矩阵</td></tr>
+          <tr><td class="c">11</td><td>\(P^4\) 上反称型在两组基下的度量矩阵（含合同计算）</td><td>§3 合同 \(B=C'AC\)</td></tr>
+          <tr><td class="c">12</td><td>复域对称型：迷向向量存在；非退化时构造特定配对</td><td>§3 对称型</td></tr>
+          <tr><td class="c">13</td><td>反称 ⟺ 对一切 \(\alpha\) 有 \(f(\alpha,\alpha)=0\)</td><td>§3 反称刻画（常用引理）</td></tr>
+          <tr><td class="c">14–16</td><td>正交（辛正交）补与子空间分解</td><td>§4 辛正交补（定理 7 邻域）</td></tr>
+          <tr><td class="c">17</td><td>非退化对称型：\(\alpha\mapsto\alpha^*\) 同构；对偶基配对基存在唯一</td><td>§3+§4 综合</td></tr>
+          <tr><td class="c">18</td><td>准正交变换（保持非退化对称型的变换）：可逆、乘积、特征值、矩阵条件</td><td>§4 类辛变换思想</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small dim">按当前考纲取舍：这些题<b>不要求</b>逐题完成；若日后需要相关概念（如转置映射、对偶基），优先做 3、7、8 三题建立手感。题面原文见 <code>05_教材习题_OCR核对版.md</code>。</p>
+  </section>
+
+  <!-- ===== SRC ===== -->
+  <section class="sec" id="src">
+    <div class="foot">
+      <h4>来源与边界</h4>
+      <ul class="tight">
+        <li><b>教材依据：</b>王萼芳《高等代数》第四版 第十章（印刷页 395–419），本页内容依据 2026-10-13 清洗版 MinerU 教材文本（`Agent非知识性文件存放处/2026-10-13_MinerU清理后上传/`）核对整理；定义、定理编号按课本原顺序。</li>
+        <li><b>考纲依据：</b><code>10_第十章_双线性函数与辛空间/state.md</code>（2026-10-07 已核 2027 级 801 考纲两页：本章未列为独立必学内容）；概览记录见 `04_学习记录/2026-10-07_第十章概览与学习边界.md`。</li>
+        <li><b>标记说明：</b>「理解提示」为 Hermes 所加讲解；正式定义定理以课本为准。若与教材原页冲突，以原页为准。</li>
+        <li><b>证据边界：</b>本页是资料与讲解，不是学习记录；阅读本页不构成「已掌握」证据，也不改变「本章不作为独立必学章」的取舍。</li>
+        <li><b>技术说明：</b>公式由本地 KaTeX 离线渲染；可直接用浏览器打开，无需联网。生成：Hermes，2026-10-13。</li>
+      </ul>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<button class="toTop" id="toTop" title="回到顶部">↑</button>
+
+<script defer src="../_html_assets/katex/katex.min.js"></script>
+<script defer src="../_html_assets/katex/auto-render.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  function render(el){
+    try{renderMathInElement(el||document.body,{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+      throwOnError:false, strict:false
+    });}catch(e){}
+  }
+  render();
+
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('kaoyan-html-theme'); if(s){root.setAttribute('data-theme',s);}}catch(e){}
+  var tb=document.getElementById('themeToggle');
+  tb.addEventListener('click',function(){
+    var now=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',now);
+    try{localStorage.setItem('kaoyan-html-theme',now);}catch(e){}
+    if(window.__redraw) window.__redraw();
+  });
+
+  var bar=document.getElementById('bar'), toTop=document.getElementById('toTop');
+  function onScroll(){
+    var h=document.documentElement, st=h.scrollTop||document.body.scrollTop;
+    var dh=(h.scrollHeight-h.clientHeight)||1;
+    bar.style.width=Math.min(100,(st/dh)*100)+'%';
+    toTop.classList.toggle('on', st>600);
+  }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  var links=[].slice.call(document.querySelectorAll('#toc a')), map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1); var el=document.getElementById(id); if(el){map[id]=a;}});
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(en.isIntersecting){ links.forEach(function(a){a.classList.remove('on');}); var a=map[en.target.id]; if(a) a.classList.add('on'); }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+
+  var btn=document.getElementById('expandAll'), expanded=false;
+  btn.addEventListener('click',function(){
+    expanded=!expanded;
+    document.querySelectorAll('details').forEach(function(d){d.open=expanded;});
+    btn.textContent=expanded?'收起全部证明':'展开全部证明';
+  });
+  window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true;});});
+
+  /* quiz */
+  var QS=[
+    ['什么是线性函数？举两个例子。','到数域的线性映射：\\(f(\\alpha+\\beta)=f(\\alpha)+f(\\beta)\\)、\\(f(k\\alpha)=kf(\\alpha)\\)。例：\\(P^n\\) 上 \\(f(X)=a_1x_1+\\cdots+a_nx_n\\)；矩阵的迹。'],
+    ['对偶基的定义与直观意义？','\\(f_i(\\varepsilon_j)=\\delta_{ij}\\)；意义：\\(f_i(\\alpha)=\\) 第 \\(i\\) 个坐标。「坐标提取器」。'],
+    ['对偶空间的维数？','\\(\\dim V^*=\\dim V\\)；\\(f_1,\\dots,f_n\\) 是对偶空间的一组基。'],
+    ['换基时对偶基的过渡矩阵？','若向量基过渡矩阵为 \\(A\\)，对偶基过渡矩阵为 \\((A\')^{-1}\\)。'],
+    ['定理 4（\\(V\\cong V^{**}\\)）说了什么？','\\(x\\mapsto x^{**}\\)（\\(x^{**}(f)=f(x)\\)）是自然同构；\\(V\\) 与 \\(V^*\\) 互为函数空间。'],
+    ['双线性函数是什么？举一例。','两个变元分别线性；例：\\(f(X,Y)=X\'AY\\)；欧氏内积。'],
+    ['如何用度量矩阵判断非退化？','\\(f\\) 非退化 ⟺ 度量矩阵 \\(A\\) 可逆。'],
+    ['对称/反称的矩阵判据？','对称型 ⟺ 任一组基下度量矩阵对称；反称型 ⟺ 度量矩阵反称。'],
+    ['对称双线性函数的标准形结论？','存在基使其度量矩阵对角化；实数域上是惯性指数形式（与二次型平行）。'],
+    ['辛空间的三个关键词？','非退化、反称、偶数维；标准形 \\(J=\\begin{pmatrix}O&E\\\\-E&O\\end{pmatrix}\\)；几何直观是有向面积。']
+  ];
+  var qb=document.getElementById('quizbox');
+  QS.forEach(function(q,i){
+    var d=document.createElement('div'); d.className='qi';
+    d.innerHTML='<p class="q"><span class="qn">Q'+(i+1)+'.</span>'+q[0]+'</p><button class="qbtn">显示答案</button><div class="qa">'+q[1]+'</div>';
+    d.querySelector('.qbtn').addEventListener('click',function(){
+      d.classList.toggle('open');
+      this.textContent=d.classList.contains('open')?'收起答案':'显示答案';
+    });
+    qb.appendChild(d);
+  });
+  render(qb);
+
+  /* ============ function canvas ============ */
+  (function(){
+    var cvs=document.getElementById('func'); if(!cvs) return;
+    var ctx=cvs.getContext('2d');
+    var W=780,H=520;
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    cvs.width=W*dpr; cvs.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var ox=390, oy=290, S=60;
+    var A=1.2, B=0.6;
+    var P=[1.1,0.9];
+    var dragging=false;
+    function X(x){return ox+x*S;} function Y(y){return oy-y*S;}
+    function invX(px){return (px-ox)/S;} function invY(py){return (oy-py)/S;}
+    function cssv(name,fallback){var v=getComputedStyle(document.documentElement).getPropertyValue(name).trim(); return v||fallback;}
+    function clampP(p){
+      return [Math.max(invX(6),Math.min(invX(W-6),p[0])), Math.max(invY(H-6),Math.min(invY(6),p[1]))];
+    }
+    function draw(){
+      var ink=cssv('--ink','#222'), muted=cssv('--muted','#888'), line=cssv('--line','#ddd'),
+          card=cssv('--card','#fff'), acc=cssv('--acc','#b45309'),
+          ex=cssv('--ex','#2f9e44'), warn=cssv('--warn','#e03131'), idea=cssv('--idea','#946800');
+      ctx.clearRect(0,0,W,H); ctx.fillStyle=card; ctx.fillRect(0,0,W,H);
+      /* grid */
+      ctx.strokeStyle=line; ctx.lineWidth=1;
+      var x0=Math.floor(invX(0)), x1=Math.ceil(invX(W)), y0=Math.floor(invY(H)), y1=Math.ceil(invY(0));
+      for(var gx=x0;gx<=x1;gx++){ctx.beginPath();ctx.moveTo(X(gx),0);ctx.lineTo(X(gx),H);ctx.stroke();}
+      for(var gy=y0;gy<=y1;gy++){ctx.beginPath();ctx.moveTo(0,Y(gy));ctx.lineTo(W,Y(gy));ctx.stroke();}
+      /* axes */
+      ctx.strokeStyle=muted; ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(W,Y(0));ctx.stroke();
+      ctx.beginPath();ctx.moveTo(X(0),0);ctx.lineTo(X(0),H);ctx.stroke();
+
+      var r2=A*A+B*B;
+      /* level lines */
+      if(r2>1e-6){
+        var dir=[-B,A]; /* perpendicular to (A,B) */
+        var cs=[-3,-2,-1,0,1,2,3];
+        cs.forEach(function(c){
+          var foot=[c*A/r2, c*B/r2];
+          var big=60;
+          var p1=[foot[0]-dir[0]*big, foot[1]-dir[1]*big];
+          var p2=[foot[0]+dir[0]*big, foot[1]+dir[1]*big];
+          ctx.save();
+          if(c===0){ctx.strokeStyle=acc; ctx.lineWidth=2.4; ctx.setLineDash([]);}
+          else{ctx.strokeStyle=line; ctx.lineWidth=1.6; ctx.setLineDash([7,6]);}
+          ctx.beginPath(); ctx.moveTo(X(p1[0]),Y(p1[1])); ctx.lineTo(X(p2[0]),Y(p2[1])); ctx.stroke();
+          /* label */
+          ctx.setLineDash([]);
+          ctx.fillStyle=muted; ctx.font='12px "Segoe UI","Microsoft YaHei",sans-serif';
+          var lx=foot[0]+dir[0]*1.1, ly=foot[1]+dir[1]*1.1;
+          if(lx>invX(0)+0.2 && lx<invX(W)-0.2 && ly>invY(H)+0.2 && ly<invY(0)-0.2){
+            ctx.fillText('f = '+c, X(lx)+4, Y(ly)-4);
+          }
+          ctx.restore();
+        });
+        /* gradient (a,b) arrow */
+        ctx.save();
+        ctx.strokeStyle=warn; ctx.fillStyle=warn; ctx.lineWidth=3;
+        var g=[A,B];
+        ctx.beginPath(); ctx.moveTo(X(0),Y(0)); ctx.lineTo(X(g[0]*0.9),Y(g[1]*0.9)); ctx.stroke();
+        var ang=Math.atan2(Y(g[1]*0.9)-Y(0), X(g[0]*0.9)-X(0)), hl=11;
+        ctx.beginPath();
+        ctx.moveTo(X(g[0]*0.9),Y(g[1]*0.9));
+        ctx.lineTo(X(g[0]*0.9)-hl*Math.cos(ang-0.42), Y(g[1]*0.9)-hl*Math.sin(ang-0.42));
+        ctx.lineTo(X(g[0]*0.9)-hl*Math.cos(ang+0.42), Y(g[1]*0.9)-hl*Math.sin(ang+0.42));
+        ctx.closePath(); ctx.fill();
+        ctx.font='600 15px "Segoe UI","Microsoft YaHei",sans-serif';
+        ctx.fillText('(a, b)', X(g[0]*0.9)+10, Y(g[1]*0.9)-8);
+        ctx.restore();
+      } else {
+        ctx.fillStyle=muted; ctx.font='15px "Segoe UI","Microsoft YaHei",sans-serif';
+        ctx.fillText('a = b = 0：f 是零函数，全部向量都被映为 0', 14, 24);
+      }
+      /* point P */
+      ctx.save();
+      ctx.fillStyle=idea;
+      ctx.beginPath(); ctx.arc(X(P[0]),Y(P[1]),7,0,6.3); ctx.fill();
+      ctx.strokeStyle=idea; ctx.lineWidth=1.2; ctx.setLineDash([4,4]);
+      ctx.beginPath(); ctx.moveTo(X(P[0]),Y(0)); ctx.lineTo(X(P[0]),Y(P[1])); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X(0),Y(P[1])); ctx.lineTo(X(P[0]),Y(P[1])); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font='600 15px "Segoe UI","Microsoft YaHei",sans-serif';
+      ctx.fillText('P', X(P[0])+9, Y(P[1])-9);
+      ctx.restore();
+
+      var fP=A*P[0]+B*P[1];
+      document.getElementById('ro').innerHTML=
+        '<div>f(x, y) = <b>'+A.toFixed(1)+'</b> x + <b>'+B.toFixed(1)+'</b> y</div>'+
+        '<div>P = (<b>'+P[0].toFixed(2)+'</b>, <b>'+P[1].toFixed(2)+'</b>)</div>'+
+        '<div>f(P) = <b>'+fP.toFixed(2)+'</b></div>'+
+        '<div>‖(a, b)‖ = <b>'+Math.sqrt(A*A+B*B).toFixed(2)+'</b>（等高线的法向）</div>';
+      window.__fState={fP:fP};
+    }
+    function getPos(ev){
+      var r=cvs.getBoundingClientRect();
+      var px=(ev.clientX-r.left)*(W/r.width);
+      var py=(ev.clientY-r.top)*(H/r.height);
+      return [invX(px), invY(py)];
+    }
+    cvs.addEventListener('pointerdown',function(ev){ dragging=true; cvs.setPointerCapture(ev.pointerId); P=clampP(getPos(ev)); draw(); });
+    cvs.addEventListener('pointermove',function(ev){ if(dragging){ P=clampP(getPos(ev)); draw(); } });
+    cvs.addEventListener('pointerup',function(){dragging=false;});
+    cvs.addEventListener('pointercancel',function(){dragging=false;});
+    var ra=document.getElementById('ra'), rb=document.getElementById('rb');
+    ra.addEventListener('input',function(){ A=parseFloat(ra.value); document.getElementById('rav').textContent=A.toFixed(1); draw(); });
+    rb.addEventListener('input',function(){ B=parseFloat(rb.value); document.getElementById('rbv').textContent=B.toFixed(1); draw(); });
+    document.getElementById('resetP').addEventListener('click',function(){ P=[1.1,0.9]; draw(); });
+    window.__redraw=draw;
+    draw();
+  })();
+});
+</script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

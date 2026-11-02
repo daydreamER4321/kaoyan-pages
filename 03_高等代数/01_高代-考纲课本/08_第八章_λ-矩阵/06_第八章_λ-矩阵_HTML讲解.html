@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高等代数 第八章 λ-矩阵 · 讲解页</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<style>
+:root{
+  --bg:#f5f6fa; --card:#ffffff; --ink:#20242e; --muted:#5c6575; --line:#e4e7f0;
+  --acc:#6741d9; --acc-soft:#f0ebfd; --acc-ink:#5f3dc4;
+  --def:#1971c2; --def-bg:#eef6fc;
+  --thm:#e8590c; --thm-bg:#fdf2ea;
+  --lem:#0b7285; --lem-bg:#e9f6f8;
+  --cor:#1098ad; --cor-bg:#ebf7fa;
+  --ex:#2f9e44; --ex-bg:#eefaf0;
+  --warn:#e03131; --warn-bg:#fdefee;
+  --exam:#9c36b5; --exam-bg:#f9eefc;
+  --how:#4263eb; --how-bg:#eef2fe;
+  --idea:#b08900; --idea-bg:#fdf6e3;
+  --code-bg:#f1f3f8;
+  --radius:14px; --sidebar:288px;
+  --shadow:0 1px 2px rgba(24,28,45,.05),0 6px 24px -12px rgba(24,28,45,.14);
+}
+[data-theme="dark"]{
+  --bg:#14161d; --card:#1c1f29; --ink:#e7eaf2; --muted:#9aa3b5; --line:#2b3140;
+  --acc:#9b8afb; --acc-soft:#241f3d; --acc-ink:#b9aefc;
+  --def:#74b3ea; --def-bg:#182633;
+  --thm:#f59f6a; --thm-bg:#2f2118;
+  --lem:#4fc3d4; --lem-bg:#152b2f;
+  --cor:#59c1d4; --cor-bg:#152b30;
+  --ex:#69c17c; --ex-bg:#16291a;
+  --warn:#f08080; --warn-bg:#331b1b;
+  --exam:#cf9ae8; --exam-bg:#2b1e33;
+  --how:#8fa8f8; --how-bg:#1c2337;
+  --idea:#e3c05c; --idea-bg:#2e2717;
+  --code-bg:#232838;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 28px -14px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  font-size:16.5px; line-height:1.95;
+}
+a{color:var(--acc-ink); text-decoration:none}
+a:hover{text-decoration:underline}
+code{background:var(--code-bg); border:1px solid var(--line); border-radius:6px; padding:0 .35em; font-family:Consolas,Menlo,monospace; font-size:.92em}
+/* ---------- topbar ---------- */
+.topbar{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1280px; margin:0 auto; padding:.55rem 1.2rem; display:flex; align-items:center; gap:.9rem; flex-wrap:wrap}
+.brand{font-weight:700; letter-spacing:.02em; white-space:nowrap}
+.brand .badge{background:var(--acc-soft); color:var(--acc-ink); border:1px solid color-mix(in srgb, var(--acc) 30%, var(--line)); border-radius:999px; padding:.08rem .6rem; font-size:.82rem; margin-left:.4rem; white-space:nowrap}
+.top-links{margin-left:auto; display:flex; gap:.45rem; flex-wrap:wrap}
+.tlink{border:1px solid var(--line); border-radius:999px; padding:.16rem .7rem; font-size:.83rem; color:var(--muted); background:var(--card)}
+.tlink:hover{color:var(--acc-ink); border-color:var(--acc); text-decoration:none}
+.tbtn{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:10px; padding:.22rem .65rem; font-size:.85rem; cursor:pointer}
+.tbtn:hover{border-color:var(--acc)}
+.progress{height:3px; background:transparent}
+.progress i{display:block; height:3px; width:0; background:linear-gradient(90deg,var(--acc),#9b8afb)}
+/* ---------- layout ---------- */
+.layout{max-width:1280px; margin:0 auto; display:grid; grid-template-columns:var(--sidebar) minmax(0,1fr); gap:2rem; padding:1.4rem 1.2rem 6rem}
+.side{position:relative}
+.side-in{position:sticky; top:74px; max-height:calc(100vh - 96px); overflow:auto; padding-right:.4rem}
+.side h4{margin:.2rem 0 .5rem; font-size:.82rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+#toc{display:flex; flex-direction:column; gap:1px; border-left:2px solid var(--line); padding-left:.65rem; margin-bottom:1rem}
+#toc a{color:var(--muted); font-size:.92rem; padding:.14rem .3rem; border-radius:6px; line-height:1.5}
+#toc a:hover{color:var(--ink); text-decoration:none; background:var(--card)}
+#toc a.on{color:var(--acc-ink); font-weight:600; background:var(--acc-soft)}
+#toc a.sub{font-size:.86rem; padding-left:1.15rem}
+.side-note{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.7rem .85rem; font-size:.83rem; color:var(--muted); line-height:1.7}
+main{min-width:0}
+/* ---------- hero ---------- */
+.hero{border:1px solid var(--line); background:linear-gradient(160deg, var(--acc-soft), var(--card) 55%); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.6rem 1.7rem 1.4rem; margin-bottom:1.6rem}
+.hero h1{margin:0 0 .3rem; font-size:1.85rem; letter-spacing:.01em}
+.hero .sub{color:var(--muted); font-size:.98rem; margin-bottom:.9rem}
+.meta{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.9rem}
+.chip{display:inline-flex; align-items:center; gap:.35rem; border-radius:999px; border:1px solid var(--line); background:var(--card); padding:.18rem .75rem; font-size:.84rem; color:var(--muted)}
+.chip b{color:var(--ink); font-weight:600}
+.chip.acc{border-color:color-mix(in srgb, var(--acc) 40%, var(--line)); color:var(--acc-ink); background:var(--acc-soft)}
+.hero .lead{font-size:.98rem; color:var(--ink)}
+/* ---------- headings / sections ---------- */
+section.sec{margin:2.6rem 0 0; scroll-margin-top:84px}
+h2{font-size:1.42rem; margin:0 0 .35rem; padding-top:.4rem; display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+h2 .secnum{color:var(--acc-ink); font-size:1.1rem; letter-spacing:.03em}
+h2 .h-anchor{color:var(--muted); font-size:.9rem; opacity:0; transition:.15s}
+h2:hover .h-anchor{opacity:1}
+h3{font-size:1.13rem; margin:1.5rem 0 .4rem}
+.h-note{color:var(--muted); font-size:.9rem; margin:.1rem 0 1rem}
+/* ---------- cards ---------- */
+.card{border:1px solid var(--line); border-left-width:4px; border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0; overflow:hidden}
+.card-h{display:flex; align-items:center; gap:.55rem; padding:.5rem .9rem; border-bottom:1px dashed var(--line); font-weight:600; flex-wrap:wrap}
+.card-b{padding:.75rem 1rem .9rem}
+.tag{font-size:.8rem; font-weight:700; border-radius:8px; padding:.1rem .55rem; letter-spacing:.02em; white-space:nowrap}
+.card.def{border-left-color:var(--def)} .card.def .tag{background:var(--def-bg); color:var(--def)}
+.card.thm{border-left-color:var(--thm)} .card.thm .tag{background:var(--thm-bg); color:var(--thm)}
+.card.lem{border-left-color:var(--lem)} .card.lem .tag{background:var(--lem-bg); color:var(--lem)}
+.card.cor{border-left-color:var(--cor)} .card.cor .tag{background:var(--cor-bg); color:var(--cor)}
+.card.ex{border-left-color:var(--ex)} .card.ex .tag{background:var(--ex-bg); color:var(--ex)}
+.card.rem{border-left-color:var(--muted)} .card.rem .tag{background:var(--code-bg); color:var(--muted)}
+.card.warn{border-left-color:var(--warn); background:linear-gradient(180deg,var(--warn-bg), var(--card) 65%)}
+.card.warn .tag{background:var(--warn-bg); color:var(--warn)}
+.card.exam{border-left-color:var(--exam)} .card.exam .tag{background:var(--exam-bg); color:var(--exam)}
+.card.how{border-left-color:var(--how)} .card.how .tag{background:var(--how-bg); color:var(--how)}
+.card.idea{border-left-color:var(--idea)} .card.idea .tag{background:var(--idea-bg); color:var(--idea)}
+.card .src{color:var(--muted); font-size:.8rem; margin-left:auto; white-space:nowrap}
+/* ---------- proof details ---------- */
+details.proof{margin:.6rem 0 0; border:1px solid var(--line); border-radius:10px; background:color-mix(in srgb, var(--card) 92%, var(--bg))}
+details.proof summary{cursor:pointer; padding:.42rem .85rem; font-size:.9rem; color:var(--acc-ink); user-select:none}
+details.proof summary::marker{color:var(--acc)}
+details.proof .pb{padding:.35rem .95rem .85rem; border-top:1px dashed var(--line); font-size:.95rem}
+details.plain{margin:.6rem 0; border:1px solid var(--line); border-radius:10px; background:var(--card)}
+details.plain summary{cursor:pointer; padding:.45rem .9rem; font-weight:600}
+details.plain .pb{padding:.4rem 1rem .9rem; border-top:1px dashed var(--line)}
+/* ---------- flow map ---------- */
+.flow{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1rem 1.1rem; box-shadow:var(--shadow); margin:1rem 0}
+.frow{display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.45rem 0}
+.fnode{border:1.5px solid color-mix(in srgb, var(--acc) 45%, var(--line)); background:var(--acc-soft); color:var(--ink); border-radius:10px; padding:.34rem .7rem; font-size:.9rem; font-weight:600; line-height:1.5}
+.fnode small{display:block; font-weight:400; color:var(--muted); font-size:.78rem; line-height:1.4}
+.fnode.alt{border-color:color-mix(in srgb, var(--exam) 45%, var(--line)); background:var(--exam-bg)}
+.fnode.warm{border-color:color-mix(in srgb, var(--ex) 45%, var(--line)); background:var(--ex-bg)}
+.farr{color:var(--muted); font-weight:700}
+.fcaption{color:var(--muted); font-size:.85rem; margin-top:.5rem}
+.bridge{display:flex; align-items:center; gap:.6rem; margin:.35rem 0 .2rem; color:var(--exam); font-size:.88rem; font-weight:600}
+.bridge .line{flex:1; height:1px; background:repeating-linear-gradient(90deg,var(--exam) 0 6px, transparent 6px 12px)}
+/* ---------- tables ---------- */
+.tbl{overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th,td{border-bottom:1px solid var(--line); padding:.5rem .8rem; text-align:left; vertical-align:top; line-height:1.75}
+th{background:color-mix(in srgb, var(--acc-soft) 55%, var(--card)); font-weight:600; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center; white-space:nowrap}
+/* ---------- misc ---------- */
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0}
+@media (max-width:1000px){.grid2{grid-template-columns:1fr}}
+.list-card{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.8rem 1rem .9rem; box-shadow:var(--shadow)}
+.list-card h5{margin:.15rem 0 .5rem; font-size:.98rem}
+.list-card ul{margin:.2rem 0 .3rem; padding-left:1.3rem}
+.list-card li{margin:.2rem 0}
+.kv{color:var(--muted); font-size:.9rem}
+.hr{border:none; border-top:1px dashed var(--line); margin:1.6rem 0}
+.stars{letter-spacing:.15em}
+/* widget */
+.widget{border:1px solid color-mix(in srgb, var(--acc) 35%, var(--line)); background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem 1.1rem; margin:1.2rem 0}
+.widget h4{margin:0 0 .5rem; font-size:1.02rem; color:var(--acc-ink)}
+.wbtns{display:flex; flex-wrap:wrap; gap:.4rem; margin:.4rem 0 .8rem}
+.wbtn{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:.28rem .8rem; cursor:pointer; font-size:.88rem}
+.wbtn:hover{border-color:var(--acc)}
+.wbtn.on{background:var(--acc); border-color:var(--acc); color:#fff}
+.wout{border-top:1px dashed var(--line); padding-top:.7rem; font-size:.95rem; min-height:3em}
+.wout h5{margin:.1rem 0 .4rem; font-size:.98rem}
+.wout ol{margin:.2rem 0 .4rem; padding-left:1.4rem}
+.wout li{margin:.25rem 0}
+.wout .tip{color:var(--warn); font-size:.9rem}
+/* quiz */
+.qi{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:.55rem .9rem; margin:.5rem 0}
+.qi .q{margin:0; font-weight:600}
+.qi .q .qn{color:var(--acc-ink); margin-right:.3rem}
+.qbtn{margin-top:.35rem; border:1px dashed var(--line); background:transparent; color:var(--acc-ink); border-radius:8px; padding:.15rem .6rem; font-size:.84rem; cursor:pointer}
+.qbtn:hover{border-color:var(--acc)}
+.qi .qa{display:none; margin-top:.5rem; border-top:1px dashed var(--line); padding-top:.5rem; color:var(--ink); font-size:.95rem}
+.qi.open .qa{display:block}
+/* checklist */
+.checklist{list-style:none; margin:.4rem 0; padding-left:.2rem}
+.checklist li{margin:.35rem 0; padding-left:.2rem}
+.checklist label{display:flex; gap:.55rem; align-items:flex-start; cursor:pointer}
+.checklist input{margin-top:.55rem; accent-color:var(--acc)}
+.checklist li.done label{color:var(--muted); text-decoration:line-through}
+/* footer */
+.foot{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin-top:3rem; font-size:.88rem; color:var(--muted); line-height:1.85}
+.foot h4{margin:.1rem 0 .5rem; color:var(--ink); font-size:1rem}
+.toTop{position:fixed; right:1.4rem; bottom:1.4rem; z-index:60; width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--acc-ink); font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:none}
+.toTop.on{display:block}
+mark{background:color-mix(in srgb, var(--idea-bg) 80%, transparent); color:inherit; border-radius:4px; padding:0 .2em}
+.dim{color:var(--muted)}
+.small{font-size:.87rem}
+.center{text-align:center}
+ul.tight li{margin:.18rem 0}
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr; padding-top:.8rem}
+  .side{display:none}
+}
+@media print{
+  .topbar,.side,.toTop,.wbtns,.qbtn{display:none !important}
+  .layout{display:block; padding:0}
+  body{font-size:12.5px; background:#fff}
+  .card,details.proof,.tbl,.widget{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">高等代数 · 第八章 <span class="badge">λ-矩阵</span></div>
+    <div class="top-links">
+      <a class="tlink" href="../09_第九章_欧几里得空间/06_第九章_欧几里得空间_HTML讲解.html">→ 第九章 欧几里得空间</a>
+      <a class="tlink" href="../10_第十章_双线性函数与辛空间/06_第十章_双线性函数与辛空间_HTML讲解.html">→ 第十章 双线性函数与辛空间</a>
+      <button class="tbtn" id="expandAll" title="展开/收起全部证明">展开全部证明</button>
+      <button class="tbtn" id="themeToggle" title="切换深浅色">🌗 主题</button>
+    </div>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+
+<div class="layout">
+  <aside class="side">
+    <div class="side-in">
+      <h4>本页目录</h4>
+      <nav id="toc">
+        <a href="#intro">导读 · 本章定位</a>
+        <a href="#map">全章逻辑地图</a>
+        <a href="#s1">§1 λ-矩阵与可逆性</a>
+        <a href="#s2">§2 初等变换与标准形</a>
+        <a href="#s3">§3 行列式因子与不变因子</a>
+        <a href="#s4">§4 矩阵相似的条件</a>
+        <a href="#s5">§5 初等因子</a>
+        <a href="#s6">§6 若尔当标准形</a>
+        <a href="#s7">§7 有理标准形</a>
+        <a href="#methods">方法总图（五步查询）</a>
+        <a href="#widget">交互 · 求什么→怎么求</a>
+        <a href="#table">对照表与速查</a>
+        <a href="#exam">801 真题定位</a>
+        <a href="#pitfalls">易错点清单</a>
+        <a href="#quiz">闭卷自测（12 问）</a>
+        <a href="#hw">教材习题地图</a>
+        <a href="#src">来源与边界</a>
+      </nav>
+      <div class="side-note">
+        <b>用法建议：</b>先读「导读 + 逻辑地图」建立主线；做题时回到「方法总图」和「对照表」查步骤；自测区用来检验是否能<b>闭卷复述</b>关键定理与条件。
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+  <!-- ============ HERO ============ -->
+  <div class="hero" id="intro">
+    <h1>第八章 λ-矩阵 · 讲解页</h1>
+    <div class="sub">王萼芳《高等代数》第四版 第八章（课本印刷页 324–354）｜面向 2027 级 801 备考的一站式讲解</div>
+    <div class="meta">
+      <span class="chip acc">📌 考纲定位 <b>保底覆盖 · 显性低频 / 隐性高频</b></span>
+      <span class="chip">🏷 与第七章 <b>线性变换 / 谱结构</b> 同块</span>
+      <span class="chip">🧮 核心产出 <b>不变因子 · 初等因子 · 若尔当标准形 · 有理标准形</b></span>
+      <span class="chip">✍️ 课本结构 <b>定义 9 · 定理 15 · 引理 5 · 例题 6</b></span>
+    </div>
+    <p class="lead">
+      本章回答一个中心问题：<b>两个数字矩阵什么时候相似？</b> 课本的思路是把相似问题「翻译」成λ-矩阵的等价问题：先把 \(\lambda E-A\) 化成标准形，
+      得到一组相似不变量（不变因子），再进一步细分成初等因子，最终把复数域上每一类相似矩阵识别为唯一的<b>若尔当标准形</b>；而任意数域上的情形由<b>有理标准形</b>兜底。
+      从考试角度看，本章很少以「λ-矩阵」的名义直接出题，但它的产物——<mark>最小多项式、若尔当形、矩阵多项式与矩阵方程的判定</mark>——是第 7 章之后大量男题的核心零件。
+    </p>
+  </div>
+
+  <!-- ============ MAP ============ -->
+  <section class="sec" id="map">
+    <h2><span class="secnum">0</span>全章逻辑地图：一张图看懂这章在干什么 <a class="h-anchor" href="#map">#</a></h2>
+    <p class="h-note">先看「对象怎么流动」，再逐节读细节。上半轨是 λ-矩阵自己的化简理论；下半轨是数字矩阵的分类结论；中间的桥是定理 7。</p>
+    <div class="flow">
+      <div class="frow">
+        <div class="fnode">λ-矩阵 \(A(\lambda)\)<small>元素是多项式的矩阵</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">初等变换 / 初等矩阵<small>三类变换 · 定义 3</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">等价关系<small>左右乘可逆矩阵列</small></div>
+        <span class="farr">→</span>
+        <div class="fnode warm">标准形（定理 2）<small>对角 · 首一 · 依次整除</small></div>
+        <span class="farr">→</span>
+        <div class="fnode warm">唯一性（定理 4）<small>靠行列式因子锁死</small></div>
+      </div>
+      <div class="bridge"><span class="line"></span>桥：定理 7 —— 数字矩阵 \(A\sim B\) ⟺ 特征矩阵 \(\lambda E-A\) 与 \(\lambda E-B\) 等价<span class="line"></span></div>
+      <div class="frow">
+        <div class="fnode alt">行列式因子 \(D_k(\lambda)\)<small>等价不变量 · 定义 5</small></div>
+        <span class="farr">→</span>
+        <div class="fnode alt">不变因子 \(d_1\mid d_2\mid\cdots\mid d_n\)<small>相似不变量 · 定义 6</small></div>
+        <span class="farr">→</span>
+        <div class="fnode alt">初等因子<small>（复数域）一次因式方幂 · 定义 7</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">若尔当标准形<small>定理 10 · 复数域</small></div>
+        <span class="farr">/</span>
+        <div class="fnode">有理标准形<small>定理 14 · 任意数域</small></div>
+      </div>
+      <div class="fcaption">两条主线：「怎么算」（初等变换 → 标准形 → 两类因子）与「有什么用」（判定相似 → 若尔当 / 有理标准形 → 最小多项式、幂与矩阵方程）。</div>
+    </div>
+
+    <div class="grid2">
+      <div class="list-card">
+        <h5>🧭 本页配套的学习路线（建议）</h5>
+        <ul>
+          <li><b>第一遍（建主线）：</b>§1–§4。目标是能说清「可逆判据 → 标准形 → 两类因子 → 相似条件」的因果链，会算小矩阵的标准形和不变因子。</li>
+          <li><b>第二遍（拿工具）：</b>§5–§6。目标是熟练「初等因子 → 若尔当形」的装配法，并记住可对角化的两条判据、最小多项式与 \(d_n\) 的关系。</li>
+          <li><b>第三遍（补边界）：</b>§7。理解友矩阵与有理标准形在任意数域上的意义；顺手把本章与第 7 章串联。</li>
+          <li><b>不建议</b>：在第一遍里死磕定理 7 与定理 9 的完整证明细节；先会用，再回补证明。</li>
+        </ul>
+      </div>
+      <div class="list-card">
+        <h5>✅ 本章验收清单（勾选会本地保存）</h5>
+        <ul class="checklist" data-key="ch8">
+          <li><label><input type="checkbox" data-id="c1"><span>能说出 λ-矩阵可逆的充要条件，并解释为什么必须是<b>非零常数</b>。</span></label></li>
+          <li><label><input type="checkbox" data-id="c2"><span>能写出标准形的三个要求（对角、首一、\(d_i\mid d_{i+1}\)），并说明唯一性由什么保证。</span></label></li>
+          <li><label><input type="checkbox" data-id="c3"><span>能用行列式因子法求一个 \(3\times3\) 以内矩阵的不变因子。</span></label></li>
+          <li><label><input type="checkbox" data-id="c4"><span>能复述「相似 ⇔ 特征矩阵等价 ⇔ 不变因子相同」并指明各步依据的定理。</span></label></li>
+          <li><label><input type="checkbox" data-id="c5"><span>给定初等因子，能在 5 分钟内拼出若尔当标准形。</span></label></li>
+          <li><label><input type="checkbox" data-id="c6"><span>能说出可对角化的两条判据与最小多项式的位置（\(d_n\)）。</span></label></li>
+          <li><label><input type="checkbox" data-id="c7"><span>能解释「友矩阵的不变因子是 \(1,\dots,1,d(\lambda)\)」的意义。</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §1 ============ -->
+  <section class="sec" id="s1">
+    <h2><span class="secnum">§1</span>λ-矩阵：把多项式请进矩阵 <a class="h-anchor" href="#s1">#</a></h2>
+    <p class="h-note">课本 p.324–325。先把对象定义清楚：元素取自多项式环 \(P[\lambda]\) 的矩阵；然后马上遇到第一个坑——「可逆」在这个世界里非常苛刻。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 1</span><span>λ-矩阵的秩</span><span class="src">课本 p.324</span></div>
+      <div class="card-b">
+        <p>如果 λ-矩阵 \(A(\lambda)\) 中有一个 \(r\ (r\geqslant 1)\) 级子式不为零，而所有 \(r+1\) 级子式（如果有的话）全为零，则称 \(A(\lambda)\) 的秩为 \(r\)。</p>
+        <p class="dim small">零矩阵的秩规定为零。对数字矩阵，此定义与以往一致。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 2</span><span>可逆 λ-矩阵与逆矩阵</span><span class="src">课本 p.325</span></div>
+      <div class="card-b">
+        <p>一个 \(n\times n\) 的 λ-矩阵 \(A(\lambda)\) 称为<b>可逆的</b>，如果存在 \(n\times n\) 的 λ-矩阵 \(B(\lambda)\) 使</p>
+        $$A(\lambda)B(\lambda)=B(\lambda)A(\lambda)=E,$$
+        <p>适合上式的 \(B(\lambda)\)（唯一）称为 \(A(\lambda)\) 的<b>逆矩阵</b>，记为 \(A^{-1}(\lambda)\)。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 1</span><span>可逆的充分必要条件</span><span class="src">课本 p.325</span></div>
+      <div class="card-b">
+        <p>一个 \(n\times n\) 的 λ-矩阵 \(A(\lambda)\) 可逆的充分必要条件为：行列式 \(|A(\lambda)|\) 是一个<b>非零的数</b>。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ul>
+              <li><b>充分性：</b>设 \(d=|A(\lambda)|\) 是非零的数。伴随矩阵 \(A^*(\lambda)\) 也是 λ-矩阵，且 \(A(\lambda)\cdot\frac1d A^*(\lambda)=\frac1d A^*(\lambda)A(\lambda)=E\)，故可逆。</li>
+              <li><b>必要性：</b>若可逆，对 \(A(\lambda)B(\lambda)=E\) 取行列式得 \(|A(\lambda)||B(\lambda)|=1\)。两个多项式乘积是常数 \(1\)，故它们都是零次多项式，即非零的数。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card idea">
+      <div class="card-h"><span class="tag">理解提示</span><span>为什么必须强调“非零常数”</span></div>
+      <div class="card-b">
+        <p>在数字矩阵里「行列式非零」就能推出可逆，因为非零数有倒数；但在多项式环 \(P[\lambda]\) 里，\(\frac{1}{\lambda}\) <b>不是多项式</b>。所以「行列式是非零多项式」并不能提供逆矩阵——只有行列式退化成<b>非零常数</b>时，伴随矩阵法才走得通。<span class="dim">（这正是定义 3 中第二种初等变换只许乘非零常数、以及定理 2 中 \(d_i\) 必须首一的原因所在。）</span></p>
+        <p class="small dim">本节其余内容为运算与行列式的自然推广：λ-矩阵可做加、乘运算，也可定义行列式与子式，性质与数字矩阵一致。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §2 ============ -->
+  <section class="sec" id="s2">
+    <h2><span class="secnum">§2</span>初等变换与标准形：把矩阵“洗”成对角线 <a class="h-anchor" href="#s2">#</a></h2>
+    <p class="h-note">课本 p.325–331。本节目标：证明任何非零 λ-矩阵都能在等价意义下化成一种最简对角形。关键工具是一条「降次引理」——它和整数里的辗转相除如出一辙。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 3</span><span>λ-矩阵的初等变换</span><span class="src">课本 p.325</span></div>
+      <div class="card-b">
+        <ol>
+          <li>矩阵的两行（列）互换位置；</li>
+          <li>矩阵的某一行（列）乘<b>非零的常数</b> \(c\)；</li>
+          <li>矩阵的某一行（列）加另一行（列）的 \(\varphi(\lambda)\) 倍（\(\varphi(\lambda)\) 是多项式）。</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">初等矩阵</span><span>三类变换的“矩阵版本”与逆</span><span class="src">课本 p.325–331</span></div>
+      <div class="card-b">
+        <ul class="tight">
+          <li>\(P(i,j(\varphi))\)：单位阵第 \(j\) 行的 \(\varphi(\lambda)\) 倍加到第 \(i\) 行（或第 \(i\) 列的 \(\varphi(\lambda)\) 倍加到第 \(j\) 列）所得；</li>
+          <li>\(P(i,j)\)：第 \(i\)、\(j\) 两行（列）互换所得；</li>
+          <li>\(P(i(c))\)：第 \(i\) 行乘非零常数 \(c\) 所得。</li>
+        </ul>
+        <p>左乘初等矩阵 ⇔ 做对应行变换；右乘 ⇔ 做对应列变换。三类初等矩阵都可逆：</p>
+        $$P(i,j)^{-1}=P(i,j),\quad P(i(c))^{-1}=P(i(c^{-1})),\quad P(i,j(\varphi))^{-1}=P(i,j(-\varphi)).$$
+        <p class="dim small">由此得到初等变换的可逆性：\(A(\lambda)\) 能变成 \(B(\lambda)\)，\(B(\lambda)\) 也能变回 \(A(\lambda)\)。第二种变换只乘非零常数，正是为了 \(P(i(c))\) 可逆。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 4</span><span>等价</span><span class="src">课本 p.326</span></div>
+      <div class="card-b">
+        <p>\(A(\lambda)\) 与 \(B(\lambda)\) <b>等价</b>，指可经一系列初等变换把 \(A(\lambda)\) 化为 \(B(\lambda)\)。等价具有自反性、对称性、传递性。</p>
+        <p>等价 ⇔ 存在初等矩阵 \(P_1,\dots,P_l,Q_1,\dots,Q_t\) 使 \(A(\lambda)=P_1\cdots P_l\,B(\lambda)\,Q_1\cdots Q_t\)。</p>
+      </div>
+    </div>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理（§2）</span><span>左上角元素的“降次”</span><span class="src">课本 p.327–328</span></div>
+      <div class="card-b">
+        <p>设 λ-矩阵 \(A(\lambda)\) 的左上角元素 \(a_{11}(\lambda)\neq 0\)，且 \(A(\lambda)\) 中至少有一个元素不能被它除尽，则一定存在与 \(A(\lambda)\) 等价的矩阵 \(B(\lambda)\)，其左上角元素也非零，但<b>次数比 \(a_{11}(\lambda)\) 更低</b>。</p>
+        <details class="proof">
+          <summary>课本证明路线（三种情形，展开）</summary>
+          <div class="pb">
+            <ol>
+              <li><b>第一列有元素 \(a_{i1}\) 不能被除尽：</b>带余除法 \(a_{i1}=a_{11}q+r\)（\(r\neq0\) 次数更低）；第 \(i\) 行减去第一行的 \(q(\lambda)\) 倍后互换第 1、\(i\) 行，左上角变为 \(r(\lambda)\)。</li>
+              <li><b>第一行有元素 \(a_{1i}\) 不能被除尽：</b>对称地改用初等列变换。</li>
+              <li><b>仅内部元素 \(a_{ij}\ (i>1,j>1)\) 不能被除尽：</b>设 \(a_{i1}=a_{11}\varphi\)，经初等行变换使第一行出现元素
+              $$a_{ij}(\lambda)+\bigl(1-\varphi(\lambda)\bigr)a_{1j}(\lambda),$$
+              它不能被 \(a_{11}\) 除尽，于是归结为情形 2。</li>
+            </ol>
+          </div>
+        </details>
+        <p class="dim small">理解要点：次数是非负整数，不能无限下降，所以反复使用本引理一定能「停机」——这就是存在性证明的骨架。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 2</span><span>标准形的存在性</span><span class="src">课本 p.329</span></div>
+      <div class="card-b">
+        <p>任意一个非零的 \(s\times n\) λ-矩阵 \(A(\lambda)\) 都等价于形如</p>
+        $$\begin{pmatrix}
+        d_1(\lambda)&&&&&\\
+        &d_2(\lambda)&&&&\\
+        &&\ddots&&&\\
+        &&&d_r(\lambda)&&\\
+        &&&&0&\\
+        &&&&&\ddots
+        \end{pmatrix}$$
+        <p>的矩阵，其中 \(r\geqslant1\)，\(d_i(\lambda)\ (i=1,\dots,r)\) 是<b>首项系数为 1</b> 的多项式，且
+        $$d_i(\lambda)\mid d_{i+1}(\lambda)\quad(i=1,2,\dots,r-1).$$</p>
+        <p>这个矩阵称为 \(A(\lambda)\) 的<b>标准形</b>。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>先经行列调动使左上角元素 \(a_{11}\neq0\)；</li>
+              <li>若 \(a_{11}\) 不能除尽全部元素，反复用降次引理，得到一串彼此等价、左上角次数越来越低的矩阵；次数不能再降时停止，得到左上角 \(b_s\neq0\) 且能除尽一切元素的矩阵；</li>
+              <li>用 \(b_s\) 消去第一行、第一列其余元素；右下角块 \(A_1\) 的元素都能被 \(b_s\) 除尽；</li>
+              <li>若 \(A_1\neq O\)，对它重复上述过程，得到 \(d_1,d_2\) 且 \(d_1\mid d_2\)、\(d_2\) 除尽 \(A_2\) 中一切元素；</li>
+              <li>如此继续，最终化为所要求的形式。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">演示例</span><span>用初等变换化标准形（两阶）</span><span class="src">按本节方法整理</span></div>
+      <div class="card-b">
+        <p>化 \(A(\lambda)=\begin{pmatrix}\lambda&2\lambda\\ \lambda^2&\lambda^2\end{pmatrix}\) 为标准形。</p>
+        <ol>
+          <li>第 2 列减去第 1 列的 2 倍：\( \begin{pmatrix}\lambda&0\\ \lambda^2&-\lambda^2\end{pmatrix}\)；</li>
+          <li>第 2 行减去第 1 行的 \(\lambda\) 倍：\( \begin{pmatrix}\lambda&0\\ 0&-\lambda^2\end{pmatrix}\)；</li>
+          <li>第 2 行乘常数 \(-1\)（允许！）：\( \begin{pmatrix}\lambda&0\\ 0&\lambda^2\end{pmatrix}\)。</li>
+        </ol>
+        <p>结果 \(\operatorname{diag}(\lambda,\ \lambda^2)\) 已满足「首一 + \(\lambda\mid\lambda^2\)」，就是标准形。</p>
+        <p class="dim small">手工技巧：优先用第 1 行/列把「公共因子」凑到左上角，再消行消列；乘 \(-1\) 这类常数缩放是合法且常用的收尾动作。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §3 ============ -->
+  <section class="sec" id="s3">
+    <h2><span class="secnum">§3</span>行列式因子与不变因子：给标准形上“户口” <a class="h-anchor" href="#s3">#</a></h2>
+    <p class="h-note">课本 p.331–335。核心任务：证明标准形是唯一的。方法是找到一组在初等变换下不变、又完全决定标准形的量。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 5</span><span>\(k\) 级行列式因子</span><span class="src">课本 p.331</span></div>
+      <div class="card-b">
+        <p>设 \(A(\lambda)\) 的秩为 \(r\)，对正整数 \(k\ (1\leqslant k\leqslant r)\)，把 \(A(\lambda)\) 中全部 \(k\) 级子式的<b>首项系数为 1 的最大公因式</b> \(D_k(\lambda)\) 称为 \(A(\lambda)\) 的 \(k\) 级行列式因子。</p>
+        <p class="dim small">秩为 \(r\) 的 λ-矩阵共有 \(r\) 个行列式因子。它们的意义：在初等变换下不变。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 3</span><span>等价的 λ-矩阵有相同的秩与各级行列式因子</span><span class="src">课本 p.331</span></div>
+      <div class="card-b">
+        <details class="proof">
+          <summary>课本证明路线（只须看一次初等变换，展开）</summary>
+          <div class="pb">
+            <p>设 \(A(\lambda)\) 经一次初等行变换变成 \(B(\lambda)\)，两者 \(k\) 级行列式因子分别为 \(f,g\)。按三类变换检查：</p>
+            <ul class="tight">
+              <li>换行：\(B\) 的每个 \(k\) 级子式等于 \(A\) 的某个 \(k\) 级子式或与其反号 ⟹ \(f\mid g\)；</li>
+              <li>乘非零常数 \(c\)：每个子式等于 \(A\) 的某个子式或其 \(c\) 倍 ⟹ \(f\mid g\)；</li>
+              <li>加 \(\varphi(\lambda)\) 倍：含第 \(i\) 行且不含第 \(j\) 行的子式按第 \(i\) 行拆成 \(A\) 的两个 \(k\) 级子式的组合 ⟹ \(f\mid g\)。</li>
+            </ul>
+            <p>由初等变换可逆又得 \(g\mid f\)，故 \(f=g\)。列变换同理；子式全零的情形同样不变量。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">标准形的行列式因子</span><span>一个关键公式</span><span class="src">课本 p.331–335</span></div>
+      <div class="card-b">
+        <p>设标准形的主对角元为 \(d_1,\dots,d_r\)（首一、依次整除）。标准形中，「行标号与列标号不完全相同」的 \(k\) 级子式必为零；因此只需看同行同列号子式，它们形如 \(d_{i_1}\cdots d_{i_k}\)。于是</p>
+        $$D_k(\lambda)=d_1(\lambda)d_2(\lambda)\cdots d_k(\lambda)\qquad(k=1,2,\dots,r).$$
+        <p class="dim small">这条公式把「不变量」和「标准形参数」直接挂钩——唯一性证明就靠它。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 4</span><span>标准形的唯一性</span><span class="src">课本 p.333</span></div>
+      <div class="card-b">
+        <p>设 (1) 是 \(A(\lambda)\) 的标准形。由定理 3，它与 \(A(\lambda)\) 有相同的秩与相同的行列式因子，于是</p>
+        $$d_1=D_1,\qquad d_2=\frac{D_2}{D_1},\qquad \cdots,\qquad d_r=\frac{D_r}{D_{r-1}},$$
+        <p>即标准形的主对角线元素被 \(A(\lambda)\) 的行列式因子<b>唯一决定</b>，所以标准形唯一。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 6</span><span>不变因子</span><span class="src">课本 p.333</span></div>
+      <div class="card-b">
+        <p>标准形主对角线上的非零元素 \(d_1(\lambda),d_2(\lambda),\dots,d_r(\lambda)\) 称为 λ-矩阵 \(A(\lambda)\) 的<b>不变因子</b>。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 5</span><span>等价的判别</span><span class="src">课本 p.333</span></div>
+      <div class="card-b">
+        <p>两个 λ-矩阵等价的充分必要条件是：它们有相同的行列式因子；或者，它们有相同的不变因子。</p>
+        <p class="dim small">必要性由定理 3；充分性：有相同不变因子 ⟹ 与同一个标准形等价 ⟹ 彼此等价。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">性质速记</span><span>整除关系与计算策略</span><span class="src">课本 p.331–335</span></div>
+      <div class="card-b">
+        <ul class="tight">
+          <li>\(D_k(\lambda)\mid D_{k+1}(\lambda)\ (k=1,\dots,r-1)\)。先算最高级行列式因子，可缩小低级的搜索范围。</li>
+          <li><b>可逆矩阵的标准形是 \(E\)；与 \(E\) 等价的矩阵一定可逆</b>。即：可逆 ⟺ 与单位矩阵等价。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 6</span><span>可逆与初等矩阵分解</span><span class="src">课本 p.334</span></div>
+      <div class="card-b">
+        <p>矩阵 \(A(\lambda)\) 可逆的充分必要条件是它可以表成一些初等矩阵的乘积。</p>
+        <p class="dim small">思路：「与单位矩阵等价」取 \(B=E\) 即可，配合上一条。</p>
+      </div>
+    </div>
+
+    <div class="card cor">
+      <div class="card-h"><span class="tag">推论（§3）</span><span>等价的矩阵表述</span><span class="src">课本 p.334–335</span></div>
+      <div class="card-b">
+        <p>\(s\times n\) 的 \(A(\lambda)\) 与 \(B(\lambda)\) 等价 ⟺ 存在 \(s\times s\) 可逆矩阵 \(P(\lambda)\) 与 \(n\times n\) 可逆矩阵 \(Q(\lambda)\)，使</p>
+        $$B(\lambda)=P(\lambda)A(\lambda)Q(\lambda).$$
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">演示例</span><span>行列式因子法求不变因子</span><span class="src">按本节方法整理</span></div>
+      <div class="card-b">
+        <p>求对角矩阵 \(A(\lambda)=\operatorname{diag}\bigl(\lambda^2,\ \lambda(\lambda+1)\bigr)\) 的标准形与不变因子。</p>
+        <ol>
+          <li>\(D_1=\gcd(\lambda^2,\ \lambda(\lambda+1))=\lambda\)（两项恰差一个 \((\lambda+1)\) 因子，公因式就是 \(\lambda\)）；</li>
+          <li>\(D_2=\det A=\lambda^2\cdot\lambda(\lambda+1)=\lambda^{3}(\lambda+1)\)；</li>
+          <li>\(d_1=D_1=\lambda\)，\(d_2=D_2/D_1=\lambda^{2}(\lambda+1)\)。</li>
+        </ol>
+        <p>标准形为 \(\operatorname{diag}\bigl(\lambda,\ \lambda^{2}(\lambda+1)\bigr)\)，且 \(\lambda\mid\lambda^{2}(\lambda+1)\)，符合要求。</p>
+        <p class="dim small">注意：对角矩阵未必直接就是标准形——要看整除链是否成立。此处两项的第二项才是 \(\lambda^2\) 的倍数升级版。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §4 ============ -->
+  <section class="sec" id="s4">
+    <h2><span class="secnum">§4</span>矩阵相似的条件：λ-矩阵理论的第一个大回报 <a class="h-anchor" href="#s4">#</a></h2>
+    <p class="h-note">课本 p.335–338。把「相似」翻译成「特征矩阵等价」，从此相似问题可以用 λ-矩阵的标准形机械化地处理。</p>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 7</span><span>相似 ⇔ 特征矩阵等价</span><span class="src">课本 p.336</span></div>
+      <div class="card-b">
+        <p>设 \(A,B\) 是数域 \(P\) 上两个 \(n\times n\) 矩阵，则</p>
+        $$A\sim B \iff \lambda E-A \ \text{与}\ \lambda E-B\ \text{等价}.$$
+        <details class="proof">
+          <summary>课本证明路线（含两条引理，展开）</summary>
+          <div class="pb">
+            <p><b>引理 1：</b>若存在数字矩阵 \(P_0,Q_0\) 使 \(\lambda E-A=P_0(\lambda E-B)Q_0\)，则 \(A\) 与 \(B\) 相似。<br>
+            （比较系数：\(P_0Q_0=E\)、\(P_0BQ_0=A\)，于是 \(Q_0=P_0^{-1}\)，\(A=P_0BP_0^{-1}\)。）</p>
+            <p><b>引理 2（左右带余除法）：</b>对任何非零数字矩阵 \(A\) 与 λ-矩阵 \(U(\lambda),V(\lambda)\)，存在 \(Q(\lambda),R(\lambda)\) 与数字矩阵 \(U_0,V_0\) 使</p>
+            $$U(\lambda)=(\lambda E-A)Q(\lambda)+U_0,\qquad V(\lambda)=R(\lambda)(\lambda E-A)+V_0.$$
+            <p>（按 \(\lambda\) 的幂逐项代入待定系数 \(Q_k=D_k+AQ_{k-1}\) 求得。）</p>
+            <p><b>必要性：</b>\(A\sim B\)，即 \(A=T^{-1}BT\)，则 \(\lambda E-A=\lambda E-T^{-1}BT=T^{-1}(\lambda E-B)T\)，两特征矩阵等价。</p>
+            <p><b>充分性：</b>设 \(\lambda E-A=U(\lambda)(\lambda E-B)V(\lambda)\)。用引理 2 展开 \(U,V\) 并与原式比较，先得</p>
+            $$\bigl[U(\lambda)^{-1}-(\lambda E-B)R(\lambda)\bigr](\lambda E-A)=(\lambda E-B)V_0,$$
+            <p>右端次数 ≤1 迫使左端方括号是<b>数字矩阵</b> \(T\)（或为零矩阵）；再展开 \(E=U(\lambda)T+U(\lambda)(\lambda E-B)R(\lambda)\) 并比较次数，得 \(E=U_0T\)，故 \(T\) 可逆；于是 \(\lambda E-A=T^{-1}(\lambda E-B)V_0\)，由引理 1 得 \(A\sim B\)。∎</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card cor">
+      <div class="card-h"><span class="tag">推论（§4）</span><span>相似与不变因子</span><span class="src">课本 p.337</span></div>
+      <div class="card-b">
+        <p>\(\lambda E-A\) 的不变因子简称为 \(A\) 的<b>不变因子</b>。于是：</p>
+        $$A\sim B \iff A\ \text{与}\ B\ \text{有相同的不变因子}.$$
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">重要结论</span><span>特征矩阵的两条铁律</span><span class="src">课本 p.335–338</span></div>
+      <div class="card-b">
+        <ul class="tight">
+          <li>\(n\times n\) 矩阵的特征矩阵的秩<b>一定是 \(n\)</b>（因为 \(|\lambda E-A|\) 是首一 \(n\) 次多项式，不恒为零）；因此不变因子总是 \(n\) 个，且
+          $$d_1(\lambda)d_2(\lambda)\cdots d_n(\lambda)=|\lambda E-A|\ \text{（特征多项式）}.$$</li>
+          <li>不变因子是<b>相似不变量</b>：与基（或矩阵代表）的选取无关，故可定义线性变换的不变因子。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card idea">
+      <div class="card-h"><span class="tag">理解提示</span><span>为什么这条路值得走</span></div>
+      <div class="card-b">
+        <p>「相似」是矩阵间异常抽象的关系（要求存在过渡矩阵 \(T\)），直接判定几乎无从下手。定理 7 把它转换成「两个 λ-矩阵等价」——而等价有无需思考的机械判据：<b>算不变因子</b>。这就是本章全部计算题的出发点：<mark>判定相似 = 比较特征矩阵的相（标准形）</mark>。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §5 ============ -->
+  <section class="sec" id="s5">
+    <h2><span class="secnum">§5</span>初等因子：不变因子的“拆散重装” <a class="h-anchor" href="#s5">#</a></h2>
+    <p class="h-note">课本 p.338–342。本节起假定数域为复数域 \(\mathbb{C}\)，好让多项式能彻底分解为一次因式。初等因子把不变因子「打散」，它才是拼若尔当块的直接零件。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 7</span><span>初等因子</span><span class="src">课本 p.338</span></div>
+      <div class="card-b">
+        <p>把矩阵 \(A\)（或线性变换 \(\mathcal{A}\)）的每个次数大于零的不变因子分解成互不相同的首一一次因式方幂的乘积，所有这些一次因式方幂（相同的按出现次数计算）称为 \(A\) 的<b>初等因子</b>。</p>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例（§5）</span><span>由不变因子写出全部初等因子</span><span class="src">课本 p.338</span></div>
+      <div class="card-b">
+        <p>设 12 级矩阵的不变因子是（前 9 个为 1）：</p>
+        $$(\lambda-1)^{2},\quad (\lambda-1)^{2}(\lambda+1),\quad (\lambda-1)^{2}(\lambda+1)(\lambda^{2}+1)^{2}.$$
+        <p>注意 \(\lambda^2+1=(\lambda-i)(\lambda+i)\)。逐个分解，得初等因子共 7 个：</p>
+        $$(\lambda-1)^{2},\ (\lambda-1)^{2},\ (\lambda-1)^{2},\ \lambda+1,\ \lambda+1,\ (\lambda-i)^{2},\ (\lambda+i)^{2}.$$
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">互推法则</span><span>不变因子 ⇄ 初等因子</span><span class="src">课本 p.338–342</span></div>
+      <div class="card-b">
+        <p><b>正推（不变因子 → 初等因子）：</b>把每个 \(d_i\) 分解成一次因式方幂之积；由 \(d_i\mid d_{i+1}\) 知同一因式的方幂指数递升：</p>
+        $$k_{1j}\leqslant k_{2j}\leqslant\cdots\leqslant k_{nj}.$$
+        <p><b>反推（初等因子 → 不变因子）：</b>把同一个一次因式 \((\lambda-\lambda_j)\) 的方幂<b>按降幂排列</b>，个数不足 \(n\) 时<b>后面补 1</b> 凑满 \(n\) 个；然后逐行相乘：</p>
+        $$d_i(\lambda)=(\lambda-\lambda_1)^{k_{i1}}(\lambda-\lambda_2)^{k_{i2}}\cdots(\lambda-\lambda_r)^{k_{ir}}.$$
+        <p class="dim small">推论：同级的两个数字矩阵，初等因子相同 ⟺ 不变因子相同 ⟺ 相似。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 8</span><span>复矩阵相似的初等因子判别</span><span class="src">课本 p.339</span></div>
+      <div class="card-b">
+        <p>两个同级复数矩阵相似的充分必要条件是它们有相同的初等因子。</p>
+        <p class="dim small">求初等因子通常比求不变因子方便，所以这是实操中最常用的判别。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 9</span><span>直接求初等因子的方法（实操王牌）</span><span class="src">课本 p.341</span></div>
+      <div class="card-b">
+        <p>首先用初等变换把特征矩阵 \(\lambda E-A\) 化为<b>对角形</b>，然后把主对角线上的元素分解成互不相同的一次因式方幂的乘积，则所有这些一次因式方幂（相同的按出现次数计算）就是 \(A\) 的全部初等因子。</p>
+        <details class="proof">
+          <summary>为什么可以对角化后直接读？（证明思路，展开）</summary>
+          <div class="pb">
+            <p>设 \(\lambda E-A\) 已化为对角形 \(D(\lambda)=\operatorname{diag}(h_1,\dots,h_n)\)。把每个相同一次因式的方幂在对角线上按<b>递升幂次</b>排列，得到 \(D'(\lambda)\)。证明要点：</p>
+            <ul class="tight">
+              <li>对固定的 \(\lambda-\lambda_1\)，写 \(h_i=(\lambda-\lambda_1)^{k_{i1}}g_i\)，其中每个 \((\lambda-\lambda_1)^{k_{i1}}\) 与诸 \(g_j\) 互素；</li>
+              <li>若有相邻指数反序 \(k_{i1}>k_{i+1,1}\)，用一条「互素换位引理」（\(f_1,f_2\) 都与 \(g_1,g_2\) 互素时 \(\operatorname{diag}(f_1g_1,f_2g_2)\sim\operatorname{diag}(f_2g_1,f_1g_2)\)）把这一对换位；</li>
+              <li>反复换位使指数递升；依次对每个一次因式处理，最终 \(D'(\lambda)\) 与 \(D(\lambda)\) 等价，且已是标准形——对角线上非 1 的项恰是全部初等因子。</li>
+            </ul>
+            <p class="dim">配套的换位引理依据：两矩阵二级行列式因子相同（乘积同），一级行列式因子由恒等式 \((f_1g_1,f_2g_2)=(f_1,f_2)(g_1,g_2)\) 保证相等。</p>
+          </div>
+        </details>
+        <p class="small"><b>操作口诀：</b>化对角 → 分解 → 不用排序、不用管整除链，读到什么记什么。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §6 ============ -->
+  <section class="sec" id="s6">
+    <h2><span class="secnum">§6</span>若尔当标准形：初等因子的“装配说明” <a class="h-anchor" href="#s6">#</a></h2>
+    <p class="h-note">课本 p.342–348。这节把前面所有零件组装成第 7 章就想知道的答案：复数域上每个矩阵都有唯一的若尔当形。</p>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">关键对应</span><span>若尔当块 ↔ 初等因子</span><span class="src">课本 p.342–348</span></div>
+      <div class="card-b">
+        <p>若尔当块</p>
+        $$J_0=\begin{pmatrix}\lambda_0&&&&0\\ 1&\lambda_0&&&\\ &1&\ddots&&\\ &&\ddots&\lambda_0&\\ 0&&\cdots&1&\lambda_0\end{pmatrix}_{n\times n}$$
+        <p>的初等因子是 \((\lambda-\lambda_0)^{n}\)。（由 \(|\lambda E-J_0|=(\lambda-\lambda_0)^n\) 与一个 \(n-1\) 级子式 \(=(-1)^{n-1}\) 直接读出。）</p>
+        <p>若尔当形矩阵 \(J=\operatorname{diag}(J_1,\dots,J_s)\) 的全部初等因子就是<b>各块初等因子的汇总</b>；块的级数 \(k_i\) 与对角元 \(\lambda_i\) 都被初等因子记录，因此——<b>若尔当形（除块次序外）被初等因子唯一决定</b>。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 10</span><span>存在性与唯一性</span><span class="src">课本 p.345</span></div>
+      <div class="card-b">
+        <p>每个 \(n\) 级复数矩阵 \(A\) 都与一个若尔当形矩阵相似；这个若尔当形矩阵除去若尔当块的排列次序外由 \(A\) 唯一决定，称为 \(A\) 的<b>若尔当标准形</b>。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ul>
+              <li>设 \(A\) 的初等因子为 \((\lambda-\lambda_1)^{k_1},\dots,(\lambda-\lambda_s)^{k_s}\)（允许重复）；</li>
+              <li>每个初等因子配一个若尔当块 \(J_i\)（级数 \(k_i\)、对角元 \(\lambda_i\)），拼成 \(J=\operatorname{diag}(J_1,\dots,J_s)\)；</li>
+              <li>\(J\) 与 \(A\) 有相同初等因子 ⟹ \(J\sim A\)；</li>
+              <li>若另一个若尔当形 \(J'\) 也相似于 \(A\)，则 \(J'\sim J\)（初等因子相同），除块次序外相同——唯一性。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例 2 ★</span><span>求三级矩阵的若尔当标准形（完整演算）</span><span class="src">课本 p.346</span></div>
+      <div class="card-b">
+        <p>求 \(A=\begin{pmatrix}-1&-2&6\\ -1&0&3\\ -1&-1&4\end{pmatrix}\) 的若尔当标准形。</p>
+        <ol>
+          <li>用初等变换把特征矩阵化为对角形：
+          $$\lambda E-A=\begin{pmatrix}\lambda+1&2&-6\\ 1&\lambda&-3\\ 1&1&\lambda-4\end{pmatrix}\ \sim\ \operatorname{diag}\bigl(1,\ \lambda-1,\ (\lambda-1)^{2}\bigr);$$</li>
+          <li>读初等因子：\(\lambda-1,\ (\lambda-1)^{2}\)；</li>
+          <li>每个初等因子配一块：\((\lambda-1)\to J_1(1)\)（1 级），\((\lambda-1)^{2}\to J_2(1)\)（2 级）；</li>
+          <li>拼装：
+          $$A\sim \begin{pmatrix}1&0&0\\ 0&1&0\\ 0&1&1\end{pmatrix}.$$</li>
+        </ol>
+        <details class="proof">
+          <summary>交叉验算（两分钟自检法，展开）</summary>
+          <div class="pb">
+            <ul class="tight">
+              <li>特征多项式：\(|\lambda E-A|=(\lambda-1)^3\)（标准形对角元乘积 \(1\cdot(\lambda-1)\cdot(\lambda-1)^2\) 同）；</li>
+              <li>最小多项式应为 \((\lambda-1)^2\)：验算 \(A-E=\begin{pmatrix}-2&-2&6\\ -1&-1&3\\ -1&-1&3\end{pmatrix}\)，直接相乘得 \((A-E)^2=O\)，且 \(A\neq E\)；</li>
+              <li>几何重数检查：\(\operatorname{rank}(A-E)=1\)，故特征值 1 的几何重数为 \(3-1=2\)，与「一块 1 级 + 一块 2 级」吻合。</li>
+            </ul>
+            <p class="dim small">这套自检（迹、最小多项式、几何重数）能在计算后快速定位装配错误。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 11</span><span>线性变换版</span><span class="src">课本 p.347</span></div>
+      <div class="card-b">
+        <p>设 \(\mathcal{A}\) 是复数域上 \(n\) 维线性空间 \(V\) 的线性变换，则存在基使 \(\mathcal{A}\) 在该基下矩阵为若尔当形，且该形除去块次序外由 \(\mathcal{A}\) 唯一决定。</p>
+        <p class="dim small">证明：任取基下矩阵 \(A\)，取 \(T\) 使 \(T^{-1}AT\) 为若尔当形，令新基 \((\eta_1,\dots,\eta_n)=(\varepsilon_1,\dots,\varepsilon_n)T\) 即可。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 12 / 13</span><span>可对角化的两条判据</span><span class="src">课本 p.347</span></div>
+      <div class="card-b">
+        <p>复数矩阵 \(A\) 与对角矩阵相似 ⟺ ① <b>初等因子全为一次的</b>；⟺ ② <b>不变因子都没有重根</b>。</p>
+        <p class="dim small">若尔当形包含对角阵为特例（全由一级块构成）；两条判据分别从「零件」和「组装结果」两端刻画。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">联系</span><span>最小多项式 = 最后一个不变因子</span><span class="src">课本 p.342–348</span></div>
+      <div class="card-b">
+        <p>由若尔当形的构造可以看出：矩阵 \(A\) 的<b>最小多项式</b>恰好是 \(A\) 的最后一个不变因子 \(d_n(\lambda)\)。</p>
+        <p class="small dim">这就是「λ-矩阵工具回报率最高的一条」：第 7 章要背的最小多项式，在本章有一个标准形里的位置（最长的那个初等因子链）。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">课本两点说明</span><span>边界与变体</span><span class="src">课本 p.342–348</span></div>
+      <div class="card-b">
+        <ol class="tight">
+          <li>课本证明了每个复矩阵相似于若尔当形并给出求法，但<b>不讨论过渡矩阵 \(T\) 的求法</b>（计算较复杂）。</li>
+          <li>若规定「上三角形（对角元 \(\lambda_0\)、上次对角线为 1）」为若尔当块，用完全类似的方法可得相应版本的定理。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ §7 ============ -->
+  <section class="sec" id="s7">
+    <h2><span class="secnum">§7</span>有理标准形：不依赖特征根分解的兜底方案 <a class="h-anchor" href="#s7">#</a></h2>
+    <p class="h-note">课本 p.348–352。前面的若尔当形必须能把特征多项式拆成一次因式——在复数域才行。本节对<b>任意数域</b>给出普适结论。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 8</span><span>友矩阵</span><span class="src">课本 p.348</span></div>
+      <div class="card-b">
+        <p>对数域 \(P\) 上多项式 \(d(\lambda)=\lambda^{n}+a_1\lambda^{n-1}+\cdots+a_n\)，称</p>
+        $$A=\begin{pmatrix}0&0&\cdots&0&-a_n\\ 1&0&\cdots&0&-a_{n-1}\\ 0&1&\cdots&0&-a_{n-2}\\ \vdots&\vdots&&\vdots&\vdots\\ 0&0&\cdots&1&-a_1\end{pmatrix}$$
+        <p>为 \(d(\lambda)\) 的<b>友矩阵</b>。它的不变因子为 \(1,\dots,1,d(\lambda)\)（共 \(n-1\) 个 1）。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 9</span><span>有理标准形矩阵</span><span class="src">课本 p.349</span></div>
+      <div class="card-b">
+        <p>准对角矩阵 \(\operatorname{diag}(A_1,A_2,\dots,A_s)\)，其中 \(A_i\) 分别是多项式 \(d_i(\lambda)\) 的友矩阵，且</p>
+        $$d_1(\lambda)\mid d_2(\lambda)\mid\cdots\mid d_s(\lambda),$$
+        <p>称为 \(P\) 上的一个<b>有理标准形矩阵</b>。</p>
+      </div>
+    </div>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理（§7）</span><span>准对角形的全部不变因子</span><span class="src">课本 p.349–350</span></div>
+      <div class="card-b">
+        <p>上述矩阵 \(A\) 的不变因子为</p>
+        $$1,\ 1,\ \cdots,\ 1,\ d_1(\lambda),\ d_2(\lambda),\ \cdots,\ d_s(\lambda),$$
+        <p>其中 1 的个数等于各 \(d_i(\lambda)\) 次数之和减去 \(s\)。</p>
+        <div class="small dim" style="margin-top:-.3rem">（图示：\(n\) 个不变因子中前面全为 1，末尾依次是各块多项式。）</div>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 14 / 15</span><span>有理标准形的存在唯一性</span><span class="src">课本 p.350–351</span></div>
+      <div class="card-b">
+        <p>数域 \(P\) 上 \(n\times n\) 方阵 \(A\) 在 \(P\) 上相似于唯一的一个有理标准形；对线性变换，同样存在基使矩阵为有理标准形，且由 \(\mathcal{A}\) 唯一决定。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ul class="tight">
+              <li>设 \(A\) 的不变因子为 \(1,\dots,1,d_1,\dots,d_s\)（各 \(d_i\) 次数 ≥1）；</li>
+              <li>设 \(d_i\) 的友矩阵为 \(B_i\)，作 \(B=\operatorname{diag}(B_1,\dots,B_s)\)；</li>
+              <li>由引理，\(B\) 的不变因子与 \(A\) 完全相同 ⟹ \(B\sim A\)；</li>
+              <li>\(B\) 由不变因子唯一决定 ⟹ 唯一性。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例（§7）</span><span>由初等因子写出有理标准形</span><span class="src">课本 p.351–352</span></div>
+      <div class="card-b">
+        <p>设 \(3\times3\) 矩阵 \(A\) 的初等因子为 \((\lambda-1)^{2},\ \lambda-1\)，则不变因子为 \(1,\ \lambda-1,\ (\lambda-1)^{2}\)，有理标准形为</p>
+        $$\begin{pmatrix}1&0&0\\ 0&0&-1\\ 0&1&2\end{pmatrix}.$$
+        <p class="dim small">核对：\(1\times1\) 块是 \(\lambda-1\) 的友矩阵 \((1)\)；\(2\times2\) 块是 \((\lambda-1)^2=\lambda^2-2\lambda+1\) 的友矩阵 \(\begin{pmatrix}0&-1\\ 1&2\end{pmatrix}\)。</p>
+      </div>
+    </div>
+
+    <div class="card idea">
+      <div class="card-h"><span class="tag">理解提示</span><span>若尔当形 vs 有理标准形</span></div>
+      <div class="card-b">
+        <ul class="tight">
+          <li><b>若尔当形</b>：块最细，对角元就是特征值，直观但要求特征多项式完全分裂（复域）；用于讨论特征值结构、可对角化。</li>
+          <li><b>有理标准形</b>：块由不变因子（而非特征值）驱动，<b>任意数域</b>都成立；用于域上分类与理论统一（也解释了「为什么复矩阵和实矩阵的相似分类语言不同」）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METHODS ============ -->
+  <section class="sec" id="methods">
+    <h2><span class="secnum">工具</span>方法总图：五个“求什么”的固定流程 <a class="h-anchor" href="#methods">#</a></h2>
+    <div class="grid2">
+      <div class="list-card">
+        <h5>① 求标准形 / 不变因子</h5>
+        <ol class="tight">
+          <li>（若题目给的是数字矩阵）先写出 \(\lambda E-A\)；</li>
+          <li>用初等变换逐步化简：凑公共因子到左上角 → 消行消列 → 迭代；</li>
+          <li>整理为「首一 + 依次整除」的输出；</li>
+          <li>或走行列式因子路线：算 \(D_1,\dots,D_n\)，再相除得 \(d_i\)。</li>
+        </ol>
+      </div>
+      <div class="list-card">
+        <h5>② 求初等因子</h5>
+        <ol class="tight">
+          <li>把 \(\lambda E-A\) 用初等变换化为对角形（定理 9）；</li>
+          <li>每个对角元分解成一次因式方幂；</li>
+          <li>全部收集、相同按次数重复，就是初等因子集。</li>
+        </ol>
+      </div>
+      <div class="list-card">
+        <h5>③ 求若尔当标准形</h5>
+        <ol class="tight">
+          <li>求 \(\lambda E-A\) 的对角形 → 初等因子；</li>
+          <li>每个 \((\lambda-\lambda_0)^{k}\) 配一个 \(k\) 级若尔当块；</li>
+          <li>按块拼成准对角矩阵（块次序任意）；</li>
+          <li>自检：\(\sum k_i=n\)，\(\prod\) 次方=特征多项式，最大块次数=最小多项式次数。</li>
+        </ol>
+      </div>
+      <div class="list-card">
+        <h5>④ 求有理标准形</h5>
+        <ol class="tight">
+          <li>求全部不变因子；</li>
+          <li>去掉等于 1 的项，剩下 \(d_1\mid\cdots\mid d_s\)；</li>
+          <li>对每个 \(d_i\) 写友矩阵，拼准对角形。</li>
+        </ol>
+      </div>
+      <div class="list-card">
+        <h5>⑤ 判定相似 / 求最小多项式</h5>
+        <ol class="tight">
+          <li>相似：比较不变因子（任意数域）或初等因子（复数域）；</li>
+          <li>最小多项式：最后一个不变因子 \(d_n\)（=最大初等因子链的长度信息）；</li>
+          <li>可对角化：初等因子全一次 / 不变因子无重根。</li>
+        </ol>
+      </div>
+      <div class="list-card">
+        <h5>⚑ 出场前先自问</h5>
+        <ul class="tight">
+          <li>题目要的是哪一个对象？（标准形 / 行列式因子 / 不变因子 / 初等因子 / 若尔当 / 有理）</li>
+          <li>数域是什么？（复数才能谈若尔当；任意数域用有理标准形）</li>
+          <li>需要的是「证明」还是「计算」？（证明题优先回教材定理链）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WIDGET ============ -->
+  <section class="sec" id="widget">
+    <h2><span class="secnum">交互</span>「求什么 → 怎么求」查询器 <a class="h-anchor" href="#widget">#</a></h2>
+    <div class="widget">
+      <h4>点一个目标，给出标准流程与易错提示</h4>
+      <div class="wbtns" id="wb"></div>
+      <div class="wout" id="wo">👆 选择上方任意目标。</div>
+    </div>
+  </section>
+
+  <!-- ============ TABLE ============ -->
+  <section class="sec" id="table">
+    <h2><span class="secnum">速查</span>对照表：三类因子怎么区分 <a class="h-anchor" href="#table">#</a></h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>对象</th><th>定义处</th><th>怎么求</th><th>唯一性 / 地位</th><th>典型用途</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>行列式因子</b> \(D_k(\lambda)\)</td>
+            <td>定义 5（p.331）</td>
+            <td>全部 \(k\) 级子式的首一最大公因式；先算最高级再用整除链缩小范围</td>
+            <td>等价不变量（定理 3）</td>
+            <td>证明唯一性；换算不变因子的中间量</td>
+          </tr>
+          <tr>
+            <td><b>不变因子</b> \(d_1\mid\cdots\mid d_n\)</td>
+            <td>定义 6（p.333）</td>
+            <td>①标准形主对角元；②\(d_k=D_k/D_{k-1}\)</td>
+            <td>相似的<b>完全不变量</b>（任意数域，定理 7 推论）</td>
+            <td>判相似；定义最小多项式（\(d_n\)）；写有理标准形</td>
+          </tr>
+          <tr>
+            <td><b>初等因子</b></td>
+            <td>定义 7（p.338）</td>
+            <td>化 \(\lambda E-A\) 为对角形后分解（定理 9）；或从不变因子拆出</td>
+            <td>复域相似完全不变量（定理 8）</td>
+            <td>拼若尔当标准形；判可对角化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>关系</th><th>内容</th><th>依据</th></tr></thead>
+        <tbody>
+          <tr><td>因子换算</td><td>\(D_k=d_1d_2\cdots d_k\)；\(d_k=D_k/D_{k-1}\)</td><td>§3 推导</td></tr>
+          <tr><td>相似 ⇔ 特征矩阵等价</td><td>\(A\sim B\iff \lambda E-A\sim\lambda E-B\)</td><td>定理 7</td></tr>
+          <tr><td>相似 ⇔ 不变因子相同</td><td>任意数域通用</td><td>定理 7 推论</td></tr>
+          <tr><td>相似 ⇔ 初等因子相同</td><td>仅复数域（或特征多项式完全分裂）</td><td>定理 8</td></tr>
+          <tr><td>最小多项式</td><td>\(=d_n(\lambda)\)（最后一个不变因子）</td><td>§6</td></tr>
+          <tr><td>可对角化</td><td>初等因子全一次 ⟺ 不变因子无重根</td><td>定理 12、13</td></tr>
+          <tr><td>不变因子乘积</td><td>\(d_1\cdots d_n=|\lambda E-A|\)（特征多项式）</td><td>§4 结论</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small dim">提示：把这张表当作做题前的「装备检查」，比背证明更优先。</p>
+  </section>
+
+  <!-- ============ EXAM ============ -->
+  <section class="sec" id="exam">
+    <h2><span class="secnum">801</span>真题定位：显性低频，隐性高频 <a class="h-anchor" href="#exam">#</a></h2>
+    <div class="card exam">
+      <div class="card-h"><span class="tag">频率判断</span><span>保底覆盖 · 隐性高频</span><span class="src">来源：真题分析_2026-09-13 章节命题矩阵</span></div>
+      <div class="card-b">
+        <p>现有南科大 801 样本中，直接挂「λ-矩阵」名义的题不多，但本章工具以三种包装反复出现：</p>
+        <ul>
+          <li><b>最小多项式与 Jordan 结构</b> —— 「给矩阵求 Jordan」「给矩阵方程分类」类题目的发动机；</li>
+          <li><b>矩阵多项式</b> —— 例如以 \(A^3=2A+4E\) 一类条件为入口、要求分析 \(A\) 的结构（现有样本中出现，见真题分析记录）；</li>
+          <li><b>相似/对角化判定</b> —— 与第 7 章连用，作为大题的中间步骤。</li>
+        </ul>
+        <p class="small">备考含义：本章<b>不必</b>把 15 个定理的证明全背下来，但必须做到——初等因子 → 若尔当形 5 分钟拼装；最小多项式随手读出；可对角化判据条件反射。以上是工具层要求，不代表任何个人掌握证据。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PITFALLS ============ -->
+  <section class="sec" id="pitfalls">
+    <h2><span class="secnum">⚠</span>易错点清单（做题前过一遍） <a class="h-anchor" href="#pitfalls">#</a></h2>
+    <div class="card warn">
+      <div class="card-h"><span class="tag">高频陷阱</span><span>按出错概率排序</span></div>
+      <div class="card-b">
+        <ol>
+          <li><b>「可逆」的苛刻度：</b>λ-矩阵可逆要求 \(|A(\lambda)|\) 是<b>非零常数</b>，「非零多项式」不够。</li>
+          <li><b>三种关系别混：</b>λ-矩阵<b>等价</b>（左右乘可逆矩阵）≠ 数字矩阵<b>相似</b>（\(T^{-1}AT\)）≠ <b>合同</b>（\(C'AC\)）。相似通过 \(\lambda E-A\) 的等价来判定。</li>
+          <li><b>标准形的三条硬性要求：</b>对角、<b>首一</b>、依次整除，缺一条都不叫标准形。乘非零常数调整（如乘 \(-1\)）要用上。</li>
+          <li><b>第二种初等变换只能乘非零常数</b>——乘 \(\lambda\) 不行（不可逆）。</li>
+          <li><b>定理 9 的正确读法：</b>\(\lambda E-A\) 化成对角形后<b>不必</b>再整理成标准形；直接分解对角元收集初等因子即可。但注意对角元分解时相同的因式方幂要按次数全额记录。</li>
+          <li><b>数域边界：</b>若尔当标准形在复数域才保证存在；题目若在实数域问「相似分类」，应改用有理标准形或检查特征多项式是否完全分裂。</li>
+          <li><b>唯一性口径：</b>若尔当形「除块排列次序外」唯一——写答案时块次序不同不算错。</li>
+          <li><b>初等因子 vs 不变因子：</b>前者是「散装零件」没有整除关系；后者有序且整除。互相换算时，同因式方幂要<b>降幂排列、补 1</b>。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="sec" id="quiz">
+    <h2><span class="secnum">自测</span>闭卷复述 12 问 <a class="h-anchor" href="#quiz">#</a></h2>
+    <p class="h-note">先盖住答案口述，再点开核对。答不出来的条目回对应小节重读。</p>
+    <div id="quizbox"></div>
+  </section>
+
+  <!-- ============ HW ============ -->
+  <section class="sec" id="hw">
+    <h2><span class="secnum">习题</span>教材习题地图（第八章） <a class="h-anchor" href="#hw">#</a></h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th class="c">题号</th><th>主题</th><th>对应小节</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1</td><td>化 6 个 λ-矩阵为标准形（含 2、3、5 阶）</td><td>§2</td></tr>
+          <tr><td class="c">2</td><td>求 5 个 λ-矩阵的不变因子（含 3、4 阶）</td><td>§3</td></tr>
+          <tr><td class="c">3</td><td>证明友矩阵形矩阵的不变因子为 \(1,\dots,1,f(\lambda)\)</td><td>§7（为定义 8 埋伏笔）</td></tr>
+          <tr><td class="c">4</td><td>证明 \(A\) 与 \(A'\) 相似</td><td>§4（用特征矩阵等价）</td></tr>
+          <tr><td class="c">5</td><td>幂 \(A^k\) 的计算练习</td><td>§6 思想（块结构算幂）</td></tr>
+          <tr><td class="c">6</td><td>求 14 个复矩阵的若尔当标准形（全章计算主战场）</td><td>§5–§6</td></tr>
+          <tr><td class="c">7</td><td>把习题 6 各矩阵看作有理数域上矩阵，写有理标准形</td><td>§7</td></tr>
+          <tr><td class="c">补 1</td><td>友矩阵的最小多项式 / 最高次不变因子 \(d(\lambda)\) 的证明</td><td>§7 + 最小多项式</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small dim">题面原文见同目录 <code>05_教材习题_OCR核对版.md</code>（已逐页核对原书）。做题顺序建议：先 2 → 1 → 6(选做前 5 小项) → 7，计算熟练后再碰补充题 1。</p>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+  <section class="sec" id="src">
+    <div class="foot">
+      <h4>来源与边界</h4>
+      <ul class="tight">
+        <li><b>教材依据：</b>王萼芳《高等代数》第四版 第八章（印刷页 324–354）；本页所有定义、定理、证明路线均整理自同目录课本骨架 <code>01_第八章_λ-矩阵_课本骨架.md</code>（纯课本摘录）。</li>
+        <li><b>辅助来源：</b>武器边界 <code>03_第八章_λ-矩阵_专题_武器边界.md</code>；习题清单 <code>05_教材习题_OCR核对版.md</code>；考频参考 <code>考研/00_AI/真题分析_2026-09-13/02_章节命题矩阵.md</code>。</li>
+        <li><b>标记说明：</b>「理解提示 / 演示例」为 Hermes 据课本方法整理的讲解内容；正文正式定义定理以课本为准。若与教材印刷原页冲突，以原页为准。</li>
+        <li><b>证据边界：</b>本页是学习资料，不是学习记录；阅读或勾选本页不构成「已掌握」证据。掌握判定仍以闭卷复述、独立作答与间隔复现为准。</li>
+        <li><b>技术说明：</b>数学公式由本地 KaTeX 离线渲染（资源在 <code>../_html_assets/katex/</code>）；页面可直接用浏览器打开，无需联网。生成：Hermes，2026-10-13。</li>
+      </ul>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<button class="toTop" id="toTop" title="回到顶部">↑</button>
+
+<script defer src="../_html_assets/katex/katex.min.js"></script>
+<script defer src="../_html_assets/katex/auto-render.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  // ---------- KaTeX ----------
+  try{
+    renderMathInElement(document.body,{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+      throwOnError:false, strict:false
+    });
+  }catch(e){ console.error('katex render failed', e); }
+
+  // ---------- theme ----------
+  var root=document.documentElement;
+  var saved=null; try{saved=localStorage.getItem('kaoyan-html-theme');}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved);}
+  var tb=document.getElementById('themeToggle');
+  tb.addEventListener('click',function(){
+    var now=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',now);
+    try{localStorage.setItem('kaoyan-html-theme',now);}catch(e){}
+  });
+
+  // ---------- progress + toTop ----------
+  var bar=document.getElementById('bar'), toTop=document.getElementById('toTop');
+  function onScroll(){
+    var h=document.documentElement, st=h.scrollTop||document.body.scrollTop;
+    var dh=(h.scrollHeight-h.clientHeight)||1;
+    bar.style.width=Math.min(100,(st/dh)*100)+'%';
+    if(st>600){toTop.classList.add('on');}else{toTop.classList.remove('on');}
+  }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  // ---------- scrollspy ----------
+  var links=[].slice.call(document.querySelectorAll('#toc a'));
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1); var el=document.getElementById(id); if(el){map[id]=a;}});
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){a.classList.remove('on');});
+        var a=map[en.target.id]; if(a){a.classList.add('on');}
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+
+  // ---------- expand all proofs ----------
+  var btn=document.getElementById('expandAll'), expanded=false;
+  btn.addEventListener('click',function(){
+    expanded=!expanded;
+    document.querySelectorAll('details').forEach(function(d){d.open=expanded;});
+    btn.textContent=expanded?'收起全部证明':'展开全部证明';
+  });
+  window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true;});});
+
+  // ---------- checklist ----------
+  var list=document.querySelector('.checklist[data-key]');
+  if(list){
+    var key='kaoyan-html-checklist-'+list.getAttribute('data-key');
+    var state={}; try{state=JSON.parse(localStorage.getItem(key)||'{}');}catch(e){}
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+      var id=cb.getAttribute('data-id');
+      if(state[id]){cb.checked=true; cb.closest('li').classList.add('done');}
+      cb.addEventListener('change',function(){
+        state[id]=cb.checked; cb.closest('li').classList.toggle('done',cb.checked);
+        try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}
+      });
+    });
+  }
+
+  // ---------- decision widget ----------
+  var WT={
+    std:{t:'化 λ-矩阵为标准形 / 求不变因子',s:[
+      '若是数字矩阵：先写特征矩阵 \\(\\lambda E-A\\)（相似类问题几乎都从它出发）。',
+      '用初等变换：先把「公共因子」凑到左上角非零元素，消去第一行第一列其余元素，再对右下角块迭代。',
+      '左上角除不尽其它元素时，用降次引理制造次数更低的左上角，直到它能除尽全部元素。',
+      '收尾：乘非零常数把对角元调成首一，并检查 \\(d_1\\mid d_2\\mid\\cdots\\) 整除链。',
+      '不想做初等变换时可用行列式因子相除：\\(d_k=D_k/D_{k-1}\\)。'],
+      tip:'陷阱：第二种初等变换只许乘非零常数；整除链与首一必须同时满足。'},
+    dk:{t:'求行列式因子 \\(D_k(\\lambda)\\)',s:[
+      '等级 \\(k\\)：取遍全部 \\(k\\) 级子式（不是只取主对角方向）。',
+      '对全部子式求首一最大公因式。',
+      '策略：先算最高级 \\(D_r\\)（满秩时就是行列式），再用 \\(D_k\\mid D_{k+1}\\) 约束低级。'],
+      tip:'低级子式的 gcd 容易被漏项，例如漏掉「错位」子式。'},
+    inv:{t:'求不变因子',s:[
+      '路线 A：化为标准形，主对角元即不变因子。',
+      '路线 B：先算 \\(D_1,\\dots,D_n\\)，再 \\(d_1=D_1,\\ d_k=D_k/D_{k-1}\\)。',
+      '实战场上路线 B 常更快，尤其对特征矩阵。'],
+      tip:'不变因子个数固定为 \\(n\\)（特征矩阵秩为 \\(n\\)），乘积应等于特征多项式——当作验算。'},
+    el:{t:'求初等因子',s:[
+      '定理 9 直接法：初等变换把 \\(\\lambda E-A\\) 化为对角形。',
+      '把每个对角元分解成一次因式方幂（复数域允许 (\\(\\lambda^2+1\\) 拆成 \\((\\lambda-i)(\\lambda+i)\\)）。',
+      '所有出现的一次因式方幂全部收集（相同按次数重复）。'],
+      tip:'不必再整理成标准形；别漏「相同因式重复出现」的次数。'},
+    jor:{t:'求若尔当标准形',s:[
+      '① 求 \\(\\lambda E-A\\) 的初等因子；',
+      '② 每个 \\((\\lambda-\\lambda_0)^{k}\\) 配一个 \\(k\\) 级若尔当块（对角元 \\(\\lambda_0\\)，下次对角线放 1）；',
+      '③ 按任意次序拼成准对角矩阵；',
+      '④ 自检：块级数之和 = \\(n\\)；最大块 = 最小多项式次数；对角元集合 = 特征值集合。'],
+      tip:'数域必须是复数（或特征多项式完全分裂），否则不能无条件使用。'},
+    rat:{t:'求有理标准形',s:[
+      '① 求全部不变因子（去掉 1 后的 \\(d_1\\mid\\cdots\\mid d_s\\)）；',
+      '② 每个 \\(d_i\\) 写友矩阵（最后一行放系数 \\(-a_n,\\dots,-a_1\\)，下次对角线放 1）；',
+      '③ 拼准对角矩阵。'],
+      tip:'友矩阵很容易抄错系数符号与排列方向，写完后用「不变因子=1,\\dots,1,d(\\lambda)」检查一次。'},
+    sim:{t:'判定两个矩阵是否相似',s:[
+      '① 分别求 \\(\\lambda E-A\\) 与 \\(\\lambda E-B\\) 的不变因子（或标准形）；',
+      '② 相同 ⟹ 相似（任意数域）；',
+      '③ 复数域也可直接比较初等因子。'],
+      tip:'先看必须相同的量（秩、迹、行列式、特征多项式）能否排除，再上完整不变量。'}
+  };
+  var wb=document.getElementById('wb'), wo=document.getElementById('wo');
+  var order='std','化标准形/不变因子'],['dk','行列式因子'],['inv','不变因子'],['el','初等因子'],['jor','若尔当标准形'],['rat','有理标准形'],['sim','判定相似';
+  order.forEach(function(kv){
+    var b=document.createElement('button'); b.className='wbtn'; b.textContent=kv[1];
+    b.addEventListener('click',function(){
+      wb.querySelectorAll('.wbtn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      var d=WT[kv[0; var htm='<h5>'+d.t+'</h5><ol>';
+      d.s.forEach(function(x){htm+='<li>'+x+'</li>';});
+      htm+='</ol><div class="tip">⚠ '+d.tip+'</div>';
+      wo.innerHTML=htm;
+      try{renderMathInElement(wo,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false,strict:false});}catch(e){}
+    });
+    wb.appendChild(b);
+  });
+
+  // ---------- quiz ----------
+  var QS=[
+    ['λ-矩阵可逆的充要条件？','行列式 \\(|A(\\lambda)|\\) 是非零的<b>数</b>（零次多项式）。非零多项式不够：多项式环里不能取倒数。'],
+    ['标准形唯一性由什么保证？','行列式因子是等价不变量（定理 3），而 \\(d_k=D_k/D_{k-1}\\)——标准形的对角元被不变量唯一决定。'],
+    ['\\(D_k\\) 与 \\(d_i\\) 的关系式？','\\(D_k=d_1d_2\\cdots d_k\\)；反解 \\(d_k=D_k/D_{k-1}\\)（约定 \\(D_0=1\\)）。'],
+    ['相似与特征矩阵的关系（定理 7）？','\\(A\\sim B\\) ⟺ \\(\\lambda E-A\\) 与 \\(\\lambda E-B\\) 等价；等价 ⟺ 存在可逆 \\(P(\\lambda),Q(\\lambda)\\) 左乘右乘。'],
+    ['为什么 \\(n\\) 级矩阵恰有 \\(n\\) 个不变因子？','特征矩阵的秩恒为 \\(n\\)（因 \\(|\\lambda E-A|\\) 是首一 \\(n\\) 次多项式），故标准形有 \\(n\\) 个非零对角元。'],
+    ['最小多项式在不变因子里的位置？','最后一个不变因子 \\(d_n(\\lambda)\\)。'],
+    ['复矩阵可对角化的两条判据？','初等因子全为一次式 ⟺ 不变因子都没有重根。'],
+    ['若尔当块 \\(J_n(\\lambda_0)\\) 的初等因子？','\\((\\lambda-\\lambda_0)^n\\)。反之每个初等因子 \\((\\lambda-\\lambda_0)^k\\) 对应一个 \\(k\\) 级块。'],
+    ['为什么若尔当标准形必须在复数域讨论？','需要特征多项式完全分裂成一次因式；任意数域上改用有理标准形（定理 14）。'],
+    ['友矩阵的不变因子是什么？','\\(1,1,\\dots,1,d(\\lambda)\\)（共 \\(n-1\\) 个 1）。'],
+    ['两个矩阵相似但特征值相同，能否直接判定相似？','不能。还需比较重数与块结构——即初等因子（例：\\(\\operatorname{diag}(1,1)\\) 与 \\(J_2(1)\\) 不相似）。'],
+    ['求完若尔当形后，两个最快的自检量？','块级数之和 = \\(n\\)；特征多项式 = 对角元按块乘积（等价地：迹、行列式、最小多项式次数）。']
+  ];
+  var qb=document.getElementById('quizbox');
+  QS.forEach(function(q,i){
+    var d=document.createElement('div'); d.className='qi';
+    var h='<p class="q"><span class="qn">Q'+(i+1)+'.</span>'+q[0]+'</p>';
+    h+='<button class="qbtn">显示答案</button><div class="qa">'+q[1]+'</div>';
+    d.innerHTML=h;
+    d.querySelector('.qbtn').addEventListener('click',function(){
+      d.classList.toggle('open');
+      this.textContent=d.classList.contains('open')?'收起答案':'显示答案';
+    });
+    qb.appendChild(d);
+  });
+  try{renderMathInElement(qb,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false,strict:false});}catch(e){}
+});
+</script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

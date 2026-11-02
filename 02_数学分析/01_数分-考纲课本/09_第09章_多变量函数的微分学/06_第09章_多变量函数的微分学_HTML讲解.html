@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第09章 多变量函数的微分学 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="sb-crumb">数学分析 · 考纲课本</div>
+<div class="sb-title">第09章<br>多变量函数的微分学</div>
+<nav class="toc">
+<a href="#kaogang">考纲对照</a>
+<a href="#map">知识地图</a>
+<div class="toc-sec">逐节讲解</div>
+<a href="#s91">§9.1 方向导数和偏导数</a>
+<a href="#s92">§9.2 多变量函数的微分</a>
+<a href="#s93">§9.3 映射的微分</a>
+<a href="#s94">§9.4 复合求导</a>
+<a href="#s95">§9.5 切线和切平面</a>
+<a href="#s96">§9.6 隐函数定理</a>
+<a href="#s97">§9.7 隐映射定理</a>
+<a href="#s98">§9.8 逆映射定理</a>
+<a href="#s99">§9.9 高阶偏导数</a>
+<a href="#s910">§9.10 中值定理和 Taylor 公式</a>
+<a href="#s911">§9.11 极值</a>
+<a href="#s912">§9.12 条件极值</a>
+<div class="toc-sec">回收</div>
+<a href="#exercises">课本习题（全录 106 题）</a>
+<a href="#zhenti">真题链接</a>
+<a href="#checklist">自测清单</a>
+<a href="#source">来源与边界</a>
+</nav>
+<div class="sb-foot">以《数学分析教程》第三版（常庚哲、史济怀）为准。公式离线渲染。</div>
+</aside>
+<main class="content">
+<header class="hero">
+<div class="hero-inner">
+<div class="hero-crumb">考研 · 数学分析 · 610 考纲课本 · 上册</div>
+<h1>第09章 多变量函数的微分学</h1>
+<p class="hero-sub">方向导数与偏导数 · 全微分 · 链式法则 · 切线与切平面 · 隐函数与逆映射 · 极值与条件极值</p>
+<div class="hero-tags">
+<span class="tag">考纲 5. 多元函数微分学与积分学 · a（后半）· b · c</span>
+<span class="tag">课本 §9.1–§9.12（印刷页 1–89）</span>
+<span class="tag">真题高频区 · 2020–2026 持续出现</span>
+</div>
+</div>
+</header>
+<div class="wrap">
+<section id="kaogang">
+<h2><span class="h2-no">00</span>考纲对照</h2>
+<p>610 考纲「5) 多元函数微分学与积分学」相关条文原文：</p>
+<div class="note n-exam"><span class="note-t">考纲原文</span>a.（后半）偏导数和全微分的概念，多元函数的偏导数与全微分。b．隐函数存在定理，反函数定理。c．多元函数极值和条件极值，Lagrange 乘子法，偏导数的几何应用。</div>
+<table class="tbl">
+<tr><th>考纲要素</th><th>课本位置</th><th>要达到的程度</th></tr>
+<tr><td>偏导数和全微分的概念</td><td>§9.1–§9.2</td><td>闭卷写出方向导数与可微定义（线性主部 + $o(\Vert\boldsymbol h\Vert)$），分清三档概念</td></tr>
+<tr><td>隐函数存在定理</td><td>§9.6（→ §9.7、§9.8）</td><td>复述条件 (a)(b)(c) 与求导公式；恒等式求导、公式法两条路都通</td></tr>
+<tr><td>反函数定理</td><td>§9.8</td><td>说清由隐映射定理推出；写出 $Jg=(Jf)^{-1}$ 与行列式倒数关系</td></tr>
+<tr><td>多元函数极值</td><td>§9.11</td><td>驻点 + Hesse 方阵（或 $ac-b^2$）判定；闭区域最值全流程</td></tr>
+<tr><td>条件极值、Lagrange 乘子法</td><td>§9.12</td><td>辅助函数、方程组、候选点比较；知道只给必要条件</td></tr>
+<tr><td>偏导数的几何应用</td><td>§9.5</td><td>切线、切平面、法向量的三种表示都会写</td></tr>
+</table>
+<div class="note n-exam"><span class="note-t">真题视角</span>2020–2026 持续出现：方向导数、隐函数求偏导、Lagrange、切平面截距均有场次。考法以「一段计算 + 一条论证」为主，得分起点是把定义、条件与公式写对。</div>
+</section>
+<section id="map">
+<h2><span class="h2-no">01</span>知识地图</h2>
+<div class="map">
+<div class="map-node"><b>把「导数」拆开</b>：差商里「除以向量」没有意义。保留「沿射线趋近」得<b>方向导数</b>（§9.1）；保留「线性主要部分」得<b>全微分</b>（§9.2）。高维中变点趋近方式复杂，这是本章一切的根源。</div>
+<div class="map-node"><b>三档概念（§9.1–§9.3）</b>：偏导连续 $\Rightarrow$ 可微 $\Rightarrow$ 连续，且可微 $\Rightarrow$ 沿任意方向方向导数存在；反向全不成立（§9.2 例 1、练习 9.2 第 1 题）。判定可微的标准动作是回定义。</div>
+<div class="map-node"><b>计算引擎（§9.4）</b>：链式法则 $J(f\circ\boldsymbol g)=Jf\cdot J\boldsymbol g$ 与分量形式 (9)；一阶微分形式的不变性。</div>
+<div class="map-node"><b>几何应用（§9.5）</b>：曲线切线；曲面切平面与法向量（显式 / 隐式 / 参数三种表示）；第一基本量 $E,F,G$。</div>
+<div class="map-node"><b>存在性定理群（§9.6–§9.8）</b>：隐函数定理（$F_y\neq0$）$\to$ 隐映射定理（$\det J_yF\neq0$）$\to$ 逆映射定理（$Jg=(Jf)^{-1}$）。干货是<b>条件 + 求导公式</b>。</div>
+<div class="map-node"><b>工具箱（§9.9–§9.10）</b>：高阶偏导（混合偏导何时可换序）；中值定理与多元 Taylor 公式（Hesse 方阵登场）。</div>
+<div class="map-node"><b>终点（§9.11–§9.12）</b>：极值 = 驻点（必要）+ Hesse 定型（充分）；条件极值 = Lagrange 乘子（只给必要）+ 候选点比较。</div>
+</div>
+<div class="note n-key"><span class="note-t">一条主线</span>本章一切操作围绕三个动作：<b>算偏导</b>（其余变量冻住）、<b>回定义</b>（可微性、非可微点的方向导数）、<b>核条件</b>（各定理前提）。先写条件再写公式，能过滤大半失分。</div>
+</section>
+<section id="s91">
+<h2><span class="h2-no">§9.1</span>方向导数和偏导数</h2>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">定义 9.1.1</span><span class="ctitle">方向导数</span><span class="pg">课本 p.1</span></div>
+<p>设开集 $D\subset\mathbb R^n$，$f\colon D\to\mathbb R$。单位向量 $\boldsymbol u$（$\Vert\boldsymbol u\Vert=1$）叫一个<b>方向</b>。若极限</p>
+<div class="formula">$$\lim_{t\to0}\frac{f(\boldsymbol x_0+t\boldsymbol u)-f(\boldsymbol x_0)}{t}\tag{1}$$</div>
+<p>存在且有限，称 $f$ 在 $\boldsymbol x_0$ 处沿 $\boldsymbol u$ 的<b>方向导数</b>，记 $\dfrac{\partial f}{\partial\boldsymbol u}(\boldsymbol x_0)$。它就是 $\varphi'(0)$（$\varphi(t)=f(\boldsymbol x_0+t\boldsymbol u)$）——计算归约为一元导数；$-\boldsymbol u$ 方向的值与它差一个符号。</p>
+</div>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">偏导数</span><span class="ctitle">沿坐标方向的方向导数</span><span class="pg">课本 p.1–3</span></div>
+<p>沿坐标向量 $\boldsymbol e_i$ 的方向导数称第 $i$ 个<b>一阶偏导数</b>，记 $\dfrac{\partial f}{\partial x_i}(\boldsymbol x_0)$ 或 $\mathrm D_if(\boldsymbol x_0)$（$\mathrm D_i=\dfrac{\partial}{\partial x_i}$ 为偏微分算子）。计算时只对第 $i$ 个变数求导、其余视常数。</p>
+<div class="note n-tip"><span class="note-t">几何意义</span>二元时 $\dfrac{\partial f}{\partial x}(x_0,y_0)$ 是截线 $\{z=f(x,y),\ y=y_0\}$ 的切线斜率，$\dfrac{\partial f}{\partial y}$ 同理。</div>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1 ★</span><span class="ctitle">方向导数存在，却可以不连续</span><span class="pg">课本 p.2</span></div>
+<p>$f(x,y)=\dfrac{2xy}{x^2+y^2}$（$(x,y)\neq(0,0)$），$f(0,0)=1$。沿 $\boldsymbol u=(\cos\theta,\sin\theta)$：</p>
+<div class="formula">$$\varphi(t)=f(t\cos\theta,t\sin\theta)=2\cos\theta\sin\theta=\sin2\theta,$$</div>
+<p>而 $\varphi(0)=1$：仅当 $\theta=\pi/4,5\pi/4$ 时方向导数存在（等于 0），其余方向 $\varphi'(0)$ 不存在——$f$ 在原点甚至无极限，却沿两个方向可导：<b>方向导数与连续、可微无必然关联</b>。</p>
+<div class="note n-warn"><span class="note-t">操作要点</span>固定方向后先把 $\varphi(t)$ 写出来（此处是常数函数），再检查 $t=0$ 处是否连续。</div>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 2、例 3</span><span class="ctitle">偏导数计算与「处处不可导」的形状</span><span class="pg">课本 p.3</span></div>
+<ul>
+<li><b>例 2</b>：$f=x^2+y+\cos y^2z$：$f_x=2x$，$f_y=1-2yz\sin y^2z$，$f_z=-y^2\sin y^2z$（对 $y$ 求导时 $\cos y^2z$ 是复合函数，最易漏）。</li>
+<li><b>例 3</b>：$f(\boldsymbol x)=\Vert\boldsymbol x\Vert$：$\boldsymbol x\neq\boldsymbol0$ 时 $\mathrm D_if=\dfrac{x_i}{\Vert\boldsymbol x\Vert}$；原点处差商 $\dfrac{\vert t\vert}{t}$ 极限不存在——任何方向导数与偏导数都不存在（此型差商是「不可导」的通用信号）。</li>
+</ul>
+</div>
+</section>
+<section id="s92">
+<h2><span class="h2-no">§9.2</span>多变量函数的微分</h2>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">定义 9.2.1</span><span class="ctitle">可微与微分</span><span class="pg">课本 p.5</span></div>
+<p>如果成立着</p>
+<div class="formula">$$f(\boldsymbol x_0+\boldsymbol h)-f(\boldsymbol x_0)=\sum_{i=1}^{n}\lambda_i h_i+o(\Vert\boldsymbol h\Vert)\quad(\Vert\boldsymbol h\Vert\to0),\tag{1}$$</div>
+<p>其中 $\lambda_i$ 不依赖 $\boldsymbol h$，则称 $f$ 在 $\boldsymbol x_0$ 处<b>可微</b>，$\mathrm df(\boldsymbol x_0)(\boldsymbol h)=\sum\lambda_i h_i$ 称为<b>微分</b>（改变量的线性主要部分）。取 $\boldsymbol h=(h_1,0,\cdots,0)$ 令 $h_1\to0$ 得 $\lambda_i=\mathrm D_if(\boldsymbol x_0)$：<b>可微时诸偏导存在</b>，且</p>
+<div class="formula">$$\mathrm df(\boldsymbol x_0)=\sum_{i=1}^{n}\frac{\partial f(\boldsymbol x_0)}{\partial x_i}\,\mathrm dx_i,\qquad \mathrm df(\boldsymbol x_0)(\boldsymbol h)=Jf(\boldsymbol x_0)\boldsymbol h.$$</div>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.2.1、9.2.2</span><span class="ctitle">可微必连续；可微的等价形式</span><span class="pg">课本 p.6–7</span></div>
+<p><b>定理 9.2.1</b>：可微 $\Rightarrow$ 连续（证明：$\boldsymbol h\to0$ 时 $\mathrm df\to0$）。</p>
+<p><b>定理 9.2.2</b>：$f$ 在 $\boldsymbol x_0$ 可微，当且仅当</p>
+<div class="formula">$$f(\boldsymbol x_0+\boldsymbol h)-f(\boldsymbol x_0)=Jf(\boldsymbol x_0)\boldsymbol h+\sum_{i=1}^{n}\beta_i(\boldsymbol h)h_i,\qquad \beta_i(\boldsymbol h)\to0,$$</div>
+<p>即「Jacobi 矩阵乘 $\boldsymbol h$ + 带小系数的余项」。这是全章验证可微性的标准抓手（由 $\bigl\vert\sum\beta_ih_i\bigr\vert/\Vert\boldsymbol h\Vert\leqslant\sum\vert\beta_i\vert\to0$ 立得）。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.2.3</span><span class="ctitle">偏导数连续 ⟹ 可微</span><span class="pg">课本 p.8</span></div>
+<p>若 $\mathrm D_if$（$i=1,\cdots,n$）在 $\boldsymbol x_0$ 的某邻域存在且在 $\boldsymbol x_0$ 连续，则 $f$ 在 $\boldsymbol x_0$ 处可微（证明：对维数归纳 + 一元中值定理 + 定理 9.2.2 合并）。</p>
+<div class="note n-warn"><span class="note-t">充分而非必要</span>$f=(x^2+y^2)\sin\frac1{x^2+y^2}$（$f(0,0)=0$）在原点可微，但两个偏导在原点不连续（练习 9.2 第 6 题）。</div>
+</div>
+<div class="card c-plain">
+<div class="card-head"><span class="chip chip-ghost">概念</span><span class="ctitle">Jacobi 矩阵与梯度</span><span class="pg">课本 p.5–12</span></div>
+<p>$Jf(\boldsymbol x)=(\mathrm D_1f(\boldsymbol x),\cdots,\mathrm D_nf(\boldsymbol x))$ 称 <b>Jacobi 矩阵</b>（$1\times n$），地位相当于单变量导数；也记 $\operatorname{grad}f$ 或 $\nabla f$，称<b>梯度</b>。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.2.4</span><span class="ctitle">可微 ⟹ 方向导数公式</span><span class="pg">课本 p.10</span></div>
+<p>若 $f$ 在 $\boldsymbol x_0$ 可微，则沿任意方向 $\boldsymbol u=(u_1,\cdots,u_n)$ 的方向导数存在，且</p>
+<div class="formula">$$\frac{\partial f}{\partial\boldsymbol u}(\boldsymbol x_0)=\frac{\partial f}{\partial x_1}(\boldsymbol x_0)u_1+\cdots+\frac{\partial f}{\partial x_n}(\boldsymbol x_0)u_n.\tag{7}$$</div>
+<p>二元沿 $(\cos\theta,\sin\theta)$ 即 $f_x\cos\theta+f_y\sin\theta$。有了梯度，任意方向方向导数一次点乘即得——<b>代价是先保证可微</b>；不可微时 (7) 不成立（练习 9.2 第 1 题），只能回定义。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1 ★</span><span class="ctitle">偏导数存在推不出可微</span><span class="pg">课本 p.7</span></div>
+<p>$f=\dfrac{xy}{x^2+y^2}$（$(x,y)\neq(0,0)$），$f(0,0)=0$：由定义得 $\dfrac{\partial f(0,0)}{\partial x}=\dfrac{\partial f(0,0)}{\partial y}=0$；但 8.7 节例 7 已指明 $f$ 在原点不连续，故<b>不可微</b>。诸偏导存在只是必要条件检查。</p>
+</div>
+<div class="note n-tip"><span class="note-t">可微性判定三步模板</span>① <b>算</b>各一阶偏导（无偏导必不可微）；② <b>减</b>：构造 $r(\boldsymbol h)=f(\boldsymbol x_0+\boldsymbol h)-f(\boldsymbol x_0)-Jf(\boldsymbol x_0)\boldsymbol h$；③ <b>验</b>：$\dfrac{r(\boldsymbol h)}{\Vert\boldsymbol h\Vert}\to0$。否证：先证不连续，或找路径使比值不趋于 0。</div>
+<div class="note n-key"><span class="note-t">三档关系图（全章总纲）</span>偏导数连续 $\Rightarrow$ 可微 $\Rightarrow$ 连续；可微 $\Rightarrow$ 沿<b>任意</b>方向方向导数存在 $\Rightarrow$ 各偏导存在。三条反向箭头全不成立。</div>
+</section>
+<section id="s93">
+<h2><span class="h2-no">§9.3</span>映射的微分</h2>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">定义 9.3.1</span><span class="ctitle">映射的微分</span><span class="pg">课本 p.12</span></div>
+<p>设开集 $D\subset\mathbb R^n$，$f\colon D\to\mathbb R^m$。若</p>
+<div class="formula">$$f(\boldsymbol x_0+\boldsymbol h)-f(\boldsymbol x_0)=\boldsymbol A\boldsymbol h+\boldsymbol r(\boldsymbol h),\qquad \lim_{\boldsymbol h\to\boldsymbol0}\frac{\Vert\boldsymbol r(\boldsymbol h)\Vert}{\Vert\boldsymbol h\Vert}=0,\tag{2}$$</div>
+<p>其中 $\boldsymbol A$ 为 $m\times n$ 矩阵、元素不依赖 $\boldsymbol h$，则称 $f$ 可微：$\mathrm d\boldsymbol f(\boldsymbol x_0)=\boldsymbol A\boldsymbol h$。逐分量比较给出<b>$f$ 可微 $\iff$ 各分量可微</b>，且</p>
+<div class="formula">$$a_{ij}=\frac{\partial f_i(\boldsymbol x_0)}{\partial x_j}\ (i=1,\cdots,m;\ j=1,\cdots,n),\qquad \mathrm d\boldsymbol f(\boldsymbol x_0)=J\boldsymbol f(\boldsymbol x_0)\boldsymbol h.\tag{5}$$</div>
+<p>课本总结：映射的微分是自变量改变量的线性映射；<b>Jacobi 矩阵就是映射的「导数」</b>。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.3.1 · 定义 9.3.2</span><span class="ctitle">Jacobi 矩阵连续 ⟹ 可微；$C(D)$、$C^1(D)$</span><span class="pg">课本 p.13</span></div>
+<p>若 $Jf$ 在 $\boldsymbol x_0$ 邻域存在且各元素在 $\boldsymbol x_0$ 连续，则 $f$ 可微（由定理 9.2.2）。$f$ 每点连续记 $f\in C(D)$；$Jf$ 每点连续记 $f\in C^1(D)$，且 $C^1(D)\subset C(D)$。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例（练习 9.3 第 2 题）</span><span class="ctitle">参数映射的 Jacobi 矩阵</span></div>
+<p>极坐标 $f(r,\theta)=(r\cos\theta,\ r\sin\theta)$：</p>
+<div class="formula">$$Jf=\begin{pmatrix}\cos\theta&-r\sin\theta\\ \sin\theta&r\cos\theta\end{pmatrix},\qquad \det Jf=r.$$</div>
+<p>球坐标 $f(r,\theta,\varphi)=(r\sin\theta\cos\varphi,r\sin\theta\sin\varphi,r\cos\theta)$ 的 $Jf$ 逐分量求偏导即得；两矩阵在第 12 章换元积分里作 Jacobi 行列式出现。</p>
+</div>
+</section>
+<section id="s94">
+<h2><span class="h2-no">§9.4</span>复合求导</h2>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.4.1</span><span class="ctitle">链式法则</span><span class="pg">课本 p.15</span></div>
+<p>设 $\boldsymbol g$ 在 $\boldsymbol x_0$ 可微、$f$ 在 $\boldsymbol g(\boldsymbol x_0)$ 可微，则 $f\circ\boldsymbol g$ 可微，且</p>
+<div class="formula">$$J(f\circ\boldsymbol g)(\boldsymbol x_0)=Jf(\boldsymbol g(\boldsymbol x_0))\,J\boldsymbol g(\boldsymbol x_0).\tag{1}$$</div>
+<p>证明路线：写出两个可微展开、合并估计（$\Vert\boldsymbol k\Vert\leqslant(\Vert\boldsymbol B\Vert+\varepsilon)\Vert\boldsymbol h\Vert$）。矩阵乘法要求维数 $l\times m$ 乘 $m\times n$ 接得上——这本身就是复合合法性的检查。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">推论 9.4.1</span><span class="ctitle">分量形式</span><span class="pg">课本 p.16</span></div>
+<div class="formula">$$\frac{\partial z}{\partial x_j}=\frac{\partial f}{\partial y_1}\frac{\partial g_1}{\partial x_j}+\cdots+\frac{\partial f}{\partial y_m}\frac{\partial g_m}{\partial x_j}\quad(j=1,\cdots,n).\tag{9}$$</div>
+<p>「链条穿过几个中间变量就加几项」，每项是一条路径上导数的乘积——画路径图是第一步。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1–3</span><span class="ctitle">链式法则的三种基本款</span><span class="pg">课本 p.17</span></div>
+<ul>
+<li><b>一元参数曲线</b>：$\varphi(t)=f(x_1(t),\cdots,x_n(t))$，$\varphi'(t)=\sum\limits_i\dfrac{\partial f}{\partial x_i}x_i'(t)$——2024 第 6 题的引擎。</li>
+<li><b>多元复合</b>：$u=f(x+y+z,\ x^2+y^2+z^2)$，$\dfrac{\partial u}{\partial x}=\dfrac{\partial f}{\partial\xi}+2x\dfrac{\partial f}{\partial\eta}$（$\xi=x+y+z$，$\eta=x^2+y^2+z^2$）。</li>
+<li><b>代入点值</b>：$u=f(\varphi(s,t),\psi(s,t))$ 在 $(s_0,t_0)$ 处——先写公式再代值，不要提前代入。</li>
+</ul>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 4 ★</span><span class="ctitle">极坐标梯度恒等式</span><span class="pg">课本 p.18</span></div>
+<div class="formula">$$\left(\frac{\partial u}{\partial x}\right)^{2}+\left(\frac{\partial u}{\partial y}\right)^{2}=\left(\frac{\partial u}{\partial r}\right)^{2}+\frac{1}{r^{2}}\left(\frac{\partial u}{\partial \theta}\right)^{2}.$$</div>
+<p>动作：算出 $\dfrac{\partial u}{\partial r}=\dfrac{\partial u}{\partial x}\cos\theta+\dfrac{\partial u}{\partial y}\sin\theta$、$\dfrac{\partial u}{\partial\theta}=-r\sin\theta\dfrac{\partial u}{\partial x}+r\cos\theta\dfrac{\partial u}{\partial y}$，平方相加——这类恒等式验证全部由链式法则完成。</p>
+<div class="note n-exam"><span class="note-t">真题连接</span>2024 第 6 题、2023 第 2 题的第一动作都在本节；路径图画错，后面全错。</div>
+</div>
+<div class="card c-plain">
+<div class="card-head"><span class="chip chip-ghost">性质</span><span class="ctitle">一阶微分形式的不变性</span><span class="pg">课本 p.15–20</span></div>
+<p>$\mathrm df=\sum\limits_{i=1}^{n}\dfrac{\partial f}{\partial x_i}\mathrm dx_i$ 的形状不因 $(x_i)$ 是否为自变量而改变——微分号下变量可「自由替换」，这是用 $\mathrm dz$、$\mathrm du$ 直接运算的依据。</p>
+</div>
+</section>
+<section id="s95">
+<h2><span class="h2-no">§9.5</span>曲线的切线和曲面的切平面</h2>
+<div class="card c-plain">
+<div class="card-head"><span class="chip chip-ghost">曲线</span><span class="ctitle">切向量与弧长参数</span><span class="pg">课本 p.20–24</span></div>
+<p>光滑曲线：$\boldsymbol r(t)$ 连续可导且 $\Vert\boldsymbol r'\Vert\neq0$。$\boldsymbol r'(t_0)$ 为<b>切向量</b>，切线方程</p>
+<div class="formula">$$\frac{x-x(t_0)}{x'(t_0)}=\frac{y-y(t_0)}{y'(t_0)}=\frac{z-z(t_0)}{z'(t_0)}.$$</div>
+<p>弧长 $s(t)=\int_\alpha^t\Vert\boldsymbol r'(\tau)\Vert\,\mathrm d\tau$，$\dfrac{\mathrm ds}{\mathrm dt}=\Vert\boldsymbol r'(t)\Vert>0$，故可以弧长为参数（$\Vert\boldsymbol r'(s)\Vert=1$）。例 1：圆 $x=a\cos\frac ta,\ y=a\sin\frac ta$ 的 $t$ 即弧长。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定义 9.5.1 · 定理 9.5.1–9.5.2</span><span class="ctitle">曲率</span><span class="pg">课本 p.22–24</span></div>
+<p>切向量转角 $\Delta\theta$ 与弧长 $\Delta s$：$k(t_0)=\lim\limits_{\Delta s\to0}\left|\dfrac{\Delta\theta}{\Delta s}\right|$。单位向量场可导时 $\Vert\boldsymbol a'(s)\Vert$ 即此极限；取 $\boldsymbol a=\boldsymbol r'$ 得 $k(s)=\Vert\boldsymbol r''(s)\Vert$（基准例：直线 $k=0$、圆 $k=1/a$、圆柱螺线 $k=\frac{a}{a^{2}+b^{2}}$）。一般参数下</p>
+<div class="formula">$$k(t)=\frac{\Vert\boldsymbol r'(t)\times\boldsymbol r''(t)\Vert}{\Vert\boldsymbol r'(t)\Vert^{3}}.\tag{4}$$</div>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">切平面</span><span class="ctitle">三种表示与切平面、法向量</span><span class="pg">课本 p.20–33</span></div>
+<p>隐式 $F(x,y,z)=0$：过 $\boldsymbol p_0$ 的曲线切向量均与 $JF(\boldsymbol p_0)$ 垂直，故切平面</p>
+<div class="formula">$$(x-x_0)\frac{\partial F}{\partial x}(\boldsymbol p_0)+(y-y_0)\frac{\partial F}{\partial y}(\boldsymbol p_0)+(z-z_0)\frac{\partial F}{\partial z}(\boldsymbol p_0)=0;\tag{9}$$</div>
+<p>球面 $x^2+y^2+z^2=a^2$ 的切平面为 $x_0x+y_0y+z_0z=a^2$。显式 $z=f(x,y)$：法向量 $\Big(-f_x,-f_y,1\Big)$，切平面</p>
+<div class="formula">$$z-f(x_0,y_0)=(x-x_0)\frac{\partial f}{\partial x}(x_0,y_0)+(y-y_0)\frac{\partial f}{\partial y}(x_0,y_0).\tag{11}$$</div>
+<p>参数式 $\boldsymbol r(u,v)$：法向量 $\boldsymbol r_u\times\boldsymbol r_v$；第一基本量 $E=\Vert\boldsymbol r_u\Vert^{2}$、$F=\boldsymbol r_u\cdot\boldsymbol r_v$、$G=\Vert\boldsymbol r_v\Vert^{2}$，$\Vert\boldsymbol r_u\times\boldsymbol r_v\Vert=\sqrt{EG-F^{2}}$。例 7：球面 $E=a^2,F=0,G=a^2\sin^2\theta$，单位法向量 $\dfrac1a(x,y,z)$。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 8</span><span class="ctitle">大圆弧的最短性</span><span class="pg">课本 p.31</span></div>
+<p>沿经线两点间 $s(\Gamma)=\int_{t_0}^{t_1}\sqrt{a^{2}(\theta')^{2}+a^{2}\sin^{2}\theta\,(\varphi')^{2}}\,\mathrm dt\geqslant a(\theta_1-\theta_0)$，等号 $\iff\varphi'\equiv0$（大圆弧）——用弧长公式放缩的样板。</p>
+</div>
+<div class="note n-tip"><span class="note-t">切平面固定流程 + 真题</span>① 化 $F=0$（或 $z=f$、参数式）→ ② 求法向量 → ③ 点法式；截距令另两坐标为 0 即得。2023 第 6 题即练习 9.5 第 17 题；2020 第 3 题兼用本节法向量与 §9.12 乘子法。</div>
+</section>
+<section id="s96">
+<h2><span class="h2-no">§9.6</span>隐函数定理</h2>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.6.1</span><span class="ctitle">隐函数定理（二元情形）</span><span class="pg">课本 p.35</span></div>
+<p>设 $F$ 满足：(a) $F\in C^1(D)$；(b) $F(x_0,y_0)=0$；(c) $\dfrac{\partial F(x_0,y_0)}{\partial y}\neq0$。则存在开矩形 $I\times J$：对每个 $x\in I$，$F(x,y)=0$ 在 $J$ 中有唯一解 $f(x)$；$y_0=f(x_0)$；$f\in C^1(I)$；且</p>
+<div class="formula">$$f'(x)=-\frac{\dfrac{\partial F}{\partial x}(x,y)}{\dfrac{\partial F}{\partial y}(x,y)},\qquad y=f(x).\tag{2}$$</div>
+<div class="note n-proof"><span class="note-t">证明路线（三步）</span>① 存在唯一：$F$ 关于 $y$ 严格单调 + 端点异号 + 零值定理；② 连续：逐点重复 + 解的唯一性；③ 可微：把 $0=F(x+h,y+k)-F(x,y)$ 按定理 9.2.2 展开，解出 $k/h$ 的极限即得公式。</div>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.6.2</span><span class="ctitle">$\mathbb R^{n+1}$ 情形</span><span class="pg">课本 p.38</span></div>
+<p>同一条件下 $F(\boldsymbol x,y)=0$ 唯一确定 $f(\boldsymbol x)\in C^1(G)$，且 $\dfrac{\partial f}{\partial x_i}=-\dfrac{\partial F/\partial x_i}{\partial F/\partial y}$（$i=1,\cdots,n$）；9.6.1 的证明对更多变元逐字适用。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2</span><span class="ctitle">隐函数求导的两种味型</span><span class="pg">课本 p.37</span></div>
+<ul>
+<li><b>例 1</b>：$x^2y^2-3y+2x^3=0$，$F_y=2x^2y-3$：$(1,1)$ 近旁 $f'(1)=\dfrac{-8}{-1}=8$；$(1,2)$ 近旁 $f'(1)=\dfrac{-14}{1}=-14$（也能解成根式验证，但很快失效）。</li>
+<li><b>例 2 ★</b>：$\sin x+\ln y-xy^3=0$ 于 $(0,1)$：$F_x(0,1)=0$，$F_y(0,1)=1$，故 $f'(0)=0$。<b>课本明示：此例非用隐函数定理不可。</b></li>
+</ul>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 3、例 4</span><span class="ctitle">三元方程确定多元隐函数</span><span class="pg">课本 p.39</span></div>
+<p>例 3：$\sin u-xyu=0$ 对 $x$ 求导得 $\cos f\cdot f_x-yf-xyf_x=0$，故 $\dfrac{\partial f}{\partial x}=\dfrac{yf}{\cos f-xy}$、$\dfrac{\partial f}{\partial y}=\dfrac{xf}{\cos f-xy}$。例 4：$f(x+zy^{-1},y+zx^{-1})=0$ 以「恒等式求导」与「公式法」两算对照，结果一致。</p>
+<div class="note n-key"><span class="note-t">公式不必强记 + 条件的位置感</span>对 $F(x,f(x))\equiv0$ 求导即得公式：计算式简单用恒等式求导，中间变量多用公式法。要背的是条件 $F\in C^1$、$F(x_0,y_0)=0$、$F_y\neq0$。单位圆在 $(\pm1,0)$（$F_y=0$）解不出 $y=f(x)$；哪个偏导非零，决定能解出哪个变量。</div>
+</div>
+</section>
+<section id="s97">
+<h2><span class="h2-no">§9.7</span>隐映射定理</h2>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.7.1</span><span class="ctitle">隐映射定理</span><span class="pg">课本 p.42</span></div>
+<p>设 $F\colon D\to\mathbb R^m$（$D\subset\mathbb R^{n+m}$ 开）：(a) $F\in C^1(D)$；(b) $F(\boldsymbol x_0,\boldsymbol y_0)=\boldsymbol0$；(c) $\det J_yF(\boldsymbol x_0,\boldsymbol y_0)\neq0$。则存在邻域 $G\times H$：对每个 $\boldsymbol x\in G$，$F(\boldsymbol x,\boldsymbol y)=\boldsymbol0$ 在 $H$ 有唯一解 $\boldsymbol y=f(\boldsymbol x)$，$f(\boldsymbol x_0)=\boldsymbol y_0$，$f\in C^1(G)$，且</p>
+<div class="formula">$$Jf(\boldsymbol x)=-\bigl(J_yF(\boldsymbol x,\boldsymbol y)\bigr)^{-1}J_xF(\boldsymbol x,\boldsymbol y),\qquad \boldsymbol y=f(\boldsymbol x).$$</div>
+<p>证明路线（对方程个数归纳 + 消元）：对最后一个方程用定理 9.6.2 解出 $t=\varphi(\boldsymbol x,\boldsymbol u)$，代入前 $m-1$ 个方程后用归纳假设；课本评注：证明过程还提供求非线性方程组近似解的可操作方法。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2</span><span class="ctitle">隐映射的两个标准款</span><span class="pg">课本 p.46</span></div>
+<p><b>例 1</b>：对 $\begin{cases}x_1y_2-4x_2+2\mathrm e^{y_1}+3=0,\\[2pt] 2x_1-x_3-6y_1+y_2\cos y_1=0,\end{cases}$ 在 $x=(-1,1,-1)$、$y=(0,1)$ 处：写出 $J_xF$、$J_yF$ 的定点值，用公式得</p>
+<div class="formula">$$\begin{pmatrix}\frac{\partial y_1}{\partial x_1}&\frac{\partial y_1}{\partial x_2}&\frac{\partial y_1}{\partial x_3}\\[2pt] \frac{\partial y_2}{\partial x_1}&\frac{\partial y_2}{\partial x_2}&\frac{\partial y_2}{\partial x_3}\end{pmatrix}=\frac14\begin{pmatrix}3&-4&-1\\ 10&-24&-2\end{pmatrix}.$$</div>
+<p><b>例 2</b>：$z=f(x,y)$、$g(x,y)=0$ 求 $\dfrac{\mathrm dz}{\mathrm dx}$。用定理 9.6.1 消去 $y=\varphi(x)$：$\dfrac{\mathrm{d}z}{\mathrm{d}x}=\Big(\dfrac{\partial g}{\partial y}\Big)^{-1}\Big(\dfrac{\partial f}{\partial x}\dfrac{\partial g}{\partial y}-\dfrac{\partial f}{\partial y}\dfrac{\partial g}{\partial x}\Big)$（解法 2 用 9.7.1；课本认为 9.6.1 更直接）。</p>
+</div>
+<div class="note n-tip"><span class="note-t">考试动作</span>先写全条件（$F\in C^1$、定点满足方程、$\det J_yF\neq0$）；公式形状记牢：<b>负号 + $y$ 块逆矩阵左乘 $x$ 块</b>；验算时检查维数 $(m\times m)^{-1}(m\times n)=m\times n$。</div>
+</section>
+<section id="s98">
+<h2><span class="h2-no">§9.8</span>逆映射定理</h2>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.8.1</span><span class="ctitle">局部逆映射定理</span><span class="pg">课本 p.50</span></div>
+<p>设 $f\colon D\to\mathbb R^n$ 满足：(a) $f\in C^1(D)$；(b) $\det Jf(\boldsymbol x_0)\neq0$。记 $\boldsymbol y_0=f(\boldsymbol x_0)$，则存在邻域 $U\ni\boldsymbol x_0$、$V\ni\boldsymbol y_0$：$f(U)=V$ 且 $f$ 在 $U$ 上单射；逆映射 $g=f^{-1}\in C^1(V)$；且</p>
+<div class="formula">$$Jg(\boldsymbol y)=(Jf(\boldsymbol x))^{-1},\qquad \boldsymbol x=g(\boldsymbol y).$$</div>
+<div class="note n-proof"><span class="note-t">证明路线（归结为隐映射）</span>令 $F(\boldsymbol x,\boldsymbol y)=f(\boldsymbol x)-\boldsymbol y$，由定理 9.7.1 得 $g\in C^1(V)$ 且 $Jg=(Jf)^{-1}$。此定理只有<b>局部</b>性质：$\det Jf$ 处处非零也不能保证大范围整体逆。</div>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.8.2 · 定义 9.8.1</span><span class="ctitle">整体版与正则映射；Jacobi 行列式倒数</span><span class="pg">课本 p.51–52</span></div>
+<p>若 $\det Jf(\boldsymbol x)\neq0$ 处处成立，则 $G=f(D)$ 为开集；若再有 $f$ 单射，则 $f^{-1}\in C^1(G)$ 且 $Jf^{-1}(\boldsymbol y)=(Jf(\boldsymbol x))^{-1}$。三个条件「$f\in C^1(D)$、单射、$\det Jf\neq0$」称<b>正则映射</b>。矩阵等式两边取行列式：</p>
+<div class="formula">$$\frac{\partial(x_1,\cdots,x_n)}{\partial(y_1,\cdots,y_n)}=\cfrac{1}{\dfrac{\partial(y_1,\cdots,y_n)}{\partial(x_1,\cdots,x_n)}}.\tag{5}$$</div>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2</span><span class="ctitle">逆映射求偏导的两个标准款</span><span class="pg">课本 p.52–53</span></div>
+<p><b>例 1（极坐标逆变换）</b>：$x=r\cos\theta,\ y=r\sin\theta$，由 $Jg=(Jf)^{-1}$ 得</p>
+<div class="formula">$$\begin{pmatrix}\frac{\partial r}{\partial x}&\frac{\partial r}{\partial y}\\[2pt] \frac{\partial\theta}{\partial x}&\frac{\partial\theta}{\partial y}\end{pmatrix}=\Big(\frac{\partial(x,y)}{\partial(r,\theta)}\Big)^{-1}=\frac1r\begin{pmatrix}r\cos\theta&r\sin\theta\\ -\sin\theta&\cos\theta\end{pmatrix}.$$</div>
+<p><b>例 2（倒数关系）</b>：$x^2=vy,\ y^2=ux$：先解出 $u=\dfrac{y^2}{x},v=\dfrac{x^2}{y}$ 算得 $\dfrac{\partial(u,v)}{\partial(x,y)}=-3$，由 (5) 得 $\dfrac{\partial(x,y)}{\partial(u,v)}=-\dfrac13$。方向好算的先算，再用倒数关系翻过来。</p>
+</div>
+</section>
+<section id="s99">
+<h2><span class="h2-no">§9.9</span>高阶偏导数</h2>
+<div class="card c-plain">
+<div class="card-head"><span class="chip chip-ghost">记号</span><span class="ctitle">高阶偏导数</span><span class="pg">课本 p.54</span></div>
+<p>逐次求偏导得二阶、三阶……$n$ 元函数二阶偏导有 $n^{2}$ 种：$\dfrac{\partial}{\partial x_i}\Big(\dfrac{\partial f}{\partial x_j}\Big)=\dfrac{\partial^{2}f}{\partial x_i\partial x_j}$。记住 $\dfrac{\partial f}{\partial x_j}$ 仍是全部变量的函数。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2 ★</span><span class="ctitle">混合偏导数的次序问题</span><span class="pg">课本 p.54</span></div>
+<p><b>例 1（正例）</b>：$z=xy^3$：$\dfrac{\partial^{2}z}{\partial x^{2}}=0$，$\dfrac{\partial^{2}z}{\partial y\partial x}=\dfrac{\partial^{2}z}{\partial x\partial y}=3y^{2}$，$\dfrac{\partial^{2}z}{\partial y^{2}}=6xy$——相等，但课本提醒这<b>不永远正确</b>。</p>
+<p><b>例 2（反例 ★）</b>：$f=xy\dfrac{x^{2}-y^{2}}{x^{2}+y^{2}}$（$x^{2}+y^{2}>0$），$f(0,0)=0$：原点处两个一阶偏导均为 0，而</p>
+<div class="formula">$$\frac{\partial^{2}f(0,0)}{\partial y\partial x}=\lim_{y\to0}\Big(-\frac yy\Big)=-1,\qquad \frac{\partial^{2}f(0,0)}{\partial x\partial y}=\lim_{x\to0}\frac xx=1.$$</div>
+<p>混合偏导数可以与求导次序有关——两个式子分别称为 $\dfrac{\partial^{2}f}{\partial x\partial y}$ 与 $\dfrac{\partial^{2}f}{\partial y\partial x}$。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.9.1</span><span class="ctitle">混合偏导数相等的充分条件</span><span class="pg">课本 p.55</span></div>
+<p>若 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$、$\dfrac{\partial^{2}f}{\partial y\partial x}$ 在 $(x_0,y_0)$ 邻域存在，且 $\dfrac{\partial^{2}f}{\partial y\partial x}$ 在 $(x_0,y_0)$ 连续，则 $\dfrac{\partial^{2}f}{\partial x\partial y}(x_0,y_0)$ 存在且相等。证明：四点组合 + 两次一元中值定理 + 连续性取极限。$k$ 阶偏导在点连续则求导次序可换。</p>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 3–例 5</span><span class="ctitle">复合二阶偏导与方程代换</span><span class="pg">课本 p.57–59</span></div>
+<p><b>例 3（勿漏项）</b>：$u=f(x(s,t),y(s,t))$：</p>
+<div class="formula">$$\frac{\partial^{2}u}{\partial s^{2}}=f_{xx}\Big(\frac{\partial x}{\partial s}\Big)^{2}+2f_{xy}\frac{\partial x}{\partial s}\frac{\partial y}{\partial s}+f_{yy}\Big(\frac{\partial y}{\partial s}\Big)^{2}+f_x\frac{\partial^{2}x}{\partial s^{2}}+f_y\frac{\partial^{2}y}{\partial s^{2}}.$$</div>
+<p>后两项最易漏——$f_x$、$f_y$ 仍是 $x,y$ 的复合函数。</p>
+<p><b>例 4（方程代换）</b>：$\dfrac{\partial^{2}z}{\partial x^{2}}-y\dfrac{\partial^{2}z}{\partial y^{2}}=\dfrac12\dfrac{\partial z}{\partial y}$（$y>0$），取 $\xi=x-2\sqrt{y}$、$\eta=x+2\sqrt{y}$ 化为 $\dfrac{\partial^{2}f}{\partial\xi\partial\eta}=0$，通解 $z=\varphi(x-2\sqrt{y})+\psi(x+2\sqrt{y})$。</p>
+</div>
+</section>
+<section id="s910">
+<h2><span class="h2-no">§9.10</span>中值定理和 Taylor 公式</h2>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.10.1、9.10.2</span><span class="ctitle">中值定理与常数定理</span><span class="pg">课本 p.62</span></div>
+<p><b>中值定理</b>：凸区域上 $f(\boldsymbol b)-f(\boldsymbol a)=Jf(\boldsymbol\xi)(\boldsymbol b-\boldsymbol a)$（化为一元证）。<b>常数定理</b>：区域上诸偏导恒为零 $\Rightarrow f$ 为常数（连通性证明：$A=\{f=f(\boldsymbol x_0)\}$、$B=\{f\neq f(\boldsymbol x_0)\}$ 均为开集）。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">引理 9.10.1 · 定理 9.10.3、9.10.4</span><span class="ctitle">多项式定理、多重指标与 Taylor 公式</span><span class="pg">课本 p.63–65</span></div>
+<p>$(x_1+\cdots+x_n)^{k}=\sum\limits_{\alpha_1+\cdots+\alpha_n=k}\dfrac{k!}{\alpha_1!\cdots\alpha_n!}x_1^{\alpha_1}\cdots x_n^{\alpha_n}$；多重指标记号 $\mathrm D^{\boldsymbol\alpha}f$ 见定义。Taylor 公式（Lagrange 余项）：</p>
+<div class="formula">$$f(\boldsymbol a+\boldsymbol h)=\sum_{k=0}^{m}\sum_{\vert\boldsymbol\alpha\vert=k}\frac{\mathrm D^{\boldsymbol\alpha}f(\boldsymbol a)}{\boldsymbol\alpha!}\boldsymbol h^{\boldsymbol\alpha}+R_m,\qquad R_m=\sum_{\vert\boldsymbol\alpha\vert=m+1}\frac{\mathrm D^{\boldsymbol\alpha}f(\boldsymbol a+\theta\boldsymbol h)}{\boldsymbol\alpha!}\boldsymbol h^{\boldsymbol\alpha}.$$</div>
+<p>前三项为 $f(\boldsymbol a)+Jf(\boldsymbol a)\boldsymbol h+\frac12\boldsymbol h^{\mathsf T}Hf(\boldsymbol a)\boldsymbol h+\cdots$，其中 $Hf(\boldsymbol a)=\Big(\dfrac{\partial^{2}f}{\partial x_i\partial x_j}(\boldsymbol a)\Big)_{n\times n}$ 称 <b>Hesse 方阵</b>（对称）。Peano 余项版：余项换成 $o(\Vert\boldsymbol h\Vert^{m})$；<b>Lagrange 用于估计，Peano 用于局部判定</b>（下节极值判定靠它）。映射情形没有等式型中值定理——只有不等式：$\Vert f(\boldsymbol b)-f(\boldsymbol a)\Vert\leqslant\Vert Jf(\boldsymbol\xi)\Vert\,\Vert\boldsymbol b-\boldsymbol a\Vert$（定理 9.10.5、9.10.6）。</p>
+</div>
+</section>
+<section id="s911">
+<h2><span class="h2-no">§9.11</span>极值</h2>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">定义 9.11.1</span><span class="ctitle">（严格）极值</span><span class="pg">课本 p.69</span></div>
+<p>若存在球 $B_r(\boldsymbol x_0)\subset D$ 使对一切 $\boldsymbol x\in B_r(\boldsymbol x_0)$ 有 $f(\boldsymbol x)\geqslant f(\boldsymbol x_0)$（或严格大于），则称 $\boldsymbol x_0$ 为（严格）<b>极小值点</b>；极大同理，统称<b>极值</b>（局部概念，区别于闭区域上最大最小值）。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.11.1</span><span class="ctitle">极值的必要条件</span><span class="pg">课本 p.69</span></div>
+<p>若 $f$ 在 $\boldsymbol a$ 处取极值且各偏导存在，则 $\dfrac{\partial f}{\partial x_i}(\boldsymbol a)=0$——固定其余变元化为一元即可证。零点称<b>驻点</b>；驻点未必是极值点（$f=xy$ 的 $(0,0)$）。<b>必要条件抓嫌疑人，定罪靠充分条件。</b></p>
+</div>
+<div class="card c-def">
+<div class="card-head"><span class="chip chip-def">定义 9.11.2</span><span class="ctitle">二次型与定型</span><span class="pg">课本 p.70</span></div>
+<p>$Q(\boldsymbol x)=\boldsymbol x^{\mathsf T}A\boldsymbol x=\sum a_{ij}x_ix_j$（$A$ 对称）称二次型。$Q\geqslant0$（$\leqslant0$）恒成立称正（负）定；$\boldsymbol x\neq\boldsymbol0$ 时 $Q>0$（$<0$）称严格正（负）定；存在 $\boldsymbol p,\boldsymbol q$ 使 $Q(\boldsymbol p)<0<Q(\boldsymbol q)$ 称<b>不定</b>。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.11.2–9.11.4</span><span class="ctitle">定型判据</span><span class="pg">课本 p.71–72</span></div>
+<ul>
+<li><b>9.11.2</b>：$A$ 严格正定 $\iff$ 各阶顺序主子式全大于零（$a_{11}>0$，$\begin{vmatrix}a_{11}&a_{12}\\ a_{21}&a_{22}\end{vmatrix}>0$，$\cdots$，$\det A>0$）。</li>
+<li><b>9.11.3（二阶）</b>：严格正（负）定 $\iff a_{11}>0$（$<0$）且行列式大于零（配平方 $Q=a_{11}\big(\xi+\frac{a_{12}}{a_{11}}\eta\big)^{2}+\frac{a_{11}a_{22}-a_{12}^{2}}{a_{11}}\eta^{2}$）。</li>
+<li><b>9.11.4（二阶不定）</b>：不定 $\iff a_{11}a_{22}-a_{12}^{2}<0$。</li>
+</ul>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.11.5、9.11.6</span><span class="ctitle">Hesse 判定与二元判别法</span><span class="pg">课本 p.73–74</span></div>
+<p><b>9.11.5</b>：驻点处 $Hf$ 严格正（负）定 $\Rightarrow$ 严格极小（大）；不定 $\Rightarrow$ 非极值点。证明路线：Peano 展开至二阶，$f(\boldsymbol x_0+\boldsymbol h)-f(\boldsymbol x_0)=\frac12\boldsymbol h^{\mathsf T}Hf(\boldsymbol x_0)\boldsymbol h+o(\Vert\boldsymbol h\Vert^{2})$，用二次型在单位球面上的符号沿 $\varepsilon\boldsymbol p,\varepsilon\boldsymbol q$ 夹逼。</p>
+<p><b>9.11.6（二元判别法）</b>：驻点处记 $a=\dfrac{\partial^{2}f}{\partial x^{2}}$、$b=\dfrac{\partial^{2}f}{\partial x\partial y}$、$c=\dfrac{\partial^{2}f}{\partial y^{2}}$：$ac-b^{2}>0$ 且 $a>0$ 严格极小；$ac-b^{2}>0$ 且 $a<0$ 严格极大；$ac-b^{2}<0$ 无极值。</p>
+<div class="note n-warn"><span class="note-t">等号时无法判断</span>$ac-b^{2}=0$ 时不给结论：$x^{2}y^{2}$、$-x^{2}y^{2}$、$x^{2}y^{3}$ 在原点都满足等号，却分别取极小、极大、无极值——回定义或用更高阶 Taylor 项。</div>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2</span><span class="ctitle">闭区域最值与驻点分类</span><span class="pg">课本 p.70、74</span></div>
+<ul>
+<li><b>例 1</b>：在 $D=\{0\leqslant x,y,\ x+y\leqslant\pi\}$ 上求 $f=\sin x\sin y\sin(x+y)$ 的最值。边界 $f=0$ 得最小值 0；驻点方程组 $\sin(2x+y)=0$、$\sin(x+2y)=0$ 给唯一内部驻点 $(\pi/3,\pi/3)$，必为最大值点，$f(\pi/3,\pi/3)=\dfrac{3\sqrt3}8$。</li>
+<li><b>例 2</b>：$f=2x^{4}+y^{4}-2x^{2}-2y^{2}$ 的九个驻点分四组：$A(0,0)$ 处 $a=c=-4$，$ac-b^{2}=16>0$ 且 $a<0$ 得严格极大；$F,G,H,I$ 严格极小；$B,C,D,E$ 都不是极值点（二阶偏导只含偶次幂，检查代表点即可）。</li>
+</ul>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 3 ★</span><span class="ctitle">最小二乘法（经验配线）</span><span class="pg">课本 p.75</span></div>
+<p>求直线 $y=ax+b$ 使 $\varphi(a,b)=\sum(ax_i+b-y_i)^{2}$ 最小：驻点方程是线性方程组；由 Cauchy–Schwarz $\big(\sum x_i\big)^{2}<n\sum x_i^{2}$ 知唯一驻点存在；Hesse 阵严格正定 $\Rightarrow$ 最小值点。经验配线</p>
+<div class="formula">$$\begin{vmatrix}x&y&1\\ \sum x_i&\sum y_i&n\\ \sum x_i^{2}&\sum x_iy_i&\sum x_i\end{vmatrix}=0,\qquad \text{例：}(0,0),(1,2),(2,2)\ \Rightarrow\ 3x-3y+1=0.$$</div>
+</div>
+<div class="note n-tip"><span class="note-t">闭区域最值三步法（考频最高的流程题）</span>① 内部驻点并算值；② 边界——能参数化就参数化降为一元，不能就转条件极值（§9.12）；③ 比较全部候选值。结论由「连续函数在有界闭集上必取最大最小值」保证。</div>
+</section>
+<section id="s912">
+<h2><span class="h2-no">§9.12</span>条件极值</h2>
+<div class="card c-plain">
+<div class="card-head"><span class="chip chip-ghost">提法</span><span class="ctitle">条件极值与 Lagrange 乘数法的思想</span><span class="pg">课本 p.78–79</span></div>
+<p>盒子问题（$xyz=2$ 下表面积最小）：从约束解出 $z$ 代入是通法，但条件复杂时「解出」做不到——要用隐映射定理。Lagrange 乘数法作<b>辅助函数</b></p>
+<div class="formula">$$F=f+\sum_{i=1}^{m}\lambda_i\Phi_i,$$</div>
+<p>把约束「加权并入」目标函数，化条件极值为无条件的驻点问题。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.12.1</span><span class="ctitle">Lagrange 乘数法（必要条件）</span><span class="pg">课本 p.79</span></div>
+<p>若目标函数在约束 $\Phi_i=0$（$i=1,\cdots,m$）下于 $\boldsymbol z_0=(\boldsymbol x_0,\boldsymbol y_0)$ 取极值，则存在 $\boldsymbol\lambda$ 使 $\boldsymbol z_0$ 是 $F=f+\sum\lambda_i\Phi_i$ 的驻点：</p>
+<div class="formula">$$\begin{cases}\dfrac{\partial f}{\partial x_k}+\sum\limits_{i=1}^{m}\lambda_i\dfrac{\partial\Phi_i}{\partial x_k}=0 & (k=1,\cdots,n),\\[6pt] \dfrac{\partial f}{\partial y_j}+\sum\limits_{i=1}^{m}\lambda_i\dfrac{\partial\Phi_i}{\partial y_j}=0 & (j=1,\cdots,m),\end{cases}$$</div>
+<p>共 $n+m$ 个未知数（坐标 + 乘数），再配上 $m$ 个约束方程联立求解，解出的点即候选点。</p>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.12.1′</span><span class="ctitle">向量形式与证明</span><span class="pg">课本 p.84</span></div>
+<p>设 $f,\Phi\in C^1$，$\Phi(\boldsymbol z_0)=\boldsymbol0$，$\det J_y\Phi(\boldsymbol z_0)\neq0$。若 $f$ 在约束下于 $\boldsymbol z_0$ 取极值，则存在 $\boldsymbol\lambda$ 使</p>
+<div class="formula">$$Jf(\boldsymbol z_0)+\boldsymbol\lambda J\Phi(\boldsymbol z_0)=\boldsymbol0.\tag{9}$$</div>
+<div class="note n-proof"><span class="note-t">证明路线</span>隐映射定理得 $\boldsymbol y=\varphi(\boldsymbol x)$，$\boldsymbol x_0$ 是 $f(\boldsymbol x,\varphi(\boldsymbol x))$ 的驻点：$J_xf+J_yf\,J\varphi=\boldsymbol0$；取 $\boldsymbol\lambda=-J_yf(\boldsymbol z_0)(J_y\Phi(\boldsymbol z_0))^{-1}$ 代入即得 (9)。</div>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 1、例 2</span><span class="ctitle">两个入门标准题</span><span class="pg">课本 p.80</span></div>
+<ul>
+<li><b>例 1（盒子）</b>：$xyz=2$ 下 $S=2(xy+yz+zx)$ 最小：三个驻点方程分别乘 $x,y,z$ 相加得 $xz=yz=xy$，故 $x=y=z=\sqrt[3]{2}$（立方体）。初等解法：$\dfrac S2\geqslant3\sqrt[3]{(xyz)^{2}}=3\sqrt[3]4$。</li>
+<li><b>例 2（圆周）</b>：$(x-1)^{2}+y^{2}=1$ 上 $f=xy$ 的最值：驻点方程导出 $x=2y^{2}$、$x=\dfrac32$，候选点 $\Big(\dfrac32,\pm\dfrac{\sqrt3}2\Big)$；连续函数在闭曲线必取最值，比较得 $\pm\dfrac{3\sqrt3}4$。</li>
+</ul>
+</div>
+<div class="card c-ex">
+<div class="card-head"><span class="chip chip-ex">例 3、例 4</span><span class="ctitle">双约束与椭圆盘上的最值</span><span class="pg">课本 p.81–83</span></div>
+<ul>
+<li><b>例 3（交椭圆半轴）</b>：求 $r^{2}$ 在椭球面与平面 $Ax+By+Cz=0$ 双约束下最值：驻点方程乘 $x,y,z$ 相加得 $r^{2}+\lambda_1=0$，联立回代（数值例 $r=1$ 或 $\frac{2\sqrt6}3$）。</li>
+<li><b>例 4（椭圆盘）</b>：$f=2x^{2}+12xy+y^{2}$ 在 $x^{2}+4y^{2}\leqslant25$ 上：内部驻点 $(0,0)$ 非极值（$ac-b^{2}=-136$），最值在椭圆周：$F=f+\lambda(x^{2}+4y^{2}-25)$ 给出 $4\lambda^{2}+9\lambda-34=0$；候选点比较得最大 $\dfrac{425}4$、最小 $-50$。</li>
+</ul>
+<div class="note n-key"><span class="note-t">例 4（其二）★ 加权均值不等式</span>对 $\sum\alpha_i\ln x_i$ 在 $\sum\alpha_ix_i=c$ 下用乘数法得唯一驻点 $x_i=c\big/\sum\alpha_j$，$HF$ 严格负定——由此证明加权算术-几何平均不等式 $x_1^{\alpha_1}\cdots x_n^{\alpha_n}\leqslant\Big(\dfrac{\sum\alpha_ix_i}{\sum\alpha_i}\Big)^{\sum\alpha_i}$（等号 $\iff$ 诸 $x_i$ 全相等）。</div>
+</div>
+<div class="card c-thm">
+<div class="card-head"><span class="chip chip-thm">定理 9.12.2</span><span class="ctitle">条件极值的充分条件</span><span class="pg">课本 p.85</span></div>
+<p>设 $\boldsymbol z_0$ 是辅助函数 $F$ 的驻点：$HF(\boldsymbol z_0)$ 严格正定 $\Rightarrow$ 严格条件极小；严格负定 $\Rightarrow$ 严格条件极大（对 $F$ 用 Taylor 公式即归为定理 9.11.5）。</p>
+<div class="note n-warn"><span class="note-t">与无约束情形的差别</span>$HF$ <b>不定</b>时仍有<b>可能</b>取条件极值：$f=x^{2}+y^{2}-z^{2}$、$\Phi=z$ 时驻点处 $HF=\operatorname{diag}(2,2,-2)$ 不定，但 $f$ 在 $z=0$ 上确取条件极小。判不动就用「候选点比较 + 连续性」收尾。</div>
+</div>
+<div class="note n-tip"><span class="note-t">Lagrange 五步流程（考场模板）</span>① 约束整理成 $\Phi_i=0$；② 作 $F=f+\sum\lambda_i\Phi_i$；③ 联立解 $\nabla F=0$ 与约束；④ 收集全部候选点；⑤ 用连续性或定理 9.12.2 定最值。<b>乘数法只给必要条件</b>，充分性须另作说明。</div>
+</section>
+<section id="exercises">
+  <h2><span class="h2-no">11</span>课本习题（全录 106 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>§9.1 方向导数和偏导数</h3>
+<h4>练习题（6 题）</h4>
+  <ol>
+    <li>（1）设函数 $f(x,y)=xy$，计算函数 $f$ 在点 $(1,1)$ 处沿方向 $\boldsymbol u=(1/\sqrt2,1/\sqrt2)$ 的方向导数。（2）设 $f(x,y)=(x-1)^2-y^2$，求 $f$ 在点 $(0,1)$ 处沿方向 $\boldsymbol u=(3/5,-4/5)$ 的方向导数。</li>
+    <li>设函数 $f(x,y)=\sqrt{|x^2-y^2|}$，在坐标原点处沿哪些方向 $f$ 的方向导数存在？</li>
+    <li>设 $\displaystyle f(x,y)=\begin{cases}\dfrac{xy}{\sqrt{x^2+y^2}},&amp;x^2+y^2&gt;0,\\0,&amp;x^2+y^2=0.\end{cases}$ 在坐标原点处沿哪些方向 $f$ 的方向导数存在？</li>
+    <li>设函数 $f(x,y,z)=|x+y+z|$，在平面 $x+y+z=0$ 上的每一点处，沿怎么样的方向 $f$ 存在着方向导数？</li>
+    <li>（1）设 $f(x,y)=x+y+\sqrt{x^2+y^2}$，求 $\dfrac{\partial f}{\partial x}(0,1)$、$\dfrac{\partial f}{\partial y}(0,1)$、$\dfrac{\partial f}{\partial x}(1,2)$、$\dfrac{\partial f}{\partial y}(1,2)$。（2）设 $f(x,y)=\ln(1+xy)+3$，求 $\dfrac{\partial f}{\partial x}(1,2)$、$\dfrac{\partial f}{\partial y}(1,2)$。（3）设 $f(x,y)=e^{x+y^2}+\sin x^2y$，求 $\dfrac{\partial f}{\partial x}(1,1)$ 和 $\dfrac{\partial f}{\partial y}(1,1)$。</li>
+    <li>计算偏导数：（1）$z=xy+\dfrac{x}{y}$；（2）$z=\tan\dfrac{x^2}{y}$；（3）$z=x^y$；（4）$z=\ln(x+y^2)$；（5）$z=\arctan\dfrac{y}{x}$；（6）$z=\sin xy$；（7）$u=e^{x(x^2+y^2+z^2)}$；（8）$u=e^{xyz}$；（9）$u=x^{yz}$；（10）$u=\ln(x+y^2+z^3)$；（11）$z=\ln(x_1+x_2+\cdots+x_n)$；（12）$z=\arcsin(x_1^2+x_2^2+\cdots+x_n^2)$。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $a&gt;b&gt;1$，证明：$a^{b^a}&gt;b^{a^b}$。</li>
+    <li>设 $D$ 是 $\mathbb R^2$ 中的凸区域，$f:D\to\mathbb R$。如果 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$ 在 $D$ 上有界，证明：$f$ 在 $D$ 上一致连续。</li>
+  </ol>
+<h3>§9.2 多变量函数的微分</h3>
+<h4>练习题（6 题）</h4>
+  <ol>
+    <li>设 $\displaystyle f(x,y)=\begin{cases}\dfrac{x^2y}{x^4+y^2},&amp;x^2+y^2&gt;0,\\0,&amp;x=y=0.\end{cases}$ 求证：函数 $f$ 在原点处各个方向导数存在，但在原点处 $f$ 不可微。</li>
+    <li>求证：函数 $f(x,y)=\sqrt{|xy|}$ 在原点处不可微。</li>
+    <li>利用可微的定义，证明：函数 $f(x,y)=xy$ 在 $\mathbb R^2$ 中的每一点处可微。</li>
+    <li>求下列函数在指定点处的微分：（1）$f(x,y)=x^2+2xy-y^2$，在点 $(1,2)$ 处；（2）$f(x,y,z)=\ln(x+y-z)+e^{x+y}\sin z$，在点 $(1,2,1)$ 处；（3）$u=\sqrt{x_1^2+x_2^2+\cdots+x_n^2}$，在点 $(t_1,t_2,\ldots,t_n)$ 处，其中 $t_1^2+t_2^2+\cdots+t_n^2&gt;0$；（4）$u=\sin(x_1+x_2^2+\cdots+x_n^n)$，在点 $(x_1,x_2,\ldots,x_n)$ 处。</li>
+    <li>计算下列函数 $f$ 的 Jacobi 矩阵 $Jf$：（1）$f(x,y)=x^2y^3$；（2）$f(x,y,z)=x^2y\sin yz$；（3）$f(x,y,z)=x\cos(y-3z)+\arcsin xy$；（4）$f(x_1,x_2,\ldots,x_n)=(x_1^2+x_2^2+\cdots+x_n^2)^{1/2}$。</li>
+    <li>证明：二元函数 $\displaystyle f(x,y)=\begin{cases}(x^2+y^2)\sin\dfrac1{x^2+y^2},&amp;(x,y)\ne(0,0),\\0,&amp;(x,y)=(0,0)\end{cases}$ 在 $(0,0)$ 处可微，但它的两个偏导数 $\dfrac{\partial f}{\partial x}$、$\dfrac{\partial f}{\partial y}$ 在 $(0,0)$ 处不连续。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $f\in C^1(\mathbb R^2)$，$f(0,0)=0$。证明：存在 $\mathbb R^2$ 上的连续函数 $g_1,g_2$，使得 $f(x,y)=xg_1(x,y)+yg_2(x,y)$。</li>
+    <li>设 $f(x,y)$ 在 $(x_0,y_0)$ 的某个邻域 $U$ 上有定义，$\dfrac{\partial f}{\partial x}$ 和 $\dfrac{\partial f}{\partial y}$ 在 $U$ 上存在。证明：如果 $\dfrac{\partial f}{\partial x}$ 和 $\dfrac{\partial f}{\partial y}$ 中有一个在 $(x_0,y_0)$ 处连续，那么 $f(x,y)$ 在 $(x_0,y_0)$ 可微。</li>
+  </ol>
+<h3>§9.3 映射的微分</h3>
+<h4>练习题（8 题）</h4>
+  <ol>
+    <li>在指定点处计算下列映射的 Jacobi 矩阵和微分：（1）$f(x,y)=(xy^2-3x^2,3x-5y^2)$，在点 $(1,-1)$ 处；（2）$f(x,y,z)=(xyz^2-4y^2,3xy^2-y^2z)$，在点 $(1,-2,3)$ 处；（3）$f(x,y)=(e^x\cos xy,e^x\sin xy)$，在点 $(1,\pi/2)$ 处。</li>
+    <li>计算下列映射的 Jacobi 矩阵：（1）$f(r,\theta)=(r\cos\theta,r\sin\theta)$；（2）$f(r,\theta,z)=(r\cos\theta,r\sin\theta,z)$；（3）$f(r,\theta,\varphi)=(r\sin\theta\cos\varphi,r\sin\theta\sin\varphi,r\cos\theta)$。</li>
+    <li>设区域 $D\subset\mathbb R^n$，映射 $f,g:D\to\mathbb R^m$。求证：（1）$J(cf)=cJf$，其中 $c$ 为常数；（2）$J(f+g)=Jf+Jg$；（3）当 $m=1$ 时，有 $J(fg)=gJf+fJg$；（4）当 $m&gt;1$ 时，有 $J\langle f,g\rangle=g(Jf)+f(Jg)$。这里 $\langle f,g\rangle$ 表示欧氏空间 $\mathbb R^m$ 中的内积，而右边涉及 $1\times m$ 矩阵与 $m\times n$ 矩阵相乘。</li>
+    <li>设 $f:[a,b]\to\mathbb R^n$，并且对一切 $t\in[a,b]$，有 $\|f(t)\|=\text{常数}$。求证：$\langle Jf,f\rangle=0$，并对此式作出几何解释。</li>
+    <li>设 $\alpha,\beta,\gamma$ 为 $\mathbb R$ 上的连续函数。求出一个从 $\mathbb R^3$ 到 $\mathbb R^3$ 的可微映射 $f$，使得 $\displaystyle Jf(x,y,z)=\begin{pmatrix}\alpha(x)&amp;0&amp;0\\0&amp;\beta(y)&amp;0\\0&amp;0&amp;\gamma(z)\end{pmatrix}$。</li>
+    <li>设映射 $f:\mathbb R^n\to\mathbb R^m$。如果 $f(\lambda x+\mu y)=\lambda f(x)+\mu f(y)$ 对一切 $x,y\in\mathbb R^n$ 和一切 $\lambda,\mu\in\mathbb R$ 成立，则称 $f$ 是线性映射。证明：（1）$f(0)=0$；（2）$f(-x)=-f(x)$（$x\in\mathbb R^n$）；（3）映射 $f$ 由 $f(e_1),f(e_2),\ldots,f(e_n)$ 完全确定，其中 $e_1,e_2,\ldots,e_n$ 是 $\mathbb R^n$ 中的单位坐标向量。</li>
+    <li>设 $f:\mathbb R^n\to\mathbb R^m$ 为线性映射，试求 $Jf$。</li>
+    <li>设 $E:\mathbb R^n\to\mathbb R^n$，满足对一切 $x\in\mathbb R^n$，有 $E(x)=x$，称 $E$ 为 $\mathbb R^n$ 上的恒等映射。求证：$E$ 是一个线性映射，并且 $JE=I_n$，这里 $I_n$ 表示 $n$ 阶单位方阵。</li>
+  </ol>
+<h3>§9.4 复合求导</h3>
+<h4>练习题（10 题）</h4>
+  <ol>
+    <li>设 $u=f(x^2+y^2)$，证明：$y\dfrac{\partial u}{\partial x}-x\dfrac{\partial u}{\partial y}=0$。</li>
+    <li>设 $u=f(xy)$，证明：$x\dfrac{\partial u}{\partial x}-y\dfrac{\partial u}{\partial y}=0$。</li>
+    <li>设 $u=f(\ln x+1/y)$，证明：$x\dfrac{\partial u}{\partial x}+y^2\dfrac{\partial u}{\partial y}=0$。</li>
+    <li>设 $u=f(\varphi(x)+\psi(y))$，证明：$\psi'(y)\dfrac{\partial u}{\partial x}=\varphi'(x)\dfrac{\partial u}{\partial y}$。</li>
+    <li>求以下 $u$ 的一切偏导数：（1）$u=f(x+y,xy)$；（2）$u=f(x,xy,xyz)$；（3）$u=f(x/y,y/z)$。</li>
+    <li>设 $u=f(x,y)$，当 $y=x^2$ 时，有 $u=1$，并且 $\dfrac{\partial u}{\partial x}=x$。求 $\left.\dfrac{\partial u}{\partial y}\right|_{y=x^2}$。</li>
+    <li>设 $u=x^2y-xy^2$，且 $x=r\cos\theta$，$y=r\sin\theta$。求 $\dfrac{\partial u}{\partial r}$、$\dfrac{\partial u}{\partial\theta}$。</li>
+    <li>设 $f(x,y,z)=F(u,v,w)$，其中 $x^2=vw$，$y^2=wu$，$z^2=uv$。求证：$x\dfrac{\partial f}{\partial x}+y\dfrac{\partial f}{\partial y}+z\dfrac{\partial f}{\partial z}=u\dfrac{\partial F}{\partial u}+v\dfrac{\partial F}{\partial v}+w\dfrac{\partial F}{\partial w}$。</li>
+    <li>求以下的 $J(f\circ g)$：（1）$f(x,y)=(x,y,x^2y)$，$g(s,t)=(s+t,s^2-t^2)$，在点 $(2,1)$ 处；（2）$f(x,y)=(\varphi(x+y),\varphi(x-y))$，$g(s,t)=(e^t,e^{-t})$；（3）$f(x,y,z)=(x^2+y+z,2x+y+z^2,0)$，$g(u,v,w)=(uv^2w^2,w^2\sin v,u^2e^v)$。</li>
+    <li>设有函数 $f(x,y,z)$，$\boldsymbol u$ 是一个方向，函数 $f$ 沿方向 $\boldsymbol u$ 的方向导数记作 $\dfrac{\partial f}{\partial\boldsymbol u}$；又设 $\boldsymbol e_1,\boldsymbol e_2,\boldsymbol e_3$ 是 $\mathbb R^3$ 中的三个互相垂直的方向。求证：$\displaystyle\left(\frac{\partial f}{\partial\boldsymbol e_1}\right)^2+\left(\frac{\partial f}{\partial\boldsymbol e_2}\right)^2+\left(\frac{\partial f}{\partial\boldsymbol e_3}\right)^2=\left(\frac{\partial f}{\partial x}\right)^2+\left(\frac{\partial f}{\partial y}\right)^2+\left(\frac{\partial f}{\partial z}\right)^2$。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $f\in C^1(\mathbb R^3)$。证明：对非零的实数 $a,b,c$，$\dfrac1a\dfrac{\partial f}{\partial x}=\dfrac1b\dfrac{\partial f}{\partial y}=\dfrac1c\dfrac{\partial f}{\partial z}$ 在 $\mathbb R^3$ 上成立的充分必要条件是，存在 $g\in C^1(\mathbb R)$，使得 $f(x,y,z)=g(ax+by+cz)$。</li>
+    <li>设 $f:\mathbb R^n\to\mathbb R$。如果对 $t&gt;0$，$q\in\mathbb R$，有 $f(tx_1,\ldots,tx_n)=t^qf(x_1,\ldots,x_n)$，则称 $f$ 是 $q$ 次齐次函数。证明：$f$ 是 $q$ 次齐次函数的充分必要条件是，对 $x\in\mathbb R^n$，有 $x_1\dfrac{\partial f}{\partial x_1}(x)+\cdots+x_n\dfrac{\partial f}{\partial x_n}(x)=qf(x)$。</li>
+  </ol>
+<h3>§9.5 曲线的切线和曲面的切平面</h3>
+<h4>练习题（24 题）</h4>
+  <ol>
+    <li>求参数曲线 $r(t)=(e^t,t,t^2)$ 在 $t=0$ 与 $t=1$ 这两点处的切线方程。</li>
+    <li>设参数曲线 $\displaystyle r(t)=\left(\frac{2t}{1+t^2},\frac{1-t^2}{1+t^2},1\right)$。求证：对任何 $t\in\mathbb R$，径向量 $r(t)$ 与切向量 $r'(t)$ 互相正交。问这是一条什么曲线？</li>
+    <li>讨论平面曲线 $r(t)=(e^t\cos t,e^t\sin t)$（$t\in\mathbb R$）。求证：在曲线上的每一点处，切向量与径向量交成定角 $\pi/4$。</li>
+    <li>设参数曲线段 $r(t)=(x(t),y(t))$（$a\leqslant t\leqslant b$），它的分量 $x,y$ 在 $[a,b]$ 上连续，在 $(a,b)$ 上可导，并且对 $t\in(a,b)$，有 $x'(t)\ne0$。我们称由 $(x(a),y(a))$ 与 $(x(b),y(b))$ 两点决定的直线段为这条参数曲线段的弦。求证：曲线上至少有一点使得曲线在这点上的切线与弦平行。</li>
+    <li>设 $a(t),b(t)$ 是两个可导的向量函数，$\lambda(t)$ 是可导的数量函数。证明：（1）$(\lambda(t)a(t))'=\lambda'(t)a(t)+\lambda(t)a'(t)$；（2）$(a(t)\cdot b(t))'=a'(t)\cdot b(t)+a(t)\cdot b'(t)$；（3）$(a(t)\times b(t))'=a'(t)\times b(t)+a(t)\times b'(t)$。</li>
+    <li>设可导的向量函数 $a(t)$ 有不变的长度。求证：$a(t)$ 与 $a'(t)$ 总是正交的。</li>
+    <li>讨论椭圆 $\begin{cases}x=a\cos t,\\y=b\sin t\end{cases}$（$0\leqslant t\leqslant2\pi$）。（1）求椭圆在每一点处的切向量；（2）证明椭圆的光学性质：从一焦点发出的光线，在经过椭圆镜面反射之后必经过另一焦点。</li>
+    <li>求下列曲线的曲率：（1）$r(t)=(a\cosh t,a\sinh t,at)$，其中常数 $a&gt;0$；（2）$r(t)=(a(3t-t^3),3at^2,a(3t+t^3))$，其中常数 $a&gt;0$。</li>
+    <li>由下述方程确定一条球面曲线：$\begin{cases}x^2+y^2+z^2=9,\\x^2-y^2=3.\end{cases}$ 给定曲线上的一点 $p_0=(2,1,2)$，求曲线在 $p_0$ 处的曲率。</li>
+    <li>求出下列曲面在指定点处的法向量和切平面方程：（1）$x^2+y^2+z^2=4$，$p_0=(1,1,\sqrt2)$；（2）$z=\arctan(y/x)$，$p_0=(1,1,\pi/4)$；（3）$3x^2+2y^2-2z-1=0$，$p_0=(1,1,2)$；（4）$z=y+\ln(x/z)$，$p_0=(1,1,1)$。</li>
+    <li>求出椭球面 $x^2+2y^2+3z^2=21$ 上所有平行于平面 $x+4y+6z=0$ 的切平面。</li>
+    <li>证明：曲面 $z=xe^{x/y}$ 上所有切平面都通过原点。</li>
+    <li>试定出正数 $\lambda$，使曲面 $xyz=\lambda$ 与椭球面 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$ 在某一点相切，即有共同的切平面。</li>
+    <li>两相交曲面在交点处的法向量所夹的角称为这两个曲面在这一点的夹角。求圆柱面 $x^2+y^2=a^2$ 与曲面 $bz=xy$ 的夹角。</li>
+    <li>求椭球面 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1$ 上的法向量与 $x$ 轴和 $z$ 轴夹成等角的点的全体。</li>
+    <li>求曲面 $x^2+y^2+z^2=x$ 的切平面，使其垂直于平面 $x-y-z=2$ 和 $x-y-z/2=2$。</li>
+    <li>证明：曲面 $\sqrt x+\sqrt y+\sqrt z=\sqrt a$（$a&gt;0$）的切平面在各坐标轴上截下的诸线段之和为常数。</li>
+    <li>证明：曲面 $F(x-az,y-bz)=0$ 的所有切平面与某一直线平行，其中 $a,b$ 为常数。</li>
+    <li>证明：曲面 $\displaystyle F\!\left(\frac{x-a}{z-c},\frac{y-b}{z-c}\right)=0$ 的切平面通过一个固定点，其中 $a,b,c$ 为常数。</li>
+    <li>证明：曲面 $ax+by+cz=\Phi(x^2+y^2+z^2)$ 在点 $p_0=(x_0,y_0,z_0)$ 处的法向量与向量 $(x_0,y_0,z_0)$ 和 $(a,b,c)$ 共面。</li>
+    <li>求曲面 $F(x,y,z)=0$、$G(x,y,z)=0$ 的交线在 $Oxy$ 平面上的投影曲线的切线方程。</li>
+    <li>求出以下曲面的 $E,F,G$：（1）椭球面 $r(u,v)=(a\sin u\cos v,b\sin u\sin v,c\cos u)$；（2）单叶双曲面 $r(u,v)=(a\cosh u\cos v,b\cosh u\sin v,c\sinh u)$；（3）椭圆抛物面 $\displaystyle r(u,v)=\left(u,v,\frac12\left(\frac{u^2}{a^2}+\frac{v^2}{b^2}\right)\right)$。</li>
+    <li>设 $E,F,G$ 为曲面 $r=r(u,v)$ 的第一基本量，称 $I=E\,\mathrm du^2+2F\,\mathrm du\,\mathrm dv+G\,\mathrm dv^2$ 为该曲面的第一基本形式。求证：$I=\mathrm dr^2$。</li>
+    <li>已知曲面的第一基本齐式为 $I=\mathrm du^2+(u^2+a^2)\,\mathrm dv^2$。求曲面上的曲线 $u=v$ 从 $v_1$ 到 $v_2$（$&gt;v_1$）这一段的弧长。</li>
+  </ol>
+<h3>§9.6 隐函数定理</h3>
+<h4>练习题（5 题）</h4>
+  <ol>
+    <li>对由下列方程确定的隐函数 $y(x)$，计算 $\mathrm dy/\mathrm dx$：（1）$x^2+2xy-y^2=a^2$；（2）$xy-\ln y=0$，在点 $(0,1)$ 处；（3）$y-\varepsilon\sin y=x$，其中常数 $\varepsilon\in(0,1)$；（4）$x^y=y^x$。</li>
+    <li>对下列方程，计算 $\partial z/\partial x$ 和 $\partial z/\partial y$：（1）$e^z-xyz=0$；（2）$x/z=\ln(z/y)$；（3）$x+y+z=e^{-(x+y+z)}$（试对计算的结果作出解释）；（4）$z^2y-xz^3-1=0$，在点 $(1,2,1)$ 处。</li>
+    <li>设 $F(x,y,z)=0$。求证：$\dfrac{\partial x}{\partial y}\dfrac{\partial y}{\partial z}\dfrac{\partial z}{\partial x}=-1$。</li>
+    <li>设 $F(x-y,y-z,z-x)=0$。计算 $\partial z/\partial x$ 和 $\partial z/\partial y$。</li>
+    <li>设 $F(x+y+z,x^2+y^2+z^2)=0$。计算 $\partial z/\partial x$ 和 $\partial z/\partial y$。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $f(x,y,z)$ 是可微的 $q$ 次齐次函数，$z=\varphi(x,y)$ 是由方程 $f(x,y,z)=0$ 确定的隐函数。证明：$\varphi(x,y)$ 是一次齐次函数。</li>
+    <li>设 $D=\{(x,y):a&lt;x&lt;b,-\infty&lt;y&lt;+\infty\}$，$F(x,y)$ 在 $D$ 上连续，且 $\partial F/\partial y\geqslant m&gt;0$。证明：$F(x,y)=0$ 在 $(a,b)$ 上存在唯一的连续解 $y=f(x)$。</li>
+  </ol>
+<h3>§9.7 隐映射定理</h3>
+<h4>练习题（6 题）</h4>
+  <ol>
+    <li>对方程组 $\begin{cases}x^2+y^2+z^2=1,\\x+y+z=0,\end{cases}$ 计算 $\mathrm dy/\mathrm dx$ 和 $\mathrm dz/\mathrm dx$，并作出几何解释。</li>
+    <li>对方程组 $\begin{cases}x^2+y^2-z=0,\\x^2+2y^2+3z^2=20,\end{cases}$ 计算 $\mathrm dy/\mathrm dx$ 和 $\mathrm dz/\mathrm dx$。</li>
+    <li>对方程组 $\begin{cases}x=t+\dfrac1t,\\y=t^2+\dfrac1{t^2},\\z=t^3+\dfrac1{t^3},\end{cases}$ 计算 $\mathrm dy/\mathrm dx$ 和 $\mathrm dz/\mathrm dx$。</li>
+    <li>对下列方程，计算 Jacobi 矩阵 $\displaystyle\begin{pmatrix}\dfrac{\partial x}{\partial u}&amp;\dfrac{\partial x}{\partial v}\\[3pt]\dfrac{\partial y}{\partial u}&amp;\dfrac{\partial y}{\partial v}\end{pmatrix}$：（1）$xu-yv=0$，$yu+xv=1$；（2）$x+y=u+v$，$x/y=\sin u/\sin v$。</li>
+    <li>设 $\begin{cases}u^2-v\cos xy+w^2=0,\\u^2+v^2-\sin xy+2w^2=2,\\uv-\sin x\cos y+w=0.\end{cases}$ 在 $(x,y)=(\pi/2,0)$，$(u,v,w)=(1,1,0)$ 处计算 Jacobi 矩阵 $\displaystyle\begin{pmatrix}\dfrac{\partial u}{\partial x}&amp;\dfrac{\partial u}{\partial y}\\[3pt]\dfrac{\partial v}{\partial x}&amp;\dfrac{\partial v}{\partial y}\\[3pt]\dfrac{\partial w}{\partial x}&amp;\dfrac{\partial w}{\partial y}\end{pmatrix}$。</li>
+    <li>设 $u=f(x,y,z,t)$，$g(y,z,t)=0$，$h(z,t)=0$。计算 $\partial u/\partial x$ 和 $\partial u/\partial y$。</li>
+  </ol>
+<h3>§9.8 逆映射定理</h3>
+<h4>练习题（2 题）</h4>
+  <ol>
+    <li>设 $D\subset\mathbb R^n$，映射 $f:D\to\mathbb R^n$，如果 $f$ 把开集映为开集，则称 $f$ 为一个开映射。问下列映射是不是开映射：（1）$f(x,y)=(x^2,y/x)$；（2）$f(x,y)=(e^x\cos y,e^x\sin y)$；（3）$f(x,y)=(x+y,2xy^2)$。</li>
+    <li>对第 1 题中的三个映射 $f$，计算 $Jf^{-1}$。</li>
+  </ol>
+<h3>§9.9 高阶偏导数</h3>
+<h4>练习题（8 题）</h4>
+  <ol>
+    <li>求下列函数的二阶偏导数：（1）$z=xy+x/y$；（2）$z=\tan(x^2/y)$；（3）$z=\ln(x^2+y^2)$；（4）$z=\arctan(y/x)$；（5）$u=\sin xyz$；（6）$u=xy+yz+zx$；（7）$u=e^{xyz}$；（8）$u=x^{yz}$；（9）$u=\ln(x_1+x_2+\cdots+x_n)$；（10）$u=\arcsin(x_1^2+x_2^2+\cdots+x_n^2)$。</li>
+    <li>设 $u=\arctan(y/x)$。求证：$\dfrac{\partial^2u}{\partial x^2}+\dfrac{\partial^2u}{\partial y^2}=0$。</li>
+    <li>设 $u=e^{a\theta}\cos(a\ln r)$（$a$ 为常数）。求证：$\dfrac{\partial^2u}{\partial r^2}+\dfrac1{r^2}\dfrac{\partial^2u}{\partial\theta^2}+\dfrac1r\dfrac{\partial u}{\partial r}=0$。</li>
+    <li>设 $u$ 是 $x,y,z$ 的函数，令 $\Delta u=\dfrac{\partial^2u}{\partial x^2}+\dfrac{\partial^2u}{\partial y^2}+\dfrac{\partial^2u}{\partial z^2}$。我们称 $\Delta=\dfrac{\partial^2}{\partial x^2}+\dfrac{\partial^2}{\partial y^2}+\dfrac{\partial^2}{\partial z^2}$ 为 Laplace（拉普拉斯，1749～1827）算子。（1）设 $p=\sqrt{x^2+y^2+z^2}$，证明：$\Delta p=2/p$，$\Delta\ln p=1/p^2$，$\Delta(1/p)=0$，其中 $p&gt;0$。（2）设 $u=f(p)$，求 $\Delta u$。</li>
+    <li>设 $p=\sqrt{x^2+y^2+z^2}$，$u=\dfrac1p\bigl(\varphi(p-at)+\psi(p+at)\bigr)$。证明：$\dfrac{\partial^2u}{\partial t^2}=a^2\Delta u$。</li>
+    <li>解下列方程，其中 $u$ 是 $x,y,z$ 的函数：（1）$\dfrac{\partial^2u}{\partial x^2}=0$；（2）$\dfrac{\partial^2u}{\partial x\partial y}=0$；（3）$\dfrac{\partial^3u}{\partial x\partial y\partial z}=0$。</li>
+    <li>求解偏微分方程 $x\dfrac{\partial z}{\partial x}+y\dfrac{\partial z}{\partial y}=z$。</li>
+    <li>设 $a,b,c$ 满足 $b^2-ac&gt;0$，$\lambda_1,\lambda_2$ 是二次方程 $cX^2+2bX+a=0$ 的两个根。试通过引进新变量 $\xi=x+\lambda_1y$，$\eta=x+\lambda_2y$，解二阶偏微分方程 $a\dfrac{\partial^2u}{\partial x^2}+2b\dfrac{\partial^2u}{\partial x\partial y}+c\dfrac{\partial^2u}{\partial y^2}=0$。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $f(x,y)$ 在 $(x_0,y_0)$ 的一个邻域 $U$ 内有定义，$\partial f/\partial x$、$\partial f/\partial y$ 在 $U$ 中存在且都在 $(x_0,y_0)$ 处可微。证明：$\dfrac{\partial^2f}{\partial x\partial y}(x_0,y_0)=\dfrac{\partial^2f}{\partial y\partial x}(x_0,y_0)$。</li>
+    <li>设 $u(x,y)$ 在 $\mathbb R^2$ 上取正值且有二阶连续偏导数。证明：$u$ 满足方程 $u\dfrac{\partial^2u}{\partial x\partial y}=\dfrac{\partial u}{\partial x}\dfrac{\partial u}{\partial y}$ 的充分必要条件是 $u(x,y)=f(x)g(y)$。</li>
+  </ol>
+<h3>§9.10 中值定理和 Taylor 公式</h3>
+<h4>练习题（4 题）</h4>
+  <ol>
+    <li>将下列多项式在指定点处展开成 Taylor 多项式（写出前三项）：（1）$2x^2-xy-y^2-6x-3y+5$，在点 $(1,-2)$ 处；（2）$x^3+y^3+z^3-3xyz$，在点 $(1,1,1)$ 处。</li>
+    <li>考察二次多项式 $f(x,y,z)=(x,y,z)\begin{pmatrix}A&amp;D&amp;F\\D&amp;B&amp;E\\F&amp;E&amp;C\end{pmatrix}\begin{pmatrix}x\\y\\z\end{pmatrix}$。试将 $f(x+\Delta x,y+\Delta y,z+\Delta z)$ 按 $\Delta x,\Delta y,\Delta z$ 的正整数幂展开。</li>
+    <li>将 $x^y$ 在点 $(1,1)$ 处作 Taylor 展开，写到二次项。</li>
+    <li>证明：当 $|x|$ 和 $|y|$ 充分小时，有近似式 $\dfrac{\cos x}{\cos y}\approx1-\dfrac12(x^2-y^2)$。</li>
+  </ol>
+<h4>问题（3 题）</h4>
+  <ol>
+    <li>设 $f(x,y,z)$ 在 $\mathbb R^3$ 上有一阶连续偏导数，且满足 $\partial f/\partial x=\partial f/\partial y=\partial f/\partial z$。如果 $f(x,0,0)&gt;0$ 对任意的 $x\in\mathbb R$ 成立，证明：对任意的 $(x,y,z)\in\mathbb R^3$，也有 $f(x,y,z)&gt;0$。</li>
+    <li>设 $D$ 是 $\mathbb R^n$ 中的凸区域，$f\in C^1(D)$。那么，$f$ 在 $D$ 上为凸函数的充分必要条件是，对任意的 $x,y\in D$，有 $f(y)\geqslant f(x)+(y-x)Jf(x)$。这里 $Jf(x)=\bigl(\dfrac{\partial f}{\partial x_1}(x),\dfrac{\partial f}{\partial x_2}(x),\cdots,\dfrac{\partial f}{\partial x_n}(x)\bigr)$。</li>
+    <li>设 $D$ 是 $\mathbb R^n$ 中的凸区域，$f\in C^2(D)$。那么，$f$ 在 $D$ 上为凸函数的充分必要条件为，$f$ 的 Hesse 矩阵 $Hf(x)=\left(\dfrac{\partial f}{\partial x_i\partial x_j}(x)\right)_{1\leqslant i,j\leqslant n}$ 是正定的。</li>
+  </ol>
+<h3>§9.11 极值</h3>
+<h4>练习题（5 题）</h4>
+  <ol>
+    <li>求下列函数的极值：（1）$f(x,y)=4(x-y)-x^2-y^2$；（2）$f(x,y)=x^2-3x^2y+y^3$；（3）$f(x,y)=x^2+(y-1)^2$；（4）$f(x,y)=x^3+y^3-3xy$。</li>
+    <li>求函数 $f(x,y)=xy\sqrt{1-x^2/a^2-y^2/b^2}$（$a&gt;0,b&gt;0$）的极值。</li>
+    <li>求函数 $f(x,y)=\sin x+\cos y+\cos(x-y)$ 在正方形 $[0,\pi/2]^2$ 上的极值。</li>
+    <li>设 $f(x,y)=3x^4-4x^2y+y^2$。证明：限制在每一条过原点的直线上，原点是 $f$ 的极小值点，但是函数 $f$ 在原点处不取极小值。（提示：在 $Oxy$ 平面上，画出点集 $P=\{(x,y):f(x,y)&gt;0\}$，$Q=\{(x,y):f(x,y)&lt;0\}$。）</li>
+    <li>设二元函数 $F$ 在 $\mathbb R^2$ 上连续可微。已知曲线 $F(x,y)=0$ 呈“8”字形。问方程组 $\begin{cases}\dfrac{\partial F}{\partial x}(x,y)=0,\\[3pt]\dfrac{\partial F}{\partial y}(x,y)=0\end{cases}$ 在 $\mathbb R^2$ 中至少有几组解？</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $D=\{(x,y)\in\mathbb R^2:x^2+y^2&lt;1\}$，二元函数 $f$ 在 $\overline D$ 上连续，在 $D$ 上满足 $\dfrac{\partial^2f}{\partial x^2}+\dfrac{\partial^2f}{\partial y^2}=f$。证明：（1）如果在 $\partial D$ 上，$f(x,y)\geqslant0$，那么当 $(x,y)\in D$ 时，也有 $f(x,y)\geqslant0$；（2）如果在 $\partial D$ 上，$f(x,y)&gt;0$，那么当 $(x,y)\in D$ 时，也有 $f(x,y)&gt;0$。</li>
+    <li>设 $D=\{(x,y)\in\mathbb R^2:0&lt;x&lt;1,0&lt;y&lt;1\}$，$f(x,y)=ax^2+2bxy+cy^2+dx+ey$。证明：如果 $(x,y)\in\partial D$ 时，$f(x,y)\leqslant0$，那么 $(x,y)\in D$ 时，也有 $f(x,y)\leqslant0$。</li>
+  </ol>
+<h3>§9.12 条件极值</h3>
+<h4>练习题（7 题）</h4>
+  <ol>
+    <li>求在指定条件下 $u$ 的极值：（1）$u=xy$，$x+y=1$；（2）$u=\cos^2x+\cos^2y$，$x-y=\pi/4$；（3）$u=x-2y+2z$，$x^2+y^2+z^2=1$；（4）$u=3x^2+3y^2+z^2$，$x+y+z=1$。</li>
+    <li>用求条件极值的方法，计算：（1）原点到直线 $2x+2y+z+9=0$，$2x-y-2z-18=0$ 的距离；（2）原点到平面 $x+2y+3z+4=0$ 的距离。</li>
+    <li>求椭圆 $\begin{cases}x^2+y^2+z^2/4=1,\\x+2y+z=0\end{cases}$ 的长、短半轴。</li>
+    <li>设 $a&gt;0$。求曲线 $\begin{cases}x^2+y^2=2az,\\x^2+y^2+xy=a^2\end{cases}$ 上的点到 $Oxy$ 平面的最小距离和最大距离。</li>
+    <li>在椭球 $x^2/a^2+y^2/b^2+z^2/c^2=1$ 内嵌入有最大体积的长方体。问这长方体的尺寸如何？</li>
+    <li>设 $a_i\geqslant0$（$i=1,\ldots,n$），$p&gt;1$。证明：$\dfrac{a_1+\cdots+a_n}{n}\leqslant\left(\dfrac{a_1^p+\cdots+a_n^p}{n}\right)^{1/p}$，并讨论等号成立的条件。</li>
+    <li>试利用求条件极值的方法，证明 Hölder 不等式。设 $a_i\geqslant0$，$x_i\geqslant0$（$i=1,\ldots,n$），$p&gt;1$，$1/p+1/q=1$，那么 $\displaystyle\sum_{i=1}^na_ix_i\leqslant\left(\sum_{i=1}^na_i^p\right)^{1/p}\left(\sum_{i=1}^nx_i^q\right)^{1/q}$，并讨论等号成立的条件。</li>
+  </ol>
+</section>
+<section id="zhenti">
+<h2><span class="h2-no">03</span>真题链接（南科大 610）</h2>
+<p>依据 <span class="kbd">考研/00_AI/真题分析_2026-09-13</span> 的逐年账本整理，10 条均为「本章武器直接上场」的场次。</p>
+<ul class="exam-list">
+<li><span class="exam-year">2020</span><b>第 3 题</b>：抛物面上取点使到平面距离最小——距离平方 + 抛物面约束，Lagrange 求驻点后比较。<span class="meta-row"><span class="m">D3</span><span class="m">Lagrange / 几何应用</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+<li><span class="exam-year">2022</span><b>第 2(1) 题</b>：$\mathrm e^{x+y^2}+\sin(x^2y)$ 在原点沿指定方向的方向导数（按定义算）。<span class="meta-row"><span class="m">D2</span><span class="m">方向导数定义</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2022</span><b>第 2(2) 题</b>：由 $z^2y-xz^3-1=0$ 求 $z_x$、$z_y$——先核验 $F_z\neq0$。<span class="meta-row"><span class="m">D2</span><span class="m">隐函数定理</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2022</span><b>第 3 题</b>：Lagrange 求原点到两平面交线的距离——距离平方 + 双约束。<span class="meta-row"><span class="m">D3</span><span class="m">Lagrange / 双约束</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2023</span><b>第 2 题</b>：隐函数套隐函数——多层关系分别求偏导并代入点值。<span class="meta-row"><span class="m">D3</span><span class="m">链式法则 + 隐函数</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2023</span><b>第 6 题</b>：$\sqrt x+\sqrt y+\sqrt z=\sqrt a$ 的切平面三轴截距之和为 $a$（练习 9.5 第 17 题原题）。<span class="meta-row"><span class="m">D4</span><span class="m">切平面 / 截距</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2024</span><b>第 6 题</b>：参数曲线上的方向导数（链式法则），注意单位化对接。<span class="meta-row"><span class="m">D2</span><span class="m">链式法则 / 方向导数</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2024</span><b>第 7 题</b>：分式函数连续性、偏导与可微性联合检验（与第 8 章联动）。<span class="meta-row"><span class="m">D3</span><span class="m">可微性判定</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2024</span><b>第 9 题</b>：椭球型约束区域上线性函数的最值——内部 + 边界，Lagrange 后比较。<span class="meta-row"><span class="m">D3</span><span class="m">条件极值 / 最值</span><span class="m">回忆版</span></span></li>
+<li><span class="exam-year">2026</span><b>第 2(2)(3) 题</b>：同一函数沿任意方向的方向导数；求原点偏导并与可微性比较——「公式算得出 ≠ 可微」是陷阱。<span class="meta-row"><span class="m">D3</span><span class="m">方向导数 / 可微性定义</span><span class="m">回忆版</span></span></li>
+</ul>
+<div class="note n-warn"><span class="note-t">边界</span>题面来自南科大 610 回忆版与原始题面整理，以原卷为准；引用只为说明「本章技术在哪里被调用」，不等于已经做过或掌握。</div>
+</section>
+<section id="checklist">
+<h2><span class="h2-no">04</span>自测清单</h2>
+<p>合上课本与本页，逐条在纸上/口头完成，勾选表示「当场已验证」。勾选记录保存在本机浏览器中。</p>
+<ul class="checklist">
+<li><label><input type="checkbox"><span>写出方向导数定义，说明它与 $\varphi'(0)$（$\varphi(t)=f(\boldsymbol x_0+t\boldsymbol u)$）的关系</span></label></li>
+<li><label><input type="checkbox"><span>默写全微分定义式（线性主部 + $o(\Vert\boldsymbol h\Vert)$），并证明「可微则各偏导存在」</span></label></li>
+<li><label><input type="checkbox"><span>画出三条关系链（偏导连续/可微/连续/方向导数）并对每条反向箭头举反例</span></label></li>
+<li><label><input type="checkbox"><span>独立走一遍可微性判定三步模板（算偏导 → 减线性主部 → 验比值）</span></label></li>
+<li><label><input type="checkbox"><span>写出方向导数公式 (7) 并说明前提；举出「各方向导数存在但不可微」的路径</span></label></li>
+<li><label><input type="checkbox"><span>默写链式法则的矩阵形式与分量形式 (9)，复述一阶微分形式的不变性</span></label></li>
+<li><label><input type="checkbox"><span>写出曲线切线方程与三种曲面的切平面、法向量公式</span></label></li>
+<li><label><input type="checkbox"><span>复述隐函数定理条件与 $f'(x)$ 公式，解释 $F_y=0$ 处的失效</span></label></li>
+<li><label><input type="checkbox"><span>写出隐映射公式 $Jf=-(J_yF)^{-1}J_xF$，并用维数检查形状</span></label></li>
+<li><label><input type="checkbox"><span>由逆映射定理推出 Jacobi 行列式倒数关系 (5)，并算一遍极坐标逆变换</span></label></li>
+<li><label><input type="checkbox"><span>举出混合偏导数不相等的反例，写出二者相等的充分条件</span></label></li>
+<li><label><input type="checkbox"><span>写出 Taylor 前三项与 Hesse 方阵定义；说明 Peano 余项的用途</span></label></li>
+<li><label><input type="checkbox"><span>默写二元判别法三情形；说出 $ac-b^2=0$ 时为何不能判断（各举一例）</span></label></li>
+<li><label><input type="checkbox"><span>完整做一道 Lagrange 题：辅助函数、方程组、候选点、比较定最值</span></label></li>
+<li><label><input type="checkbox"><span>复述「Lagrange 只给必要条件」并说明充分性怎么补（定理 9.12.2 或有界闭集上比较）</span></label></li>
+</ul>
+</section>
+<section id="source">
+<h2><span class="h2-no">05</span>来源与边界</h2>
+<div class="src-note">
+<p><b>内容依据</b>：常庚哲、史济怀《数学分析教程》第三版上册第 9 章（印刷页 1–89，§9.1–§9.12）。定义、定理、公式、例题编号与「课本说明」均与课本骨架核对；「课本 p.X」指印刷页码，「★」为课本内容级重要例题标记。</p>
+<p><b>真题依据</b>：<span class="kbd">真题分析_2026-09-13</span>（基于南科大 610 回忆版与原始题面整理；题面存在回忆误差时以原卷为准）。</p>
+<p><b>证据边界</b>：本页是复习讲解材料，由 Hermes 生成于 2026-10-13；习题精选只给入口提示与检验点，不含完整解答。本页不构成任何学习进度或掌握度记录——是否掌握以独立作答与间隔复现为准。</p>
+</div>
+</section>
+<div class="foot">本页为 Hermes 生成的复习讲解材料（仅供参考），以指定课本原文为准。生成日期 2026-10-13。</div>
+</div><!-- /.wrap -->
+</main>
+</div><!-- /.app -->
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

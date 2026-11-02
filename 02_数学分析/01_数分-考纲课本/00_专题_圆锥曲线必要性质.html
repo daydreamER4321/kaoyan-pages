@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题 · 圆锥曲线必要性质</title>
+<link rel="stylesheet" href="_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="_html_assets/guide.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 专题</div>
+  <div class="sb-title">圆锥曲线必要性质</div>
+  <nav class="toc">
+    <a href="#c1">01 统一定义</a>
+    <a href="#c2">02 椭圆</a>
+    <a href="#c3">03 双曲线</a>
+    <a href="#c4">04 抛物线</a>
+    <a href="#c5">05 极坐标统一方程</a>
+    <a href="#c6">06 与考研的连接</a>
+    <a href="#checklist">07 自测清单</a>
+    <a href="#source">08 来源与边界</a>
+  </nav>
+  <div class="sb-foot">查阅卡，不替代做题。公式离线渲染，右侧可加批注，节标题右侧可折叠。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 · 工具专题</div>
+    <h1>圆锥曲线必要性质</h1>
+    <p class="hero-sub">第二定义 · 椭圆／双曲线／抛物线标准结论 · 极坐标统一方程 · 与 §7.1／§10.6 的接口</p>
+    <div class="hero-tags">
+      <span class="tag">查阅卡</span><span class="tag">2026-10-28 生成</span>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+<section id="c1">
+  <h2><span class="h2-no">01</span>统一定义（第二定义）</h2>
+  <p>动点到定点（焦点）的距离，与到定直线（准线）的距离之比为常数 $e$：</p>
+  <div class="formula">$$\frac{|PF|}{d(P,l)}=e$$</div>
+  <p>$0&lt;e&lt;1$ 椭圆；$e=1$ 抛物线；$e&gt;1$ 双曲线。这条定义是极坐标统一方程的来源（见 §05）。</p>
+</section>
+
+<section id="c2">
+  <h2><span class="h2-no">02</span>椭圆</h2>
+  <div class="formula">$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\ (a&gt;b&gt;0),\qquad c^2=a^2-b^2,\qquad e=\frac ca&lt;1$$</div>
+  <table class="tbl">
+    <tr><th>项</th><th>结论</th></tr>
+    <tr><td>焦点</td><td>$(\pm c,0)$；若 $b&gt;a$（长轴在 $y$ 轴）则 $(0,\pm c)$</td></tr>
+    <tr><td>准线</td><td>$x=\pm\dfrac{a^2}{c}$</td></tr>
+    <tr><td>范围</td><td>$|x|\leqslant a,\ |y|\leqslant b$</td></tr>
+    <tr><td>通径（过焦点垂直于长轴的弦）</td><td>$\dfrac{2b^2}{a}$</td></tr>
+    <tr><td>焦半径（长轴在 $x$ 轴）</td><td>到左焦点 $a+ex$，到右焦点 $a-ex$</td></tr>
+    <tr><td>参数方程</td><td>$x=a\cos t,\quad y=b\sin t$</td></tr>
+    <tr><td>面积</td><td>$\pi ab$</td></tr>
+    <tr><td>对称性</td><td>关于两轴、原点对称</td></tr>
+  </table>
+  <div class="note"><b>常错</b>：$a$ 一定是“长半轴”，$b$ 是短半轴；$c$ 不是“半焦距”？——$c$ 就是半焦距，且 $a$ 最大：$a^2=b^2+c^2$。<b>双曲线是 $c^2=a^2+b^2$，两者正好反过来。</b></div>
+</section>
+
+<section id="c3">
+  <h2><span class="h2-no">03</span>双曲线</h2>
+  <div class="formula">$$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1,\qquad c^2=a^2+b^2,\qquad e=\frac ca&gt;1$$</div>
+  <table class="tbl">
+    <tr><th>项</th><th>结论</th></tr>
+    <tr><td>焦点</td><td>$(\pm c,0)$</td></tr>
+    <tr><td>准线</td><td>$x=\pm\dfrac{a^2}{c}$</td></tr>
+    <tr><td>渐近线</td><td>$y=\pm\dfrac{b}{a}x$</td></tr>
+    <tr><td>范围</td><td>$|x|\geqslant a$（左右两支）</td></tr>
+    <tr><td>通径</td><td>$\dfrac{2b^2}{a}$</td></tr>
+    <tr><td>焦半径（右支）</td><td>到右焦点 $ex-a$，到左焦点 $ex+a$</td></tr>
+  </table>
+  <p><b>等轴双曲线</b>：$a=b$ 时渐近线 $y=\pm x$ 互相垂直，$e=\sqrt2$。</p>
+</section>
+
+<section id="c4">
+  <h2><span class="h2-no">04</span>抛物线</h2>
+  <table class="tbl">
+    <tr><th>方程</th><th>焦点</th><th>准线</th><th>开口</th></tr>
+    <tr><td>$y^2=2px\ (p&gt;0)$</td><td>$(\frac p2,0)$</td><td>$x=-\frac p2$</td><td>向右</td></tr>
+    <tr><td>$y^2=-2px$</td><td>$(-\frac p2,0)$</td><td>$x=\frac p2$</td><td>向左</td></tr>
+    <tr><td>$x^2=2py$</td><td>$(0,\frac p2)$</td><td>$y=-\frac p2$</td><td>向上</td></tr>
+    <tr><td>$x^2=-2py$</td><td>$(0,-\frac p2)$</td><td>$y=\frac p2$</td><td>向下</td></tr>
+  </table>
+  <p>通径 $=2p$。$e=1$，且<b>抛物线上任一点到焦点的距离等于它到准线的距离</b>——这是抛物线题的第一反应。</p>
+</section>
+
+<section id="c5">
+  <h2><span class="h2-no">05</span>极坐标统一方程（数分真会用到）</h2>
+  <p>把极点放在<b>焦点</b>、准线取 $x=-p$（$p$ 为焦点到准线的距离），则三种圆锥曲线统一为</p>
+  <div class="formula">$$r=\frac{ep}{1-e\cos\theta}$$</div>
+  <p>推导一行：$r=e\,(r\cos\theta+p)\Rightarrow r(1-e\cos\theta)=ep$。</p>
+  <table class="tbl">
+    <tr><th>$e$</th><th>曲线</th><th>说明</th></tr>
+    <tr><td>$0&lt;e&lt;1$</td><td>椭圆</td><td>$1-e\cos\theta&gt;0$ 恒成立，$\theta$ 走满一圈</td></tr>
+    <tr><td>$e=1$</td><td>抛物线</td><td>$r=\dfrac{p}{1-\cos\theta}$，$\theta=0$ 时 $r\to\infty$</td></tr>
+    <tr><td>$e&gt;1$</td><td>双曲线的一支</td><td>要求 $1-e\cos\theta&gt;0$，只画出靠焦点的那一支</td></tr>
+  </table>
+  <div class="note"><b>用法</b>：算极坐标面积时先认 $e$，再定 $\theta$ 的有效区间（分母 $&gt;0$）；这一步和第 07 章 §7.1.1、第 10 章 §10.6 是同一套。</div>
+  <p>椭圆情形可再写细：$p=\dfrac{a^2}{c}-c=\dfrac{b^2}{c}$，于是</p>
+  <div class="formula">$$r=\frac{b^2/a}{1-e\cos\theta},\qquad \theta=0\ \text{给出}\ r=\frac{b^2/a}{1-e}=a+c$$</div>
+</section>
+
+<section id="c6">
+  <h2><span class="h2-no">06</span>与考研的连接（边界）</h2>
+  <ul>
+    <li><b>椭圆面积 $\pi ab$</b>：第 10 章广义极坐标 $x=ar\cos\theta,\ y=br\sin\theta$ 的标准例。</li>
+    <li><b>极坐标统一方程</b>：极坐标曲线面积、弧长题的现成模型。</li>
+    <li><b>不单独命题</b>：610 样本里没有一道题以“圆锥曲线性质”为主考点；这里只作工具与背景，不安排专项训练。</li>
+  </ul>
+</section>
+
+<section id="checklist">
+  <h2><span class="h2-no">07</span>自测清单</h2>
+  <ul class="checklist">
+    <li><label><input type="checkbox"><span>写出椭圆、双曲线、抛物线各自的 $a,b,c,e$ 关系（注意 $c^2=a^2\pm b^2$ 谁加谁减）</span></label></li>
+    <li><label><input type="checkbox"><span>写出三者的准线</span></label></li>
+    <li><label><input type="checkbox"><span>写出双曲线的渐近线；等轴双曲线的 $e$</span></label></li>
+    <li><label><input type="checkbox"><span>写出椭圆的通径与面积</span></label></li>
+    <li><label><input type="checkbox"><span>由 $r=\frac{ep}{1-e\cos\theta}$ 一行推出它（从第二定义出发）</span></label></li>
+    <li><label><input type="checkbox"><span>说出 $e$ 的三种取值分别对应什么曲线，以及 $\theta$ 的有效区间怎么定</span></label></li>
+  </ul>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">08</span>来源与边界</h2>
+  <div class="src-note">
+    <p><b>依据</b>：中学解析几何标准结论；极坐标统一方程按第二定义推到，与《数学分析教程》第三版下册 §10.6 广义极坐标例一致。</p>
+    <p><b>边界</b>：查阅卡，不构成掌握记录；610 真题样本中未以本章为主考点，故不排训练。焦半径公式按长轴在 $x$ 轴书写，换轴时自己换算。</p>
+  </div>
+</section>
+
+<div class="foot">本页为 Hermes 生成的查阅材料（以指定课本与标准中学教材为准）。生成日期 2026-10-28。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="_html_assets/katex/katex.min.js"></script>
+<script src="_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;align-items:center;
+gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;text-decoration:none;font-size:13px;
+font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

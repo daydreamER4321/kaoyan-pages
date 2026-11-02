@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第08章 多变量函数的连续性 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第08章<br>多变量函数的连续性</div>
+  <nav class="toc">
+    <a href="#kaogang">考纲对照</a>
+    <a href="#map">知识地图</a>
+    <div class="toc-sec">逐节讲解</div>
+    <a href="#s81">§8.1 n 维 Euclid 空间</a>
+    <a href="#s82">§8.2 点列的极限</a>
+    <a href="#s83">§8.3 开集和闭集</a>
+    <a href="#s84">§8.4 列紧集和紧致集</a>
+    <a href="#s85">§8.5 集合的连通性</a>
+    <a href="#s86">§8.6 多变量函数的极限</a>
+    <a href="#s87">§8.7 多变量连续函数</a>
+    <a href="#s88">§8.8 连续映射</a>
+    <div class="toc-sec">回收</div>
+    <a href="#exercises">课本习题（全录 61 题）</a>
+    <a href="#zhenti">真题链接</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版（常庚哲、史济怀）为准。公式离线渲染。</div>
+</aside>
+
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本 · 上册</div>
+    <h1>第08章 多变量函数的连续性</h1>
+    <p class="hero-sub">R<sup>n</sup> 中的距离与点列极限 · 开集与闭集 · 列紧与紧致 · 连通性 · 多元极限 · 连续函数与连续映射</p>
+    <div class="hero-tags">
+      <span class="tag">考纲 5. 多元函数微分学与积分学 · a（前半）</span>
+      <span class="tag">课本 §8.1–§8.8（印刷页 1–38）</span>
+      <span class="tag">第 9 章的拓扑地基 · 短题高频失分区</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 考纲对照 ============ -->
+<section id="kaogang">
+  <h2><span class="h2-no">00</span>考纲对照</h2>
+  <p>610 考纲「5) 多元函数微分学与积分学」第 a 条原文：</p>
+  <div class="note n-exam"><span class="note-t">考纲原文</span>a．多元函数极限与连续性，偏导数和全微分的概念，多元函数的偏导数与全微分。</div>
+  <table class="tbl">
+    <tr><th>考纲要素</th><th>课本位置</th><th>要达到的程度</th></tr>
+    <tr><td>多元函数极限与连续性（本章主体）</td><td>§8.6–§8.7（定义 8.6.1–8.6.2、8.7.1–8.7.2；定理 8.6.1–8.6.4、8.7.1–8.7.5）</td><td>闭卷写出重极限与连续的定义；会用归并原理（点列法）否定极限；能背出「紧致 $\Rightarrow$ 一致连续 + 最值」与「连通 $\Rightarrow$ 介值」两条主动脉</td></tr>
+    <tr><td>（支撑层）$\mathbb{R}^{n}$ 的空间与集合结构</td><td>§8.1–§8.5：Euclid 空间、点列极限、开集闭集、列紧紧致、连通性</td><td>会算范数与距离；会判开闭、求内部与闭包；能背「有界闭 = 列紧 = 紧致」，会用点列判别闭性</td></tr>
+    <tr><td>连续映射（考纲未单列，微分学前置）</td><td>§8.8</td><td>知道「连续 $\Longleftrightarrow$ 各分量连续 $\Longleftrightarrow$ 开集原像为开集」三种等价说法，为第 9 章映射微分铺路</td></tr>
+    <tr><td>偏导数和全微分</td><td>第 9 章</td><td>本章不含；本章只把「连续」这一格做实。第 9 章在此基础上再叠「可偏导、可微」，三者互不等价。</td></tr>
+  </table>
+  <div class="note n-exam"><span class="note-t">真题视角</span>本章在 610 中常以短题出现（2024 第 7 题、2026 第 2(1) 题，均标 D3）。两题都是「先算（或否定）原点重极限、再对原点补定义」的路径/定义检验型；失分点集中在三处：漏写定义域、只试一条路径就断言极限存在、把「连续」「偏导存在」「可微」混成一件事（后两者在第 9 章）。本章还隐性支撑后续全部的多元估计题：一切 $\varepsilon$-$\delta$ 语言与「有界闭集」条件都出在这里。真题为回忆版/原始题面整理，题面以原卷为准。</div>
+</section>
+
+<!-- ============ 知识地图 ============ -->
+<section id="map">
+  <h2><span class="h2-no">01</span>知识地图</h2>
+  <div class="map">
+    <div class="map-node"><b>出发点</b>：多变量函数是定义在 $\mathbb{R}^{n}$ 子集上的映射 $f:D\to\mathbb{R}$。要谈它的极限与连续，先把「两个点离得近」精确化。</div>
+    <div class="map-node"><b>空间语言（§8.1–§8.2）</b>：内积 $\to$ 范数 $\to$ 距离 $\to$ 球；点列收敛按分量逐格计算，Cauchy 原理与 Bolzano–Weierstrass 定理提供两条「不求出极限也能判定」的通道。</div>
+    <div class="map-node"><b>集合语言（§8.3–§8.5）</b>：内点 / 开集、凝聚点 / 导集 / 闭集 / 闭包、边界；列紧 = 紧致 = 有界闭；连通、道路连通与（闭）区域。这套词汇规定了后面所有「好性质」的适用范围。</div>
+    <div class="map-node"><b>函数语言（§8.6–§8.8）</b>：重极限的 $\varepsilon$-$\delta$ 定义与归并原理（函数极限 $\Longleftrightarrow$ 点列极限）；连续与一致连续；紧致性给出一致连续与最值定理，连通性给出介值定理；向量值映射按分量处理，另有开集原像刻画。</div>
+    <div class="map-node"><b>终点认识</b>：本章没有引入任何导数。它把「连续」做成一张由定义域拓扑性质驱动的定理表——第 9 章的偏导数与全微分全部立在这张表上。</div>
+  </div>
+  <div class="note n-key"><span class="note-t">一条主线</span>「收敛」在本章有三种说法：点列收敛、按分量收敛、（§8.8）映射收敛——三者随时互相翻译。证明极限存在要给统一控制（$\varepsilon$-$\delta$、夹逼）；证明极限不存在只需一条路径或一个点列。本章判定题的分工尽在于此。</div>
+</section>
+
+<!-- ============ §8.1 ============ -->
+<section id="s81">
+  <h2><span class="h2-no">§8.1</span>n 维 Euclid 空间</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">基础</span><span class="ctitle">点、线性运算与内积</span><span class="pg">课本 p.2–6</span></div>
+    <div class="formula">$$\mathbb{R}^{n}=\{(x_1,x_2,\cdots,x_n):x_i\in\mathbb{R},\ i=1,2,\cdots,n\}.$$</div>
+    <p>$\mathbb{R}^{n}$ 中的元素 $\boldsymbol{x}=(x_1,\cdots,x_n)$ 称为点，也称为向量；实数 $x_i$ 是第 $i$ 个分量；$\boldsymbol{0}=(0,\cdots,0)$ 是零向量。加法与数乘（合称线性运算）满足交换律、结合律、零元、负元与两条分配律，$\mathbb{R}^{n}$ 因此称为 $n$ 维向量空间。</p>
+    <p>内积定义为 $\langle\boldsymbol{x},\boldsymbol{y}\rangle=\sum_{i=1}^{n}x_iy_i$，满足正定性、对称性与线性性质；定义了内积的 $\mathbb{R}^{n}$ 称为 $n$ 维 <b>Euclid 空间</b>（欧氏空间）。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">范数</span><span class="ctitle">范数三条性质与三角形不等式</span><span class="pg">课本 p.2–6</span></div>
+    <p>$\|\boldsymbol{x}\|=\sqrt{\langle\boldsymbol{x},\boldsymbol{x}\rangle}$ 称为 $\boldsymbol{x}$ 的范数，满足</p>
+    <ol>
+      <li>$\|\boldsymbol{x}\|\geqslant 0$，等号成立当且仅当 $\boldsymbol{x}=\boldsymbol{0}$；</li>
+      <li>$\|\lambda\boldsymbol{x}\|=|\lambda|\,\|\boldsymbol{x}\|$（$\lambda\in\mathbb{R}$）；</li>
+      <li>$\|\boldsymbol{x}+\boldsymbol{y}\|\leqslant\|\boldsymbol{x}\|+\|\boldsymbol{y}\|$（三角形不等式），且等号成立当且仅当存在 $\lambda>0$ 使 $\boldsymbol{x}=\lambda\boldsymbol{y}$。</li>
+    </ol>
+    <p>课本证明路线：先由 7.3 节的 Cauchy–Schwarz 不等式（见 7.3 节）写成内积形式</p>
+    <div class="formula">$$|\langle\boldsymbol{x},\boldsymbol{y}\rangle|\leqslant\|\boldsymbol{x}\|\,\|\boldsymbol{y}\|,\tag{2}$$</div>
+    <p>再把 $\|\boldsymbol{x}+\boldsymbol{y}\|^2$ 按内积展开，用式 (2) 放缩成 $(\|\boldsymbol{x}\|+\|\boldsymbol{y}\|)^2$，开方即得；取等条件来自式 (2) 取等，即两向量同向共线。</p>
+    <div class="note n-warn"><span class="note-t">预算工具</span>本章一切 $\varepsilon$-$\delta$ 估计的最后一招都是三角形不等式：把差拆成两段（或几段）再逐段压小。反向使用它——「拆出的每段都足够小」——是证明极限存在最省力的标准写法。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">示范</span><span class="ctitle">夹角、正交与单位坐标向量（课本叙述式内容）</span><span class="pg">课本 p.2–6</span></div>
+    <p>非零向量 $\boldsymbol{x},\boldsymbol{y}$ 的夹角 $\theta\in[0,\pi]$ 由 $\cos\theta=\dfrac{\langle\boldsymbol{x},\boldsymbol{y}\rangle}{\|\boldsymbol{x}\|\,\|\boldsymbol{y}\|}$ 定义；$\langle\boldsymbol{x},\boldsymbol{y}\rangle=0$ 时称二者<b>正交</b>（零向量被认为与任何向量正交）。单位坐标向量</p>
+    <div class="formula">$$\boldsymbol{e}_1=(1,0,\cdots,0),\quad\cdots,\quad \boldsymbol{e}_n=(0,\cdots,0,1)$$</div>
+    <p>两两正交且范数为 1：$\langle\boldsymbol{e}_i,\boldsymbol{e}_j\rangle=\delta_{ij}=\begin{cases}0,&i\ne j,\\ 1,&i=j,\end{cases}$ 且每个向量都可以写成 $\boldsymbol{x}=\sum_{i=1}^{n}x_i\boldsymbol{e}_i$。</p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">距离</span><span class="ctitle">距离、球、闭球与有界集</span><span class="pg">课本 p.2–6</span></div>
+    <p>两点间的距离 $\|\boldsymbol{x}-\boldsymbol{y}\|$ 非负、对称，并满足距离的三角形不等式 $\|\boldsymbol{x}-\boldsymbol{y}\|\leqslant\|\boldsymbol{x}-\boldsymbol{z}\|+\|\boldsymbol{z}-\boldsymbol{y}\|$。以 $\boldsymbol{a}$ 为球心、$r>0$ 为半径定义</p>
+    <div class="formula">$$B_r(\boldsymbol{a})=\{\boldsymbol{x}:\|\boldsymbol{x}-\boldsymbol{a}\|<r\},\qquad \widehat{B}_r(\boldsymbol{a})=\{\boldsymbol{x}:\|\boldsymbol{x}-\boldsymbol{a}\|\leqslant r\}$$</div>
+    <p>（球 / 闭球）。若存在 $r>0$ 使 $E\subset B_r(\boldsymbol{0})$，称 $E$ 为<b>有界集</b>；无界集等价于：对任何 $m\in\mathbb{N}^{*}$ 存在 $\boldsymbol{x}_m\in E$ 使 $\|\boldsymbol{x}_m\|>m$。</p>
+    <div class="note n-tip"><span class="note-t">为什么值得</span>课本说明：在欧氏空间中可以像平面与通常三维空间一样计算长度、夹角、距离，此后用几何思考（球、线段、锥形区域）会持续省力——本章后面的全部图景都画在 $\mathbb{R}^{2}$ 里。</div>
+  </div>
+
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">补充</span><span class="ctitle">矩阵的范数</span><span class="pg">课本 p.2–6</span></div>
+    <p>把 $m\times n$ 矩阵 $A=(a_{ij})$ 看成 $mn$ 维向量，定义 $\|A\|=\Big(\sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}^{2}\Big)^{1/2}$。于是非负性、$\|\lambda A\|=|\lambda|\,\|A\|$、$\|A+B\|\leqslant\|A\|+\|B\|$ 自动成立；课本再由 Cauchy–Schwarz 不等式推出<b>次乘性</b>（$A$ 为 $m\times n$、$B$ 为 $n\times l$ 时）</p>
+    <div class="formula">$$\|AB\|\leqslant\|A\|\,\|B\|.$$</div>
+    <p>这条估计在第 9 章（映射的线性主部）会反复调用，本章先备好。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">练习 8.1(6)(7)</span><span class="ctitle">两条「换尺子」不等式</span></div>
+    <div class="formula">$$\frac{1}{\sqrt n}\sum_{i=1}^{n}|x_i|\leqslant\|\boldsymbol{x}\|\leqslant\sum_{i=1}^{n}|x_i|,\qquad \max_i|x_i|\leqslant\|\boldsymbol{x}\|\leqslant n\max_i|x_i|.$$</div>
+    <p>它们把范数估计翻译成分量估计（或反过来）。典型用法：要证 $\boldsymbol{x}_i\to\boldsymbol{0}$，只需对每个分量证 $x_k^{(i)}\to 0$——这正是下一节「按分量收敛」的算法根据。</p>
+  </div>
+</section>
+
+<!-- ============ §8.2 ============ -->
+<section id="s82">
+  <h2><span class="h2-no">§8.2</span>$\mathbb{R}^{n}$ 中点列的极限</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.2.1</span><span class="ctitle">点列的极限</span><span class="pg">课本 p.7</span></div>
+    <p>设 $\{\boldsymbol{x}_i\}\subset\mathbb{R}^{n}$，$\boldsymbol{a}\in\mathbb{R}^{n}$。若对任意给定的 $\varepsilon>0$，存在 $N\in\mathbb{N}^{*}$，当 $i>N$ 时 $\|\boldsymbol{x}_i-\boldsymbol{a}\|<\varepsilon$，就称 $\boldsymbol{a}$ 是点列 $\{\boldsymbol{x}_i\}$ 的极限，记作</p>
+    <div class="formula">$$\lim_{i\to\infty}\boldsymbol{x}_i=\boldsymbol{a}\qquad\text{或}\qquad \boldsymbol{x}_i\to\boldsymbol{a}\ (i\to\infty).$$</div>
+    <p>球语言：收敛于 $\boldsymbol{a}$ 当且仅当对任何 $\varepsilon>0$，点列自某项之后全部落入球 $B_\varepsilon(\boldsymbol{a})$。与数列一样：收敛点列的极限唯一；收敛点列必有界。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.2.1 / 8.2.2</span><span class="ctitle">线性运算与「按分量收敛」</span><span class="pg">课本 p.7–8</span></div>
+    <p><b>定理 8.2.1</b>：若 $\boldsymbol{x}_i\to\boldsymbol{a}$、$\boldsymbol{y}_i\to\boldsymbol{b}$，则 $\boldsymbol{x}_i\pm\boldsymbol{y}_i\to\boldsymbol{a}\pm\boldsymbol{b}$，$\lambda\boldsymbol{x}_i\to\lambda\boldsymbol{a}$（课本留给读者自行完成）。</p>
+    <p><b>定理 8.2.2</b>：$\lim\limits_{i\to\infty}\boldsymbol{x}_i=\boldsymbol{a}$ 等价于点列按分量收敛于 $\boldsymbol{a}$，即每个坐标数列 $x_k^{(i)}\to a_k$（$k=1,2,\cdots,n$）。</p>
+    <p>证明路线：用不等式 $|x_k^{(i)}|\leqslant\|\boldsymbol{x}_i\|\leqslant|x_1^{(i)}|+|x_2^{(i)}|+\cdots+|x_n^{(i)}|$；先证 $\boldsymbol{a}=\boldsymbol{0}$ 的特殊情形（两端分别给出两个方向的蕴含），一般情形考虑点列 $\{\boldsymbol{x}_i-\boldsymbol{a}\}$ 归结过去。</p>
+    <div class="note n-key"><span class="note-t">主力工具</span>从此 $\mathbb{R}^{n}$ 中点列的收敛问题可以整体「降维」成 $n$ 个数列问题；凡要验证极限存在，第一动作几乎都是按分量或按球语言拆开。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1</span><span class="ctitle">按分量求点列的极限</span><span class="pg">课本 p.8</span></div>
+    <p>在 $\mathbb{R}^{3}$ 中考 $\boldsymbol{x}_i=\Big(\big(1+\frac1i\big)^{i},\ \frac{i}{i+1},\ \big(1-\frac1i\big)^{i}\Big)$。三个分量分别收敛于 $e$、$1$、$e^{-1}$，故</p>
+    <div class="formula">$$\lim_{i\to\infty}\boldsymbol{x}_i=(e,1,e^{-1}).$$</div>
+    <p>本题没有任何 $\varepsilon$-$\delta$ 计算：按分量收敛定理把工作全部转给数列极限。考场上的正确姿势是——先写「三个分量分别趋近」，再引定理收口。</p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.2.2 · 定理 8.2.3</span><span class="ctitle">基本（点）列与 Cauchy 收敛原理</span><span class="pg">课本 p.7–8</span></div>
+    <p>对任意 $\varepsilon>0$，存在 $N$，当 $k,l>N$ 时 $\|\boldsymbol{x}_k-\boldsymbol{x}_l\|<\varepsilon$，则称 $\{\boldsymbol{x}_i\}$ 是<b>基本（点）列</b>。</p>
+    <p><b>定理 8.2.3</b>：$\{\boldsymbol{x}_i\}$ 为收敛点列 $\Longleftrightarrow$ $\{\boldsymbol{x}_i\}$ 是基本点列。</p>
+    <p>证明路线：必要性用距离的三角形不等式 $\|\boldsymbol{x}_k-\boldsymbol{x}_l\|\leqslant\|\boldsymbol{x}_k-\boldsymbol{a}\|+\|\boldsymbol{a}-\boldsymbol{x}_l\|$；充分性由 $|x_j^{(k)}-x_j^{(l)}|\leqslant\|\boldsymbol{x}_k-\boldsymbol{x}_l\|$ 知每个分量数列是基本列（从而收敛），再用定理 8.2.2。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.2.4</span><span class="ctitle">Bolzano–Weierstrass 定理（点列版）</span><span class="pg">课本 p.9</span></div>
+    <p>从任一有界的点列中可以选出收敛的子点列。</p>
+    <p>证明路线（逐分量取子列）：由 $|x_1^{(i)}|\leqslant\|\boldsymbol{x}_i\|\leqslant M$ 知第一分量有界，用数列的 Bolzano–Weierstrass 定理取出子列使第一分量收敛；再从该子列中取子列使第二分量收敛；如此逐次进行，指标集层层嵌套 $\{k_l\}\subset\{j_l\}\subset\{i_l\}$，最后的子点列按分量收敛，由定理 8.2.2 得结论。</p>
+    <div class="note n-warn"><span class="note-t">课本注明</span>并不是所有数列定理都能推广：点列情形无法定义一种有用的「序」，「有界的单调数列必有极限」在 $\mathbb{R}^{n}$ 中说不出口。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">方法</span><span class="ctitle">两条「不求出极限也能收口」的通道</span></div>
+    <ul>
+      <li><b>Cauchy 通道</b>：用已知级数控制 $\|\boldsymbol{x}_k-\boldsymbol{x}_l\|$。例如 $\sum_{k=1}^{\infty}\|\boldsymbol{x}_{k+1}-\boldsymbol{x}_k\|$ 收敛时（练习 8.2 第 5 题），由 $\|\boldsymbol{x}_k-\boldsymbol{x}_l\|\leqslant\sum_{j=k}^{l-1}\|\boldsymbol{x}_{j+1}-\boldsymbol{x}_j\|$ 知是基本点列，直接得收敛。</li>
+      <li><b>B–W 通道</b>：结论只要「存在收敛子列」时使用；再配合闭性把子列的极限锁在集合内部——§8.4 的列紧性就是这么炼成的。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ §8.3 ============ -->
+<section id="s83">
+  <h2><span class="h2-no">§8.3</span>$\mathbb{R}^{n}$ 中的开集和闭集</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.3.1</span><span class="ctitle">内点、内部与开集</span><span class="pg">课本 p.10</span></div>
+    <p>设 $E\subset\mathbb{R}^{n}$。若点 $\boldsymbol{a}\in E$ 且存在 $r>0$ 使 $B_r(\boldsymbol{a})\subset E$，称 $\boldsymbol{a}$ 为 $E$ 的<b>内点</b>；全体内点记作 $E^\circ$，称为 $E$ 的<b>内部</b>。若 $E^\circ=E$，称 $E$ 为 $\mathbb{R}^{n}$ 中的<b>开集</b>。</p>
+    <p>空集的内部是空集，故 $\varnothing$ 是开集；$\mathbb{R}^{n}$ 本身是开集；恒有 $E^\circ\subset E$。</p>
+    <div class="note n-tip"><span class="note-t">几何读法</span>「$B_r(\boldsymbol{a})\subset E$」的意思是：从 $\boldsymbol{a}$ 向任何方向迈出不大于 $r$ 的一步，都还留在 $E$ 里——开 = 没有「边」。课本引入时说：一元情形有界开区间与有界闭区间只差两点，对连续函数的效果却完全不同；为了说清 $\mathbb{R}^{n}$ 中的「有界闭集」，先从开集谈起。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1–3</span><span class="ctitle">开集三个标准例子（都在教「半径怎么取」）</span><span class="pg">课本 p.10–11</span></div>
+    <table class="tbl">
+      <tr><th>例</th><th>命题</th><th>证明要点</th></tr>
+      <tr><td>例 1</td><td>上半平面 $\{(x,y):y>0\}$ 是开集</td><td>任取 $\boldsymbol{a}=(x,y)$（$y>0$），<b>作球 $B_y(\boldsymbol{a})$</b>：对球内任一点化简得 $2yy'>(x'-x)^2+(y')^2\geqslant 0$，故 $y'>0$</td></tr>
+      <tr><td>例 2</td><td>$\mathbb{R}^{n}$ 挖去任一点后仍是开集</td><td>取 $r=\|\boldsymbol{a}-\boldsymbol{x}\|>0$，球内任一点 $\boldsymbol{y}$ 满足 $\|\boldsymbol{x}-\boldsymbol{y}\|<\|\boldsymbol{x}-\boldsymbol{a}\|$，故 $\boldsymbol{y}\ne\boldsymbol{a}$</td></tr>
+      <tr><td>例 3</td><td>开球 $B_r(\boldsymbol{a})$ 是开集</td><td>令 $d=r-\|\boldsymbol{a}-\boldsymbol{c}\|>0$，对 $\boldsymbol{x}\in B_d(\boldsymbol{c})$ 用三角形不等式得 $\|\boldsymbol{x}-\boldsymbol{a}\|<r$</td></tr>
+    </table>
+    <p>三个证明共用一个动作：<b>先算出该点到「危险边界」的距离，再取比它小的半径。</b>例 3 的 $d=r-\|\boldsymbol{a}-\boldsymbol{c}\|$ 是最常照抄的模板。特别地，数轴上任何开区间都是 $\mathbb{R}$ 中的开集。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.3.1 / 8.3.2</span><span class="ctitle">内部是开集；开集的运算</span><span class="pg">课本 p.11</span></div>
+    <p><b>定理 8.3.1</b>：对任何 $E$，$E^\circ$ 是开集，即 $(E^\circ)^\circ=E^\circ$。证明：任取 $\boldsymbol{c}\in E^\circ$，有球 $B_r(\boldsymbol{c})\subset E$；由例 3，$B_r(\boldsymbol{c})$ 内每点都是 $E$ 的内点，故 $B_r(\boldsymbol{c})\subset E^\circ$。</p>
+    <p><b>定理 8.3.2</b>：① $\mathbb{R}^{n},\varnothing$ 是开集；② <b>任意多个</b>开集之并是开集；③ <b>有限个</b>开集之交是开集（取 $r=\min(r_1,\cdots,r_m)$）。</p>
+    <div class="note n-warn"><span class="note-t">「有限」不能去</span>球族 $B_{1/i}(\boldsymbol{a})$（$i=1,2,\cdots$）每个都是开集，但 $\bigcap_{i=1}^{\infty}B_{1/i}(\boldsymbol{a})=\{\boldsymbol{a}\}$ 不是开集。凡涉及「无限个交」都要停下来检查。</div>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.3.2 · 定理 8.3.3</span><span class="ctitle">闭集、对偶原理与闭集运算</span><span class="pg">课本 p.12–13</span></div>
+    <p>记补集 $E^{\mathrm{c}}=\mathbb{R}^{n}\setminus E$。<b>定义 8.3.2</b>：若 $F^{\mathrm{c}}$ 是开集，称 $F$ 是<b>闭集</b>。De Morgan 对偶原理：$\Big(\bigcap_\alpha E_\alpha\Big)^{\mathrm{c}}=\bigcup_\alpha E_\alpha^{\mathrm{c}}$，$\Big(\bigcup_\alpha E_\alpha\Big)^{\mathrm{c}}=\bigcap_\alpha E_\alpha^{\mathrm{c}}$。</p>
+    <p><b>定理 8.3.3</b>：① $\varnothing,\mathbb{R}^{n}$ 是闭集；② <b>任意多个</b>闭集之交是闭集；③ <b>有限个</b>闭集之并是闭集。课本只证 ②：取补集后用 De Morgan 化成开集之并，交给定理 8.3.2 ②。</p>
+    <p>例 4–6：横轴 ∪ 下半平面是闭集（它是上半平面这个开集的补集）；除去有限多个点仍是开集，故有限点集是闭集；开球的补集是闭集。</p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.3.3 / 8.3.4</span><span class="ctitle">空心球 · 凝聚点 · 导集与闭包</span><span class="pg">课本 p.13</span></div>
+    <p>把 $B_r(\dot{\boldsymbol{a}})=\{\boldsymbol{x}\in\mathbb{R}^{n}:0<\|\boldsymbol{x}-\boldsymbol{a}\|<r\}$ 叫作<b>空心球</b>。若对任何 $r>0$，$B_r(\dot{\boldsymbol{a}})$ 中总有 $E$ 中的点，称 $\boldsymbol{a}$ 为 $E$ 的<b>凝聚点</b>（极限点）。$E$ 的凝聚点全体称<b>导集</b> $E'$；$\bar{E}=E\cup E'$ 称 $E$ 的<b>闭包</b>。$E$ 中不是凝聚点的点叫 $E$ 的<b>孤立点</b>。</p>
+    <p>课本注意：凝聚点可以属于 $E$ 也可以不属于——例如 $(0,1)$ 的全部凝聚点是 $[0,1]$，而 $0,1\notin(0,1)$。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.3.4 · 推论 8.3.1</span><span class="ctitle">闭集的两种等价判别</span><span class="pg">课本 p.13</span></div>
+    <p>$E$ 是闭集 $\Longleftrightarrow$ $E'\subset E$（即 $\bar{E}=E$）$\Longleftrightarrow$ $E$ 中任何收敛点列的极限必在 $E$ 中。</p>
+    <p>第一种的必要性用反证：若 $\boldsymbol{a}\in E'\setminus E$，由 $E^{\mathrm{c}}$ 开，存在球 $B_r(\boldsymbol{a})\subset E^{\mathrm{c}}$ 不含 $E$ 的点，与凝聚点矛盾。点列判别是后面最常用的操作形式：<b>验证闭性 = 任取 $E$ 中的收敛点列，证明极限仍在 $E$ 内。</b></p>
+    <div class="note n-warn"><span class="note-t">开与闭不对立</span>空心闭圆盘 $\{(x,y):0<x^2+y^2\leqslant 1\}$ 既不开也不闭；$\mathbb{R}^{n}$ 与 $\varnothing$ 既开又闭，而 $\mathbb{R}^{n}$ 中除这两者外不再有既开又闭的集合（见练习 8.5）。</div>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.3.5 / 8.3.6</span><span class="ctitle">导集、闭包可闭；最大开集与最小闭集</span><span class="pg">课本 p.14</span></div>
+    <p><b>定理 8.3.5</b>：$E$ 的导集 $E'$ 与闭包 $\bar{E}$ 都是闭集。关键一步：任取 $\boldsymbol{a}\notin E'$，则存在球 $B_r(\boldsymbol{a})$ 至多含 $E$ 的一个点，于是球内每点都不是 $E$ 的凝聚点，即 $B_r(\boldsymbol{a})\subset(E')^{\mathrm{c}}$。</p>
+    <p><b>定理 8.3.6</b>：$E^\circ$ 是含于 $E$ 内的最大开集；$\bar{E}$ 是包含 $E$ 的最小闭集。用法：要证「某开集 $G\subset E$」，把 $G$ 交给 $E^\circ$；要证「某闭集 $F\supset E$」，把 $F$ 交给 $\bar{E}$。</p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.3.5</span><span class="ctitle">外点、外部与边界</span><span class="pg">课本 p.14</span></div>
+    <p>$E^{\mathrm{c}}$ 中的点称为 $E$ 的<b>外点</b>，其全体称为 $E$ 的<b>外部</b>；既不是内点也不是外点的点称为<b>边界点</b>，其全体称为 $E$ 的<b>边界</b>，记作 $\partial E$。刻画：$\boldsymbol{a}$ 是 $E$ 的边界点 $\Longleftrightarrow$ 任何球 $B_r(\boldsymbol{a})$ 中既有 $E$ 的点、也有 $E^{\mathrm{c}}$ 的点。例 7–10 给出四组计算，并且总地有</p>
+    <div class="formula">$$E^\circ\cup(E^{\mathrm{c}})^\circ\cup\partial E=\mathbb{R}^{n}\quad\text{（三部分互不相交）}.$$</div>
+    <p>例 8（独点集）：$E^\circ=\varnothing$，$(E^{\mathrm{c}})^\circ=E^{\mathrm{c}}$，$\partial E=E$；例 9（$\mathbb{R}^{2}$ 中一条直线上的点）与例 8 同型；例 10（开球）：$\partial E$ 是球面 $\{\boldsymbol{x}:\|\boldsymbol{x}-\boldsymbol{a}\|=r\}$。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.3.7</span><span class="ctitle">直径与闭集套定理</span><span class="pg">课本 p.14–15</span></div>
+    <p>$\operatorname{diam}(E)=\sup\{\|\boldsymbol{x}-\boldsymbol{y}\|:\boldsymbol{x},\boldsymbol{y}\in E\}$，称为集合 $E$ 的直径；它有限当且仅当 $E$ 有界。</p>
+    <p><b>闭集套定理</b>：设 $\{F_i\}$ 是非空闭集列，$F_1\supset F_2\supset\cdots$，且 $\lim\limits_{i\to\infty}\operatorname{diam}(F_i)=0$，则 $\bigcap_{i=1}^{\infty}F_i$ 只含唯一的一个点。</p>
+    <p>证明路线：每个 $F_i$ 中取 $\boldsymbol{x}_i$，由 $\operatorname{diam}(F_i)\to 0$ 知 $\{\boldsymbol{x}_i\}$ 是基本点列；极限点被闭性锁进每个 $F_i$；再用 $\|\boldsymbol{a}-\boldsymbol{b}\|\leqslant\operatorname{diam}(F_i)$ 令 $i\to\infty$ 得唯一性。</p>
+    <div class="note n-key"><span class="note-t">定位</span>它是 $\mathbb{R}$ 上「闭区间套定理」的 $\mathbb{R}^{n}$ 推广，专门服务于下一节紧致性的充分性证明，也是「存在性」类题目的伏笔。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">通用套路</span><span class="ctitle">判开闭 / 求 $A^\circ,\bar{A},\partial A$ 的操作台</span></div>
+    <ul>
+      <li><b>证开性</b>：任取点、显式造球（模板：取 $r=$ 到边界的距离，见例 1–3）；或把集合写成已知开集的并 / 有限交。</li>
+      <li><b>证闭性</b>：转去证补集为开集；或任取收敛点列证极限在集合内（推论 8.3.1）；最好用的替代是「闭 $\Longleftrightarrow$ $E\supset\partial E$」（练习 8.3 第 13 题）。</li>
+      <li><b>求 $A^\circ$</b>：找出「能自由活动」的点集；<b>求 $\bar{A}$</b>：$A\cup A'$，通常是把边界补上；<b>求 $\partial A$</b>：用三分割公式，或直接按「球内两边都有点」验证。</li>
+      <li><b>陷阱</b>（练习 8.3 第 1、2 题）：$\mathbb{R}$ 中 $A=\{1,\frac12,\frac13,\cdots\}$ 有 $A^\circ=\varnothing$、$\bar{A}=A\cup\{0\}$；平面上有理点集 $\mathbb{Q}^2$ 有 $A^\circ=(A^{\mathrm{c}})^\circ=\varnothing$、$\partial A=\mathbb{R}^{2}$——「处处不是内部」的集合同样要会处理。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ §8.4 ============ -->
+<section id="s84">
+  <h2><span class="h2-no">§8.4</span>列紧集和紧致集</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.4.1</span><span class="ctitle">列紧集</span><span class="pg">课本 p.16</span></div>
+    <p>设 $E\subset\mathbb{R}^{n}$。如果 $E$ 中的任一点列都有一子列收敛于 $E$ 中的一点，则称 $E$ 是 $\mathbb{R}^{n}$ 中的一个<b>列紧集</b>。</p>
+    <p>三个限定词缺一不可：点列取自 $E$、子列要收敛、<b>极限必须落在 $E$ 内</b>——最后一条让「取子列」与「闭集」自动捆绑。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.4.1</span><span class="ctitle">列紧 $\Longleftrightarrow$ 有界闭</span><span class="pg">课本 p.17</span></div>
+    <p><b>必要性</b>：$E$ 无界时可取出满足 $\|\boldsymbol{x}_i\|>i$ 的点列，它没有收敛子列；$E$ 不闭时由推论 8.3.1，存在 $E$ 中收敛到 $\boldsymbol{a}\notin E$ 的点列，其一切子列也都收敛到该点，不在 $E$ 中。</p>
+    <p><b>充分性</b>：$E$ 有界给 Bolzano–Weierstrass 定理（定理 8.2.4）提供收敛子列；$E$ 闭把极限锁在 $E$ 内。</p>
+    <p>一句话：<b>列紧 = 有界（选得出子列）+ 闭（极限不逃逸）。</b></p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.4.2 / 8.4.3</span><span class="ctitle">开覆盖与紧致集</span><span class="pg">课本 p.17</span></div>
+    <p>设 $\mathscr J=\{G_\alpha\}$ 是开集族，若 $E\subset\bigcup_\alpha G_\alpha$，称 $\mathscr J$ 是 $E$ 的一个<b>开覆盖</b>。若能从 $E$ 的任一开覆盖中选出<b>有限个</b>开集仍覆盖 $E$，称 $E$ 为<b>紧致集</b>。</p>
+    <p>课本提问：$\mathbb{R}$ 上对有限闭区间成立的有限覆盖定理（定理 1.9.1），在 $\mathbb{R}^{n}$ 中对怎样的集合成立？</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.4.2 ★</span><span class="ctitle">紧致 $\Longleftrightarrow$ 有界闭（全章总开关）</span><span class="pg">课本 p.17–19</span></div>
+    <p><b>必要性</b>：① 有界——球族 $\{B_m(\boldsymbol{0}):m\in\mathbb{N}^{*}\}$ 是开覆盖，选出有限个 $B_{k_1}(\boldsymbol{0}),\cdots,B_{k_t}(\boldsymbol{0})$，取 $s=\max(k_1,\cdots,k_t)$ 得 $E\subset B_s(\boldsymbol{0})$；② 闭性——对 $\boldsymbol{p}\notin E$ 与每个 $\boldsymbol{q}\in E$ 取互不相交的球 $B_r(\boldsymbol{p})$ 与 $B_r(\boldsymbol{q})$，用紧致性选有限个 $B_{r_i}(\boldsymbol{q}_i)$ 盖住 $E$，其「对偶球」之交 $U=\bigcap_{i=1}^{m}B_{r_i}(\boldsymbol{p})$ 与 $E$ 不相交，故 $\boldsymbol{p}$ 是 $E^{\mathrm{c}}$ 的内点（课本图 8.1）。</p>
+    <p><b>充分性</b>（课本就 $n=2$ 证明）：反证。取闭矩形 $I\supset E$ 四等分，至少一块 $F_1$ 使 $H_1=F_1\cap E$ 不能被有限覆盖，且 $\operatorname{diam}(H_1)\leqslant\frac12\operatorname{diam}(I)$；无限细分得闭集套 $\{H_k\}$，由闭集套定理得唯一公共点 $\boldsymbol\xi$；$\boldsymbol\xi$ 被某个 $G_\alpha$ 连同小球 $B_r(\boldsymbol\xi)$ 吞下，而某个 $H_k$ 直径 $<r$ 且含 $\boldsymbol\xi$，于是 $H_k\subset G_\alpha$，与「不能有限覆盖」矛盾。</p>
+    <div class="note n-key"><span class="note-t">本章最该背的一句话</span>在 $\mathbb{R}^{n}$ 中：<b>有界闭 = 列紧 = 紧致</b>。此后题面出现「有界闭集」，就等于同时发放两种武器——点列（取子列）与开覆盖（挑有限个）。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">反例库</span><span class="ctitle">紧致性在哪些地方「差一点」就失效</span></div>
+    <ul>
+      <li><b>无界即失效</b>：$E=[0,+\infty)$ 的开覆盖 $\{(-1,m):m\in\mathbb{N}^{*}\}$ 无有限子覆盖；等价地，点列 $\boldsymbol{x}_i=(i)$ 没有收敛子列。</li>
+      <li><b>不闭即失效</b>：$E=(0,1]$ 的开覆盖 $\{(1/i,2):i\in\mathbb{N}^{*}\}$ 无有限子覆盖；点列 $\{1/i\}$ 收敛于 $0\notin E$。</li>
+      <li><b>闭集套的两个条件都不能少</b>（练习 8.4 第 5 题）：闭集列若直径不趋于 0，交集可以是空集，如 $F_k=[k,+\infty)$；改成非空<b>紧致</b>集列，交集必非空。</li>
+      <li><b>有限覆盖可以「量化」</b>（问题 8.4）：有界闭集的开覆盖有 Lebesgue 数 $\sigma>0$——任何与 $E$ 相交、直径 $<\sigma$ 的集合必整个落在某个 $G_\alpha$ 中。这是把局部信息拼成整体结论的标准接口。</li>
+    </ul>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">操作</span><span class="ctitle">考场上怎么调用「有界闭 = 紧致」</span></div>
+    <ul>
+      <li>看到「有界闭 / 闭区域 / 闭球 / $[a,b]\times[c,d]$」→ 立刻标注两条资格：可列紧（取子列、极限不逃逸）、可紧致（可挑有限子覆盖）。</li>
+      <li>要证「存在一点使某性质成立」→ 先造出有界闭集，再上「紧致集上的连续函数」系列定理（下一节），或用闭集套定理。</li>
+      <li>要证「某个开覆盖可有限化」→ 直接引用定理 8.4.2，不必重现二分法细节。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ §8.5 ============ -->
+<section id="s85">
+  <h2><span class="h2-no">§8.5</span>集合的连通性</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.5.1 / 8.5.2</span><span class="ctitle">连通集、区域与闭区域</span><span class="pg">课本 p.20</span></div>
+    <p>设 $E\subset\mathbb{R}^{n}$。如果 $E$ 的任一分解式 $E=A\cup B$（$A\ne\varnothing$、$B\ne\varnothing$、$A\cap B=\varnothing$）都能使得 $A\cap B'\ne\varnothing$ 与 $A'\cap B\ne\varnothing$ 中至少有一个成立，就称 $E$ 是<b>连通集</b>。读法：把 $E$ 拆成两块时，至少有一块沾着另一块的凝聚点——拆不断。</p>
+    <p>$\mathbb{R}^{n}$ 中连通的开集称为<b>区域</b>；区域的闭包称为<b>闭区域</b>。课本引入时说：一元微积分都针对区间进行，区间的特点就是「连成一片」；多元函数的一些定理同样只能建立在连通的点集上。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.5.1 / 8.5.2</span><span class="ctitle">开集连通 ⟺ 拆不成两个非空开集；$\mathbb{R}$ 上连通 = 区间</span><span class="pg">课本 p.20–21</span></div>
+    <p><b>定理 8.5.1</b>：开集 $E$ 连通 $\Longleftrightarrow$ $E$ 不能分解为两个不相交的非空开集之并。这条等价形式把「拆不断」翻译成可操作的「开集劈不开」。证明路线：必要性——开集的点不是另一块的凝聚点；充分性——若 $E$ 不连通，对 $A$ 中的点取「$E$ 的球」与「避开 $B$ 的球」中较小者，得 $A,B$ 都为开集。</p>
+    <p><b>定理 8.5.2</b>：$\mathbb{R}$ 上 $E$ 连通 $\Longleftrightarrow$ $E$ 为区间。必要性：若存在 $c\in(a,b)$ 而 $c\notin E$，把 $E$ 按 $x<c$、$x>c$ 劈成两块即拆断连通性；充分性：对分区间套造出 $a_k\in A$、$b_k\in B$ 同趋于一点 $c$，无论 $c$ 属于哪一块，都得到另一块在 $c$ 处留下凝聚点。</p>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.5.3</span><span class="ctitle">道路连通集与连续曲线</span><span class="pg">课本 p.21</span></div>
+    <p>若对任意两点 $\boldsymbol{p},\boldsymbol{q}\in E$，都有一条连续曲线 $\Gamma\subset E$ 把 $\boldsymbol{p}$ 与 $\boldsymbol{q}$ 连接起来，称 $E$ 是<b>道路连通的</b>。$\mathbb{R}^{n}$ 中的连续曲线用参数方程表示：</p>
+    <div class="formula">$$x_i=\varphi_i(t)\quad(i=1,2,\cdots,n),\qquad a\leqslant t\leqslant b,$$</div>
+    <p>且 $\boldsymbol{p}=\boldsymbol\phi(a)$、$\boldsymbol{q}=\boldsymbol\phi(b)$，其中 $\boldsymbol\phi=(\varphi_1,\cdots,\varphi_n)$，每个 $\varphi_i$ 在 $[a,b]$ 上连续——这已经是 §8.8 连续映射的雏形。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.5.3</span><span class="ctitle">道路连通 $\Longrightarrow$ 连通</span><span class="pg">课本 p.22</span></div>
+    <p>道路连通集一定是连通集。证明路线：把分解 $E=A\cup B$ 沿曲线拉回成 $[a,b]=F\cup G$；区间 $[a,b]$ 连通，故 $F,G$ 中一块沾着另一块的凝聚点，设为 $c\in F\cap G'$；取 $G$ 中 $t_i\to c$，由 $\varphi_i$ 的连续性得 $\boldsymbol\phi(t_i)\to\boldsymbol\phi(c)$，于是 $\boldsymbol\phi(c)\in A\cap B'$，$E$ 连通。</p>
+    <p>方向不可逆：连通集不一定道路连通（问题 8.5 第 2 题：$y=\sin\frac1x$（$0<x\leqslant 2/\pi$）的图像添上纵轴上的线段 $\{0\}\times[-1,1]$ 后连通，但不可道路连通）。作为直接推论：<b>道路连通的开集是区域</b>。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1</span><span class="ctitle">开球是区域：两步走</span><span class="pg">课本 p.22</span></div>
+    <p>已知开球是开集（§8.3 例 3），只需再证连通。任取 $\boldsymbol{p},\boldsymbol{q}\in B_r(\boldsymbol{a})$，连线段的方程是 $\boldsymbol\phi(t)=(1-t)\boldsymbol{p}+t\boldsymbol{q}$；由三角形不等式</p>
+    <div class="formula">$$\|\boldsymbol\phi(t)-\boldsymbol{a}\|\leqslant(1-t)\|\boldsymbol{p}-\boldsymbol{a}\|+t\|\boldsymbol{q}-\boldsymbol{a}\|<r,$$</div>
+    <p>即线段整个落在球内——开球道路连通，从而是区域。这个估计式值得记住：<b>球（和凸集）里的一切连通性都靠它。</b></p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">操作</span><span class="ctitle">连通性判定的实用分工</span></div>
+    <ul>
+      <li><b>证连通</b>：优先画线段（凸集、球、凸区域、$[a,b]^2$）；画不了就画折线或连续曲线（道路连通通道）；再不行回到定义或定理 8.5.1。</li>
+      <li><b>证不连通</b>：把集合显式劈成两个不相交的非空开集；或找一个连续函数把集合映到两个值而中间值缺席——这是介值定理（§8.7）的逆用（练习 8.7 第 7 题）。</li>
+      <li><b>记住两条换算</b>：区域 = 连通开集（等价于道路连通开集，练习 8.5 第 1 题）；闭区域 = 区域的闭包。$\mathbb{R}^{n}$ 中既开又闭的集合只有 $\varnothing$ 与 $\mathbb{R}^{n}$（练习 8.5 第 2 题）——证明不连通时常常反着用它。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ §8.6 ============ -->
+<section id="s86">
+  <h2><span class="h2-no">§8.6</span>多变量函数的极限</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.6.1 / 8.6.2</span><span class="ctitle">$n$ 元函数与重极限</span><span class="pg">课本 p.23</span></div>
+    <p>设 $D\subset\mathbb{R}^{n}$，映射 $f:D\to\mathbb{R}$ 称为一个 $n$ 元函数，$D$ 为定义域。设 $\boldsymbol{a}\in D'$（$\boldsymbol{a}$ 是定义域的凝聚点）、$l\in\mathbb{R}$，若对任意给定的 $\varepsilon>0$，存在 $\delta>0$，当 $\boldsymbol{x}\in D$ 且 $0<\|\boldsymbol{x}-\boldsymbol{a}\|<\delta$ 时 $|f(\boldsymbol{x})-l|<\varepsilon$，就记</p>
+    <div class="formula">$$\lim_{\boldsymbol{x}\to\boldsymbol{a}}f(\boldsymbol{x})=l,\qquad\text{或简写}\qquad f(\boldsymbol{x})\to l\ (\boldsymbol{x}\to\boldsymbol{a}).$$</div>
+    <div class="note n-warn"><span class="note-t">两个「不看」</span>$f$ 可以在点 $\boldsymbol{a}$ 处没有定义；即使有定义，$f(\boldsymbol{a})$ 也不参与极限。所以「先算极限、再对原点补定义」永远合法——这正是 2024、2026 真题的固定动作。另外，$\boldsymbol{a}$ 必须是 $D$ 的凝聚点，否则极限无从谈起。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1</span><span class="ctitle">夹逼求极限：$\dfrac{x^2y^2}{x^2+y^2}\to 0$</span><span class="pg">课本 p.23</span></div>
+    <p>$f(\boldsymbol{p})=\dfrac{x^2y^2}{x^2+y^2}$ 在 $\mathbb{R}^2\setminus\{\boldsymbol{0}\}$ 上有定义，由</p>
+    <div class="formula">$$0\leqslant f(\boldsymbol{p})=\frac{x^2y^2}{x^2+y^2}\leqslant x^2+y^2=\|\boldsymbol{p}\|^2,$$</div>
+    <p>任给 $\varepsilon>0$ 取 $\delta=\sqrt\varepsilon$，则 $0<\|\boldsymbol{p}\|<\delta$ 时 $0\leqslant f(\boldsymbol{p})<\varepsilon$，故 $\lim\limits_{\boldsymbol{p}\to\boldsymbol{0}}f(\boldsymbol{p})=0$。</p>
+    <div class="note n-tip"><span class="note-t">可复制的动作</span>把式子放大成 $\|\boldsymbol{p}\|$ 的幂：分子比分母低阶时这是标准夹逼。同型：$\dfrac{\sin xy}{x}=\dfrac{\sin xy}{xy}\cdot y$（练习 8.6(3)(1)）与 $\dfrac{xy^2}{x^2+y^2}$（$|f|\leqslant|x|$，2026 第 2(1) 题）。分子与分母同阶时先化简再判断方向。</div>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.6.1</span><span class="ctitle">归并原理（Heine）：函数极限 ⟺ 点列极限</span><span class="pg">课本 p.24</span></div>
+    <p>$\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}f(\boldsymbol{x})=l$ 的充分必要条件是：对任何满足 $\boldsymbol{x}_i\in D$、$\boldsymbol{x}_i\ne\boldsymbol{a}$、$\boldsymbol{x}_i\to\boldsymbol{a}$ 的点列，都有 $\lim\limits_{i\to\infty}f(\boldsymbol{x}_i)=l$。</p>
+    <p>证明路线：必要性显然；充分性反证——若极限不为 $l$，对某个 $\varepsilon_0>0$ 可取点列满足 $\|\boldsymbol{x}_i-\boldsymbol{a}\|<1/i$ 且 $|f(\boldsymbol{x}_i)-l|\geqslant\varepsilon_0$，与点列极限为 $l$ 矛盾。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 2 ★</span><span class="ctitle">两条路径足以否定极限：$\dfrac{xy}{x^2+y^2}$</span><span class="pg">课本 p.24</span></div>
+    <p>取点列 $\boldsymbol{s}_i=(1/i,0)$、$\boldsymbol{t}_i=(1/i,1/i)$：$f(\boldsymbol{s}_i)=0$、$f(\boldsymbol{t}_i)=\dfrac12$，而两点列都收敛于原点。由归并原理，极限若存在就必须唯一，现沿两条通道的函数值序列不同，故 $f$ 在原点处极限不存在。</p>
+    <p>课本顺带指出 $|f|\leqslant\dfrac12$：<b>有界与有极限是两件事</b>——有界只保证数值不失控，不保证收敛。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 3 ★</span><span class="ctitle">一切直线都过关仍然不够：$\dfrac{x^2y}{x^4+y^2}$</span><span class="pg">课本 p.25</span></div>
+    <p>沿坐标轴（原点除外）$f\equiv 0$；沿任意直线 $y=kx$：</p>
+    <div class="formula">$$\lim_{x\to 0}\frac{kx^3}{x^4+k^2x^2}=\lim_{x\to 0}\frac{kx}{x^2+k^2}=0,$$</div>
+    <p>即沿指向原点的任何直线 $f$ 都趋于 0；但沿抛物线 $y=x^2$ 趋向原点时 $f$ 恒等于 $\dfrac12$。故 $f$ 在 $(0,0)$ 处没有极限。</p>
+    <div class="note n-exam"><span class="note-t">怎么找反例路径（本章最重要的操作）</span>按三级通道依次试：① <b>两条直线</b> $y=0$ 与 $y=x$——最省力，先试，值不同立即收工；② <b>一般直线</b> $y=kx$——结果依赖 $k$ 就命中，恒为 0 也<b>不</b>能宣布极限存在；③ <b>让分子与分母同阶的曲线</b>。第三级的找法：看分母 $x^4+y^2$ 两项的幂次 4 与 2，取 $y=x^2$ 使 $y^2=x^4$ 与 $x^4$ 齐次，分子 $x^2y=x^4$ 恰被锁定，比值成为常数。总结成对偶两句：<b>证不存在 = 造一条路径；证存在 = 给统一控制。</b>二者不可互换，模板题：练习 8.6 第 5 题 (1)。</div>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.6.2–8.6.4</span><span class="ctitle">四则运算、复合法则与 Cauchy 收敛原理</span><span class="pg">课本 p.25–26</span></div>
+    <p><b>定理 8.6.2</b>：$f,g$ 在 $\boldsymbol{a}$ 处极限为 $l,m$ 时，$f\pm g$、$fg$ 的极限为 $l\pm m$、$lm$；$m\ne 0$ 时 $\dfrac fg$ 的极限为 $\dfrac lm$。</p>
+    <p><b>定理 8.6.3（复合/代入法则）</b>：若 $\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}f(\boldsymbol{x})=l$，一元函数 $\varphi$ 在 $l$ 处有极限 $m$，且 $f$ 的空心球像落在 $\varphi$ 的定义域内（$f(B_r(\dot{\boldsymbol{a}}))\subset U$），则 $\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}\varphi(f(\boldsymbol{x}))=m$。证明走归并原理 + 单变量复合极限。</p>
+    <p><b>定理 8.6.4（Cauchy 收敛原理）</b>：$\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}f(\boldsymbol{x})$ 存在 $\Longleftrightarrow$ 对任意 $\varepsilon>0$ 存在 $\delta>0$，只要 $\boldsymbol{x}',\boldsymbol{x}''\in D$ 都满足 $0<\|\boldsymbol{x}'-\boldsymbol{a}\|<\delta$、$0<\|\boldsymbol{x}''-\boldsymbol{a}\|<\delta$，就有 $|f(\boldsymbol{x}')-f(\boldsymbol{x}'')|<\varepsilon$（证明仿定理 2.4.7）。</p>
+    <p><b>$x\to\infty$ 型</b>：$|f(\boldsymbol{x})-l|<\varepsilon$ 在 $\|\boldsymbol{x}\|>K$ 之后恒成立即记 $\lim\limits_{\boldsymbol{x}\to\infty}f(\boldsymbol{x})=l$。课本注意：<b>$\infty$ 前面不能带正负号</b>；前面所有定理作明显修改后对此种过程仍适用。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">题型对照</span><span class="ctitle">重极限 vs 累次极限（练习 8.6 第 5–8 题）</span></div>
+    <p>若对 $y_0$ 近旁的每个 $y$，$\lim\limits_{x\to x_0}f(x,y)=\varphi(y)$ 存在，再令 $y\to y_0$，所得 $\lim\limits_{y\to y_0}\lim\limits_{x\to x_0}f(x,y)$ 称为一个<b>累次极限</b>；另一个方向同理。它与重极限互不蕴含：</p>
+    <ul>
+      <li><b>累次存在 ≠ 重极限存在</b>：练习 8.6 第 5 题 (1) 中 $f=\dfrac{x^2y}{x^4+y^2}$ 的两个累次极限都是 0，而重极限不存在（与例 3 会合）。</li>
+      <li><b>重极限存在 ≠ 累次存在</b>：练习 8.6 第 6 题 $f=(x+y)\sin\dfrac1x\sin\dfrac1y$，$f\to 0$（$(x,y)\to(0,0)$），但两个累次极限全不存在。</li>
+      <li><b>三者都在则相等</b>：练习 8.6 第 7 题给出通道——重极限为 $a$，且每个 $y$ 旁的一元极限 $h(y)$ 存在，则 $\lim\limits_{y\to y_0}h(y)=a$；第 8 题是其推论。</li>
+    </ul>
+    <div class="note n-warn"><span class="note-t">做题纪律</span>看到 $\lim\limits_{x\to x_0}\lim\limits_{y\to y_0}$ 先停一拍：这是两次一元极限，不能当重极限算；看到重极限，先想路径检验能否一击否定，再考虑统一控制。$x\to+\infty,y\to+\infty$ 的题目（练习 8.6 第 3 题 (4)–(6)）同理：先看能否化成一元或放大。</div>
+  </div>
+</section>
+
+<!-- ============ §8.7 ============ -->
+<section id="s87">
+  <h2><span class="h2-no">§8.7</span>多变量连续函数</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.7.1</span><span class="ctitle">连续点、间断点、连续函数</span><span class="pg">课本 p.28</span></div>
+    <p>设 $D\subset\mathbb{R}^{n}$，$f:D\to\mathbb{R}$，$\boldsymbol{a}\in D$。若对任意给定的 $\varepsilon>0$，存在 $\delta>0$，当 $\boldsymbol{x}\in D\cap B_\delta(\boldsymbol{a})$ 时 $|f(\boldsymbol{x})-f(\boldsymbol{a})|<\varepsilon$，称 $f$ 在点 $\boldsymbol{a}$ 处<b>连续</b>；$D$ 中的非连续点称<b>间断点</b>；每点都连续则称 $f$ 在 $D$ 上连续。</p>
+    <p>课本注意：连续前提是在该点有定义；孤立点处函数自动连续；当 $\boldsymbol{a}\in D\cap D'$ 时，「$f$ 在 $\boldsymbol{a}$ 连续 $\Longleftrightarrow$ $\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}f(\boldsymbol{x})=f(\boldsymbol{a})$」——<b>连续 = 极限存在 + 值对得上</b>。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1–3</span><span class="ctitle">三个打底例子：孤立点、常值、投影</span><span class="pg">课本 p.28–29</span></div>
+    <ul>
+      <li><b>例 1</b>：有限点集 $D=\{\boldsymbol{p}_1,\cdots,\boldsymbol{p}_m\}$ 上任意给定的函数都连续——每点都是孤立点，定义中的球可以小到不含其他点。</li>
+      <li><b>例 2</b>：常值函数在任意集合上连续。</li>
+      <li><b>例 3</b>：投影函数 $f(\boldsymbol{x})=x_i$ 在 $\mathbb{R}^{n}$ 上连续——由 $|x_i-a_i|\leqslant\|\boldsymbol{x}-\boldsymbol{a}\|$，取 $\delta=\varepsilon$ 即可。</li>
+    </ul>
+    <p>这三条是起点：<b>投影 + 常数 + 四则运算 + 复合</b>可以工厂化地生产连续函数，这正是下面例 4–7 的机器。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 4–7</span><span class="ctitle">多项式、商与分段函数的连续性判定</span><span class="pg">课本 p.29</span></div>
+    <ul>
+      <li><b>例 4</b>：$n$ 元多项式处处连续；多项式之商在分母非零点连续：$\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}\dfrac{P(\boldsymbol{x})}{Q(\boldsymbol{x})}=\dfrac{P(\boldsymbol{a})}{Q(\boldsymbol{a})}$（$Q(\boldsymbol{a})\ne 0$）。</li>
+      <li><b>例 5</b>：$f=\dfrac{x^2y^2}{x^2+y^2}$ 作为多项式之商在 $\{\boldsymbol{0}\}^{\mathrm{c}}$ 上连续；§8.6 例 1 又证得原点极限为 0，故<b>补充定义 $f(\boldsymbol{0})=0$ 后 $f$ 在 $\mathbb{R}^2$ 上处处连续</b>。</li>
+      <li><b>例 6</b>：$f(x,y,z)=\sin(xy+z)$ 是连续函数与连续函数的复合，在 $\mathbb{R}^{3}$ 上连续。</li>
+      <li><b>例 7</b>：$f=\dfrac{xy}{x^2+y^2}$（原点另定义）在 $\mathbb{R}^2\setminus\{\boldsymbol{0}\}$ 上连续，但原点重极限不存在（§8.6 例 2），故无论原点怎么补定义都<b>不</b>连续：$f$ 恰在 $\mathbb{R}^{2}\setminus\{\boldsymbol{0}\}$ 上连续。</li>
+    </ul>
+    <div class="note n-exam"><span class="note-t">真题动作的完整链条</span>「判断分段函数在原点是否连续」的标准三段式：① 在 $\{\boldsymbol{0}\}^{\mathrm{c}}$ 上引例 4 说连续；② 算原点重极限——先路径检验，能一击否定就收工，否则走夹逼；③ 若极限为 $l$，看原点补的值是否等于 $l$。另注意：<b>「连续」与「偏导存在」是两件事</b>——例 7 的函数在原点的两个偏导数都存在，却在原点不连续；「连续 ⇒ 偏导存在」更是反例成堆（在第 9 章展开）。</div>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.7.2</span><span class="ctitle">一致连续</span><span class="pg">课本 p.29</span></div>
+    <p>若对任意给定的 $\varepsilon>0$，总存在 $\delta>0$（只依赖 $\varepsilon$，不依赖具体点），当 $\boldsymbol{x},\boldsymbol{y}\in D$ 且 $\|\boldsymbol{x}-\boldsymbol{y}\|<\delta$ 时 $|f(\boldsymbol{x})-f(\boldsymbol{y})|<\varepsilon$，称 $f$ 在 $D$ 上<b>一致连续</b>。</p>
+    <p>直接可见：有限点集上的任何函数一致连续；常值函数在任意集合上一致连续。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 8 / 例 9</span><span class="ctitle">不一致连续的招牌反例，与一条充分条件</span><span class="pg">课本 p.29–30</span></div>
+    <p><b>例 8</b>：$f=\dfrac{xy}{x^2+y^2}$ 在其定义域 $\{\boldsymbol{0}\}^{\mathrm{c}}$ 上不一致连续。证：$x\ne 0$ 时 $\|(x,x)-(x,0)\|=|x|$ 任意小，而 $|f(x,x)-f(x,0)|=\dfrac12$。</p>
+    <p><b>例 9</b>：若 $f$ 在 $\mathbb{R}^{n}$ 上连续，且 $\lim\limits_{\|\boldsymbol{x}\|\to\infty}f(\boldsymbol{x})$ 存在且有限，则 $f$ 在 $\mathbb{R}^{n}$ 上一致连续。证明思路：远处两点由无穷远极限直接控制；近处用大闭球 $\widehat{B}_{r+1}(\boldsymbol{0})$ 上的紧致性给出一致连续；再证明距离差 $<\delta<1$ 的两点或者同在大闭球内、或者同在球外（否则 $\|\boldsymbol{x}_2\|<\delta+r<1+r$），两条通道合并成整体结论。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.7.1–8.7.5</span><span class="ctitle">连续函数的五条主动脉</span><span class="pg">课本 p.30–32</span></div>
+    <p><b>8.7.1（紧致 ⟹ 一致连续）</b>：反证——若不一致连续，存在 $\varepsilon_0>0$ 与点对 $\boldsymbol{x}_i,\boldsymbol{y}_i$ 使 $\|\boldsymbol{x}_i-\boldsymbol{y}_i\|<1/i$ 而 $|f(\boldsymbol{x}_i)-f(\boldsymbol{y}_i)|\geqslant\varepsilon_0$；列紧性取 $\boldsymbol{x}_{k_i}\to\boldsymbol{x}$，则 $\boldsymbol{y}_{k_i}\to\boldsymbol{x}$，连续性迫使差趋于 0，矛盾。</p>
+    <p><b>8.7.2（紧致的连续像紧致）</b>：$f(D)$ 中任取点列，拉回 $D$ 取子列，连续性把极限送进 $f(D)$。课本同时提醒：连续函数<b>不</b>保持有界性、闭性、开性——$1/x$ 把 $(0,1)$ 映成无界集、把 $[1,+\infty)$ 映成 $(0,1]$（非闭）；$x^2$ 把 $(-1,1)$ 映成 $[0,1)$（非开）。</p>
+    <p><b>8.7.3（最值定理）</b>：$D$ 紧致、$f$ 连续 $\Longrightarrow$ $f$ 取到最大值与最小值。证明：$f(D)$ 是有界闭集，$M=\sup f(D)$ 由构造点列 + 闭性落入 $f(D)$。</p>
+    <p><b>8.7.4（连通的连续像连通）</b>：反证 $f(D)=A\cup B$ 为不相交非空集的分解，则 $D=f^{-1}(A)\cup f^{-1}(B)$ 与 $D$ 连通矛盾（细节：把 $f^{-1}(B)$ 中收敛点列送过 $f$，得 $A\cap B'\ne\varnothing$）。</p>
+    <p><b>8.7.5（介值定理）</b>：$D$ 连通、$f$ 连续，若 $f(\boldsymbol{a})<r<f(\boldsymbol{b})$，则存在 $\boldsymbol{c}\in D$ 使 $f(\boldsymbol{c})=r$。证明：$f(D)$ 连通 $\Rightarrow$ 是区间（定理 8.5.2）$\Rightarrow$ $(f(\boldsymbol{a}),f(\boldsymbol{b}))\subset f(D)$。</p>
+    <div class="note n-key"><span class="note-t">记忆轴（课本总结）</span>这些性质「大多来自定义域的紧致性，只有介值定理依赖连通性」。<b>紧致 $\to$ 一致连续 + 有界 + 取最值；连通 $\to$ 介值。</b>课本还特意指出紧致 $\ne$ 介值：$D=\{\boldsymbol{a},\boldsymbol{b}\}$ 紧致、$f(\boldsymbol{a})=1$、$f(\boldsymbol{b})=-1$，却无零点。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 10 ★</span><span class="ctitle">课本「稍难的例子」：凸区域上的凸函数必连续</span><span class="pg">课本 p.32–34</span></div>
+    <p>凸函数定义为满足 $f(\lambda\boldsymbol{x}+(1-\lambda)\boldsymbol{y})\leqslant\lambda f(\boldsymbol{x})+(1-\lambda)f(\boldsymbol{y})$ 的函数；由定义立得「线段上的值不超过两端点函数值的较大者」。证明分三步：</p>
+    <ul>
+      <li><b>紧致块上有上界</b>：闭长方体上的值囿于 $2^{n}$ 个顶点值；再用有限覆盖把结论推向任意紧致子集。</li>
+      <li><b>紧致块上有下界</b>：否则由点列与对称点 $2\boldsymbol{x}_0-\boldsymbol{x}_{k_i}\in D$ 及凸性 $f(\boldsymbol{x}_0)\leqslant\frac12f(\boldsymbol{x}_{k_i})+\frac12f(2\boldsymbol{x}_0-\boldsymbol{x}_{k_i})$ 推出 $f(\boldsymbol{x}_0)=-\infty$，不可能。</li>
+      <li><b>连续性</b>：把 $B_r(\boldsymbol{a})$ 内两点用球面点 $\boldsymbol{z}=\boldsymbol{y}+\lambda(\boldsymbol{x}-\boldsymbol{y})$ 表示（$\lambda>1$），得 Lipschitz 型估计 $|f(\boldsymbol{x})-f(\boldsymbol{y})|\leqslant\dfrac{2M}{r}\|\boldsymbol{x}-\boldsymbol{y}\|$——直接是一致连续。</li>
+    </ul>
+    <p>这道题把本章前半的武器全部串起来：凸性、紧致、有限覆盖、一致连续估计。结论本身（凸 $\Rightarrow$ 连续）值得记住。</p>
+  </div>
+</section>
+
+<!-- ============ §8.8 ============ -->
+<section id="s88">
+  <h2><span class="h2-no">§8.8</span>连续映射</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义 8.8.1 / 8.8.2</span><span class="ctitle">映射的极限与映射的连续</span><span class="pg">课本 p.36–37</span></div>
+    <p>考虑 $\boldsymbol{f}:D\to\mathbb{R}^{m}$（$D\subset\mathbb{R}^{n}$）；给定 $\boldsymbol{f}$ 等价于给定 $m$ 个分量函数 $\boldsymbol{f}=(f_1,f_2,\cdots,f_m)$。极限的定义与函数完全同型，只是把绝对值换成范数：对任意 $\varepsilon>0$ 存在 $\delta>0$，当 $\boldsymbol{x}\in D$ 且 $0<\|\boldsymbol{x}-\boldsymbol{a}\|<\delta$ 时 $\|\boldsymbol{f}(\boldsymbol{x})-\boldsymbol{p}\|<\varepsilon$，记 $\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}\boldsymbol{f}(\boldsymbol{x})=\boldsymbol{p}$。</p>
+    <p>球语言：任给像空间的球 $B_\varepsilon(\boldsymbol{p})\subset\mathbb{R}^{m}$，都能找到 $B_\delta(\boldsymbol{a})\subset\mathbb{R}^{n}$，使 $D$ 中落在空心球内的点其像落在 $B_\varepsilon(\boldsymbol{p})$ 内。课本注意：两个球的维数一般不同，需要时添上字母区分。</p>
+    <p>把「$0<$」去掉、把 $\boldsymbol{p}$ 换成 $\boldsymbol{f}(\boldsymbol{a})$，就是<b>映射在一点连续</b>（定义 8.8.2）。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 8.8.1–8.8.6</span><span class="ctitle">映射的全部结论：按分量 + 与函数版逐条平行</span><span class="pg">课本 p.36–38</span></div>
+    <ul>
+      <li><b>8.8.1</b>：$\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}\boldsymbol{f}(\boldsymbol{x})=\boldsymbol{p}$ $\Longleftrightarrow$ 每个分量 $\lim\limits_{\boldsymbol{x}\to\boldsymbol{a}}f_i(\boldsymbol{x})=p_i$（$i=1,\cdots,m$）——定理 8.2.2 的翻版。</li>
+      <li><b>8.8.2</b>：极限保持数乘与加法：$\lambda\boldsymbol{f}\to\lambda\boldsymbol{p}$，$\boldsymbol{f}+\boldsymbol{g}\to\boldsymbol{p}+\boldsymbol{q}$。</li>
+      <li><b>8.8.3（开集原像刻画）</b>：$D$ 是开集时，$\boldsymbol{f}$ 在 $D$ 上连续 $\Longleftrightarrow$ 对 $\mathbb{R}^{m}$ 中任何开集 $G$，原像 $f^{-1}(G)=\{\boldsymbol{x}\in D:\boldsymbol{f}(\boldsymbol{x})\in G\}$ 是 $\mathbb{R}^{n}$ 中的开集。</li>
+      <li><b>8.8.4–8.8.6</b>：紧致集上的连续映射一致连续；连通集的连续像连通；紧致集的连续像紧致——与 §8.7 逐条平行，证明「逐字照抄，把绝对值改成范数」。</li>
+    </ul>
+    <div class="note n-key"><span class="note-t">为什么值得单独记</span>「连续 $\Longleftrightarrow$ 开集原像开集」是本书第一次用<b>集合</b>而不靠 $\varepsilon$-$\delta$ 刻画连续性；它与「按分量判极限」合起来，是第 9 章以后处理映射（含曲线、曲面参数化）的两条默认通道。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1</span><span class="ctitle">线性映射连续</span><span class="pg">课本 p.36</span></div>
+    <p>给定 $m\times n$ 矩阵 $A=(a_{ij})$，通过矩阵等式 $\boldsymbol{y}=A\boldsymbol{x}$ 确定 $\mathbb{R}^{n}\to\mathbb{R}^{m}$ 的<b>线性映射</b>——最简单的一类映射。每个分量 $y_i=a_{i1}x_1+\cdots+a_{in}x_n$ 是一次多项式，从而连续；由 8.8.1 按分量判别，<b>线性映射在 $\mathbb{R}^{n}$ 上连续</b>。用矩阵范数还能得到更精细的估计 $\|\boldsymbol{f}(\boldsymbol{x})-\boldsymbol{f}(\boldsymbol{x}_0)\|\leqslant\|A\|\,\|\boldsymbol{x}-\boldsymbol{x}_0\|$，其实它还是一致连续的。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">收尾练习</span><span class="ctitle">两条典型通道（练习 8.8）</span></div>
+    <ul>
+      <li><b>练习 8.8 第 1 题</b>：$f$ 连续时 $f(\bar{E})\subset\overline{f(E)}$——取点列把闭包送过映射，极限不逃出像的闭包；等号在 $E$ 紧致（或 $E$ 闭 + 像闭）等条件下成立，读题时要自己补条件。第 9 章以后它是「连续映射不涨开闭包」的标准句。</li>
+      <li><b>练习 8.8 第 2 题</b>：$f:E\to\mathbb{R}^{m}$ 的图像 $G(f)=\{(x,f(x)):x\in E\}$——$E$ 闭 + $f$ 连续时 $G(f)$ 是闭集；$E$ 紧致时 $G(f)$ 紧致；反过来 $G(f)$ 紧致还能推出 $f$ 连续。图像法（把函数看成集合）是后文隐函数、曲线的起点。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 课本习题精选 ============ -->
+<section id="exercises">
+  <h2><span class="h2-no">10</span>课本习题（全录 61 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>§8.1 $n$ 维 Euclid 空间</h3>
+<h4>练习题（7 题）</h4>
+  <ol>
+    <li>设 $\boldsymbol x=(1,1,\cdots,1)\in\mathbb R^n$。求证：$\boldsymbol x$ 与各单位坐标向量 $\boldsymbol e_1,\boldsymbol e_2,\cdots,\boldsymbol e_n$ 的夹角相等。</li>
+    <li>设 $\boldsymbol x,\boldsymbol y$ 是欧氏空间中的向量，$\theta$ 是这两个向量间的夹角。试证明余弦定理成立：$\|\boldsymbol x-\boldsymbol y\|^2=\|\boldsymbol x\|^2+\|\boldsymbol y\|^2-2\|\boldsymbol x\|\|\boldsymbol y\|\cos\theta$。</li>
+    <li>设 $\boldsymbol x,\boldsymbol y$ 是欧氏空间中两个相互正交的向量。试证明勾股定理成立：$\|\boldsymbol x+\boldsymbol y\|^2=\|\boldsymbol x\|^2+\|\boldsymbol y\|^2$。</li>
+    <li>设 $\boldsymbol x,\boldsymbol y$ 为欧氏空间中的任意两个向量。证明平行四边形定理：$\|\boldsymbol x+\boldsymbol y\|^2+\|\boldsymbol x-\boldsymbol y\|^2=2(\|\boldsymbol x\|^2+\|\boldsymbol y\|^2)$。</li>
+    <li>设 $\boldsymbol a,\boldsymbol b$ 是欧氏空间中两个不同的点，记 $2r=\|\boldsymbol a-\boldsymbol b\|&gt;0$。求证：$B_r(\boldsymbol a)\cap B_r(\boldsymbol b)=\varnothing$。</li>
+    <li>设 $\boldsymbol x=(x_1,x_2,\cdots,x_n)$。证明：对任意的 $\boldsymbol x\in\mathbb R^n$，有 $\displaystyle\frac1{\sqrt n}\sum_{i=1}^n|x_i|\le\|\boldsymbol x\|\le\sum_{i=1}^n|x_i|$。</li>
+    <li>证明：对任意的 $\boldsymbol x=(x_1,x_2,\cdots,x_n)\in\mathbb R^n$，有 $\displaystyle\max_i|x_i|\le\|\boldsymbol x\|\le n\max_i|x_i|$。</li>
+  </ol>
+<h3>§8.2 $\mathbb R^n$ 中点列的极限</h3>
+<h4>练习题（5 题）</h4>
+  <ol>
+    <li>在 $\mathbb R^2$ 中，定义点列 $\displaystyle\boldsymbol x_n=\left(\frac1n,\sqrt[n]{n}\right)$（$n=1,2,\cdots$）。求证：$\displaystyle\lim_{n\to\infty}\boldsymbol x_n=(0,1)$。</li>
+    <li>证明定理 8.2.1。</li>
+    <li>证明：欧氏空间中的收敛点列必是有界的。</li>
+    <li>证明：欧氏空间中的基本列必是有界的。</li>
+    <li>设 $\{\boldsymbol x_k\}$ 是 $n$ 维欧氏空间中的点列，并且级数 $\displaystyle\sum_{k=1}^{\infty}\|\boldsymbol x_{k+1}-\boldsymbol x_k\|$ 收敛。求证：$\{\boldsymbol x_k\}$ 收敛。</li>
+  </ol>
+<h3>§8.3 $\mathbb R^n$ 中的开集和闭集</h3>
+<h4>练习题（13 题）</h4>
+  <ol>
+    <li>对下列各题中指定的集合 $A$，求出 $A^\circ,\overline A$ 和 $\partial A$：</li>
+    <li>设 $A=\{(x,y):x,y\text{ 均为有理数}\}$。求 $A^\circ$、$(A^c)^\circ$ 和 $\partial A$。</li>
+    <li>证明：$\boldsymbol p\in\overline A$ 的一个充分必要条件是，对一切 $r&gt;0$，有 $B_r(\boldsymbol p)\cap A\ne\varnothing$。</li>
+    <li>证明 De Morgan 对偶原理。</li>
+    <li>证明：$\partial A=\overline A\cap(A^\circ)^c$。</li>
+    <li>证明：$A^\circ=(\overline{A^c})^c$。</li>
+    <li>证明：（1）$(A\cap B)^\circ=A^\circ\cap B^\circ$；（2）$\overline{A\cup B}=\overline A\cup\overline B$。</li>
+    <li>（1）作出闭集列 $\{F_i\}$，使得 $\displaystyle\bigcup_{i=1}^{\infty}F_i=B_1(\boldsymbol0)$；（2）作出开集列 $\{G_i\}$，使得 $\displaystyle\bigcap_{i=1}^{\infty}G_i=\overline{B_1(\boldsymbol0)}$。</li>
+    <li>设 $I$ 为一指标集。证明：（1）$\displaystyle\overline{\bigcap_{\alpha\in I}A_\alpha}\subset\bigcap_{\alpha\in I}\overline{A_\alpha}$；（2）$\displaystyle\left(\bigcup_{\alpha\in I}A_\alpha\right)^\circ\supset\bigcup_{\alpha\in I}A_\alpha^\circ$。举例说明：真包含关系是可以出现的。</li>
+    <li>设 $E\subset\mathbb R^n$。求证：$\partial E$ 是闭集。</li>
+    <li>设 $G_1,G_2\subset\mathbb R^n$ 是两个不相交的开集。证明：$G_1\cap\overline{G_2}=\overline{G_1}\cap G_2=\varnothing$。</li>
+    <li>设 $P:\mathbb R^2\to\mathbb R$，具体地说，对 $(x,y)\in\mathbb R^2$，$P(x,y)=x$，$P$ 叫作投影算子。设 $E$ 为 $\mathbb R^2$ 中的开集，求证：$P(E)$ 是 $\mathbb R$ 中的开集。举出例子：$A$ 是 $\mathbb R^2$ 中的闭集，但 $P(A)$ 不是 $\mathbb R$ 中的闭集。</li>
+    <li>$E$ 为闭集的充分必要条件是 $E\supset\partial E$。</li>
+  </ol>
+<h4>问题（3 题）</h4>
+  <ol>
+    <li>对任意的 $E\subset\mathbb R^n$，证明：$\partial\overline E\subset\partial E$。</li>
+    <li>设 $G$ 为 $\mathbb R$ 中非空的有界开集。求证：$G$ 必可表示为至多可数个互不相交的开区间的并集。</li>
+    <li>设 $F$ 是 $\mathbb R$ 中非空的有界闭集。证明：如果它不是一个闭区间，那么它一定是由一个闭区间除去至多可数个互不相交的开区间构成的。</li>
+  </ol>
+<h3>§8.4 列紧集和紧致集</h3>
+<h4>练习题（5 题）</h4>
+  <ol>
+    <li>设 $P$ 是投影算子，$A\subset\mathbb R^2$ 是紧致集。证明：$P(A)$ 也是紧致集。</li>
+    <li>设 $A,B\subset\mathbb R$。证明：$A\times B$ 为紧致集的充分必要条件是 $A$ 和 $B$ 都是紧致集。 [待核验：原页未限定 $A,B$ 非空；若一个因子为空，按通常空集紧致的约定，反向命题有例外。这里照录题面。]</li>
+    <li>证明：$A\subset\mathbb R^n$ 为紧致集的充分必要条件是，若 $\mathscr F=\{A_\alpha\}$ 是 $\mathbb R^n$ 中的一个闭集族，并且 $\displaystyle A\cap\left(\bigcap_\alpha A_\alpha\right)=\varnothing$，则有 $A_1,A_2,\cdots,A_k\in\mathscr F$，使得 $\displaystyle A\cap\left(\bigcap_{i=1}^k A_i\right)=\varnothing$。</li>
+    <li>如果 $A\subset\mathbb R^n$ 的每一个无穷子集在 $A$ 中都有一个凝聚点，那么称 $A$ 是 Fréchet（弗雷歇，1878—1973）紧的。证明：在 $\mathbb R^n$ 中，Fréchet 紧与列紧是等价的。</li>
+    <li>设 $F_1,F_2,\cdots,F_k,\cdots$ 是 $\mathbb R^n$ 中的非空闭集，满足 $F_k\supset F_{k+1}$（$k\ge1$）。问是否一定有 $\displaystyle\bigcap_{k=1}^{\infty}F_k\ne\varnothing$？若改为非空紧致集又如何？</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $E\subset\mathbb R^n$ 是一有界闭集，$\{G_\alpha\}$ 是 $E$ 的一个开覆盖。证明：必定存在 $\sigma&gt;0$（通常称这个数为开覆盖 $\{G_\alpha\}$ 的 Lebesgue 数），使得只要集合 $F\subset\mathbb R^n$ 满足条件 $F\cap E\ne\varnothing$、$\operatorname{diam}(F)&lt;\sigma$，就能断言 $F$ 能被 $\{G_\alpha\}$ 中某一个开集所覆盖。</li>
+    <li>试用第 1 题的结论证明：设 $\{G_\alpha\}$ 是 $\mathbb R^n$ 中有界闭集 $E$ 的一个开覆盖，那么必能从 $\{G_\alpha\}$ 中选出有限个开集，它们仍能组成 $E$ 的开覆盖。</li>
+  </ol>
+<h3>§8.5 集合的连通性</h3>
+<h4>练习题（2 题）</h4>
+  <ol>
+    <li>证明：区域必是道路连通的。这就是说，对于开集而言连通与道路连通是等价的。</li>
+    <li>设 $A\subset\mathbb R^n$。如果 $A$ 既是开集又是闭集，求证：$A=\varnothing$，或者 $A=\mathbb R^n$。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $E\subset\mathbb R^n$ 为连通集。求证：$\overline E$ 也是连通集。</li>
+    <li>设 $E=\{(x,y)\in\mathbb R^2:y=\sin(1/x),\ 0&lt;x\le 2/\pi\}$。证明：$\overline E$ 是连通集，但不是道路连通的。</li>
+  </ol>
+<h3>§8.6 多变量函数的极限</h3>
+<h4>练习题（8 题）</h4>
+  <ol>
+    <li>确定并画出下列二元函数的定义域：</li>
+    <li>确定下列三元函数的定义域，并几何地描述它们：</li>
+    <li>计算下列极限：</li>
+    <li>证明定理 8.6.2。</li>
+    <li>设二元函数 $f$ 在 $(x_0,y_0)$ 处的某一空心邻域上有定义。对任意固定的 $y$，如果极限 $\lim_{x\to x_0}f(x,y)$ 存在，就令 $\varphi(y)=\lim_{x\to x_0}f(x,y)$；它是一个定义在 $y_0$ 近旁的函数；如果 $\lim_{y\to y_0}\varphi(y)$ 存在，就令 $\displaystyle\lim_{y\to y_0}\lim_{x\to x_0}f(x,y)=\lim_{y\to y_0}\varphi(y)$，称之为函数 $f$ 在点 $(x_0,y_0)$ 处的一个累次极限。类似地，可以定义另一个累次极限 $\displaystyle\lim_{x\to x_0}\lim_{y\to y_0}f(x,y)$。</li>
+    <li>设 $\displaystyle f(x,y)=(x+y)\sin\frac1x\sin\frac1y$。证明：$f$ 在原点处两个累次极限均不存在，但是极限 $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=0$。</li>
+    <li>设 $\displaystyle\lim_{\substack{x\to x_0\\y\to y_0}}f(x,y)=a$ 存在，又对 $y_0$ 近旁的每一个 $y$，极限 $\displaystyle\lim_{x\to x_0}f(x,y)=h(y)$ 存在。证明：$\displaystyle\lim_{y\to y_0}h(y)=a$。</li>
+    <li>证明：若二元函数 $f$ 在某一点处的两个累次极限和极限都存在，则这三个值必相等。</li>
+  </ol>
+<h3>§8.7 多变量连续函数</h3>
+<h4>练习题（7 题）</h4>
+  <ol>
+    <li>求出下列函数 $f$ 的间断点集：</li>
+    <li>设 $\displaystyle f(x,y)=\frac1{1-xy}$（$(x,y)\in[0,1]^2\setminus\{(1,1)\}$）。求证：$f$ 连续但不一致连续。</li>
+    <li>设 $A\subset\mathbb R^n$，$\boldsymbol p\in\mathbb R^n$。定义 $\displaystyle\rho(\boldsymbol p,A)=\inf_{\boldsymbol a\in A}f\|\boldsymbol p-\boldsymbol a\|$，称之为点 $\boldsymbol p$ 到集合 $A$ 的距离。证明： [待核验：原页的 $\inf$ 与范数之间确有一个独立的 $f$ 样字形，已按原页保留；该字形的含义及是否为原书排印问题尚未确认，不能无说明删除。2026-10-10 对照原页与公式裁图复核。]</li>
+    <li>设 $A,B\subset\mathbb R^n$。定义 $\displaystyle\rho(A,B)=\inf\{\|\boldsymbol p-\boldsymbol q\|:\boldsymbol p\in A,\boldsymbol q\in B\}$，称之为集合 $A$ 和 $B$ 之间的距离。证明：</li>
+    <li>作出两个不相交的闭集 $A,B$，使得 $\rho(A,B)=0$。</li>
+    <li>设 $A\subset\mathbb R^n$ 有界。证明：对任何常数 $c&gt;0$，$\{\boldsymbol p\in\mathbb R^n:\rho(\boldsymbol p,A)\le c\}$ 是紧致集。</li>
+    <li>设连续函数 $f:\mathbb R^n\to\mathbb R$ 既取正值，也取负值。求证：集合 $E=\{\boldsymbol p\in\mathbb R^n:f(\boldsymbol p)\ne0\}$ 是非连通集。</li>
+  </ol>
+<h4>问题（2 题）</h4>
+  <ol>
+    <li>设 $A,B$ 是 $\mathbb R^n$ 中不相交的闭集。证明：存在 $\mathbb R^n$ 上的连续函数 $h$，使得 $h(A)=\{1\}$、$h(B)=\{0\}$、$h(\mathbb R^n)=[0,1]$。 [待核验：原页未写 $A,B$ 非空；若为空，$h(A)$ 或 $h(B)$ 不能是单元素集。这里照录原页。]</li>
+    <li>设 $A,B$ 是 $\mathbb R^n$ 中不相交的闭集。证明：存在不相交的开集 $G$ 和 $H$，使得 $A\subset G$、$B\subset H$。</li>
+  </ol>
+<h3>§8.8 连续映射</h3>
+<h4>练习题（2 题）</h4>
+  <ol>
+    <li>设 $f:\mathbb R^n\to\mathbb R^m$ 连续，$E\subset\mathbb R^n$。求证：$f(\overline E)\subset\overline{f(E)}$。在什么条件下有 $f(\overline E)=\overline{f(E)}$？</li>
+    <li>设 $E\subset\mathbb R$，$f:E\to\mathbb R^m$。证明：</li>
+  </ol>
+<h4>问题（3 题）</h4>
+  <ol>
+    <li>设 $E\subset\mathbb R^n$ 是紧致集，$f$ 是 $E$ 上的连续单射，记 $f(E)=D$。证明：映射 $f^{-1}$ 在 $D$ 上连续。</li>
+    <li>证明：不存在从 $[0,1]$ 到单位圆周上的一对一的连续映射。</li>
+    <li>证明：不存在从 $[0,1]$ 到 $[0,1]\times[0,1]$ 上的一对一的连续映射。</li>
+  </ol>
+</section>
+
+<!-- ============ 真题链接 ============ -->
+<section id="zhenti">
+  <h2><span class="h2-no">03</span>真题链接（南科大 610）</h2>
+  <p>本章真题均为「重极限 + 连续性」短题（难度标 D3），共同动作是：先算（或否定）原点重极限，再与原点处的补定义对齐。两题均为回忆版/原始题面整理，题面以原卷为准。</p>
+  <ul class="exam-list">
+    <li><span class="exam-year">2024</span><b>第 7 题</b>：设 $\varphi(0)=0$、$\varphi'(0)=1$，判断由 $\varphi$ 构成的分式函数在原点处的连续性与偏导数——路径/定义检验型。<span class="meta-row"><span class="m">D3</span><span class="m">连续 + 偏导</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+    <li><span class="exam-year">2026</span><b>第 2(1) 题</b>：$f(x,y)=x-y+\dfrac{xy^{2}}{x^{2}+y^{2}}$（原点另定义），判断在原点处的连续性——夹逼与路径检验。<span class="meta-row"><span class="m">D3</span><span class="m">重极限</span><span class="m">回忆版，题面以原卷为准</span></span></li>
+  </ul>
+  <div class="note n-exam"><span class="note-t">真题视角</span>题面都很短，但都要连做三件事：① 写清函数在哪些点上有定义（分母为零处单独处理，别漏定义域）；② 判定重极限——先走路径通道尝试一击否定，再考虑夹逼估计（如 $|xy^{2}|/(x^{2}+y^{2})\leqslant|x|$ 这一族）；③ 区分「连续」「偏导存在」「可微」：本章只负责第一格；2024 题后半（偏导数）与可微性判定属第 9 章，不要在本章框架里抢答最终结论。</div>
+  <div class="note n-warn"><span class="note-t">边界</span>上述题面来自回忆版整理，个别符号以原卷为准；本页引用它们只为说明本章知识在何处被调用，不代表任何做题进度或掌握结论。</div>
+</section>
+
+<!-- ============ 自测清单 ============ -->
+<section id="checklist">
+  <h2><span class="h2-no">04</span>自测清单</h2>
+  <p>合上课本与讲解，逐条在纸上/口头完成，勾选表示「当场已验证」。勾选记录保存在本机浏览器中。</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox"><span>写出范数三性质、内积四性质、距离的三角形不等式，并复述三角形不等式的证明路线（C–S + 展开）</span></label></li>
+    <li><label><input type="checkbox"><span>默写点列极限的 $\varepsilon$-$N$ 定义与球语言，说明「收敛点列必有界」的理由</span></label></li>
+    <li><label><input type="checkbox"><span>证明或复述「点列收敛 $\Longleftrightarrow$ 按分量收敛」，并说出关键不等式</span></label></li>
+    <li><label><input type="checkbox"><span>分别用一句话说出 Cauchy 收敛原理与 Bolzano–Weierstrass 定理的用途（判定 vs 抽取）</span></label></li>
+    <li><label><input type="checkbox"><span>定义内点、开集、闭集、内部、闭包、边界，并写出三分割公式 $E^\circ\cup(E^{\mathrm{c}})^\circ\cup\partial E=\mathbb{R}^{n}$</span></label></li>
+    <li><label><input type="checkbox"><span>用 $\bigcap_{i=1}^{\infty}B_{1/i}(\boldsymbol{a})=\{\boldsymbol{a}\}$ 说明「有限交」条件不能去；说出开集、闭集运算各三条</span></label></li>
+    <li><label><input type="checkbox"><span>说出闭集的两个等价判别（$E'\subset E$ 与点列判别），并各写一个使用场景</span></label></li>
+    <li><label><input type="checkbox"><span>写出闭集套定理的完整条件，并说明直径趋于 0 为什么不能省</span></label></li>
+    <li><label><input type="checkbox"><span>叙述并比较列紧、紧致与有界闭三者，说明必要性两个半段各用什么工具</span></label></li>
+    <li><label><input type="checkbox"><span>写出一条连通但不道路连通的集合例子，并说明开集上两种连通为什么等价</span></label></li>
+    <li><label><input type="checkbox"><span>默写多元极限的 $\varepsilon$-$\delta$ 定义与归并原理，解释定义中 $0<$ 与「$\boldsymbol{a}\in D'$」的作用</span></label></li>
+    <li><label><input type="checkbox"><span>独立复现两个经典反例：$\frac{xy}{x^2+y^2}$ 与 $\frac{x^2y}{x^4+y^2}$，并说明后者的抛物线路径是怎么找到的</span></label></li>
+    <li><label><input type="checkbox"><span>说出重极限与累次极限的三条互不蕴含关系，各配一例并标出来源（练习 8.6 第 5–8 题）</span></label></li>
+    <li><label><input type="checkbox"><span>叙述「紧致 $\to$ 一致连续 + 最值」与「连通 $\to$ 介值」，并指出各自依赖哪个条件、举一个说明紧致不含介值的例子</span></label></li>
+    <li><label><input type="checkbox"><span>写出「映射连续 $\Longleftrightarrow$ 各分量连续 $\Longleftrightarrow$ 开集原像为开集」三种说法，并说明线性映射为什么连续</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ 来源与边界 ============ -->
+<section id="source">
+  <h2><span class="h2-no">05</span>来源与边界</h2>
+  <div class="src-note">
+    <p><b>内容依据</b>：常庚哲、史济怀《数学分析教程》第三版上册第 8 章（印刷页 1–38）。定义、定理、例题编号取自课本骨架（定义 8.2.1–8.4.3、8.5.1–8.8.2，定理 8.2.1–8.4.2、8.5.1–8.8.6，推论 8.3.1）；页内标注的「课本 p.X」指印刷页码。</p>
+    <p><b>真题依据</b>：南科大 610 回忆版/原始题面整理——2024 第 7 题、2026 第 2(1) 题；题面以原卷为准。</p>
+    <p><b>证据边界</b>：本页是复习讲解材料，由 Hermes 生成于 2026-10-13；「★」为课本内容级重要例题/定理标记。本页不构成任何学习进度或掌握度记录——是否掌握以独立作答与间隔复现为准。</p>
+  </div>
+</section>
+
+<div class="foot">本页为 Hermes 生成的复习讲解材料（仅供参考），以指定课本原文为准。生成日期 2026-10-13。</div>
+</div><!-- /.wrap -->
+</main>
+</div><!-- /.app -->
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

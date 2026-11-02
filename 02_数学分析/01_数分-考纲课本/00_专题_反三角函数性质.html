@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题 · 反三角函数性质</title>
+<link rel="stylesheet" href="_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="_html_assets/guide.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 专题</div>
+  <div class="sb-title">反三角函数性质</div>
+  <nav class="toc">
+    <a href="#s1">01 三张基本卡</a>
+    <a href="#s2">02 特殊值表</a>
+    <a href="#s3">03 恒等式</a>
+    <a href="#s4">04 导数与积分</a>
+    <a href="#s5">05 三个高频易错</a>
+    <a href="#s6">06 用在哪</a>
+    <a href="#checklist">07 自测清单</a>
+    <a href="#source">08 来源与边界</a>
+  </nav>
+  <div class="sb-foot">查阅卡，不替代做题。公式离线渲染，右侧可加批注，节标题右侧可折叠。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 · 工具专题</div>
+    <h1>反三角函数性质</h1>
+    <p class="hero-sub">三张基本卡 · 特殊值 · 恒等式 · 导数与积分 · 三个易错 · 用在哪</p>
+    <div class="hero-tags">
+      <span class="tag">查阅卡</span><span class="tag">2026-10-28 生成</span>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+<section id="s1">
+  <h2><span class="h2-no">01</span>三张基本卡</h2>
+  <table class="tbl">
+    <tr><th></th><th>$y=\arcsin x$</th><th>$y=\arccos x$</th><th>$y=\arctan x$</th></tr>
+    <tr><td>定义域</td><td>$[-1,1]$</td><td>$[-1,1]$</td><td>$\mathbb R$</td></tr>
+    <tr><td>值域</td><td>$\left[-\frac\pi2,\frac\pi2\right]$</td><td>$[0,\pi]$</td><td>$\left(-\frac\pi2,\frac\pi2\right)$</td></tr>
+    <tr><td>单调</td><td>增</td><td>减</td><td>增</td></tr>
+    <tr><td>奇偶</td><td>奇</td><td>非奇非偶</td><td>奇</td></tr>
+    <tr><td>端点</td><td>$\arcsin(\pm1)=\pm\frac\pi2$</td><td>$\arccos 1=0,\ \arccos(-1)=\pi$</td><td>$x\to\pm\infty$ 时 $\to\pm\frac\pi2$</td></tr>
+  </table>
+  <div class="note"><b>一句话记</b>：$\arcsin$ 只认 $[-\frac\pi2,\frac\pi2]$，$\arccos$ 只认 $[0,\pi]$，$\arctan$ 只认 $(-\frac\pi2,\frac\pi2)$。值域记错，后面全错。</div>
+</section>
+
+<section id="s2">
+  <h2><span class="h2-no">02</span>特殊值表（要能倒背）</h2>
+  <table class="tbl">
+    <tr><th>$x$</th><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac{\sqrt3}{2}$</td><td>$1$</td></tr>
+    <tr><th>$\arcsin x$</th><td>$0$</td><td>$\frac\pi6$</td><td>$\frac\pi4$</td><td>$\frac\pi3$</td><td>$\frac\pi2$</td></tr>
+    <tr><th>$\arccos x$</th><td>$\frac\pi2$</td><td>$\frac\pi3$</td><td>$\frac\pi4$</td><td>$\frac\pi6$</td><td>$0$</td></tr>
+    <tr><th>$\arctan x$</th><td>$0$</td><td colspan="3">$\arctan\frac{\sqrt3}{3}=\frac\pi6,\ \arctan 1=\frac\pi4,\ \arctan\sqrt3=\frac\pi3$</td><td>—</td></tr>
+  </table>
+  <p>负值靠奇偶性：$\arcsin(-x)=-\arcsin x$，$\arctan(-x)=-\arctan x$，而 $\arccos(-x)=\pi-\arccos x$。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="h2-no">03</span>恒等式（考场上直接调用）</h2>
+  <ol>
+    <li>$\arcsin x+\arccos x=\dfrac\pi2$</li>
+    <li>$\arccos(-x)=\pi-\arccos x$</li>
+    <li>$\arctan x+\arctan\dfrac1x=\begin{cases}\dfrac\pi2,& x>0\\[2mm]-\dfrac\pi2,& x<0\end{cases}$</li>
+    <li>$\sin(\arccos x)=\cos(\arcsin x)=\sqrt{1-x^2}$，$\tan(\arctan x)=x$</li>
+    <li>$\arctan x+\arctan y=\arctan\dfrac{x+y}{1-xy}$，但<b>要加 $\pi$ 的条件</b>：当 $xy>1$ 且 $x,y>0$ 时左边还要 $+\pi$。写作前先判断 $\dfrac{x+y}{1-xy}$ 与左边所在象限。</li>
+  </ol>
+  <div class="note"><b>第 5 条最容易错</b>：公式右边只落在 $(-\frac\pi2,\frac\pi2)$，而左边可能超过 $\frac\pi2$。要么不带这条公式，要么老老实实分情况。</div>
+</section>
+
+<section id="s4">
+  <h2><span class="h2-no">04</span>导数与积分</h2>
+  <div class="formula">$$(\arcsin x)'=\frac{1}{\sqrt{1-x^2}},\qquad (\arccos x)'=-\frac{1}{\sqrt{1-x^2}},\qquad (\arctan x)'=\frac{1}{1+x^2}$$</div>
+  <table class="tbl">
+    <tr><th>积分</th><th>结果</th><th>条件</th></tr>
+    <tr><td>$\displaystyle\int\frac{\mathrm dx}{\sqrt{1-x^2}}$</td><td>$\arcsin x+C$</td><td>$|x|&lt;1$</td></tr>
+    <tr><td>$\displaystyle\int\frac{\mathrm dx}{1+x^2}$</td><td>$\arctan x+C$</td><td>—</td></tr>
+    <tr><td>$\displaystyle\int\frac{\mathrm dx}{\sqrt{a^2-x^2}}$</td><td>$\arcsin\dfrac xa+C$</td><td>$a>0,\ |x|&lt;a$</td></tr>
+    <tr><td>$\displaystyle\int\frac{\mathrm dx}{a^2+x^2}$</td><td>$\dfrac1a\arctan\dfrac xa+C$</td><td>$a\ne0$</td></tr>
+  </table>
+  <p>反过来看：见到 $\sqrt{1-x^2}$ 就想到 $x=\sin t$；见到 $1+x^2$ 就想到 $x=\tan t$。这是三角换元的两条起点。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="h2-no">05</span>三个高频易错</h2>
+  <h3>① $\arcsin(\sin x)=x$ 只在 $x\in\left[-\frac\pi2,\frac\pi2\right]$</h3>
+  <p>一般情形是“三角波”：先把 $x$ 折回 $[-\frac\pi2,\frac\pi2]$ 再取。例：$\arcsin\left(\sin\frac{5\pi}{6}\right)=\arcsin\frac12=\frac\pi6$，<b>不是</b> $\frac{5\pi}{6}$。同理 $\arctan(\tan x)=x$ 只在 $x\in(-\frac\pi2,\frac\pi2)$。</p>
+  <h3>② 解三角方程时别丢周期与另一支</h3>
+  <p>$\sin x=a$（$|a|\leqslant1$）的通解是 $x=k\pi+(-1)^k\arcsin a$；$\cos x=a$ 是 $x=2k\pi\pm\arccos a$；$\tan x=a$ 是 $x=k\pi+\arctan a$。三者的差别就在“要不要 $\pm$”“周期是 $2\pi$ 还是 $\pi$”。</p>
+  <h3>③ 极限与无穷远</h3>
+  <p>$\lim_{x\to+\infty}\arctan x=\frac\pi2$，$\lim_{x\to-\infty}\arctan x=-\frac\pi2$——左右极限不同，所以 $\lim_{x\to\infty}\arctan x$ 不存在。含 $\arctan$ 的分式极限常靠这一条拆左右。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="h2-no">06</span>在数分里用在哪</h2>
+  <ul>
+    <li><b>积分</b>：$\sqrt{a^2-x^2}$、$a^2+x^2$ 型换元后的落点就是 $\arcsin$、$\arctan$。</li>
+    <li><b>极限</b>：$\arctan$ 型无穷远左右不同；$\arctan\frac1x$ 在 $x\to0$ 处要分左右。</li>
+    <li><b>级数</b>：$\arctan x=\sum_{n\ge0}\frac{(-1)^n x^{2n+1}}{2n+1}$（$|x|\leqslant1$），取 $x=1$ 得 $\frac\pi4$。</li>
+    <li><b>原函数不存在</b>：$\int e^{-x^2}dx$ 非初等，但 $\int\frac{dx}{1+x^2}$ 是初等——两者别混。</li>
+  </ul>
+</section>
+
+<section id="checklist">
+  <h2><span class="h2-no">07</span>自测清单</h2>
+  <ul class="checklist">
+    <li><label><input type="checkbox"><span>默写三张卡的定义域与值域</span></label></li>
+    <li><label><input type="checkbox"><span>默写 $x=0,\frac12,\frac{\sqrt2}2,\frac{\sqrt3}2,1$ 对应的 $\arcsin$ 与 $\arccos$</span></label></li>
+    <li><label><input type="checkbox"><span>写出 $\arcsin x+\arccos x=\frac\pi2$ 并说明为什么</span></label></li>
+    <li><label><input type="checkbox"><span>写出 $\arctan x+\arctan\frac1x$ 的两段结果</span></label></li>
+    <li><label><input type="checkbox"><span>算 $\arcsin(\sin\frac{5\pi}6)$ 并说明陷阱</span></label></li>
+    <li><label><input type="checkbox"><span>写出 $\int\frac{dx}{\sqrt{a^2-x^2}}$ 与 $\int\frac{dx}{a^2+x^2}$</span></label></li>
+  </ul>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">08</span>来源与边界</h2>
+  <div class="src-note">
+    <p><b>依据</b>：中学三角函数与反三角函数标准结论；导数与积分公式与《数学分析教程》第三版上册 §3、§5 一致。</p>
+    <p><b>边界</b>：本页是查阅卡，不构成学习进度或掌握记录。第 5 条（$\arctan$ 和角公式）的分情况条件以“左边实际所在象限”为准，考试中不写清条件会扣分。</p>
+  </div>
+</section>
+
+<div class="foot">本页为 Hermes 生成的查阅材料（以指定课本与标准中学教材为准）。生成日期 2026-10-28。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="_html_assets/katex/katex.min.js"></script>
+<script src="_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;align-items:center;
+gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;text-decoration:none;font-size:13px;
+font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第05章 求导的逆运算 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第05章<br>求导的逆运算</div>
+  <nav class="toc">
+    <a href="#kaogang">考纲对照</a>
+    <a href="#map">知识地图</a>
+    <div class="toc-sec">逐节讲解</div>
+    <a href="#s51">§5.1 原函数的概念</a>
+    <a href="#s52">§5.2 分部积分法和换元法</a>
+    <a href="#s53">§5.3 有理函数的原函数</a>
+    <a href="#s54">§5.4 可有理化函数的原函数</a>
+    <div class="toc-sec">回收</div>
+    <a href="#exercises">课本习题（全录 38 题组）</a>
+    <a href="#zhenti">真题链接</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版（常庚哲、史济怀）为准。公式离线渲染。</div>
+</aside>
+
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本 · 上册</div>
+    <h1>第05章 求导的逆运算</h1>
+    <p class="hero-sub">不定积分的概念与基本公式 · 分部积分法 · 换元法 · 有理函数与可有理化函数</p>
+    <div class="hero-tags">
+      <span class="tag">考纲 3. 一元函数积分学 · a</span>
+      <span class="tag">课本 §5.1–§5.4（印刷页 1–25）</span>
+      <span class="tag">独立命题低频 · 全局工具价值高</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 考纲对照 ============ -->
+<section id="kaogang">
+  <h2><span class="h2-no">00</span>考纲对照</h2>
+  <p>610 考纲「3) 一元函数积分学」第 a 条原文：</p>
+  <div class="note n-exam"><span class="note-t">考纲原文</span>不定积分的概念，不定积分的基本公式，换元积分法和分部积分法，有理函数、三角函数和简单无理函数的积分。</div>
+  <table class="tbl">
+    <tr><th>考纲要素</th><th>课本位置</th><th>要达到的程度</th></tr>
+    <tr><td>不定积分的概念</td><td>§5.1 原函数的概念</td><td>能闭卷写出定义，说清「全体原函数 = $F+c$」的理由</td></tr>
+    <tr><td>不定积分的基本公式</td><td>§5.1 基本积分表</td><td>全部公式无提示默写；每一条都能用求导反检验</td></tr>
+    <tr><td>分部积分法</td><td>§5.2（课本 5.2.1）</td><td>会推导公式；会按「$u'$ 与 $v$ 都要简单」的原则选 $u, v'$</td></tr>
+    <tr><td>换元积分法</td><td>§5.2（课本 5.2.2）</td><td>分清「凑微分」与「代换」两个方向；三类根式会选代换</td></tr>
+    <tr><td>有理函数的积分</td><td>§5.3</td><td>会做假分式降次、部分分式分解、两类基本分式与 $I_k$ 递推</td></tr>
+    <tr><td>三角函数、简单无理函数的积分</td><td>§5.4</td><td>会万能变换、根式有理化代换、Chebyshev 三情形判别</td></tr>
+  </table>
+  <div class="note n-exam"><span class="note-t">真题视角</span>在 2019–2026 的 610 样本中，本章几乎没有独立大题——它平时以「工具」身份出现：换元与分部是积分不等式、递推估计、含参积分等题型的默认前置技能（参见 2022 第 9 题、2026 第 5 题）。所以本章的验收标准不是「会做某道题」，而是「后续章节用到积分时不再因技巧断供」。</div>
+</section>
+
+<!-- ============ 知识地图 ============ -->
+<section id="map">
+  <h2><span class="h2-no">01</span>知识地图</h2>
+  <div class="map">
+    <div class="map-node"><b>出发点</b>：求导的逆运算——已知 $F'=f$，求 $F$。原函数不唯一，全体原函数记作不定积分 $\int f(x)\,\mathrm{d}x$。</div>
+    <div class="map-node"><b>地基</b>：基本积分表（11 条）+ 线性运算性质。凡是新得到的积分公式，一律「求导反检验」。</div>
+    <div class="map-node"><b>两大通用方法</b>：① 分部积分法（来自乘积求导的逆用，处理「异类函数相乘」）；② 换元法（来自复合求导的逆用，凑微分 / 代换是一回事）。</div>
+    <div class="map-node"><b>三类可系统化函数</b>：有理函数（部分分式 → 两类基本分式 + 递推）；三角有理式（万能变换）；简单无理式（根式有理化、Chebyshev 三情形）。</div>
+    <div class="map-node"><b>终点认识</b>：原函数存在 ≠ 初等原函数。$\dfrac{\sin x}{x}$、$\mathrm{e}^{-x^{2}}$、$\sin x^{2}$ 的原函数存在但写不出初等形式，不必再空耗。</div>
+  </div>
+  <div class="note n-key"><span class="note-t">一条主线</span>本章所有技巧都服从同一个检验标准：把结果求导，看是否还原被积函数。计算过程中「+C」可以最后统一补，但求导检验时必须能自洽。</div>
+</section>
+
+<!-- ============ §5.1 ============ -->
+<section id="s51">
+  <h2><span class="h2-no">§5.1</span>原函数的概念</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义</span><span class="ctitle">原函数</span><span class="pg">课本 p.1</span></div>
+    <p>设 $x$ 在某个区间上变化。如果两个函数 $F$ 与 $f$ 满足</p>
+    <div class="formula">$$F'(x)=f(x),$$</div>
+    <p>那么称 $F$ 为 $f$ 在该区间上的一个<b>原函数</b>。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">结论</span><span class="ctitle">原函数族 = 一个原函数加全体常数</span><span class="pg">课本 p.1</span></div>
+    <p>若 $F$ 是 $f$ 的原函数，则对任何常数 $c$，$F+c$ 也是；反之，若 $F$ 与 $G$ 都是 $f$ 在同一区间上的原函数，则 $(F-G)'\equiv 0$，由拉格朗日中值定理的推论知 $F-G$ 是常数。</p>
+    <div class="note n-proof"><span class="note-t">要点</span>这里的「区间」条件不能丢：只有在区间上「导数恒为零 $\Rightarrow$ 常数」。这条例证链条（零点定理 → 拉格朗日推论）是后续一切「原函数相差常数」论断的总闸门。</div>
+  </div>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义</span><span class="ctitle">不定积分</span><span class="pg">课本 p.1</span></div>
+    <p>$f$ 的全体原函数组成的集合记为</p>
+    <div class="formula">$$\int f(x)\,\mathrm{d}x,$$</div>
+    <p>称为 $f$ 的<b>不定积分</b>；$\int$ 叫积分号，$f$ 叫被积函数，$f(x)\mathrm{d}x$ 叫被积表达式。</p>
+    <p>求得一个原函数 $F$ 后即写 $\displaystyle\int f(x)\,\mathrm{d}x=F(x)+c$。它与 $F'(x)=f(x)$ 是同一件事的两种写法——这正是「求导反检验」的依据。</p>
+  </div>
+
+  <h3>基本积分表（务必无提示默写）</h3>
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">公式表</span><span class="ctitle">11 条基本公式</span><span class="pg">课本 p.2</span></div>
+    <div class="formula">$$\int 0\,\mathrm{d}x=c;\qquad \int x^{\lambda}\,\mathrm{d}x=\frac{1}{1+\lambda}x^{\lambda+1}+c\quad(\lambda\neq-1);$$</div>
+    <div class="formula">$$\int\frac{1}{x}\,\mathrm{d}x=\ln|x|+c;\qquad \int \mathrm{e}^{x}\,\mathrm{d}x=\mathrm{e}^{x}+c;\qquad \int a^{x}\,\mathrm{d}x=\frac{1}{\ln a}a^{x}+c;$$</div>
+    <div class="formula">$$\int\sin x\,\mathrm{d}x=-\cos x+c;\qquad \int\cos x\,\mathrm{d}x=\sin x+c;$$</div>
+    <div class="formula">$$\int\frac{\mathrm{d}x}{\sin^{2}x}=-\cot x+c;\qquad \int\frac{\mathrm{d}x}{\cos^{2}x}=\tan x+c;$$</div>
+    <div class="formula">$$\int\frac{\mathrm{d}x}{1+x^{2}}=\arctan x+c;\qquad \int\frac{\mathrm{d}x}{\sqrt{1-x^{2}}}=\arcsin x+c.$$</div>
+    <div class="note n-warn"><span class="note-t">易错</span>$\ln|x|$ 里的绝对值不能省：$x<0$ 时 $(\ln(-x))'=\dfrac{1}{x}$，分情形验证是课本给出的一般套路。$\int x^{\lambda}\mathrm{d}x$ 要求 $\lambda\neq -1$，与 $\int\frac{1}{x}\mathrm{d}x$ 分列正是为了提醒这个断点。</div>
+  </div>
+
+  <h4>四条运算性质</h4>
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">性质</span><span class="ctitle">微分与积分的互逆、线性</span><span class="pg">课本 p.2–3</span></div>
+    <ol>
+      <li>$\left(\int f(x)\,\mathrm{d}x\right)'=f(x)$；</li>
+      <li>$\int F'(x)\,\mathrm{d}x=F(x)+c$，即 $\int \mathrm{d}F(x)=F(x)+c$；</li>
+      <li>$\int\big(f(x)+g(x)\big)\mathrm{d}x=\int f(x)\,\mathrm{d}x+\int g(x)\,\mathrm{d}x$；</li>
+      <li>常数 $c\neq 0$ 时 $\int cf(x)\,\mathrm{d}x=c\int f(x)\,\mathrm{d}x$。</li>
+    </ol>
+    <p>性质 (4) 要求 $c\neq 0$：若 $c=0$，右端为 $\{0\}$，左端却是全体实数集，按定义无法成立。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例</span><span class="ctitle">四个开胃练习（课本正文示例）</span><span class="pg">课本 p.3</span></div>
+    <div class="formula">$$\int\Big(3x^{2}+\frac{4}{x}\Big)\mathrm{d}x=x^{3}+4\ln|x|+c,$$</div>
+    <div class="formula">$$\int\frac{x^{2}}{1+x^{2}}\,\mathrm{d}x=x-\arctan x+c,$$</div>
+    <div class="formula">$$\int\tan^{2}x\,\mathrm{d}x=\tan x-x+c,$$</div>
+    <div class="formula">$$\int\frac{\cos 2x}{\cos x+\sin x}\,\mathrm{d}x=\sin x+\cos x+c.$$</div>
+    <p>四个式子分别示范四类预处理：逐项积分、先化简（拆出 $1-\frac{1}{1+x^{2}}$）、用恒等式 $\tan^{2}x=\sec^{2}x-1$、用倍角分解约分。注意最后两例都发生在「积分之前」——先化简被积函数，永远是第一动作。</p>
+  </div>
+
+  <div class="note n-tip"><span class="note-t">本章验收基准</span>不定积分答案必须带 $c$（除非题目另作要求）；每个结果都用「求导还原」自检。下面各节的技巧再花哨，检验标准始终只有这一条。</div>
+</section>
+
+<!-- ============ §5.2 ============ -->
+<section id="s52">
+  <h2><span class="h2-no">§5.2</span>分部积分法和换元法</h2>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">公式</span><span class="ctitle">分部积分公式</span><span class="pg">课本 p.4</span></div>
+    <p>由乘积求导法则 $(uv)'=u'v+uv'$ 两边积分，得 $uv=\int u'v\,\mathrm{d}x+\int uv'\,\mathrm{d}x$，改写成</p>
+    <div class="formula">$$\int u(x)v'(x)\,\mathrm{d}x=uv-\int u'(x)v(x)\,\mathrm{d}x,\tag{1}$$</div>
+    <div class="formula">$$\int u\,\mathrm{d}v=uv-\int v\,\mathrm{d}u.\tag{2}$$</div>
+    <p>左端不写常数：右端的不定积分里已经含有任意常数，只要有一个不定积分出现，其余处不必再写。</p>
+    <div class="note n-key"><span class="note-t">选择原则</span>把两个因子中哪个当作 $u$、哪个当作 $v'$，标准是：<b>使 $u'$ 与 $v$ 都比较简单，且 $u'v$ 的积分易于求出</b>。课本原话——「什么叫简单、什么叫复杂很难下精确定义，只能从大量练习中细心体会」。典型信号：对数、反三角这类「求导后变简单」的函数取作 $u$；$x^{n}$、指数、三角这类「积分下不变形」的取作 $v'$。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 4 ★</span><span class="ctitle">指数 × 正余弦：联立方程组法</span><span class="pg">课本 p.5</span></div>
+    <p>求 $\displaystyle\int \mathrm{e}^{x}\cos x\,\mathrm{d}x$ 与 $\displaystyle\int \mathrm{e}^{x}\sin x\,\mathrm{d}x$。两次分部积分后，两个积分互相「嵌套」，于是得到关于它们的方程组：</p>
+    <div class="formula">$$\begin{cases}\displaystyle\int \mathrm{e}^{x}\cos x\,\mathrm{d}x=\mathrm{e}^{x}\sin x-\int \mathrm{e}^{x}\sin x\,\mathrm{d}x,\\[2mm] \displaystyle\int \mathrm{e}^{x}\sin x\,\mathrm{d}x=-\mathrm{e}^{x}\cos x+\int \mathrm{e}^{x}\cos x\,\mathrm{d}x.\end{cases}$$</div>
+    <p>把第二式代入第一式（或把两者当作未知量消元）：设 $I_1=\int \mathrm{e}^{x}\cos x\,\mathrm{d}x$，$I_2=\int \mathrm{e}^{x}\sin x\,\mathrm{d}x$，则 $I_1=\mathrm{e}^{x}\sin x-I_2$ 且 $I_2=-\mathrm{e}^{x}\cos x+I_1$，消去 $I_2$：</p>
+    <div class="formula">$$I_1=\mathrm{e}^{x}(\sin x+\cos x)-I_1\ \Longrightarrow\ I_1=\frac{1}{2}\mathrm{e}^{x}(\sin x+\cos x)+c,$$</div>
+    <div class="formula">$$I_2=\frac{1}{2}\mathrm{e}^{x}(\sin x-\cos x)+c.$$</div>
+    <div class="note n-tip"><span class="note-t">识别信号</span>「指数 × 三角」的积分做两次分部后回到原积分，就进入循环——此时不要硬算，立即联立解出。同族题：$\int \mathrm{e}^{ax}\cos bx\,\mathrm{d}x$、$\int \cos(\ln x)\,\mathrm{d}x$、$\int \sin(\ln x)\,\mathrm{d}x$（后两个见 §5.2 练习第 1 题 (11)(12)）。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 5 ★</span><span class="ctitle">递推法：$\cos^{n}x$ 与 $\sin^{n}x$ 的递推公式</span><span class="pg">课本 p.6</span></div>
+    <p>被积函数含正整数指标 $n$ 时，分部积分往往不直接给出答案，而是把指标降 2 的同类表达式——反复使用即得结果。课本以 $\int\cos^{n}x\,\mathrm{d}x$ 演示，完整推导：</p>
+    <div class="formula">$$\int\cos^{n}x\,\mathrm{d}x=\int\cos^{n-1}x\,(\sin x)'\,\mathrm{d}x=\sin x\cos^{n-1}x+(n-1)\int\sin^{2}x\cos^{n-2}x\,\mathrm{d}x,$$</div>
+    <p>用 $\sin^{2}x=1-\cos^{2}x$ 展开，右端出现 $(n-1)\int\cos^{n-2}x\,\mathrm{d}x-(n-1)\int\cos^{n}x\,\mathrm{d}x$；把含 $\int\cos^{n}x$ 的项移回左端、除以 $n$：</p>
+    <div class="formula">$$\int\cos^{n}x\,\mathrm{d}x=\frac{1}{n}\sin x\cos^{n-1}x+\frac{n-1}{n}\int\cos^{n-2}x\,\mathrm{d}x.$$</div>
+    <p>类似地（换 $\sin$ 的角色）</p>
+    <div class="formula">$$\int\sin^{n}x\,\mathrm{d}x=-\frac{1}{n}\cos x\sin^{n-1}x+\frac{n-1}{n}\int\sin^{n-2}x\,\mathrm{d}x.$$</div>
+    <p>递推到头的落点由 $n$ 的奇偶性决定：偶数归结到 $\int \mathrm{d}x=x+c$，奇数归结到 $\int\cos x\,\mathrm{d}x$ 或 $\int\sin x\,\mathrm{d}x$。课本特例：</p>
+    <div class="formula">$$\int\cos^{2}x\,\mathrm{d}x=\frac{1}{2}(\cos x\sin x+x)+c,\qquad \int\sin^{2}x\,\mathrm{d}x=\frac{1}{2}(x-\cos x\sin x)+c.$$</div>
+    <div class="note n-exam"><span class="note-t">真题连接</span>「递推 + 估计」是 610 的固定题型。2022 第 9 题 $a_n=\int_0^{\pi/4}\tan^{n}x\,\mathrm{d}x$ 的双边估计，其第一动作就来自本章的分部/换元操作（$\tan^{n}x$ 换元后降幂），继续在第六章完成。练熟本例的移项手法，是那类题不卡壳的前提。</div>
+  </div>
+
+  <h3>换元法</h3>
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">公式</span><span class="ctitle">换元公式</span><span class="pg">课本 p.7–13</span></div>
+    <p>来自复合函数求导的逆用。若 $f$、$\varphi$ 可导，则</p>
+    <div class="formula">$$\int f(\varphi(x))\varphi'(x)\,\mathrm{d}x=\int f(u)\,\mathrm{d}u,\qquad u=\varphi(x);\tag{3}$$</div>
+    <p>反向使用（把 $u$ 换成 $x$ 的表达式，即「代换」）</p>
+    <div class="formula">$$\int f(u)\,\mathrm{d}u=\int f(\varphi(x))\varphi'(x)\,\mathrm{d}x.\tag{4}$$</div>
+    <p>式 (3) 的用法叫<b>凑微分</b>：把被积函数拆成「某个函数的导数 × 该函数的函数」两块；式 (4) 的用法叫<b>作代换</b>。课本明确：二者并无本质差别，本质都是换元——凑微分靠眼光，代换常有章可循。</p>
+    <div class="note n-warn"><span class="note-t">操作规范</span>换元要「三件套」同步：变量、微分、上下限（定积分时）。最后必须回代成原变量。只改被积式的一部分是本章最典型的失分动作。</div>
+  </div>
+
+  <div class="note n-tip"><span class="note-t">常用换元速览（课本例 6～16）</span>① $u=ax+b$ 类：$\int\frac{\mathrm{d}x}{ax+b}=\frac{1}{a}\ln|ax+b|+c$；② 二次配方：$\int\frac{\mathrm{d}x}{a^{2}+x^{2}}=\frac{1}{a}\arctan\frac{x}{a}+c$；③ 三角代换去根号：$x=a\sin t$ 处理 $\sqrt{a^{2}-x^{2}}$；④ 双曲代换：$x=a\sinh t$ 处理 $\sqrt{a^{2}+x^{2}}$；⑤ 显式换元 $u=1+\sqrt{1+x}$ 等根式整体替换；⑥ 凑微分如 $\int\frac{\sin\sqrt{x}}{\sqrt{x}}\mathrm{d}x=-2\cos\sqrt{x}+c$。</div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 12 ★</span><span class="ctitle">$\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x$：三角代换</span><span class="pg">课本 p.9</span></div>
+    <p>作 $x=a\sin t\ (|t|\leqslant\pi/2)$，则 $\sqrt{a^{2}-x^{2}}=a\cos t$，$\mathrm{d}x=a\cos t\,\mathrm{d}t$：</p>
+    <div class="formula">$$\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x=a^{2}\int\cos^{2}t\,\mathrm{d}t=\frac{a^{2}}{2}(t+\sin t\cos t)+c=\frac{a^{2}}{2}\arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^{2}-x^{2}}+c,$$</div>
+    <p>其中用到了例 5 的 $\int\cos^{2}t\,\mathrm{d}t$ 特例，回代时用 $t=\arcsin\frac{x}{a}$、$\cos t=\frac{1}{a}\sqrt{a^{2}-x^{2}}$。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 13–14 ★</span><span class="ctitle">$\sqrt{a^{2}+x^{2}}$ 家族：双曲函数与分部移项</span><span class="pg">课本 p.9–10</span></div>
+    <p><b>预备（双曲函数三条性质）</b>：$(\cosh t)'=\sinh t$，$(\sinh t)'=\cosh t$；$\cosh^{2}t-\sinh^{2}t=1$；反函数 $x=\sinh t\Rightarrow t=\ln(x+\sqrt{1+x^{2}})$。</p>
+    <p>作 $x=a\sinh t$，则 $\mathrm{d}x=a\cosh t\,\mathrm{d}t$，$\sqrt{a^{2}+x^{2}}=a\cosh t$：</p>
+    <div class="formula">$$\int\frac{\mathrm{d}x}{\sqrt{a^{2}+x^{2}}}=\int\mathrm{d}t=t+c=\ln\Big(\frac{x+\sqrt{a^{2}+x^{2}}}{a}\Big)+c=\ln\big(x+\sqrt{a^{2}+x^{2}}\big)+c.$$</div>
+    <p>对 $\int\sqrt{a^{2}+x^{2}}\,\mathrm{d}x$ 课本给出两条路线：</p>
+    <ul>
+      <li><b>法一（双曲代换）</b>：化为 $a^{2}\int\cosh^{2}t\,\mathrm{d}t=\frac{a^{2}}{2}\int(1+\cosh 2t)\,\mathrm{d}t$，代回整理；</li>
+      <li><b>法二（分部 + 移项）</b>：先分部一次得 $\int\sqrt{a^{2}+x^{2}}\,\mathrm{d}x=x\sqrt{a^{2}+x^{2}}+a^{2}\int\frac{\mathrm{d}x}{\sqrt{a^{2}+x^{2}}}-\int\sqrt{a^{2}+x^{2}}\,\mathrm{d}x$，<b>移项</b>后再用例 13 的结果。</li>
+    </ul>
+    <div class="formula">$$\int\sqrt{a^{2}+x^{2}}\,\mathrm{d}x=\frac{x}{2}\sqrt{a^{2}+x^{2}}+\frac{a^{2}}{2}\ln\big(x+\sqrt{a^{2}+x^{2}}\big)+c.$$</div>
+    <div class="note n-key"><span class="note-t">记住这个块</span>$\sqrt{a^{2}+x^{2}}$、$\sqrt{a^{2}-x^{2}}$、$\sqrt{x^{2}-a^{2}}$ 三兄弟的结果在后续章节（弧长、面积、含参积分）反复出现；「分部一次 + 移项」是它们的通用处理术，也是真题里常见的隐藏步骤。</div>
+  </div>
+</section>
+
+<!-- ============ §5.3 ============ -->
+<section id="s53">
+  <h2><span class="h2-no">§5.3</span>有理函数的原函数</h2>
+
+  <div class="card c-def">
+    <div class="card-head"><span class="chip chip-def">定义</span><span class="ctitle">有理函数 · 真分式与假分式</span><span class="pg">课本 p.13</span></div>
+    <p>两个实系数多项式（无公共零点）的商 $R(x)=\dfrac{P(x)}{Q(x)}$ 叫<b>有理函数</b>。分子次数小于分母次数时叫<b>真分式</b>，否则叫<b>假分式</b>。</p>
+    <p>假分式总能通过作除法写成「多项式 + 真分式」，例如</p>
+    <div class="formula">$$\frac{x^{5}}{1-x^{2}}=-x^{3}+\frac{x}{1-x^{2}}=-x^{3}-x+\frac{x}{1-x^{2}}.$$</div>
+    <p>多项式部分逐项积分即可，问题归结为：<b>求真分式的原函数</b>。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">定理 5.3.1</span><span class="ctitle">部分分式定理（课本援引，不证）</span><span class="pg">课本 p.13–14</span></div>
+    <p>设 $R=\dfrac{P}{Q}$ 是真分式，分母在实数域分解为</p>
+    <div class="formula">$$Q(x)=(x-a)^{\alpha}\cdots(x-b)^{\beta}\,(x^{2}+px+q)^{\mu}\cdots(x^{2}+rx+s)^{\nu},$$</div>
+    <p>其中 $p^{2}-4q<0,\dots,r^{2}-4s<0$（二次因子无实根）。则 $R$ 可唯一地分解为如下部分分式之和：</p>
+    <div class="formula">$$R(x)=\sum_{i=1}^{\alpha}\frac{A_{i}}{(x-a)^{i}}+\cdots+\sum_{i=1}^{\mu}\frac{K_{i}x+L_{i}}{(x^{2}+px+q)^{i}}+\sum_{i=1}^{\nu}\frac{M_{i}x+N_{i}}{(x^{2}+rx+s)^{i}},$$</div>
+    <p>即：<b>一次因子的 $k$ 次幂贡献 $k$ 个 $\frac{A}{(x-a)^{i}}$；二次不可约因子的 $k$ 次幂贡献 $k$ 个 $\frac{Ax+B}{(x^{2}+px+q)^{i}}$</b>，全部系数唯一确定。课本注明此定理在复变函数课程中证明，此处直接援引。</p>
+    <div class="note n-warn"><span class="note-t">不丢项</span>写分解式时最常见的错误是「重因子只写一行」。$(x-1)^{3}$ 必须展开成 $\frac{A}{(x-1)^{3}}+\frac{B}{(x-1)^{2}}+\frac{C}{x-1}$ 三项；$(x^{2}+3)^{2}$ 同理写两段。</div>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 1–3</span><span class="ctitle">待定系数的三种手法</span><span class="pg">课本 p.14–16</span></div>
+    <p>课本用三个例子示范如何把真分式化为部分分式：</p>
+    <ul>
+      <li><b>代入特殊值</b>：$\dfrac{x+1}{x^{2}-4x+3}=\dfrac{-1}{x-1}+\dfrac{2}{x-3}$——分母的零点 $x=1,3$ 逐个代入，一步定出一个系数；</li>
+      <li><b>比较系数</b>：$\dfrac{x}{x^{3}+x^{2}+3x+3}=\dfrac{-1}{4(x+1)}+\dfrac{x+3}{4(x^{2}+3)}$——通分后比较两端多项式系数；</li>
+      <li><b>逐次代入 + 求导</b>：$\dfrac{x^{3}+1}{x^{4}-3x^{3}+3x^{2}-x}=\dfrac{x^{3}+1}{x(x-1)^{3}}$ 的重因子情形，先定最高次项系数，再对恒等式求导定下一层系数，得 $A=-1,B=2,C=1,D=2$。</li>
+    </ul>
+    <p>三种手法通常混用：先把容易的系数用赋值拿下，剩余用比较系数或求导补齐。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">算法</span><span class="ctitle">两类基本分式的积分与 $I_k$ 递推</span><span class="pg">课本 p.16–18</span></div>
+    <p><b>第一类</b>直接可积：</p>
+    <div class="formula">$$\int\frac{\mathrm{d}x}{x-a}=\ln|x-a|+c;\qquad \int\frac{\mathrm{d}x}{(x-a)^{k}}=\frac{(x-a)^{1-k}}{1-k}+c\quad(k\geqslant 2).$$</div>
+    <p><b>第二类</b>：配方 $x^{2}+px+q=\big(x+\frac{p}{2}\big)^{2}+a^{2}$（$a^{2}=q-\frac{p^{2}}{4}$），令 $u=x+\frac{p}{2}$ 后拆成两块：</p>
+    <div class="formula">$$\int\frac{Ax+B}{(x^{2}+px+q)^{k}}\,\mathrm{d}x=A\int\frac{u\,\mathrm{d}u}{(a^{2}+u^{2})^{k}}+\Big(B-\frac{Ap}{2}\Big)\int\frac{\mathrm{d}u}{(a^{2}+u^{2})^{k}}.$$</div>
+    <p>第一块是 $v=a^{2}+u^{2}$ 的凑微分（$k=1$ 得 $\frac{1}{2}\ln(a^{2}+u^{2})$；$k\geqslant 2$ 得幂函数），真正的核心是第二块 $I_{k}=\int\frac{\mathrm{d}u}{(a^{2}+u^{2})^{k}}$ 的递推。分部一次：</p>
+    <div class="formula">$$I_{k}=\frac{u}{(a^{2}+u^{2})^{k}}+2k\int\frac{u^{2}}{(a^{2}+u^{2})^{k+1}}\,\mathrm{d}u=\frac{u}{(a^{2}+u^{2})^{k}}+2kI_{k}-2ka^{2}I_{k+1},$$</div>
+    <p>移项解出</p>
+    <div class="formula">$$I_{k+1}=\frac{1}{2ka^{2}}\cdot\frac{u}{(a^{2}+u^{2})^{k}}+\frac{2k-1}{2ka^{2}}\,I_{k}\qquad(k\geqslant 1),$$</div>
+    <p>起点 $I_{1}=\dfrac{1}{a}\arctan\dfrac{u}{a}+c$。最初的几层：$I_{2}=\frac{1}{2a^{2}}\big(\frac{u}{a^{2}+u^{2}}+I_{1}\big)$，$I_{3}=\frac{1}{4a^{2}}\big(\frac{u}{(a^{2}+u^{2})^{2}}+3I_{2}\big)$。</p>
+  </div>
+
+  <div class="card c-ex">
+    <div class="card-head"><span class="chip chip-ex">例 4–6</span><span class="ctitle">有理函数积分的完整流程</span><span class="pg">课本 p.17–18</span></div>
+    <ul>
+      <li><b>例 4（重因子 + 单因子）</b>：$\displaystyle\int\frac{x^{3}+1}{x^{4}-3x^{3}+3x^{2}-x}\,\mathrm{d}x=\ln\frac{(x-1)^{2}}{|x|}-\frac{x}{(x-1)^{2}}+c$。分解式中同时出现 $\frac{A}{x}$、$\frac{B}{(x-1)^{3}}$、$\frac{C}{(x-1)^{2}}$、$\frac{D}{x-1}$，逐项积分。</li>
+      <li><b>例 5（不可约二次因子）</b>：$\displaystyle\int\frac{5x+6}{x^{2}+x+1}\,\mathrm{d}x$。处理套路：分子凑分母的导数。$\frac{5x+6}{x^{2}+x+1}=\frac{5}{2}\cdot\frac{2x+1}{x^{2}+x+1}+\frac{7}{2}\cdot\frac{1}{x^{2}+x+1}$，第一块得 $\frac{5}{2}\ln(x^{2}+x+1)$，第二块配方后得 $\frac{7}{\sqrt{3}}\arctan\frac{2x+1}{\sqrt{3}}$。综合：$\frac{5}{2}\ln(x^{2}+x+1)+\frac{7}{\sqrt{3}}\arctan\frac{2x+1}{\sqrt{3}}+c$。</li>
+      <li><b>例 6（二次因子的高次幂）</b>：$\displaystyle\int\frac{5x+3}{(x^{2}-2x+5)^{2}}\,\mathrm{d}x$。先拆「导数 + 常数」两块，再用 $I_{2}$ 递推，结果 $\frac{2x-7}{2(x^{2}-2x+5)}+\frac{1}{2}\arctan\frac{x-1}{2}+c$。</li>
+    </ul>
+  </div>
+
+  <div class="note n-exam"><span class="note-t">考频提示</span>习题 5.3 里的 $\int\frac{\mathrm{d}x}{1+x^{3}}$、$\int\frac{\mathrm{d}x}{1+x^{4}}$、$\int\frac{1+x^{2}}{1+x^{4}}\mathrm{d}x$（第 (9)(12)(13) 题）是这类方法的经典代表作；$\frac{1}{1+x^{4}}$ 的分解用 $x^{4}+1=(x^{2}+\sqrt{2}x+1)(x^{2}-\sqrt{2}x+1)$，分解后每块都是「凑导数 + 配方」的两个标准动作。</div>
+
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">课本附注</span><span class="ctitle">方法的边界</span></div>
+    <p>课本指出：标准方法虽然完整，但实际计算可能相当繁重——分母次数高时，确定系数要解大型线性方程组，求分母零点也很麻烦。理论上「有理函数都可积」，实践中要灵活（能凑微分就别硬套部分分式）。</p>
+  </div>
+</section>
+
+<!-- ============ §5.4 ============ -->
+<section id="s54">
+  <h2><span class="h2-no">§5.4</span>可有理化函数的原函数</h2>
+
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">总述</span><span class="ctitle">三类可以化成有理函数的积分</span><span class="pg">课本 p.19</span></div>
+    <p>有些函数本身不是有理函数，但经过适当换元后可化为新变元的有理函数——这类函数的求原函数问题也认为已经「解决」。课本按三个类型处理。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">类型 (1)</span><span class="ctitle">$R(\cos x,\sin x)$：万能变换</span><span class="pg">课本 p.20</span></div>
+    <p>作 $t=\tan\dfrac{x}{2}\ (|x|<\pi)$，由三角恒等式</p>
+    <div class="formula">$$\cos x=\frac{1-t^{2}}{1+t^{2}},\qquad \sin x=\frac{2t}{1+t^{2}},\qquad \mathrm{d}x=\frac{2}{1+t^{2}}\,\mathrm{d}t,$$</div>
+    <p>于是 $\int R(\cos x,\sin x)\,\mathrm{d}x=\int R\Big(\frac{1-t^{2}}{1+t^{2}},\frac{2t}{1+t^{2}}\Big)\frac{2}{1+t^{2}}\,\mathrm{d}t$，右端已是 $t$ 的有理函数。换元 $t=\tan\frac{x}{2}$（或 $x=2\arctan t$）俗称<b>万能变换</b>。</p>
+    <div class="note n-warn"><span class="note-t">课本提醒</span>万能变换「总可以」将三角有理式有理化，但对具体问题不一定必要或方便——如例 2 的 $\int\frac{\sin^{4}x}{\cos^{2}x}\mathrm{d}x$ 用恒等变形直接处理（$\tan x+\frac{1}{4}\sin 2x-\frac{3}{2}x+c$）比万能变换更省。先用恒等式化简，再考虑万能变换。</div>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">类型 (2)</span><span class="ctitle">$R\Big(x,\sqrt[n]{\dfrac{ax+b}{cx+d}}\Big)$：根式有理化</span><span class="pg">课本 p.21</span></div>
+    <p>作 $t=\Big(\dfrac{ax+b}{cx+d}\Big)^{1/n}$，即 $t^{n}=\dfrac{ax+b}{cx+d}$，反解出 $x=\dfrac{dt^{n}-b}{-ct^{n}+a}$，此时 $\dfrac{\mathrm{d}x}{\mathrm{d}t}$ 是 $t$ 的有理函数，整体化为有理函数积分。</p>
+  </div>
+
+  <div class="card c-thm">
+    <div class="card-head"><span class="chip chip-thm">类型 (3)</span><span class="ctitle">$x^{\alpha}(a+bx^{\beta})^{\gamma}$：Chebyshev 判别</span><span class="pg">课本 p.22–24</span></div>
+    <p>$\alpha,\beta,\gamma$ 为有理数。Chebyshev 证明：三个数</p>
+    <div class="formula">$$\gamma,\qquad \frac{\alpha+1}{\beta},\qquad \frac{\alpha+1}{\beta}+\gamma$$</div>
+    <p>中<b>只要有一个是整数</b>，被积函数即可有理化求原函数；否则原函数不能用初等函数表示。课本证明可行情形：</p>
+    <ul>
+      <li><b>(a) $\gamma$ 为整数</b>：令 $x^{\beta}=t$，化为 $\frac{1}{\beta}\int t^{(\alpha+1)/\beta-1}(a+bt)^{\gamma}\,\mathrm{d}t$，再由 $\frac{\alpha+1}{\beta}-1$ 为有理数完成有理化；</li>
+      <li><b>(b) $\frac{\alpha+1}{\beta}$ 为整数</b>：把 $\gamma$ 写作 $\frac{p}{q}$，出现 $\sqrt[q]{a+bt}$ 的有理式；</li>
+      <li><b>(c) $\frac{\alpha+1}{\beta}+\gamma$ 为整数</b>：改写为 $\frac{1}{\beta}\int t^{(\alpha+1)/\beta-1+\gamma}\big(\sqrt[q]{\frac{a+bt}{t}}\big)^{p}\,\mathrm{d}t$ 完成有理化。</li>
+    </ul>
+    <p>课本例 4–6 分别演示 (a)(b)(c)：$\int\frac{\mathrm{d}x}{\sqrt{x}(1+\sqrt[3]{x})}$、$\int\frac{\sqrt[3]{1+\sqrt[4]{x}}}{\sqrt{x}}\mathrm{d}x$、$\int\frac{\mathrm{d}x}{\sqrt[4]{1+x^{4}}}$。</p>
+  </div>
+
+  <div class="card c-plain">
+    <div class="card-head"><span class="chip chip-ghost">结尾评论</span><span class="ctitle">哪些原函数「求不出来」</span><span class="pg">课本 p.25</span></div>
+    <p>求原函数远比求导困难：写一个「不能求导」的函数不容易，但随手能写出一批「求不出初等原函数」的函数，例如</p>
+    <div class="formula">$$\int\frac{\sin x}{x}\,\mathrm{d}x,\qquad \int \mathrm{e}^{-x^{2}}\,\mathrm{d}x,\qquad \int\sin x^{2}\,\mathrm{d}x.$$</div>
+    <p>第 6 章将证明：这些函数的原函数其实都存在，只是不是初等函数。这意味着遇到「不算熟」的积分不要恋战——先检查结构（能否凑微分、是否是三类可有理化），再决定投入。</p>
+  </div>
+</section>
+
+<!-- ============ 课本习题精选 ============ -->
+<section id="exercises">
+  <h2><span class="h2-no">07</span>课本习题（全录 38 题组）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>§5.1 原函数的概念</h3>
+  <ol>
+    <li>（1）$\displaystyle\int(2+x^5)^2\,\mathrm dx$；</li>
+    <li>（2）$\displaystyle\int\left(\frac{1-x}{x}\right)^2\,\mathrm dx$；</li>
+    <li>（3）$\displaystyle\int\left(1-\frac1{x^2}\right)\sqrt{x}\,\mathrm dx$；</li>
+    <li>（4）$\displaystyle\int\cosh x\,\mathrm dx$；</li>
+    <li>（5）$\displaystyle\int\sinh x\,\mathrm dx$；</li>
+    <li>（6）$\displaystyle\int\frac{2^{x+1}-5^{x-1}}{10^x}\,\mathrm dx$；</li>
+    <li>（7）$\displaystyle\int\frac{e^{3x}+1}{e^x+1}\,\mathrm dx$；</li>
+    <li>（8）$\displaystyle\int\sqrt{1-\sin2x}\,\mathrm dx$；</li>
+    <li>（9）$\displaystyle\int\frac{\mathrm dx}{(x+a)(x+b)}$；</li>
+    <li>（10）$\displaystyle\int\cos^2x\,\mathrm dx$；</li>
+    <li>（11）$\displaystyle\int\sin^2x\,\mathrm dx$；</li>
+    <li>（12）$\displaystyle\int\frac{x^5}{1+x}\,\mathrm dx$；</li>
+    <li>（13）$\displaystyle\int\frac{\mathrm dx}{\cos^2x\sin^2x}$；</li>
+    <li>（14）$\displaystyle\int\frac{x^4}{1+x^2}\,\mathrm dx$。</li>
+<h3>§5.2 分部积分法和换元法</h3>
+  <ol>
+  </ol>
+    <li><b>1.</b> 求下列不定积分：<br>（1）$\displaystyle\int\arctan x\,\mathrm dx$；；（2）$\displaystyle\int\arcsin x\,\mathrm dx$；；（3）$\displaystyle\int x\operatorname{arccot}x\,\mathrm dx$；；（4）$\displaystyle\int x^2\arccos x\,\mathrm dx$；；（5）$\displaystyle\int\ln(x+\sqrt{1+x^2})\,\mathrm dx$；；（6）$\displaystyle\int\sqrt{x}\ln^2x\,\mathrm dx$；；（7）$\displaystyle\int x^2\cos x\,\mathrm dx$；；（8）$\displaystyle\int\frac{x}{\cos^2x}\,\mathrm dx$；；（9）$\displaystyle\int\frac{\arctan x}{x^2}\,\mathrm dx$；；（10）$\displaystyle\int x^2\cosh x\,\mathrm dx$；；（11）$\displaystyle\int\cos(\ln x)\,\mathrm dx$；；（12）$\displaystyle\int\sin(\ln x)\,\mathrm dx$。</li>
+    <li><b>2.</b> 设 $p$ 是一个 $n$ 次多项式，试通过 $p$ 的各阶导数来表示原函数 $\displaystyle\int p(x)e^{ax}\,\mathrm dx$。</li>
+    <li><b>3.</b> 计算 $\displaystyle\int xf''(x)\,\mathrm dx$。</li>
+    <li><b>4.</b> 求下列不定积分：<br>（1）$\displaystyle\int xe^{-x^2}\,\mathrm dx$；；（2）$\displaystyle\int\frac{x}{\sqrt{1-x^2}}\,\mathrm dx$；；（3）$\displaystyle\int\frac{\ln^2x}{x}\,\mathrm dx$；；（4）$\displaystyle\int\frac{x}{x^2+4}\,\mathrm dx$；；（5）$\displaystyle\int\frac{\mathrm dx}{\cosh x}$；；（6）$\displaystyle\int\frac{\mathrm dx}{\sqrt{x}(1+x)}$；；（7）$\displaystyle\int\frac{\mathrm dx}{\sin x}$；；（8）$\displaystyle\int\frac{\mathrm dx}{x\ln x(\ln\ln x)}$；；（9）$\displaystyle\int\frac1{x^2}\sin\frac1x\,\mathrm dx$；；（10）$\displaystyle\int\frac{\arctan^2x}{1+x^2}\,\mathrm dx$；；（11）$\displaystyle\int\frac{\mathrm dx}{(a+bx)^2}\quad(ab\ne0)$；；（12）$\displaystyle\int\cos(ax)\sin(bx)\,\mathrm dx$；；（13）$\displaystyle\int\cos(ax)\cos(bx)\,\mathrm dx$；；（14）$\displaystyle\int\sin(ax)\sin(bx)\,\mathrm dx$；；（15）$\displaystyle\int\sin^4x\,\mathrm dx$；；（16）$\displaystyle\int\sin^5x\,\mathrm dx$；；（17）$\displaystyle\int\frac{\cos x+\sin x}{\sqrt[3]{\sin x-\cos x}}\,\mathrm dx$；；（18）$\displaystyle\int\frac{\mathrm dx}{2-\sin^2x}$；；（19）$\displaystyle\int\frac{\cos x\sin x}{a^2\cos^2x+b^2\sin^2x}\,\mathrm dx$；；（20）$\displaystyle\int\frac{\mathrm dx}{\cos x+\sin x}$；；（21）$\displaystyle\int\frac{\mathrm dx}{a\cos x+b\sin x}$；；（22）$\displaystyle\int\frac{\cos x}{\sqrt{2+\cos2x}}\,\mathrm dx$；；（23）$\displaystyle\int\frac{\ln x}{x\sqrt{1+\ln x}}\,\mathrm dx$；；（24）$\displaystyle\int\frac{x^3}{\sqrt{1-x^2}}\,\mathrm dx$；；（25）$\displaystyle\int\frac{x\,\mathrm dx}{\sqrt{1+x^2}+(1+x^2)^{3/2}}$；；（26）$\displaystyle\int\frac{\mathrm dx}{x\sqrt{x^2+1}}$；；（27）$\displaystyle\int e^{\sqrt{x}}\,\mathrm dx$；；（28）$\displaystyle\int x^3e^{-x^2}\,\mathrm dx$；；（29）$\displaystyle\int\arctan\sqrt{x}\,\mathrm dx$；；（30）$\displaystyle\int x\sin\sqrt{x}\,\mathrm dx$；；（31）$\displaystyle\int\frac{x^{n/2}}{\sqrt{1+x^{n+2}}}\,\mathrm dx\quad(n\in\mathbb N^*)$；；（32）$\displaystyle\int\frac{x^2}{\sqrt{x^2+a^2}}\,\mathrm dx$；；（33）$\displaystyle\int\frac{\cos x\sin x}{1+\sin^4x}\,\mathrm dx$。</li>
+    <li><b>5.</b> 推导出不定积分 $\displaystyle\int\ln^n x\,\mathrm dx\quad(n\in\mathbb N^*)$ 的递推公式。</li>
+    <li><b>6.</b> 用换元 $x=a\sinh t$ 或 $x=a\cosh t$ 解以下各题：<br>（1）$\displaystyle\int(x^2+a^2)^{-3/2}\,\mathrm dx$；；（2）$\displaystyle\int\frac{x^2}{\sqrt{x^2-a^2}}\,\mathrm dx$；；（3）$\displaystyle\int\sqrt{x^2-a^2}\,\mathrm dx$。</li>
+    <li><b>7.</b> 求下列不定积分：<br>（1）$\displaystyle\int\left(1-\frac2x\right)^2e^x\,\mathrm dx$；；（2）$\displaystyle\int\frac{xe^x}{(1+x)^2}\,\mathrm dx$。</li>
+    <li><b>8.</b> 求出函数 $f$，设：<br>（1）$f'(x^2)=\dfrac1x\quad(x&gt;0)$；；（2）$f'(\sin^2x)=\cos^2x$。</li>
+<h3>§5.3 有理函数的原函数</h3>
+  <ol>
+  </ol>
+    <li>（1）$\displaystyle\int\frac{x}{2x^2-3x-2}\,\mathrm dx$；</li>
+    <li>（2）$\displaystyle\int\frac{2x^2+1}{(x+3)(x-1)(x-4)}\,\mathrm dx$；</li>
+    <li>（3）$\displaystyle\int\frac{\mathrm dx}{2x^3+3x^2+x}$；</li>
+    <li>（4）$\displaystyle\int\frac{x^2}{x^3+5x^2+8x+4}\,\mathrm dx$；</li>
+    <li>（5）$\displaystyle\int\frac{4x+3}{(x-2)^3}\,\mathrm dx$；</li>
+    <li>（6）$\displaystyle\int\frac{x^2}{(x+2)^2(x+4)^2}\,\mathrm dx$；</li>
+    <li>（7）$\displaystyle\int\frac{8x^3+7}{(x+1)(2x+1)^3}\,\mathrm dx$；</li>
+    <li>（8）$\displaystyle\int\frac{\mathrm dx}{(x+1)(x+2)^2(x+3)^3}$；</li>
+    <li>（9）$\displaystyle\int\frac{\mathrm dx}{1+x^3}$；</li>
+    <li>（10）$\displaystyle\int\frac{\mathrm dx}{(x^2+9)^3}$；</li>
+    <li>（11）$\displaystyle\int\frac{\mathrm dx}{x(x^2+1)^2}$；</li>
+    <li>（12）$\displaystyle\int\frac{\mathrm dx}{1+x^4}$；</li>
+    <li>（13）$\displaystyle\int\frac{1+x^2}{1+x^4}\,\mathrm dx$；</li>
+    <li>（14）$\displaystyle\int\frac{\mathrm dx}{x^4(1+x^2)}$。</li>
+<h3>§5.4 可有理化函数的原函数</h3>
+  <ol>
+  </ol>
+    <li><b>1.</b> 求下列不定积分：<br>（1）$\displaystyle\int\frac{\sin^3x}{\cos^4x}\,\mathrm dx$；；（2）$\displaystyle\int\frac{\mathrm dx}{\cos^4x\sin x}$；；（3）$\displaystyle\int\frac{\mathrm dx}{2\sin x-\cos x+5}$；；（4）$\displaystyle\int\frac{\cos x\sin x}{\cos x+\sin x}\,\mathrm dx$；；（5）$\displaystyle\int\frac{\sin x}{1+\cos x+\sin x}\,\mathrm dx$；；（6）$\displaystyle\int\frac{\sin^2x}{1+\sin^2x}\,\mathrm dx$；；（7）$\displaystyle\int\frac{\mathrm dx}{\cos^4x+\sin^4x}$；；（8）$\displaystyle\int\frac{\mathrm dx}{\cos^4x\sin^4x}$；；（9）$\displaystyle\int\frac{\sin x}{\cos^3x+\sin^3x}\,\mathrm dx$；；（10）$\displaystyle\int\sqrt{\tan x}\,\mathrm dx$；；（11）$\displaystyle\int\frac{\mathrm dx}{1+\varepsilon\cos x}\quad(\text{常数 }\varepsilon&gt;1)$。</li>
+    <li><b>2.</b> 求下列不定积分：<br>（1）$\displaystyle\int\frac{\mathrm dx}{1+\sqrt[3]{1+x}}$；；（2）$\displaystyle\int\frac{\sqrt[3]{x}}{x(\sqrt{x}+\sqrt[3]{x})}\,\mathrm dx$；；（3）$\displaystyle\int\frac{x}{\sqrt{x+1}+\sqrt[3]{x+1}}\,\mathrm dx$；；（4）$\displaystyle\int\frac{\sqrt{1+x^2}}{2+x^2}\,\mathrm dx$；；（5）$\displaystyle\int\frac{\mathrm dx}{x\sqrt{1+x^2}}$；；（6）$\displaystyle\int\frac{x^3}{\sqrt{1+2x^2}}\,\mathrm dx$；；（7）$\displaystyle\int\sqrt{\frac{1-\sqrt{x}}{1+\sqrt{x}}}\,\mathrm dx$；；（8）$\displaystyle\int\frac{\mathrm dx}{x\sqrt{a^2-x^2}}\quad(|x|&lt;a,\ x\ne0)$；；（9）$\displaystyle\int\sqrt{\frac{1-x}{1+x}}\,\frac{\mathrm dx}{x^2}$；；（10）$\displaystyle\int\frac{\mathrm dx}{(x+a)^2(x+b)^3}$；；（11）$\displaystyle\int\frac{\mathrm dx}{(x+a)^m(x+b)^n}\quad(m,n\in\mathbb N^*)$；；（12）$\displaystyle\int\frac{\mathrm dx}{(1+x^n)\sqrt[n]{1+x^n}}\quad(n\in\mathbb N^*)$。</li>
+  </ol>
+</section>
+
+<!-- ============ 真题链接 ============ -->
+<section id="zhenti">
+  <h2><span class="h2-no">03</span>真题链接（南科大 610）</h2>
+  <p>依据 <span class="kbd">考研/00_AI/真题分析_2026-09-13</span> 的逐年账本。本章无独立大题，以下列出「本章工具作为核心步骤出现」的真题，用于建立连接——完整做法分别属于第 6、9、16 章。</p>
+  <ul class="exam-list">
+    <li><span class="exam-year">2026</span><b>第 5(1) 题</b>：用对称代换证明 $\displaystyle\int_0^{\pi} x f(\sin x)\,\mathrm{d}x=\frac{\pi}{2}\int_0^{\pi}f(\sin x)\,\mathrm{d}x$。<span class="meta-row"><span class="m">换元 $x\to\pi-x$</span><span class="m">回忆版</span></span></li>
+    <li><span class="exam-year">2026</span><b>第 5(2) 题</b>：计算 $\displaystyle\int_0^{\pi}\frac{x\sin x}{1+\cos^{2}x}\,\mathrm{d}x$——(1) 的直接应用 + 凑微分 $\mathrm{d}(\cos x)$。<span class="meta-row"><span class="m">D2</span><span class="m">回忆版</span></span></li>
+    <li><span class="exam-year">2022</span><b>第 9 题</b>：$a_n=\displaystyle\int_0^{\pi/4}\tan^{n}x\,\mathrm{d}x$ 的双边估计与 $\sum\big(\frac{1}{2n}-a_n\big)$ 讨论。第一动作（换元降幂、递推）在 §5.2 例 5 的技术树内。<span class="meta-row"><span class="m">D4</span><span class="m">递推 + 估计</span></span></li>
+    <li><span class="exam-year">2022</span><b>第 4 题</b>：$f\in C[0,1]$，$f(0)=0$，证 $\displaystyle\int|f|\leqslant\int|f'|$——核心步骤是分部积分处理端点项。<span class="meta-row"><span class="m">D3</span><span class="m">积分不等式</span></span></li>
+    <li><span class="exam-year">2024</span><b>第 5 题</b>：$|f(a)|\leqslant\displaystyle\int|f|+\int|f'|$ 的证明——同一工具家族（分部 + 估计）。<span class="meta-row"><span class="m">D3</span></span></li>
+  </ul>
+  <div class="note n-warn"><span class="note-t">边界</span>上述题面来自回忆版整理，个别符号以原卷为准；本页引用它们只为说明「本章技术在哪里被调用」，不等于你已做过或掌握这些题。</div>
+</section>
+
+<!-- ============ 自测清单 ============ -->
+<section id="checklist">
+  <h2><span class="h2-no">04</span>自测清单</h2>
+  <p>合上课本与讲解，逐条在纸上/口头完成，勾选表示「当场已验证」。勾选记录保存在本机浏览器中。</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox"><span>写出原函数定义，并证明「两个原函数之差为常数」（说清用到的定理）</span></label></li>
+    <li><label><input type="checkbox"><span>默写基本积分表 11 条公式（含定义域条件）</span></label></li>
+    <li><label><input type="checkbox"><span>推导分部积分公式，并说明「左边不写常数」的理由</span></label></li>
+    <li><label><input type="checkbox"><span>独立完成 $\int \mathrm{e}^{x}\cos x\,\mathrm{d}x$（方程组法，不看提示）</span></label></li>
+    <li><label><input type="checkbox"><span>推导 $\int\cos^{n}x\,\mathrm{d}x$ 递推公式，并写出 $n=2,3$ 特例</span></label></li>
+    <li><label><input type="checkbox"><span>完成 $\int\sqrt{a^{2}\pm x^{2}}\,\mathrm{d}x$ 各一遍（三角代换或双曲代换/分部移项）</span></label></li>
+    <li><label><input type="checkbox"><span>把 $\frac{x^{3}+1}{x(x-1)^{3}}$ 分解为部分分式（不丢重因子项）</span></label></li>
+    <li><label><input type="checkbox"><span>写出 $I_k=\int\frac{\mathrm{d}u}{(a^{2}+u^{2})^{k}}$ 的递推公式并用它算 $I_2$</span></label></li>
+    <li><label><input type="checkbox"><span>完成 $\int\frac{\mathrm{d}x}{1+x^{4}}$ 的分解与积分（允许查表核对最后一步）</span></label></li>
+    <li><label><input type="checkbox"><span>写出万能变换三公式，并说出它的适用与局限</span></label></li>
+    <li><label><input type="checkbox"><span>叙述 Chebyshev 三情形判别，并各举一例</span></label></li>
+    <li><label><input type="checkbox"><span>解释为什么 $\int\frac{\sin x}{x}\mathrm{d}x$ 没有初等原函数（存在性 vs 初等表示）</span></label></li>
+  </ul>
+</section>
+
+<!-- ============ 来源与边界 ============ -->
+<section id="source">
+  <h2><span class="h2-no">05</span>来源与边界</h2>
+  <div class="src-note">
+    <p><b>内容依据</b>：常庚哲、史济怀《数学分析教程》第三版上册第 5 章（印刷页 1–25）。定理、公式、例题编号与「课本说明」均与课本核对；页内标注的「课本 p.X」指印刷页码。</p>
+    <p><b>真题依据</b>：<span class="kbd">真题分析_2026-09-13</span>（基于南科大 610 回忆版与原始题面整理；2019–2026 部分年份缺整卷或存在回忆误差，题面以原卷为准）。</p>
+    <p><b>证据边界</b>：本页是复习讲解材料，由 Hermes 生成于 2026-10-13；「★」为课本内容级重要例题标记。本页不构成任何学习进度或掌握度记录——是否掌握以你的独立作答与间隔复现为准。</p>
+  </div>
+</section>
+
+<div class="foot">本页为 Hermes 生成的复习讲解材料（仅供参考），以指定课本原文为准。生成日期 2026-10-13。</div>
+</div><!-- /.wrap -->
+</main>
+</div><!-- /.app -->
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

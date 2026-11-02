@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第01章 多项式 · 高代考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">高等代数 · 考纲课本</div>
+  <div class="sb-title">第01章<br>多项式</div>
+  <nav class="toc">
+    <a href="#body">正文（按节）</a>
+    <a href="#sec1">§1 数域</a>
+    <a href="#sec2">§2 一元多项式</a>
+    <a href="#sec3">§3 整除的概念</a>
+    <a href="#sec4">§4 最大公因式</a>
+    <a href="#sec5">§5 因式分解定理</a>
+    <a href="#sec6">§6 重因式</a>
+    <a href="#sec7">§7 多项式函数</a>
+    <a href="#sec8">§8 复系数与实系数多项式的因式分解</a>
+    <a href="#sec9">§9 有理系数多项式 〔◇〕</a>
+    <a href="#sec10">§10 多元多项式 〔◇〕</a>
+    <a href="#sec11">§11 对称多项式 〔◇〕</a>
+    <a href="#exercises">课本习题</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《高等代数》第四版（王萼芳·石生明）为准。正文取自本章课本骨架，习题全录并标星。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 高等代数 · 801 考纲课本</div>
+    <h1>第01章 多项式</h1>
+    <p class="hero-sub">§1 数域 · §2 一元多项式 · §3 整除的概念 · §4 最大公因式 · §5 因式分解定理 · §6 重因式</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec1">§1 数域<span class="freq">★</span></h2>
+<p><b>课本：p.1-3</b></p>
+<h3>1.1 引入</h3>
+<p><b>课本：p.1-3</b></p>
+<p>课本从“研究问题时必须明确数的范围”出发，指出同一个代数问题在不同数集内可能有不同答案；为了统一讨论有理数、实数、复数等集合共同具有的代数性质，引入数域。</p>
+<h3>1.2 定义1：数域</h3>
+<p><b>课本：2</b></p>
+<p>设 $P$ 是由一些复数组成的集合，其中包括 $0,1$。如果 $P$ 中任意两个数的</p>
+<ul>
+<li>和；</li>
+<li>差；</li>
+<li>积；</li>
+<li>商（除数不为 0）</li>
+</ul>
+<p>仍然属于 $P$，则称 $P$ 为一个<b>数域</b>。</p>
+<p>等价地说，包含 $0,1$ 的数集 $P$ 对加、减、乘、除（除数非零）封闭，则 $P$ 是数域。</p>
+<h4>基本例子</h4>
+<ul>
+<li>$Q$、$R$、$C$ 都是数域。</li>
+<li>全体整数不是数域。</li>
+<li>课本给出 $Q(\sqrt 2)={a+b\sqrt2\mid a,b\in Q}$ 作为数域例子，并验证其对乘法、除法封闭。</li>
+</ul>
+<h3>1.3 数域的重要性质</h3>
+<p><b>课本：p.1-3</b></p>
+<p><b>所有数域都包含有理数域 $Q$。</b></p>
+<p>课本证明顺序：</p>
+<p>$1\in P$ → 加法封闭得到所有自然数 → 减法封闭得到所有整数 → 除法封闭得到所有有理数。</p>
+<hr>
+<h2 id="sec2">§2 一元多项式<span class="freq">★</span></h2>
+<p><b>课本：p.3-8</b></p>
+<h3>2.1 定义2：数域上的一元多项式</h3>
+<p><b>课本：4</b></p>
+<p>设 $n$ 为非负整数，形式表达式</p>
+<div class="formula">$$a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0,$$</div>
+<p>其中 $a_0,\ldots,a_n\in P$，称为数域 $P$ 上的一个<b>一元多项式</b>。</p>
+<ul>
+<li>$a_ix^i$：$i$ 次项；</li>
+<li>$a_i$：$i$ 次项系数；</li>
+<li>$x$ 是一个符号（文字）。</li>
+</ul>
+<p>课本强调：这里的多项式首先是<b>形式表达式</b>，不把 $x$ 必然理解为未知数或数值变量。</p>
+<h3>2.2 定义3：多项式相等</h3>
+<p><b>课本：4</b></p>
+<p>两个多项式除去系数为零的项以后，同次项系数全相等，则称两多项式相等。</p>
+<h3>2.3 零多项式、首项与次数</h3>
+<p><b>课本：p.3-8</b></p>
+<h4>零多项式</h4>
+<p>所有系数都为零的多项式称为<b>零多项式</b>。</p>
+<h4>首项与次数</h4>
+<p>若</p>
+<div class="formula">$$f(x)=a_nx^n+\cdots+a_0,\qquad a_n\ne0,$$</div>
+<p>则：</p>
+<ul>
+<li>$a_nx^n$ 是首项；</li>
+<li>$a_n$ 是首项系数；</li>
+<li>$n$ 是 $f(x)$ 的次数，记作 $\partial(f(x))$（课本记号）。</li>
+</ul>
+<p><b>零多项式不定义次数。</b></p>
+<h3>2.4 加法与乘法</h3>
+<p><b>课本：p.3-8</b></p>
+<p>若</p>
+<div class="formula">$$f(x)=\sum_i a_ix^i,\qquad g(x)=\sum_j b_jx^j,$$</div>
+<p>则</p>
+<div class="formula">$$f(x)+g(x)=\sum_i(a_i+b_i)x^i,$$</div>
+<div class="formula">$$f(x)g(x)=\sum_s\left(\sum_{i+j=s}a_ib_j\right)x^s.$$</div>
+<h3>2.5 次数公式</h3>
+<p><b>课本：p.3-8</b></p>
+<p>对加减法：</p>
+<div class="formula">$$\partial(f\pm g)\le \max\{\partial f,\partial g\}.$$</div>
+<p>若 $f(x)\ne 0, g(x)\ne 0$，则</p>
+<div class="formula">$$f(x)g(x)\ne0,$$</div>
+<p>且</p>
+<div class="formula">$$\partial(fg)=\partial f+\partial g.$$</div>
+<p>乘积首项系数等于各因子首项系数的乘积。</p>
+<h3>2.6 多项式运算规律</h3>
+<p><b>课本：p.3-8</b></p>
+<p>课本列出：</p>
+<ol class="plain">
+<li>加法交换律；</li>
+<li>加法结合律；</li>
+<li>乘法交换律；</li>
+<li>乘法结合律；</li>
+<li>乘法对加法的分配律；</li>
+<li><b>乘法消去律</b>：若</li>
+</ol>
+<div class="formula">$$f(x)g(x)=f(x)h(x),\qquad f(x)\ne0,$$</div>
+<p>则 $g(x)=h(x)$。</p>
+<p>其中乘法结合律由比较同次项系数证明；消去律由</p>
+<div class="formula">$$f(g-h)=0$$</div>
+<p>和非零多项式乘积非零得到。</p>
+<h3>2.7 定义4：一元多项式环</h3>
+<p><b>课本：8</b></p>
+<p>数域 $P$ 上所有一元多项式的全体称为 $P$ 上的一元多项式环，记作</p>
+<div class="formula">$$P[x].$$</div>
+<p>$P$ 称为 $P[x]$ 的<b>系数域</b>。</p>
+<hr>
+<h2 id="sec3">§3 整除的概念<span class="freq">★★</span></h2>
+<p><b>课本：p.8-12</b></p>
+<h3>3.1 带余除法（未编号的重要结论）</h3>
+<p><b>课本：p.8-12</b></p>
+<p>对 $P[x]$ 中任意两个多项式 $f(x),g(x)$，若 $g(x)\ne 0$，则存在唯一的 $q(x),r(x)\in P[x]$，使</p>
+<div class="formula">$$f(x)=q(x)g(x)+r(x),$$</div>
+<p>其中</p>
+<div class="formula">$$r(x)=0\quad\text{或}\quad \partial r<\partial g.$$</div>
+<ul>
+<li>$q(x)$：商式；</li>
+<li>$r(x)$：余式。</li>
+</ul>
+<h4>课本证明路线</h4>
+<p><b>存在性</b>：对 $\partial f$ 作第二数学归纳法。</p>
+<ul>
+<li>$\partial f&lt;\partial g$ 时，取 $q=0,r=f$；</li>
+<li>$\partial f\ge\partial g$ 时，用首项相消构造次数更低的多项式，再用归纳假设。</li>
+</ul>
+<p><b>唯一性</b>：若</p>
+<div class="formula">$$f=qg+r=q'g+r',$$</div>
+<p>则</p>
+<div class="formula">$$(q-q')g=r'-r.$$</div>
+<p>若 $q\ne q'$，左边次数至少为 $\partial g$，右边次数低于 $\partial g$，矛盾。</p>
+<h3>3.2 定义5：整除</h3>
+<p><b>课本：10</b></p>
+<p>若存在 $h(x)\in P[x]$ 使</p>
+<div class="formula">$$f(x)=g(x)h(x),$$</div>
+<p>则称 $g(x)$ <b>整除</b> $f(x)$，记作</p>
+<div class="formula">$$g(x)\mid f(x).$$</div>
+<p>此时：</p>
+<ul>
+<li>$g(x)$ 是 $f(x)$ 的因式；</li>
+<li>$f(x)$ 是 $g(x)$ 的倍式。</li>
+</ul>
+<h3>3.3 定理1：整除的余式判别</h3>
+<p><b>课本：10</b></p>
+<p>对 $P[x]$ 中任意 $f(x),g(x)$，其中 $g(x)\ne 0$，</p>
+<div class="formula">$$g(x)\mid f(x)$$</div>
+<p>的充分必要条件是：用 $g(x)$ 除 $f(x)$ 所得余式为零。</p>
+<h3>3.4 课本列出的整除性质</h3>
+<p><b>课本：p.8-12</b></p>
+<h4>性质1：相互整除</h4>
+<p>若</p>
+<div class="formula">$$f\mid g,\qquad g\mid f,$$</div>
+<p>则</p>
+<div class="formula">$$f=cg,$$</div>
+<p>其中 $c$ 为非零常数。</p>
+<h4>性质2：传递性</h4>
+<p>若</p>
+<div class="formula">$$f\mid g,\qquad g\mid h,$$</div>
+<p>则</p>
+<div class="formula">$$f\mid h.$$</div>
+<h4>性质3：整除线性组合</h4>
+<p>若</p>
+<div class="formula">$$f\mid g_i,\quad i=1,2,\ldots,r,$$</div>
+<p>则对任意 $u_i(x)\in P[x]$，</p>
+<div class="formula">$$f\mid \sum_{i=1}^r u_i(x)g_i(x).$$</div>
+<p>课本把</p>
+<div class="formula">$$u_1g_1+\cdots+u_rg_r$$</div>
+<p>称为 $g_1,\ldots,g_r$ 的一个<b>组合</b>。</p>
+<h3>3.5 两个课本说明</h3>
+<p><b>课本：p.8-12</b></p>
+<ol class="plain">
+<li>$f(x)$ 与任一非零常数倍 $cf(x)$ 有相同的因式与倍式。</li>
+<li>两个多项式之间的整除关系<b>不因系数域扩大而改变</b>。课本理由是：带余除法所得商与余式不因把同一对多项式看成更大系数域中的多项式而改变。</li>
+</ol>
+<hr>
+<h2 id="sec4">§4 最大公因式<span class="freq">★</span></h2>
+<p><b>课本：p.12-18</b></p>
+<h3>4.1 公因式与定义6：最大公因式</h3>
+<p><b>课本：12</b></p>
+<p>若 $\varphi(x)$ 同时整除 $f(x),g(x)$，则称其为二者的<b>公因式</b>。</p>
+<p>$d(x)$ 称为 $f(x),g(x)$ 的一个<b>最大公因式</b>，若：</p>
+<ol class="plain">
+<li>$d(x)$ 是 $f(x),g(x)$ 的公因式；</li>
+<li>$f(x),g(x)$ 的任一公因式都整除 $d(x)$。</li>
+</ol>
+<h3>4.2 引理：带余一步保持公因式集合</h3>
+<p><b>课本：p.12-18</b></p>
+<p>若</p>
+<div class="formula">$$f(x)=q(x)g(x)+r(x),$$</div>
+<p>则</p>
+<div class="formula">$$f(x),g(x)$$</div>
+<p>与</p>
+<div class="formula">$$g(x),r(x)$$</div>
+<p>有相同的公因式。</p>
+<h4>课本证明</h4>
+<ul>
+<li>若 $\varphi\mid g$ 且 $\varphi\mid r$，由 $f=qg+r$ 得 $\varphi\mid f$；</li>
+<li>若 $\varphi\mid f$ 且 $\varphi\mid g$，由 $r=f-qg$ 得 $\varphi\mid r$。</li>
+</ul>
+<h3>4.3 定理2：最大公因式存在与线性表示</h3>
+<p><b>课本：13-14</b></p>
+<p>对任意 $f(x),g(x)\in P[x]$，存在最大公因式 $d(x)$，且存在 $u(x),v(x)\in P[x]$ 使</p>
+<div class="formula">$$d(x)=u(x)f(x)+v(x)g(x).$$</div>
+<h4>课本证明路线</h4>
+<p>若一者为零，结论直接成立。</p>
+<p>一般情形用辗转相除：</p>
+<div class="formula">$$\begin{aligned} f&=q_1g+r_1,\\ g&=q_2r_1+r_2,\\ &\ \vdots\\ r_{s-2}&=q_sr_{s-1}+r_s,\\ r_{s-1}&=q_{s+1}r_s. \end{aligned}$$</div>
+<p>余式次数严格下降，因此有限步终止。</p>
+<p>由引理逐步向上推，最后一个非零余式 $r_s$ 是 $f,g$ 的最大公因式；再由上述等式逐步回代，得到</p>
+<div class="formula">$$r_s=uf+vg.$$</div>
+<h3>4.4 最大公因式的唯一性与记号</h3>
+<p><b>课本：p.12-18</b></p>
+<p>若 $d_1,d_2$ 都是 $f,g$ 的最大公因式，则</p>
+<div class="formula">$$d_1=cd_2,\qquad c\ne0.$$</div>
+<p>因此最大公因式只在相差非零常数倍的意义下唯一。</p>
+<p>对不全为零的 $f,g$，课本约定以</p>
+<div class="formula">$$(f(x),g(x))$$</div>
+<p>表示<b>首项系数为 1</b> 的最大公因式。</p>
+<p>定理2证明中求最大公因式的方法称为<b>辗转相除法</b>。</p>
+<h3>4.5 定义7：互素</h3>
+<p><b>课本：16</b></p>
+<p>$f(x),g(x)\in P[x]$ 称为<b>互素（互质）</b>，若</p>
+<div class="formula">$$(f(x),g(x))=1.$$</div>
+<h3>4.6 定理3：互素的线性组合判别</h3>
+<p><b>课本：16</b></p>
+<p>$f,g$ 互素的充分必要条件是存在 $u,v\in P[x]$，使</p>
+<div class="formula">$$u(x)f(x)+v(x)g(x)=1.$$</div>
+<h4>课本证明</h4>
+<ul>
+<li>必要性：定理2直接推出；</li>
+<li>充分性：若 $\varphi$ 是 $f,g$ 的最大公因式，则 $\varphi$ 整除 $uf+vg=1$，故最大公因式只能为 1。</li>
+</ul>
+<h3>4.7 定理4</h3>
+<p><b>课本：16-17</b></p>
+<p>若</p>
+<div class="formula">$$(f,g)=1,$$</div>
+<p>且</p>
+<div class="formula">$$f\mid gh,$$</div>
+<p>则</p>
+<div class="formula">$$f\mid h.$$</div>
+<h4>课本证明</h4>
+<p>由互素得到</p>
+<div class="formula">$$uf+vg=1.$$</div>
+<p>乘 $h$：</p>
+<div class="formula">$$ufh+vgh=h.$$</div>
+<p>因 $f\mid ufh$ 且 $f\mid vgh$，所以 $f\mid h$。</p>
+<h3>4.8 推论</h3>
+<p><b>课本：p.12-18</b></p>
+<p>若</p>
+<div class="formula">$$f_1\mid g,\qquad f_2\mid g,\qquad (f_1,f_2)=1,$$</div>
+<p>则</p>
+<div class="formula">$$f_1f_2\mid g.$$</div>
+<h3>4.9 多个多项式的最大公因式与互素</h3>
+<p><b>课本：p.12-18</b></p>
+<p>课本把定义推广到 $s\ge2$ 个多项式 $f_1,\ldots,f_s$：</p>
+<p>$d(x)$ 是最大公因式，若</p>
+<ol class="plain">
+<li>$d\mid f_i, i=1,\ldots,s$；</li>
+<li>任一同时整除所有 $f_i$ 的多项式都整除 $d$。</li>
+</ol>
+<p>并指出：</p>
+<div class="formula">$$(f_1,\ldots,f_s)=((f_1,\ldots,f_{s-1}),f_s),$$</div>
+<p>从而最大公因式存在，并有多项式 $u_i(x)$ 使</p>
+<div class="formula">$$u_1f_1+\cdots+u_sf_s=(f_1,\ldots,f_s).$$</div>
+<p>若</p>
+<div class="formula">$$(f_1,\ldots,f_s)=1,$$</div>
+<p>则称这些多项式互素。课本将相应证明留作补充题。</p>
+<h3>4.10 教辅补充：判定最大公因式的组合模板</h3>
+<p><b>课本：p.12-18</b></p>
+<p>若已经证明：</p>
+<ol class="plain">
+<li>$d\mid f$ 且 $d\mid g$；</li>
+<li>存在 $u,v\in P[x]$ 使</li>
+</ol>
+<div class="formula">$$d=uf+vg,$$</div>
+<p>则 $d$ 自动是 $f,g$ 的最大公因式。</p>
+<p>理由是：任意公因式 $c$ 都整除 $f,g$，从而整除任意组合 $uf+vg=d$。</p>
+<div class="note"><b>教辅补充来源</b>：<code>00</code> 将此归纳为教材习题与学习指导中反复使用的证明模板。</div>
+<h3>4.11 教辅补充：Bézout 系数的次数控制</h3>
+<p><b>课本：p.12-18</b></p>
+<p>令</p>
+<div class="formula">$$d=(f,g).$$</div>
+<p>在相应次数为正的情形，可以选取 Bézout 表示</p>
+<div class="formula">$$uf+vg=d$$</div>
+<p>使</p>
+<div class="formula">$$\deg u<\deg\frac{g}{d}, \qquad \deg v<\deg\frac{f}{d}.$$</div>
+<p>教辅给出的核心处理是：从已有的 Bézout 表示出发，再对系数多项式按 $g/d$ 或 $f/d$ 做带余除法，把高次部分吸收到另一系数中。</p>
+<h3>4.12 教辅补充：可逆常数线性组合不改变最大公因式</h3>
+<p><b>课本：p.12-18</b></p>
+<p>若</p>
+<div class="formula">$$f_1=af+bg,\qquad g_1=cf+dg,$$</div>
+<p>其中 $a,b,c,d\in P$，且</p>
+<div class="formula">$$ad-bc\ne0,$$</div>
+<p>则</p>
+<div class="formula">$$(f,g)=(f_1,g_1).$$</div>
+<p>理由：$f_1,g_1$ 是 $f,g$ 的组合；由于常数系数矩阵可逆，$f,g$ 也能反解为 $f_1,g_1$ 的组合，因此两组多项式有相同的公因式。</p>
+<h3>4.13 教辅补充：互素与 gcd 的常用二级结论</h3>
+<p><b>课本：p.12-18</b></p>
+<p>以下结论在 <code>00</code> 汇总的习题/教辅解答中反复出现。</p>
+<h4>(1) 去掉 gcd 后互素</h4>
+<p>若</p>
+<div class="formula">$$d=(f,g),$$</div>
+<p>则</p>
+<div class="formula">$$\left(\frac f d,\frac g d\right)=1.$$</div>
+<h4>(2) 同乘一个首一因子</h4>
+<p>若 $h$ 为首一多项式，则</p>
+<div class="formula">$$(fh,gh)=(f,g)h.$$</div>
+<h4>(3) Bézout 系数本身互素</h4>
+<p>若</p>
+<div class="formula">$$uf+vg=(f,g),$$</div>
+<p>则</p>
+<div class="formula">$$(u,v)=1.$$</div>
+<h4>(4) 互素对乘积稳定</h4>
+<p>若</p>
+<div class="formula">$$(f,g)=1,\qquad (f,h)=1,$$</div>
+<p>则</p>
+<div class="formula">$$(f,gh)=1.$$</div>
+<h4>(5) 全交叉互素推出两个乘积互素</h4>
+<p>若对所有 $i,j$ 都有</p>
+<div class="formula">$$(f_i,g_j)=1,$$</div>
+<p>则</p>
+<div class="formula">$$\left(\prod_i f_i,\prod_j g_j\right)=1.$$</div>
+<h4>(6) 一个常用组合</h4>
+<p>若</p>
+<div class="formula">$$(f,g)=1,$$</div>
+<p>则</p>
+<div class="formula">$$(fg,f+g)=1.$$</div>
+<h4>(7) 互素的正整数次幂仍互素</h4>
+<p>若</p>
+<div class="formula">$$(f,g)=1,$$</div>
+<p>则对任意正整数 $m,n$，</p>
+<div class="formula">$$(f^m,g^n)=1.$$</div>
+<h3>4.14 教辅补充：最小公倍式</h3>
+<p><b>课本：p.12-18</b></p>
+<p>对首一多项式 $f,g$，教辅补充题引入最小公倍式 $[f,g]$，并给出</p>
+<div class="formula">$$[f,g]=\frac{fg}{(f,g)}.$$</div>
+<p>若从标准分解式看，这与“gcd 对每个不可约因子取较小指数、lcm 取较大指数”一致。</p>
+<hr>
+<h2 id="sec5">§5 因式分解定理<span class="freq">★★</span></h2>
+<p><b>课本：p.18-21</b></p>
+<h3>5.1 系数域与可约性</h3>
+<p><b>课本：p.18-21</b></p>
+<p>课本首先指出：一个多项式能否继续分解取决于所选的<b>系数域</b>。</p>
+<p>以 $x^4-4$ 为例：</p>
+<ul>
+<li>在 $Q$ 上有一种分解程度；</li>
+<li>扩大到 $Q(\sqrt2)$ 或 $R$ 后可进一步分解；</li>
+<li>在 $C$ 上还能分解成一次因式。</li>
+</ul>
+<h3>5.2 定义8：不可约多项式</h3>
+<p><b>课本：18</b></p>
+<p>数域 $P$ 上次数 $\ge1$ 的多项式 $p(x)$ 称为 $P$ 上的<b>不可约多项式</b>，如果它不能表示为 $P$ 上两个次数都低于 $p(x)$ 的多项式的乘积。</p>
+<p>课本说明：</p>
+<ul>
+<li>一次多项式总是不可约；</li>
+<li>不可约性依赖系数域；</li>
+<li>不可约 $p(x)$ 的因式只有非零常数以及 $p(x)$ 的非零常数倍。</li>
+</ul>
+<p>由此，对任意 $f(x)$：</p>
+<div class="formula">$$p\mid f\quad\text{或}\quad (p,f)=1.$$</div>
+<h3>5.3 定理5：不可约多项式整除乘积</h3>
+<p><b>课本：19</b></p>
+<p>若 $p(x)$ 不可约，且</p>
+<div class="formula">$$p(x)\mid f(x)g(x),$$</div>
+<p>则</p>
+<div class="formula">$$p(x)\mid f(x)$$</div>
+<p>或</p>
+<div class="formula">$$p(x)\mid g(x).$$</div>
+<h4>课本证明</h4>
+<p>若 $p\mid f$ 则已成立；否则 $(p,f)=1$，由定理4从 $p\mid fg$ 推出 $p\mid g$。</p>
+<p>课本用数学归纳法推广：若不可约 $p$ 整除若干多项式的乘积，则 $p$ 必整除其中某一个因子。</p>
+<h3>5.4 因式分解及唯一性定理（本章主要定理，未编号）</h3>
+<p><b>课本：p.18-21</b></p>
+<p>数域 $P$ 上每一个次数 $\ge1$ 的多项式 $f(x)$ 都可以分解为 $P$ 上若干不可约多项式的乘积。</p>
+<p>若有两种分解</p>
+<div class="formula">$$f=p_1p_2\cdots p_s=q_1q_2\cdots q_t,$$</div>
+<p>则</p>
+<div class="formula">$$s=t,$$</div>
+<p>并且适当排列因式次序后</p>
+<div class="formula">$$p_i=c_iq_i,\qquad c_i\ne0.$$</div>
+<h4>课本证明路线</h4>
+<p><b>存在性</b>：对 $\partial f$ 归纳。</p>
+<ul>
+<li>若 $f$ 不可约，结束；</li>
+<li>若可约，写成两个低次多项式乘积，再对两个因子应用归纳假设。</li>
+</ul>
+<p><b>唯一性</b>：对不可约因子的个数归纳。</p>
+<p>由</p>
+<div class="formula">$$p_1\mid q_1\cdots q_t$$</div>
+<p>和定理5，$p_1$ 整除某个 $q_j$；适当换序取 $q_1$，不可约性给出</p>
+<div class="formula">$$p_1=c_1q_1.$$</div>
+<p>消去这一因子，再用归纳假设。</p>
+<h3>5.5 标准分解式</h3>
+<p><b>课本：p.18-21</b></p>
+<p>把每个不可约因式化为首项系数 1，并合并相同因子，可写成</p>
+<div class="formula">$$f(x)=c\,p_1(x)^{r_1}p_2(x)^{r_2}\cdots p_s(x)^{r_s},$$</div>
+<p>其中：</p>
+<ul>
+<li>$c$ 是 $f$ 的首项系数；</li>
+<li>$p_1,\ldots,p_s$ 是彼此不同、首项系数为 1 的不可约多项式；</li>
+<li>$r_i$ 是正整数。</li>
+</ul>
+<p>课本称其为 $f(x)$ 的<b>标准分解式</b>。</p>
+<h3>5.6 由标准分解式求最大公因式</h3>
+<p><b>课本：p.18-21</b></p>
+<p>若已知两多项式的标准分解式，则其最大公因式由两者共同出现的不可约因子组成；每个共同不可约因子的指数取两边指数的较小者。</p>
+<p>课本最后指出：带余除法是一元多项式因式分解理论的基础，并类比整数的带余除法与整数因式分解理论。</p>
+<h3>5.7 教辅补充：不可约“素性”的逆刻画</h3>
+<p><b>课本：p.18-21</b></p>
+<p>课本定理5给出：</p>
+<div class="formula">$$p\text{ 不可约},\quad p\mid fg \Longrightarrow p\mid f\ \text{或}\ p\mid g.$$</div>
+<p>教辅补充题给出逆向刻画：若 $p$ 的次数大于 $0$，并且对任意 $f,g\in P[x]$ 都有</p>
+<div class="formula">$$p\mid fg \Longrightarrow p\mid f\ \text{或}\ p\mid g,$$</div>
+<p>则 $p$ 不可约。</p>
+<h3>5.8 教辅补充：不可约多项式方幂的一种刻画</h3>
+<p><b>课本：p.18-21</b></p>
+<p>设 $f$ 为次数大于 $0$ 的首一多项式。教辅补充题给出：</p>
+<p>$f$ 是某个不可约多项式的正整数次幂，当且仅当对任意 $g,h$，若</p>
+<div class="formula">$$f\mid gh,$$</div>
+<p>则必有</p>
+<div class="formula">$$f\mid g,$$</div>
+<p>或者存在某个正整数 $m$ 使</p>
+<div class="formula">$$f\mid h^m.$$</div>
+<p><code>00</code> 中给出的证明核心是标准分解式：若 $f$ 含有两个不同的不可约因子，可以把不同因子分别放进 $g,h$，构造出违反上述性质的情形。</p>
+<hr>
+<h2 id="sec6">§6 重因式<span class="freq">★</span></h2>
+<p><b>课本：p.22-24</b></p>
+<h3>6.1 定义9：$k$ 重因式</h3>
+<p><b>课本：22</b></p>
+<p>不可约多项式 $p(x)$ 称为 $f(x)$ 的 $k$ 重因式，若</p>
+<div class="formula">$$p(x)^k\mid f(x),$$</div>
+<p>而</p>
+<div class="formula">$$p(x)^{k+1}\nmid f(x).$$</div>
+<ul>
+<li>$k=0$：$p$ 不是 $f$ 的因式；</li>
+<li>$k=1$：单因式；</li>
+<li>$k&gt;1$：重因式。</li>
+</ul>
+<p>若标准分解式为</p>
+<div class="formula">$$f=c\,p_1^{r_1}\cdots p_s^{r_s},$$</div>
+<p>则 $p_i$ 是 $r_i$ 重因式。</p>
+<h3>6.2 多项式微商的形式定义</h3>
+<p><b>课本：p.22-24</b></p>
+<p>若</p>
+<div class="formula">$$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0,$$</div>
+<p>规定</p>
+<div class="formula">$$f'(x)=na_nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+a_1.$$</div>
+<p>课本强调：本章只把它作为形式定义。</p>
+<p>基本公式：</p>
+<div class="formula">$$(f+g)'=f'+g',$$</div>
+<div class="formula">$$(cf)'=cf',$$</div>
+<div class="formula">$$(fg)'=f'g+fg',$$</div>
+<div class="formula">$$(f^m)'=mf^{m-1}f'.$$</div>
+<p>高阶微商记作 $f^{(k)}(x)$。</p>
+<h3>6.3 定理6</h3>
+<p><b>课本：23</b></p>
+<p>若不可约多项式 $p(x)$ 是 $f(x)$ 的 $k$ 重因式（$k\ge1$），则 $p(x)$ 是 $f'(x)$ 的 $k-1$ 重因式。</p>
+<h4>课本证明</h4>
+<p>写</p>
+<div class="formula">$$f=p^kg,$$</div>
+<p>且 $p\nmid g$。则</p>
+<div class="formula">$$f'=p^{k-1}(kgp'+pg').$$</div>
+<p>括号内第一项不被 $p$ 整除而第二项被 $p$ 整除，因此括号整体不被 $p$ 整除，故 $p$ 在 $f'$ 中重数恰减 1。</p>
+<h3>6.4 推论1</h3>
+<p><b>课本：p.22-24</b></p>
+<p>若 $p$ 是 $f$ 的 $k$ 重因式，则 $p$ 是</p>
+<div class="formula">$$f,f',\ldots,f^{(k-1)}$$</div>
+<p>的因式，但不是 $f^{(k)}$ 的因式。</p>
+<h3>6.5 推论2</h3>
+<p><b>课本：p.22-24</b></p>
+<p>不可约多项式 $p(x)$ 是 $f(x)$ 的重因式的充分必要条件是：</p>
+<div class="formula">$$p(x)$$</div>
+<p>是 $f(x)$ 与 $f'(x)$ 的公因式。</p>
+<h3>6.6 推论3</h3>
+<p><b>课本：p.22-24</b></p>
+<p>多项式 $f(x)$ <b>没有重因式</b> 的充分必要条件是</p>
+<div class="formula">$$(f(x),f'(x))=1.$$</div>
+<h3>6.7 去掉重数的多项式</h3>
+<p><b>课本：p.22-24</b></p>
+<p>若</p>
+<div class="formula">$$f(x)=c\,p_1^{r_1}\cdots p_s^{r_s},$$</div>
+<p>则课本指出</p>
+<div class="formula">$$\frac{f(x)}{(f(x),f'(x))} = c\,p_1(x)p_2(x)\cdots p_s(x),$$</div>
+<p>它没有重因式，但与 $f(x)$ 有完全相同的不可约因式。</p>
+<h3>6.8 教辅补充：重根的高阶导数判据</h3>
+<p><b>课本：p.22-24</b></p>
+<p><code>00</code> 根据教材习题与教辅解答补充了根的重数判据。</p>
+<p>若 $a$ 是 $f$ 的 $k$ 重根，则</p>
+<div class="formula">$$f(a)=f'(a)=\cdots=f^{(k-1)}(a)=0,$$</div>
+<p>且</p>
+<div class="formula">$$f^{(k)}(a)\ne0.$$</div>
+<p>反之，上述条件也推出 $a$ 是 $f$ 的 $k$ 重根。</p>
+<p>特别地，$a$ 是重根的第一判据为</p>
+<div class="formula">$$f(a)=0,\qquad f'(a)=0.$$</div>
+<h3>6.9 教辅补充：三项式的高重非零根限制</h3>
+<p><b>课本：p.22-24</b></p>
+<p>教辅补充题给出：对</p>
+<div class="formula">$$f(x)=x^n+a x^{\,n-m}+b,\qquad m\ne0,$$</div>
+<p>不存在<b>非零且重数大于 2</b> 的根。</p>
+<p><code>00</code> 中保留的证明思路是：若假设存在三重根 $\alpha\ne0$，则 $\alpha$ 同时是 $f,f',f''$ 的根；对 $f',f''$ 提取公共幂后，剩余低项式被迫具有公共非零根，再通过线性消元导出矛盾。</p>
+<h3>6.10 教辅补充：若 $f'\mid f$，则 $f$ 的根结构极端退化</h3>
+<p><b>课本：p.22-24</b></p>
+<p>设</p>
+<div class="formula">$$\deg f=n.$$</div>
+<p>教辅补充题利用“求导使每个根的重数下降 1”得到：若</p>
+<div class="formula">$$f'\mid f,$$</div>
+<p>则 $f$ 只有一个根，并且该根的重数为 $n$。因此可写成</p>
+<div class="formula">$$f(x)=c(x-a)^n$$</div>
+<p>的形式（$c\ne0$）。</p>
+<p><code>00</code> 中的计数思路：若 $f'$ 含有多个不同根，把它们在 $f'$ 中的重数各加 $1$ 后，会迫使 $f$ 的总根数超过 $n$。</p>
+<hr>
+<h2 id="sec7">§7 多项式函数<span class="freq">★</span></h2>
+<p><b>课本：p.24-26</b></p>
+<h3>7.1 多项式的值与多项式函数</h3>
+<p><b>课本：p.24-26</b></p>
+<p>对</p>
+<div class="formula">$$f(x)=a_nx^n+\cdots+a_0\in P[x],$$</div>
+<p>和 $a\in P$，用 $a$ 代入 $x$ 得到的数记为 $f(a)$。</p>
+<p>由多项式定义的 $P$ 上函数称为 $P$ 上的<b>多项式函数</b>。</p>
+<p>若</p>
+<div class="formula">$$h_1=f+g,\qquad h_2=fg,$$</div>
+<p>则</p>
+<div class="formula">$$h_1(a)=f(a)+g(a),$$</div>
+<div class="formula">$$h_2(a)=f(a)g(a).$$</div>
+<h3>7.2 定理7：余数定理</h3>
+<p><b>课本：25</b></p>
+<p>用一次多项式 $x-a$ 除 $f(x)$ 所得余式为常数，且这个常数等于</p>
+<div class="formula">$$f(a).$$</div>
+<h4>课本证明</h4>
+<p>写</p>
+<div class="formula">$$f(x)=(x-a)q(x)+c,$$</div>
+<p>令 $x=a$ 即得 $f(a)=c$。</p>
+<h3>7.3 根（零点）与一次因式</h3>
+<p><b>课本：p.24-26</b></p>
+<p>若</p>
+<div class="formula">$$f(a)=0,$$</div>
+<p>则 $a$ 称为 $f(x)$ 的一个根或零点。</p>
+<h4>推论</h4>
+<p>$a$ 是 $f(x)$ 的根的充分必要条件是</p>
+<div class="formula">$$(x-a)\mid f(x).$$</div>
+<h3>7.4 重根</h3>
+<p><b>课本：p.24-26</b></p>
+<p>若 $x-a$ 是 $f(x)$ 的 $k$ 重因式，则称 $a$ 为 $f$ 的 $k$ 重根。</p>
+<ul>
+<li>$k=1$：单根；</li>
+<li>$k&gt;1$：重根。</li>
+</ul>
+<h3>7.5 定理8：根的个数</h3>
+<p><b>课本：25</b></p>
+<p>$P[x]$ 中 $n$ 次多项式（$n\ge0$）在数域 $P$ 中的根不可能多于 $n$ 个，<b>重根按重数计算</b>。</p>
+<p>课本证明：把多项式分解为不可约因式乘积，根数就是其中一次因式的个数，不超过次数。</p>
+<h3>7.6 定理9：由 $n+1$ 个函数值确定多项式</h3>
+<p><b>课本：26</b></p>
+<p>若 $f(x),g(x)$ 的次数都不超过 $n$，且在 $n+1$ 个不同的数</p>
+<div class="formula">$$a_1,a_2,\ldots,a_{n+1}$$</div>
+<p>处有</p>
+<div class="formula">$$f(a_i)=g(a_i),\qquad i=1,\ldots,n+1,$$</div>
+<p>则</p>
+<div class="formula">$$f(x)=g(x).$$</div>
+<h4>课本证明</h4>
+<p>若 $f-g$ 非零，则次数不超过 $n$，但有 $n+1$ 个不同根，与定理8矛盾。</p>
+<h3>7.7 课本结论</h3>
+<p><b>课本：p.24-26</b></p>
+<p>由于数域中有无穷多个数，课本由定理9指出：不同的多项式定义不同的多项式函数。因此在数域上，多项式的<b>恒等</b>与多项式的<b>相等</b>是一致的。</p>
+<h3>7.8 教辅补充：展开成 $(x-x_0)$ 的幂——连续综合除法</h3>
+<p><b>课本：p.24-26</b></p>
+<p>教辅习题解答使用下列纯代数方法把多项式写成</p>
+<div class="formula">$$f(x) = c_0+c_1(x-x_0)+c_2(x-x_0)^2+\cdots.$$</div>
+<p>连续用 $x-x_0$ 作综合除法：</p>
+<ol class="plain">
+<li>第一次除法的余数是 $c_0$；</li>
+<li>将第一次所得商再次除以 $x-x_0$，余数是 $c_1$；</li>
+<li>继续下去，依次得到全部系数。</li>
+</ol>
+<h3>7.9 教辅补充：Lagrange 插值公式</h3>
+<p><b>课本：p.24-26</b></p>
+<p>设</p>
+<div class="formula">$$a_1,\ldots,a_n$$</div>
+<p>两两不同，并令</p>
+<div class="formula">$$F(x)=\prod_{i=1}^n(x-a_i).$$</div>
+<p>给定任意 $b_1,\ldots,b_n$，则</p>
+<div class="formula">$$L(x) = \sum_{i=1}^n \frac{b_iF(x)} {(x-a_i)F'(a_i)}$$</div>
+<p>满足</p>
+<div class="formula">$$L(a_i)=b_i,\qquad i=1,\ldots,n,$$</div>
+<p>并且</p>
+<div class="formula">$$\deg L\le n-1.$$</div>
+<p>这把课本“足够多的点值唯一确定低次多项式”的唯一性结论变成了一个直接构造公式。</p>
+<h4>任意多项式除以 $F(x)$ 的余式</h4>
+<p>若 $r(x)$ 是 $f(x)$ 除以 $F(x)$ 的余式，则</p>
+<div class="formula">$$r(x) = \sum_{i=1}^n \frac{f(a_i)F(x)} {(x-a_i)F'(a_i)}.$$</div>
+<p>因为 $\deg r&lt;n$，并且 $r(a_i)=f(a_i)$。</p>
+<h3>7.10 教辅补充：若 $f(x)\mid f(x^n)$，根只能是 $0$ 或单位根</h3>
+<p><b>课本：p.24-26</b></p>
+<p>若</p>
+<div class="formula">$$f(x)\mid f(x^n),$$</div>
+<p>且 $\alpha$ 是 $f$ 的一个根，则</p>
+<div class="formula">$$\alpha,\alpha^n,\alpha^{n^2},\ldots$$</div>
+<p>都是 $f$ 的根。</p>
+<p>由于非零多项式只有有限多个不同根，存在 $k&lt;l$ 使</p>
+<div class="formula">$$\alpha^{n^k}=\alpha^{n^l}.$$</div>
+<p>若 $\alpha\ne0$，则得到 $\alpha$ 的某个正整数次幂等于 $1$。因此 $f$ 的根只能是 $0$ 或单位根。</p>
+<h3>7.11 教辅补充：一个整数根的奇偶性结论</h3>
+<p><b>课本：p.24-26</b></p>
+<p>若</p>
+<div class="formula">$$f\in\mathbb Z[x]$$</div>
+<p>且 $f(0),f(1)$ 都为奇数，则 $f$ 没有整数根。</p>
+<p>若整数 $c$ 是根，由</p>
+<div class="formula">$$f(x)=(x-c)q(x),\qquad q\in\mathbb Z[x]$$</div>
+<p>可得：$f(0)=-cq(0)$ 为奇数迫使 $c$ 为奇数，因此 $1-c$ 为偶数；但</p>
+<div class="formula">$$f(1)=(1-c)q(1)$$</div>
+<p>应为偶数，与 $f(1)$ 为奇数矛盾。</p>
+<hr>
+<h2 id="sec8">§8 复系数与实系数多项式的因式分解<span class="freq">★★</span></h2>
+<p><b>课本：p.26-29</b></p>
+<h3>8.1 代数基本定理（课本引用，不证明）</h3>
+<p><b>课本：p.26-29</b></p>
+<p>每个次数 $\ge1$ 的复系数多项式在复数域中有一个根。</p>
+<p>课本说明：定理证明较复杂，本章不证明。</p>
+<p>由根与一次因式关系，等价地：每个次数 $\ge1$ 的复系数多项式在 $C[x]$ 中有一个一次因式。</p>
+<h3>8.2 复系数多项式因式分解定理</h3>
+<p><b>课本：p.26-29</b></p>
+<p>每个次数 $\ge1$ 的复系数多项式在复数域上都可以唯一地分解成一次因式的乘积。</p>
+<p>标准分解式：</p>
+<div class="formula">$$f(x)=a_n(x-a_1)^{r_1}(x-a_2)^{r_2}\cdots(x-a_s)^{r_s},$$</div>
+<p>其中 $a_1,\ldots,a_s$ 是互不相同的复数，$r_i$ 为正整数。</p>
+<p>课本据此得到：每个 $n$ 次复系数多项式恰有 $n$ 个复根（重根按重数计算）。</p>
+<h3>8.3 实系数多项式的共轭根性质</h3>
+<p><b>课本：p.26-29</b></p>
+<p>若 $f(x)$ 是实系数多项式，$a$ 是其复根，则共轭数 $\bar a$ 也是其根。</p>
+<p>课本证明直接对 $f(a)=0$ 两边取共轭。</p>
+<h3>8.4 实系数多项式因式分解定理</h3>
+<p><b>课本：p.26-29</b></p>
+<p>每个次数 $\ge1$ 的实系数多项式在实数域上可以唯一地分解成一次因式与二次不可约因式的乘积。</p>
+<h4>课本证明路线</h4>
+<p>对次数归纳。</p>
+<ul>
+<li>若有实根 $a$，提取因子 $x-a$；</li>
+<li>若有非实根 $a$，同时有 $\bar a$，提取</li>
+</ul>
+<div class="formula">$$(x-a)(x-\bar a)$$</div>
+<p>得到一个实系数二次不可约因式；</p>
+<ul>
+<li>对剩余低次实系数多项式用归纳假设。</li>
+</ul>
+<p>标准分解式可写为</p>
+<div class="formula">$$f(x)=a_n\prod_i(x-c_i)^{l_i}\prod_j(x^2+p_jx+q_j)^{k_j},$$</div>
+<p>其中各二次因式不可约，即</p>
+<div class="formula">$$p_j^2-4q_j<0.$$</div>
+<hr>
+<h2 id="sec9">§9 有理系数多项式 〔◇〕</h2>
+<p><b>课本：p.29-34</b></p>
+<h3>9.1 本节的两个目标</h3>
+<p><b>课本：p.29-34</b></p>
+<p>课本指出：</p>
+<ol class="plain">
+<li>有理系数多项式的因式分解问题可以归结为整系数多项式的因式分解问题，并可据此处理有理根；</li>
+<li>$Q[x]$ 中存在任意次数的不可约多项式。</li>
+</ol>
+<h3>9.2 本原多项式</h3>
+<p><b>课本：p.29-34</b></p>
+<p>一个非零整系数多项式</p>
+<div class="formula">$$g(x)=b_nx^n+\cdots+b_0$$</div>
+<p>若各项系数没有异于 $\pm1$ 的公因子，即系数互素，则称为<b>本原多项式</b>。</p>
+<p>课本指出：任何非零有理系数多项式都可写成</p>
+<div class="formula">$$f(x)=r g(x),$$</div>
+<p>其中 $r$ 为有理数，$g(x)$ 为本原多项式；这种表示除正负号外唯一。</p>
+<h3>9.3 定理10：高斯引理</h3>
+<p><b>课本：30-31</b></p>
+<p>两个本原多项式的乘积仍是本原多项式。</p>
+<h4>课本证明路线</h4>
+<p>反证。若乘积所有系数有某素数 $p$ 为公因子，在两个本原多项式中分别取第一个不被 $p$ 整除的系数，考察乘积中对应次数的系数，得到矛盾。</p>
+<h3>9.4 定理11</h3>
+<p><b>课本：31-32</b></p>
+<p>若一个非零整系数多项式能分解为两个次数较低的有理系数多项式的乘积，则它一定能分解为两个次数较低的整系数多项式的乘积。</p>
+<h4>课本证明路线</h4>
+<p>把两个有理系数因子分别写成“有理数 × 本原多项式”，再用高斯引理说明本原部分的乘积仍本原，从而总的有理数倍实际上可以吸收到一个整系数因子中。</p>
+<h3>9.5 定理11后的推论</h3>
+<p><b>课本：31-32</b></p>
+<p>若 $f(x),g(x)$ 是整系数多项式，$g(x)$ 本原，且</p>
+<div class="formula">$$f(x)=g(x)h(x),$$</div>
+<p>其中 $h(x)$ 是有理系数多项式，则 $h(x)$ 一定是整系数多项式。</p>
+<h3>9.6 定理12：有理根定理</h3>
+<p><b>课本：32</b></p>
+<p>设</p>
+<div class="formula">$$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0$$</div>
+<p>是整系数多项式，$r/s$ 是其一个既约有理根（$r,s$ 互素），则</p>
+<div class="formula">$$s\mid a_n,$$</div>
+<div class="formula">$$r\mid a_0.$$</div>
+<p>特别地，若首项系数 $a_n=1$，则有理根只能是整数，且必须是 $a_0$ 的因子。</p>
+<h4>课本证明路线</h4>
+<p>由 $r/s$ 为根得</p>
+<div class="formula">$$\left(x-\frac rs\right)\mid f(x),$$</div>
+<p>故</p>
+<div class="formula">$$(sx-r)\mid s f(x).$$</div>
+<p>$r,s$ 互素使 $sx-r$ 本原，利用前述推论得到整系数商；比较首、常数项得到 $s\mid a_n, r\mid a_0$。</p>
+<h3>9.7 定理13：Eisenstein 判别法</h3>
+<p><b>课本：33-34</b></p>
+<p>设</p>
+<div class="formula">$$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0$$</div>
+<p>为整系数多项式。若存在素数 $p$ 满足</p>
+<ol class="plain">
+<li>$p\nmid a_n$；</li>
+<li>$p\mid a_{n-1},a_{n-2},\ldots,a_0$；</li>
+<li>$p^2\nmid a_0$；</li>
+</ol>
+<p>则 $f(x)$ 在有理数域上不可约。</p>
+<h4>课本证明路线</h4>
+<p>假设在 $Q[x]$ 可约，由定理11可写成两个低次整系数多项式乘积。由 $p\mid a_0$ 且 $p^2\nmid a_0$，$p$ 只整除两个常数项中的一个；再从最低次不被 $p$ 整除的系数比较，导出矛盾。</p>
+<h3>9.8 课本给出的直接结论</h3>
+<p><b>课本：p.29-34</b></p>
+<p>由 Eisenstein 判别法，课本指出：对任意正整数 $n$，</p>
+<div class="formula">$$x^n+2$$</div>
+<p>在有理数域上不可约，因此 $Q[x]$ 中存在任意次数的不可约多项式。</p>
+<hr>
+<h2 id="sec10">§10 多元多项式 〔◇〕</h2>
+<p><b>课本：p.34-39</b></p>
+<h3>10.1 单项式与多元多项式</h3>
+<p><b>课本：p.34-39</b></p>
+<p>设 $P$ 为数域，$x_1,\ldots,x_n$ 为 $n$ 个文字，</p>
+<div class="formula">$$a x_1^{k_1}x_2^{k_2}\cdots x_n^{k_n},$$</div>
+<p>其中 $a\in P$，$k_i$ 为非负整数，称为一个<b>单项式</b>。</p>
+<p>若两个单项式中各相同文字的幂完全相同，则称为<b>同类项</b>。</p>
+<p>若干单项式之和称为 $n$ 元多项式。</p>
+<h3>10.2 定义10：多元多项式环</h3>
+<p><b>课本：35</b></p>
+<p>所有系数在 $P$ 中的 $n$ 元多项式全体称为 $P$ 上的 $n$ 元多项式环，记作</p>
+<div class="formula">$$P[x_1,x_2,\ldots,x_n].$$</div>
+<h3>10.3 多元多项式的次数</h3>
+<p><b>课本：p.34-39</b></p>
+<p>单项式</p>
+<div class="formula">$$a x_1^{k_1}\cdots x_n^{k_n}$$</div>
+<p>的次数为</p>
+<div class="formula">$$k_1+\cdots+k_n.$$</div>
+<p>多项式写成不同类单项式之和后，系数非零的单项式中最高次数称为该多项式的次数。</p>
+<h3>10.4 字典排列法</h3>
+<p><b>课本：p.34-39</b></p>
+<p>单项式对应指数数组</p>
+<div class="formula">$$(k_1,k_2,\ldots,k_n).$$</div>
+<p>若两个数组之差</p>
+<div class="formula">$$k_1-l_1,k_2-l_2,\ldots,k_n-l_n$$</div>
+<p>中第一个非零数为正，则规定</p>
+<div class="formula">$$(k_1,\ldots,k_n)>(l_1,\ldots,l_n).$$</div>
+<p>课本指出此关系给出数组、从而单项式之间的先后次序，称为<b>字典排列</b>。</p>
+<p>按字典排列写出的第一个系数非零的单项式称为多项式的<b>首项</b>。</p>
+<p>课本特别提醒：多元多项式的首项<b>不一定具有最大次数</b>。</p>
+<h3>10.5 定理14：乘积的首项</h3>
+<p><b>课本：36-38</b></p>
+<p>若</p>
+<div class="formula">$$f(x_1,\ldots,x_n)\ne0,\qquad g(x_1,\ldots,x_n)\ne0,$$</div>
+<p>则乘积 $fg$ 的首项等于 $f$ 的首项与 $g$ 的首项的乘积。</p>
+<h4>课本证明路线</h4>
+<p>设 $f,g$ 的首项分别对应指数数组 $p=(p_i), q=(q_i)$；比较乘积中其它单项式的指数数组，利用字典序的传递性证明 $p+q$ 先于所有其它数组，且对应项不会与其它项同类相消。</p>
+<h3>10.6 定理14的两个推论</h3>
+<p><b>课本：36-38</b></p>
+<h4>推论1</h4>
+<p>若 $f_i\ne0$，则若干多项式乘积的首项等于各因子首项的乘积。</p>
+<h4>推论2</h4>
+<p>若 $f\ne0,g\ne0$，则</p>
+<div class="formula">$$fg\ne0.$$</div>
+<h3>10.7 齐次多项式与齐次成分</h3>
+<p><b>课本：p.34-39</b></p>
+<p>若一个多项式中每个单项式全是 $m$ 次的，则称为 $m$ 次<b>齐次多项式</b>。</p>
+<p>两个齐次多项式的乘积仍齐次，次数等于两因子次数之和。</p>
+<p>任一 $m$ 次多项式都能唯一地表示成</p>
+<div class="formula">$$f=f_0+f_1+\cdots+f_m,$$</div>
+<p>其中 $f_i$ 为 $i$ 次齐次多项式，称为 $f$ 的 $i$ 次齐次成分。</p>
+<p>若</p>
+<div class="formula">$$f=\sum_{i=0}^m f_i,\qquad g=\sum_{j=0}^l g_j,$$</div>
+<p>则乘积的 $k$ 次齐次成分为</p>
+<div class="formula">$$h_k=\sum_{i+j=k}f_i g_j.$$</div>
+<p>特别地，最高次齐次成分为</p>
+<div class="formula">$$h_{m+l}=f_mg_l.$$</div>
+<p>因此课本得到多元多项式的次数公式：</p>
+<div class="formula">$$\partial(fg)=\partial f+\partial g$$</div>
+<p>（$f,g$ 非零）。</p>
+<h3>10.8 多元多项式作为函数</h3>
+<p><b>课本：p.34-39</b></p>
+<p>课本最后说明，多元多项式同样可以在</p>
+<div class="formula">$$(x_1,\ldots,x_n)=(c_1,\ldots,c_n)$$</div>
+<p>处取值，并且加法、乘法与取值相容。</p>
+<hr>
+<h2 id="sec11">§11 对称多项式 〔◇〕</h2>
+<p><b>课本：p.39-44</b></p>
+<h3>11.1 一元多项式根与系数关系</h3>
+<p><b>课本：p.39-44</b></p>
+<p>设</p>
+<div class="formula">$$f(x)=x^n+a_1x^{n-1}+\cdots+a_n$$</div>
+<p>在数域中有 $n$ 个根 $\alpha_1,\ldots,\alpha_n$，则</p>
+<div class="formula">$$f(x)=\prod_{i=1}^n(x-\alpha_i).$$</div>
+<p>比较系数：</p>
+<div class="formula">$$-a_1=\alpha_1+\alpha_2+\cdots+\alpha_n,$$</div>
+<div class="formula">$$a_2=\sum_{i<j}\alpha_i\alpha_j,$$</div>
+<p>一般地，</p>
+<div class="formula">$$(-1)^k a_k$$</div>
+<p>等于所有 $k$ 个不同根的乘积之和，且</p>
+<div class="formula">$$(-1)^n a_n=\alpha_1\alpha_2\cdots\alpha_n.$$</div>
+<p>由此引出初等对称多项式</p>
+<div class="formula">$$\sigma_1=x_1+\cdots+x_n,$$</div>
+<div class="formula">$$\sigma_2=\sum_{i<j}x_i x_j,$$</div>
+<div class="formula">$$\cdots$$</div>
+<div class="formula">$$\sigma_n=x_1x_2\cdots x_n.$$</div>
+<h3>11.2 定义11：对称多项式</h3>
+<p><b>课本：40</b></p>
+<p>$n$ 元多项式 $f(x_1,\ldots,x_n)$ 若任意对换两个文字 $x_i,x_j$ 后恒不变，则称为<b>对称多项式</b>。</p>
+<p>课本指出：</p>
+<ul>
+<li>对称多项式的和仍对称；</li>
+<li>对称多项式的积仍对称；</li>
+<li>若 $f_1,\ldots,f_m$ 是对称多项式，$g(y_1,\ldots,y_m)$ 是任意多项式，则</li>
+</ul>
+<div class="formula">$$g(f_1,\ldots,f_m)$$</div>
+<p>仍是对称多项式；</p>
+<ul>
+<li>特别地，初等对称多项式的任意多项式仍是对称多项式。</li>
+</ul>
+<h3>11.3 定理15：对称多项式基本表示</h3>
+<p><b>课本：41-42</b></p>
+<p>对任意一个 $n$ 元对称多项式</p>
+<div class="formula">$$f(x_1,x_2,\ldots,x_n),$$</div>
+<p>存在一个 $n$ 元多项式</p>
+<div class="formula">$$\varphi(y_1,y_2,\ldots,y_n),$$</div>
+<p>使</p>
+<div class="formula">$$f(x_1,\ldots,x_n) =\varphi(\sigma_1,\sigma_2,\ldots,\sigma_n).$$</div>
+<h4>课本证明路线</h4>
+<p>设 $f$ 按字典排列的首项为</p>
+<div class="formula">$$a x_1^{l_1}x_2^{l_2}\cdots x_n^{l_n}.$$</div>
+<p>由对称性先证明</p>
+<div class="formula">$$l_1\ge l_2\ge\cdots\ge l_n\ge0.$$</div>
+<p>构造</p>
+<div class="formula">$$a\sigma_1^{l_1-l_2}\sigma_2^{l_2-l_3}\cdots\sigma_n^{l_n},$$</div>
+<p>它与 $f$ 有相同首项。两者相减得到首项更“小”的对称多项式，重复此过程。</p>
+<p>满足首项指数受原首项限制的数组只有有限多个，因此过程有限终止，从而 $f$ 被表示为初等对称多项式的多项式。</p>
+<h3>11.4 对称多项式基本定理</h3>
+<p><b>课本：p.39-44</b></p>
+<p>课本进一步指出，还可以证明上面得到的</p>
+<div class="formula">$$\varphi(y_1,\ldots,y_n)$$</div>
+<p>由 $f$ 唯一确定。这个唯一性结论与定理15合称为<b>对称多项式基本定理</b>。</p>
+<h3>11.5 判别式</h3>
+<p><b>课本：p.39-44</b></p>
+<p>对 $x_1,\ldots,x_n$，</p>
+<div class="formula">$$D=\prod_{i<j}(x_i-x_j)^2$$</div>
+<p>是一个重要的对称多项式，因此可表示为初等对称多项式的多项式。</p>
+<p>对</p>
+<div class="formula">$$f(x)=x^n+a_1x^{n-1}+\cdots+a_n,$$</div>
+<p>利用根与系数关系</p>
+<div class="formula">$$\sigma_1=-a_1,\quad \sigma_2=a_2,\quad\ldots,\quad \sigma_n=(-1)^n a_n,$$</div>
+<p>得到一个系数多项式 $D(a_1,\ldots,a_n)$，课本称其为上述一元多项式的<b>判别式</b>。</p>
+<p>课本指出：</p>
+<div class="formula">$$D(a_1,\ldots,a_n)=0$$</div>
+<p>是该方程在复数域中有重根的充分必要条件。</p>
+<h4>二次多项式</h4>
+<p>对</p>
+<div class="formula">$$x^2+a_1x+a_2,$$</div>
+<p>判别式为</p>
+<div class="formula">$$D=a_1^2-4a_2.$$</div>
+<h4>三次多项式</h4>
+<p>对</p>
+<div class="formula">$$x^3+a_1x^2+a_2x+a_3,$$</div>
+<p>判别式为</p>
+<div class="formula">$$D=a_1^2a_2^2-4a_2^3-4a_1^3a_3-27a_3^2+18a_1a_2a_3.$$</div>
+<h3>11.6 教辅补充：Newton 公式</h3>
+<p><b>课本：p.39-44</b></p>
+<p>设</p>
+<div class="formula">$$F(x) = \prod_{i=1}^n(x-x_i) = x^n-\sigma_1x^{n-1} +\sigma_2x^{n-2} -\cdots +(-1)^n\sigma_n,$$</div>
+<p>并记幂和</p>
+<div class="formula">$$s_k=x_1^k+x_2^k+\cdots+x_n^k.$$</div>
+<p>当 $1\le k\le n$ 时，</p>
+<div class="formula">$$s_k -\sigma_1s_{k-1} +\sigma_2s_{k-2} -\cdots +(-1)^{k-1}\sigma_{k-1}s_1 +(-1)^k k\sigma_k =0.$$</div>
+<p>当 $k&gt;n$ 时，</p>
+<div class="formula">$$s_k -\sigma_1s_{k-1} +\sigma_2s_{k-2} -\cdots +(-1)^n\sigma_ns_{k-n} =0.$$</div>
+<p>因此根的幂和可以用初等对称多项式递推表示，再通过 Vieta 关系转成系数。</p>
+<h3>11.7 教辅补充：除去一个根后，其余根的对称多项式</h3>
+<p><b>课本：p.39-44</b></p>
+<p>设 $x_1,\ldots,x_n$ 是</p>
+<div class="formula">$$x^n+a_1x^{n-1}+\cdots+a_n=0$$</div>
+<p>的根。</p>
+<p>教辅补充题指出：$x_2,\ldots,x_n$ 的任意对称多项式，都可以表示成 $x_1$ 与系数</p>
+<div class="formula">$$a_1,\ldots,a_{n-1}$$</div>
+<p>的多项式。</p>
+<p>核心做法：</p>
+<ol class="plain">
+<li>先把 $x_2,\ldots,x_n$ 的各个初等对称多项式，利用</li>
+</ol>
+<div class="formula">$$\sigma_k = x_1\,e_{k-1}(x_2,\ldots,x_n) + e_k(x_2,\ldots,x_n)$$</div>
+<p>递推表示成 $x_1$ 与原方程系数；</p>
+<ol class="plain">
+<li>再用对称多项式基本定理，把任意对称多项式写成这些初等对称多项式的多项式。</li>
+</ol>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本文件仍不重抄课本题目题干，只保留课本位置；上文新增的“教辅补充”来自 <code>00</code> 已整理出的学习指导/补充题内容：</p>
+<ul>
+<li><b>习题</b>：p.44-46，共题 1-32；</li>
+<li><b>补充题</b>：p.47-49，共题 1-20。</li>
+</ul>
+<p>补充题中课本还出现了若干正文结论的进一步推广或应用，例如多个多项式最大公因式、最小公倍式、Lagrange 插值公式、Newton 公式等；这些内容属于课本补充题，而非正文定理体系，因此本骨架不把它们提升为正文定理。</p>
+<hr>
+<h3>全章正文主线索引（仅按课本章节顺序）</h3>
+<pre class="code">数域
+↓
+一元多项式与 P[x]
+↓
+带余除法、整除
+↓
+最大公因式、辗转相除、互素
+↓
+不可约多项式、因式分解及唯一性
+↓
+重因式与微商
+↓
+多项式函数、根、余数定理
+↓
+复数域 / 实数域上的因式分解
+↓
+有理数域：本原多项式、高斯引理、有理根、Eisenstein
+↓
+多元多项式、字典序、齐次多项式
+↓
+对称多项式、初等对称多项式、判别式</pre>
+<div class="note">上述主线只是在保持课本小节顺序的前提下，将各节标题和正文核心对象连续列出；不加入课本之外的解释性关系。</div>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul>
+<li>2023 第2题：由 $A^3=2A+4E$ 找零化多项式并分解因式（§3、§5、§8 联动；主战场在第七章 §9 最小多项式）。</li>
+<li>2026 第1题（回忆版，待确认）：多个非零多项式之间的关系。</li>
+<li>§4 最大公因式/互素主要作工具；§9 有理系数、§10 多元、§11 对称：大纲未列、样本未命题。</li>
+</ul>
+<div class="note">标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：高代 2019–2024、2026（缺 2025；2026 为回忆版）。</div>
+</section>
+
+<section id="exercises">
+  <h2><span class="h2-no">X</span>课本习题（全录 52 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>习题（32 题）</h3>
+  <ol>
+    <li>$g(x)$ 除 $f(x)$，求商 $q(x)$ 与余式 $r(x)$：（1）$f(x)=x^3-3x^2-x-1$，$g(x)=3x^2-2x+1$；（2）$f(x)=x^4-2x+5$，$g(x)=x^2-x+2$。</li>
+    <li>$m,p,q$ 适合什么条件时，有：（1）$x^2+mx-1\mid x^3+px+q$；（2）$x^2+mx+1\mid x^4+px^2+q$？</li>
+    <li>求 $g(x)$ 除 $f(x)$ 的商 $q(x)$ 与余式 $r(x)$：（1）$f(x)=2x^5-5x^3-8x$，$g(x)=x+3$；（2）$f(x)=x^3-x^2-x$，$g(x)=x-1+2i$。</li>
+    <li>把 $f(x)$ 表成 $x-x_0$ 的方幂和，即表成 $c_0+c_1(x-x_0)+c_2(x-x_0)^2+\cdots$ 的形式：（1）$f(x)=x^5$，$x_0=1$；（2）$f(x)=x^4-2x^2+3$，$x_0=-2$；（3）$f(x)=x^4+2ix^3-(1+i)x^2-3x+7+i$，$x_0=-i$。</li>
+    <li>求 $f(x)$ 与 $g(x)$ 的最大公因式：（1）$f(x)=x^4+x^3-3x^2-4x-1$，$g(x)=x^3+x^2-x-1$；（2）$f(x)=x^4-4x^3+1$，$g(x)=x^3-3x^2+1$；（3）$f(x)=x^4-10x^2+1$，$g(x)=x^4-4\sqrt2x^3+6x^2+4\sqrt2x+1$。</li>
+    <li>求 $u(x),v(x)$，使 $u(x)f(x)+v(x)g(x)=(f(x),g(x))$：（1）$f(x)=x^4+2x^3-x^2-4x-2$，$g(x)=x^4+x^3-x^2-2x-2$；（2）$f(x)=4x^4-2x^3-16x^2+5x+9$，$g(x)=2x^3-x^2-5x+4$；（3）$f(x)=x^4-x^3-4x^2+4x+1$，$g(x)=x^2-x-1$。</li>
+    <li>设 $f(x)=x^3+(1+t)x^2+2x+2u$、$g(x)=x^3+tx+u$ 的最大公因式是一个二次多项式，求 $t,u$ 的值。</li>
+    <li>证明：如果 $d(x)\mid f(x)$、$d(x)\mid g(x)$，且 $d(x)$ 为 $f(x)$ 与 $g(x)$ 的一个组合，那么 $d(x)$ 是 $f(x)$ 与 $g(x)$ 的一个最大公因式。</li>
+    <li>证明：$(f(x)h(x),g(x)h(x))=(f(x),g(x))h(x)$（$h(x)$ 的首项系数为 $1$）。</li>
+    <li>如果 $f(x),g(x)$ 不全为零，证明：$\displaystyle\left(\frac{f(x)}{(f(x),g(x))},\frac{g(x)}{(f(x),g(x))}\right)=1$。</li>
+    <li>证明：如果 $f(x),g(x)$ 不全为零，且 $u(x)f(x)+v(x)g(x)=(f(x),g(x))$，那么 $(u(x),v(x))=1$。</li>
+    <li>证明：如果 $(f(x),g(x))=1$、$(f(x),h(x))=1$，那么 $(f(x),g(x)h(x))=1$。</li>
+    <li>设 $f_1(x),\ldots,f_m(x),g_1(x),\ldots,g_n(x)$ 都是多项式，而且 $(f_i(x),g_j(x))=1$（$i=1,2,\ldots,m$；$j=1,2,\ldots,n$）。求证：$(f_1(x)f_2(x)\cdots f_m(x),g_1(x)g_2(x)\cdots g_n(x))=1$。</li>
+    <li>证明：如果 $(f(x),g(x))=1$，那么 $(f(x)g(x),f(x)+g(x))=1$。</li>
+    <li>求下列多项式的公共根：$f(x)=x^3+2x^2+2x+1$，$g(x)=x^4+x^3+2x^2+x+1$。</li>
+    <li>判断下列多项式有无重因式：（1）$f(x)=x^5-5x^4+7x^3-2x^2+4x-8$；（2）$f(x)=x^4+4x^2-4x-3$。</li>
+    <li>求 $t$ 值使 $f(x)=x^3-3x^2+tx-1$ 有重根。</li>
+    <li>求多项式 $x^3+px+q$ 有重根的条件。</li>
+    <li>如果 $(x-1)^2\mid Ax^4+Bx^2+1$，求 $A,B$。</li>
+    <li>证明：$\displaystyle 1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}$ 不能有重根。</li>
+    <li>如果 $a$ 是 $f'''(x)$ 的一个 $k$ 重根，证明：$a$ 是 $\displaystyle g(x)=\frac{x-a}{2}[f'(x)+f'(a)]-f(x)+f(a)$ 的一个 $k+3$ 重根。</li>
+    <li>证明：$x_0$ 是 $f(x)$ 的 $k$ 重根的充分必要条件是 $f(x_0)=f'(x_0)=\cdots=f^{(k-1)}(x_0)=0$，而 $f^{(k)}(x_0)\ne0$。</li>
+    <li>举例说明断语“如果 $\alpha$ 是 $f'(x)$ 的 $m$ 重根，那么 $\alpha$ 是 $f(x)$ 的 $m+1$ 重根”是不对的。</li>
+    <li>证明：如果 $(x-1)\mid f(x^n)$，那么 $(x^n-1)\mid f(x^n)$。</li>
+    <li>证明：如果 $(x^2+x+1)\mid f_1(x^3)+xf_2(x^3)$，那么 $(x-1)\mid f_1(x)$、$(x-1)\mid f_2(x)$。</li>
+    <li>将多项式 $x^n-1$ 在复数范围内和在实数范围内因式分解。</li>
+    <li>求下列多项式的有理根：（1）$x^3-6x^2+15x-14$；（2）$4x^4-7x^2-5x-1$；（3）$x^5+x^4-6x^3-14x^2-11x-3$。</li>
+    <li>判断下列多项式在有理数域上是否可约：（1）$x^2+1$；（2）$x^4-8x^3+12x^2+2$；（3）$x^6+x^3+1$；（4）$x^p+px+1$，$p$ 为奇素数；（5）$x^4+4kx+1$，$k$ 为整数。</li>
+    <li>用初等对称多项式表出下列对称多项式：（1）$x_1^2x_2+x_1x_2^2+x_1^2x_3+x_1x_3^2+x_2^2x_3+x_2x_3^2$；（2）$(x_1+x_2)(x_1+x_3)(x_2+x_3)$；（3）$(x_1-x_2)^2(x_1-x_3)^2(x_2-x_3)^2$；（4）$x_1^2x_2^2+x_1^2x_3^2+x_1^2x_4^2+x_2^2x_3^2+x_2^2x_4^2+x_3^2x_4^2$；（5）$(x_1x_2+x_3)(x_2x_3+x_1)(x_3x_1+x_2)$；（6）$(x_1+x_2+x_1x_2)(x_2+x_3+x_2x_3)(x_1+x_3+x_1x_3)$。</li>
+    <li>用初等对称多项式表出下列 $n$ 元对称多项式：（1）$\sum x_1^4$；（2）$\sum x_1^2x_2x_3$；（3）$\sum x_1^2x_2^2$；（4）$\sum x_1^2x_2^2x_3x_4$。这里 $\sum ax_1^{l_1}x_2^{l_2}\cdots x_n^{l_n}$ 表示所有由 $ax_1^{l_1}x_2^{l_2}\cdots x_n^{l_n}$ 经过对换得到的项的和。</li>
+    <li>设 $\alpha_1,\alpha_2,\alpha_3$ 是方程 $5x^3-6x^2+7x-8=0$ 的三个根，计算 $(\alpha_1^2+\alpha_1\alpha_2+\alpha_2^2)(\alpha_2^2+\alpha_2\alpha_3+\alpha_3^2)(\alpha_1^2+\alpha_1\alpha_3+\alpha_3^2)$。</li>
+    <li>证明：三次方程 $x^3+a_1x^2+a_2x+a_3=0$ 的三个根成等差数列的充分必要条件为 $2a_1^3-9a_1a_2+27a_3=0$。</li>
+  </ol>
+<h3>补充题（20 题）</h3>
+  <ol>
+    <li>设 $f_1(x)=af(x)+bg(x)$、$g_1(x)=cf(x)+dg(x)$，且 $ad-bc\ne0$。证明：$(f(x),g(x))=(f_1(x),g_1(x))$。</li>
+    <li>证明：只要 $\displaystyle\frac{f(x)}{(f(x),g(x))}$、$\displaystyle\frac{g(x)}{(f(x),g(x))}$ 的次数都大于零，就可以适当选择适合等式 $u(x)f(x)+v(x)g(x)=(f(x),g(x))$ 的 $u(x)$ 与 $v(x)$，使 $\displaystyle\partial(u(x))&lt;\partial\left(\frac{g(x)}{(f(x),g(x))}\right)$，$\displaystyle\partial(v(x))&lt;\partial\left(\frac{f(x)}{(f(x),g(x))}\right)$。这里 $\partial$ 沿用本书表示多项式次数的符号。</li>
+    <li>证明：如果 $f(x)$ 与 $g(x)$ 互素，那么 $f(x^m)$ 与 $g(x^m)$（$m\ge1$）也互素。</li>
+    <li>证明：如果 $f_1(x),f_2(x),\ldots,f_{s-1}(x)$ 的最大公因式存在，那么 $f_1(x),f_2(x),\ldots,f_{s-1}(x),f_s(x)$ 的最大公因式也存在；且当这些多项式全不为零时有 $(f_1(x),\ldots,f_{s-1}(x),f_s(x))=((f_1(x),\ldots,f_{s-1}(x)),f_s(x))$。再利用上式证明：存在多项式 $u_1(x),u_2(x),\ldots,u_s(x)$，使 $u_1(x)f_1(x)+u_2(x)f_2(x)+\cdots+u_s(x)f_s(x)=(f_1(x),f_2(x),\ldots,f_s(x))$。</li>
+    <li>多项式 $m(x)$ 称为多项式 $f(x),g(x)$ 的一个最小公倍式，如果（1）$f(x)\mid m(x)$、$g(x)\mid m(x)$；（2）$f(x),g(x)$ 的任一个公倍式都是 $m(x)$ 的倍式。以 $[f(x),g(x)]$ 表示首项系数为 $1$ 的那个最小公倍式。证明：如果 $f(x),g(x)$ 的首项系数都是 $1$，那么 $\displaystyle[f(x),g(x)]=\frac{f(x)g(x)}{(f(x),g(x))}$。</li>
+    <li>证明定理 5 的逆：设 $p(x)$ 是次数大于零的多项式，如果对于任何多项式 $f(x),g(x)$，由 $p(x)\mid f(x)g(x)$ 可以推出 $p(x)\mid f(x)$ 或者 $p(x)\mid g(x)$，那么 $p(x)$ 是不可约多项式。</li>
+    <li>证明：次数 $&gt;0$ 且首项系数为 $1$ 的多项式 $f(x)$ 是一个不可约多项式的方幂的充分必要条件为：对任意的多项式 $g(x)$，必有 $(f(x),g(x))=1$，或者对某一正整数 $m$，$f(x)\mid g^m(x)$。</li>
+    <li>证明：次数 $&gt;0$ 且首项系数为 $1$ 的多项式 $f(x)$ 是某一不可约多项式的方幂的充分必要条件是，对任意的多项式 $g(x),h(x)$，由 $f(x)\mid g(x)h(x)$ 可以推出 $f(x)\mid g(x)$，或者对某一正整数 $m$，$f(x)\mid h^m(x)$。</li>
+    <li>证明：$x^n+ax^{n-m}+b$ 不能有不为零的重数大于 $2$ 的根。</li>
+    <li>证明：如果 $f(x)\mid f(x^n)$，那么 $f(x)$ 的根只能是零或单位根。</li>
+    <li>如果 $f'(x)\mid f(x)$，证明：$f(x)$ 有 $n$ 重根，其中 $n=\partial(f(x))$。</li>
+    <li>设 $a_1,a_2,\ldots,a_n$ 是 $n$ 个不同的数，而 $F(x)=(x-a_1)(x-a_2)\cdots(x-a_n)$。证明：（1）$\displaystyle\sum_{i=1}^n\frac{F(x)}{(x-a_i)F'(a_i)}=1$；（2）任意多项式 $f(x)$ 用 $F(x)$ 除所得的余式为 $\displaystyle\sum_{i=1}^n\frac{f(a_i)F(x)}{(x-a_i)F'(a_i)}$。</li>
+    <li>$a_1,a_2,\ldots,a_n$ 与 $F(x)$ 同上，$b_1,b_2,\ldots,b_n$ 是任意 $n$ 个数，显然 $\displaystyle L(x)=\sum_{i=1}^n\frac{b_iF(x)}{(x-a_i)F'(a_i)}$ 适合条件 $L(a_i)=b_i$（$i=1,2,\ldots,n$）。这称为拉格朗日（Lagrange）插值公式。利用上面的公式求：（1）一个次数 $&lt;4$ 的多项式 $f(x)$，它适合条件 $f(2)=3$、$f(3)=-1$、$f(4)=0$、$f(5)=2$；（2）一个二次多项式 $f(x)$，它在 $x=0,\pi/2,\pi$ 处与函数 $\sin x$ 有相同的值；（3）一个次数尽可能低的多项式 $f(x)$，使 $f(0)=1$、$f(1)=2$、$f(2)=5$、$f(3)=10$。</li>
+    <li>设 $f(x)$ 是一个整数系数多项式，试证：如果 $f(0)$ 与 $f(1)$ 都是奇数，那么 $f(x)$ 不能有整数根。</li>
+    <li>设 $x_1,x_2,\ldots,x_n$ 是方程 $x^n+a_1x^{n-1}+\cdots+a_n=0$ 的根，证明：$x_2,\ldots,x_n$ 的对称多项式可以表成 $x_1$ 与 $a_1,a_2,\ldots,a_{n-1}$ 的多项式。</li>
+    <li>$f(x)=(x-x_1)(x-x_2)\cdots(x-x_n)=x^n-\sigma_1x^{n-1}+\cdots+(-1)^n\sigma_n$。令 $s_k=x_1^k+x_2^k+\cdots+x_n^k$（$k=0,1,2,\ldots$）。（1）证明：$x^{k+1}f'(x)=(s_0x^k+s_1x^{k-1}+\cdots+s_{k-1}x+s_k)f(x)+g(x)$，其中 $g(x)$ 的次数 $&lt;n$ 或 $g(x)=0$。（2）由上式证明牛顿（Newton）公式：$s_k-\sigma_1s_{k-1}+\sigma_2s_{k-2}+\cdots+(-1)^{k-1}\sigma_{k-1}s_1+(-1)^kk\sigma_k=0$（$1\le k\le n$）；$s_k-\sigma_1s_{k-1}+\cdots+(-1)^n\sigma_ns_{k-n}=0$（$k&gt;n$）。</li>
+    <li>根据牛顿公式用初等对称多项式表示 $s_2,s_3,s_4,s_5,s_6$。</li>
+    <li>证明：如果对于某一个 $6$ 次方程有 $s_1=s_3=0$，那么 $\displaystyle\frac{s_7}{7}=\frac{s_5}{5}\cdot\frac{s_2}{2}$。</li>
+    <li>求一个 $n$ 次方程使 $s_1=s_2=\cdots=s_{n-1}=0$。</li>
+    <li>求一个 $n$ 次方程使 $s_2=s_3=\cdots=s_n=0$。</li>
+  </ol>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">Z</span>来源与边界</h2>
+  <ul>
+    <li><b>正文</b>：本章 <code>01_01_第一章_多项式_课本骨架_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+    <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+    <li><b>边界</b>：本页不替代课本证明；【★】为骨架原有的重要度标记，转化为星标只用于排序。</li>
+    <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+  </ul>
+</section>
+<div class="foot">本页为 Hermes 生成的复习讲解材料（以指定课本原文为准）。生成日期 2026-11-01。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

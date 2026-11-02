@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第04章 矩阵 · 高代考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">高等代数 · 考纲课本</div>
+  <div class="sb-title">第04章<br>矩阵</div>
+  <nav class="toc">
+    <a href="#body">正文（按节）</a>
+    <a href="#sec1">§1 矩阵概念的一些背景</a>
+    <a href="#sec2">§2 矩阵的运算</a>
+    <a href="#sec3">§3 矩阵乘积的行列式与秩</a>
+    <a href="#sec4">§4 矩阵的逆</a>
+    <a href="#sec5">§5 矩阵的分块</a>
+    <a href="#sec6">§6 初等矩阵</a>
+    <a href="#sec7">§7 分块乘法的初等变换及应用举例</a>
+    <a href="#exercises">课本习题</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《高等代数》第四版（王萼芳·石生明）为准。正文取自本章课本骨架，习题全录并标星。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 高等代数 · 801 考纲课本</div>
+    <h1>第04章 矩阵</h1>
+    <p class="hero-sub">§1 矩阵概念的一些背景 · §2 矩阵的运算 · §3 矩阵乘积的行列式与秩 · §4 矩阵的逆 · §5 矩阵的分块 · §6 初等矩阵</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec1">§1 矩阵概念的一些背景<span class="freq">★</span></h2>
+<p><b>课本：p.162-164</b></p>
+<p>课本从线性方程组出发指出：方程组的重要性质反映在它的系数矩阵和增广矩阵的性质上，解方程组的过程也表现为变换这些矩阵的过程。许多性质不同的问题归结成矩阵问题后却是相同的，这使矩阵成为代数特别是线性代数的一个主要研究对象。本章目的是引入矩阵的运算并讨论它们的基本性质。</p>
+<p>课本介绍了四类提出矩阵概念的问题：</p>
+<h3>1.1 背景1：坐标变换（叙述式）</h3>
+<p><b>课本：p.162-164</b></p>
+<p>平面直角坐标系的转轴（反时针）公式：</p>
+<div class="formula">$$\begin{cases} x=x'\cos\theta-y'\sin\theta,\\ y=x'\sin\theta+y'\cos\theta, \end{cases}$$</div>
+<p>新旧坐标之间的关系完全由系数排成的 $2\times2$ 矩阵</p>
+<div class="formula">$$\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$$</div>
+<p>表示出来，称为坐标变换的矩阵。空间中保持原点不动的仿射坐标系变换同样由一个 $3\times3$ 系数矩阵刻画。</p>
+<h3>1.2 背景2：二次曲线（叙述式）</h3>
+<p><b>课本：p.162-164</b></p>
+<p>二次曲线的一般方程为</p>
+<div class="formula">$$ax^2+2bxy+cy^2+2dx+2ey+f=0.$$</div>
+<p>只要规定了 $x,y,1$ 的次序，其左端就可以用对称矩阵</p>
+<div class="formula">$$\begin{pmatrix}a&b&d\\b&c&e\\d&e&f\end{pmatrix}$$</div>
+<p>表示，称为二次曲线的矩阵。</p>
+<p>课本指出：这个矩阵的行列式就是解析几何中二次曲线的不变量 $I_3$，表明该矩阵的性质确实反映了它所表示的二次曲线的性质。</p>
+<h3>1.3 背景3：物资调运（叙述式）</h3>
+<p><b>课本：p.162-164</b></p>
+<p>某地区一种物资有 $s$ 个产地 $A_1,\dots,A_s$ 和 $n$ 个销地 $B_1,\dots,B_n$，一个调运方案就可用一个 $s\times n$ 矩阵表示，其中 $a_{ij}$ 表示由产地 $A_i$ 运到销地 $B_j$ 的数量。</p>
+<h3>1.4 背景4：向量（叙述式）</h3>
+<p><b>课本：p.162-164</b></p>
+<p>$n$ 维行向量就是 $1\times n$ 矩阵，$n$ 维列向量就是 $n\times1$ 矩阵。</p>
+<h3>1.5 记号与相等（叙述式）</h3>
+<p><b>课本：p.162-164</b></p>
+<ul>
+<li>以后用大写拉丁字母 $A,B,\cdots$ 或 $(a_{ij}),(b_{ij}),\cdots$ 代表矩阵；为了指明级数，可写成 $A_{sn}$ 或 $(a_{ij})_{sn}$（注意矩阵符号与行列式符号的区别）。</li>
+<li><b>相等</b>：设 $A=(a_{ij})_{mn}, B=(b_{ij})_{lk}$，如果 $m=l,n=k$ 且 $a_{ij}=b_{ij}$ 对一切 $i,j$ 成立，就说 $A=B$。即只有完全一样的矩阵才叫做相等。</li>
+</ul>
+<hr>
+<h2 id="sec2">§2 矩阵的运算<span class="freq">★★★</span></h2>
+<p><b>课本：p.164-175</b></p>
+<p>课本取定一个数域 $P$，以下所讨论的矩阵全是由数域 $P$ 中的数组成的。要定义的运算是：矩阵的加法、乘法、矩阵与数的乘法以及矩阵的转置。</p>
+<h3>2.1 定义1：矩阵的和</h3>
+<p><b>课本：165</b></p>
+<p>两个同型 $s\times n$ 矩阵 $A=(a_{ij})_{sn}, B=(b_{ij})_{sn}$ 的<b>和</b>定义为对应元素相加所得的矩阵</p>
+<div class="formula">$$C=(c_{ij})_{sn}=(a_{ij}+b_{ij})_{sn},$$</div>
+<p>记作 $C=A+B$。相加的矩阵必须有相同的行数和列数，称为<b>同型矩阵</b>。</p>
+<h3>2.2 加法的运算规律（叙述式）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>由于矩阵加法归结为元素的加法（即数的加法），不难验证：</p>
+<ul>
+<li>结合律：$A+(B+C)=(A+B)+C$；</li>
+<li>交换律：$A+B=B+A$。</li>
+</ul>
+<p>元素全为零的矩阵称为<b>零矩阵</b>，记为 $O_{sn}$（简记 $O$），对所有 $A$ 有 $A+O=A$。</p>
+<p>各元素取相反数所得矩阵称为 $A$ 的<b>负矩阵</b>，记为 $-A$，有 $A+(-A)=O$。</p>
+<p>矩阵的减法定义为</p>
+<div class="formula">$$A-B=A+(-B).$$</div>
+<p>课本用调运方案的例子解释加法的实际含义（两种物资的总运输量矩阵等于两个调运方案矩阵之和）。最后，根据加法定义并应用关于向量组的秩的性质，很容易看出：</p>
+<div class="formula">$$\operatorname{rank}(A+B)\le\operatorname{rank}(A)+\operatorname{rank}(B).$$</div>
+<h3>2.3 乘法的引入（变量替换引例，叙述式）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>设两组变量先经线性代换 $x=Ay$ 表示，$y$ 又经线性代换 $y=Bz$ 表示，代入合并后比较系数得</p>
+<div class="formula">$$c_{ij}=\sum_k a_{ik}b_{kj}.$$</div>
+<p>这说明表示 $x$ 与 $z$ 关系的矩阵由公式 $c_{ij}=a_{i1}b_{1j}+\cdots$ 决定，由此引入乘法定义。</p>
+<h3>2.4 定义2：矩阵的乘法</h3>
+<p><b>课本：167</b></p>
+<p>设</p>
+<div class="formula">$$A=(a_{ik})_{sn},\qquad B=(b_{kj})_{nm},$$</div>
+<p>那么矩阵 $C=(c_{ij})_{sm}$，其中</p>
+<div class="formula">$$c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{in}b_{nj}=\sum_{k=1}^{n}a_{ik}b_{kj},$$</div>
+<p>称为 $A$ 与 $B$ 的<b>乘积</b>，记为</p>
+<div class="formula">$$C=AB.$$</div>
+<p>课本说明：乘积的第 $i$ 行第 $j$ 列元素等于第一个矩阵 $A$ 的第 $i$ 行与第二个矩阵 $B$ 的第 $j$ 列对应元素乘积之和；乘积定义要求第二个矩阵的行数与第一个矩阵的列数相等。</p>
+<h3>2.5 例1：数字矩阵的乘法</h3>
+<p><b>课本：168</b></p>
+<p>课本给出 $3\times4$ 矩阵乘 $4\times3$ 矩阵的具体计算，例如乘积中第二行第一列元素为</p>
+<div class="formula">$$(-1)\times0+1\times1+3\times3+0\times(-1)=10.$$</div>
+<p>其余元素类似得到。</p>
+<h3>2.6 例2：线性方程组的矩阵形式 ★</h3>
+<p><b>课本：168</b></p>
+<p>如果 $A=(a_{ij})_{sn}$ 是一线性方程组的系数矩阵，而</p>
+<div class="formula">$$X=\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix},\qquad B=\begin{pmatrix}b_1\\b_2\\\vdots\\b_s\end{pmatrix}$$</div>
+<p>分别是未知量和常数项所成的 $n\times1$ 和 $s\times1$ 矩阵，那么线性方程组就可以写成矩阵的形式</p>
+<div class="formula">$$AX=B.$$</div>
+<p>（课本在 §4 用这一形式重新推导克拉默法则。）</p>
+<h3>2.7 例3：坐标变换的复合 ★</h3>
+<p><b>课本：169</b></p>
+<p>空间两次转轴的坐标变换分别为</p>
+<div class="formula">$$X_1=AX_2,\qquad X_2=BX_3,$$</div>
+<p>则由第一个坐标系到第三个坐标系的坐标变换的矩阵即为</p>
+<div class="formula">$$C=AB.$$</div>
+<h3>2.8 乘法结合律（叙述式）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>设 $A=(a_{ij})_{sn}, B=(b_{jk})_{nm}, C=(c_{kl})_{mr}$，则</p>
+<div class="formula">$$(AB)C=A(BC).$$</div>
+<h4>课本证明路线</h4>
+<ol class="plain">
+<li>记 $V=AB=(v_{ik})_{sm}$，$W=BC=(w_{jl})_{nr}$，写出 $v_{ik},w_{jl}$ 的展开式；</li>
+<li>$(AB)C=VC$ 中第 $i$ 行第 $l$ 列元素为 $\sum_k v_{ik}c_{kl}=\sum_k\sum_j a_{ij}b_{jk}c_{kl}$；</li>
+<li>$A(BC)=AW$ 中同一位置元素为 $\sum_j a_{ij}w_{jl}=\sum_j\sum_k a_{ij}b_{jk}c_{kl}$；</li>
+<li>双重连加号可以交换次序，所以两者一样，结合律得证。</li>
+</ol>
+<h3>2.9 交换律不成立与消去律不成立（课本说明+反例）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>课本从两方面说明 $AB\ne BA$ 一般成立的原因：</p>
+<ol class="plain">
+<li>$AB$ 有意义时 $BA$ 不一定有意义（因子行列数要求不同）；</li>
+<li>即使都有意义，级数也不一定相等（例1 中 $AB$ 是 $3\times3$ 而 $BA$ 是 $4\times4$）。</li>
+</ol>
+<p>即使相乘的都是 $n\times n$ 矩阵，也不一定相等，课本反例：</p>
+<div class="formula">$$A=\begin{pmatrix}1&1\\-1&-1\end{pmatrix},\qquad B=\begin{pmatrix}1&-1\\-1&1\end{pmatrix},$$</div>
+<div class="formula">$$AB=\begin{pmatrix}0&0\\0&0\end{pmatrix},\qquad BA=\begin{pmatrix}2&2\\-2&-2\end{pmatrix}.$$</div>
+<p>由此还看到：<b>两个不为零的矩阵的乘积可以是零</b>，这是矩阵乘法的一个特点；进而<b>消去律不成立</b>，即当 $AB=AC$ 时不一定有 $B=C$。</p>
+<h3>2.10 定义3：单位矩阵</h3>
+<p><b>课本：171</b></p>
+<p>主对角线上的元素全是 1、其余元素全是 0 的 $n\times n$ 矩阵称为 <b>$n$ 级单位矩阵</b>，记为 $E_n$（简记 $E$）。显然有</p>
+<div class="formula">$$A_{sn}E_n=A_{sn},\qquad E_sA_{sn}=A_{sn}.$$</div>
+<p>即从乘法角度看，单位矩阵的地位类似于数 1。</p>
+<h3>2.11 分配律与方幂（叙述式）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>矩阵的乘法和加法还适合分配律：</p>
+<div class="formula">$$A(B+C)=AB+AC,$$</div>
+<div class="formula">$$(B+C)A=BA+CA.$$</div>
+<p>课本提醒：由于乘法不适合交换律，这两条是不同的规律（证明留给读者）。</p>
+<p><b>方幂</b>：对 $n\times n$ 矩阵 $A$，定义</p>
+<div class="formula">$$A^1=A,\qquad A^{k+1}=A^kA.$$</div>
+<p>由乘法结合律不难证明</p>
+<div class="formula">$$A^kA^l=A^{k+l},\qquad (A^k)^l=A^{kl}$$</div>
+<p>（$k,l$ 为任意正整数）。方幂只能对行数与列数相等的矩阵定义；因为乘法不适合交换律，$(AB)^k$ 与 $A^kB^k$ 一般不相等。</p>
+<h3>2.12 定义4：数量乘法</h3>
+<p><b>课本：172</b></p>
+<p>矩阵</p>
+<div class="formula">$$(k a_{ij})_{sn}$$</div>
+<p>称为矩阵 $A=(a_{ij})_{sn}$ 与数 $k$ 的<b>数量乘积</b>，记为 $kA$。即用数 $k$ 乘矩阵就是把矩阵的每个元素都乘上 $k$。</p>
+<p>数量乘积适合以下规律（编号公式 (11)-(15)）：</p>
+<div class="formula">$$(k+l)A=kA+lA,$$</div>
+<div class="formula">$$k(A+B)=kA+kB,$$</div>
+<div class="formula">$$k(lA)=(kl)A,$$</div>
+<div class="formula">$$1\cdot A=A,$$</div>
+<div class="formula">$$k(AB)=(kA)B=A(kB).$$</div>
+<h4>课本证明路线（只证最后一式，其余留给读者）</h4>
+<p>比较 $k(AB),(kA)B,A(kB)$ 三者同一位置的元素，依次为 $k\sum_j a_{ij}b_{jt}$、$\sum_j(ka_{ij})b_{jt}=k\sum_j a_{ij}b_{jt}$、$\sum_j a_{ij}(kb_{jt})=k\sum_j a_{ij}b_{jt}$，三者相同。</p>
+<h3>2.13 数量矩阵（叙述式）</h3>
+<p><b>课本：p.164-175</b></p>
+<p>矩阵 $kE$ 通常称为<b>数量矩阵</b>。作为上一式的特殊情形，若 $A$ 是 $n\times n$ 矩阵，则有</p>
+<div class="formula">$$kA=(kE)A=A(kE),$$</div>
+<p>即数量矩阵与所有同级方阵作乘法可交换。课本指出并可证明：如果一个 $n$ 级矩阵与所有 $n$ 级矩阵作乘法可交换，那它一定是数量矩阵（参看习题7）。</p>
+<p>再有</p>
+<div class="formula">$$kE+lE=(k+l)E,\qquad (kE)(lE)=(kl)E,$$</div>
+<p>即数量矩阵的加法与乘法完全归结为数的加法与乘法。</p>
+<h3>2.14 定义5：转置</h3>
+<p><b>课本：173</b></p>
+<p>把矩阵 $A$ 的行列互换所得到的矩阵称为 $A$ 的<b>转置</b>，记为 $A'$（很多书上也记为 $A^T$）。确切地说，</p>
+<div class="formula">$$A'=(a_{ji}),$$</div>
+<p>$s\times n$ 矩阵的转置是 $n\times s$ 矩阵。</p>
+<h3>2.15 转置的运算规律（编号公式 (16)-(19)）</h3>
+<p><b>课本：p.164-175</b></p>
+<div class="formula">$$(A')'=A,$$</div>
+<div class="formula">$$(A+B)'=A'+B',$$</div>
+<div class="formula">$$(AB)'=B'A',$$</div>
+<div class="formula">$$(kA)'=kA'.$$</div>
+<h4>课本证明路线（针对第三条）</h4>
+<p>$AB$ 中 $(i,j)$ 元素为 $\sum_k a_{ik}b_{kj}$，故 $(AB)'$ 中 $(i,j)$ 元素为 $\sum_k a_{jk}b_{ki}$；另一方面 $B'$ 中 $(i,k)$ 元素是 $b_{ki}$，$A'$ 中 $(k,j)$ 元素是 $a_{jk}$，故 $B'A'$ 中 $(i,j)$ 元素为 $\sum_k b_{ki}a_{jk}=\sum_k a_{jk}b_{ki}$，两者相等。其余各式显然或易验证。</p>
+<h3>2.16 例4：验证 $(AB)'=B'A'$</h3>
+<p><b>课本：175</b></p>
+<p>取行向量 $A=(1,-1,2)$ 与一个 $3\times3$ 矩阵 $B$，具体计算得 $AB=(9,2,-1)$，再计算 $B'A'$ 得同一结果的转置形式，从而验证 $(AB)'=B'A'$。</p>
+<hr>
+<h2 id="sec3">§3 矩阵乘积的行列式与秩<span class="freq">★★★</span></h2>
+<p><b>课本：p.175-177</b></p>
+<p>本节讨论矩阵乘积的行列式与秩和它因子的行列式与秩的关系。</p>
+<h3>3.1 定理1：行列式的乘法公式</h3>
+<p><b>课本：175</b></p>
+<p>设 $A,B$ 是数域 $P$ 上的两个 $n\times n$ 矩阵，那么</p>
+<div class="formula">$$|AB|=|A|\,|B|,$$</div>
+<p>即矩阵乘积的行列式等于它的因子的行列式的乘积。</p>
+<h4>课本证明路线</h4>
+<p>课本指出这是第二章 §8 中已经证明了的结论（行列式乘法定理），此处直接引用。</p>
+<h3>3.2 推论1：多个因子的情形</h3>
+<p><b>课本：p.175-177</b></p>
+<p>用数学归纳法把定理1推广到多个因子：设 $A_1,A_2,\dots,A_m$ 都是数域 $P$ 上的 $n\times n$ 矩阵，则</p>
+<div class="formula">$$|A_1A_2\cdots A_m|=|A_1||A_2|\cdots|A_m|.$$</div>
+<h3>3.3 定义6：非退化与退化</h3>
+<p><b>课本：176</b></p>
+<p>数域 $P$ 上的 $n\times n$ 矩阵 $A$ 称为<b>非退化的</b>，如果 $|A|\ne0$；否则称为<b>退化的</b>。</p>
+<p>课本注：一 $n\times n$ 矩阵是非退化的充分必要条件是它的秩等于 $n$。</p>
+<h3>3.4 推论2：乘积退化的条件</h3>
+<p><b>课本：p.175-177</b></p>
+<p>设 $A,B$ 是数域 $P$ 上 $n\times n$ 矩阵，则矩阵 $AB$ 为退化的充分必要条件是 $A,B$ 中至少有一个是退化的。（由定理1立刻推出。）</p>
+<h3>3.5 定理2：乘积的秩</h3>
+<p><b>课本：176-177</b></p>
+<p>设 $A$ 是数域 $P$ 上 $n\times m$ 矩阵，$B$ 是数域 $P$ 上 $m\times s$ 矩阵，于是</p>
+<div class="formula">$$\operatorname{rank}(AB)\le\min[\operatorname{rank}(A),\operatorname{rank}(B)],$$</div>
+<p>即乘积的秩不超过各因子的秩。</p>
+<h4>课本证明路线</h4>
+<p>只需分别证明 秩 $(AB)\le$ 秩 $(B)$ 与 秩 $(AB)\le$ 秩 $(A)$：</p>
+<ol class="plain">
+<li>令 $B_1,\dots,B_m$ 表示 $B$ 的行向量，$C_1,\dots,C_n$ 表示 $AB$ 的行向量。由分量计算可知</li>
+</ol>
+<div class="formula">$$C_i=a_{i1}B_1+a_{i2}B_2+\cdots+a_{im}B_m\qquad(i=1,\dots,n),$$</div>
+<p>即 $AB$ 的行向量组可经 $B$ 的行向量组线性表出，故 秩 $(AB)\le$ 秩 $(B)$（参看第三章习题12）；</p>
+<ol class="plain">
+<li>同样，令 $A_1,\dots,A_m$ 表示 $A$ 的列向量，$D_1,\dots,D_s$ 表示 $AB$ 的列向量，可得</li>
+</ol>
+<div class="formula">$$D_i=b_{1i}A_1+b_{2i}A_2+\cdots+b_{mi}A_m\qquad(i=1,\dots,s),$$</div>
+<p>即 $AB$ 的列向量组可经 $A$ 的列向量组线性表出，故 秩 $(AB)\le$ 秩 $(A)$。</p>
+<h3>3.6 推论（无编号）：多个因子乘积的秩</h3>
+<p><b>课本：p.175-177</b></p>
+<p>用数学归纳法推广到多个因子：如果</p>
+<div class="formula">$$A=A_1A_2\cdots A_t,$$</div>
+<p>那么</p>
+<div class="formula">$$\operatorname{rank}(A)\le\min_{1\le j\le t}\operatorname{rank}(A_j).$$</div>
+<hr>
+<h2 id="sec4">§4 矩阵的逆<span class="freq">★★★</span></h2>
+<p><b>课本：p.177-181</b></p>
+<p>课本从"矩阵乘法是否有逆运算"出发：本节讨论的矩阵如不特别说明都是 $n\times n$ 矩阵。对任意 $n$ 级方阵 $A$ 都有 $AE=EA=A$，故 $E$ 在 $n$ 级方阵中的地位类似于 1 在复数中的地位；仿照 $\alpha\alpha^{-1}=1$ 引入可逆概念。</p>
+<h3>4.1 定义7：可逆</h3>
+<p><b>课本：177</b></p>
+<p>$n$ 级方阵 $A$ 称为<b>可逆的</b>，如果有 $n$ 级方阵 $B$，使得</p>
+<div class="formula">$$AB=BA=E,$$</div>
+<p>这里 $E$ 是 $n$ 级单位矩阵。</p>
+<p>课本随后指出两点：</p>
+<ul>
+<li>由于矩阵的乘法规则，只有方阵才能满足上式；</li>
+<li>对任意矩阵 $A$，适合上式的矩阵 $B$ 若存在必唯一：假设 $B_1,B_2$ 都适合，则</li>
+</ul>
+<div class="formula">$$B_1=B_1E=B_1(AB_2)=(B_1A)B_2=EB_2=B_2.$$</div>
+<h3>4.2 定义8：逆矩阵</h3>
+<p><b>课本：178</b></p>
+<p>如果矩阵 $B$ 适合上面的等式，那么 $B$ 就称为 $A$ 的<b>逆矩阵</b>，记作 $A^{-1}$。</p>
+<p>要解决的问题：在什么条件下 $A$ 可逆？如果可逆，怎样求 $A^{-1}$？</p>
+<h3>4.3 定义9：伴随矩阵</h3>
+<p><b>课本：178</b></p>
+<p>设 $A_{ij}$ 是矩阵 $A=(a_{ij})$ 中元素 $a_{ij}$ 的代数余子式，矩阵</p>
+<div class="formula">$$A^{*}= \begin{pmatrix} A_{11} & A_{21} & \cdots & A_{n1}\\ A_{12} & A_{22} & \cdots & A_{n2}\\ \vdots & \vdots & & \vdots\\ A_{1n} & A_{2n} & \cdots & A_{nn} \end{pmatrix}$$</div>
+<p>称为 $A$ 的<b>伴随矩阵</b>。</p>
+<h3>4.4 关键恒等式（叙述式）</h3>
+<p><b>课本：p.177-181</b></p>
+<p>由行列式按一行（列）展开的公式立即得出</p>
+<div class="formula">$$AA^{*}=A^{*}A=dE,\qquad d=|A|.$$</div>
+<p>因此，当 $d=|A|\ne0$ 时，</p>
+<div class="formula">$$A\left(\frac{1}{d}A^{*}\right)=\left(\frac{1}{d}A^{*}\right)A=E.$$</div>
+<h3>4.5 定理3：可逆的充要条件与求逆公式</h3>
+<p><b>课本：178-179</b></p>
+<p>矩阵 $A$ 是可逆的充分必要条件是 $A$ 非退化，而</p>
+<div class="formula">$$A^{-1}=\frac{1}{d}A^{*}\qquad(d=|A|\ne0).$$</div>
+<h4>课本证明路线</h4>
+<ol class="plain">
+<li>当 $d=|A|\ne0$ 时，由关键恒等式可知 $A$ 可逆，且 $A^{-1}=\frac1dA^{*}$；</li>
+<li>反过来，如果 $A$ 可逆，则 $AA^{-1}=E$，两边取行列式得</li>
+</ol>
+<div class="formula">$$|A||A^{-1}|=|E|=1,$$</div>
+<p>因而 $|A|\ne0$，即 $A$ 非退化。</p>
+<h4>课本注明</h4>
+<ul>
+<li>根据定理3容易看出：对于 $n$ 级方阵 $A,B$，如果 $AB=E$，那么 $A,B$ 就都是可逆的并且互为逆矩阵。</li>
+<li><b>课本注明</b>："定理3不但给出了一个矩阵可逆的条件，同时也给出了求逆矩阵的公式。按这个公式来求逆矩阵，计算量一般是非常大的。"以后将给出另一种求法。</li>
+<li>由上述行列式等式还可以看出：如果 $|A|=d\ne0$，那么 $|A^{-1}|=d^{-1}$。</li>
+</ul>
+<h3>4.6 推论（无编号）：转置与乘积的逆</h3>
+<p><b>课本：p.177-181</b></p>
+<p>如果矩阵 $A,B$ 可逆，那么 $A'$ 与 $AB$ 也可逆，且</p>
+<div class="formula">$$(A')^{-1}=(A^{-1})',$$</div>
+<div class="formula">$$(AB)^{-1}=B^{-1}A^{-1}.$$</div>
+<h4>课本证明路线</h4>
+<ul>
+<li>对 $AA^{-1}=A^{-1}A=E$ 两边取转置，得 $(A^{-1})'A'=A'(A^{-1})'=E$，即前一式；</li>
+<li>直接验证 $(AB)(B^{-1}A^{-1})=(B^{-1}A^{-1})(AB)=E$，即得后一式。</li>
+</ul>
+<h3>4.7 克拉默法则的另一推导（叙述式）</h3>
+<p><b>课本：p.177-181</b></p>
+<p>线性方程组写成矩阵形式（§2 例2）</p>
+<div class="formula">$$AX=B.$$</div>
+<p>如果 $|A|\ne0$，那么 $A$ 可逆：</p>
+<ul>
+<li>用 $X=A^{-1}B$ 代入得恒等式 $A(A^{-1}B)=B$，故 $A^{-1}B$ 是一个解；</li>
+<li>若 $X=C$ 是任一解，则 $AC=B$，左乘 $A^{-1}$ 得 $C=A^{-1}B$，故解唯一；</li>
+<li>把 $A^{-1}=\frac1dA^{*}$ 的公式代入乘开，就是克拉默法则中给出的公式。</li>
+</ul>
+<h3>4.8 定理4：可逆矩阵的乘法不改变秩</h3>
+<p><b>课本：180</b></p>
+<p>$A$ 是一个 $s\times n$ 矩阵，如果 $P$ 是 $s\times s$ 可逆矩阵，$Q$ 是 $n\times n$ 可逆矩阵，那么</p>
+<div class="formula">$$\operatorname{rank}(A)=\operatorname{rank}(PA)=\operatorname{rank}(AQ).$$</div>
+<h4>课本证明路线</h4>
+<p>令 $B=PA$：</p>
+<ol class="plain">
+<li>由定理2，秩 $(B)\le$ 秩 $(A)$；</li>
+<li>又 $A=P^{-1}B$，再用定理2 得 秩 $(A)\le$ 秩 $(B)$；</li>
+<li>故两者相等；另一等式同样地证明。</li>
+</ol>
+<hr>
+<h2 id="sec5">§5 矩阵的分块<span class="freq">★★★</span></h2>
+<p><b>课本：p.181-187</b></p>
+<p>课本介绍处理级数较高的矩阵时常用的方法——<b>矩阵的分块</b>：把一个大矩阵看成由一些小矩阵组成，特别在运算中把这些小矩阵当作数一样来处理。</p>
+<h3>5.1 分块乘法的例子（叙述式）</h3>
+<p><b>课本：p.181-187</b></p>
+<p>课本用一个 4 阶例子演示：把</p>
+<div class="formula">$$A=\begin{pmatrix}1&0&0&0\\0&1&0&0\\-1&2&1&0\\1&1&0&1\end{pmatrix} =\begin{pmatrix}E_2&O\\A_1&E_2\end{pmatrix}$$</div>
+<p>与分块后的 $B=(B_{ij})_{2\times2}$ 按 2 级矩阵运算，得</p>
+<div class="formula">$$AB=\begin{pmatrix}B_{11}&B_{12}\\A_1B_{11}+B_{21}&A_1B_{12}+B_{22}\end{pmatrix},$$</div>
+<p>直接按 4 级矩阵乘积的定义来做结果一样。</p>
+<h3>5.2 一般分块乘法公式</h3>
+<p><b>课本：p.181-187</b></p>
+<p>设 $A=(a_{ik})_{sn}, B=(b_{kj})_{nm}$，把 $A,B$ 分成一些小矩阵：$A$ 按行分成 $s_1,\dots,s_t$、按列分成 $n_1,\dots,n_l$，得小块 $A_{ij}$（$s_i\times n_j$）；$B$ 相应地得小块 $B_{ij}$（$n_i\times m_j$）。于是 $C=AB$ 有分块形式</p>
+<div class="formula">$$C_{pq}=A_{p1}B_{1q}+A_{p2}B_{2q}+\cdots+A_{pl}B_{lq} =\sum_{k=1}^{l}A_{pk}B_{kq}\qquad(p=1,\dots,t;\ q=1,\dots,r).$$</div>
+<p>这个结果由矩阵乘积的定义直接验证即得。</p>
+<p><b>课本强调注意</b>：分块时矩阵 $A$ 的列的分法必须与矩阵 $B$ 的行的分法一致。</p>
+<h3>5.3 秩定理的分块观点（叙述式）</h3>
+<p><b>课本：p.181-187</b></p>
+<p>课本指出：证明关于矩阵乘积的秩的定理时已经用了分块的想法。把 $B$ 按行分块后按分块相乘，立刻看出 $AB$ 的行向量是 $B$ 的行向量的线性组合；将 $AB$ 进行另一种分块乘法，又可看出 $AB$ 的列是 $A$ 的列的线性组合。</p>
+<h3>5.4 分块求逆：$D=\begin{pmatrix}A&amp;O\\C&amp;B\end{pmatrix}$</h3>
+<p><b>课本：p.181-187</b></p>
+<p>其中 $A,B$ 分别是 $k$ 级和 $r$ 级的可逆矩阵，$C$ 是 $r\times k$ 矩阵，$O$ 是 $k\times r$ 零矩阵。</p>
+<p>首先，因为</p>
+<div class="formula">$$|D|=|A||B|,$$</div>
+<p>所以当 $A,B$ 可逆时 $D$ 也可逆。设 $D^{-1}$ 作同样的分块，乘出并比较等式两边，得方程组</p>
+<div class="formula">$$AX_{11}=E_k,\qquad AX_{12}=O,$$</div>
+<div class="formula">$$CX_{11}+BX_{21}=O,\qquad CX_{12}+BX_{22}=E_r.$$</div>
+<p>由第一、二式得 $X_{11}=A^{-1}, X_{12}=O$；代入第四式得 $X_{22}=B^{-1}$；代入第三式得 $X_{21}=-B^{-1}CA^{-1}$。因此</p>
+<div class="formula">$$D^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}.$$</div>
+<p>特别地，当 $C=O$ 时，有</p>
+<div class="formula">$$\begin{pmatrix}A&O\\O&B\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}.$$</div>
+<h3>5.5 对角矩阵与准对角矩阵（课本称"通常称为"，未编号）</h3>
+<p><b>课本：p.181-187</b></p>
+<ul>
+<li>形如非主对角位置全为零的矩阵，其中 $a_i$ 是数，通常称为<b>对角矩阵</b>；</li>
+<li>形如</li>
+</ul>
+<div class="formula">$$\begin{pmatrix}A_1&&&O\\&A_2&&\\&&\ddots&\\O&&&A_l\end{pmatrix}$$</div>
+<p>的矩阵，其中 $A_i$ 是 $n_i\times n_i$ 矩阵，通常称为<b>准对角矩阵</b>；准对角矩阵包括对角矩阵作为特殊情形。</p>
+<h3>5.6 准对角矩阵的运算（叙述式）</h3>
+<p><b>课本：p.181-187</b></p>
+<p>对于两个有相同分块（相应分块同级）的准对角矩阵：</p>
+<div class="formula">$$AB=\begin{pmatrix}A_1B_1&&O\\&\ddots&\\O&&A_lB_l\end{pmatrix},\qquad A+B=\begin{pmatrix}A_1+B_1&&O\\&\ddots&\\O&&A_l+B_l\end{pmatrix},$$</div>
+<p>它们还是准对角矩阵。</p>
+<p>其次，如果 $A_1,A_2,\dots,A_l$ 都是可逆矩阵，那么</p>
+<div class="formula">$$\begin{pmatrix}A_1&&O\\&\ddots&\\O&&A_l\end{pmatrix}^{-1} =\begin{pmatrix}A_1^{-1}&&O\\&\ddots&\\O&&A_l^{-1}\end{pmatrix}.$$</div>
+<hr>
+<h2 id="sec6">§6 初等矩阵<span class="freq">★★</span></h2>
+<p><b>课本：p.187-193</b></p>
+<p>本节建立矩阵的初等变换与矩阵乘法的联系，并在此基础上给出用初等变换求逆矩阵的方法。</p>
+<h3>6.1 定义10：初等矩阵</h3>
+<p><b>课本：187</b></p>
+<p>由单位矩阵 $E$ 经过一次初等变换得到的矩阵称为<b>初等矩阵</b>。</p>
+<h3>6.2 三类初等矩阵（叙述式）</h3>
+<p><b>课本：p.187-193</b></p>
+<p>显然初等矩阵都是方阵，每个初等变换都有一个与之相应的初等矩阵：</p>
+<ul>
+<li>互换 $E$ 的 $i$ 行与 $j$ 行的位置，得 $P(i,j)$；</li>
+<li>用数域 $P$ 中非零数 $c$ 乘 $E$ 的第 $i$ 行，得 $P(i(c))$；</li>
+<li>把 $E$ 的第 $j$ 行的 $k$ 倍加到第 $i$ 行，得 $P(i,j(k))$。</li>
+</ul>
+<p>课本指出：对单位矩阵作一次初等<b>列</b>变换所得到的矩阵也包括在这三类之中（例如把 $E$ 的 $i$ 列的 $k$ 倍加到 $j$ 列仍得 $P(i,j(k))$），因此这三类矩阵就是全部的初等矩阵。</p>
+<h3>6.3 引理：初等变换与矩阵乘法（课本未编号）</h3>
+<p><b>课本：p.187-193</b></p>
+<p>对一个 $s\times n$ 矩阵 $A$ 作一初等<b>行</b>变换就相当于在 $A$ 的<b>左边</b>乘上相应的 $s\times s$ 初等矩阵；对 $A$ 作一初等<b>列</b>变换就相当于在 $A$ 的<b>右边</b>乘上相应的 $n\times n$ 初等矩阵。</p>
+<h4>课本证明路线</h4>
+<p>只看行变换的情形，列变换的情形可同样证明：</p>
+<ol class="plain">
+<li>令 $B=(b_{ij})$ 为任意 $s\times s$ 矩阵，$A_1,\dots,A_s$ 为 $A$ 的行向量；由矩阵的分块乘法写出 $BA$ 各行为 $b_{i1}A_1+\cdots+b_{is}A_s$；</li>
+<li>取 $B=P(i,j)$，得互换 $A$ 的 $i$ 行与 $j$ 行；</li>
+<li>取 $B=P(i(c))$，得用 $c$ 乘 $A$ 的第 $i$ 行；</li>
+<li>取 $B=P(i,j(k))$，得把 $A$ 的第 $j$ 行的 $k$ 倍加到第 $i$ 行。</li>
+</ol>
+<h3>6.4 初等矩阵都可逆（叙述式）</h3>
+<p><b>课本：p.187-193</b></p>
+<p>不难看出，初等矩阵都是可逆的，它们的逆矩阵还是初等矩阵：</p>
+<div class="formula">$$P(i,j)^{-1}=P(i,j),\qquad P(i(c))^{-1}=P(i(c^{-1})),\qquad P(i,j(k))^{-1}=P(i,j(-k)).$$</div>
+<h3>6.5 定义11：等价</h3>
+<p><b>课本：189</b></p>
+<p>矩阵 $A$ 与 $B$ 称为<b>等价的</b>，如果 $B$ 可以由 $A$ 经过一系列初等变换得到。</p>
+<p>课本指出：等价是矩阵间的一种关系，具有自反性、对称性与传递性。</p>
+<h3>6.6 定理5：标准形</h3>
+<p><b>课本：189-190</b></p>
+<p>任意一个 $s\times n$ 矩阵 $A$ 都与一形式为</p>
+<div class="formula">$$\begin{pmatrix}1&&& & &\\&\ddots&& &&\\&&1&& \\&&&0&&\\&&&&\ddots&\\&&&&&0\end{pmatrix}$$</div>
+<p>的矩阵等价，它称为矩阵 $A$ 的<b>标准形</b>；主对角线上 1 的个数等于 $A$ 的秩（1 的个数可以是零）。</p>
+<h4>课本证明路线</h4>
+<ol class="plain">
+<li>如果 $A=O$，它已经是标准形；否则经过初等变换可使 $A$ 左上角元素不为零；</li>
+<li>当 $a_{11}\ne0$ 时，把其余各行减去第一行的 $a_{11}^{-1}a_{i1}$ 倍，其余各列减去第一列的 $a_{11}^{-1}a_{1j}$ 倍，然后用 $a_{11}^{-1}$ 乘第一行，$A$ 就变成 $\begin{pmatrix}1&amp;O\\O&amp;A_1\end{pmatrix}$；</li>
+<li>$A_1$ 是一个 $(s-1)\times(n-1)$ 矩阵，对 $A_1$ 再重复以上步骤，即可得出所要的标准形；</li>
+<li>显然标准形矩阵的秩就等于它主对角线上 1 的个数，而初等变换不改变矩阵的秩，所以 1 的个数也就是矩阵 $A$ 的秩。</li>
+</ol>
+<h3>6.7 例1：化标准形</h3>
+<p><b>课本：190</b></p>
+<p>课本对数字矩阵</p>
+<div class="formula">$$A=\begin{pmatrix}1&1&3&1\\1&3&2&5\\2&2&6&7\\2&4&5&6\end{pmatrix}$$</div>
+<p>逐步施行初等行、列变换，最终化为含三个 1 的标准形（即 $\begin{pmatrix}E_3&amp;O\\O&amp;O\end{pmatrix}$ 型）。</p>
+<h3>6.8 等价的矩阵刻画（叙述式）</h3>
+<p><b>课本：p.187-193</b></p>
+<p>根据引理，对一矩阵作初等变换就相当于用相应的初等矩阵去乘这个矩阵。因此，矩阵 $A,B$ 等价的充分必要条件是有初等矩阵 $P_1,\dots,P_l,Q_1,\dots,Q_t$ 使</p>
+<div class="formula">$$A=P_1P_2\cdots P_l\,B\,Q_1Q_2\cdots Q_t.$$</div>
+<p>$n$ 级可逆矩阵的秩为 $n$，所以可逆矩阵的标准形为单位矩阵；反过来显然也是对的。</p>
+<h3>6.9 定理6：可逆与初等矩阵</h3>
+<p><b>课本：191</b></p>
+<p>$n$ 级矩阵 $A$ 为可逆的充分必要条件是它能表成一些初等矩阵的乘积：</p>
+<div class="formula">$$A=Q_1Q_2\cdots Q_m.$$</div>
+<h3>6.10 推论1</h3>
+<p><b>课本：p.187-193</b></p>
+<p>两个 $s\times n$ 矩阵 $A,B$ 等价的充分必要条件为：存在可逆的 $s$ 级矩阵 $P$ 与可逆的 $n$ 级矩阵 $Q$，使</p>
+<div class="formula">$$A=PBQ.$$</div>
+<h3>6.11 推论2：可逆矩阵可用行变换化成 $E$</h3>
+<p><b>课本：p.187-193</b></p>
+<p>可逆矩阵总可以经过一系列初等行变换化成单位矩阵。</p>
+<h4>课本证明路线</h4>
+<p>把定理6中的 $A=Q_1Q_2\cdots Q_m$ 改写为</p>
+<div class="formula">$$Q_m^{-1}\cdots Q_2^{-1}Q_1^{-1}A=E.$$</div>
+<p>因为初等矩阵的逆矩阵还是初等矩阵，同时在矩阵 $A$ 的左边乘初等矩阵就相当于对 $A$ 作初等行变换，所以结论成立。</p>
+<h3>6.12 求逆矩阵的具体方法（叙述式）</h3>
+<p><b>课本：p.187-193</b></p>
+<p>设 $A$ 是 $n$ 级可逆矩阵。由推论2，有一系列初等矩阵 $P_1,\dots,P_m$ 使</p>
+<div class="formula">$$P_m\cdots P_1A=E,$$</div>
+<p>从而</p>
+<div class="formula">$$A^{-1}=P_m\cdots P_1=P_m\cdots P_1E.$$</div>
+<p>这两个式子说明：如果用一系列初等行变换把可逆矩阵 $A$ 化成单位矩阵，那么用同样这一系列初等行变换去化单位矩阵，就得到 $A^{-1}$。</p>
+<p>把 $A,E$ 这两个 $n\times n$ 矩阵凑在一起作成 $n\times2n$ 矩阵 $(A\ E)$，按分块乘法可以合并写成</p>
+<div class="formula">$$P_m\cdots P_1(A\ E)=(E\ A^{-1}).$$</div>
+<p>这就提供了一个具体求逆矩阵的方法：<b>作 $n\times2n$ 矩阵 $(A\ E)$，用初等行变换把它的左边一半化成 $E$，这时右边的一半就是 $A^{-1}$。</b></p>
+<h3>6.13 例2：用初等行变换求逆 ★</h3>
+<p><b>课本：192</b></p>
+<p>设</p>
+<div class="formula">$$A=\begin{pmatrix}0&1&2\\1&1&4\\2&-1&0\end{pmatrix},$$</div>
+<p>求 $A^{-1}$。课本对 $(A\ E)$ 施行初等行变换把左半化成 $E$，得到</p>
+<div class="formula">$$A^{-1}=\begin{pmatrix}2&-1&1\\4&-2&1\\-\frac32&1&-\frac12\end{pmatrix}.$$</div>
+<h4>课本注明</h4>
+<p>当然，同样可以证明，可逆矩阵也能用初等列变换化成单位矩阵，这就给出了用初等列变换求逆矩阵的方法。</p>
+<hr>
+<h2 id="sec7">§7 分块乘法的初等变换及应用举例<span class="freq">★</span></h2>
+<p><b>课本：p.193-198</b></p>
+<p>课本指出：将分块乘法与初等变换结合是矩阵运算中极重要的手段。</p>
+<h3>7.1 分块初等矩阵（叙述式）</h3>
+<p><b>课本：p.193-198</b></p>
+<p>将单位矩阵如下进行分块：</p>
+<div class="formula">$$\begin{pmatrix}E_m&O\\O&E_n\end{pmatrix},$$</div>
+<p>对它进行两行（列）对换、某一行（列）左乘（右乘）一个矩阵 $P$、一行（列）加上另一行（列）的 $P$ 倍，就可得到如下类型的一些矩阵：</p>
+<div class="formula">$$\begin{pmatrix}O&E_n\\E_m&O\end{pmatrix},\quad \begin{pmatrix}P&O\\O&E_n\end{pmatrix},\quad \begin{pmatrix}E_m&O\\O&P\end{pmatrix},$$</div>
+<div class="formula">$$\begin{pmatrix}E_m&P\\O&E_n\end{pmatrix},\quad \begin{pmatrix}E_m&O\\P&E_n\end{pmatrix}.$$</div>
+<h3>7.2 左乘（右乘）的效果（叙述式）</h3>
+<p><b>课本：p.193-198</b></p>
+<p>和初等矩阵与初等变换的关系一样，用这些矩阵左乘任一个分块矩阵</p>
+<div class="formula">$$\begin{pmatrix}A&B\\C&D\end{pmatrix},$$</div>
+<p>只要分块乘法能够进行，其结果就是对它进行相应的变换：</p>
+<div class="formula">$$\begin{pmatrix}O&E_n\\E_m&O\end{pmatrix} \begin{pmatrix}A&B\\C&D\end{pmatrix} =\begin{pmatrix}C&D\\A&B\end{pmatrix},$$</div>
+<div class="formula">$$\begin{pmatrix}P&O\\O&E_n\end{pmatrix} \begin{pmatrix}A&B\\C&D\end{pmatrix} =\begin{pmatrix}PA&PB\\C&D\end{pmatrix},$$</div>
+<div class="formula">$$\begin{pmatrix}E_m&O\\P&E_n\end{pmatrix} \begin{pmatrix}A&B\\C&D\end{pmatrix} =\begin{pmatrix}A&B\\C+PA&D+PB\end{pmatrix}.$$</div>
+<p>同样，用它们右乘任一矩阵也有相应的结果（课本未一一写出）。</p>
+<h3>7.3 选 $P=-CA^{-1}$ 化出三角块（叙述式）</h3>
+<p><b>课本：p.193-198</b></p>
+<p>在最后一式中，适当选择 $P$ 可使 $C+PA=O$：例如 $A$ 可逆时，选 $P=-CA^{-1}$，则右端成为</p>
+<div class="formula">$$\begin{pmatrix}A&B\\O&D-CA^{-1}B\end{pmatrix}.$$</div>
+<p>课本指出：这种形状的矩阵在求行列式、逆矩阵和解决其他问题时是比较方便的，因此这类运算非常有用。</p>
+<h3>7.4 例1：分块三角矩阵的逆 ★</h3>
+<p><b>课本：195</b></p>
+<p>设</p>
+<div class="formula">$$T=\begin{pmatrix}A&O\\C&D\end{pmatrix},$$</div>
+<p>其中 $A,D$ 可逆，求 $T^{-1}$。</p>
+<h4>课本解法路线</h4>
+<ol class="plain">
+<li>用 $\begin{pmatrix}E_m&amp;O\\-CA^{-1}&amp;E_n\end{pmatrix}$ 左乘 $T$，把左下块消为零：</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}E_m&O\\-CA^{-1}&E_n\end{pmatrix} \begin{pmatrix}A&O\\C&D\end{pmatrix} =\begin{pmatrix}A&O\\O&D\end{pmatrix};$$</div>
+<ol class="plain">
+<li>右端利用准对角矩阵求逆 $\begin{pmatrix}A&amp;O\\O&amp;D\end{pmatrix}^{-1}=\begin{pmatrix}A^{-1}&amp;O\\O&amp;D^{-1}\end{pmatrix}$；</li>
+<li>两式合并即得</li>
+</ol>
+<div class="formula">$$T^{-1}=\begin{pmatrix}A^{-1}&O\\-D^{-1}CA^{-1}&D^{-1}\end{pmatrix}.$$</div>
+<h3>7.5 例2：含 $A-BD^{-1}C$ 块的逆</h3>
+<p><b>课本：195</b></p>
+<p>设</p>
+<div class="formula">$$T_1=\begin{pmatrix}A&B\\C&D\end{pmatrix},$$</div>
+<p>$T_1$ 可逆，$D$ 可逆。试证 $(A-BD^{-1}C)^{-1}$ 存在，并求 $T_1^{-1}$。</p>
+<h4>课本证明路线</h4>
+<ol class="plain">
+<li>用 $\begin{pmatrix}E_m&amp;-BD^{-1}\\O&amp;E_n\end{pmatrix}$ 左乘 $T_1$：</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}E_m&-BD^{-1}\\O&E_n\end{pmatrix} \begin{pmatrix}A&B\\C&D\end{pmatrix} =\begin{pmatrix}A-BD^{-1}C&O\\C&D\end{pmatrix};$$</div>
+<ol class="plain">
+<li>右端仍可逆（可逆矩阵的乘积可逆），故 $(A-BD^{-1}C)^{-1}$ 存在；</li>
+<li>再由例1 的结果把两个因子分别求逆并相乘，得</li>
+</ol>
+<div class="formula">$$T_1^{-1}= \begin{pmatrix} (A-BD^{-1}C)^{-1} & -(A-BD^{-1}C)^{-1}BD^{-1}\\[2pt] -D^{-1}C(A-BD^{-1}C)^{-1} & D^{-1}C(A-BD^{-1}C)^{-1}BD^{-1}+D^{-1} \end{pmatrix}.$$</div>
+<h3>7.6 例3：行列式乘积公式的分块证明 ★</h3>
+<p><b>课本：195</b></p>
+<p>证明行列式的乘积公式</p>
+<div class="formula">$$|AB|=|A||B|$$</div>
+<p>（$A,B$ 为 $n\times n$ 矩阵）。</p>
+<h4>课本证明路线</h4>
+<ol class="plain">
+<li>作分块乘法：</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}E&A\\O&E\end{pmatrix} \begin{pmatrix}A&O\\-E&B\end{pmatrix} =\begin{pmatrix}O&AB\\-E&B\end{pmatrix};$$</div>
+<ol class="plain">
+<li>第一个因子可写成 $n^2$ 个分块初等矩阵 $P_{ij}=\begin{pmatrix}E_n&amp;E_{ij}\\O&amp;E_n\end{pmatrix}$（$E_{ij}$ 为除 $(i,j)$ 位置是 $a_{ij}$ 外全为零的矩阵）之积；这些矩阵对应的初等变换是"某行加上另外一行的倍数"，不改变行列式的值，故左端行列式等于 $\begin{vmatrix}A&amp;O\\-E&amp;B\end{vmatrix}=|A||B|$；</li>
+<li>右端 $\begin{pmatrix}O&amp;AB\\-E&amp;B\end{pmatrix}$ 可经 $n$ 个两列对换变成 $\begin{pmatrix}AB&amp;O\\B&amp;-E\end{pmatrix}$，行列式乘 $(-1)^n$；而后者的值为 $|AB|\cdot|-E|=(-1)^n|AB|$；</li>
+<li>合并两端即证 $|A||B|=|AB|$。</li>
+</ol>
+<h3>7.7 例4：化 $A$ 为上三角形</h3>
+<p><b>课本：197</b></p>
+<p>设 $A=(a_{ij})_{n\times n}$，且</p>
+<div class="formula">$$\begin{vmatrix}a_{11}&\cdots&a_{1k}\\ \vdots&&\vdots\\ a_{k1}&\cdots&a_{kk}\end{vmatrix}\ne0\qquad(1\le k\le n),$$</div>
+<p>则有下三角形矩阵 $B$ 使 $BA$ 为上三角形矩阵。</p>
+<h4>课本证明路线（对 $n$ 作归纳法）</h4>
+<ol class="plain">
+<li>$n=1$ 时，一级矩阵既是上三角形的又是下三角形的，命题自然成立；</li>
+<li>设对 $n-1$ 命题为真。$A$ 的左上角 $(n-1)$ 级子块 $A_1$ 仍满足命题条件，由归纳假设有下三角矩阵 $B_1$ 使 $B_1A_1$ 为上三角；</li>
+<li>对 $A$ 作分块 $A=\begin{pmatrix}A_1&amp;\beta\\\alpha&amp;a_{nn}\end{pmatrix}$，左乘</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}E&O\\-\alpha A_1^{-1}&1\end{pmatrix} \begin{pmatrix}A_1&\beta\\\alpha&a_{nn}\end{pmatrix} =\begin{pmatrix}A_1&\beta\\O&-\alpha A_1^{-1}\beta+a_{nn}\end{pmatrix};$$</div>
+<ol class="plain">
+<li>再左乘 $\begin{pmatrix}B_1&amp;O\\O&amp;1\end{pmatrix}$，矩阵已成为上三角形；</li>
+<li>将两次乘法结合起来得</li>
+</ol>
+<div class="formula">$$B=\begin{pmatrix}B_1&O\\-\alpha A_1^{-1}&1\end{pmatrix},$$</div>
+<p>此即所要求的下三角形矩阵。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本文件不重抄题目，只保留课本位置：</p>
+<table class="tbl"><tr><th>部分</th><th>课本印刷页码</th><th>题数</th></tr>
+<tr><td>习题</td><td>199-203</td><td>共 29 题</td></tr>
+<tr><td>补充题</td><td>203-205</td><td>共 12 题</td></tr>
+</table>
+<div class="note">注：习题与补充题在 OCR 中没有显式页锚，上表页码按 §7 结束位置（例4 起于 p.197）与章末页 p.205 推算，建议核对原书。</div>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">矩阵概念的四个背景（坐标变换、二次曲线、调运方案、向量）
+→ 矩阵记号与相等
+→ 加法、零矩阵、负矩阵、减法、秩不等式
+→ 乘法的定义（变量替换引入）
+→ 结合律；交换律与消去律不成立的反例
+→ 单位矩阵、分配律、方幂
+→ 数量乘法与数量矩阵
+→ 转置及其四条规律
+→ 乘积的行列式（定理1）与非退化/退化（定义6）
+→ 乘积的秩（定理2）
+→ 可逆、逆矩阵、伴随矩阵与求逆公式（定理3）
+→ 可逆矩阵与秩（定理4）、克拉默法则的矩阵推导
+→ 矩阵的分块与一般分块乘法
+→ 分块求逆、对角矩阵与准对角矩阵
+→ 初等矩阵三类、初等变换＝乘初等矩阵（引理）
+→ 等价与标准形（定理5）
+→ 可逆＝初等矩阵之积（定理6）、(A E) 求逆法
+→ 分块初等矩阵及其应用（例1-例4）</pre>
+<div class="note">此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</div>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul>
+<li>6/7 年、样本内条目最多（19 条）：秩一/低秩（2019:4、2020:5、2021:1）；矩阵方程与交换（2020:3、2022:2–3、2023:6、2024:4）；逆与分解（2020:5、2024:3、2026:3）。</li>
+<li>§2–§5 全在射程；§6 初等矩阵作求逆/等价的工具；§7 分块初等变换未单独命题。</li>
+</ul>
+<div class="note">标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：高代 2019–2024、2026（缺 2025；2026 为回忆版）。</div>
+</section>
+
+<section id="exercises">
+  <h2><span class="h2-no">X</span>课本习题（全录 42 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>习题（30 题）</h3>
+  <ol>
+    <li>设：（1）$\displaystyle A=\begin{pmatrix}3&amp;1&amp;1\\2&amp;1&amp;2\\1&amp;2&amp;3\end{pmatrix},\quad B=\begin{pmatrix}1&amp;1&amp;-1\\2&amp;-1&amp;0\\1&amp;0&amp;1\end{pmatrix}$；（2）$\displaystyle A=\begin{pmatrix}a&amp;b&amp;c\\c&amp;b&amp;a\\1&amp;1&amp;1\end{pmatrix},\quad B=\begin{pmatrix}1&amp;a&amp;c\\1&amp;b&amp;b\\1&amp;c&amp;a\end{pmatrix}$。计算 $AB,AB-BA$。</li>
+    <li>计算：</li>
+    <li>设 $f(\lambda)=a_0\lambda^m+a_1\lambda^{m-1}+\cdots+a_m$，$A$ 是一个 $n\times n$ 矩阵，定义 $f(A)=a_0A^m+a_1A^{m-1}+\cdots+a_mE$。（1）$\displaystyle f(\lambda)=\lambda^2-\lambda-1,\quad A=\begin{pmatrix}2&amp;1&amp;1\\3&amp;1&amp;2\\1&amp;-1&amp;0\end{pmatrix}$；（2）$\displaystyle f(\lambda)=\lambda^2-5\lambda+3,\quad A=\begin{pmatrix}2&amp;-1\\-3&amp;3\end{pmatrix}$。试求 $f(A)$。</li>
+    <li>如果 $AB=BA$，矩阵 $B$ 就称为与 $A$ 可交换。设：（1）$\displaystyle A=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}$；（2）$\displaystyle A=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;2\\3&amp;1&amp;2\end{pmatrix}$；（3）$\displaystyle A=\begin{pmatrix}0&amp;1&amp;0\\0&amp;0&amp;1\\0&amp;0&amp;0\end{pmatrix}$。分别求所有与 $A$ 可交换的矩阵。</li>
+    <li>设 $\displaystyle A=\begin{pmatrix}a_1&amp;0&amp;\cdots&amp;0\\0&amp;a_2&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;&amp;\vdots\\0&amp;0&amp;\cdots&amp;a_n\end{pmatrix}$，其中 $a_i\ne a_j$ 当 $i\ne j$（$i,j=1,2,\ldots,n$）。证明：与 $A$ 可交换的矩阵只能是对角矩阵。</li>
+    <li>设 $\displaystyle A=\begin{pmatrix}a_1E_1&amp;O&amp;\cdots&amp;O\\O&amp;a_2E_2&amp;\cdots&amp;O\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\O&amp;O&amp;\cdots&amp;a_rE_r\end{pmatrix}$，其中 $a_i\ne a_j$ 当 $i\ne j$（$i,j=1,2,\ldots,r$），$E_i$ 是 $n_i$ 级单位矩阵，$\sum_{i=1}^{r}n_i=n$。证明：与 $A$ 可交换的矩阵只能是准对角矩阵。</li>
+    <li>用 $E_{ij}$ 表示 $i$ 行 $j$ 列的元素为 $1$，而其余元素全为零的 $n\times n$ 矩阵，而 $A=(a_{ij})_{n\times n}$。证明：（1）如果 $AE_{12}=E_{12}A$，那么当 $k\ne1$ 时 $a_{k1}=0$，当 $k\ne2$ 时 $a_{2k}=0$；（2）如果 $AE_{ij}=E_{ij}A$，那么当 $k\ne i$ 时 $a_{ki}=0$，当 $k\ne j$ 时 $a_{jk}=0$，且 $a_{ii}=a_{jj}$；（3）如果 $A$ 与所有的 $n$ 级矩阵可交换，那么 $A$ 一定是数量矩阵，即 $A=aE$。</li>
+    <li>如果 $AB=BA$、$AC=CA$，证明：$A(B+C)=(B+C)A$、$A(BC)=(BC)A$。</li>
+    <li>如果 $A=\frac12(B+E)$，证明：$A^2=A$ 当且仅当 $B^2=E$。</li>
+    <li>矩阵 $A$ 称为对称的，如果 $A'=A$。证明：如果 $A$ 是实对称矩阵且 $A^2=O$，那么 $A=O$。</li>
+    <li>设 $A,B$ 都是 $n\times n$ 的对称矩阵，证明：$AB$ 也对称当且仅当 $A,B$ 可交换。</li>
+    <li>矩阵 $A$ 称为反称的，如果 $A'=-A$。证明：任一 $n\times n$ 矩阵都可表为一对称矩阵与一反称矩阵之和。</li>
+    <li>设 $s_k=x_1^k+x_2^k+\cdots+x_n^k$，$k=0,1,2,\ldots$；$a_{ij}=s_{i+j-2}$，$i,j=1,2,\ldots,n$。证明：$|a_{ij}|=\prod_{i&lt;j}(x_i-x_j)^2$。</li>
+    <li>设 $A$ 是 $n\times n$ 矩阵，证明：存在一个 $n\times n$ 非零矩阵 $B$ 使 $AB=O$ 的充分必要条件是 $|A|=0$。</li>
+    <li>设 $A$ 是 $n\times n$ 矩阵，如果对任一 $n$ 维向量 $\displaystyle X=\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}$ 都有 $AX=O$，那么 $A=O$。</li>
+    <li>设 $B$ 为一 $r\times r$ 矩阵，$C$ 为一 $r\times n$ 矩阵，且秩$(C)=r$。证明：（1）如果 $BC=O$，那么 $B=O$；（2）如果 $BC=C$，那么 $B=E$。</li>
+    <li>证明：$\operatorname{rank}(A+B)\le\operatorname{rank}(A)+\operatorname{rank}(B)$。</li>
+    <li>设 $A,B$ 为 $n\times n$ 矩阵。证明：如果 $AB=O$，那么 $\operatorname{rank}(A)+\operatorname{rank}(B)\le n$。</li>
+    <li>证明：如果 $A^k=O$，那么 $(E-A)^{-1}=E+A+A^2+\cdots+A^{k-1}$。</li>
+    <li>求 $A^{-1}$，设：</li>
+    <li>设 $\displaystyle X=\begin{pmatrix}O&amp;A\\C&amp;O\end{pmatrix}$，已知 $A^{-1},C^{-1}$ 存在，求 $X^{-1}$。</li>
+    <li>设 $\displaystyle X=\begin{pmatrix}0&amp;a_1&amp;0&amp;\cdots&amp;0&amp;0\\0&amp;0&amp;a_2&amp;\cdots&amp;0&amp;0\\\vdots&amp;\vdots&amp;\vdots&amp;&amp;\vdots&amp;\vdots\\0&amp;0&amp;0&amp;\cdots&amp;0&amp;a_{n-1}\\a_n&amp;0&amp;0&amp;\cdots&amp;0&amp;0\end{pmatrix}$，其中 $a_i\ne0$（$i=1,2,\ldots,n$），求 $X^{-1}$。</li>
+    <li>求矩阵 $X$，设：</li>
+    <li>证明：（1）如果 $A$ 可逆对称（反称），那么 $A^{-1}$ 也对称（反称）；（2）不存在奇数级的可逆反称矩阵。</li>
+    <li>矩阵 $A=(a_{ij})$ 称为上（下）三角形矩阵，如果 $i&gt;j$（$i&lt;j$）时有 $a_{ij}=0$。证明：（1）两个上（下）三角形矩阵的乘积仍是上（下）三角形矩阵；（2）可逆的上（下）三角形矩阵的逆仍是上（下）三角形矩阵。</li>
+    <li>证明：$|A^*|=|A|^{n-1}$，其中 $A$ 是 $n\times n$ 矩阵（$n\ge2$）。</li>
+    <li>证明：如果 $A$ 是 $n\times n$ 矩阵（$n\ge2$），那么 $\displaystyle\operatorname{rank}(A^*)=\begin{cases}n,&amp;\operatorname{rank}(A)=n,\\1,&amp;\operatorname{rank}(A)=n-1,\\0,&amp;\operatorname{rank}(A)&lt;n-1.\end{cases}$</li>
+    <li>用两种方法求 $\displaystyle A=\begin{pmatrix}1&amp;1&amp;1&amp;1\\1&amp;-1&amp;1&amp;-1\\1&amp;1&amp;-1&amp;-1\\1&amp;-1&amp;-1&amp;1\end{pmatrix}$ 的逆矩阵：（1）用初等变换；（2）按 $A$ 中的划分，利用分块乘法的初等变换（注意各小块矩阵的特点）。原图以虚线在第 2 行／列之后将 $A$ 划为四个 $2\times2$ 块。</li>
+    <li>$A,B$ 分别是 $n\times m$ 和 $m\times n$ 矩阵。证明：$\displaystyle\begin{vmatrix}E_m&amp;B\\A&amp;E_n\end{vmatrix}=|E_n-AB|=|E_m-BA|$。</li>
+    <li>$A,B$ 如上题，$\lambda\ne0$。证明：$|\lambda E_n-AB|=\lambda^{n-m}|\lambda E_m-BA|$。</li>
+  </ol>
+<h3>补充题（12 题）</h3>
+  <ol>
+    <li>设 $A$ 是一个 $n\times n$ 矩阵，秩$(A)=1$。证明：（1）$\displaystyle A=\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}(b_1,b_2,\ldots,b_n)$；（2）$A^2=kA$。</li>
+    <li>设 $A$ 为 $2\times2$ 矩阵，证明：如果 $A^l=O$、$l\ge2$，那么 $A^2=O$。</li>
+    <li>设 $A$ 为 $n\times n$ 矩阵，证明：如果 $A^2=E$，那么 $\operatorname{rank}(A+E)+\operatorname{rank}(A-E)=n$。</li>
+    <li>设 $A$ 为 $n\times n$ 矩阵，且 $A^2=A$，证明：$\operatorname{rank}(A)+\operatorname{rank}(A-E)=n$。</li>
+    <li>证明：$(A^*)^*=|A|^{n-2}A$，其中 $A$ 是 $n\times n$ 矩阵（$n&gt;2$）。</li>
+    <li>设 $A,B,C,D$ 都是 $n\times n$ 矩阵，且 $|A|\ne0,AC=CA$。证明：$\displaystyle\begin{vmatrix}A&amp;B\\C&amp;D\end{vmatrix}=|AD-CB|$。</li>
+    <li>设 $A$ 是一 $n\times n$ 矩阵，且秩$(A)=r$。证明：存在一 $n\times n$ 可逆矩阵 $P$ 使 $PAP^{-1}$ 的后 $n-r$ 行全为零。</li>
+    <li>（1）把矩阵 $\displaystyle\begin{pmatrix}a&amp;0\\0&amp;a^{-1}\end{pmatrix}$ 表成形式为 $\displaystyle\begin{pmatrix}1&amp;x\\0&amp;1\end{pmatrix}$ 与 $\displaystyle\begin{pmatrix}1&amp;0\\x&amp;1\end{pmatrix}$ 的矩阵的乘积；（2）设 $\displaystyle A=\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}$ 为一复数矩阵，$|A|=1$，证明：$A$ 可以表成形式为（1）的矩阵的乘积。</li>
+    <li>设 $A$ 是一 $n\times n$ 矩阵，$|A|=1$，证明：$A$ 可以表成 $P(i,j(k))$ 这一类初等矩阵的乘积。</li>
+    <li>设 $A=(a_{ij})_{s\times n}$，$B=(b_{ij})_{n\times m}$。证明：$\operatorname{rank}(AB)\ge\operatorname{rank}(A)+\operatorname{rank}(B)-n$。</li>
+    <li>矩阵的列（行）向量组如果是线性无关的，就称该矩阵为列（行）满秩的。证明：设 $A$ 是 $m\times r$ 矩阵，则 $A$ 是列满秩的充分必要条件为存在 $m\times m$ 可逆矩阵 $P$ 使 $\displaystyle A=P\begin{pmatrix}E_r\\O\end{pmatrix}$。同样地，$A$ 为行满秩的充分必要条件为存在 $r\times r$ 可逆矩阵 $Q$ 使 $A=(E_m\quad O)Q$。</li>
+    <li>证明：设 $m\times n$ 矩阵 $A$ 的秩为 $r$，则有 $m\times r$ 的列满秩矩阵 $P$ 和 $r\times n$ 的行满秩矩阵 $Q$，使 $A=PQ$。</li>
+  </ol>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">Z</span>来源与边界</h2>
+  <ul>
+    <li><b>正文</b>：本章 <code>01_01_第四章_矩阵_课本骨架_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+    <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+    <li><b>边界</b>：本页不替代课本证明；【★】为骨架原有的重要度标记，转化为星标只用于排序。</li>
+    <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+  </ul>
+</section>
+<div class="foot">本页为 Hermes 生成的复习讲解材料（以指定课本原文为准）。生成日期 2026-11-01。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

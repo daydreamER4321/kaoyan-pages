@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第05章 二次型 · 高代考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>.star{color:#b45309;font-weight:700;letter-spacing:1px}
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">高等代数 · 考纲课本</div>
+  <div class="sb-title">第05章<br>二次型</div>
+  <nav class="toc">
+    <a href="#body">正文（按节）</a>
+    <a href="#sec1">§1 二次型及其矩阵表示</a>
+    <a href="#sec2">§2 标准形</a>
+    <a href="#sec3">§3 唯一性</a>
+    <a href="#sec4">§4 正定二次型</a>
+    <a href="#exercises">课本习题</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《高等代数》第四版（王萼芳·石生明）为准。正文取自本章课本骨架，习题全录并标星。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 高等代数 · 801 考纲课本</div>
+    <h1>第05章 二次型</h1>
+    <p class="hero-sub">§1 二次型及其矩阵表示 · §2 标准形 · §3 唯一性 · §4 正定二次型</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec1">§1 二次型及其矩阵表示<span class="freq">★</span></h2>
+<p><b>课本：p.206-210</b></p>
+<h3>1.1 引言：从化标准方程说起（叙述式，无编号）</h3>
+<p><b>课本：p.206-210</b></p>
+<p>当坐标原点与中心重合时，有心二次曲线的一般方程是</p>
+<div class="formula">$$a x^2+2bxy+cy^2=f.\tag{1}$$</div>
+<p>选择适当角度 $\theta$ 作转轴（反时针方向）</p>
+<div class="formula">$$\begin{cases} x=x'\cos\theta-y'\sin\theta,\\ y=x'\sin\theta+y'\cos\theta, \end{cases}\tag{2}$$</div>
+<p>把方程 (1) 化成标准方程；二次曲面的研究中有类似情况。(1) 的左端是一个二次齐次多项式，从代数的观点看，所谓化标准方程就是用变量的线性替换 (2) 化简一个二次齐次多项式，使它只含有平方项。二次齐次多项式在数学其他分支以及物理、力学中也常碰到，本章介绍它的一些最基本的性质。</p>
+<h3>1.2 二次型的概念（叙述式，无编号）</h3>
+<p><b>课本：p.206-210</b></p>
+<p>设 $P$ 是一数域，系数在数域 $P$ 中的 $x_1,x_2,\cdots,x_n$ 的二次齐次多项式</p>
+<div class="formula">$$f(x_1,x_2,\cdots,x_n)=a_{11}x_1^2+2a_{12}x_1x_2+\cdots+2a_{1n}x_1x_n+a_{22}x_2^2+\cdots+2a_{2n}x_2x_n+\cdots+a_{nn}x_n^2\tag{3}$$</div>
+<p>称为<b>数域 $P$ 上的一个 $n$ 元二次型</b>，简称二次型。为了以后讨论方便，(3) 中 $x_ix_j\,(i&lt;j)$ 的系数写成 $2a_{ij}$ 而不写成 $a_{ij}$。</p>
+<p>课本举例：$x_1^2+x_1x_2+3x_1x_3+2x_2^2+4x_2x_3+3x_3^2$ 是有理数域上的三元二次型。</p>
+<h3>1.3 定义1：线性替换与非退化线性替换</h3>
+<p><b>课本：207</b></p>
+<p>设 $x_1,\cdots,x_n;\,y_1,\cdots,y_n$ 是两组文字，系数在数域 $P$ 中的一组关系式</p>
+<div class="formula">$$\begin{cases} x_1=c_{11}y_1+c_{12}y_2+\cdots+c_{1n}y_n,\\ x_2=c_{21}y_1+c_{22}y_2+\cdots+c_{2n}y_n,\\ \quad\cdots\cdots\cdots\cdots\\ x_n=c_{n1}y_1+c_{n2}y_2+\cdots+c_{nn}y_n \end{cases}\tag{4}$$</div>
+<p>称为由 $x_1,\cdots,x_n$ 到 $y_1,\cdots,y_n$ 的一个<b>线性替换</b>。如果系数行列式</p>
+<div class="formula">$$|c_{ij}|\neq0,$$</div>
+<p>那么线性替换 (4) 就称为<b>非退化的</b>。</p>
+<h4>课本说明</h4>
+<ul>
+<li>把 (2) 看作线性替换时它是非退化的，因为 $\begin{vmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{vmatrix}=1\neq0$。</li>
+<li>把 (4) 代入 (3)，得到的 $y_1,\cdots,y_n$ 的多项式仍然是二次齐次的，即<b>线性替换把二次型变成二次型</b>。研究二次型在非退化的线性替换下的变化情况就是本章的主要目的。</li>
+</ul>
+<h3>1.4 二次型的矩阵表示（叙述式，无编号）</h3>
+<p><b>课本：p.206-210</b></p>
+<p>约定 $a_{ji}=a_{ij}\,(i&lt;j)$。由于 $x_ix_j=x_jx_i$，二次型 (3) 可写成双和形式</p>
+<div class="formula">$$f(x_1,x_2,\cdots,x_n)=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j.\tag{5}$$</div>
+<p>把 (5) 的系数排成 $n\times n$ 矩阵</p>
+<div class="formula">$$A=\begin{pmatrix} a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\ a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\\ \vdots&amp;\vdots&amp;&amp;\vdots\\ a_{n1}&amp;a_{n2}&amp;\cdots&amp;a_{nn} \end{pmatrix},\tag{6}$$</div>
+<p>称为<b>二次型 (5) 的矩阵</b>。因为 $a_{ij}=a_{ji},\,i,j=1,\cdots,n$，所以 $A'=A$；这样的矩阵称为<b>对称矩阵</b>，因此二次型的矩阵都是对称的。令列向量 $X=(x_1,x_2,\cdots,x_n)'$，则二次型可用矩阵乘积表示：</p>
+<div class="formula">$$f(x_1,x_2,\cdots,x_n)=X'AX.$$</div>
+<h4>课本说明</h4>
+<ul>
+<li>当 $i\neq j$ 时 $a_{ij}=a_{ji}$ 正是 $x_ix_j$ 项系数的一半，而 $a_{ii}$ 是 $x_i^2$ 项的系数，因此<b>二次型和它的矩阵是相互唯一决定的</b>。由此还可得：若 $X'AX=X'BX$ 且 $A'=A,\,B'=B$，则 $A=B$。</li>
+<li>记 $C=(c_{ij})$、列向量 $Y=(y_1,\cdots,y_n)'$，线性替换 (4) 可写成</li>
+</ul>
+<div class="formula">$$X=CY.$$</div>
+<h3>1.5 替换前后矩阵的关系 $B=C'AC$</h3>
+<p><b>课本：p.206-210</b></p>
+<p>设 $f(x_1,\cdots,x_n)=X'AX\;(A'=A)$ 是二次型，作非退化线性替换 $X=CY$，得到 $y_1,\cdots,y_n$ 的二次型 $Y'BY$。代入即有</p>
+<div class="formula">$$X'AX=(CY)'A(CY)=Y'C'ACY=Y'(C'AC)Y=Y'BY.$$</div>
+<p>矩阵 $C'AC$ 也是对称的：</p>
+<div class="formula">$$(C'AC)'=C'A'C''=C'AC.$$</div>
+<p>由此得前后两个二次型的矩阵的关系：</p>
+<div class="formula">$$B=C'AC.$$</div>
+<p>与之相应引入下面的定义。</p>
+<h3>1.6 定义2：合同</h3>
+<p><b>课本：210</b></p>
+<p>数域 $P$ 上 $n\times n$ 矩阵 $A,B$ 称为<b>合同的</b>，如果有数域 $P$ 上可逆的 $n\times n$ 矩阵 $C$，使</p>
+<div class="formula">$$B=C'AC.$$</div>
+<p>合同是矩阵之间的一个关系，具有：</p>
+<ol class="plain">
+<li><b>自反性</b>：$A=E'AE$；</li>
+<li><b>对称性</b>：由 $B=C'AC$ 即得 $A=(C^{-1})'BC^{-1}$；</li>
+<li><b>传递性</b>：由 $A_1=C_1'AC_1$ 和 $A_2=C_2'A_1C_2$ 即得 $A_2=(C_1C_2)'A(C_1C_2)$。</li>
+</ol>
+<p>因之，经过非退化的线性替换，新二次型的矩阵与原二次型的矩阵是合同的。这样就把二次型的变换通过矩阵表示出来。</p>
+<h3>1.7 为什么总要求线性替换非退化（叙述式，无编号）</h3>
+<p><b>课本：p.206-210</b></p>
+<p>在变换二次型时总是要求所作的线性替换是非退化的。从几何上看这是自然的，因为坐标变换一定是非退化的。一般地，当 $X=CY$ 非退化时，由该关系可得</p>
+<div class="formula">$$Y=C^{-1}X,$$</div>
+<p>这也是一个线性替换，它把所得的二次型还原；这样就使我们从所得二次型的性质可以推知原来二次型的一些性质。</p>
+<hr>
+<h2 id="sec2">§2 标准形<span class="freq">★★★</span></h2>
+<p><b>课本：p.211-220</b></p>
+<p>本节讨论用非退化线性替换化简二次型的问题。可以认为，二次型中最简单的一种是只包含平方项的二次型</p>
+<div class="formula">$$d_1x_1^2+d_2x_2^2+\cdots+d_nx_n^2.\tag{1}$$</div>
+<h3>2.1 定理1：任意二次型可化为平方和</h3>
+<p><b>课本：211</b></p>
+<p>数域 $P$ 上任意一个二次型都可以经过非退化的线性替换变成平方和 (1) 的形式。</p>
+<h4>课本证明路线（配方法，对变量个数 $n$ 归纳）</h4>
+<ol class="plain">
+<li>$n=1$ 时 $f(x_1)=a_{11}x_1^2$ 已经是平方和；假定结论对 $n-1$ 元二次型成立，设 $f=\sum_{i=1}^n\sum_{j=1}^n a_{ij}x_ix_j\,(a_{ij}=a_{ji})$，分三种情形：</li>
+<li><b>情形一：某个 $a_{ii}\neq0$</b>（不妨 $a_{11}\neq0$）。配方：</li>
+</ol>
+<div class="formula">$$f=a_{11}\Big(x_1+\sum_{j=2}^{n}a_{11}^{-1}a_{1j}x_j\Big)^{2}-a_{11}^{-1}\Big(\sum_{j=2}^{n}a_{1j}x_j\Big)^{2}+\sum_{i=2}^{n}\sum_{j=2}^{n}a_{ij}x_ix_j =a_{11}\Big(x_1+\sum_{j=2}^{n}a_{11}^{-1}a_{1j}x_j\Big)^{2}+\sum_{i=2}^{n}\sum_{j=2}^{n}b_{ij}x_ix_j;$$</div>
+<p>其中 $\sum_{i=2}^n\sum_{j=2}^n b_{ij}x_ix_j$ 是 $x_2,\cdots,x_n$ 的二次型。作非退化线性替换 $y_1=x_1+\sum_{j=2}^n a_{11}^{-1}a_{1j}x_j,\,y_2=x_2,\cdots,y_n=x_n$，得 $f=a_{11}y_1^2+\sum_{i=2}^n\sum_{j=2}^n b_{ij}y_iy_j$；再对后者用归纳假设变为 $d_2z_2^2+\cdots+d_nz_n^2$，合并两个替换即得平方和 $a_{11}z_1^2+d_2z_2^2+\cdots+d_nz_n^2$。</p>
+<ol class="plain">
+<li><b>情形二：所有 $a_{ii}=0$，但至少有一个 $a_{1j}\neq0\,(j&gt;1)$</b>。不失普遍性设 $a_{12}\neq0$，令 $x_1=z_1+z_2,\ x_2=z_1-z_2,\ x_k=z_k\,(k\ge3)$，这是非退化线性替换，且</li>
+</ol>
+<div class="formula">$$f=2a_{12}x_1x_2+\cdots=2a_{12}(z_1+z_2)(z_1-z_2)+\cdots=2a_{12}z_1^2-2a_{12}z_2^2+\cdots,$$</div>
+<p>此时 $z_1^2$ 的系数不为零，属于第一种情况。</p>
+<ol class="plain">
+<li><b>情形三：$a_{11}=a_{12}=\cdots=a_{1n}=0$</b>。由对称性 $a_{21}=a_{31}=\cdots=a_{n1}=0$，于是 $f$ 是 $n-1$ 元二次型，直接用归纳假设。</li>
+</ol>
+<p>根据归纳法原理，定理得证。课本指出这个证明实际上给出了具体化平方和的方法——中学里学过的配方法。</p>
+<h3>2.2 定理2：对称矩阵合同于对角矩阵</h3>
+<p><b>课本：214</b></p>
+<p>在数域 $P$ 上，任意一个对称矩阵都合同于一对角矩阵。</p>
+<p>也就是说，对于任意一个对称矩阵 $A$ 都可以找到一个可逆矩阵 $C$ 使 $C'AC$ 成对角矩阵。</p>
+<h4>课本说明</h4>
+<p>平方和 (1) 的矩阵是对角矩阵 $\operatorname{diag}(d_1,d_2,\cdots,d_n)$；反过来，矩阵为对角形的二次型只含平方项。按上一节讨论，经过非退化线性替换后二次型的矩阵变到合同的矩阵，因此用矩阵的语言，定理1 可以叙述为定理2。</p>
+<h3>2.3 标准形（叙述式，无编号）</h3>
+<p><b>课本：p.211-220</b></p>
+<p>二次型 $f(x_1,x_2,\cdots,x_n)$ 经过非退化线性替换所变成的平方和称为 $f(x_1,x_2,\cdots,x_n)$ 的一个<b>标准形</b>。</p>
+<h3>2.4 例1 ★：配方法化标准形</h3>
+<p><b>课本：p.211-220</b></p>
+<p>化二次型</p>
+<div class="formula">$$f(x_1,x_2,x_3)=2x_1x_2+2x_1x_3-6x_2x_3$$</div>
+<p>为标准形。课本逐步施行三次非退化线性替换：</p>
+<ol class="plain">
+<li>先令 $x_1=y_1+y_2,\ x_2=y_1-y_2,\ x_3=y_3$，得</li>
+</ol>
+<div class="formula">$$f=2(y_1+y_2)(y_1-y_2)+2(y_1+y_2)y_3-6(y_1-y_2)y_3 =2y_1^2-2y_2^2-4y_1y_3+8y_2y_3 =2(y_1-y_3)^2-2y_3^2-2y_2^2+8y_2y_3;$$</div>
+<ol class="plain">
+<li>再令 $z_1=y_1-y_3,\ z_2=y_2,\ z_3=y_3$（其逆为 $y_1=z_1+z_3,\ y_2=z_2,\ y_3=z_3$），得</li>
+</ol>
+<div class="formula">$$f=2z_1^2-2z_2^2+8z_2z_3-2z_3^2 =2z_1^2-2(z_2-2z_3)^2+6z_3^2;$$</div>
+<ol class="plain">
+<li>最后令 $w_1=z_1,\ w_2=z_2-2z_3,\ w_3=z_3$（即 $z_1=w_1,\ z_2=w_2+2w_3,\ z_3=w_3$），得标准形</li>
+</ol>
+<div class="formula">$$f(x_1,x_2,x_3)=2w_1^2-2w_2^2+6w_3^2.$$</div>
+<p>这几次线性替换的结果相当于作一个总的线性替换：</p>
+<div class="formula">$$\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix} =\begin{pmatrix}1&amp;1&amp;0\\1&amp;-1&amp;0\\0&amp;0&amp;1\end{pmatrix} \begin{pmatrix}1&amp;0&amp;1\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix} \begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;2\\0&amp;0&amp;1\end{pmatrix} \begin{pmatrix}w_1\\w_2\\w_3\end{pmatrix} =\begin{pmatrix}1&amp;1&amp;3\\1&amp;-1&amp;-1\\0&amp;0&amp;1\end{pmatrix} \begin{pmatrix}w_1\\w_2\\w_3\end{pmatrix}.$$</div>
+<h3>2.5 配方法的矩阵表述（叙述式，无编号）</h3>
+<p><b>课本：p.211-220</b></p>
+<p>前面所讲配方法的过程可以用矩阵写出来。课本对应定理1证明的各种情形写出相应的合同变换矩阵：</p>
+<ol class="plain">
+<li><b>情形 $a_{11}\neq0$</b>：变数替换相应于合同变换 $A\to C_1'AC_1$，其中</li>
+</ol>
+<div class="formula">$$C_1=\begin{pmatrix} 1&amp;-a_{11}^{-1}a_{12}&amp;\cdots&amp;-a_{11}^{-1}a_{1n}\\ 0&amp;1&amp;\cdots&amp;0\\ \vdots&amp;\vdots&amp;&amp;\vdots\\ 0&amp;0&amp;\cdots&amp;1 \end{pmatrix}.$$</div>
+<p>为计算 $C_1'AC_1$，记行向量 $\alpha=(a_{12},\cdots,a_{1n})$ 及 $A_1=(a_{ij})_{2\le i,j\le n}$，分块写 $A=\begin{pmatrix}a_{11}&amp;\alpha\\ \alpha'&amp;A_1\end{pmatrix}$，$C_1=\begin{pmatrix}1&amp;-a_{11}^{-1}\alpha\\ O&amp;E_{n-1}\end{pmatrix}$，于是</p>
+<div class="formula">$$C_1'AC_1=\begin{pmatrix}a_{11}&amp;O\\ O&amp;A_1-a_{11}^{-1}\alpha'\alpha\end{pmatrix}.$$</div>
+<p>由归纳假设，有 $G$ 使 $G'(A_1-a_{11}^{-1}\alpha'\alpha)G=D$ 成对角形；取 $C_2=\begin{pmatrix}1&amp;O\\O&amp;G\end{pmatrix}$，则</p>
+<div class="formula">$$C_2'C_1'AC_1C_2=\begin{pmatrix}a_{11}&amp;O\\ O&amp;D\end{pmatrix}$$</div>
+<p>为对角矩阵，所要的可逆矩阵就是 $C=C_1C_2$。</p>
+<ol class="plain">
+<li><b>情形 $a_{11}=0$ 但有某个 $a_{ii}\neq0$</b>：取初等矩阵 $C_1=P(1,i)$（互换第 1 行与第 $i$ 行所得）。显然 $P(1,i)'=P(1,i)$，而 $C_1'AC_1=P(1,i)AP(1,i)$ 就是把 $A$ 的第一行与第 $i$ 行互换、再把第一列与第 $i$ 列互换的结果，其左上角元素即 $a_{ii}$，归结到第一种情形。</li>
+<li><b>情形所有 $a_{ii}=0\,(i=1,\cdots,n)$，但有一个 $a_{1j}\neq0\,(j\neq1)$</b>：与上一种情形类似，作合同变换 $P(2,j)'AP(2,j)$ 可以把 $a_{1j}$ 搬到第一行第二列的位置，这样就变成了配方法中的第二种情况。与那里的变数替换相对应，取首二行列呈 $\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix}$ 结构的 $C_1$，于是 $C_1'AC_1$ 的左上角就是</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}2a_{12}&amp;0\\0&amp;-2a_{12}\end{pmatrix},$$</div>
+<p>也就归结到第一种情形。</p>
+<ol class="plain">
+<li><b>情形 $a_{1j}=0\,(j=1,\cdots,n)$</b>：由对称性第一列也全为零，于是 $A=\begin{pmatrix}0&amp;0\\0&amp;A_1\end{pmatrix}$，$A_1$ 是 $n-1$ 级对称矩阵。由归纳假设有 $G$ 使 $G'A_1G=D$ 成对角形，取 $C=\begin{pmatrix}1&amp;O\\O&amp;G\end{pmatrix}$，则 $C'AC$ 成对角形。</li>
+</ol>
+<h3>2.6 例2 ★：同一二次型的矩阵化法</h3>
+<p><b>课本：p.211-220</b></p>
+<p>化二次型 $f(x_1,x_2,x_3)=2x_1x_2+2x_1x_3-6x_2x_3$ 成标准形。$f$ 的矩阵为</p>
+<div class="formula">$$A=\begin{pmatrix}0&amp;1&amp;1\\1&amp;0&amp;-3\\1&amp;-3&amp;0\end{pmatrix}.$$</div>
+<p>依次取合同变换矩阵并计算：</p>
+<div class="formula">$$C_1=\begin{pmatrix}1&amp;1&amp;0\\1&amp;-1&amp;0\\0&amp;0&amp;1\end{pmatrix},\quad A_1=C_1'AC_1=\begin{pmatrix}2&amp;0&amp;-2\\0&amp;-2&amp;4\\-2&amp;4&amp;0\end{pmatrix};$$</div>
+<div class="formula">$$C_2=\begin{pmatrix}1&amp;0&amp;1\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix},\quad A_2=C_2'A_1C_2=\begin{pmatrix}2&amp;0&amp;0\\0&amp;-2&amp;4\\0&amp;4&amp;-2\end{pmatrix};$$</div>
+<div class="formula">$$C_3=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;2\\0&amp;0&amp;1\end{pmatrix},\quad A_3=C_3'A_2C_3=\begin{pmatrix}2&amp;0&amp;0\\0&amp;-2&amp;0\\0&amp;0&amp;6\end{pmatrix}.$$</div>
+<p>$A_3$ 已是对角矩阵，因此令</p>
+<div class="formula">$$C=C_1C_2C_3=\begin{pmatrix}1&amp;1&amp;3\\1&amp;-1&amp;-1\\0&amp;0&amp;1\end{pmatrix},$$</div>
+<p>就有 $C'AC=\operatorname{diag}(2,-2,6)$。作非退化线性替换 $X=CY$，即得标准形</p>
+<div class="formula">$$f(x_1,x_2,x_3)=2y_1^2-2y_2^2+6y_3^2.$$</div>
+<hr>
+<h2 id="sec3">§3 唯一性<span class="freq">★★</span></h2>
+<p><b>课本：p.221-226</b></p>
+<h3>3.1 平方项个数的唯一性与二次型的秩（叙述式，无编号）</h3>
+<p><b>课本：p.221-226</b></p>
+<p>经过非退化线性替换，二次型的矩阵变成一个与之合同的矩阵。由第四章 §4 定理4，合同的矩阵有相同的秩，这就是说，经过非退化线性替换之后二次型矩阵的秩是不变的。标准形的矩阵是对角矩阵，而对角矩阵的秩等于它对角线上不为零元素的个数。因此，在一个二次型的标准形中，<b>系数不为零的平方项的个数是唯一确定的</b>，与所作的非退化线性替换无关。二次型矩阵的秩有时就称为<b>二次型的秩</b>。</p>
+<h3>3.2 标准形的系数不唯一（课本反例，叙述式）</h3>
+<p><b>课本：p.221-226</b></p>
+<p>上一节的例子中，二次型 $2x_1x_2+2x_1x_3-6x_2x_3$ 经替换 $X=\begin{pmatrix}1&amp;1&amp;3\\1&amp;-1&amp;-1\\0&amp;0&amp;1\end{pmatrix}W$ 得标准形 $2w_1^2-2w_2^2+6w_3^2$；而经另一个（系数含分数的）非退化线性替换就得到另一个标准形</p>
+<div class="formula">$$2y_1^2-\frac{1}{2}y_2^2+\frac{2}{3}y_3^2.$$</div>
+<p>这就说明，在一般的数域内，二次型的标准形不是唯一的，而与所作的非退化线性替换有关。下面只就复数域和实数域的情形进一步讨论唯一性问题。</p>
+<h3>3.3 复二次型的规范形（叙述式，无编号）与定理3</h3>
+<p><b>课本：222</b></p>
+<p>设 $f(x_1,\cdots,x_n)$ 是复系数二次型。由定理1，经适当的非退化线性替换变成标准形</p>
+<div class="formula">$$d_1y_1^2+d_2y_2^2+\cdots+d_ry_r^2,\quad d_i\neq0,\ i=1,2,\cdots,r,\tag{1}$$</div>
+<p>易知 $r$ 就是 $f$ 的矩阵的秩。因为复数总可以开平方，再作非退化线性替换</p>
+<div class="formula">$$y_i=\frac{1}{\sqrt{d_i}}\,z_i\ (i\le r),\qquad y_i=z_i\ (i&gt;r),\tag{2}$$</div>
+<p>(1) 就变成</p>
+<div class="formula">$$z_1^2+z_2^2+\cdots+z_r^2.\tag{3}$$</div>
+<p>(3) 称为复二次型 $f(x_1,\cdots,x_n)$ 的<b>规范形</b>。显然规范形完全被原二次型矩阵的秩所决定，因此有：</p>
+<h3>3.4 定理3：复二次型规范形的存在与唯一</h3>
+<p><b>课本：222</b></p>
+<p>任意一个复系数的二次型，经过一个适当的非退化线性替换可以变成规范形，并且规范形是唯一的。</p>
+<p>换个说法就是，任一复对称矩阵合同于一个形式为</p>
+<div class="formula">$$\begin{pmatrix} 1&amp;&amp;&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;&amp;&amp;\\ &amp;&amp;1&amp;&amp;&amp;\\ &amp;&amp;&amp;0&amp;&amp;\\ &amp;&amp;&amp;&amp;\ddots&amp;\\ &amp;&amp;&amp;&amp;&amp;0 \end{pmatrix}$$</div>
+<p>的对角矩阵。从而有：<b>两个复对称矩阵合同的充分必要条件是它们的秩相等</b>。</p>
+<h4>课本说明</h4>
+<p>存在性即上面化规范形的过程；规范形被秩完全决定，故唯一。</p>
+<h3>3.5 实二次型的规范形（叙述式，无编号）</h3>
+<p><b>课本：p.221-226</b></p>
+<p>再来看实数域的情形。设 $f(x_1,\cdots,x_n)$ 是实系数二次型。由定理1，经过某一个非退化线性替换，再适当排列文字次序，可使 $f$ 变成标准形</p>
+<div class="formula">$$d_1y_1^2+\cdots+d_py_p^2-d_{p+1}y_{p+1}^2-\cdots-d_ry_r^2,\tag{4}$$</div>
+<p>其中 $d_i&gt;0\,(i=1,\cdots,r)$；$r$ 是 $f$ 的矩阵的秩。因为在实数域中正实数总可以开平方，再作非退化线性替换</p>
+<div class="formula">$$y_i=\frac{1}{\sqrt{d_i}}\,z_i\ (i\le r),\qquad y_i=z_i\ (i&gt;r),\tag{5}$$</div>
+<p>(4) 就变成</p>
+<div class="formula">$$z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2.\tag{6}$$</div>
+<p>(6) 称为实二次型 $f(x_1,\cdots,x_n)$ 的<b>规范形</b>。显然，规范形完全被 $r,p$ 这两个数所决定。</p>
+<h3>3.6 定理4：实二次型规范形的存在与唯一（惯性定理）</h3>
+<p><b>课本：224</b></p>
+<p>任意一个实数域上的二次型，经过一适当的非退化线性替换可以变成规范形，并且规范形是唯一的。</p>
+<h4>课本证明路线</h4>
+<p>前一半（存在性）在上面已经证明，下面证唯一性：</p>
+<ol class="plain">
+<li>设实二次型 $f$ 经非退化线性替换 $X=BY$ 化成规范形 $f=y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_r^2$，而经另一非退化线性替换 $X=CZ$ 也化成规范形 $f=z_1^2+\cdots+z_q^2-z_{q+1}^2-\cdots-z_r^2$。要证 $p=q$，反证法设 $p&gt;q$；</li>
+<li>由假设有恒等式</li>
+</ol>
+<div class="formula">$$y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_r^2=z_1^2+\cdots+z_q^2-z_{q+1}^2-\cdots-z_r^2,\tag{7}$$</div>
+<p>其中 $Z=C^{-1}BY=G Y$，写开即 $z_i=g_{i1}y_1+\cdots+g_{in}y_n\,(i=1,\cdots,n)$；</p>
+<ol class="plain">
+<li>考虑齐次线性方程组：前 $q$ 个方程 $z_1=\cdots=z_q=0$ 加上 $y_{p+1}=\cdots=y_n=0$。方程组共含 $n$ 个未知量，而只含 $q+(n-p)=n-(p-q)&lt;n$ 个方程，由第三章 §1 定理1，它有非零解 $(k_1,\cdots,k_p,k_{p+1},\cdots,k_n)$，且显然 $k_{p+1}=\cdots=k_n=0$；</li>
+<li>代入 (7) 左端，值为 $k_1^2+\cdots+k_p^2&gt;0$；通过 (9) 代入右端，因这组值满足方程组，故 $z_1=\cdots=z_q=0$，得到的值为 $-z_{q+1}^2-\cdots-z_r^2\le0$，矛盾；</li>
+<li>故 $p\le q$；同理可证 $q\le p$，从而 $p=q$，唯一性得证。</li>
+</ol>
+<p>这个定理通常称为<b>惯性定理</b>。</p>
+<h3>3.7 定义3：正惯性指数、负惯性指数、符号差</h3>
+<p><b>课本：225</b></p>
+<p>在实二次型 $f(x_1,\cdots,x_n)$ 的规范形中：</p>
+<ul>
+<li>正平方项的个数 $p$ 称为 $f$ 的<b>正惯性指数</b>；</li>
+<li>负平方项的个数 $r-p$ 称为 $f$ 的<b>负惯性指数</b>；</li>
+<li>它们的差 $p-(r-p)=2p-r$ 称为 $f$ 的<b>符号差</b>。</li>
+</ul>
+<h4>惯性定理的另一叙述（叙述式，无编号）</h4>
+<p>虽然实二次型的标准形不是唯一的，但由化成规范形的过程可以看出，标准形中系数为正的平方项的个数与规范形中正平方项的个数是一致的。因此惯性定理也可以叙述为：<b>实二次型的标准形中系数为正的平方项的个数是唯一确定的，它等于正惯性指数，而系数为负的平方项的个数就等于负惯性指数。</b></p>
+<h3>3.8 定理5：对称矩阵的合同标准形</h3>
+<p><b>课本：226</b></p>
+<p>对于矩阵，有类似定理2 的结论：</p>
+<ol class="plain">
+<li>任一复对称矩阵 $A$ 都合同于一个下述形式的对角矩阵：</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}1&amp;&amp;&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;&amp;&amp;\\ &amp;&amp;1&amp;&amp;&amp;\\ &amp;&amp;&amp;0&amp;&amp;\\ &amp;&amp;&amp;&amp;\ddots&amp;\\ &amp;&amp;&amp;&amp;&amp;0\end{pmatrix},$$</div>
+<p>其中对角线上 1 的个数 $r$ 等于 $A$ 的秩；</p>
+<ol class="plain">
+<li>任一实对称矩阵 $A$ 都合同于一个下述形式的对角矩阵：</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}1&amp;&amp;&amp;&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;&amp;&amp;&amp;\\ &amp;&amp;1&amp;&amp;&amp;&amp;\\ &amp;&amp;&amp;-1&amp;&amp;&amp;\\ &amp;&amp;&amp;&amp;\ddots&amp;&amp;\\ &amp;&amp;&amp;&amp;&amp;-1&amp;\\ &amp;&amp;&amp;&amp;&amp;&amp;\ddots\\ &amp;&amp;&amp;&amp;&amp;&amp;&amp;0\\ &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;\ddots\end{pmatrix},$$</div>
+<p>其中对角线上 1 的个数 $p$ 及 $-1$ 的个数 $r-p$（$r$ 是 $A$ 的秩）都是唯一确定的，分别称为 $A$ 的<b>正、负惯性指数</b>，它们的差 $2p-r$ 称为 $A$ 的<b>符号差</b>。</p>
+<hr>
+<h2 id="sec4">§4 正定二次型<span class="freq">★★★</span></h2>
+<p><b>课本：p.227-233</b></p>
+<p>在实二次型中，正定二次型占有特殊的地位。作为本章的结束，给出它的定义以及常用的判别条件。</p>
+<h3>4.1 定义4：正定二次型</h3>
+<p><b>课本：227</b></p>
+<p>实二次型 $f(x_1,x_2,\cdots,x_n)$ 称为<b>正定的</b>，如果对于任意一组不全为零的实数 $c_1,c_2,\cdots,c_n$，都有 $f(c_1,c_2,\cdots,c_n)&gt;0$。</p>
+<h4>课本说明与例子</h4>
+<ul>
+<li>显然 $f(x_1,\cdots,x_n)=x_1^2+x_2^2+\cdots+x_n^2$ 是正定的，因为只有当 $c_1=c_2=\cdots=c_n=0$ 时 $c_1^2+c_2^2+\cdots+c_n^2$ 才为零；</li>
+<li>一般地（读者不难验证），平方和型二次型 $f=d_1x_1^2+d_2x_2^2+\cdots+d_nx_n^2$ 正定当且仅当 $d_i&gt;0\,(i=1,2,\cdots,n)$。</li>
+</ul>
+<h3>4.2 非退化实线性替换保持正定性（叙述式论证）</h3>
+<p><b>课本：p.227-233</b></p>
+<p>设实二次型 $f=\sum_{i=1}^n\sum_{j=1}^n a_{ij}x_ix_j\ (a_{ij}=a_{ji})$ 是正定的，经非退化实线性替换</p>
+<div class="formula">$$X=CY\tag{2}$$</div>
+<p>变成二次型 $g(y_1,\cdots,y_n)=\sum_{i=1}^n\sum_{j=1}^n b_{ij}y_iy_j\ (b_{ij}=b_{ji})$。则 $g$ 也是正定的：对任意不全为零的实数 $k_1,\cdots,k_n$，把它们代替换 (2) 右端得到对应的 $c_1,\cdots,c_n$，即 $C(k_1,\cdots,k_n)'=(c_1,\cdots,c_n)'$；因 $C$ 可逆且 $k$ 不全为零，故 $c$ 也不全为零，于是</p>
+<div class="formula">$$g(k_1,\cdots,k_n)=f(c_1,\cdots,c_n)&gt;0.$$</div>
+<p>又因二次型 $g$ 也可经非退化实线性替换 $Y=C^{-1}X$ 变回 $f$，按同样理由当 $g$ 正定时 $f$ 也正定。这就是说，<b>非退化实线性替换保持正定性不变</b>。</p>
+<h3>4.3 定理6：正定的惯性指数判别</h3>
+<p><b>课本：228</b></p>
+<p>$n$ 元实二次型 $f(x_1,x_2,\cdots,x_n)$ 是正定的充分必要条件是它的正惯性指数等于 $n$。</p>
+<h4>课本证明路线</h4>
+<p>设 $f$ 经非退化实线性替换变成标准形 $d_1y_1^2+d_2y_2^2+\cdots+d_ny_n^2$。上面的讨论表明 $f$ 正定当且仅当该标准形正定，而平方和型二次型正定当且仅当 $d_i&gt;0\,(i=1,\cdots,n)$，即正惯性指数为 $n$。</p>
+<h4>课本说明</h4>
+<p>定理6 说明，正定二次型 $f$ 的规范形为</p>
+<div class="formula">$$y_1^2+y_2^2+\cdots+y_n^2.$$</div>
+<h3>4.4 定义5：正定矩阵</h3>
+<p><b>课本：228</b></p>
+<p>实对称矩阵 $A$ 称为<b>正定的</b>，如果二次型 $X'AX$ 正定。</p>
+<p>因为正定二次型的规范形 $y_1^2+\cdots+y_n^2$ 的矩阵是单位矩阵 $E$，所以一个实对称矩阵是正定的当且仅当它与单位矩阵合同。由此得：</p>
+<h3>4.5 推论：正定矩阵的行列式大于零</h3>
+<p><b>课本：p.227-233</b></p>
+<p><b>正定矩阵的行列式大于零。</b></p>
+<h4>课本证明路线</h4>
+<p>设 $A$ 是正定矩阵。因为 $A$ 与单位矩阵合同，所以有可逆矩阵 $C$ 使</p>
+<div class="formula">$$A=C'EC=C'C.$$</div>
+<p>两边取行列式，就有</p>
+<div class="formula">$$|A|=|C'||C|=|C|^2&gt;0.$$</div>
+<h3>4.6 定义6：顺序主子式</h3>
+<p><b>课本：229</b></p>
+<p>子式</p>
+<div class="formula">$$H_i=\begin{vmatrix} a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1i}\\ a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2i}\\ \vdots&amp;\vdots&amp;&amp;\vdots\\ a_{i1}&amp;a_{i2}&amp;\cdots&amp;a_{ii} \end{vmatrix}\quad(i=1,2,\cdots,n)$$</div>
+<p>称为矩阵 $A=(a_{ij})_{nn}$ 的<b>顺序主子式</b>。</p>
+<p>有时需要直接从二次型的矩阵来判别它是不是正定，而不希望通过它的规范形，为此引入顺序主子式并建立下面的判别定理。</p>
+<h3>4.7 定理7：正定的顺序主子式判别</h3>
+<p><b>课本：229-232</b></p>
+<p>实二次型</p>
+<div class="formula">$$f(x_1,x_2,\cdots,x_n)=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j=X'AX$$</div>
+<p>是正定的充分必要条件为矩阵 $A$ 的顺序主子式全大于零。</p>
+<h4>课本证明路线</h4>
+<p><b>必要性</b>：设 $f$ 正定。对每个 $k\,(1\le k\le n)$ 令</p>
+<div class="formula">$$f_k(x_1,\cdots,x_k)=\sum_{i=1}^{k}\sum_{j=1}^{k}a_{ij}x_ix_j.$$</div>
+<p>对任意不全为零的实数 $c_1,\cdots,c_k$，有 $f_k(c_1,\cdots,c_k)=f(c_1,\cdots,c_k,0,\cdots,0)&gt;0$，故 $f_k$ 是 $k$ 元正定二次型。由上面的推论，$f_k$ 的矩阵的行列式</p>
+<div class="formula">$$\begin{vmatrix}a_{11}&amp;\cdots&amp;a_{1k}\\\vdots&amp;&amp;\vdots\\a_{k1}&amp;\cdots&amp;a_{kk}\end{vmatrix}&gt;0,\quad k=1,\cdots,n,$$</div>
+<p>即 $A$ 的顺序主子式全大于零。</p>
+<p><b>充分性</b>：对 $n$ 作数学归纳法。</p>
+<ol class="plain">
+<li>$n=1$ 时 $f(x_1)=a_{11}x_1^2$，由条件 $a_{11}&gt;0$ 显然正定；</li>
+<li>设论断对 $n-1$ 元二次型成立。把 $A$ 分块写成</li>
+</ol>
+<div class="formula">$$A=\begin{pmatrix}A_1&amp;\alpha\\ \alpha'&amp;a_{nn}\end{pmatrix},\qquad A_1=(a_{ij})_{1\le i,j\le n-1},\ \alpha=(a_{1n},\cdots,a_{n-1,n})';$$</div>
+<ol class="plain">
+<li>$A_1$ 的顺序主子式全大于零，由归纳假设 $A_1$ 正定，故有可逆 $G$ 使 $G'A_1G=E_{n-1}$；取 $C_1=\begin{pmatrix}G&amp;O\\O&amp;1\end{pmatrix}$ 得</li>
+</ol>
+<div class="formula">$$C_1'AC_1=\begin{pmatrix}E_{n-1}&amp;G'\alpha\\ \alpha'G&amp;a_{nn}\end{pmatrix};$$</div>
+<ol class="plain">
+<li>再取 $C_2=\begin{pmatrix}E_{n-1}&amp;-G'\alpha\\ O&amp;1\end{pmatrix}$，得</li>
+</ol>
+<div class="formula">$$C_2'C_1'AC_1C_2=\begin{pmatrix}E_{n-1}&amp;O\\ O&amp;a_{nn}-\alpha'GG'\alpha\end{pmatrix};$$</div>
+<ol class="plain">
+<li>记 $C=C_1C_2$，$a=a_{nn}-\alpha'GG'\alpha$。两边取行列式得 $|C|^2|A|=a$；由条件 $|A|&gt;0$，因此 $a&gt;0$；</li>
+<li>显然</li>
+</ol>
+<div class="formula">$$\begin{pmatrix}1&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;\\ &amp;&amp;1&amp;\\ &amp;&amp;&amp;a\end{pmatrix} =\begin{pmatrix}1&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;\\ &amp;&amp;1&amp;\\ &amp;&amp;&amp;\sqrt a\end{pmatrix} E \begin{pmatrix}1&amp;&amp;&amp;\\ &amp;\ddots&amp;&amp;\\ &amp;&amp;1&amp;\\ &amp;&amp;&amp;\sqrt a\end{pmatrix},$$</div>
+<p>即 $A$ 与单位矩阵合同，因此 $A$ 是正定矩阵，也就是说 $f$ 是正定的。根据归纳法原理，充分性得证。</p>
+<h3>4.8 例（未编号）：顺序主子式判别法应用</h3>
+<p><b>课本：p.227-233</b></p>
+<p>判别二次型</p>
+<div class="formula">$$f(x_1,x_2,x_3)=5x_1^2+x_2^2+5x_3^2+4x_1x_2-8x_1x_3-4x_2x_3$$</div>
+<p>是否正定。$f$ 的矩阵为</p>
+<div class="formula">$$\begin{pmatrix}5&amp;2&amp;-4\\2&amp;1&amp;-2\\-4&amp;-2&amp;5\end{pmatrix},$$</div>
+<p>它的顺序主子式</p>
+<div class="formula">$$5&gt;0,\qquad \begin{vmatrix}5&amp;2\\2&amp;1\end{vmatrix}&gt;0,\qquad \begin{vmatrix}5&amp;2&amp;-4\\2&amp;1&amp;-2\\-4&amp;-2&amp;5\end{vmatrix}&gt;0,$$</div>
+<p>因此 $f(x_1,x_2,x_3)$ 正定。</p>
+<h3>4.9 定义7：负定、半正定、半负定、不定</h3>
+<p><b>课本：232</b></p>
+<p>设 $f(x_1,\cdots,x_n)$ 是一实二次型，对于任意一组不全为零的实数 $c_1,\cdots,c_n$：</p>
+<ul>
+<li>如果都有 $f(c_1,\cdots,c_n)&lt;0$，那么 $f$ 称为<b>负定的</b>；</li>
+<li>如果都有 $f(c_1,\cdots,c_n)\ge0$，那么 $f$ 称为<b>半正定的</b>；</li>
+<li>如果都有 $f(c_1,\cdots,c_n)\le0$，那么 $f$ 称为<b>半负定的</b>；</li>
+<li>如果它既不是半正定又不是半负定，那么 $f$ 就称为<b>不定的</b>。</li>
+</ul>
+<h4>课本说明</h4>
+<p>由定理7 不难得出负定二次型的判别条件，这是因为当 $f(x_1,\cdots,x_n)$ 是负定时，$-f(x_1,\cdots,x_n)$ 就是正定的。</p>
+<h3>4.10 定理8：半正定的等价条件</h3>
+<p><b>课本：232</b></p>
+<p>对于实二次型 $f(x_1,\cdots,x_n)=X'AX$，其中 $A$ 是实对称的，下列条件等价：</p>
+<ol class="plain">
+<li>$f(x_1,\cdots,x_n)$ 是半正定的；</li>
+<li>它的正惯性指数与秩相等；</li>
+<li>有可逆实矩阵 $C$，使</li>
+</ol>
+<div class="formula">$$C'AC=\begin{pmatrix}d_1&amp;&amp;&amp;\\ &amp;d_2&amp;&amp;\\ &amp;&amp;\ddots&amp;\\ &amp;&amp;&amp;d_n\end{pmatrix},\qquad d_i\ge0,\ i=1,2,\cdots,n;$$</div>
+<ol class="plain">
+<li>有实矩阵 $C$ 使</li>
+</ol>
+<div class="formula">$$A=C'C;$$</div>
+<ol class="plain">
+<li>$A$ 的所有主子式（行指标与列指标相同的子式）皆大于或等于零。（留作习题）</li>
+</ol>
+<h4>课本说明（反例提醒）</h4>
+<p>在条件 5) 中，仅有顺序主子式大于或等于零是不能保证半正定性的。比如</p>
+<div class="formula">$$f(x_1,x_2)=-x_2^2=(x_1,x_2)\begin{pmatrix}0&amp;0\\0&amp;-1\end{pmatrix}\begin{pmatrix}x_1\\x_2\end{pmatrix}$$</div>
+<p>就是一个反例。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置与题数：</p>
+<table class="tbl"><tr><th>部分</th><th>印刷页码</th><th>题数</th></tr>
+<tr><td>习题</td><td>233-235</td><td>共 <b>17 题</b>（第 1 题含Ⅰ、Ⅱ两段）</td></tr>
+<tr><td>补充题</td><td>235-237</td><td>共 <b>9 题</b></td></tr>
+</table>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">有心二次曲线的转轴化标准方程
+→ n 元二次型（数域 P 上，式(3)）
+→ 线性替换与非退化线性替换（定义1）
+→ 二次型的矩阵表示 X′AX、对称矩阵、二次型与矩阵相互唯一决定
+→ 替换前后矩阵的关系 B = C′AC 与合同（定义2）
+→ 合同关系的自反、对称、传递
+→ 非退化要求的几何意义与还原替换
+→ 配方法：任意二次型可化为平方和（定理1）
+→ 对称矩阵合同于对角矩阵（定理2）、标准形概念
+→ 例1 配方法实例
+→ 配方法的矩阵表述（四种情形的合同变换矩阵）
+→ 例2 合同变换法实例
+→ 二次型的秩不变、非零平方项个数唯一；标准形系数不唯一（课本反例）
+→ 复二次型的规范形与定理3（复对称矩阵合同 ⟺ 秩相等）
+→ 实二次型的规范形与定理4（惯性定理）
+→ 正、负惯性指数与符号差（定义3）、惯性定理的另一叙述
+→ 复/实对称矩阵的合同对角标准形（定理5）
+→ 正定二次型（定义4）与平方和型正定判据
+→ 非退化实线性替换保持正定性
+→ 正定 ⟺ 正惯性指数 = n（定理6）、规范形为单位阵型
+→ 正定矩阵（定义5）与推论（行列式大于零）
+→ 顺序主子式（定义6）
+→ 正定 ⟺ 顺序主子式全大于零（定理7）
+→ 未编号例：顺序主子式判别法应用
+→ 负定、半正定、半负定、不定（定义7）、负定化归正定
+→ 半正定的五个等价条件（定理8）与"仅顺序主子式≥0不够"的反例提醒</pre>
+<div class="note">此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。习题与补充题位于正文之后，不进入本索引链。</div>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul>
+<li>6/7 年直接考：正定/半正定（2019:6–7、2020:1、2022:8、2024:8）；分块与 Schur 补（2019:8、2022:8、2023:3）；正交/合同（2024:7、2026:6）；行列式不等式（2020:7）。</li>
+<li>§4 正定为核心，§2 标准形、§3 惯性（唯一性）为配套；§1 矩阵表示作基础。</li>
+</ul>
+<div class="note">标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：高代 2019–2024、2026（缺 2025；2026 为回忆版）。</div>
+</section>
+
+<section id="exercises">
+  <h2><span class="h2-no">X</span>课本习题（全录 26 题）</h2>
+  <div class="note"><b>全录，不删题</b>；<b>星标只标少数主干题</b>：★★★＝必手写的综合／工具题，★★＝典型模板，未标的照做即可（不标不等于不做）。题面照录 <code>05_教材习题_OCR核对版.md</code>。</div>
+<h3>习题（17 题）</h3>
+  <ol>
+    <li>（Ⅰ）用非退化线性替换化下列二次型为标准形，并利用矩阵验算所得结果：</li>
+    <li>证明：秩等于 $r$ 的对称矩阵可以表成 $r$ 个秩等于 $1$ 的对称矩阵之和。</li>
+    <li>证明：$\operatorname{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)$ 与 $\operatorname{diag}(\lambda_{i_1},\lambda_{i_2},\ldots,\lambda_{i_n})$ 合同，其中 $i_1i_2\cdots i_n$ 是 $1,2,\ldots,n$ 的一个排列。原书两矩阵均绘为对角矩阵。</li>
+    <li>设 $A$ 是一个 $n$ 级矩阵，证明：（1）$A$ 是反称矩阵当且仅当对任一个 $n$ 维向量 $X$，有 $X'AX=0$；（2）如果 $A$ 是对称矩阵，且对任一个 $n$ 维向量 $X$ 有 $X'AX=0$，那么 $A=O$。</li>
+    <li>如果把实 $n$ 级对称矩阵按合同分类，即两个实 $n$ 级对称矩阵属于同一类当且仅当它们合同，问共有几类？</li>
+    <li>证明：一个实二次型可以分解成两个实系数的一次齐次多项式的乘积的充分必要条件是，它的秩等于 $2$ 和符号差等于 $0$，或者秩等于 $1$。</li>
+    <li>判别下列二次型是否正定：（1）$99x_1^2-12x_1x_2+48x_1x_3+130x_2^2-60x_2x_3+71x_3^2$；（2）$10x_1^2+8x_1x_2+24x_1x_3+2x_2^2-28x_2x_3+x_3^2$；（3）$\sum_{i=1}^n x_i^2+\sum_{1\le i&lt;j\le n}x_ix_j$；（4）$\sum_{i=1}^n x_i^2+\sum_{i=1}^{n-1}x_ix_{i+1}$。</li>
+    <li>$t$ 取什么值时，下列二次型是正定的：（1）$x_1^2+x_2^2+5x_3^2+2tx_1x_2-2x_1x_3+4x_2x_3$；（2）$x_1^2+4x_2^2+x_3^2+2tx_1x_2+10x_1x_3+6x_2x_3$。</li>
+    <li>证明：如果 $A$ 是正定矩阵，那么 $A$ 的主子式全大于零。</li>
+    <li>设 $A$ 是实对称矩阵。证明：当实数 $t$ 充分大之后，$tE+A$ 是正定矩阵。</li>
+    <li>证明：如果 $A$ 是正定矩阵，那么 $A^{-1}$ 也是正定矩阵。</li>
+    <li>设 $A$ 为一个 $n$ 级实对称矩阵，且 $|A|&lt;0$，证明：必存在实 $n$ 维向量 $X\ne O$ 使 $X'AX&lt;0$。</li>
+    <li>如果 $A,B$ 都是 $n$ 级正定矩阵，证明：$A+B$ 也是正定矩阵。</li>
+    <li>证明：二次型 $f(x_1,\ldots,x_n)$ 是半正定的充分必要条件是它的正惯性指数与秩相等。</li>
+    <li>证明：$n\sum_{i=1}^n x_i^2-\bigl(\sum_{i=1}^n x_i\bigr)^2$ 是半正定的。</li>
+    <li>设 $f(x_1,\ldots,x_n)=X'AX$ 是一实二次型。已知有实 $n$ 维向量 $X_1,X_2$ 使 $X_1'AX_1&gt;0$、$X_2'AX_2&lt;0$，证明：必存在实 $n$ 维向量 $X_0\ne O$ 使 $X_0'AX_0=0$。</li>
+    <li>$A$ 是一个实矩阵，证明：$\operatorname{rank}(A'A)=\operatorname{rank}(A)$。</li>
+  </ol>
+<h3>补充题（9 题）</h3>
+  <ol>
+    <li>用非退化线性替换化下列二次型为标准形，并用矩阵验算所得结果：（1）$x_1x_{2n}+x_2x_{2n-1}+\cdots+x_nx_{n+1}$；（2）$x_1x_2+x_2x_3+\cdots+x_{n-1}x_n$；（3）$\sum_{i=1}^n x_i^2+\sum_{1\le i&lt;j\le n}x_ix_j$；（4）$\sum_{i=1}^n(x_i-\bar{x})^2$，其中 $\displaystyle\bar{x}=\frac{x_1+x_2+\cdots+x_n}{n}$。</li>
+    <li>设实二次型 $\displaystyle f(x_1,x_2,\ldots,x_n)=\sum_{i=1}^s(a_{i1}x_1+a_{i2}x_2+\cdots+a_{in}x_n)^2$，证明：$f(x_1,x_2,\ldots,x_n)$ 的秩等于矩阵 $\displaystyle A=\begin{pmatrix}a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}\\a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}\\\vdots&amp;\vdots&amp;&amp;\vdots\\a_{s1}&amp;a_{s2}&amp;\cdots&amp;a_{sn}\end{pmatrix}$ 的秩。</li>
+    <li>设 $f(x_1,x_2,\ldots,x_n)=l_1^2+l_2^2+\cdots+l_p^2-l_{p+1}^2-\cdots-l_{p+q}^2$，其中 $l_i$（$i=1,2,\ldots,p+q$）是 $x_1,x_2,\ldots,x_n$ 的一次齐次式。证明：$f(x_1,x_2,\ldots,x_n)$ 的正惯性指数 $\le p$，负惯性指数 $\le q$。</li>
+    <li>设 $\displaystyle A=\begin{pmatrix}A_{11}&amp;A_{12}\\A_{21}&amp;A_{22}\end{pmatrix}$ 是一对称矩阵，且 $|A_{11}|\ne0$，证明：存在 $\displaystyle T=\begin{pmatrix}E&amp;X\\O&amp;E\end{pmatrix}$ 使 $\displaystyle T'AT=\begin{pmatrix}A_{11}&amp;O\\O&amp;*\end{pmatrix}$，其中 $*$ 表示一个级数与 $A_{22}$ 相同的矩阵。</li>
+    <li>设 $A$ 是反称矩阵，证明：$A$ 合同于一个以 $\displaystyle\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}$ 为重复对角块、其余为零块的矩阵；原书对角块示意在末尾画有单独的零元素及省略号。原页的完整矩阵图见下方附件。</li>
+    <li>设 $A$ 是 $n$ 级实对称矩阵，证明：存在一正实数 $c$ 使对任一个实 $n$ 维向量 $X$ 都有 $|X'AX|\le cX'X$。</li>
+    <li>主对角线上全是 $1$ 的上三角形矩阵称为特殊上三角形矩阵。（1）设 $A$ 是一对称矩阵，$T$ 为特殊上三角形矩阵，而 $B=T'AT$，证明：$A$ 与 $B$ 的对应顺序主子式有相同的值；（2）证明：如果对称矩阵 $A$ 的顺序主子式全不为 $0$，那么一定有一特殊上三角形矩阵 $T$ 使 $T'AT$ 成对角形；（3）利用以上结果证明定理 7 的充分性。</li>
+    <li>证明：（1）如果 $\displaystyle\sum_{i=1}^n\sum_{j=1}^n a_{ij}x_ix_j$（$a_{ij}=a_{ji}$）是正定二次型，那么 $\displaystyle f(y_1,y_2,\ldots,y_n)=\begin{vmatrix}a_{11}&amp;a_{12}&amp;\cdots&amp;a_{1n}&amp;y_1\\a_{21}&amp;a_{22}&amp;\cdots&amp;a_{2n}&amp;y_2\\\vdots&amp;\vdots&amp;&amp;\vdots&amp;\vdots\\a_{n1}&amp;a_{n2}&amp;\cdots&amp;a_{nn}&amp;y_n\\y_1&amp;y_2&amp;\cdots&amp;y_n&amp;0\end{vmatrix}$ 是负定二次型；</li>
+    <li>证明：实对称矩阵 $A$ 是半正定的充分必要条件是 $A$ 的一切主子式全大于或等于零。</li>
+  </ol>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">Z</span>来源与边界</h2>
+  <ul>
+    <li><b>正文</b>：本章 <code>01_01_第五章_二次型_课本骨架_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+    <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+    <li><b>边界</b>：本页不替代课本证明；【★】为骨架原有的重要度标记，转化为星标只用于排序。</li>
+    <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+  </ul>
+</section>
+<div class="foot">本页为 Hermes 生成的复习讲解材料（以指定课本原文为准）。生成日期 2026-11-01。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

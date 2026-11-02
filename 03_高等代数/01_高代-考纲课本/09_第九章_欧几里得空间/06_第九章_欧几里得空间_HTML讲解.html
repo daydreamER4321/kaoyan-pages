@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高等代数 第九章 欧几里得空间 · 讲解页</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<style>
+:root{
+  --bg:#f4f7f7; --card:#ffffff; --ink:#1e2528; --muted:#5a676c; --line:#e2eaea;
+  --acc:#0b7285; --acc-soft:#e4f3f5; --acc-ink:#0b6e7f;
+  --def:#1971c2; --def-bg:#eef6fc;
+  --thm:#e8590c; --thm-bg:#fdf2ea;
+  --lem:#0b7285; --lem-bg:#e9f6f8;
+  --cor:#1098ad; --cor-bg:#ebf7fa;
+  --ex:#2f9e44; --ex-bg:#eefaf0;
+  --warn:#e03131; --warn-bg:#fdefee;
+  --exam:#9c36b5; --exam-bg:#f9eefc;
+  --how:#4263eb; --how-bg:#eef2fe;
+  --idea:#b08900; --idea-bg:#fdf6e3;
+  --code-bg:#eff4f4;
+  --radius:14px; --sidebar:288px;
+  --shadow:0 1px 2px rgba(18,40,44,.05),0 6px 24px -12px rgba(18,40,44,.15);
+}
+[data-theme="dark"]{
+  --bg:#12171a; --card:#1a2125; --ink:#e6edef; --muted:#98a6ab; --line:#29353a;
+  --acc:#4fc1d4; --acc-soft:#13303a; --acc-ink:#7fd6e4;
+  --def:#74b3ea; --def-bg:#16232f;
+  --thm:#f59f6a; --thm-bg:#2e2118;
+  --lem:#4fc3d4; --lem-bg:#152b2f;
+  --cor:#59c1d4; --cor-bg:#152b30;
+  --ex:#69c17c; --ex-bg:#16291a;
+  --warn:#f08080; --warn-bg:#331b1b;
+  --exam:#cf9ae8; --exam-bg:#2b1e33;
+  --how:#8fa8f8; --how-bg:#1b2233;
+  --idea:#e3c05c; --idea-bg:#2c2717;
+  --code-bg:#212c31;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 28px -14px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Segoe UI","Microsoft YaHei","PingFang SC","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  font-size:16.5px; line-height:1.95;
+}
+a{color:var(--acc-ink); text-decoration:none}
+a:hover{text-decoration:underline}
+code{background:var(--code-bg); border:1px solid var(--line); border-radius:6px; padding:0 .35em; font-family:Consolas,Menlo,monospace; font-size:.92em}
+.topbar{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--card) 86%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1280px; margin:0 auto; padding:.55rem 1.2rem; display:flex; align-items:center; gap:.9rem; flex-wrap:wrap}
+.brand{font-weight:700; letter-spacing:.02em; white-space:nowrap}
+.brand .badge{background:var(--acc-soft); color:var(--acc-ink); border:1px solid color-mix(in srgb, var(--acc) 30%, var(--line)); border-radius:999px; padding:.08rem .6rem; font-size:.82rem; margin-left:.4rem; white-space:nowrap}
+.top-links{margin-left:auto; display:flex; gap:.45rem; flex-wrap:wrap}
+.tlink{border:1px solid var(--line); border-radius:999px; padding:.16rem .7rem; font-size:.83rem; color:var(--muted); background:var(--card)}
+.tlink:hover{color:var(--acc-ink); border-color:var(--acc); text-decoration:none}
+.tbtn{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:10px; padding:.22rem .65rem; font-size:.85rem; cursor:pointer}
+.tbtn:hover{border-color:var(--acc)}
+.progress{height:3px}
+.progress i{display:block; height:3px; width:0; background:linear-gradient(90deg,var(--acc),#54c4d6)}
+.layout{max-width:1280px; margin:0 auto; display:grid; grid-template-columns:var(--sidebar) minmax(0,1fr); gap:2rem; padding:1.4rem 1.2rem 6rem}
+.side-in{position:sticky; top:74px; max-height:calc(100vh - 96px); overflow:auto; padding-right:.4rem}
+.side h4{margin:.2rem 0 .5rem; font-size:.82rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+#toc{display:flex; flex-direction:column; gap:1px; border-left:2px solid var(--line); padding-left:.65rem; margin-bottom:1rem}
+#toc a{color:var(--muted); font-size:.92rem; padding:.14rem .3rem; border-radius:6px; line-height:1.5}
+#toc a:hover{color:var(--ink); text-decoration:none; background:var(--card)}
+#toc a.on{color:var(--acc-ink); font-weight:600; background:var(--acc-soft)}
+.side-note{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.7rem .85rem; font-size:.83rem; color:var(--muted); line-height:1.7}
+main{min-width:0}
+.hero{border:1px solid var(--line); background:linear-gradient(160deg, var(--acc-soft), var(--card) 55%); border-radius:var(--radius); box-shadow:var(--shadow); padding:1.6rem 1.7rem 1.4rem; margin-bottom:1.6rem}
+.hero h1{margin:0 0 .3rem; font-size:1.85rem}
+.hero .sub{color:var(--muted); font-size:.98rem; margin-bottom:.9rem}
+.meta{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.9rem}
+.chip{display:inline-flex; align-items:center; gap:.35rem; border-radius:999px; border:1px solid var(--line); background:var(--card); padding:.18rem .75rem; font-size:.84rem; color:var(--muted)}
+.chip b{color:var(--ink); font-weight:600}
+.chip.acc{border-color:color-mix(in srgb, var(--acc) 40%, var(--line)); color:var(--acc-ink); background:var(--acc-soft)}
+.hero .lead{font-size:.98rem}
+section.sec{margin:2.6rem 0 0; scroll-margin-top:84px}
+h2{font-size:1.42rem; margin:0 0 .35rem; padding-top:.4rem; display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+h2 .secnum{color:var(--acc-ink); font-size:1.1rem; letter-spacing:.03em}
+h2 .h-anchor{color:var(--muted); font-size:.9rem; opacity:0; transition:.15s}
+h2:hover .h-anchor{opacity:1}
+h3{font-size:1.13rem; margin:1.5rem 0 .4rem}
+.h-note{color:var(--muted); font-size:.9rem; margin:.1rem 0 1rem}
+.card{border:1px solid var(--line); border-left-width:4px; border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0; overflow:hidden}
+.card-h{display:flex; align-items:center; gap:.55rem; padding:.5rem .9rem; border-bottom:1px dashed var(--line); font-weight:600; flex-wrap:wrap}
+.card-b{padding:.75rem 1rem .9rem}
+.tag{font-size:.8rem; font-weight:700; border-radius:8px; padding:.1rem .55rem; white-space:nowrap}
+.card.def{border-left-color:var(--def)} .card.def .tag{background:var(--def-bg); color:var(--def)}
+.card.thm{border-left-color:var(--thm)} .card.thm .tag{background:var(--thm-bg); color:var(--thm)}
+.card.lem{border-left-color:var(--lem)} .card.lem .tag{background:var(--lem-bg); color:var(--lem)}
+.card.cor{border-left-color:var(--cor)} .card.cor .tag{background:var(--cor-bg); color:var(--cor)}
+.card.ex{border-left-color:var(--ex)} .card.ex .tag{background:var(--ex-bg); color:var(--ex)}
+.card.rem{border-left-color:var(--muted)} .card.rem .tag{background:var(--code-bg); color:var(--muted)}
+.card.warn{border-left-color:var(--warn); background:linear-gradient(180deg,var(--warn-bg), var(--card) 65%)}
+.card.warn .tag{background:var(--warn-bg); color:var(--warn)}
+.card.exam{border-left-color:var(--exam)} .card.exam .tag{background:var(--exam-bg); color:var(--exam)}
+.card.how{border-left-color:var(--how)} .card.how .tag{background:var(--how-bg); color:var(--how)}
+.card.idea{border-left-color:var(--idea)} .card.idea .tag{background:var(--idea-bg); color:var(--idea)}
+.card .src{color:var(--muted); font-size:.8rem; margin-left:auto; white-space:nowrap}
+details.proof{margin:.6rem 0 0; border:1px solid var(--line); border-radius:10px; background:color-mix(in srgb, var(--card) 92%, var(--bg))}
+details.proof summary{cursor:pointer; padding:.42rem .85rem; font-size:.9rem; color:var(--acc-ink); user-select:none}
+details.proof .pb{padding:.35rem .95rem .85rem; border-top:1px dashed var(--line); font-size:.95rem}
+details.plain{margin:.6rem 0; border:1px solid var(--line); border-radius:10px; background:var(--card)}
+details.plain summary{cursor:pointer; padding:.45rem .9rem; font-weight:600}
+details.plain .pb{padding:.4rem 1rem .9rem; border-top:1px dashed var(--line)}
+.flow{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1rem 1.1rem; box-shadow:var(--shadow); margin:1rem 0}
+.frow{display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; margin:.45rem 0}
+.fnode{border:1.5px solid color-mix(in srgb, var(--acc) 45%, var(--line)); background:var(--acc-soft); border-radius:10px; padding:.34rem .7rem; font-size:.9rem; font-weight:600; line-height:1.5}
+.fnode small{display:block; font-weight:400; color:var(--muted); font-size:.78rem; line-height:1.4}
+.fnode.alt{border-color:color-mix(in srgb, var(--exam) 45%, var(--line)); background:var(--exam-bg)}
+.fnode.warm{border-color:color-mix(in srgb, var(--ex) 45%, var(--line)); background:var(--ex-bg)}
+.farr{color:var(--muted); font-weight:700}
+.fcaption{color:var(--muted); font-size:.85rem; margin-top:.5rem}
+.tbl{overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow); margin:1rem 0}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th,td{border-bottom:1px solid var(--line); padding:.5rem .8rem; text-align:left; vertical-align:top; line-height:1.75}
+th{background:color-mix(in srgb, var(--acc-soft) 55%, var(--card)); font-weight:600; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center; white-space:nowrap}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0}
+@media (max-width:1000px){.grid2{grid-template-columns:1fr}}
+.list-card{border:1px solid var(--line); background:var(--card); border-radius:12px; padding:.8rem 1rem .9rem; box-shadow:var(--shadow)}
+.list-card h5{margin:.15rem 0 .5rem; font-size:.98rem}
+.list-card ul,.list-card ol{margin:.2rem 0 .3rem; padding-left:1.3rem}
+.list-card li{margin:.2rem 0}
+.dim{color:var(--muted)}
+.small{font-size:.87rem}
+.widget{border:1px solid color-mix(in srgb, var(--acc) 35%, var(--line)); background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem 1.1rem; margin:1.2rem 0}
+.widget h4{margin:0 0 .5rem; font-size:1.02rem; color:var(--acc-ink)}
+.wbtns{display:flex; flex-wrap:wrap; gap:.4rem; margin:.4rem 0 .8rem}
+.wbtn{border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:.28rem .8rem; cursor:pointer; font-size:.88rem}
+.wbtn:hover{border-color:var(--acc)}
+.canvas-wrap{position:relative}
+canvas#schmidt{width:100%; max-width:780px; display:block; margin:0 auto; border:1px solid var(--line); border-radius:12px; background:var(--card); touch-action:none; cursor:grab}
+.readout{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.4rem .9rem; margin-top:.6rem; font-size:.92rem}
+.readout div{border:1px solid var(--line); border-radius:10px; padding:.3rem .7rem; background:color-mix(in srgb, var(--card) 90%, var(--bg))}
+.readout b{color:var(--acc-ink)}
+.hint{color:var(--muted); font-size:.86rem; margin-top:.45rem}
+.qi{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:.55rem .9rem; margin:.5rem 0}
+.qi .q{margin:0; font-weight:600}
+.qi .q .qn{color:var(--acc-ink); margin-right:.3rem}
+.qbtn{margin-top:.35rem; border:1px dashed var(--line); background:transparent; color:var(--acc-ink); border-radius:8px; padding:.15rem .6rem; font-size:.84rem; cursor:pointer}
+.qi .qa{display:none; margin-top:.5rem; border-top:1px dashed var(--line); padding-top:.5rem; font-size:.95rem}
+.qi.open .qa{display:block}
+.checklist{list-style:none; margin:.4rem 0; padding-left:.2rem}
+.checklist li{margin:.35rem 0}
+.checklist label{display:flex; gap:.55rem; align-items:flex-start; cursor:pointer}
+.checklist input{margin-top:.55rem; accent-color:var(--acc)}
+.checklist li.done label{color:var(--muted); text-decoration:line-through}
+.foot{border:1px solid var(--line); background:var(--card); border-radius:var(--radius); padding:1.1rem 1.3rem; margin-top:3rem; font-size:.88rem; color:var(--muted); line-height:1.85}
+.foot h4{margin:.1rem 0 .5rem; color:var(--ink); font-size:1rem}
+.toTop{position:fixed; right:1.4rem; bottom:1.4rem; z-index:60; width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--acc-ink); font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:none}
+.toTop.on{display:block}
+mark{background:color-mix(in srgb, var(--idea-bg) 80%, transparent); color:inherit; border-radius:4px; padding:0 .2em}
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr; padding-top:.8rem}
+  .side{display:none}
+}
+@media print{
+  .topbar,.side,.toTop,.wbtns,.qbtn,.readout .live{display:none !important}
+  .layout{display:block; padding:0}
+  body{font-size:12.5px; background:#fff}
+  .card,details.proof,.tbl,.widget{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">高等代数 · 第九章 <span class="badge">欧几里得空间</span></div>
+    <div class="top-links">
+      <a class="tlink" href="../08_第八章_λ-矩阵/06_第八章_λ-矩阵_HTML讲解.html">→ 第八章 λ-矩阵</a>
+      <a class="tlink" href="../10_第十章_双线性函数与辛空间/06_第十章_双线性函数与辛空间_HTML讲解.html">→ 第十章 双线性函数与辛空间</a>
+      <button class="tbtn" id="expandAll">展开全部证明</button>
+      <button class="tbtn" id="themeToggle">🌗 主题</button>
+    </div>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+
+<div class="layout">
+  <aside class="side">
+    <div class="side-in">
+      <h4>本页目录</h4>
+      <nav id="toc">
+        <a href="#intro">导读 · 本章定位</a>
+        <a href="#map">全章逻辑地图</a>
+        <a href="#s1">§1 内积与基本性质</a>
+        <a href="#s2">§2 标准正交基与 Schmidt</a>
+        <a href="#s3">§3 同构</a>
+        <a href="#s4">§4 正交变换</a>
+        <a href="#s5">§5 子空间与正交补</a>
+        <a href="#s6">§6 实对称矩阵的标准形（核心）</a>
+        <a href="#s7">§7 距离与最小二乘</a>
+        <a href="#s8">§8 酉空间（选读）</a>
+        <a href="#table">速查与对照表</a>
+        <a href="#widget">交互 · Schmidt 正交化</a>
+        <a href="#exam">801 真题定位</a>
+        <a href="#pitfalls">易错点清单</a>
+        <a href="#quiz">闭卷自测（12 问）</a>
+        <a href="#hw">教材习题地图</a>
+        <a href="#src">来源与边界</a>
+      </nav>
+      <div class="side-note">
+        <b>本章的“发动机”：</b>内积 → 正交 → 标准正交基 → 正交变换 → 正交补 → <b>实对称矩阵正交对角化</b>。第 5 章的二次型在这章「升级」：从合同对角化走向正交对角化。
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+  <div class="hero" id="intro">
+    <h1>第九章 欧几里得空间 · 讲解页</h1>
+    <div class="sub">王萼芳《高等代数》第四版 第九章（课本印刷页 355–395）｜面向 2027 级 801 备考的一站式讲解</div>
+    <div class="meta">
+      <span class="chip acc">📌 考纲定位 <b>必学 · 中频高区分度</b></span>
+      <span class="chip">🔗 上游 <b>第 5 章 二次型 / 第 6 章 线性空间</b></span>
+      <span class="chip">🧮 核心产出 <b>正交对角化 · 正交变换 · 正交补 · 最小二乘</b></span>
+      <span class="chip">✍️ 课本结构 <b>定义 14 · 定理 8 · 引理 4 · 习题 27 + 补充题 14</b></span>
+    </div>
+    <p class="lead">
+      线性空间只谈加法和数乘，丢掉了「长度、夹角」这类度量信息；本章把内积引进来补上这块缺口。它带来一串环环相扣的结果：
+      内积定出长度与正交 → 正交向量组可以做成标准正交基（Schmidt）→ 保内积的变换就是正交变换（等价于矩阵正交）；
+      更进一步，<mark>实对称矩阵必可正交相似于对角矩阵</mark>——这既给第 5 章的二次型一个最强的标准化方案（正交替换），也解释了特征值、特征向量的几何意义。最后一节把「点到子空间距离最短」落成最小二乘法，是应用题的常客。
+    </p>
+  </div>
+
+  <section class="sec" id="map">
+    <h2><span class="secnum">0</span>全章逻辑地图 <a class="h-anchor" href="#map">#</a></h2>
+    <p class="h-note">自上而下读：每一层只用到上面各层已建立的结构，等级链非常清爽。</p>
+    <div class="flow">
+      <div class="frow">
+        <div class="fnode">内积 \((\alpha,\beta)\)<small>定义 1 · 对称双线性正定</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">长度 / 夹角 / 正交<small>Cauchy 不等式撑起合法性</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">度量矩阵 \(A=(a_{ij})\)<small>正定 · 不同基合同</small></div>
+      </div>
+      <div class="frow">
+        <div class="fnode warm">正交向量组 / 正交基<small>正交 ⟹ 线性无关</small></div>
+        <span class="farr">→</span>
+        <div class="fnode warm">标准正交基<small>定理 1 扩充 · 定理 2 Schmidt</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">正交矩阵 \(A'A=E\)<small>过渡矩阵 · 定义 7</small></div>
+      </div>
+      <div class="frow">
+        <div class="fnode alt">正交变换<small>定理 4 · 四个等价刻画</small></div>
+        <span class="farr">→</span>
+        <div class="fnode alt">正交补 \(V_1^{\perp}\)<small>定理 6 · 存在唯一 · 内射影</small></div>
+        <span class="farr">→</span>
+        <div class="fnode alt">实对称矩阵正交对角化<small>定理 7 · 谱结构 · 引理 1–4</small></div>
+        <span class="farr">→</span>
+        <div class="fnode">最小二乘<small>定理 8 + §7 · \(A'AX=A'B\)</small></div>
+      </div>
+      <div class="fcaption">核心枢纽是 §2（标准正交基）与 §6（实对称矩阵）。前者把计算变简单（内积变坐标点积），后者是本卷大题的常客。</div>
+    </div>
+    <div class="grid2">
+      <div class="list-card">
+        <h5>🧭 学习路线（建议）</h5>
+        <ul>
+          <li><b>第一遍：</b>§1–§2。把 Cauchy 不等式、正交组线性无关、Schmidt 过程的证明真正过手一遍（本章爱考证明）。</li>
+          <li><b>第二遍：</b>§4–§6。四个等价刻画要能互相推导；§6 的引理 1–4 是定理 7 的四块垫脚石，理解型记忆。</li>
+          <li><b>第三遍：</b>§7 + 习题 17、18、27 各做一道，体会「正交对角化」与「最小二乘」的完整流程。</li>
+          <li><b>选读：</b>§8 酉空间——知道复内积要带共轭、结论平移即可；考纲关联方向是「内积、正交、Gram 矩阵、负内积向量个数」等表述，见真题定位。</li>
+        </ul>
+      </div>
+      <div class="list-card">
+        <h5>✅ 本章验收清单（勾选本地保存）</h5>
+        <ul class="checklist" data-key="ch9">
+          <li><label><input type="checkbox" data-id="c1"><span>能写出内积的 4 条公理，并说出「度量矩阵正定」与内积的互推关系。</span></label></li>
+          <li><label><input type="checkbox" data-id="c2"><span>能独立证明 Cauchy 不等式（用 \(|\alpha+t\beta|^2\geqslant0\) 配方取等）。</span></label></li>
+          <li><label><input type="checkbox" data-id="c3"><span>能闭卷写出 Schmidt 正交化公式并手算一个两向量例子。</span></label></li>
+          <li><label><input type="checkbox" data-id="c4"><span>能默写正交变换的四个等价刻画，并说出 1)⟺2) 的证明思路（三长度等式联立）。</span></label></li>
+          <li><label><input type="checkbox" data-id="c5"><span>能复述正交补存在唯一性证明的「扩充正交基」构造。</span></label></li>
+          <li><label><input type="checkbox" data-id="c6"><span>能说出实对称矩阵引理 1–4 各自的作用，并解释「不同特征值特征向量正交」只对实对称成立。</span></label></li>
+          <li><label><input type="checkbox" data-id="c7"><span>能独立完成「求正交矩阵 \(T\) 使 \(T'AT\) 对角化」的三步流程（特征值→特征子空间正交基→拼装）。</span></label></li>
+          <li><label><input type="checkbox" data-id="c8"><span>能写出最小二乘解的正规方程 \(A'AX=A'B\) 及其几何解释。</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §1 ===== -->
+  <section class="sec" id="s1">
+    <h2><span class="secnum">§1</span>内积与基本性质：给空间装上“尺子” <a class="h-anchor" href="#s1">#</a></h2>
+    <p class="h-note">课本 p.355–361。从四条公理出发，推出长度、夹角、正交与度量矩阵。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 1</span><span>内积；欧几里得空间</span><span class="src">课本 p.355</span></div>
+      <div class="card-b">
+        <p>设 \(V\) 是实数域 \(\mathbf{R}\) 上的线性空间，\(V\) 上一个二元实函数 \((\alpha,\beta)\) 若满足：</p>
+        <ol>
+          <li>\((\alpha,\beta)=(\beta,\alpha)\)（对称）；</li>
+          <li>\((k\alpha,\beta)=k(\alpha,\beta)\)；</li>
+          <li>\((\alpha+\beta,\gamma)=(\alpha,\gamma)+(\beta,\gamma)\)；</li>
+          <li>\((\alpha,\alpha)\geqslant 0\)，且 \((\alpha,\alpha)=0\) 当且仅当 \(\alpha=\mathbf{0}\)（正定）。</li>
+        </ol>
+        <p>则称它为<b>内积</b>，这样的线性空间 \(V\) 称为<b>欧几里得空间</b>（简称欧氏空间）。</p>
+        <p class="dim small">维数无限制；几何空间中向量的全体是欧氏空间的原始模型。</p>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">例 1 / 例 2</span><span>两个标准模型</span><span class="src">课本 p.356</span></div>
+      <div class="card-b">
+        <p><b>\(\mathbf{R}^n\)：</b>\((\alpha,\beta)=a_1b_1+\cdots+a_nb_n\)（\(n=3\) 即解析几何内积的坐标式）。</p>
+        <p><b>\(C[a,b]\)：</b>\((f,g)=\displaystyle\int_a^b f(x)g(x)\,dx\)；同样 \(\mathbf{R}[x]\)、\(\mathbf{R}[x]_n\) 在此内积下也是欧氏空间。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">直接推论</span><span>对称性带来的对偶性质</span><span class="src">课本 p.355–361</span></div>
+      <div class="card-b">
+        $$(\alpha,k\beta)=k(\alpha,\beta),\qquad (\alpha,\beta+\gamma)=(\alpha,\beta)+(\alpha,\gamma).$$
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">柯西-布涅柯夫斯基不等式</span><span>本章第一号不等式</span><span class="src">课本 p.355–361</span></div>
+      <div class="card-b">
+        <p>对任意 \(\alpha,\beta\)：\(|(\alpha,\beta)|\leqslant|\alpha|\,|\beta|\)，且当且仅当 \(\alpha,\beta\) 线性相关时取等号。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>\(\beta=0\) 显然；设 \(\beta\neq0\)，作 \(\gamma=\alpha+t\beta\)，\(t\) 为实变数；</li>
+              <li>由正定性，\((\gamma,\gamma)=(\alpha,\alpha)+2(\alpha,\beta)t+(\beta,\beta)t^{2}\geqslant0\) 对一切 \(t\) 成立；</li>
+              <li>取 \(t=-\dfrac{(\alpha,\beta)}{(\beta,\beta)}\) 代入，得 \((\alpha,\beta)^{2}\leqslant(\alpha,\alpha)(\beta,\beta)\)，开方；</li>
+              <li>取等条件：线性相关时显然；反之等号成立迫使 \(\alpha-\dfrac{(\alpha,\beta)}{(\beta,\beta)}\beta=0\) 或 \(\beta=0\)。</li>
+            </ol>
+          </div>
+        </details>
+        <p class="small">两个镇场之宝：\(\mathbf{R}^n\) 版（就是内积形式的 Cauchy）与 \(C[a,b]\) 版（积分形式的 Schwarz/Euler 不等式）。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 2 / 3 / 4</span><span>长度 · 夹角 · 正交</span><span class="src">课本 p.356–359</span></div>
+      <div class="card-b">
+        <ul>
+          <li><b>长度：</b>\(|\alpha|=\sqrt{(\alpha,\alpha)}\)；\(|k\alpha|=|k|\,|\alpha|\)。长度为 1 的向量称为单位向量，\(\frac{1}{|\alpha|}\alpha\) 称为把 \(\alpha\) <b>单位化</b>。</li>
+          <li><b>夹角：</b>非零向量 \(\alpha,\beta\) 的夹角为 \(\langle\alpha,\beta\rangle=\arccos\frac{(\alpha,\beta)}{|\alpha||\beta|}\in[0,\pi]\)。</li>
+          <li><b>正交：</b>\((\alpha,\beta)=0\) 称 \(\alpha,\beta\) 正交，记 \(\alpha\perp\beta\)；只有零向量与自己正交。</li>
+        </ul>
+        <p class="small">三角形不等式 \(|{\alpha+\beta}|\leqslant|\alpha|+|\beta|\)（展开后用 Cauchy）；勾股定理：\(\alpha\perp\beta\) 时 \(|\alpha+\beta|^2=|\alpha|^2+|\beta|^2\)，多向量两两正交时同样成立。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">度量矩阵</span><span>内积的“坐标化”表达</span><span class="src">课本 p.355–361</span></div>
+      <div class="card-b">
+        <p>取 \(n\) 维欧氏空间 \(V\) 的基 \(\varepsilon_1,\dots,\varepsilon_n\)，令 \(a_{ij}=(\varepsilon_i,\varepsilon_j)\)，则</p>
+        $$(\alpha,\beta)=\sum_{i,j}a_{ij}x_iy_j=X'AY.$$
+        <p>矩阵 \(A\) 称为这组基的<b>度量矩阵</b>；知道它就完全确定了内积。性质：</p>
+        <ul>
+          <li>过渡矩阵为 \(C\) 时，新基的度量矩阵为 \(B=C'AC\)——不同基的度量矩阵<b>合同</b>；</li>
+          <li>度量矩阵<b>正定</b>（非零向量 \(X'AX>0\)）；</li>
+          <li>反之，给定 \(n\) 级正定矩阵 \(A\) 和一组基，用它规定内积，可把空间做成欧氏空间。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §2 ===== -->
+  <section class="sec" id="s2">
+    <h2><span class="secnum">§2</span>标准正交基：把内积变成坐标点积 <a class="h-anchor" href="#s2">#</a></h2>
+    <p class="h-note">课本 p.361–367。本节的主角是 Schmidt 正交化——一切「造正交基」题目的通用引擎。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 5 / 6</span><span>正交向量组 · 正交基 · 标准正交基</span><span class="src">课本 p.361–362</span></div>
+      <div class="card-b">
+        <ul>
+          <li>两两正交的非零向量组称为<b>正交向量组</b>；</li>
+          <li>\(n\) 维空间中 \(n\) 个向量构成的正交组称为<b>正交基</b>；由单位向量组成时说<b>标准正交基</b>：\((\varepsilon_i,\varepsilon_j)=\delta_{ij}\)。</li>
+        </ul>
+        <p><b>正交 ⟹ 线性无关：</b>设 \(k_1\alpha_1+\cdots+k_m\alpha_m=0\)，用 \(\alpha_i\) 作内积得 \(k_i(\alpha_i,\alpha_i)=0\)，故 \(k_i=0\)。</p>
+        <p class="small dim">推论：\(n\) 维欧氏空间中两两正交的非零向量不超过 \(n\) 个。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">标准正交基下的两条红利</span><span>为什么全世界都爱它</span><span class="src">课本 p.361–367</span></div>
+      <div class="card-b">
+        $$\alpha=(\varepsilon_1,\alpha)\varepsilon_1+\cdots+(\varepsilon_n,\alpha)\varepsilon_n,\qquad x_i=(\varepsilon_i,\alpha);$$
+        $$(\alpha,\beta)=x_1y_1+\cdots+x_ny_n=X'Y.$$
+        <p class="dim small">坐标 = 内积投影值；内积 = 坐标点积。所有标准正交基地位平等。标准正交基的等价刻画：度量矩阵是单位矩阵 \(E\)。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 1</span><span>正交向量组可扩充为正交基</span><span class="src">课本 p.363</span></div>
+      <div class="card-b">
+        <p>\(n\) 维欧氏空间中任一个正交向量组都能扩充成一组正交基。</p>
+        <details class="proof">
+          <summary>课本证明路线（对 \(n-m\) 归纳，展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>\(n-m=0\) 时已毕；设 \(n-m=k+1\)，取不能被 \(\alpha_1,\dots,\alpha_m\) 线性表出的 \(\beta\)；</li>
+              <li>作 \(\alpha_{m+1}=\beta-k_1\alpha_1-\cdots-k_m\alpha_m\)，取 \(k_i=\dfrac{(\beta,\alpha_i)}{(\alpha_i,\alpha_i)}\)，则 \((\alpha_i,\alpha_{m+1})=0\) 且 \(\alpha_{m+1}\neq0\)；</li>
+              <li>正交组变长，归纳完成。</li>
+            </ol>
+            <p class="dim small">证明本身给出扩充算法：从任一非零向量出发逐个「减去投影」，最后单位化。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 2 ★</span><span>Schmidt 正交化：任意基 → 标准正交基</span><span class="src">课本 p.364</span></div>
+      <div class="card-b">
+        <p>对任意基 \(\varepsilon_1,\dots,\varepsilon_n\)，存在标准正交基 \(\eta_1,\dots,\eta_n\)，使</p>
+        $$L(\varepsilon_1,\dots,\varepsilon_i)=L(\eta_1,\dots,\eta_i),\qquad i=1,\dots,n$$
+        <p>（即过渡矩阵是上三角形）。</p>
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>\(\eta_1=\frac{1}{|\varepsilon_1|}\varepsilon_1\)；</li>
+              <li>归纳假设已得 \(\eta_1,\dots,\eta_m\)；作
+              $$\xi_{m+1}=\varepsilon_{m+1}-\sum_{i=1}^{m}(\varepsilon_{m+1},\eta_i)\eta_i,$$
+              则 \(\xi_{m+1}\neq0\) 且与 \(\eta_1,\dots,\eta_m\) 都正交；</li>
+              <li>单位化 \(\eta_{m+1}=\xi_{m+1}/|\xi_{m+1}|\)，生成子空间逐层不变，归纳完成。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例 ★</span><span>\(\mathbf{R}^4\) 中四向量正交化 + 单位化（完整算一遍）</span><span class="src">课本 p.364–365</span></div>
+      <div class="card-b">
+        <p>\(\alpha_1=(1,1,0,0)\)，\(\alpha_2=(1,0,1,0)\)，\(\alpha_3=(-1,0,0,1)\)，\(\alpha_4=(1,-1,-1,1)\)。</p>
+        <p><b>正交化：</b></p>
+        $$\beta_1=(1,1,0,0);$$
+        $$\beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1=\left(\tfrac12,-\tfrac12,1,0\right);$$
+        $$\beta_3=\alpha_3-\frac{(\alpha_3,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\alpha_3,\beta_2)}{(\beta_2,\beta_2)}\beta_2=\left(-\tfrac13,\tfrac13,\tfrac13,1\right);$$
+        $$\beta_4=\alpha_4-\sum_{i=1}^{3}\frac{(\alpha_4,\beta_i)}{(\beta_i,\beta_i)}\beta_i=(1,-1,-1,1).$$
+        <p><b>单位化：</b>\(\eta_1=(\frac{1}{\sqrt2},\frac{1}{\sqrt2},0,0)\)，\(\eta_2=(\frac{1}{\sqrt6},-\frac{1}{\sqrt6},\frac{2}{\sqrt6},0)\)，\(\eta_3=(-\frac{1}{\sqrt{12}},\frac{1}{\sqrt{12}},\frac{1}{\sqrt{12}},\frac{3}{\sqrt{12}})\)，\(\eta_4=(\frac12,-\frac12,-\frac12,\frac12)\)。</p>
+        <p class="dim small">手算提醒：\(\beta_4\) 恰好与 \(\alpha_4\) 相同，是因为 \(\alpha_4\) 已经垂直于前三者——这类「巧合」值得验算，否则往往是投影系数算错。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 7</span><span>正交矩阵</span><span class="src">课本 p.366</span></div>
+      <div class="card-b">
+        <p>\(n\) 级实数矩阵 \(A\) 称为<b>正交矩阵</b>，如果 \(A'A=E\)（等价地 \(A^{-1}=A'\)）。</p>
+        <ul>
+          <li>两组标准正交基之间的过渡矩阵是正交矩阵；反之，第一组是标准正交基 + 过渡矩阵正交 ⟹ 第二组也是标准正交基；</li>
+          <li>由 \(A'A=E\) 即得 \(AA'=E\)——「列列正交」与「行行正交」两组条件等价。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §3 ===== -->
+  <section class="sec" id="s3">
+    <h2><span class="secnum">§3</span>同构：维数是唯一的“长相” <a class="h-anchor" href="#s3">#</a></h2>
+    <p class="h-note">课本 p.367–368。快速而过，但概念要清楚：欧氏空间同构 = 线性同构 + 保内积。</p>
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 8</span><span>欧氏空间的同构</span><span class="src">课本 p.367</span></div>
+      <div class="card-b">
+        <p>双射 \(\sigma:V\to V'\) 满足 \(\sigma(\alpha+\beta)=\sigma(\alpha)+\sigma(\beta)\)、\(\sigma(k\alpha)=k\sigma(\alpha)\)、\((\sigma(\alpha),\sigma(\beta))=(\alpha,\beta)\) 时称同构映射。</p>
+        <p>标准正交基下取坐标即得：每个 \(n\) 维欧氏空间都同构于 \(\mathbf{R}^n\)。同构关系有自反、对称、传递性。</p>
+      </div>
+    </div>
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 3</span><span>同构判别</span><span class="src">课本 p.368</span></div>
+      <div class="card-b">
+        <p>两个有限维欧氏空间同构的充分必要条件是它们的维数相同。（从抽象角度看，维数完全决定了欧氏空间的结构。）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §4 ===== -->
+  <section class="sec" id="s4">
+    <h2><span class="secnum">§4</span>正交变换：保内积 = 保长度 = 保正交基 <a class="h-anchor" href="#s4">#</a></h2>
+    <p class="h-note">课本 p.368–371。定理 4 的四个等价刻画是本章考点密度最高的地方之一。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 9</span><span>正交变换</span><span class="src">课本 p.368</span></div>
+      <div class="card-b">
+        <p>线性变换 \(\mathcal{A}\) 保持内积不变，即 \((\mathcal{A}\alpha,\mathcal{A}\beta)=(\alpha,\beta)\) 对一切 \(\alpha,\beta\) 成立，称为<b>正交变换</b>。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 4 ★</span><span>四个等价刻画</span><span class="src">课本 p.368</span></div>
+      <div class="card-b">
+        <p>对 \(n\) 维欧氏空间的线性变换 \(\mathcal{A}\)，以下四命题等价：</p>
+        <ol>
+          <li>\(\mathcal{A}\) 是正交变换；</li>
+          <li>保持长度：\(|\mathcal{A}\alpha|=|\alpha|\)；</li>
+          <li>标准正交基的像是标准正交基；</li>
+          <li>\(\mathcal{A}\) 在任一组标准正交基下的矩阵是正交矩阵。</li>
+        </ol>
+        <details class="proof">
+          <summary>课本证明路线（三个接口，展开）</summary>
+          <div class="pb">
+            <ul>
+              <li><b>1) ⟺ 2)：</b>正方向开方即得；反方向对 \(\alpha,\beta,\alpha+\beta\) 写三条保长等式，两式相减消去平方项得 \((\mathcal{A}\alpha,\mathcal{A}\beta)=(\alpha,\beta)\)。</li>
+              <li><b>1) ⟺ 3)：</b>正交变换把 \((\varepsilon_i,\varepsilon_j)=\delta_{ij}\) 原样送到像；反之若像仍标准正交，在标准正交基下用坐标公式算内积即可。</li>
+              <li><b>3) ⟺ 4)：</b>\(\mathcal{A}\) 在标准正交基下的矩阵 \(A\) 同时是从 \(\{\varepsilon_i\}\) 到 \(\{A\varepsilon_i\}\) 的过渡矩阵；过渡保标准正交 ⟺ \(A\) 正交。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">分类与性质</span><span>旋转 · 反射 · \(\pm1\)</span><span class="src">课本 p.368–371</span></div>
+      <div class="card-b">
+        <ul>
+          <li>正交变换可逆，乘积与逆仍是正交变换；正交阵同理。</li>
+          <li>\(A\) 正交 ⟹ \(|A|^2=1\)，即 \(|A|=\pm1\)。\(|A|=1\) 的称<b>旋转</b>（第一类）；\(|A|=-1\) 的称<b>第二类</b>。</li>
+          <li>例子：固定标准正交基 \(\varepsilon_1\) 反向、其余不动的变换 \(|\mathcal{A}|=-1\)，几何上是<b>镜面反射</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §5 ===== -->
+  <section class="sec" id="s5">
+    <h2><span class="secnum">§5</span>子空间：正交补与内射影 <a class="h-anchor" href="#s5">#</a></h2>
+    <p class="h-note">课本 p.371–373。核心定理 6（正交补的存在唯一性）是后面正交对角化与最小二乘的公共底座。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 10 / 11</span><span>正交的子空间 · 正交补</span><span class="src">课本 p.371</span></div>
+      <div class="card-b">
+        <p>\(V_1\perp V_2\)：任意 \(\alpha\in V_1,\beta\in V_2\) 有 \((\alpha,\beta)=0\)。由「只有零向量与自己正交」得 \(V_1\cap V_2=\{\mathbf{0}\}\)。</p>
+        <p>若 \(V_1\perp V_2\) 且 \(V_1+V_2=V\)，称 \(V_2\) 为 \(V_1\) 的<b>正交补</b>。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 5</span><span>两两正交子空间的和是直和</span><span class="src">课本 p.371</span></div>
+      <div class="card-b">
+        <p>设 \(\alpha_1+\cdots+\alpha_s=0\)（\(\alpha_i\in V_i\)），用 \(\alpha_i\) 作内积得 \((\alpha_i,\alpha_i)=0\)，故 \(\alpha_i=0\)——零分解唯一。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 6 ★</span><span>正交补的存在唯一性</span><span class="src">课本 p.372</span></div>
+      <div class="card-b">
+        <p>\(n\) 维欧氏空间 \(V\) 的每一个子空间 \(V_1\) 都有唯一的正交补，记 \(V_1^{\perp}\)，且</p>
+        $$\dim V_1+\dim V_1^{\perp}=n.$$
+        <details class="proof">
+          <summary>课本证明路线（展开）</summary>
+          <div class="pb">
+            <p><b>存在性：</b>取 \(V_1\) 的正交基 \(\varepsilon_1,\dots,\varepsilon_m\)，扩充为全空间正交基 \(\varepsilon_1,\dots,\varepsilon_n\)，则 \(L(\varepsilon_{m+1},\dots,\varepsilon_n)\) 即为正交补。</p>
+            <p><b>唯一性：</b>设 \(V_2,V_3\) 都是正交补，对 \(\alpha\in V_2\) 写 \(\alpha=\alpha_1+\alpha_3\)；由 \(\alpha\perp\alpha_1\) 得 \((\alpha_1,\alpha_1)=0\)，故 \(\alpha=\alpha_3\in V_3\)，即 \(V_2\subset V_3\)；对称地 \(V_3\subset V_2\)。</p>
+            <p class="dim">推论：\(V_1^{\perp}\) 恰由所有与 \(V_1\) 正交的向量组成。每个向量唯一分解 \(\alpha=\alpha_1+\alpha_2\)，其中 \(\alpha_1\) 称为 \(\alpha\) 在 \(V_1\) 上的<b>内射影</b>。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §6 ===== -->
+  <section class="sec" id="s6">
+    <h2><span class="secnum">§6 ★</span>实对称矩阵的标准形：本章皇冠 <a class="h-anchor" href="#s6">#</a></h2>
+    <p class="h-note">课本 p.373–381。结论：任一实对称矩阵都能被正交矩阵 \(T\) 对角化：\(T'AT=T^{-1}AT=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\)。四条引理为定理 7 铺路。</p>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理 1</span><span>实对称矩阵的特征值皆为实数</span><span class="src">课本 p.373</span></div>
+      <div class="card-b">
+        <p>设 \(A\) 实对称，\(\lambda_0\) 为特征值、\(\xi\) 为对应非零复向量：\(A\xi=\lambda_0\xi\)。</p>
+        <p>考察标量 \(\overline{\xi}'A\xi\)：左路用 \(A\xi=\lambda_0\xi\) 得 \(\lambda_0\overline{\xi}'\xi\)；右路用 \(A'=A\) 得 \(\overline{\xi}'A'\xi=(A\overline{\xi})'\xi=\overline{\lambda_0}\,\overline{\xi}'\xi\)。两路相等且 \(\overline{\xi}'\xi\neq0\)，故 \(\lambda_0=\overline{\lambda_0}\) 为实数。</p>
+      </div>
+    </div>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理 2</span><span>对称性的内积版本</span><span class="src">课本 p.374</span></div>
+      <div class="card-b">
+        <p>\(A\) 实对称，\(\mathcal{A}\) 为其在 \(\mathbf{R}^n\) 上诱导的线性变换，则</p>
+        $$(\mathcal{A}\alpha,\beta)=(\alpha,\mathcal{A}\beta).$$
+        <p class="small">证明即 \(\beta'(A\alpha)=\beta'A'\alpha=(A\beta)'\alpha=\alpha'(A\beta)\)。</p>
+      </div>
+    </div>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 12</span><span>对称变换</span><span class="src">课本 p.375</span></div>
+      <div class="card-b">
+        <p>满足 \((\mathcal{A}\alpha,\beta)=(\alpha,\mathcal{A}\beta)\) 的线性变换称为<b>对称变换</b>；它在标准正交基下的矩阵是实对称矩阵。用对称变换视角，性质会更几何。</p>
+      </div>
+    </div>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理 3</span><span>不变子空间的正交补仍不变</span><span class="src">课本 p.375</span></div>
+      <div class="card-b">
+        <p>\(\mathcal{A}\) 对称，\(V_1\) 是 \(\mathcal{A}\)-子空间，则 \(V_1^{\perp}\) 也是。</p>
+        <p class="small">任取 \(\beta\in V_1\)：\((\mathcal{A}\alpha,\beta)=(\alpha,\mathcal{A}\beta)\)，其中 \(\mathcal{A}\beta\in V_1\)，故 \((\alpha,\mathcal{A}\beta)=0\)，故 \(\mathcal{A}\alpha\perp V_1\)。</p>
+      </div>
+    </div>
+
+    <div class="card lem">
+      <div class="card-h"><span class="tag">引理 4 ★</span><span>不同特征值的特征向量必正交</span><span class="src">课本 p.375</span></div>
+      <div class="card-b">
+        <p>\(A\alpha=\lambda\alpha\)，\(A\beta=\mu\beta\)，\(\lambda\neq\mu\)，则</p>
+        $$\lambda(\alpha,\beta)=(\mathcal{A}\alpha,\beta)=(\alpha,\mathcal{A}\beta)=\mu(\alpha,\beta)\ \Longrightarrow\ (\alpha,\beta)=0.$$
+        <p class="dim small">⚠ 此性质依赖对称性，对一般矩阵不成立（反例：一般矩阵的不同特征向量可以不正交）。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 7 ★</span><span>实对称矩阵正交相似于对角矩阵</span><span class="src">课本 p.375</span></div>
+      <div class="card-b">
+        <p>对任意 \(n\) 级实对称矩阵 \(A\)，存在 \(n\) 级正交矩阵 \(T\)，使</p>
+        $$T'AT=T^{-1}AT=\operatorname{diag}(\lambda_1,\dots,\lambda_n).$$
+        <details class="proof">
+          <summary>课本证明路线（对维数归纳，展开）</summary>
+          <div class="pb">
+            <ol>
+              <li>化归：只需证明对称变换 \(\mathcal{A}\) 有 \(n\) 个特征向量组成标准正交基；</li>
+              <li>\(n=1\) 平凡；设 \(n-1\) 成立。对 \(n\) 维空间，取特征向量 \(\alpha_1\)（特征值 \(\lambda_1\) 为实数，引理 1），单位化；</li>
+              <li>作 \(V_1=L(\alpha_1)\) 的正交补，由引理 3 它是 \(\mathcal{A}\)-不变子空间，维数 \(n-1\)，且限制仍对称；</li>
+              <li>由归纳假设，\(V_1\) 中有 \(n-1\) 个特征向量构成标准正交基；</li>
+              <li>合起来得全空间标准正交基，以它们为列构 \(T\)。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card how">
+      <div class="card-h"><span class="tag">方法 ★</span><span>求正交矩阵 \(T\) 的三步法</span><span class="src">课本 p.373–381</span></div>
+      <div class="card-b">
+        <ol>
+          <li>求 \(A\) 的全部不同特征值 \(\lambda_1,\dots,\lambda_r\)；</li>
+          <li>对每个 \(\lambda_i\) 解 \((\lambda_i E-A)X=\mathbf{0}\) 得基础解系，再对这组基做 Schmidt 正交化 + 单位化，得该特征子空间的标准正交基；</li>
+          <li>把各特征子空间的标准正交基合并（不同特征值之间自动正交——引理 4），共 \(n\) 个向量，按列排成 \(T\)。</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card ex">
+      <div class="card-h"><span class="tag">课本例 ★</span><span>四阶实对称矩阵完整算例</span><span class="src">课本 p.376–379</span></div>
+      <div class="card-b">
+        <p>\(A=\begin{pmatrix}0&1&1&-1\\ 1&0&-1&1\\ 1&-1&0&1\\ -1&1&1&0\end{pmatrix}\)，求 \(T\) 使 \(T'AT\) 对角。</p>
+        <ul>
+          <li>特征多项式 \(|\lambda E-A|=(\lambda-1)^3(\lambda+3)\)：特征值 \(1\)（三重）、\(-3\)；</li>
+          <li>\(\lambda=1\)：基础解系 \((1,1,0,0)\)、\((1,0,1,0)\)、\((-1,0,0,1)\)，正交化 + 单位化后得
+          $$\eta_1=\left(\tfrac{1}{\sqrt2},\tfrac{1}{\sqrt2},0,0\right),\quad
+          \eta_2=\left(\tfrac{1}{\sqrt6},-\tfrac{1}{\sqrt6},\tfrac{2}{\sqrt6},0\right),\quad
+          \eta_3=\left(-\tfrac{1}{\sqrt{12}},\tfrac{1}{\sqrt{12}},\tfrac{1}{\sqrt{12}},\tfrac{3}{\sqrt{12}}\right);$$</li>
+          <li>\(\lambda=-3\)：特征向量 \((1,-1,-1,1)\)，单位化 \(\eta_4=(\frac12,-\frac12,-\frac12,\frac12)\)；</li>
+          <li>\(T\) 由 \(\eta_1,\dots,\eta_4\) 按列组成，且 \(T'AT=\operatorname{diag}(1,1,1,-3)\)。</li>
+        </ul>
+        <details class="proof">
+          <summary>两条自检 + 一个“补充要求”（展开）</summary>
+          <div class="pb">
+            <ul>
+              <li>自检 1：迹 = \(0\) = \(1+1+1-3\) ✓；</li>
+              <li>自检 2：\(\eta_4\) 与 \(\eta_1,\eta_2,\eta_3\) 自动正交（引理 4）——快速点乘验证即可；</li>
+              <li>补充要求：还可要求 \(|T|=1\)。若求得 \(|T|=-1\)，取 \(S=\operatorname{diag}(-1,1,\dots,1)\)、\(T_1=TS\) 即可，且 \(T_1'AT_1=T'AT\) 不变。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">定理 8</span><span>实二次型的正交标准形</span><span class="src">课本 p.380</span></div>
+      <div class="card-b">
+        <p>任意实二次型 \(\sum a_{ij}x_ix_j\ (a_{ij}=a_{ji})\) 都可经正交线性替换变成平方和</p>
+        $$\lambda_1y_1^2+\lambda_2y_2^2+\cdots+\lambda_ny_n^2,$$
+        <p>其中系数 \(\lambda_i\) 恰是矩阵 \(A\) 的特征多项式全部根。</p>
+      </div>
+    </div>
+
+    <div class="card rem">
+      <div class="card-h"><span class="tag">应用一瞥</span><span>二次曲面方程的化简</span><span class="src">课本 p.373–381</span></div>
+      <div class="card-b">
+        <p>直角坐标下 \(X'AX+2B'X+d=0\)：先取 \(|C|=1\) 的正交矩阵做转轴使 \(C'AC=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3)\)，再按系数是否为零移轴，化到标准方程。这正是「正交对角化」在解析几何里的落地。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §7 ===== -->
+  <section class="sec" id="s7">
+    <h2><span class="secnum">§7</span>距离与最小二乘：投影的工程化 <a class="h-anchor" href="#s7">#</a></h2>
+    <p class="h-note">课本 p.381–385。一条几何直觉（垂线最短）翻译成一个线性方程组（正规方程）。</p>
+
+    <div class="card def">
+      <div class="card-h"><span class="tag">定义 13</span><span>距离</span><span class="src">课本 p.382</span></div>
+      <div class="card-b">
+        <p>\(d(\alpha,\beta)=|\alpha-\beta|\)。三条性质：对称、非负（等号仅在重合时）、三角形不等式。</p>
+      </div>
+    </div>
+
+    <div class="card thm">
+      <div class="card-h"><span class="tag">垂线最短</span><span>到子空间距离的刻画</span><span class="src">课本 p.381–385</span></div>
+      <div class="card-b">
+        <p>设 \(W\) 是子空间，\(\beta-\gamma\perp W\)（\(\gamma\in W\)），则对一切 \(\delta\in W\)：</p>
+        $$|\beta-\gamma|\leqslant|\beta-\delta|.$$
+        <p class="small">证明：\(\beta-\delta=(\beta-\gamma)+(\gamma-\delta)\)，两项正交，勾股定理展开即得。几何意义：垂线段是到子空间的最短路径。</p>
+      </div>
+    </div>
+
+    <div class="card how">
+      <div class="card-h"><span class="tag">最小二乘法</span><span>问题、条件与结论</span><span class="src">课本 p.381–385</span></div>
+      <div class="card-b">
+        <p><b>问题：</b>方程组 \(AX=B\) 可能无解，改求使平方误差 \(\sum_i(a_{i1}x_1+\cdots+a_{is}x_s-b_i)^2=|AX-B|^2\) 最小的<b>最小二乘解</b>。</p>
+        <p><b>几何翻译：</b>\(AX\) 落在 \(A\) 的列空间 \(L(\alpha_1,\dots,\alpha_s)\) 中；要找列空间里离 \(B\) 最近的向量 \(Y=AX\)——由垂线最短，须 \(B-AX\perp L(\alpha_1,\dots,\alpha_s)\)，即</p>
+        $$A'(B-AX)=\mathbf{0}\qquad\Longleftrightarrow\qquad A'AX=A'B.$$
+        <p><b>结论：</b>最小二乘解恰是正规方程 \(A'AX=A'B\) 的解；该方程组总有解。（当 \(A\) 的列线性无关时 \(A'A\) 可逆，解唯一。）</p>
+        <p class="small dim">课本例（废品率对成分的直线拟合）：解正规方程得 \(a=-1.05,\ b=4.81\)（三位有效数字）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== §8 ===== -->
+  <section class="sec" id="s8">
+    <h2><span class="secnum">§8*</span>酉空间（选读）：复数世界的对应物 <a class="h-anchor" href="#s8">#</a></h2>
+    <div class="card rem">
+      <div class="card-h"><span class="tag">定义 14 + 平行结论</span><span>把「对称」翻译成「共轭」</span><span class="src">课本 p.385–388（选读节）</span></div>
+      <div class="card-b">
+        <p>复数域上定义内积：\((\alpha,\beta)=\overline{(\beta,\alpha)}\)、\((k\alpha,\beta)=k(\alpha,\beta)\)、对第一变元线性、\((\alpha,\alpha)\geqslant0\) 且仅零向量为 0。这样的空间称<b>酉空间</b>（\(\mathbf{C}^n\) 中 \((\alpha,\beta)=\sum a_i\overline{b}_i\) 是标准模型）。</p>
+        <details class="plain">
+          <summary>展开：13 条平行结论速览（知道对应关系即可）</summary>
+          <div class="pb">
+            <ol class="small">
+              <li>\((\alpha,k\beta)=\overline{k}(\alpha,\beta)\)；\((\alpha,\beta+\gamma)=(\alpha,\beta)+(\alpha,\gamma)\)；</li>
+              <li>长度 \(|\alpha|=\sqrt{(\alpha,\alpha)}\)；Cauchy 不等式照旧成立（等号条件：线性相关）；</li>
+              <li>内积一般不实，夹角不好定义；仍定义正交 \((\alpha,\beta)=0\)；</li>
+              <li>正交基 / 标准正交基 / Schmidt 过程全部平移；</li>
+              <li><b>酉矩阵：</b>\(\overline{A}'A=A\overline{A}'=E\)，行列式模为 1；标准正交基间过渡矩阵是酉矩阵；</li>
+              <li><b>酉变换：</b>保内积的线性变换，标准正交基下矩阵为酉矩阵；</li>
+              <li><b>埃尔米特矩阵：</b>\(\overline{A}'=A\)，充当「实对称」的角色；</li>
+              <li>埃尔米特矩阵特征值为实数；不同特征值的特征向量正交；</li>
+              <li>埃尔米特有酉矩阵 \(C\) 使 \(\overline{C}'AC\) 对角；埃尔米特二次型可经酉替换化为 \(d_1y_1\overline{y}_1+\cdots\)。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TABLE ===== -->
+  <section class="sec" id="table">
+    <h2><span class="secnum">速查</span>对照表与关键公式 <a class="h-anchor" href="#table">#</a></h2>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>概念</th><th>定义 / 判据</th><th>关键性质</th></tr></thead>
+        <tbody>
+          <tr><td>内积</td><td>4 条公理（对称、双线性、正定）</td><td>度量矩阵正定；不同基合同</td></tr>
+          <tr><td>标准正交基</td><td>\((\varepsilon_i,\varepsilon_j)=\delta_{ij}\)</td><td>度量矩阵 \(=E\)；坐标即投影；内积即点积</td></tr>
+          <tr><td>正交矩阵</td><td>\(A'A=E\)（\(\Leftrightarrow A^{-1}=A'\)）</td><td>列/行均标准正交；\(|A|=\pm1\)；乘积、逆仍正交</td></tr>
+          <tr><td>正交变换</td><td>保内积 ⟺ 保长 ⟺ 保标准正交基 ⟺ 矩阵正交</td><td>可逆；乘积、逆仍正交；分两类</td></tr>
+          <tr><td>正交补</td><td>\(V=V_1\oplus V_1^{\perp}\)</td><td>存在唯一；\(\dim V_1+\dim V_1^{\perp}=n\)</td></tr>
+          <tr><td>实对称矩阵</td><td>\(A'=A\)</td><td>特征值全实；不同特征值特征向量正交；正交相似于对角形</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>三种“相似/合同”对照</th><th>变换形式</th><th>不变量</th><th>对角化条件</th></tr></thead>
+        <tbody>
+          <tr><td>相似（第 7、8 章）</td><td>\(T^{-1}AT\)</td><td>特征多项式、不变因子、初等因子</td><td>复域：初等因子全一次</td></tr>
+          <tr><td>合同（第 5 章）</td><td>\(C'AC\)</td><td>秩、正负惯性指数</td><td>实对称：任意可逆 \(C\) 可对角化</td></tr>
+          <tr><td>正交相似（本章）</td><td>\(T'AT=T^{-1}AT\)（\(T\) 正交）</td><td>特征值（重数）+ 长度结构</td><td>实对称：正交 \(T\) 必可对角化</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small dim">记忆钩子：正交相似是「相似 + 合同」的交集；它同时保留特征值（相似）与惯性结构（合同），代价是变换矩阵必须正交。</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>关键公式</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>Cauchy 不等式</td><td>\(|(\alpha,\beta)|\leqslant|\alpha||\beta|\)（等号 ⟺ 线性相关）</td></tr>
+          <tr><td>Schmidt 正交化</td><td>\(\xi_{k+1}=\varepsilon_{k+1}-\sum_i (\varepsilon_{k+1},\eta_i)\eta_i\)，再单位化</td></tr>
+          <tr><td>标准正交基下坐标</td><td>\(x_i=(\varepsilon_i,\alpha)\)</td></tr>
+          <tr><td>内射影</td><td>\(\alpha_1=\sum_i(\alpha,\eta_i)\eta_i\)（对 \(V_1\) 的标准正交基）</td></tr>
+          <tr><td>正交对角化</td><td>\(T'AT=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\)，\(T\) 的列为特征向量的标准正交基</td></tr>
+          <tr><td>正规方程</td><td>\(A'AX=A'B\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== WIDGET ===== -->
+  <section class="sec" id="widget">
+    <h2><span class="secnum">交互</span>Schmidt 正交化：你出题，它算账 <a class="h-anchor" href="#widget">#</a></h2>
+    <div class="widget">
+      <h4>平面内两个向量的正交化演示</h4>
+      <p class="small dim" style="margin:.2rem 0 .6rem">α₁ 固定为 \((2.4,\ 0.8)\)；<b>拖动绿色箭头的端点</b>（或点击画布）改变 α₂，观察橙色箭头 β₂ = α₂ − 投影 始终垂直于 α₁。读数区给出全部中间量。</p>
+      <div class="canvas-wrap"><canvas id="schmidt" width="1560" height="1040"></canvas></div>
+      <div class="readout" id="ro"></div>
+      <div class="hint">结论提醒：\(L(\alpha_1,\alpha_2)=L(\alpha_1,\beta_2)\)，且 \(\beta_2\perp\alpha_1\)——这正是 Schmidt 过程一层的全部内容。<span id="dotErr"></span></div>
+      <div class="wbtns" style="margin-top:.6rem"><button class="wbtn" id="resetBtn">重置 α₂</button></div>
+    </div>
+  </section>
+
+  <!-- ===== EXAM ===== -->
+  <section class="sec" id="exam">
+    <h2><span class="secnum">801</span>真题定位 <a class="h-anchor" href="#exam">#</a></h2>
+    <div class="card exam">
+      <div class="card-h"><span class="tag">频率判断</span><span>中频 · 高区分度（第二优先级）</span><span class="src">来源：真题分析_2026-09-13 章节命题矩阵</span></div>
+      <div class="card-b">
+        <p>现有样本中 2021、2022、2023、2024 年均有明显样本，常见考点表述：<b>内积、正交、Gram 矩阵、负内积向量个数、正交变换</b>。</p>
+        <ul>
+          <li>「负内积向量个数」类题目 = 实对称矩阵惯性指数/特征值符号问题的重述——回第五章 + 本章 §6；</li>
+          <li>正交变换与正交矩阵题常要求写证明（如不变子空间、分类），不要只记几何图像；</li>
+          <li>Gram 矩阵 \(\Delta=((\alpha_i,\alpha_j))\) 相关结论（如习题 12：\(|\Delta|\neq0\iff\) 线性无关）是固定题型。</li>
+        </ul>
+        <p class="small dim">以上为真题资料层的命题规律提示，不构成对任何具体年份题面的复述；逐题证据见真题分析目录。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PITFALLS ===== -->
+  <section class="sec" id="pitfalls">
+    <h2><span class="secnum">⚠</span>易错点清单 <a class="h-anchor" href="#pitfalls">#</a></h2>
+    <div class="card warn">
+      <div class="card-h"><span class="tag">高频陷阱</span><span>做题前过一遍</span></div>
+      <div class="card-b">
+        <ol>
+          <li><b>「不同特征值的特征向量正交」只对实对称矩阵 / 对称变换成立</b>，一般矩阵没有这个性质。</li>
+          <li><b>正交相似 vs 一般合同：</b>\(Q'AQ\) 同时是相似也是合同变换；不要与第五章「任意可逆 \(C\)」的合同混淆——正交版的 \(T\) 只能来自特征向量，对角元必是特征值。</li>
+          <li><b>度量矩阵的正定性：</b>内积 ⟹ 度量矩阵正定；反过来正定矩阵 + 基可以「造」内积。</li>
+          <li><b>Schmidt 的顺序性：</b>结论中 \(L(\varepsilon_1,\dots,\varepsilon_i)=L(\eta_1,\dots,\eta_i)\) 逐层保持——这决定了过渡矩阵是上三角，别丢这个条件。</li>
+          <li><b>Cauchy 等号条件</b>是「线性相关」不是「相等」；用别的向量端点等号要单独讨论 \(\beta=0\)。</li>
+          <li><b>复内积要带共轭：</b>\((\alpha,k\beta)=\overline{k}(\alpha,\beta)\)；把实公式直接搬到酉空间必错。</li>
+          <li><b>最小二乘解的存在 vs 唯一：</b>正规方程总有解；唯一性需要 \(A'A\) 可逆（即 \(A\) 列满秩）。</li>
+          <li><b>§6 求 \(T\) 时容易漏「同一特征子空间内的正交化」</b>：重特征值的基础解系之间一般不正交，必须逐个子空间内部 Schmidt。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="sec" id="quiz">
+    <h2><span class="secnum">自测</span>闭卷复述 12 问 <a class="h-anchor" href="#quiz">#</a></h2>
+    <p class="h-note">先口述，再核对。</p>
+    <div id="quizbox"></div>
+  </section>
+
+  <!-- ===== HW ===== -->
+  <section class="sec" id="hw">
+    <h2><span class="secnum">习题</span>教材习题地图（第九章） <a class="h-anchor" href="#hw">#</a></h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th class="c">题号</th><th>主题</th><th class="c">题号</th><th>主题</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1</td><td>用正定矩阵定义内积；写出该空间的 Cauchy 不等式</td><td class="c">15</td><td>镜面反射：正交性、第二类、特征刻画</td></tr>
+          <tr><td class="c">2</td><td>\(\mathbf{R}^4\) 中夹角计算（3 组）</td><td class="c">16</td><td>反称实矩阵特征值为 0 或纯虚数</td></tr>
+          <tr><td class="c">3</td><td>距离的三角形不等式</td><td class="c">17</td><td>求正交 \(T\) 使 \(T'AT\) 对角（5 个矩阵）</td></tr>
+          <tr><td class="c">4</td><td>求与三向量都正交的单位向量</td><td class="c">18</td><td>正交替换化二次型为标准形（4 小题）</td></tr>
+          <tr><td class="c">5</td><td>由 \((\gamma,\alpha_i)=0\) 推 \(\gamma=0\)；内积决定向量</td><td class="c">19–22</td><td>实对称结构题：正定判据、可三角化、同时对角、幂等</td></tr>
+          <tr><td class="c">6</td><td>验证一组标准正交基</td><td class="c">23</td><td>正交变换不变子空间的正交补</td></tr>
+          <tr><td class="c">7</td><td>由生成向量求子空间标准正交基</td><td class="c">24</td><td>反称变换的矩阵刻画与不变子空间</td></tr>
+          <tr><td class="c">8</td><td>解空间的标准正交基（线性方程组 + Schmidt）</td><td class="c">25</td><td>内射影的「最短性」刻画</td></tr>
+          <tr><td class="c">9</td><td>\(\mathbf{R}[x]_4\) 分内积下正交化 \(1,x,x^2,x^3\)</td><td class="c">26</td><td>正交补的运算律：\((V_1+V_2)^\perp=V_1^\perp\cap V_2^\perp\) 等</td></tr>
+          <tr><td class="c">10</td><td>正交补子空间的维数 \(n-1\)</td><td class="c">27</td><td>最小二乘解 + 几何解释（垂线语言）</td></tr>
+          <tr><td class="c">11</td><td>度量矩阵合同 ⟹ 标准正交基存在</td><td class="c">补 1–3</td><td>正交变换特征值 \(\pm1\)、奇数维旋转、第二类必有 \(-1\)</td></tr>
+          <tr><td class="c">12</td><td>Gram 行列式 \(\neq0\) ⟺ 线性无关</td><td class="c">补 4–5</td><td>保内积 ⟹ 线性；向量组同构 ⟺ Gram 相同</td></tr>
+          <tr><td class="c">13</td><td>上三角正交矩阵必为对角 \(\pm1\)</td><td class="c">补 6–8</td><td>谱结构应用：\(A^2=E\)、二次型上下界、特征值取到</td></tr>
+          <tr><td class="c">14</td><td>QR 分解 \(A=QT\) 与正定 \(A=T'T\)</td><td class="c">补 9–14</td><td>镜面反射分解、同时对角化、酉空间三题</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small dim">优先做：17(1)(2)、18(1)(2)、4、7、12、25、27。题面原文见 <code>05_教材习题_OCR核对版.md</code>。</p>
+  </section>
+
+  <!-- ===== SRC ===== -->
+  <section class="sec" id="src">
+    <div class="foot">
+      <h4>来源与边界</h4>
+      <ul class="tight">
+        <li><b>教材依据：</b>王萼芳《高等代数》第四版 第九章（印刷页 355–395）；定义/定理/证明路线整理自同目录课本骨架 <code>01_第九章_欧几里得空间_课本骨架.md</code>。</li>
+        <li><b>辅助来源：</b>武器边界 <code>03_第九章_欧几里得空间_专题_武器边界.md</code>；习题清单 <code>05_教材习题_OCR核对版.md</code>；考频参考 <code>考研/00_AI/真题分析_2026-09-13/02_章节命题矩阵.md</code>。</li>
+        <li><b>交互演示：</b>Schmidt 画布由本页 JavaScript 实时计算（公式与课本一致），用于直觉演示，不替代手算训练。</li>
+        <li><b>证据边界：</b>本页是学习资料，不是学习记录；阅读、勾选或玩演示都不构成「已掌握」证据。</li>
+        <li><b>技术说明：</b>公式由本地 KaTeX 离线渲染；可直接用浏览器打开，无需联网。生成：Hermes，2026-10-13。</li>
+      </ul>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<button class="toTop" id="toTop" title="回到顶部">↑</button>
+
+<script defer src="../_html_assets/katex/katex.min.js"></script>
+<script defer src="../_html_assets/katex/auto-render.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  function render(el){
+    try{renderMathInElement(el||document.body,{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+      throwOnError:false, strict:false
+    });}catch(e){}
+  }
+  render();
+
+  /* theme */
+  var root=document.documentElement;
+  try{var s=localStorage.getItem('kaoyan-html-theme'); if(s){root.setAttribute('data-theme',s);}}catch(e){}
+  var tb=document.getElementById('themeToggle');
+  tb.addEventListener('click',function(){
+    var now=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',now);
+    try{localStorage.setItem('kaoyan-html-theme',now);}catch(e){}
+    if(window.__redraw) window.__redraw();
+  });
+
+  /* progress + toTop */
+  var bar=document.getElementById('bar'), toTop=document.getElementById('toTop');
+  function onScroll(){
+    var h=document.documentElement, st=h.scrollTop||document.body.scrollTop;
+    var dh=(h.scrollHeight-h.clientHeight)||1;
+    bar.style.width=Math.min(100,(st/dh)*100)+'%';
+    toTop.classList.toggle('on', st>600);
+  }
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  /* scrollspy */
+  var links=[].slice.call(document.querySelectorAll('#toc a')), map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1); var el=document.getElementById(id); if(el){map[id]=a;}});
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(en.isIntersecting){ links.forEach(function(a){a.classList.remove('on');}); var a=map[en.target.id]; if(a) a.classList.add('on'); }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+
+  /* expand proofs */
+  var btn=document.getElementById('expandAll'), expanded=false;
+  btn.addEventListener('click',function(){
+    expanded=!expanded;
+    document.querySelectorAll('details').forEach(function(d){d.open=expanded;});
+    btn.textContent=expanded?'收起全部证明':'展开全部证明';
+  });
+  window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true;});});
+
+  /* checklist */
+  var list=document.querySelector('.checklist[data-key]');
+  if(list){
+    var key='kaoyan-html-checklist-'+list.getAttribute('data-key');
+    var state={}; try{state=JSON.parse(localStorage.getItem(key)||'{}');}catch(e){}
+    list.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+      var id=cb.getAttribute('data-id');
+      if(state[id]){cb.checked=true; cb.closest('li').classList.add('done');}
+      cb.addEventListener('change',function(){
+        state[id]=cb.checked; cb.closest('li').classList.toggle('done',cb.checked);
+        try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}
+      });
+    });
+  }
+
+  /* quiz */
+  var QS=[
+    ['写出内积的 4 条公理。','对称 \\((\\alpha,\\beta)=(\\beta,\\alpha)\\)；对第一变元齐次；对第一变元可加；正定 \\((\\alpha,\\alpha)\\geqslant0\\) 且仅零向量为 0。'],
+    ['度量矩阵在换基时怎么变？','合同：\\(B=C\'AC\\)。且度量矩阵必正定。'],
+    ['为什么正交向量组线性无关？','与组合式作内积：\\(k_i(\\alpha_i,\\alpha_i)=0\\Rightarrow k_i=0\\)。'],
+    ['写出 Schmidt 正交化的递推公式。','\\(\\xi_{k+1}=\\varepsilon_{k+1}-\\sum_{i=1}^{k}(\\varepsilon_{k+1},\\eta_i)\\eta_i\\)，然后 \\(\\eta_{k+1}=\\xi_{k+1}/|\\xi_{k+1}|\\)；保持 \\(L(\\varepsilon_1,\\dots,\\varepsilon_i)=L(\\eta_1,\\dots,\\eta_i)\\)。'],
+    ['正交变换的四个等价刻画？','保内积 ⟺ 保长 ⟺ 把标准正交基映成标准正交基 ⟺ 任何标准正交基下矩阵正交。'],
+    ['「保长 ⟹ 保内积」的证明思路？','对 \\(\\alpha,\\beta,\\alpha+\\beta\\) 写三条保长等式，作差消去平方项得内积等式。'],
+    ['正交变换的行列式取值？','\\(|A|=\\pm1\\)；分第一类（旋转，+1）与第二类（−1）。'],
+    ['正交补定理的内容与证明骨架？','每子空间有唯一正交补；存在性用正交基扩充，唯一性用分解向量作内积逼出为零。'],
+    ['实对称矩阵的 4 条引理各自作用？','1 特征值实；2 对称性内积式；3 不变子空间正交补仍不变；4 不同特征值特征向量正交。'],
+    ['定理 7 的归纳证明主步骤？','取特征向量 \\(\\alpha_1\\)（引理 1）→ 其正交补是 \\(n-1\\) 维不变子空间（引理 3）→ 归纳。'],
+    ['求正交矩阵 T 的三步法？','特征值 → 每个特征子空间内解基础解系并 Schmidt 正交化 + 单位化 → 按列拼成 \\(T\\)。'],
+    ['最小二乘解满足什么方程？几何解释？','\\(A\'AX=A\'B\\)；几何上 \\(B-AX\\) 垂直于 \\(A\\) 的列空间（垂线最短）。']
+  ];
+  var qb=document.getElementById('quizbox');
+  QS.forEach(function(q,i){
+    var d=document.createElement('div'); d.className='qi';
+    d.innerHTML='<p class="q"><span class="qn">Q'+(i+1)+'.</span>'+q[0]+'</p><button class="qbtn">显示答案</button><div class="qa">'+q[1]+'</div>';
+    d.querySelector('.qbtn').addEventListener('click',function(){
+      d.classList.toggle('open');
+      this.textContent=d.classList.contains('open')?'收起答案':'显示答案';
+    });
+    qb.appendChild(d);
+  });
+  render(qb);
+
+  /* ============ Schmidt canvas ============ */
+  (function(){
+    var cvs=document.getElementById('schmidt'); if(!cvs) return;
+    var ctx=cvs.getContext('2d');
+    var W=780,H=520; /* logical size */
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    cvs.width=W*dpr; cvs.height=H*dpr;
+    cvs.style.height='';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    var ox=330, oy=340, S=68;      /* origin & scale (logical px per unit) */
+    var a1=[2.4,0.8];
+    var a2=[0.9,2.1];
+    var dragging=false;
+
+    function X(x){return ox+x*S;} function Y(y){return oy-y*S;}
+    function invX(px){return (px-ox)/S;} function invY(py){return (oy-py)/S;}
+    function dot(u,v){return u[0]*v[0]+u[1]*v[1];}
+    function cssv(name,fallback){
+      var v=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v||fallback;
+    }
+    function clampA2(p){
+      var r=Math.hypot(p[0],p[1]);
+      var maxR=3.1;
+      if(r>maxR){p[0]*=maxR/r; p[1]*=maxR/r;}
+      p[0]=Math.max(-3.4,Math.min(4.2,p[0]));
+      p[1]=Math.max(-2.6,Math.min(3.4,p[1]));
+      return p;
+    }
+    function drawArrow(from,to,color,width,label,labelDx,labelDy){
+      ctx.save();
+      ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=width;
+      ctx.beginPath(); ctx.moveTo(X(from[0]),Y(from[1])); ctx.lineTo(X(to[0]),Y(to[1])); ctx.stroke();
+      var ang=Math.atan2(Y(to[1])-Y(from[1]),X(to[0])-X(from[0]));
+      var hl=11;
+      ctx.beginPath();
+      ctx.moveTo(X(to[0]),Y(to[1]));
+      ctx.lineTo(X(to[0])-hl*Math.cos(ang-0.42), Y(to[1])-hl*Math.sin(ang-0.42));
+      ctx.lineTo(X(to[0])-hl*Math.cos(ang+0.42), Y(to[1])-hl*Math.sin(ang+0.42));
+      ctx.closePath(); ctx.fill();
+      if(label){
+        ctx.font='600 16px "Segoe UI","Microsoft YaHei",sans-serif';
+        ctx.fillText(label, X(to[0])+(labelDx||10), Y(to[1])+(labelDy||-8));
+      }
+      ctx.restore();
+    }
+    function draw(){
+      var ink=cssv('--ink','#222'), muted=cssv('--muted','#888'),
+          line=cssv('--line','#ddd'), card=cssv('--card','#fff'),
+          acc=cssv('--acc','#0b7285'), ex=cssv('--ex','#2f9e44'), warn=cssv('--warn','#e03131');
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle=card; ctx.fillRect(0,0,W,H);
+      /* grid */
+      ctx.strokeStyle=line; ctx.lineWidth=1;
+      var x0=Math.floor(invX(0)), x1=Math.ceil(invX(W)), y0=Math.floor(invY(H)), y1=Math.ceil(invY(0));
+      for(var gx=x0;gx<=x1;gx++){ctx.beginPath();ctx.moveTo(X(gx),0);ctx.lineTo(X(gx),H);ctx.stroke();}
+      for(var gy=y0;gy<=y1;gy++){ctx.beginPath();ctx.moveTo(0,Y(gy));ctx.lineTo(W,Y(gy));ctx.stroke();}
+      /* axes */
+      ctx.strokeStyle=muted; ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(W,Y(0));ctx.stroke();
+      ctx.beginPath();ctx.moveTo(X(0),0);ctx.lineTo(X(0),H);ctx.stroke();
+      /* math */
+      var c=dot(a2,a1)/dot(a1,a1);
+      var proj=[c*a1[0],c*a1[1;
+      var b2=[a2[0]-proj[0],a2[1]-proj[1;
+      /* components dashed */
+      ctx.save();
+      ctx.setLineDash([6,5]); ctx.strokeStyle=muted; ctx.lineWidth=1.4;
+      ctx.beginPath(); ctx.moveTo(X(a2[0]),Y(a2[1])); ctx.lineTo(X(proj[0]),Y(proj[1])); ctx.stroke();
+      ctx.restore();
+      /* projection marker */
+      ctx.fillStyle=ex;
+      ctx.beginPath(); ctx.arc(X(proj[0]),Y(proj[1]),4,0,6.3); ctx.fill();
+      /* arrows */
+      drawArrow([0,0],a1,acc,3.2,'α₁',12,-10);
+      drawArrow([0,0],a2,warn,3.2,'α₂',12,-10);
+      drawArrow([0,0],b2,ex,3.6,'β₂',12,-10);
+      /* right angle mark between b2 and a1 at proj */
+      var lb=Math.hypot(b2[0],b2[1]), la=Math.hypot(a1[0],a1[1]);
+      if(lb>0.35 && la>0.35){
+        var u1=[a1[0]/la,a1[1]/la], u2=[b2[0]/lb,b2[1]/lb], m=16/S;
+        var p1=[proj[0]+u1[0]*m, proj[1]+u1[1]*m];
+        var p2=[p1[0]+u2[0]*m, p1[1]+u2[1]*m];
+        var p3=[proj[0]+u2[0]*m, proj[1]+u2[1]*m];
+        ctx.save(); ctx.strokeStyle=ex; ctx.lineWidth=1.6;
+        ctx.beginPath(); ctx.moveTo(X(p1[0]),Y(p1[1])); ctx.lineTo(X(p2[0]),Y(p2[1])); ctx.lineTo(X(p3[0]),Y(p3[1])); ctx.stroke();
+        ctx.restore();
+      }
+      /* tip hint */
+      ctx.fillStyle=muted; ctx.font='13px "Segoe UI","Microsoft YaHei",sans-serif';
+      ctx.fillText('拖动 α₂ 端点改变输入（绿色箭头）',12,20);
+      /* readout */
+      var ro=document.getElementById('ro');
+      function n(x){return (Math.abs(x)<5e-4?0:x).toFixed(2);}
+      ro.innerHTML=
+        '<div>α₂·α₁ = <b>'+n(dot(a2,a1))+'</b>，α₁·α₁ = <b>'+n(dot(a1,a1))+'</b>，投影系数 c = <b>'+n(c)+'</b></div>'+
+        '<div>投影向量 c·α₁ = (<b>'+n(proj[0])+'</b>, <b>'+n(proj[1])+'</b>)</div>'+
+        '<div>β₂ = α₂ − c·α₁ = (<b>'+n(b2[0])+'</b>, <b>'+n(b2[1])+'</b>)</div>'+
+        '<div>β₂·α₁ = <b>'+n(dot(b2,a1))+'</b>（应恒为 0）</div>';
+      var de=document.getElementById('dotErr');
+      if(de) de.textContent='（实时自检：β₂·α₁ = '+n(dot(b2,a1))+' ≈ 0 ✓）';
+    }
+    /* interactions */
+    function getPos(ev){
+      var r=cvs.getBoundingClientRect();
+      var px=(ev.clientX-r.left)*(W/r.width);
+      var py=(ev.clientY-r.top)*(H/r.height);
+      return [invX(px), invY(py)];
+    }
+    cvs.addEventListener('pointerdown',function(ev){
+      dragging=true; cvs.setPointerCapture(ev.pointerId); a2=clampA2(getPos(ev)); draw();
+    });
+    cvs.addEventListener('pointermove',function(ev){
+      if(dragging){ a2=clampA2(getPos(ev)); draw(); }
+    });
+    cvs.addEventListener('pointerup',function(){ dragging=false; });
+    cvs.addEventListener('pointercancel',function(){ dragging=false; });
+    document.getElementById('resetBtn').addEventListener('click',function(){ a2=[0.9,2.1]; draw(); });
+    window.__redraw=draw;
+    draw();
+  })();
+});
+</script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

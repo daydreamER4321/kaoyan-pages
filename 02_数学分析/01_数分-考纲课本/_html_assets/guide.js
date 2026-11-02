@@ -1,0 +1,189 @@
+/* ============================================================
+   考研数分 · 考纲课本 HTML 讲解 —— 共享脚本
+   功能：KaTeX 自动渲染 / 侧栏目录滚动高亮 / 自测清单本地记忆 /
+         移动端目录开关
+   依赖：katex.min.js 与 contrib/auto-render.min.js 先于本脚本加载
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var SELF_SRC = (document.currentScript && document.currentScript.src) || '';
+
+  /* 1. KaTeX 自动渲染 */
+  function renderMath() {
+    if (typeof window.renderMathInElement !== 'function') {
+      console.warn('[guide] KaTeX auto-render 未加载，公式将按原样显示。');
+      return;
+    }
+    try {
+      window.renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false }
+        ],
+        throwOnError: false,
+        errorColor: '#c05621',
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option'],
+        ignoredClasses: ['no-math']
+      });
+    } catch (e) {
+      console.warn('[guide] 公式渲染出错：', e);
+    }
+  }
+
+  /* 2. 侧栏目录滚动高亮 */
+  function setupToc() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+    if (!links.length || typeof IntersectionObserver === 'undefined') return;
+
+    var map = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) map[id] = a;
+    });
+    var targets = Object.keys(map).map(function (id) { return document.getElementById(id); });
+    if (!targets.length) return;
+
+    var current = null;
+    function activate(a) {
+      if (current === a) return;
+      if (current) current.classList.remove('active');
+      current = a;
+      if (a) a.classList.add('active');
+    }
+
+    var obs = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; });
+      if (!visible.length) return;
+      visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      activate(map[visible[0].target.id] || null);
+    }, { rootMargin: '-12% 0px -70% 0px', threshold: 0 });
+
+    targets.forEach(function (t) { obs.observe(t); });
+  }
+
+  /* 3. 自测清单本地持久化 */
+  function setupChecklist() {
+    var boxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    if (!boxes.length) return;
+    var key = 'kaoyan-guide:' + location.pathname.split('/').slice(-2).join('/');
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch (e) { saved = {}; }
+    boxes.forEach(function (b, i) {
+      if (saved[i]) b.checked = true;
+      b.addEventListener('change', function () {
+        saved[i] = b.checked;
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) { /* 忽略隐私模式等 */ }
+      });
+    });
+  }
+
+  /* 4b. 每节折叠（默认展开，状态存本机） */
+  function setupSectionFold() {
+    var secs = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+    if (!secs.length) return;
+    var KEY = 'kaoyan-fold:' + location.pathname;
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+
+    var st = document.createElement('style');
+    st.textContent =
+      '.sec-fold{margin-left:10px;border:1px solid var(--line-2,#c8d2dd);background:var(--surface,#fff);' +
+      'color:var(--ink-2,#40506a);border-radius:6px;font-size:12px;line-height:1;padding:4px 8px;' +
+      'cursor:pointer;font-family:inherit;vertical-align:middle;}' +
+      '.sec-fold:hover{border-color:#2f6fb3;color:#17548a;}' +
+      'main section.sec-collapsed>*:not(h2){display:none !important;}' +
+      'main section.sec-collapsed h2{margin-bottom:0;}' +
+      '.fold-all{display:inline-block;margin-top:8px;border:1px solid var(--line-2,#c8d2dd);' +
+      'background:var(--surface,#fff);color:var(--ink-2,#40506a);border-radius:6px;font-size:12px;' +
+      'padding:4px 10px;cursor:pointer;font-family:inherit;}';
+    document.head.appendChild(st);
+
+    function apply(sec, collapsed) {
+      sec.classList.toggle('sec-collapsed', collapsed);
+      var b = sec.querySelector('.sec-fold');
+      if (b) { b.textContent = collapsed ? '+' : '−'; b.title = collapsed ? '展开本节' : '折叠本节'; }
+      saved[sec.id] = collapsed;
+    }
+    function persist() { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} }
+
+    secs.forEach(function (sec) {
+      var h2 = sec.querySelector('h2');
+      if (!h2) return;
+      var btn = document.createElement('button');
+      btn.className = 'sec-fold';
+      btn.type = 'button';
+      btn.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        apply(sec, !sec.classList.contains('sec-collapsed'));
+        persist();
+      });
+      h2.appendChild(btn);
+      if (saved[sec.id]) apply(sec, true);
+    });
+
+    var foot = document.querySelector('.sb-foot');
+    if (!foot) return;
+    var all = document.createElement('button');
+    all.className = 'fold-all';
+    all.type = 'button';
+    all.textContent = '全部折叠';
+    all.addEventListener('click', function () {
+      var anyOpen = secs.some(function (s) { return !s.classList.contains('sec-collapsed'); });
+      secs.forEach(function (s) { apply(s, anyOpen); });
+      all.textContent = anyOpen ? '全部展开' : '全部折叠';
+      persist();
+    });
+    foot.appendChild(all);
+  }
+
+  /* 5. 移动端目录开关 */
+  function setupToggle() {
+    var btn = document.getElementById('tocToggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      document.body.classList.toggle('toc-open');
+    });
+    document.addEventListener('click', function (e) {
+      if (document.body.classList.contains('toc-open') &&
+          !e.target.closest('.sidebar') && !e.target.closest('#tocToggle')) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    renderMath();
+    setupToc();
+    setupChecklist();
+    setupToggle();
+    setupSectionFold();
+    // 通知批注模块：数学渲染已完成（批注锚点必须以渲染后的文本为基准）
+    window.__guideMathRendered = true;
+    try { window.dispatchEvent(new CustomEvent('guide:math-rendered')); } catch (e) { /* 忽略 */ }
+    loadAnnotate();
+  });
+
+  /* 5. 动态加载批注增强模块（可选功能；加载失败不影响页面其他功能） */
+  function loadAnnotate() {
+    if (window.__kaoyanAnnotateRequested) return;
+    window.__kaoyanAnnotateRequested = true;
+    if (!SELF_SRC) return;
+    try {
+      var base = SELF_SRC.replace(/guide\.js(\?.*)?$/, '');
+      var core = document.createElement('script');
+      core.src = base + 'annotate-core.js';
+      core.onload = function () {
+        var ann = document.createElement('script');
+        ann.src = base + 'annotate.js';
+        ann.onerror = function () { console.warn('[guide] annotate.js 加载失败'); };
+        document.body.appendChild(ann);
+      };
+      core.onerror = function () { console.warn('[guide] annotate-core.js 加载失败'); };
+      document.body.appendChild(core);
+    } catch (e) { /* 静默 */ }
+  }
+})();
