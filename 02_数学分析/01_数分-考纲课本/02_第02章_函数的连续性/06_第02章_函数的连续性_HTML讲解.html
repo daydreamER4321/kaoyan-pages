@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -119,7 +120,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <ul><li>函数是一类特殊的映射：如果对映射 $f\colon X\to Y$，$X$ 与 $Y$ 都由实数组成，则 $f$ 称为一个函数；精确地说，$f$ 是<b>单变量函数</b>——从实数到实数的映射。它是本课程最基本、最主要的研究对象。</li><li>2.1 节中所有关于映射的定义和证明过的性质，对函数全都适用。函数也有两个要素：第一是定义域；第二是对应规律。</li></ul>
 <h3>2.3.2 例1～例5：函数的表示法与定义域</h3>
 <p class="pgref"><b>课本：10</b></p>
-<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>要点</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>表格给出的函数：10 种产品的价格表</td><td>没有“公式”但完全符合函数定义，定义域 $\{1,\cdots,10\}$；列表法定义函数在日常生活中常见</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>$f(x)=\sqrt{\frac{1+x}{1-x}}$</td><td>定义域未写明时，理解为使表达式有意义的一切 $x$：此处为 $[-1,1)$</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>图形给出的函数：某日正午12时到下午6时的气温曲线（图2.1）</td><td>定义域 $[12,18]$；读图准确与否是技术问题而非理论问题</td></tr><tr><td>例4 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=81\</td><td>p11)</td><td>行李收费：$0.50x\ (0\le x\le50)$；$0.50\times50+0.75(x-50)\ (x>50)$</td><td>两个公式联合表示<b>一个</b>函数——分段函数；切勿“张冠李戴”</td></tr><tr><td>例5 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=81\</td><td>p11)</td><td>$f(x)=\sqrt{1-x^2}\ (-1\le x\le1)$ 与 $g(x)=\ln x\ (x>0)$</td><td>$f\pm g$、$fg$ 的定义域为 $(0,1]$；$f/g$ 的定义域是 $(0,1)$</td></tr></tbody></table></div>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>要点</th></tr></thead><tbody><tr><td>例1 (p10)</td><td>表格给出的函数：10 种产品的价格表</td><td>没有“公式”但完全符合函数定义，定义域 $\{1,\cdots,10\}$；列表法定义函数在日常生活中常见</td></tr><tr><td>例2 (p10)</td><td>$f(x)=\sqrt{\frac{1+x}{1-x}}$</td><td>定义域未写明时，理解为使表达式有意义的一切 $x$：此处为 $[-1,1)$</td></tr><tr><td>例3 (p10)</td><td>图形给出的函数：某日正午12时到下午6时的气温曲线（图2.1）</td><td>定义域 $[12,18]$；读图准确与否是技术问题而非理论问题</td></tr><tr><td>例4 (p11)</td><td>行李收费：$0.50x\ (0\le x\le50)$；$0.50\times50+0.75(x-50)\ (x>50)$</td><td>两个公式联合表示<b>一个</b>函数——分段函数；切勿“张冠李戴”</td></tr><tr><td>例5 (p11)</td><td>$f(x)=\sqrt{1-x^2}\ (-1\le x\le1)$ 与 $g(x)=\ln x\ (x>0)$</td><td>$f\pm g$、$fg$ 的定义域为 $(0,1]$；$f/g$ 的定义域是 $(0,1)$</td></tr></tbody></table></div>
 <h3>2.3.3 函数的四则运算（叙述式，无编号）</h3>
 <p class="pgref"><b>课本：p.9-14</b></p>
 <p>设 $f,g$ 的定义域分别为 $A,B$，则在 $A\cap B$ 上：</p>
@@ -156,7 +157,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <ol><li>讨论 $f$ 在点 $x_0$ 的极限时，$f$ 在 $x_0$ 是否有定义并不重要，因为不等式 $0&lt;|x-x_0|$ 已排除 $x=x_0$；</li><li>一般情形下 $\delta$ 与 $\varepsilon$ 有关系，有时写为 $\delta(\varepsilon)$ 以强调依赖关系，但这不意味着 $\delta$ 是 $\varepsilon$ 的函数；</li><li>$f$ 在 $x_0$ 是否有极限、极限值等于多少，只取决于 $f$ 在点 $x_0$ 的充分小的近旁的状态，而与 $f$ 在远处的值无关。</li></ol>
 <h3>2.4.3 例1～例3（ε-δ 方法演示）</h3>
 <p class="pgref"><b>课本：15</b></p>
-<div class="tbl"><table><thead><tr><th>例</th><th>结论</th><th>方法要点</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=85\</td><td>p15)</td><td>$\lim\limits_{x\to0}x\sin\frac1x=0$</td><td>取 $\delta=\varepsilon$，用 $\big\</td><td>x\sin\frac1x\big\</td><td>\le\</td><td>x\</td><td>$</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=85\</td><td>p15)</td><td>$\lim\limits_{x\to3}(x^2-4x+4)=1$</td><td>写成 $(x-3)^2+2(x-3)+1$；取 $\delta=\min(1,\varepsilon/3)$</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=86\</td><td>p16)</td><td>$\lim\limits_{x\to1}\frac{x^2-1}{x^2-x}=2$</td><td>消去公因式 $x-1$；先证 $\</td><td>x\</td><td>&gt;\frac12$ 再估计，取 $\delta=\varepsilon/2$</td></tr></tbody></table></div>
+<div class="tbl"><table><thead><tr><th>例</th><th>结论</th><th>方法要点</th></tr></thead><tbody><tr><td>例1 (p15)</td><td>$\lim\limits_{x\to0}x\sin\frac1x=0$</td><td>取 $\delta=\varepsilon$，用 $\big|x\sin\frac1x\big|\le|x|$</td></tr><tr><td>例2 (p15)</td><td>$\lim\limits_{x\to3}(x^2-4x+4)=1$</td><td>写成 $(x-3)^2+2(x-3)+1$；取 $\delta=\min(1,\varepsilon/3)$</td></tr><tr><td>例3 (p16)</td><td>$\lim\limits_{x\to1}\frac{x^2-1}{x^2-x}=2$</td><td>消去公因式 $x-1$；先证 $|x|>\frac12$ 再估计，取 $\delta=\varepsilon/2$</td></tr></tbody></table></div>
 <p>课本说明：依据定义用 ε-δ 语言证明或计算极限，多做练习是十分必要的，熟练运用常是一个难点；但这并不是说每一个极限都得用“精确语言”，掌握极限运算的一些性质将使计算大为简化。（例2 的解法对计算多项式的极限具有普遍意义。）</p>
 <h3>2.4.4 定理2.4.1：函数极限与数列极限的关系</h3>
 <p class="pgref"><b>课本：16</b></p>
@@ -643,7 +644,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <hr>
 <h3>习题与补充题位置</h3>
 <p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 N.N</b>（基本）与<b>问题 N.N</b>（提高）。习题块页码由相邻正文锚点推定。</p>
-<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§2.1</td><td>练习题2.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=74</td><td>p.4-5（共 5 题）</td><td>—</td></tr><tr><td>§2.2</td><td>练习题2.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=78</td><td>p.8-9（共 6 题）</td><td>—</td></tr><tr><td>§2.3</td><td>练习题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=83</td><td>p.13-14（共 11 题）</td><td>问题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=84</td><td>p.14（共 2 题）</td></tr><tr><td>§2.4</td><td>练习题2.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=94\</td><td>p.24-25（共 16 题）</td><td>—</td></tr><tr><td>§2.5</td><td>练习题2.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=99\</td><td>p.29（共 10 题）</td><td>问题2.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=99\</td><td>p.29（共 4 题）</td></tr><tr><td>§2.6</td><td>练习题2.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=104\</td><td>p.34-35（共 3 题）</td><td>问题2.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=105\</td><td>p.35（共 2 题）</td></tr><tr><td>§2.7</td><td>练习题2.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=112\</td><td>p.42-43（共 10 题）</td><td>问题2.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=113\</td><td>p.43（共 7 题）</td></tr><tr><td>§2.8</td><td>练习题2.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=117\</td><td>p.47-48（共 4 题）</td><td>—</td></tr><tr><td>§2.9</td><td>练习题2.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=121\</td><td>p.51-52（共 3 题）</td><td>问题2.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=122\</td><td>p.52（共 2 题）</td></tr><tr><td>§2.10</td><td>练习题2.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=126\</td><td>p.56-57（共 12 题）</td><td>问题2.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=127\</td><td>p.57（共 4 题）</td></tr><tr><td>§2.11</td><td>练习题2.11：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=129\</td><td>p.59-60（共 3 题）</td><td>—</td></tr><tr><td>§2.12</td><td>练习题2.12：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=136\</td><td>p.66-67（共 4 题）</td><td>—</td></tr></tbody></table></div>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§2.1</td><td>练习题2.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=74</td><td>p.4-5（共 5 题）</td><td>—</td></tr><tr><td>§2.2</td><td>练习题2.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=78</td><td>p.8-9（共 6 题）</td><td>—</td></tr><tr><td>§2.3</td><td>练习题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=83</td><td>p.13-14（共 11 题）</td><td>问题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=84</td><td>p.14（共 2 题）</td></tr><tr><td>§2.4</td><td>练习题2.4：p.24-25（共 16 题）</td><td>—</td></tr><tr><td>§2.5</td><td>练习题2.5：p.29（共 10 题）</td><td>问题2.5：p.29（共 4 题）</td></tr><tr><td>§2.6</td><td>练习题2.6：p.34-35（共 3 题）</td><td>问题2.6：p.35（共 2 题）</td></tr><tr><td>§2.7</td><td>练习题2.7：p.42-43（共 10 题）</td><td>问题2.7：p.43（共 7 题）</td></tr><tr><td>§2.8</td><td>练习题2.8：p.47-48（共 4 题）</td><td>—</td></tr><tr><td>§2.9</td><td>练习题2.9：p.51-52（共 3 题）</td><td>问题2.9：p.52（共 2 题）</td></tr><tr><td>§2.10</td><td>练习题2.10：p.56-57（共 12 题）</td><td>问题2.10：p.57（共 4 题）</td></tr><tr><td>§2.11</td><td>练习题2.11：p.59-60（共 3 题）</td><td>—</td></tr><tr><td>§2.12</td><td>练习题2.12：p.66-67（共 4 题）</td><td>—</td></tr></tbody></table></div>
 <p>&gt; 注：§2.1、§2.2、§2.4、§2.8、§2.11、§2.12 无问题档。题数为课本显式编号计数。</p>
 <hr>
 <h3>全章正文顺序索引</h3>
@@ -696,6 +697,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>108</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§2.1 集合的映射</h3>
 <h4>练习题 2.1（5 题）</h4>
 <ol class="ex-list">
@@ -878,6 +880,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第02章_函数的连续性_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第04章 Taylor 定理 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第04章<br>Taylor 定理</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec4_1">§4.1 函数的微分</a>
+    <a href="#sec4_2">§4.2 带 Peano 余项的 Taylor 定理</a>
+    <a href="#sec4_3">§4.3 带 Lagrange 余项和 Cauchy 余项的 Taylor 定理</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第04章 Taylor 定理</h1>
+    <p class="hero-sub">§4.1 函数的微分 · §4.2 带 Peano 余项的 Taylor 定理 · §4.3 带 Lagrange 余项和 Cauchy 余项的 Taylor 定理</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec4_1">§4.1 函数的微分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p><b>章引言（p.1，叙述式）</b>：课本指出 Lagrange 中值定理是第3章最重要的定理，本章把它进一步推广，得出 Taylor（泰勒，1685～1731）定理；凡是用一元微分学定理、技巧能解决的问题，大部分都可用 Taylor 定理解决——"Taylor 定理是一元微分学的顶峰"并不过分。</p>
+<h3>4.1.1 引入：从可导的定义出发（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>设函数 $f:(a,b)\to\mathbb{R}$。回顾 $f$ 在点 $x_0\in(a,b)$ 处可导的定义，即极限</p>
+<div class="formula">$$\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}$$</div>
+<p>存在，记为 $f'(x_0)$。由此推知差商减去导数当 $\Delta x\to0$ 时是一个无穷小，或者说</p>
+<div class="formula">$$f(x_0+\Delta x)-f(x_0)=f'(x_0)\Delta x+o(\Delta x).\tag{1}$$</div>
+<p>左式是函数在点 $x_0$ 处的一个改变量；右边第一项是 $\Delta x$ 的齐次线性函数，第二项是比 $\Delta x$ 高阶的无穷小。当 $f'(x_0)\ne0$ 时，第一项是与 $\Delta x$ 同阶的无穷小，与第二项相比占有更重的分量、起主要作用。</p>
+<h3>4.1.2 定义4.1.1：可微与微分</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>设函数 $f$ 在 $(a,b)$ 上有定义，且 $x_0\in(a,b)$。如果存在一个常数 $\lambda$，使得</p>
+<div class="formula">$$f(x_0+\Delta x)-f(x_0)=\lambda\Delta x+o(\Delta x)\quad(\Delta x\to0),\tag{2}$$</div>
+<p>则称函数 $f$ 在点 $x_0$ 处<b>可微</b>。函数的改变量的线性主要部分 $\lambda\Delta x$ 称为 $f$ 在 $x_0$ 处的<b>微分</b>，记为 $\mathrm{d}f(x_0)$。</p>
+<p><b>可导 ⟺ 可微</b>：</p>
+<ul><li>可导 ⟹ 可微：式(1)即式(2)，$\lambda=f'(x_0)$；</li><li>可微 ⟹ 可导：用 $\Delta x$ 同除式(2)两边得 $\lambda+o(1)$，令 $\Delta x\to0$ 得</li></ul>
+<div class="formula">$$\lambda=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=f'(x_0).$$</div>
+<p>课本结论：对单变量函数来说，<b>可导和可微是同一件事</b>；且系数 $\lambda$ 只能是 $f'(x_0)$：</p>
+<div class="formula">$$\mathrm{d}f(x_0)=f'(x_0)\Delta x.\tag{3}$$</div>
+<p>对特殊函数 $f(x)=x$ 有 $\mathrm{d}x=(x)'\Delta x=\Delta x$，即自变量的改变量等于自身的微分。于是式(3)可改写为</p>
+<div class="formula">$$\mathrm{d}f(x)=f'(x)\mathrm{d}x.\tag{4}$$</div>
+<p>&gt; 课本注明：公式(3)右边出现 $\Delta x$ 而左边没有，不尽如人意，但实际操作中不会造成混乱（如用 $h$ 表示自变量改变量时就写成 $\mathrm{d}f(x_0)=f'(x_0)h$）。说"$f$ 在点 $x_0$ 处可微"，往往是为了突出 $f$ 具有式(1)所表达的性质。</p>
+<h3>4.1.3 微分的几何意义（图4.1）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>作曲线 $y=f(x)$ 及其在 $(x_0,f(x_0))$ 处的切线，记</p>
+<ul><li>$P_0=(x_0,f(x_0))$：曲线上固定的点；</li><li>$P=(x_0+\Delta x,f(x_0+\Delta x))$：曲线上邻近的点；</li><li>$Q=(x_0+\Delta x,f(x_0))$；</li><li>$T=(x_0+\Delta x,f(x_0)+f'(x_0)\Delta x)$：切线与直线 $x=x_0+\Delta x$ 的交点。</li></ul>
+<p>由此可知</p>
+<div class="formula">$$\overline{QT}=f'(x_0)\Delta x=\mathrm{d}f(x_0),$$</div>
+<p>这里 $\overline{QT}$ 是带符号的线段——<b>函数在一点处的微分，等于它在该点处"切线函数"的改变量</b>。此外</p>
+<div class="formula">$$\overline{TP}=\Delta f(x_0)-\mathrm{d}f(x_0),$$</div>
+<p>它是函数改变量与微分之差；当 $\Delta x\to0$ 时 $\overline{TP}$ 是比 $\Delta x=\overline{P_0Q}$ 更高阶的无穷小。</p>
+<h3>4.1.4 微分的三个事实（课本总结，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<ol><li>微分是 $\Delta x$ 的一个齐次线性函数，系数为 $f'(x_0)$，定义域是整个实数（$\Delta x\in(-\infty,+\infty)$）；</li><li>当 $\Delta x\to0$ 时，微分与函数改变量的差别仅是比 $\Delta x$ 高阶的无穷小；</li><li>微分的几何意义是该点的切线函数的改变量。</li></ol>
+<h3>4.1.5 另一种写法与近似公式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>把自变量的改变量直接写成 $x-x_0$，式(1)成为</p>
+<div class="formula">$$f(x)=f(x_0)+f'(x_0)(x-x_0)+o(x-x_0)\quad(x\to x_0).\tag{5}$$</div>
+<p>这个式子也可以作为 $f$ 在 $x_0$ 处可微的定义。由事实(2)得数值应用：当 $|x-x_0|$ 相当小时，</p>
+<div class="formula">$$f(x)\approx f(x_0)+f'(x_0)(x-x_0),\tag{6}$$</div>
+<p>即在点 $(x_0,f(x_0))$ 的近旁，曲线 $y=f(x)$ 可以用该点的切线（直线）来代替。</p>
+<h3>4.1.6 例1、例2（微分近似计算演示）</h3>
+<p class="pgref"><b>课本：4</b></p>
+<ul><li><b>例1</b>（p.4）：对 $f(r)=\pi r^2$，半径从 $r$ 变到 $r+h$ 时圆面积改变量</li></ul>
+<div class="formula">$$f(r+h)-f(r)=2\pi rh+\pi h^2.\tag{7}$$</div>
+<p>几何意义是圆环的面积（图4.2）：第一项可解释为长 $2\pi r$（内圆周长）、宽 $h$ 的矩形面积，$h$ 很小时矩形面积可近似代替圆环面积，最后一项用来估计误差。课本注明：上例是简单函数（二次多项式），误差可以精确表达；一般情形在此阶段逼近误差还难于估计。</p>
+<ul><li><b>例2</b>（p.4）：先把角度化成弧度（$30°=\pi/6$，$5'\approx0.0014544$ 弧度），用式(6)：</li></ul>
+<div class="formula">$$\sin30°5'\approx\sin\frac{\pi}{6}+0.0014544\cos\frac{\pi}{6}=\frac12+\frac{\sqrt3}{2}\times0.0014544=0.5012595\cdots$$</div>
+<p>计算器结果为 $0.5012591\cdots$，差别发生在小数点后第七位。</p>
+<p>&gt; 课本注明：这种近似方法还相当粗略——"多小才算很小"没有标准，误差也没有可靠的控制。这些问题到 4.3 节将得到解答。</p>
+<h3>4.1.7 例3、例4（求微分）</h3>
+<p class="pgref"><b>课本：5</b></p>
+<ul><li><b>例3</b>（p.5）：$\mathrm{d}x^5=(x^5)'\mathrm{d}x=5x^4\mathrm{d}x$。</li><li><b>例4</b>（p.5）：$\mathrm{de}^{(x^2-1/x)}=\bigl(x^2-\frac1x\bigr)'\mathrm{e}^{(x^2-1/x)}\mathrm{d}x=\Bigl(2x+\frac{1}{x^2}\Bigr)\mathrm{e}^{(x^2-1/x)}\mathrm{d}x$。</li></ul>
+<h3>4.1.8 微分四则运算法则（无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>关于函数四则运算的微分法则：</p>
+<ol><li>$\mathrm{d}(f\pm g)=\mathrm{d}f\pm\mathrm{d}g$；</li><li>$\mathrm{d}(fg)=g\,\mathrm{d}f+f\,\mathrm{d}g$；</li><li>$\mathrm{d}\Bigl(\dfrac fg\Bigr)=\dfrac{g\,\mathrm{d}f-f\,\mathrm{d}g}{g^2}$（其中 $g\ne0$）。</li></ol>
+<p>课本只证(3)：$\mathrm{d}\bigl(\frac fg\bigr)=\bigl(\frac fg\bigr)'\mathrm{d}x=\frac{gf'-fg'}{g^2}\mathrm{d}x=\frac{g f'\mathrm{d}x-f g'\mathrm{d}x}{g^2}=\frac{g\,\mathrm{d}f-f\,\mathrm{d}g}{g^2}$。</p>
+<p>若 $c$ 为常数，显然 $\mathrm{d}c=0$；由法则(2)得 $\mathrm{d}(cf)=c\,\mathrm{d}f$，即常数因子可提到微分运算符号之外。</p>
+<h3>4.1.9 导数的 Leibniz 记号与微商（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>在公式(4)两边除以 $\mathrm{d}x$ 得 $\frac{\mathrm{d}f(x)}{\mathrm{d}x}=f'(x)$，即导函数可用 $\frac{\mathrm{d}f}{\mathrm{d}x}$ 表示——这是导数的 <b>Leibniz 记号</b>。由于 $\frac{\mathrm{d}f}{\mathrm{d}x}$ 是函数的微分与自变量的微分的商，导数也称为<b>微商</b>。此后两种名词经常混用而无须特别说明。</p>
+<h3>4.1.10 高阶微分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>设 $y=f(x)$ 可微，则 $\mathrm{d}y=f'(x)\mathrm{d}x$ 仍是 $x$ 的函数；若 $f'(x)$ 仍可微，定义二阶微分 $\mathrm{d}^2y=\mathrm{d}(\mathrm{d}y)$：</p>
+<div class="formula">$$\mathrm{d}^2y=\mathrm{d}(\mathrm{d}y)=\mathrm{d}(f'(x)\mathrm{d}x)=(f''(x)\mathrm{d}x)\mathrm{d}x=f''(x)\mathrm{d}x^2,$$</div>
+<p>&gt; 课本注明：这里 $\mathrm{d}x^2=(\mathrm{d}x)^2$，而不是 $\mathrm{d}x^2=\mathrm{d}(x^2)=2x\,\mathrm{d}x$。</p>
+<p>同理三阶微分 $\mathrm{d}^3y=\mathrm{d}(\mathrm{d}^2y)=f'''(x)\mathrm{d}x^3$。一般地，若 $f$ 在 $x$ 处有 $n$ 阶导数，则</p>
+<div class="formula">$$\mathrm{d}^ny=f^{(n)}(x)\mathrm{d}x^n,\qquad \frac{\mathrm{d}^ny}{\mathrm{d}x^n}=f^{(n)}(x)\quad(n=1,2,\cdots).$$</div>
+<h3>4.1.11 一阶微分形式的不变性（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>设 $y=f(x)$ 且 $x=\varphi(t)$（当 $t$ 在 $\varphi$ 的定义域中变化时，$\varphi(t)$ 的值不超过 $f$ 的定义域），复合函数 $y=f\circ\varphi(t)$ 以 $t$ 为自变量：</p>
+<div class="formula">$$\mathrm{d}y=(f\circ\varphi)'(t)\mathrm{d}t=f'(x)\varphi'(t)\mathrm{d}t.$$</div>
+<p>又 $\mathrm{d}x=\varphi'(t)\mathrm{d}t$，代入得</p>
+<div class="formula">$$\mathrm{d}y=f'(x)\mathrm{d}x.\tag{8}$$</div>
+<p>无论 $x$ 是独立的自变量还是中间变量，公式(8)都正确——这称为<b>一阶微分形式的不变性</b>。</p>
+<h3>4.1.12 高阶微分不具有形式不变性（课本反例，叙述式）</h3>
+<p class="pgref"><b>课本：p.1-6</b></p>
+<p>对高阶微分这种不变性是否还成立？答案是否定的。课本反例：$y=\mathrm{e}^x$，$x=t^3$，复合函数 $y=\mathrm{e}^{t^3}$，$\mathrm{d}y=3t^2\mathrm{e}^{t^3}\mathrm{d}t$，</p>
+<div class="formula">$$\mathrm{d}^2y=(6t+9t^4)\mathrm{e}^{t^3}\mathrm{d}t^2,\tag{9}$$</div>
+<p>而</p>
+<div class="formula">$$\mathrm{e}^x\mathrm{d}x^2=9t^4\mathrm{e}^{t^3}\mathrm{d}t^2.\tag{10}$$</div>
+<p>显然 $\mathrm{d}^2y\ne\mathrm{e}^x\mathrm{d}x^2$：式(10)比式(9)少了一项 $6t\,\mathrm{e}^{t^3}\mathrm{d}t^2$。</p>
+<p>一般地，设 $y=f(x)$，$x=\varphi(t)$：由一阶微分形式不变性 $\mathrm{d}y=f'(x)\mathrm{d}x$，此时 $x$ 与 $\mathrm{d}x$ 都是 $t$ 的函数，再求微分得</p>
+<div class="formula">$$\mathrm{d}^2y=f''(x)\mathrm{d}x^2+f'(x)\mathrm{d}^2x,$$</div>
+<p>比 $x$ 为自变量的情形多了 $f'(x)\mathrm{d}^2x$ 这一项，因而<b>高阶微分不具有形式不变性</b>。</p>
+<h2 id="sec4_2">§4.2 带 Peano 余项的 Taylor 定理<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.7-16</b></p>
+<h3>4.2.1 引入：二次逼近问题与 A、B、C 的确定（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.7-16</b></p>
+<p>若 $f$ 在 $x_0$ 处可微便有上一节公式(5)。若实际需要计较到 $x-x_0$ 的二阶无穷小，该公式就没有任何意义。于是提出问题：在 $f''(x_0)$ 存在的条件下，$f(x)$ 能否用 $x-x_0$ 的一个二次多项式近似，使误差当 $x\to x_0$ 时是比 $(x-x_0)^2$ 高阶的无穷小？即要求</p>
+<div class="formula">$$f(x)=A+B(x-x_0)+C(x-x_0)^2+o((x-x_0)^2)\quad(x\to x_0),\tag{1}$$</div>
+<p><b>确定常数</b>（课本推导路线）：</p>
+<ol><li>令 $x\to x_0$，得 $A=\lim\limits_{x\to x_0}f(x)=f(x_0)$；</li><li>除以 $x-x_0$ 后令 $x\to x_0$，由可导性得 $B=f'(x_0)$；</li><li>对 $C=\lim\limits_{x\to x_0}\frac{f(x)-f(x_0)-f'(x_0)(x-x_0)}{(x-x_0)^2}$ 右边用一次 L'Hospital 法则，再利用 $f''(x_0)$ 存在，得 $C=\frac12 f''(x_0)$。</li></ol>
+<p>因此只有唯一的二次多项式</p>
+<div class="formula">$$f(x_0)+f'(x_0)(x-x_0)+\frac12 f''(x_0)(x-x_0)^2\tag{2}$$</div>
+<p>才可能满足要求；再用一次 L'Hospital 法则验证它确实满足式(1)（极限为 0）。课本指出：再继续下去，不会有任何本质的困难。</p>
+<h3>4.2.2 定义4.2.1：n 次 Taylor 多项式</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设函数 $f$ 在点 $x_0$ 处有直到 $n$ 阶的导数（$n$ 为任意给定的正整数）。令</p>
+<div class="formula">$$T_n(f,x_0;x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0)+\frac{1}{2!}f''(x_0)(x-x_0)^2+\cdots+\frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n,$$</div>
+<p>称它为 $f$ 在 $x_0$ 处的 <b>$n$ 次 Taylor 多项式</b>。</p>
+<h3>4.2.3 定理4.2.1：带 Peano 余项的 Taylor 定理</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设函数 $f$ 在点 $x_0$ 处有直到 $n$ 阶的导数，则有</p>
+<div class="formula">$$f(x)=T_n(f,x_0;x)+o((x-x_0)^n)\quad(x\to x_0).\tag{3}$$</div>
+<h4>课本证明路线</h4>
+<p>数学归纳法：</p>
+<ol><li>$n=1$ 时即上一节的公式(5)，成立；</li><li>设 $n=k$ 时成立。注意恒等式 $T'_{k+1}(f,x_0;x)=T_k(f',x_0;x)$；</li><li>用一次 L'Hospital 法则并结合归纳假定：</li></ol>
+<div class="formula">$$\lim_{x\to x_0}\frac{f(x)-T_{k+1}(f,x_0;x)}{(x-x_0)^{k+1}}=\frac{1}{k+1}\lim_{x\to x_0}\frac{f'(x)-T_k(f',x_0;x)}{(x-x_0)^k}=0;$$</div>
+<ol><li>故 $n=k+1$ 时也成立。</li></ol>
+<h4>余项与 Peano 余项（课本命名）</h4>
+<div class="formula">$$R_n(x)=f(x)-T_n(f,x_0;x)\quad(n=1,2,\cdots)$$</div>
+<p>称为<b>余项</b>。当前对余项 $R_n$ 只有定性的刻画：</p>
+<div class="formula">$$\lim_{x\to x_0}\frac{R_n(x)}{(x-x_0)^n}=0.$$</div>
+<p>这种余项称为 <b>Peano 余项</b>（佩亚诺，1852~1932）。把公式(3)明确写出即</p>
+<div class="formula">$$f(x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0)+\cdots+\frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n+o((x-x_0)^n)\quad(x\to x_0).$$</div>
+<p>&gt; 课本注明（公式的意义）：右端除最后一项外是不超过 $n$ 次的多项式；第一项是常数，第二、三……项依次是 $x-x_0$ 的一阶、二阶……无穷小——各项按照层次以及数值上的重要性从重要到次重要依次摆出；在点 $x_0$ 的近旁，一个很复杂的函数可以用多项式来近似地代替，余项比起前面那些项的总和已微不足道。因此定理4.2.1 是研究函数在一点近旁性态的有力工具。</p>
+<h3>4.2.4 Maclaurin 多项式与 Maclaurin 展开式</h3>
+<p class="pgref"><b>课本：p.7-16</b></p>
+<p>称多项式</p>
+<div class="formula">$$T_n(f,0;x)=f(0)+\frac{f'(0)}{1!}x+\frac{f''(0)}{2!}x^2+\cdots+\frac{f^{(n)}(0)}{n!}x^n$$</div>
+<p>为 $f$ 的 <b>$n$ 次 Maclaurin 多项式</b>（麦克劳林，1698~1746）。相应地，</p>
+<div class="formula">$$f(x)=T_n(f,0;x)+o(x^n)\tag{4}$$</div>
+<p>称为带 Peano 余项的 Maclaurin 定理。公式(3)或(4)通常也叫作函数 $f$ 的 Taylor 展开式或 Maclaurin 展开式。</p>
+<h3>4.2.5 例1～例6：六个基本 Maclaurin 展开式（★课本明示要熟记）</h3>
+<p class="pgref"><b>课本：10</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>展开式（$x\to0$）</th><th>证明要点</th></tr></thead><tbody><tr><td>例1</td><td>$\mathrm{e}^x=1+x+\dfrac{x^2}{2!}+\cdots+\dfrac{x^n}{n!}+o(x^n)$</td><td>$(\mathrm{e}^x)^{(k)}=\mathrm{e}^x$，各阶导数在 $0$ 处取值 $1$</td></tr><tr><td>例2</td><td>$\sin x=x-\dfrac{x^3}{3!}+\dfrac{x^5}{5!}-\cdots+(-1)^{n-1}\dfrac{x^{2n-1}}{(2n-1)!}+o(x^{2n})$</td><td>$f^{(k)}(x)=\sin\bigl(x+\frac{k\pi}{2}\bigr)$：偶阶导数在 $0$ 全为 $0$，$f^{(2k+1)}(0)=(-1)^k$</td></tr><tr><td>例3</td><td>$\cos x=1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}-\cdots+(-1)^n\dfrac{x^{2n}}{(2n)!}+o(x^{2n+1})$</td><td>与例2 类似</td></tr><tr><td>例4</td><td>$\ln(1+x)=x-\dfrac{x^2}{2}+\dfrac{x^3}{3}-\cdots+(-1)^{n-1}\dfrac{x^n}{n}+o(x^n)$</td><td>归纳得 $f^{(k)}(x)=\frac{(-1)^{k-1}(k-1)!}{(1+x)^k}$，$f^{(k)}(0)=(-1)^{k-1}(k-1)!$</td></tr><tr><td>例5</td><td>$(1+x)^\lambda=1+\lambda x+\dfrac{\lambda(\lambda-1)}{2!}x^2+\cdots+\dfrac{\lambda(\lambda-1)\cdots(\lambda-n+1)}{n!}x^n+o(x^n)$</td><td>直接计算各阶导数；规定广义二项式系数 $\binom{\lambda}{k}=\frac{\lambda(\lambda-1)\cdots(\lambda-k+1)}{k!}$、$\binom{\lambda}{0}=1$，即 $(1+x)^\lambda=\sum_{k=0}^n\binom{\lambda}{k}x^k+o(x^n)$</td></tr><tr><td>例6</td><td>$\arctan x=x-\dfrac{x^3}{3}+\dfrac{x^5}{5}-\cdots+(-1)^n\dfrac{x^{2n+1}}{2n+1}+o(x^{2n+2})$</td><td>见下方证明路线</td></tr></tbody></table></div>
+<p><b>例6 证明路线</b>（Leibniz 公式技巧）：</p>
+<ol><li>$f$ 在 $0$ 处有任意阶导数，由定理4.2.1 写出 $\arctan x=\sum_{k=0}^{2n+1}\frac{f^{(k)}(0)}{k!}x^k+o(x^{2n+1})$；问题是如何简便地算出 $f^{(k)}(0)$；</li><li>由 $f(x)=\arctan x$ 得 $f(0)=0$；由 $f'(x)=\frac{1}{1+x^2}$ 得 $f'(0)=1$；</li><li>在恒等式 $(1+x^2)f'(x)=1$ 两边对 $x$ 求 $n$ 阶导数，用 Leibniz 公式：</li></ol>
+<div class="formula">$$(1+x^2)f^{(n+1)}(x)+2nxf^{(n)}(x)+n(n-1)f^{(n-1)}(x)=0;\tag{6}$$</div>
+<ol><li>代入 $x=0$ 得递推式</li></ol>
+<div class="formula">$$f^{(n+1)}(0)=-(n-1)n f^{(n-1)}(0);\tag{7}$$</div>
+<ol><li>解出 $f^{(n)}(0)=0$（当 $n$ 为偶数），$f^{(n)}(0)=(-1)^k(2k)!$（当 $n=2k+1$；$k=0,1,2,\cdots$），代回即得展开式。</li></ol>
+<p>&gt; 课本注明：利用同样的技巧可以算出 $\arcsin x$ 的 Maclaurin 展开式，请读者当作一个习题来做。以上几个 Maclaurin 展开式的系数规律性很强、便于记忆，为了应用，<b>熟记它们是很有好处的</b>。</p>
+<h3>4.2.6 Peano 余项的局限与两项应用（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.7-16</b></p>
+<p>对函数值的近似计算来说，在公式(3)中取 $n=2,3$ 可望获得比用微分更精确的结果；但同样的缺点存在：对余项 $R_n(x)$ 没有定量的估计，只有定性的了解——当 $x\to x_0$ 时它是比 $(x-x_0)^n$ 高阶的无穷小。即使这样，带 Peano 余项的 Taylor 公式也已呈现重要的作用。课本列出它的两项应用：<b>第一是求极限，第二是彻底地讨论函数的极大、极小问题</b>。</p>
+<h3>4.2.7 例7～例10：用 Taylor 展开求极限</h3>
+<p class="pgref"><b>课本：12</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>极限</th><th>结果</th><th>方法</th></tr></thead><tbody><tr><td>例7 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=211</td><td>p12)</td><td>$\lim\limits_{x\to0}\dfrac{\mathrm{e}^x\sin x-x(1+x)}{\sin^3x}$</td><td>$\dfrac13$</td><td>等价无穷小把分母换成 $x^3$；分子只需展到三次方：$\mathrm{e}^x\sin x=x+x^2+\dfrac{x^3}{3}+o(x^3)$，故分子 $=\dfrac{x^3}{3}+o(x^3)$。课本注：若用 L'Hospital 法则须连续使用三次，不如这里直接</td></tr><tr><td>例8 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=212</td><td>p13)</td><td>$\lim\limits_{x\to\infty}\Bigl(x-x^2\ln\bigl(1+\tfrac1x\bigr)\Bigr)$</td><td>$\dfrac12$</td><td>$x\to\infty$ 时 $\ln\bigl(1+\frac1x\bigr)=\frac1x-\frac{1}{2x^2}+o\bigl(\frac{1}{x^2}\bigr)$，故原式 $=\frac12+o(1)$</td></tr><tr><td>例9 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=212</td><td>p13)</td><td>$\lim\limits_{x\to0}\dfrac{\sin x-\arctan x}{\tan x-\sin x}$</td><td>$\dfrac13$</td><td>先分解分母 $\tan x-\sin x=\sin x(1-\cos x)\frac{1}{\cos x}$，用等价无穷小化为 $2\lim\limits_{x\to0}\frac{\sin x-\arctan x}{x^3}$；分子展开 $=\frac16x^3+o(x^3)$</td></tr><tr><td>例10 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=212</td><td>p13)</td><td>$\lim\limits_{n\to\infty}\cos\dfrac{a}{n^{3/2}}\cos\dfrac{2a}{n^{3/2}}\cdots\cos\dfrac{na}{n^{3/2}}$</td><td>$\mathrm{e}^{-a^2/6}$</td><td>记 $P_n$ 为连乘积并取对数化连乘为和；由 $\cos u=1-\frac{u^2}{2}+o(u^3)$ 得 $\cos\frac{ka}{n^{3/2}}=1-\frac{k^2a^2}{2n^3}+o\bigl(\frac1n\bigr)$，再用 $\ln(1+u)=u+o(u)$，得 $\sum_{k=1}^n\ln\cos\frac{ka}{n^{3/2}}=-\frac{a^2}{2n^3}\cdot\frac16 n(n+1)(2n+1)+o(1)\to-\frac{a^2}{6}$，指数还原</td></tr></tbody></table></div>
+<h3>4.2.8 定理4.2.2：极值的高阶判别法</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>带 Peano 余项的 Taylor 定理还是解决极值问题的有力工具。</p>
+<p>设函数 $f$ 在 $x_0$ 处有直到 $k$ 阶的导数，并且</p>
+<div class="formula">$$f'(x_0)=f''(x_0)=\cdots=f^{(k-1)}(x_0)=0,\qquad f^{(k)}(x_0)\ne0,$$</div>
+<p>那么：</p>
+<ol><li>当 $k$ 为<b>奇数</b>时，$x_0$ 不是 $f$ 的极值点；</li><li>当 $k$ 为<b>偶数</b>时，若 $f^{(k)}(x_0)>0$，则 $x_0$ 是 $f$ 的严格极小值点；若 $f^{(k)}(x_0)&lt;0$，则 $x_0$ 是 $f$ 的严格极大值点。</li></ol>
+<h4>课本证明路线</h4>
+<ol><li>由前 $k-1$ 阶导数全为零及带 Peano 余项的 Taylor 定理：</li></ol>
+<div class="formula">$$f(x)=f(x_0)+\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+o((x-x_0)^k)\quad(x\to x_0);$$</div>
+<ol><li>变形为</li></ol>
+<div class="formula">$$\frac{f(x)-f(x_0)}{(x-x_0)^k}=\frac{f^{(k)}(x_0)}{k!}+o(1),\tag{8}$$</div>
+<p>$x\to x_0$ 时右边的非零实数加无穷小保持确定的符号；</p>
+<ol><li>$k$ 奇：分母 $(x-x_0)^k$ 在 $x&lt;x_0$ 与 $x>x_0$ 两侧变号而右边定号，故两侧 $f(x)-f(x_0)$ 异号（一侧 $f(x)&lt;f(x_0)$、另一侧 $f(x)>f(x_0)$），$x_0$ 不是极值点；$f^{(k)}(x_0)&lt;0$ 时讨论一样；</li><li>$k$ 偶：$x\ne x_0$ 时分母恒正，符号完全由 $f^{(k)}(x_0)$ 决定：$>0$ 得 $x$ 充分靠近 $x_0$ 且不等时必有 $f(x)>f(x_0)$（严格极小）；$&lt;0$ 同理（严格极大）。</li></ol>
+<h2 id="sec4_3">§4.3 带 Lagrange 余项和 Cauchy 余项的 Taylor 定理<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.16-27</b></p>
+<p>课本引入：带 Peano 余项的 Taylor 定理只适合研究函数在一个给定点的近旁的近似行为，不便于讨论函数在大范围内的性质；为克服这一缺点，需要将余项"量化"。</p>
+<h3>4.3.1 定理4.3.1（Taylor 定理：Lagrange 余项与 Cauchy 余项）</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>设 $f$ 在开区间 $(a,b)$ 上有 $n+1$ 阶导数，$x_0,x$ 是 $(a,b)$ 中的任意两点，那么</p>
+<div class="formula">$$f(x)=T_n(f,x_0;x)+R_n(x),\tag{1}$$</div>
+<p>其中</p>
+<div class="formula">$$R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1},\tag{2}$$</div>
+<p>或者</p>
+<div class="formula">$$R_n(x)=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^n(x-x_0),\tag{3}$$</div>
+<p>这里 $\xi$ 是位于 $x_0$ 与 $x$ 之间的一个数。一般来说，式(2)和(3)中的 $\xi$ 不相等。式(2)、(3)分别称为 <b>Lagrange 余项</b>和 <b>Cauchy 余项</b>。</p>
+<h4>课本证明路线（辅助函数 + 引理3.4.1 的 Cauchy 中值链）</h4>
+<ol><li>固定 $x$，引进辅助函数（把展开点换成动点 $t$）：</li></ol>
+<div class="formula">$$F(t)=T_n(f,t;x)=f(t)+\sum_{k=1}^n\frac{f^{(k)}(t)}{k!}(x-t)^k;$$</div>
+<ol><li>对 $F$ 求导，求和部分经指标平移后逐项相消（telescoping），得</li></ol>
+<div class="formula">$$F'(t)=\frac{f^{(n+1)}(t)}{n!}(x-t)^n;\tag{4}$$</div>
+<ol><li>先设 $x_0&lt;x$，对 $g(t)=F(t)$ 与 $\lambda(t)=\Bigl(\dfrac{x-t}{x-x_0}\Bigr)^{n+1}$ 在区间 $[x_0,x]$ 上用引理3.4.1：必存在 $\xi\in(x_0,x)$ 使</li></ol>
+<div class="formula">$$F'(\xi)=\lambda'(\xi)(F(x_0)-F(x));\tag{5}$$</div>
+<ol><li>容易算出 $\lambda'(t)=-(n+1)\dfrac{(x-t)^n}{(x-x_0)^{n+1}}$（式(6)）；连同式(4)代入式(5)，注意 $F(x_0)=T_n(f,x_0;x)$、$F(x)=f(x)$，整理即得 Lagrange 余项式(2)；</li><li>为得式(3)，在引理3.4.1 中改取 $\lambda(t)=\dfrac{x-t}{x-x_0}$（$\lambda'(t)=-\dfrac{1}{x-x_0}$），代入式(5)整理即得；</li><li>若 $x&lt;x_0$，分别取 $\lambda(t)=1-\Bigl(\dfrac{x-t}{x-x_0}\Bigr)^{n+1}$ 与 $\lambda(t)=1-\dfrac{x-t}{x-x_0}$，同样能得到式(2)与(3)。</li></ol>
+<p>&gt; 课本注明：在式(2)中取 $n=0$，便得出 $f(x)=f(x_0)+f'(\xi)(x-x_0)$——这正是 Lagrange 中值定理，因此 <b>Taylor 定理是 Lagrange 中值定理的推广</b>。有了这种带定量性质的余项之后，就可以在大范围内（而不只是在一个给定点的近旁）研究用多项式逼近 $f$ 的误差；特别是当我们知道 $f^{(n+1)}$ 在该范围内有界并且能找到 $\vert f^{(n+1)}\vert$ 的一个尽可能小的界时，好处就显现出来。</p>
+<h3>4.3.2 线性插值（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.16-27</b></p>
+<p>作为 Taylor 公式的一个应用，课本导出线性插值的误差公式。设 $f:[a,b]\to\mathbb{R}$，由两点 $(a,f(a))$ 和 $(b,f(b))$ 所决定的线性函数记为 $l$：</p>
+<div class="formula">$$l(x)=\frac{b-x}{b-a}f(a)+\frac{x-a}{b-a}f(b).\tag{7}$$</div>
+<p>$l$ 叫作 $f$ 在区间 $[a,b]$ 上的<b>线性插值</b>（$f$ 与 $l$ 的几何关系见图4.3）。如果 $f$ 在 $(a,b)$ 上有二阶导数，就可以对这种插值带来的误差作出估计。</p>
+<h3>4.3.3 定理4.3.2：线性插值的误差估计</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>设 $f$ 是 $[a,b]$ 上的连续函数，在 $(a,b)$ 上有二阶导数，$l$ 是由 $(a,f(a))$ 和 $(b,f(b))$ 确定的线性函数。如果 $\vert f''\vert$ 在 $(a,b)$ 上的上界为 $M$，那么对任意的 $x\in[a,b]$，有</p>
+<div class="formula">$$\vert f(x)-l(x)\vert\leqslant\frac{M}{8}(b-a)^2.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>恒等变形（式(8)）$f(x)=\frac{b-x}{b-a}f(x)+\frac{x-a}{b-a}f(x)$，与式(7)相减得</li></ol>
+<div class="formula">$$l(x)-f(x)=\frac{b-x}{b-a}(f(a)-f(x))+\frac{x-a}{b-a}(f(b)-f(x));\tag{9}$$</div>
+<ol><li>对 $f(a)-f(x)$ 与 $f(b)-f(x)$ 分别用在点 $x$ 处带 Lagrange 余项的一阶 Taylor 展开（各含一个 $f'(x)$ 项与 $\frac12(\cdot-x)^2f''(\cdot)$ 项）；</li><li>代入式(9)后两个 $f'(x)$ 项恰好抵消，得</li></ol>
+<div class="formula">$$l(x)-f(x)=\frac{(b-x)(x-a)}{2}\biggl(\frac{x-a}{b-a}f''(\xi)+\frac{b-x}{b-a}f''(\eta)\biggr);\tag{10}$$</div>
+<ol><li>因 $\frac{x-a}{b-a}>0$、$\frac{b-x}{b-a}>0$ 且二者之和等于 $1$，括号内的量以 $M$ 为上界；再用均值不等式 $(b-x)(x-a)\le\Bigl(\frac{b-a}{2}\Bigr)^2$，得 $\vert l(x)-f(x)\vert\le\frac M8(b-a)^2$。</li></ol>
+<p>&gt; 课本注明： &gt; - $M$ 愈小，线性插值的逼近效果愈好；当 $M$ 很小时曲线 $y=f(x)$ 的切线改变得不剧烈，符合几何直观。 &gt; - 进一步观察式(10)：右边括号中的加权平均必介于 $f''(\xi)$ 与 $f''(\eta)$ 之间；由 Darboux 定理 $f''$ 具有介值性，故可表示为 $f''(\zeta)$（$\zeta\in(a,b)$），从而得到精确等式 &gt; $$l(x)-f(x)=\frac12(b-x)(x-a)f''(\xi)\quad(a&lt;\xi&lt;b).\tag{11}$$ &gt; - 由式(11)，再一次得到"如果 $f''\geqslant0$，那么 $f$ 是 $[a,b]$ 上的凸函数"这一结论。</p>
+<h3>4.3.4 例1～例4：初等函数的 Lagrange 余项</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>现在来看上一节那些初等函数的 Maclaurin 展开式的 Lagrange 余项（$\xi$ 在 $0$ 与 $x$ 之间，写作 $\xi=\theta x$，$0&lt;\theta&lt;1$）：</p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th></tr></thead><tbody><tr><td>例1</td><td>对 $\mathrm{e}^x$：$R_n(x)=\frac{\mathrm{e}^{\xi}}{(n+1)!}x^{n+1}$，即 $\mathrm{e}^x=1+\frac{x}{1!}+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}+\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}$。有了这个公式，再回头去看 3.5 节中的例2 就变得十分显然</td></tr><tr><td>例2</td><td>对 $\sin x=x-\frac{x^3}{3!}+\cdots+(-1)^{n-1}\frac{x^{2n-1}}{(2n-1)!}+R_{2n}(x)$：$R_{2n}(x)=(-1)^n\frac{\cos(\theta x)}{(2n+1)!}x^{2n+1}$。课本注明：这里认为正弦已展开到 $x^{2n}$ 这一项（系数为 0），故余项记 $R_{2n}$ 而不是 $R_{2n-1}$</td></tr><tr><td>例3</td><td>对 $\cos x=1-\frac{x^2}{2!}+\cdots+(-1)^n\frac{x^{2n}}{(2n)!}+R_{2n+1}(x)$：与例2 类似可得 $R_{2n+1}(x)=(-1)^{n+1}\frac{\cos(\theta x)}{(2n+2)!}x^{2n+2}$</td></tr><tr><td>例4</td><td>对 $\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots+(-1)^{n-1}\frac{x^n}{n}+R_n(x)$：$R_n(x)=\frac{(-1)^n}{n+1}\cdot\frac{x^{n+1}}{(1+\theta x)^{n+1}}$</td></tr></tbody></table></div>
+<h3>4.3.5 例5：(1+x)^λ 的两种余项并列与估计（★）</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>对 $x>-1$，</p>
+<div class="formula">$$(1+x)^\lambda=\sum_{k=0}^n\binom{\lambda}{k}x^k+R_n(x),$$</div>
+<p>课本同时列举两种形式的余项：</p>
+<ul><li><b>Lagrange 余项</b>：</li></ul>
+<div class="formula">$$R_n(x)=\frac{\lambda(\lambda-1)\cdots(\lambda-n)}{(n+1)!}(1+\theta x)^{\lambda-n-1}x^{n+1}\quad(0&lt;\theta&lt;1);$$</div>
+<ul><li><b>Cauchy 余项</b>：</li></ul>
+<div class="formula">$$R_n(x)=\frac{\lambda(\lambda-1)\cdots(\lambda-n)}{n!}\biggl(\frac{1-\theta}{1+\theta x}\biggr)^{n}(1+\theta x)^{\lambda-1}x^{n+1}\quad(0&lt;\theta&lt;1).$$</div>
+<p>&gt; 课本注明：之所以同时列举两种余项，是因为将 $(1+x)^\lambda$（$\lambda$ 不是正整数）作 Maclaurin 展开时，在 $(-1,0)$ 这一范围 Lagrange 余项不便用来作估计，利用 Cauchy 余项反而较方便——当 $\vert x\vert&lt;1$ 时由 $x>-1$ 得 $1+\theta x>1-\theta>0$，故 $\bigl(\frac{1-\theta}{1+\theta x}\bigr)^n&lt;1$；又由 $1-\vert x\vert\leqslant1+\theta x\leqslant1+\vert x\vert$ 估计含未知 $\theta$ 的另一项 $(1+\theta x)^{\lambda-1}$，得到 &gt; &gt; $$\vert R_n(x)\vert\leqslant\begin{cases}\dfrac{\vert\lambda(\lambda-1)\cdots(\lambda-n)\vert}{n!}(1+\vert x\vert)^{\lambda-1}\vert x\vert^{n+1}, & \lambda>1,\\[2mm]\dfrac{\vert\lambda(\lambda-1)\cdots(\lambda-n)\vert}{n!}(1-\vert x\vert)^{\lambda-1}\vert x\vert^{n+1}, & \lambda&lt;1.\end{cases}\tag{12}$$</p>
+<h3>4.3.6 华罗庚 1956 年考题的故事（课本原叙，叙述式）</h3>
+<p class="pgref"><b>课本：p.16-27</b></p>
+<p>课本讲述：20 世纪 50 年代，时任中国科学院数学研究所所长的华罗庚先生（1910~1985）照例出试卷考分配到所的青年人；1956 年的一个题目流传久远——<b>近似计算 $2^{1/5}$</b>。课本指出这正是 Taylor 定理数值应用的一个例子，只不过常被学生忽视；华罗庚以此告诫青年数学工作者要用活高等数学的方法、不要轻视数值计算。</p>
+<h3>4.3.7 例6：求 $2^{1/5}$ 的近似值（★）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>找一个 5 次方与 2 接近的数，取 $1.2=\frac65$（其 5 次方为 2.48832），改写 $2=\Bigl(\frac65\Bigr)^5(1-\delta)$，其中 $\delta=\dfrac{1526}{6^5}=0.1962449\cdots$；</li><li>利用二项展开式：$2^{1/5}=\frac65(1-\delta)^{1/5}=\frac65\Bigl(1-\frac15\delta-\frac{8}{100}\delta^2-\frac{6}{125}\delta^3-\cdots\Bigr)$，取这四项作为近似值得 $1.1487686\cdots$；</li><li>余项估计：此时 $\lambda=\frac15&lt;1$、$n=3$，用式(12)中 $\lambda&lt;1$ 的公式：</li></ol>
+<div class="formula">$$\vert R_3(-\delta)\vert\leqslant\frac16\cdot\frac15\cdot\frac45\cdot\frac95\cdot\frac{14}{5}(1-\delta)^{-4/5}\delta^4=\frac{84}{625}\Bigl(\frac{1}{1-\delta}\Bigr)^{4/5}\delta^4;$$</div>
+<ol><li>由 $\delta&lt;0.2=\frac15$ 得 $\bigl(\frac{1}{1-\delta}\bigr)^{4/5}&lt;\bigl(\frac54\bigr)^{4/5}&lt;\frac54$，因此 $\vert R_3(-\delta)\vert&lt;\frac{21}{125}\delta^4=0.00024924\cdots$，误差不超过 3/10000；</li><li>计算器直接算出 $2^{1/5}=1.1486984\cdots$，符合预计。</li></ol>
+<h3>4.3.8 例7：sin x 在 [0,π] 上的整体逼近误差（估计整体逼近误差的例子）</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p>在 $[0,\pi]$ 上用九次多项式 $x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\frac{x^9}{9!}$ 逼近 $\sin x$，求一个误差界。</p>
+<p><b>课本证明路线</b>：由于 $x\in[0,\pi]$，$\vert R_{10}(x)\vert\leqslant\frac{x^{11}}{11!}\leqslant\frac{\pi^{11}}{11!}=0.0073704\cdots$。这是非常好的近似。课本在图4.4 中画出一次、三次、五次、七次和九次 $\sin x$ 的 Maclaurin 多项式的图像：在 $[0,\pi]$ 上九次多项式与 $y=\sin x$ 的图像几乎合为一体，肉眼已不能辨别差别，与数值结果吻合。</p>
+<h3>4.3.9 重要反例：Maclaurin 多项式恒为 0 的无限次可导函数（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.16-27</b></p>
+<p>&gt; 课本明确指出：<b>切勿以为只要提高 Taylor 多项式的次数，就能不断地改进对函数的逼近程度。</b></p>
+<p>课本给出著名例子：</p>
+<div class="formula">$$f(x)=\begin{cases}\mathrm{e}^{-1/x^2}, & x\ne0,\\ 0, & x=0.\end{cases}$$</div>
+<p>这个函数当 $x\ne0$ 时显然是无限次可导的；课本证明它在 $x=0$ 处也无限次可导。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>先求 $f'(0)=\lim\limits_{t\to0}\frac{\mathrm{e}^{-1/t^2}}{t}$：作变换 $u=1/t$，得 $\lim\limits_{u\to\infty}\frac{u}{\mathrm{e}^{u^2}}=0$；由此得</li></ol>
+<div class="formula">$$f'(x)=\begin{cases}\dfrac{2}{x^3}\mathrm{e}^{-1/x^2}, & x\ne0,\\[1mm] 0, & x=0;\end{cases}$$</div>
+<ol><li>归纳证明：当 $x\ne0$、$n\in\mathbb{N}^*$ 时 $f^{(n)}(x)=P_n\Bigl(\frac1x\Bigr)\mathrm{e}^{-1/x^2}$，其中 $P_n(t)$ 是 $t$ 的 $3n$ 次多项式——归纳中由求导法则得递推关系 $P_{k+1}(t)=2t^3P_k(t)-t^2P'_k(t)$，故次数从 $3k$ 升到 $3(k+1)$；</li><li>再归纳证明 $f^{(n)}(0)=0$ 对一切 $n$ 成立：</li></ol>
+<div class="formula">$$f^{(k+1)}(0)=\lim_{t\to0}\frac{f^{(k)}(t)}{t}=\lim_{u\to\infty}\frac{uP_k(u)}{\mathrm{e}^{u^2}}=0,$$</div>
+<p>这是由于 $u\to\infty$ 时指数函数 $\mathrm{e}^{u^2}$ 是任何 $u$ 的多项式的高阶无穷大；</p>
+<ol><li>结论：$f$ 是 $\mathbb{R}$ 上一个无限次可导的偶函数，且 $f^{(n)}(0)=0$（$n=1,2,3,\cdots$），函数 $f$ 的 Maclaurin 多项式恒等于 0。因此，无论怎样提高它的次数，也不能改进它对 $f(x)$（$x\ne0$）的逼近于万一！此时 $f(x)=R_n(x)$（$n=1,2,3,\cdots$），即余项永远是函数自身。</li></ol>
+<p>课本注明：这是一个很奇特的函数（图像见图4.5）；显然当 $x=0$ 时函数取到最小值 $0$，但这一事实不可以用定理4.2.2 来证实。</p>
+<h3>4.3.10 例8：一阶导数的整体估计</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>设 $f$ 在 $[0,1]$ 上有二阶导数。如果 $\vert f(0)\vert\leqslant1$，$\vert f(1)\vert\leqslant1$，$\vert f''(x)\vert\leqslant2$（$0\le x\le1$），证明：对每个 $x\in[0,1]$，有 $\vert f'(x)\vert\leqslant3$。</p>
+<p>#备注 哇，我没有想过，原来这道题就是因为我见过很多种这种让我让我就是就是几何上比较直观，但是不好直接去书写或证明这个东西的一阶导为什么最多只能在三以内。但是你用泰勒展开，首先一方面泰勒展开，毕竟有拉格朗日余项做保底，所以说它肯定是没问题的。然后这2个东西一做差，就会变成了一个就是叫 tricky，还说是化简，就很容易处理。 <b>课本证明路线</b>：</p>
+<ol><li>由 Taylor 定理在点 $x$ 处分别向 $1$ 与 $0$ 展开：</li></ol>
+<div class="formula">$$f(1)=f(x)+f'(x)(1-x)+\frac12f''(\xi)(1-x)^2\quad(x&lt;\xi&lt;1),$$</div>
+<div class="formula">$$f(0)=f(x)+f'(x)(0-x)+\frac12f''(\eta)(0-x)^2\quad(0&lt;\eta&lt;x);$$</div>
+<ol><li>两式相减消去 $f(x)$，解出 $f'(x)$ 并用三角不等式与已知界估计：</li></ol>
+<div class="formula">$$\vert f'(x)\vert\leqslant\vert f(1)\vert+\vert f(0)\vert+\frac12\vert f''(\xi)\vert(1-x)^2+\frac12\vert f''(\eta)\vert x^2\leqslant2+(1-x)^2+x^2\leqslant3.$$</div>
+<h3>4.3.11 例9：高阶导数在 +∞ 的极限</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p>设 $f$ 在 $[a,+\infty)$ 上有三阶导数。如果</p>
+<div class="formula">$$\lim_{x\to+\infty}f(x),\qquad \lim_{x\to+\infty}f'''(x)$$</div>
+<p>都存在且有限，证明：$\lim\limits_{x\to+\infty}f'(x)=\lim\limits_{x\to+\infty}f''(x)=\lim\limits_{x\to+\infty}f'''(x)=0$。</p>
+<p>&gt; 注：OCR 中题设第二个极限印作 $f''$，但按课本证明逻辑（$\beta$ 作为 $f'''$ 的极限值进入计算）应为 $f'''$ [待核原页]。</p>
+<p><b>课本证明路线</b>：设 $\lim\limits_{x\to+\infty}f(x)=\alpha$，$\lim\limits_{x\to+\infty}f'''(x)=\beta$。</p>
+<ol><li>由 Taylor 定理写出</li></ol>
+<div class="formula">$$f(x+1)=f(x)+f'(x)+\frac{f''(x)}{2}+\frac{f'''(\xi)}{6}\quad(x&lt;\xi&lt;x+1),\tag{13}$$</div>
+<div class="formula">$$f(x-1)=f(x)-f'(x)+\frac{f''(x)}{2}-\frac{f'''(\eta)}{6}\quad(x-1&lt;\eta&lt;x);$$</div>
+<ol><li>两式相加：$f(x+1)+f(x-1)=2f(x)+f''(x)+\frac16(f'''(\xi)-f'''(\eta))$；令 $x\to+\infty$，得 $2\alpha=2\alpha+\lim\limits_{x\to+\infty}f''(x)$，从而 $\lim\limits_{x\to+\infty}f''(x)=0$；</li><li>再由 Taylor 定理写 $f(x+1)=f(x)+f'(x)+\frac{f''(\varepsilon)}{2}$（$x&lt;\varepsilon&lt;x+1$），令 $x\to+\infty$ 得 $\lim\limits_{x\to+\infty}f'(x)=0$；</li><li>最后在式(13)中令 $x\to+\infty$，得 $\alpha=\alpha+\dfrac{\beta}{6}$，解出 $\beta=0$，即 $\lim\limits_{x\to+\infty}f'''(x)=0$。</li></ol>
+<h3>4.3.12 本章结束语（课本总结，叙述式）</h3>
+<p class="pgref"><b>课本：p.16-27</b></p>
+<p>课本回顾 Taylor 定理所起的作用：它最重要的作用是在一个给定点的近旁将函数近似地用多项式来代替，因此成为研究函数在一点近旁行为的有力工具；利用带 Peano 余项的 Taylor 定理可以很方便地计算许多"不定型"的极限、比较彻底地研究函数的极值；带 Lagrange 余项和 Cauchy 余项的 Taylor 定理可以从理论上讨论函数的单调性、凸性，由此证明一些不等式；既可以用 Taylor 定理计算函数在一点的近似值，也可以在整体上（一个区间上）用多项式逼近比较复杂的函数。必须为这一切便利付出"代价"——要求函数在一定范围内有适当高阶的导函数。认识到这些好处之后就会感到，把它说成是一元微分学的顶峰，并未言过其实。</p>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 X.Y</b>（基本）与<b>问题 X.Y</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§4.1</td><td>练习题4.1：p.6（共 5 题）</td><td>—</td></tr><tr><td>§4.2</td><td>练习题4.2：p.15（共 3 题）</td><td>问题4.2：p.16（共 5 题）</td></tr><tr><td>§4.3</td><td>练习题4.3：p.26（共 5 题）</td><td>问题4.3：p.26-27（共 7 题）</td></tr></tbody></table></div>
+<p>&gt; 注：题数为大题计数（部分大题含小题）。问题4.2、问题4.3 的页码取自条目索引；各节练习题小节的页码按其在正文之后、下一节（或章末问题档）之前的位置推定。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">章引言：从 Lagrange 定理推广到 Taylor 定理
+→ 可导 ⟹ 增量公式(1)：微分概念引入
+→ 定义4.1.1（可微、微分）：可导 ⟺ 可微，df(x₀)=f′(x₀)Δx
+→ 微分的几何意义（切线函数的改变量；QT、TP）
+→ 微分的三个事实；另一写法(5)与近似公式(6)
+→ 例1 圆环面积、例2 sin30°5′（微分近似计算及其粗略性）
+→ 例3、例4 求微分
+→ 微分四则运算法则 (1)～(3)；Leibniz 记号（微商）
+→ 高阶微分 dⁿy=f⁽ⁿ⁾(x)dxⁿ；一阶微分形式的不变性(8)
+→ 反例 y=e^x, x=t³：高阶微分不具有形式不变性
+→ 二次逼近问题：A=f(x₀)、B=f′(x₀)、C=½f″(x₀) 的确定与唯一性
+→ 定义4.2.1（n 次 Taylor 多项式）→ 定理4.2.1（带 Peano 余项的 Taylor 定理，归纳法证明）
+→ 余项 Rₙ 与 Peano 余项命名 → Maclaurin 多项式与 Maclaurin 定理
+→ 六个基本 Maclaurin 展开式（例1 e^x、例2 sin x、例3 cos x、例4 ln(1+x)、例5 (1+x)^λ、例6 arctan x）
+→ Peano 余项只有定性刻画 → 两项应用之一：求极限（例7～例10）
+→ 应用之二：极值的高阶判别（定理4.2.2，k 奇非极值 / k 偶严格极大极小）
+→ 余项量化动机 → 定理4.3.1（Taylor 定理：Lagrange 余项与 Cauchy 余项；辅助函数 F(t)=T_n(f,t;x)＋引理3.4.1）
+→ n=0 归结为 Lagrange 中值定理 → 大范围误差估计
+→ 线性插值 l(x)(7) → 定理4.3.2（|f−l|≤M/8(b−a)²；Darboux 介值性精化为等式(11)，重证凸性）
+→ 初等函数的 Lagrange 余项（例1～例4，θ 记法）
+→ 例5：(1+x)^λ 双余项并列的原因与 |Rₙ| 估计(12)
+→ 华罗庚 1956 年考题的故事 → 例6：2^{1/5} 近似计算（误差不超过 3/10000）
+→ 例7：[0,π] 上九次多项式逼近 sin x 的误差界 π¹¹/11!
+→ 反例 f(x)=e^{−1/x²}：无限次可导而 Maclaurin 多项式恒为 0（提高次数不能改进逼近）
+→ 例8：|f′(x)|≤3 的整体估计（两点展开相减）
+→ 例9：f 与 f‴ 在 +∞ 有有限极限 ⟹ f′, f″, f‴ → 0
+→ 本章总结：Taylor 定理的作用与&quot;代价&quot;——一元微分学的顶峰</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>与第3章绑定出现 6/6 年：高阶极限（2019:3、2020:1、2022:1、2023:1、2024:1、2026:1）依赖 §4.2 Peano 余项。</li><li>2020 第8题、2022 第8题：二阶导/Taylor 余项估计（§4.3）。</li><li>样本内没有单独考“微分”概念的小题；§4.1 只作工具。</li><li>2025：第1题 高阶极限依赖 Peano 余项（§4.2）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>25</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
+<h3>§4.1 微分</h3>
+<h4>练习题 4.1（5 题）</h4>
+<ol class="ex-list">
+<li>求 $y$ 关于 $x$ 的微分：（1）$y=\dfrac1x$；（2）$y=\arctan(ax+b)$；（3）$y=\sin x-x\cos x$；（4）$y=\ln\bigl(x+\sqrt{x^2+a^2}\bigr)$。原书 PDF 205续页 PDF 206</li>
+<li>填空：（1）$\mathrm d(\quad)=\dfrac{\mathrm dx}{x}$；（2）$\mathrm d(\quad)=\dfrac{\mathrm dx}{1+x^2}$；（3）$\mathrm d(\quad)=\dfrac{\mathrm dx}{\sqrt{x}}$；（4）$\mathrm d(\quad)=(2x+1)\mathrm dx$；（5）$\mathrm d(\quad)=(\cos x+\sin x)\mathrm dx$；（6）$\mathrm d(\quad)=\dfrac{\mathrm dx}{\sqrt{1+x^2}}$；（7）$\mathrm d(\quad)=e^{-ax}\mathrm dx$；（8）$\mathrm d(\quad)=\cos x\sin x\,\mathrm dx$；（9）$\mathrm d(\quad)=\dfrac{\mathrm dx}{x\ln x}$；（10）$\mathrm d(\quad)=\dfrac{x\,\mathrm dx}{\sqrt{x^2+a^2}}$；（11）$\mathrm d(\quad)=\cos^2x\sin x\,\mathrm dx$；（12）$\mathrm d(\quad)=\sin^2x\,\mathrm dx$。原书 PDF 206</li>
+<li>设 $u,v,w$ 均为 $x$ 的可微函数，求 $y$ 关于 $x$ 的微分：（1）$y=uvw$；（2）$y=\dfrac{u}{v^2}$；（3）$y=\dfrac1{\sqrt{u^2+v^2+w^2}}$；（4）$y=\arctan\dfrac{u}{vw}$；（5）$y=\ln(u^2+v^2+w^2)^{1/2}$。原书 PDF 206</li>
+<li>对下列方程作微分，然后解出 $y'$：（1）$x=y+e^y$；（2）$x=y+\ln y$；（3）$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$；（4）$\sqrt{x}+\sqrt{y}=\sqrt{a}$（常数 $a>0$）；（5）$\dfrac{y^2}{x}=\sqrt{x^2+y^2}$。原书 PDF 206</li>
+<li>利用微分作近似计算：（1）$\sqrt[4]{80}$；（2）$\sin29^\circ$；（3）$\arctan1.05$；（4）$\lg11$。原书 PDF 206</li>
+</ol>
+<h3>§4.2 带 Peano 余项的 Taylor 定理</h3>
+<h4>练习题 4.2（3 题）</h4>
+<ol class="ex-list">
+<li>计算下列极限：（1）$\displaystyle\lim_{x\to0}\frac{\cos x-e^{-x^2/2}}{x^4}$；（2）$\displaystyle\lim_{x\to0}\frac{e^{\alpha x}-e^{\beta x}}{\sin\alpha x-\sin\beta x}$（$\alpha\ne\beta$）；（3）$\displaystyle\lim_{x\to\infty}\left(\left(x^3-x^2+\frac{x}{2}\right)e^{1/x}-\sqrt{x^6+1}\right)$；（4）$\displaystyle\lim_{x\to0}\frac{a^x+a^{-x}-2}{x^2}$（$a>0$）。原书 PDF 214</li>
+<li>设函数 $f$ 在点 $x_0$ 附近可以表示为 $\displaystyle f(x)=\sum_{k=0}^{n}a_k(x-x_0)^k+o\bigl((x-x_0)^n\bigr)$，问是否必定有 $\displaystyle a_k=\frac{f^{(k)}(x_0)}{k!}$（$k=0,1,\ldots,n$）？原书 PDF 214</li>
+<li>设 $\alpha\geqslant-1$。试计算极限 $\displaystyle\lim_{n\to\infty}\left[\left(1+\frac1{n^{\alpha+2}}\right)\left(1+\frac2{n^{\alpha+2}}\right)\cdots\left(1+\frac n{n^{\alpha+2}}\right)\right]^{n^\alpha}$。原书 PDF 215</li>
+</ol>
+<h4>问题 4.2（5 题）</h4>
+<ol class="ex-list">
+<li>设 $\displaystyle f(x)=\lim_{n\to\infty}n^x\left(\left(1+\frac1{n+1}\right)^{n+1}-\left(1+\frac1n\right)^n\right)$。求 $f$ 的定义域和值域。原书 PDF 215</li>
+<li>求证：$\displaystyle\lim_{n\to\infty}\left(\frac{n^4}{e}\left(1+\frac1n\right)^n-n^4+\frac{n^3}{2}-\frac{11}{24}n^2+\frac7{16}n\right)=\frac{2447}{5760}$。原书 PDF 215</li>
+<li>试证：多项式 $\displaystyle\sum_{k=1}^{n}\frac{(2x-x^2)^k-2x^k}{k}$ 能被 $x^{n+1}$ 整除。原书 PDF 215</li>
+<li>设 $x_1=\sin x_0>0$，$x_{n+1}=\sin x_n$（$n>1$）。证明：$\displaystyle\lim_{n\to\infty}\sqrt{\frac n3}\,x_n=1$。原书 PDF 215</li>
+<li>设 $y_1=c>0$，$\displaystyle\frac{y_{n+1}}{n+1}=\ln\left(1+\frac{y_n}{n}\right)$（$n\geqslant1$）。证明：$\displaystyle\lim_{n\to\infty}y_n=2$。原书 PDF 215</li>
+</ol>
+<h3>§4.3 带 Lagrange 余项和 Cauchy 余项的 Taylor 定理</h3>
+<h4>练习题 4.3（5 题）</h4>
+<ol class="ex-list">
+<li>将多项式 $1+2x+3x^2+4x^3+5x^4$ 按 $x+1$ 的幂展开。原书 PDF 225</li>
+<li>按指定的次数写出函数 $f$ 在 $x=0$ 处的 Taylor 多项式：（1）$\displaystyle f(x)=\frac{1+x+x^2}{1-x+x^2}$，写到 $x$ 的四次；（2）$f(x)=e^{2x-x^2}$，写到 $x$ 的五次；（3）$f(x)=\ln\cos x$，写到 $x$ 的六次；（4）$f(x)=\tan x$，写到 $x$ 的五次；（5）$\displaystyle f(x)=\frac1{\sqrt{1-x^2}}$，写到 $x$ 的六次。原书 PDF 225</li>
+<li>按指定的次数写出函数 $f$ 在指定点 $x_0$ 处的 Taylor 多项式：（1）$f(x)=\sin x$，$x_0=\pi/2$，写到 $2n$ 次；（2）$f(x)=\cos x$，$x_0=\pi$，写到 $2n$ 次；（3）$f(x)=e^x$，$x_0=1$，写到 $n$ 次；（4）$f(x)=\ln x$，$x_0=2$，写到 $n$ 次；（5）$\displaystyle f(x)=\frac{x}{1+x^2}$，$x_0=0$，写到 $2n+1$ 次。原书 PDF 225</li>
+<li>设函数 $f$ 和 $g$ 在 $(-1,1)$ 上无限次可导，且 $|f^{(n)}(x)-g^{(n)}(x)|\leqslant n!|x|$（$|x|&lt;1$，$n=0,1,2,\ldots$）。求证：$f=g$。原书 PDF 225</li>
+<li>当 $x>0$ 时，求证：对任何 $n\in\mathbb N^*$，有 $\displaystyle x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots-\frac{x^{2n}}{2n}&lt;\ln(1+x)&lt;x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots+\frac{x^{2n-1}}{2n-1}$。原书 PDF 225</li>
+</ol>
+<h4>问题 4.3（7 题）</h4>
+<ol class="ex-list">
+<li>设函数 $f$ 在点 $x_0$ 处有 $n+1$ 阶导数，且 $f^{(n+1)}(x_0)\ne0$。将 $f$ 在 $x_0$ 处按 Taylor 公式展开：$\displaystyle f(x_0+h)=f(x_0)+f'(x_0)h+\cdots+\frac{h^n}{n!}f^{(n)}(x_0+\theta_nh)$，其中 $\theta_n\in(0,1)$。求证：$\displaystyle\lim_{h\to0}\theta_n=\frac1{n+1}$。原书 PDF 225</li>
+<li>设 $f$ 在区间 $[a,b]$ 上有二阶导数，且 $f'(a)=f'(b)=0$。求证：存在 $c\in(a,b)$，使得 $\displaystyle|f''(c)|\geqslant\frac4{(b-a)^2}|f(b)-f(a)|$。原书 PDF 225</li>
+<li>设函数 $f$ 在 $[0,1]$ 上有二阶导函数，$f(0)=f(1)=0$，并且在 $[0,1]$ 上函数 $f$ 的最小值为 $-1$。求证：存在一点 $\xi\in(0,1)$，使得 $f''(\xi)\geqslant8$。原书 PDF 226</li>
+<li>设 $f$ 在 $(x_0-\delta,x_0+\delta)$ 上有 $n$ 阶导数，且 $f''(x_0)=f'''(x_0)=\cdots=f^{(n-1)}(x_0)=0$，但 $f^{(n)}(x_0)\ne0$，$f^{(n)}$ 在 $x_0$ 处连续，且当 $0&lt;|h|&lt;\delta$ 时，$f(x_0+h)-f(x_0)=hf'(x_0+\theta h)$（$0&lt;\theta&lt;1$）。证明：$\displaystyle\lim_{h\to0}\theta=\frac1{n^{1/(n-1)}}$。原书 PDF 226</li>
+<li>设 $\displaystyle P_n(x)=1+\frac{x}{1!}+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}$（$n\in\mathbb N^*$）。（1）证明：当 $n$ 为偶数时，$P_n>0$；（2）证明：当 $n$ 为奇数时，$P_n$ 有唯一的实零点；（3）记 $P_{2n+1}$ 的实零点为 $x_n$（$n=0,1,2,\ldots$），求证：数列 $\{x_n\}$ 严格递减地趋于 $-\infty$。原书 PDF 226</li>
+<li>设函数 $f$ 在 $[0,2]$ 上满足 $|f(0)|\leqslant1$，$|f(2)|\leqslant1$ 及 $|f''|\leqslant1$。证明：在这个区间上，$|f'|\leqslant2$，而且 $2$ 是最小的常数。原书 PDF 226</li>
+<li>设函数 $f$ 在 $\mathbb R$ 上二次可导。令 $M_k=\sup_{x\in\mathbb R}|f^{(k)}(x)|&lt;+\infty$（$k=0,1,2$）。求证：$M_1^2\leqslant2M_0M_2$。原书 PDF 226</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第04章_Taylor 定理_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §4.1 函数的微分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §4.2 带 Peano 余项的 Taylor 定理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §4.3 带 Lagrange 余项和 Cauchy 余项的 Taylor 定理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>
