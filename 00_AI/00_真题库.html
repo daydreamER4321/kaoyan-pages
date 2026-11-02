@@ -16,20 +16,22 @@
   button,select,input[type=search]{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:5px 10px;cursor:pointer}
   button:hover{border-color:var(--acc)}
   button.on{background:var(--acc);border-color:var(--acc);color:#fff}
-  .chip{display:inline-flex;align-items:center;gap:4px;background:var(--chip);color:var(--chip-ink);border:1px solid transparent;border-radius:999px;padding:2px 9px;font-size:12.5px}
+  .chip{display:inline-flex;align-items:center;gap:3px;background:var(--chip);color:var(--chip-ink);border:1px solid transparent;border-radius:4px;padding:0 5px;font-size:10.5px;line-height:1.7;opacity:.9}
   .chip.sel{background:var(--acc);color:#fff}
-  .chip.small{font-size:12px;padding:1px 8px}
+  .chip.small{font-size:10.5px;padding:0 5px}
   main{max-width:1080px;margin:0 auto;padding:16px 18px 60px}
-  .note{background:var(--warn-bg);border-left:3px solid var(--warn);padding:10px 14px;border-radius:8px;font-size:13.5px;margin:0 0 14px}
+  .note{background:var(--warn-bg);border-left:3px solid var(--warn);padding:8px 12px;border-radius:6px;font-size:12.5px;margin:0 0 12px;color:var(--muted)}
   .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:10px 0;font-size:13.5px;color:var(--muted)}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
-  .qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .qno{font-weight:700;font-size:16px;color:var(--acc)}
-  .meta{font-size:12.5px;color:var(--muted)}
-  .desc{margin:8px 0 6px}
-  .desc .lab{font-size:11.5px;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:0 6px;margin-right:6px}
-  .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .acts a,.acts button{font-size:13px;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+  .qno{font-weight:700;font-size:15px;color:var(--acc)}
+  .qmeta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:3px}
+  .qmeta .ty{font-size:11px;color:var(--muted)}
+  .meta{font-size:11.5px;color:var(--muted)}
+  .desc{margin:6px 0 5px;font-size:14px}
+  .desc .lab{font-size:10.5px;color:var(--muted);opacity:.82;margin-right:5px}
+  .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+  .acts a,.acts button{font-size:12px;text-decoration:none;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
   .acts a:hover,.acts button:hover{border-color:var(--acc)}
   .ans{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;display:none}
   .ans.open{display:block}
@@ -38,9 +40,9 @@
   .paper{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
   .paper h2{font-size:16px;margin:0 0 6px}
   .empty{color:var(--muted);padding:30px 0;text-align:center}
-  .donebox{font-size:12.5px;color:var(--muted)}
-  label.done{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
-  .diff{font-size:12px;border-radius:999px;padding:1px 8px;background:var(--chip);color:var(--chip-ink)}
+  .donebox{font-size:11px;color:var(--muted)}
+  label.done{display:inline-flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:var(--muted)}
+  .diff{font-size:10px;border-radius:4px;padding:0 4px;background:transparent;border:1px solid var(--line);color:var(--muted)}
   .toTop{position:fixed;right:18px;bottom:18px;border-radius:999px;padding:8px 12px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
 </style>
 </head>
@@ -168,18 +170,22 @@
   function qCard(r){
     var div=document.createElement('div'); div.className='card';
     var head=document.createElement('div'); head.className='qhead';
-    var no=document.createElement('span'); no.className='qno'; no.textContent = (state.mode==='paper'? '' : r.year+' · ') + '第 '+r.no+' 题'; head.appendChild(no);
-    r.chapters.forEach(function(c){ var s=document.createElement('span'); s.className='chip'; s.textContent=c; head.appendChild(s); });
-    var t=document.createElement('span'); t.className='meta'; t.textContent=r.type; head.appendChild(t);
-    var d=document.createElement('span'); d.className='diff'; d.textContent=r.diff; head.appendChild(d);
+    var no=document.createElement('span'); no.className='qno';
+    no.textContent = (state.mode==='paper'? '' : r.year+' · ') + '第 '+r.no+' 题'; head.appendChild(no);
+    var spacer=document.createElement('span'); spacer.style.flex='1'; head.appendChild(spacer);
     var lab=document.createElement('label'); lab.className='done'; var cb=document.createElement('input'); cb.type='checkbox';
     cb.checked = localStorage.getItem('zt-done:'+r.id)==='1';
     cb.onchange=function(){ if(cb.checked) localStorage.setItem('zt-done:'+r.id,'1'); else localStorage.removeItem('zt-done:'+r.id); };
     lab.appendChild(cb); var lt=document.createElement('span'); lt.textContent='做过'; lab.appendChild(lt); head.appendChild(lab);
     div.appendChild(head);
 
+    var mrow=document.createElement('div'); mrow.className='qmeta';
+    r.chapters.forEach(function(c){ var s=document.createElement('span'); s.className='chip'; s.textContent=c; mrow.appendChild(s); });
+    var t=document.createElement('span'); t.className='ty'; t.textContent=r.type+' · '+r.diff; mrow.appendChild(t);
+    div.appendChild(mrow);
+
     var desc=document.createElement('div'); desc.className='desc';
-    var l=document.createElement('span'); l.className='lab'; l.textContent='考点提要（非原题）'; desc.appendChild(l);
+    var l=document.createElement('span'); l.className='lab'; l.textContent='提要'; desc.appendChild(l);
     var sp=document.createElement('span'); sp.textContent=r.desc; desc.appendChild(sp);
     div.appendChild(desc);
 
@@ -196,7 +202,6 @@
       btn.onclick=function(){
         if(window.innerWidth<760){ window.open(zurl(r,'ans'),'_blank'); return; }
         var open = !ans.classList.contains('open');
-        // 关闭其它
         document.querySelectorAll('.ans.open').forEach(function(el){ el.classList.remove('open'); var f=el.querySelector('iframe'); if(f) f.remove(); });
         if(open){
           ans.classList.add('open');
