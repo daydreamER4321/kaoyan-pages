@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第18章 含参变量积分 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第18章<br>含参变量积分</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec18_1">§18.1 含参变量的常义积分</a>
+    <a href="#sec18_2">§18.2 含参变量反常积分的一致收敛</a>
+    <a href="#sec18_3">§18.3 含参变量反常积分的性质</a>
+    <a href="#sec18_4">§18.4 Γ函数和B函数</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第18章 含参变量积分</h1>
+    <p class="hero-sub">§18.1 含参变量的常义积分 · §18.2 含参变量反常积分的一致收敛 · §18.3 含参变量反常积分的性质 · §18.4 Γ函数和B函数</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec18_1">§18.1 含参变量的常义积分<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.1-8</b></p>
+<p>设 $f(x,u)$ 在闭矩形 $I=[a,b]\times[\alpha,\beta]$ 上连续，研究由它确定的函数</p>
+<div class="formula">$$\varphi(u)=\int_a^b f(x,u)\mathrm{d}x.$$</div>
+<h3>18.1.1 定理18.1.1：φ 的连续性</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>若 f 在闭矩形 $I=[a,b]\times[\alpha,\beta]$ 上连续，则 $\varphi(u)=\int_a^b f(x,u)\mathrm{d}x$ 是 $[\alpha,\beta]$ 上的连续函数。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>任取 $u_0\in[\alpha,\beta]$，写 $\varphi(u)-\varphi(u_0)=\int_a^b(f(x,u)-f(x,u_0))\mathrm{d}x$，得估计</li></ol>
+<div class="formula">$$|\varphi(u)-\varphi(u_0)|\leqslant\int_a^b|f(x,u)-f(x,u_0)|\mathrm{d}x;\tag{1}$$</div>
+<ol><li>f 在闭矩形上连续故一致连续：对任意 $\varepsilon>0$ 存在 $\delta>0$，只要两点距离小于 δ 就有函数值差小于 ε；</li><li>点 $(x,u)$ 与 $(x,u_0)$ 的距离等于 $|u-u_0|$，故 $|u-u_0|&lt;\delta$ 时被积函数对一切 $x\in[a,b]$ 小于 ε；</li><li>代入式(1) 得 $|\varphi(u)-\varphi(u_0)|&lt;\varepsilon(b-a)$。</li></ol>
+<h4>课本说明（极限与积分交换）</h4>
+<p>由 $\varphi$ 在 $u_0$ 处连续即</p>
+<div class="formula">$$\lim_{u\to u_0}\varphi(u)=\varphi(u_0),\tag{2}$$</div>
+<p>而 $\varphi(u_0)=\int_a^b f(x,u_0)\mathrm{d}x=\int_a^b\lim\limits_{u\to u_0}f(x,u)\mathrm{d}x$，故式(2) 即</p>
+<div class="formula">$$\lim_{u\to u_0}\int_a^b f(x,u)\mathrm{d}x=\int_a^b\lim_{u\to u_0}f(x,u)\mathrm{d}x,$$</div>
+<p>即 f 的连续性保证了<b>积分运算和极限运算可以交换次序</b>。</p>
+<h3>18.1.2 定理18.1.2：积分号下求导</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>若 f 及其偏导数 $\dfrac{\partial f}{\partial u}$ 都在闭矩形 $I=[a,b]\times[\alpha,\beta]$ 上连续，则 $\varphi(u)=\int_a^b f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上可微，且</p>
+<div class="formula">$$\frac{\mathrm{d}}{\mathrm{d}u}\varphi(u)=\int_a^b\Bigl(\frac{\partial}{\partial u}f(x,u)\Bigr)\mathrm{d}x.$$</div>
+<p><b>课本证明路线</b>：任取 $u_0$，对充分小的 h 用差商，由 Lagrange 中值定理化为</p>
+<div class="formula">$$\frac{\varphi(u_0+h)-\varphi(u_0)}{h}=\int_a^b\frac{\partial f}{\partial u}(x,u_0+\theta h)\,\mathrm{d}x;$$</div>
+<p>由 $\frac{\partial f}{\partial u}(x,u)$ 在闭矩形上一致连续，令 $h\to0$ 即得结论。</p>
+<h3>18.1.3 定理18.1.3：积分次序交换</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>若 f 在闭矩形 $I=[a,b]\times[\alpha,\beta]$ 上连续，则</p>
+<div class="formula">$$\int_\alpha^\beta\Bigl(\int_a^b f(x,u)\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^b\Bigl(\int_\alpha^\beta f(x,u)\mathrm{d}u\Bigr)\mathrm{d}x.\tag{3}$$</div>
+<p><b>课本证明路线</b>：证明对任意 $t\in(\alpha,\beta]$</p>
+<div class="formula">$$\int_\alpha^t\Bigl(\int_a^b f(x,u)\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^b\Bigl(\int_\alpha^t f(x,u)\mathrm{d}u\Bigr)\mathrm{d}x\tag{4}$$</div>
+<p>（取 $t=\beta$ 即式(3)）：</p>
+<ol><li>记左边为 $g(t)=\int_\alpha^t\varphi(u)\mathrm{d}u$（其中 $\varphi(u)=\int_a^b f(x,u)\mathrm{d}x$），右边为 $h(t)=\int_a^b\psi(x,t)\mathrm{d}x$（其中 $\psi(x,t)=\int_\alpha^t f(x,u)\mathrm{d}u$）；</li><li>由定理18.1.1，$g'(t)=\varphi(t)$；</li><li>因 $\psi(x,t)$ 与 $\frac{\partial\psi}{\partial t}=f(x,t)$ 都连续，由定理18.1.2 得 $h'(t)=\int_a^b f(x,t)\mathrm{d}x=\varphi(t)$；</li><li>故 $g'(t)=h'(t)$，又 $g(\alpha)=h(\alpha)=0$，所以 $g(t)=h(t)$。</li></ol>
+<h4>课本说明</h4>
+<p>根据二重积分的知识，式(3) 两边都等于 f 在矩形区域 $[a,b]\times[\alpha,\beta]$ 上的积分；这里给出的是<b>不依赖重积分知识的证明</b>。</p>
+<h3>18.1.4 例1（先积分后求导两法）</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>计算 $I=\displaystyle\int_0^1\frac{x^b-x^a}{\ln x}\mathrm{d}x\ (0&lt;a&lt;b)$。</p>
+<p><b>解法一</b>：把被积函数写成 $\dfrac{x^b-x^a}{\ln x}=\int_a^b x^u\,\mathrm{d}u$，由定理18.1.3 交换积分次序：</p>
+<div class="formula">$$I=\int_a^b\Bigl(\int_0^1 x^u\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^b\frac{\mathrm{d}u}{u+1}=\ln\frac{b+1}{a+1}.$$</div>
+<p><b>解法二</b>：把 a 看做常数、b 看做参变量，由定理18.1.2 得 $\dfrac{\mathrm{d}I}{\mathrm{d}b}=\int_0^1 x^b\mathrm{d}x=\dfrac{1}{b+1}$，故 $I=\ln(b+1)+c$；由 $b=a$ 时 $I=0$ 定出 $c=-\ln(a+1)$，仍得 $I=\ln\dfrac{b+1}{a+1}$。</p>
+<h3>18.1.5 例2（★Poisson 型积分）</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>计算 $I(r)=\displaystyle\int_0^\pi\ln(1-2r\cos x+r^2)\,\mathrm{d}x$。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>先考虑 $|r|&lt;1$：把 r 看做参变量求导，得 $I'(r)=\int_0^\pi\dfrac{-2\cos x+2r}{1-2r\cos x+r^2}\mathrm{d}x$；显然 $I'(0)=0$；</li><li>$r\neq0$ 时改写 $I'(r)=\dfrac1r\Bigl(\pi-(1-r^2)\int_0^\pi\dfrac{\mathrm{d}x}{1-2r\cos x+r^2}\Bigr)$；作变换 $t=\tan(x/2)$（用到 $|r|&lt;1$），算得 $(1-r^2)\int_0^\pi\dfrac{\mathrm{d}x}{1-2r\cos x+r^2}=2\arctan\dfrac{1+r}{1-r}t\Big|_0^{+\infty}=\pi$；</li><li>于是 $|r|&lt;1$ 时 $I'(r)=0$，$I(r)=c$；由 $I(0)=0$ 得</li></ol>
+<div class="formula">$$\int_0^\pi\ln(1-2r\cos x+r^2)\mathrm{d}x=0\quad(|r|&lt;1);$$</div>
+<ol><li>$|r|>1$：令 $\rho=1/r\ (|\rho|&lt;1)$，拆出 $\ln\rho^2$ 化归上一情形，得 $I(r)=-2\pi\ln|\rho|=2\pi\ln|r|$；</li><li>$|r|=1$：利用 6.7 节例7 的结果 $\int_0^{\pi/2}\ln\sin x\,\mathrm{d}x=\int_0^{\pi/2}\ln\cos x\,\mathrm{d}x=-\dfrac\pi2\ln2$，直接算得 $I(\pm1)=0$。</li></ol>
+<p>最后</p>
+<div class="formula">$$I(r)=\begin{cases}0,&|r|\leqslant1,\\ 2\pi\ln|r|,&|r|>1.\end{cases}$$</div>
+<h3>18.1.6 变限含参积分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-8</b></p>
+<p>很多问题中不仅被积函数含参变量，积分限也含参变量：</p>
+<div class="formula">$$\psi(u)=\int_{p(u)}^{q(u)}f(x,u)\,\mathrm{d}x.\tag{9}$$</div>
+<h3>18.1.7 定理18.1.4：变限情形的连续性</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p>设 f 在闭矩形 $I=[a,b]\times[\alpha,\beta]$ 上连续，$p(u),q(u)$ 都在 $[\alpha,\beta]$ 上连续，且当 $\alpha\leqslant u\leqslant\beta$ 时 $a\leqslant p(u)\leqslant b$、$a\leqslant q(u)\leqslant b$，则由式(9) 确定的 ψ 在 $[\alpha,\beta]$ 上连续。</p>
+<p><b>课本证明路线</b>：任取 $u_0$，把 $\psi(u)-\psi(u_0)$ 拆成三段积分之和；中间一段 $\int_{p(u_0)}^{q(u_0)}(f(x,u)-f(x,u_0))\mathrm{d}x$ 由定理18.1.1 当 $u\to u_0$ 时趋于 0；前后两段的绝对值分别不超过 $M|p(u)-p(u_0)|$、$M|q(u)-q(u_0)|$（M 为 $|f|$ 在 I 上的最大值），由 p、q 的连续性趋于 0。</p>
+<h3>18.1.8 定理18.1.5：变限情形的求导公式</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>设 f 和 $\dfrac{\partial f}{\partial u}$ 都在闭矩形 I 上连续，$p(u),q(u)$ 都在 $[\alpha,\beta]$ 上可微，且 $a\leqslant p(u)\leqslant b$、$a\leqslant q(u)\leqslant b$，则由式(9) 确定的 ψ 在 $[\alpha,\beta]$ 上可微，且</p>
+<div class="formula">$$\psi'(u)=\int_{p(u)}^{q(u)}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x+f(q(u),u)q'(u)-f(p(u),u)p'(u).$$</div>
+<p><b>课本证明路线</b>：记 $F(u,\xi,\eta)=\int_\xi^\eta f(x,u)\mathrm{d}x$，则 $\psi(u)=F(u,p(u),q(u))$。由定理18.1.2 得 $\dfrac{\partial F}{\partial u}=\int_\xi^\eta\dfrac{\partial f(x,u)}{\partial u}\mathrm{d}x$；再由变上限积分求导法则 $\dfrac{\partial F}{\partial\eta}=f(\eta,u)$、$\dfrac{\partial F}{\partial\xi}=-f(\xi,u)$；由复合函数求导法则即得。</p>
+<h3>18.1.9 例3（变限求导）</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>设 $\psi(x)=\displaystyle\int_{\sin x}^{\cos x}\mathrm{e}^{t^2+xt}\mathrm{d}t$，求 $\psi'(0)$。</p>
+<p><b>解</b>：由定理18.1.5，</p>
+<div class="formula">$$\psi'(x)=\int_{\sin x}^{\cos x}t\,\mathrm{e}^{t^2+xt}\mathrm{d}t-\mathrm{e}^{\cos^2x+x\cos x}\sin x-\mathrm{e}^{\sin^2x+x\sin x}\cos x,$$</div>
+<p>因而 $\psi'(0)=\int_0^1 t\,\mathrm{e}^{t^2}\mathrm{d}t-1=\dfrac12(e-3)$。</p>
+<h3>18.1.10 例4（复合变限）</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>设 f 是 $\mathbb{R}^2$ 上的连续函数，$\varphi(x)=\displaystyle\int_0^x\Bigl(\int_{t^2}^{x^2}f(t,s)\mathrm{d}s\Bigr)\mathrm{d}t$，求 $\varphi'(x)$。</p>
+<p><b>解</b>：记 $G(t,x)=\int_{t^2}^{x^2}f(t,s)\mathrm{d}s$，则 $\varphi(x)=\int_0^x G(t,x)\mathrm{d}t$，因而</p>
+<div class="formula">$$\varphi'(x)=\int_0^x\frac{\partial G}{\partial x}(t,x)\mathrm{d}t+G(x,x)=2x\int_0^x f(t,x^2)\mathrm{d}t.$$</div>
+<hr>
+<h2 id="sec18_2">§18.2 含参变量反常积分的一致收敛<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.9-20</b></p>
+<p>本节先对一般的函数极限引入一致收敛概念（类比第15章函数列的一致收敛），再定义含参变量反常积分的一致收敛并建立一系列判别法。</p>
+<h3>18.2.1 定义18.2.1：一般函数极限的一致收敛</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设 D 和 E 是 $\mathbb{R}$ 的子集，$u_0$（可以是 $+\infty$）是 E 的极限点，$f(x,u)$ 在 $D\times E$ 上定义，且对任意的 $x\in D$ 存在有限极限</p>
+<div class="formula">$$\lim_{u\to u_0}f(x,u)=g(x)\quad\Bigl(\text{或 }\lim_{u\to+\infty}f(x,u)=g(x)\Bigr).$$</div>
+<p>如果对任意 $\varepsilon>0$，存在 $\delta>0$（或 $U>0$），使得当 $u\in E,\ 0&lt;|u-u_0|&lt;\delta$（或 $u\in E,\ u>U$）时，</p>
+<div class="formula">$$|f(x,u)-g(x)|&lt;\varepsilon$$</div>
+<p>对所有 $x\in D$ 成立，就说当 $u\to u_0$（或 $u\to+\infty$）时，$f(x,u)$ 对 $x\in D$ <b>一致收敛</b>于极限函数 g(x)。</p>
+<p>课本注：取 $D=[a,b],E=\mathbb{N}^*,u_0=+\infty$，此概念就是第15章中函数列一致收敛的概念；那里的极限函数性质也很容易推广过来。</p>
+<h3>18.2.2 定理18.2.1：序列刻画</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>当 $u\to u_0$（或 $u\to+\infty$）时 $f(x,u)$ 对 $x\in D$ 一致收敛于 g 的充要条件是：对 $E\setminus\{u_0\}$ 中满足 $u_n\to u_0$ 的任意序列 $\{u_n\}$（或 E 中满足 $u_n\to+\infty$ 的任意序列），每一函数列 $\psi_n(x)=f(x,u_n)$ 都在 D 上一致收敛于 g(x)。</p>
+<p><b>课本证明路线</b>：必要性显然；充分性用反证——若不一致收敛，则存在某 $\varepsilon_0>0$，对任意 n 有 $u_n$ 满足 $0&lt;|u_n-u_0|&lt;\frac1n$ 且 $\sup\limits_{x\in D}|f(x,u_n)-g(x)|\geqslant\varepsilon_0$，相应的 $\psi_n$ 不一致收敛于 g，矛盾。</p>
+<h3>18.2.3 定理18.2.2：极限函数的连续性</h3>
+<p class="pgref"><b>课本：10</b></p>
+<p>设 $f(x,u)$ 定义在 $[a,b]\times E$ 上，$u_0$（可以是 $+\infty$）是 E 的极限点，且每个 $f(x,u)$ 关于 x 连续。若 $u\to u_0$（或 $u\to+\infty$）时 $f(x,u)$ 对 $x\in[a,b]$ 一致收敛于 g(x)，则 g 在 $[a,b]$ 上连续。</p>
+<p><b>课本证明路线</b>：任取满足条件的序列 $\{u_n\}$，$\psi_n(x)=f(x,u_n)$ 是连续函数列且一致收敛于 g，由定理15.3.1 知 g 连续。</p>
+<h3>18.2.4 定理18.2.3：极限运算与积分运算交换</h3>
+<p class="pgref"><b>课本：10</b></p>
+<p>设 $f(x,u)$ 定义在 $[a,b]\times E$ 上，$u_0$（可以是 $+\infty$）是 E 的极限点，每个 $f(x,u)$ 在 $[a,b]$ 上可积。若 $u\to u_0$（或 $u\to+\infty$）时 $f(x,u)$ 对 $x\in[a,b]$ 一致收敛于 g(x)，则 g 在 $[a,b]$ 上可积，且</p>
+<div class="formula">$$\lim_{u\to u_0}\int_a^b f(x,u)\mathrm{d}x=\int_a^b g(x)\mathrm{d}x.$$</div>
+<p><b>课本证明路线</b>：同上任取 $\{u_n\}$，由定理15.3.5 得 $\lim\limits_{n\to\infty}\int_a^b f(x,u_n)\mathrm{d}x=\int_a^b g(x)\mathrm{d}x$；该式对一切满足条件的 $\{u_n\}$ 成立，故极限等式成立。</p>
+<h3>18.2.5 含参变量反常积分一致收敛的定义（定义18.2.2、18.2.3）</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续，且对每个 $u\in[\alpha,\beta]$ 积分收敛，它就确定了 $[\alpha,\beta]$ 上的函数</p>
+<div class="formula">$$\varphi(u)=\int_a^{+\infty}f(x,u)\,\mathrm{d}x.\tag{2}$$</div>
+<p>记 $F(A,u)=\int_a^A f(x,u)\mathrm{d}x$，若当 $A\to+\infty$ 时 $F(A,u)$ 对 $u\in[\alpha,\beta]$ 一致收敛于 $\varphi(u)$，就称反常积分对 $u\in[\alpha,\beta]$ 一致收敛。由于 $|F(A,u)-\varphi(u)|=\Bigl|\int_A^{+\infty}f(x,u)\mathrm{d}x\Bigr|$，得：</p>
+<p><b>定义18.2.2</b>：如果对任意给定的 $\varepsilon>0$，总能找到只与 ε 有关的 $A_0(>a)$，当 $A>A_0$ 时不等式</p>
+<div class="formula">$$\Bigl|\int_A^{+\infty}f(x,u)\mathrm{d}x\Bigr|&lt;\varepsilon$$</div>
+<p>对 $[\alpha,\beta]$ 中所有的 u 成立，则称反常积分 $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 关于 u 在 $[\alpha,\beta]$ 上<b>一致收敛</b>。</p>
+<p><b>定义18.2.3</b>：设 a 是瑕点。如果对任意给定的 $\varepsilon>0$，存在只与 ε 有关的 $\delta_0>0$，当 $0&lt;\delta&lt;\delta_0$ 时不等式</p>
+<div class="formula">$$\Bigl|\int_a^{a+\delta}f(x,u)\mathrm{d}x\Bigr|&lt;\varepsilon$$</div>
+<p>对 $[\alpha,\beta]$ 中所有的 u 成立，则称积分 $\int_a^b f(x,u)\mathrm{d}x$ 关于 u 在 $[\alpha,\beta]$ 上<b>一致收敛</b>。</p>
+<p>课本注明：上面两个定义中的 $[\alpha,\beta]$ 可以换成开区间或无穷区间。下面只对无穷积分讨论判别法，瑕积分有类似结果，不再一一说明。</p>
+<h3>18.2.6 定理18.2.4：η(A) 判别</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>记 $\eta(A)=\sup\limits_{u\in[\alpha,\beta]}\Bigl|\int_A^{+\infty}f(x,u)\mathrm{d}x\Bigr|$，则积分 $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛的充要条件是</p>
+<div class="formula">$$\lim_{A\to+\infty}\eta(A)=0.$$</div>
+<p>（证明显然，课本留作练习。）</p>
+<h4>例1</h4>
+<p>讨论 $\displaystyle\int_0^{+\infty}u\mathrm{e}^{-xu}\mathrm{d}x\ (u\geqslant0)$ 的一致收敛性。</p>
+<p><b>解</b>：$u>0$ 时令 $xu=t$，得 $\int_A^{+\infty}u\mathrm{e}^{-xu}\mathrm{d}x=\int_{uA}^{+\infty}\mathrm{e}^{-t}\mathrm{d}t=\mathrm{e}^{-uA}$，因此</p>
+<div class="formula">$$\eta(A)=\sup_{u\in(0,+\infty)}\mathrm{e}^{-uA}=1\nrightarrow0,$$</div>
+<p>由定理18.2.4 知该积分在 $(0,+\infty)$ 上不一致收敛；但对任意 $\delta>0$，在 $[\delta,+\infty)$ 上 $\eta(A)=\mathrm{e}^{-\delta A}\to0$，故一致收敛。</p>
+<h3>18.2.7 定理18.2.5：Cauchy 收敛原理</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>积分 $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛的充要条件是：对任意 $\varepsilon>0$，存在只与 ε 有关的 $A_0$，当 $A',A''>A_0$ 时</p>
+<div class="formula">$$\Bigl|\int_{A'}^{A''}f(x,u)\mathrm{d}x\Bigr|&lt;\varepsilon$$</div>
+<p>对 $[\alpha,\beta]$ 中所有的 u 都成立。（证明留作练习。）</p>
+<h3>18.2.8 定理18.2.6：Weierstrass 判别法</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>设 $f(x,u)$ 关于 x 在 $[a,+\infty)$ 上连续。如果存在 $[a,+\infty)$ 上的连续函数 F 使 $\int_a^{+\infty}F(x)\mathrm{d}x$ 收敛，而且对一切充分大的 x 及 $[\alpha,\beta]$ 上的一切 u 有</p>
+<div class="formula">$$|f(x,u)|\leqslant F(x),$$</div>
+<p>那么积分 $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛。</p>
+<p><b>课本证明路线</b>：由 $\int_a^{+\infty}F$ 收敛，$A',A''>A_0$ 时 $|\int_{A'}^{A''}F|&lt;\varepsilon$；于是</p>
+<div class="formula">$$\Bigl|\int_{A'}^{A''}f(x,u)\mathrm{d}x\Bigr|\leqslant\int_{A'}^{A''}|f(x,u)|\mathrm{d}x\leqslant\int_{A'}^{A''}F(x)\mathrm{d}x&lt;\varepsilon,$$</div>
+<p>由 Cauchy 收敛原理即得。</p>
+<h3>18.2.9 例2、例3</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p><b>例2</b>：$\displaystyle\int_0^{+\infty}\mathrm{e}^{-(\alpha+u^2)t}\sin t\,\mathrm{d}t\ (\alpha>0)$ 关于 u 在 $[0,+\infty)$ 上一致收敛。——因 $|\mathrm{e}^{-(\alpha+u^2)t}\sin t|\leqslant\mathrm{e}^{-\alpha t}$ 而 $\int_0^{+\infty}\mathrm{e}^{-\alpha t}\mathrm{d}t$ 收敛（Weierstrass 判别法）。</p>
+<p><b>例3</b>：同一积分关于 t 在 $[0,+\infty)$ 上一致收敛。——因 $u=0$ 不是瑕点，只需证 $\int_1^{+\infty}\mathrm{e}^{-(\alpha+u^2)t}\sin t\,\mathrm{d}u$ 关于 t 一致收敛；由</p>
+<div class="formula">$$|\mathrm{e}^{-(\alpha+u^2)t}\sin t|\leqslant t\,\mathrm{e}^{-u^2t}\leqslant\frac{t}{1+u^2t}\leqslant\frac{1}{u^2},$$</div>
+<p>而 $\int_1^{+\infty}\dfrac{\mathrm{d}u}{u^2}&lt;+\infty$（Weierstrass 判别法）。</p>
+<p>课本注明：例2和例3的结论将在 18.3 节的例4 中用到。</p>
+<h3>18.2.10 定理18.2.7：Dirichlet 判别法</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>设 f, g 满足两个条件：</p>
+<p>(a) 当 $A\to+\infty$ 时，$\int_a^A f(x,u)\mathrm{d}x$ 对 $u\in[\alpha,\beta]$ <b>一致有界</b>，即存在常数 M，当 A 充分大时对每个 $u\in[\alpha,\beta]$ 有 $\bigl|\int_a^A f(x,u)\mathrm{d}x\bigr|\leqslant M$；</p>
+<p>(b) 对每个固定的 $u\in[\alpha,\beta]$，$g(x,u)$ 是 x 的单调函数，且当 $x\to+\infty$ 时关于 u <b>一致地</b>趋于 0。</p>
+<p>那么 $\displaystyle\int_a^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>因 $g(x,u)$ 关于 x 单调，用推广的第二积分平均值定理：</li></ol>
+<div class="formula">$$\int_{A'}^{A''}fg=g(A'',u)\int_{A'}^{\xi}f+g(A',u)\int_{\xi}^{A''}f,\qquad\xi\in[A',A''];$$</div>
+<ol><li>由条件 (a)：$\Bigl|\int_{A'}^{\xi}f\Bigr|\leqslant\Bigl|\int_a^{\xi}f\Bigr|+\Bigl|\int_a^{A'}f\Bigr|\leqslant2M$，同理另一段也不超过 $2M$；</li><li>由条件 (b)：$x\geqslant A_0$ 时 $|g(x,u)|&lt;\dfrac{\varepsilon}{4M}$ 对一切 u 成立；</li><li>取 $A',A''>A_0$ 得 $\Bigl|\int_{A'}^{A''}fg\Bigr|\leqslant\varepsilon$，由 Cauchy 收敛原理即得。</li></ol>
+<h3>18.2.11 定理18.2.8：Abel 判别法</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设 f, g 满足两个条件：</p>
+<p>(a) $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛；</p>
+<p>(b) 对每个固定的 $u\in[\alpha,\beta]$，$g(x,u)$ 关于 x 单调，且关于 u 一致有界。</p>
+<p>那么 $\displaystyle\int_a^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛。（证明留作练习。）</p>
+<h4>单因子简化形式（叙述式，无编号）</h4>
+<p>实际中经常只有因子之一含参变量 u，此时 Abel 判别法可写成：如果 $\int_a^{+\infty}f(x)\mathrm{d}x$ 收敛，函数 $g(x,u)$ 关于 x 单调、关于 $u\in[\alpha,\beta]$ 一致有界，那么 $\int_a^{+\infty}f(x)g(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛。</p>
+<h3>18.2.12 例4、例5</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p><b>例4</b>：$\displaystyle\int_0^{+\infty}\mathrm{e}^{-xu}\frac{\sin x}{x}\mathrm{d}x$ 在 $[0,+\infty)$ 上一致收敛。——因 $\int_0^{+\infty}\dfrac{\sin x}{x}\mathrm{d}x$ 收敛，$\mathrm{e}^{-xu}$ 关于 x 递减且 $0&lt;\mathrm{e}^{-xu}\leqslant1$ 一致有界（简化 Abel 判别法）。</p>
+<p><b>例5</b>：$\displaystyle\int_0^{+\infty}\frac{x\sin ux}{a^2+x^2}\mathrm{d}x$ 在 $[\delta,+\infty)$ 上一致收敛（a、$\delta>0$ 为常数）。——一方面 $\Bigl|\int_0^A\sin ux\,\mathrm{d}x\Bigr|=\dfrac{1-\cos uA}{u}\leqslant\dfrac2\delta$；另一方面 $x\to+\infty$ 时 $\dfrac{x}{a^2+x^2}$ 递减趋于 0（Dirichlet 判别法）。</p>
+<h3>18.2.13 例6（瑕积分情形）</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>讨论 $\displaystyle\int_0^1\frac{\sin(1/x)}{x^p}\mathrm{d}x$ 关于 p 在 $(0,2)$ 上的一致收敛性。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>回顾 16.3 节例5：该积分在 $2\leqslant p&lt;\infty$ 发散，$0&lt;p&lt;1$ 绝对收敛，$1\leqslant p&lt;2$ 条件收敛；</li><li>证明在 $0&lt;p\leqslant2-\delta$（δ 为任意正数）时一致收敛：变换 $1/x=t$ 把积分变成 $\int_1^{+\infty}\dfrac{\sin t}{t^{2-p}}\mathrm{d}t$；由 $2-p\geqslant\delta$ 得 $\dfrac1{t^{2-p}}\leqslant\dfrac1{t^\delta}$，故 $1/t^{2-p}$ 一致递减趋于 0，又 $\Bigl|\int_1^A\sin t\,\mathrm{d}t\Bigr|\leqslant2$，由 Dirichlet 判别法知一致收敛；</li><li>证明在 $(0,2)$ 上非一致收敛：若一致收敛，则 $A'',A'>A_0$ 时 $\Bigl|\int_{A'}^{A''}\dfrac{\sin t}{t^{2-p}}\mathrm{d}t\Bigr|&lt;\varepsilon$ 对一切 $p\in(0,2)$ 成立；取 $A'=2k\pi,A''=(2k+1)\pi$（k 充分大），得</li></ol>
+<div class="formula">$$\varepsilon>\Bigl|\int_{2k\pi}^{(2k+1)\pi}\frac{\sin t}{t^{2-p}}\mathrm{d}t\Bigr|\geqslant\frac{1}{((2k+1)\pi)^{2-p}}\int_{2k\pi}^{(2k+1)\pi}\sin t\,\mathrm{d}t=\frac{2}{((2k+1)\pi)^{2-p}},$$</div>
+<p>令 $p\to2$ 得 $\varepsilon\geqslant2$，不可能。</p>
+<h3>18.2.14 无穷区间上的反例（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.9-20</b></p>
+<p>定理15.3.5 不能直接搬到 $[a,+\infty)$：即使 $\{f_n\}$ 在 $[a,+\infty)$ 上一致收敛于 g，"$\lim\int=\int$" 也不一定成立。课本反例：</p>
+<div class="formula">$$f_n(x)=\begin{cases}\dfrac1n,&0\leqslant x\leqslant n^2,\\ 0,&x>n^2,\end{cases}$$</div>
+<p>则 $0\leqslant f_n(x)\leqslant\frac1n$，$\{f_n\}$ 在 $[0,+\infty)$ 上一致收敛于 0，但 $\lim\limits_{n\to\infty}\int_0^{+\infty}f_n(x)\mathrm{d}x=\lim\limits_{n\to\infty}n=+\infty\neq0$。</p>
+<h3>18.2.15 定理18.2.9：函数列情形的交换条件</h3>
+<p class="pgref"><b>课本：17</b></p>
+<p>设函数列 $\{f_n\}$ 在 $[a,+\infty)$ 上收敛于 g，满足：</p>
+<p>(a) 对任意 $A>a$，$\{f_n\}$ 在 $[a,A]$ 上一致收敛；</p>
+<p>(b) 积分 $\int_a^{+\infty}f_n(x)\mathrm{d}x$ 对 n 一致收敛。</p>
+<p>那么 $\int_a^{+\infty}g(x)\mathrm{d}x$ 收敛，且 $\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x=\lim_{n\to\infty}\int_a^{+\infty}f_n(x)\mathrm{d}x.$</p>
+<h3>18.2.16 定理18.2.10：一般形式的交换条件</h3>
+<p class="pgref"><b>课本：17</b></p>
+<p>设 $E\subset\mathbb{R}$，$f(x,u)$ 定义在 $[a,+\infty)\times E$ 上，$u_0$（可以是 $+\infty$）是 E 的一个极限点，满足：</p>
+<p>(a) 对任何 $A>a$，等式 $\lim\limits_{u\to u_0\atop u\in E}f(x,u)=g(x)$ 在 $[a,A]$ 上一致地成立；</p>
+<p>(b) $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 对 $u\in E$ 一致收敛。</p>
+<p>那么 $\int_a^{+\infty}g(x)\mathrm{d}x$ 收敛，且 $\displaystyle\lim_{u\to u_0\atop u\in E}\int_a^{+\infty}f(x,u)\mathrm{d}x=\int_a^{+\infty}g(x)\mathrm{d}x.$</p>
+<p>课本注明：取 $E=\mathbb{N}^*,u_0=+\infty$ 即得定理18.2.9。</p>
+<p><b>课本证明路线</b>（证定理18.2.10）：</p>
+<ol><li>由条件 (b)，$A',A''>A_0$ 时 $\Bigl|\int_{A'}^{A''}f(x,u)\mathrm{d}x\Bigr|&lt;\varepsilon$ 对一切 $u\in E$ 成立；再由条件 (a) 在 $[A',A'']$ 上取极限，得 $\Bigl|\int_{A'}^{A''}g\Bigr|\leqslant\varepsilon$，故 $\int_a^{+\infty}g$ 收敛；</li><li>取 $A_1$ 使尾部两个积分都小于 $\varepsilon/3$；</li><li>由条件 (a)，$u$ 充分接近 $u_0$ 时 $|f(x,u)-g(x)|&lt;\dfrac{\varepsilon}{3(A_1-a)}$ 对 $[a,A_1]$ 中所有 x 成立；</li><li>三段相加：$\Bigl|\int_a^{+\infty}f-\int_a^{+\infty}g\Bigr|\leqslant\dfrac\varepsilon3+\dfrac\varepsilon3+\dfrac\varepsilon3=\varepsilon$。</li></ol>
+<h3>18.2.17 例7（★π/sin pπ 积分）</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>计算 $\displaystyle\int_0^{+\infty}\frac{x^{p-1}}{1+x}\mathrm{d}x\quad(0&lt;p&lt;1)$。</p>
+<p><b>课本证明路线</b>：x = 0 是瑕点，拆成 $I_1+I_2$：</p>
+<ol><li>$I_1=\int_0^1\dfrac{x^{p-1}}{1+x}\mathrm{d}x$：用展开式 $\dfrac{x^{p-1}}{1+x}=\sum\limits_{n=0}^{\infty}(-1)^nx^{n+p-1}$（在任何闭子区间上一致收敛）；部分和满足 $0\leqslant f_n(x)\leqslant2x^{p-1}$ 而 $\int_0^1x^{p-1}\mathrm{d}x$ 收敛，故 $\int_0^1f_n$ 对 n 一致收敛，由定理18.2.9 逐项积分：</li></ol>
+<div class="formula">$$I_1=\sum_{n=0}^{\infty}\frac{(-1)^n}{n+p};$$</div>
+<ol><li>$I_2=\int_1^{+\infty}\dfrac{x^{p-1}}{1+x}\mathrm{d}x$：作变换 $x=1/t$，得</li></ol>
+<div class="formula">$$I_2=\int_0^1\frac{t^{(1-p)-1}}{1+t}\mathrm{d}t=\sum_{n=0}^{\infty}\frac{(-1)^n}{n+1-p}=\sum_{n=1}^{\infty}\frac{(-1)^n}{p-n};$$</div>
+<ol><li>合并并用 17.2 节式(7)（$\dfrac{\pi}{\sin p\pi}=\dfrac1p+\sum\limits_{n=1}^{\infty}(-1)^n\dfrac{2p}{p^2-n^2}$）：</li></ol>
+<div class="formula">$$\int_0^{+\infty}\frac{x^{p-1}}{1+x}\mathrm{d}x=\frac1p+\sum_{n=1}^{\infty}(-1)^n\frac{2p}{p^2-n^2}=\frac{\pi}{\sin p\pi}\quad(0&lt;p&lt;1).$$</div>
+<p>课本注明：这个积分在证明 Γ 函数的余元公式（定理18.4.9）时将要用到。</p>
+<h3>18.2.18 例8</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>计算 $\displaystyle\int_0^{+\infty}\frac{\mathrm{d}x}{1+x^\alpha}\quad(\alpha>1)$。</p>
+<p><b>解</b>：作变换 $t=x^\alpha$（$x=t^{1/\alpha}$，$\mathrm{d}x=\frac1\alpha t^{\frac1\alpha-1}\mathrm{d}t$），再用例7 的结果：</p>
+<div class="formula">$$\int_0^{+\infty}\frac{\mathrm{d}x}{1+x^\alpha}=\frac1\alpha\int_0^{+\infty}\frac{t^{1/\alpha-1}}{1+t}\mathrm{d}t=\frac1\alpha\cdot\frac{\pi}{\sin\dfrac{\pi}{\alpha}}.$$</div>
+<hr>
+<h2 id="sec18_3">§18.3 含参变量反常积分的性质<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.21-31</b></p>
+<p>设 $\int_a^{+\infty}f(x,u)\mathrm{d}x$ 对 $[\alpha,\beta]$ 中每个 u 都收敛，研究</p>
+<div class="formula">$$\varphi(u)=\int_a^{+\infty}f(x,u)\,\mathrm{d}x\tag{1}$$</div>
+<p>的性质。</p>
+<h3>18.3.1 定理18.3.1：φ 的连续性</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>若 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续，且积分在 $[\alpha,\beta]$ 上一致收敛，则 φ 在 $[\alpha,\beta]$ 上连续。</p>
+<p><b>课本证明路线</b>：对任意 $A>a$，$f(x,u)$ 在 $[a,A]\times[\alpha,\beta]$ 上一致连续，故 $u\to u_0$ 时 $f(x,u)\to f(x,u_0)$ 对 $x\in[a,A]$ 一致成立；在定理18.2.10 中取 $E=[\alpha,\beta]$，得</p>
+<div class="formula">$$\lim_{u\to u_0}\varphi(u)=\int_a^{+\infty}f(x,u_0)\mathrm{d}x=\varphi(u_0).$$</div>
+<h3>18.3.2 例1（连续区间）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>讨论 $\varphi(u)=\displaystyle\int_0^{+\infty}\frac{\arctan x}{x^u(2+x^3)}\mathrm{d}x$ 的连续性区间。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>定义域：$x\to0^+$ 时被积函数 $\sim\dfrac12\cdot\dfrac1{x^{u-1}}$，需 $u&lt;2$；$x\to+\infty$ 时 $\sim\dfrac\pi2\cdot\dfrac1{x^{u+3}}$，需 $u>-2$；故定义域为 $(-2,2)$；</li><li>只需证 φ 在任意 $[a,b]\subset(-2,2)$ 上连续，即证积分在 $[a,b]$ 上一致收敛；</li><li>$x\in(0,1]$ 段：设 $a\leqslant b&lt;2$，存在常数 c 使被积函数 $\leqslant\dfrac{c}{x^{b-1}}$，而 $b-1&lt;1$，由比较判别法知该段在 $(-\infty,b]$ 上一致收敛；</li><li>$x\in[1,+\infty)$ 段：设 $-2&lt;a\leqslant u$，被积函数 $\leqslant\dfrac\pi2\dfrac1{x^{a+3}}$，而 $a+3>1$，该段在 $[a,+\infty)$ 上一致收敛；</li><li>两段合并即知 φ 在 $(-2,2)$ 上连续。</li></ol>
+<h3>18.3.3 定理18.3.2：Dini 定理</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p>设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续、非负。如果由式(1) 定义的 φ 在 $[\alpha,\beta]$ 上连续，那么积分在 $[\alpha,\beta]$ 上<b>一致收敛</b>。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>把 φ 写成级数：$\varphi(u)=\sum\limits_{n=1}^{\infty}a_n(u)$，其中 $a_n(u)=\int_{a+n-1}^{a+n}f(x,u)\mathrm{d}x$；</li><li>各 $a_n(u)$ 在 $[\alpha,\beta]$ 上连续、非负，由级数的 Dini 定理（定理15.3.4）知 $\sum a_n(u)$ 在 $[\alpha,\beta]$ 上一致收敛；</li><li>对任意 $\varepsilon>0$ 存在 N 使 $\sum\limits_{n=N+1}^{\infty}a_n(u)&lt;\varepsilon$ 对所有 u 成立；取 $A_0=a+N$，因 f 非负，$A>A_0$ 时 $\int_A^{+\infty}f\leqslant\sum\limits_{n=N+1}^{\infty}a_n(u)&lt;\varepsilon$。</li></ol>
+<p>课本注明：这里 $[\alpha,\beta]$ 必须是有界的闭区间，否则定理不成立（例子见问题18.3 第2题）。积分的一致收敛只是保证 φ 连续的<b>充分</b>条件而非必要条件；但在 f 非负条件下它是必要条件。</p>
+<h3>18.3.4 定理18.3.3：有限区间上的积分次序交换</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p>设 $[\alpha,\beta]$ 是有限区间。在定理18.3.1 的同样条件下，φ 在 $[\alpha,\beta]$ 上可积，且</p>
+<div class="formula">$$\int_\alpha^\beta\Bigl(\int_a^{+\infty}f(x,u)\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^{+\infty}\Bigl(\int_\alpha^\beta f(x,u)\mathrm{d}u\Bigr)\mathrm{d}x.\tag{2}$$</div>
+<p><b>课本证明路线</b>：</p>
+<ol><li>由定理18.3.1，φ 连续故可积；</li><li>对任何 $A>a$，f 在 $[a,A]\times[\alpha,\beta]$ 上连续，由定理18.1.3 可交换（式(3)）；</li><li>记 $F(A,u)=\int_a^Af(x,u)\mathrm{d}x$，它在 $[\alpha,\beta]$ 上一致收敛于 φ，由定理18.2.3 取极限 $A\to+\infty$ 即得式(2)。</li></ol>
+<h3>18.3.5 例2（Frullani 型积分）</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>设 $a>0,b>0$，c 是任意实数，计算 $\displaystyle\int_0^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos cx\,\mathrm{d}x$。</p>
+<p><b>解</b>：因 $\dfrac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}=\int_a^b\mathrm{e}^{-ux}\mathrm{d}u$，由定理18.3.3 交换次序（合法性因 $\int_0^{+\infty}\mathrm{e}^{-ux}\cos cx\,\mathrm{d}x$ 关于 $u\in[a,b]$ 一致收敛）：</p>
+<div class="formula">$$\int_0^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos cx\,\mathrm{d}x=\int_a^b\Bigl(\int_0^{+\infty}\mathrm{e}^{-ux}\cos cx\,\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^b\frac{u}{u^2+c^2}\mathrm{d}u=\frac12\ln\frac{b^2+c^2}{a^2+c^2}.$$</div>
+<h4>衔接说明（叙述式）</h4>
+<p>定理18.3.3 中关于 u 的积分区间 $[\alpha,\beta]$ 是有限的。很多情况下需要知道<b>两个无穷区间</b>的积分是否可以交换。</p>
+<h3>18.3.6 定理18.3.4：两个无穷区间的积分次序交换</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>设 f 满足下列条件：</p>
+<p>(a) f 在 $[a,+\infty)\times[\alpha,+\infty)$ 上连续；</p>
+<p>(b) $\displaystyle\int_a^{+\infty}f(x,u)\mathrm{d}x$ 关于 u 在任何区间 $[\alpha,\beta]$ 上一致收敛，$\displaystyle\int_\alpha^{+\infty}f(x,u)\mathrm{d}u$ 关于 x 在任何区间 $[a,b]$ 上一致收敛；</p>
+<p>(c) $\displaystyle\int_a^{+\infty}\Bigl(\int_a^{+\infty}|f(x,u)|\mathrm{d}u\Bigr)\mathrm{d}x$ 与 $\displaystyle\int_\alpha^{+\infty}\Bigl(\int_a^{+\infty}|f(x,u)|\mathrm{d}x\Bigr)\mathrm{d}u$ 中至少有一个存在。</p>
+<p>那么两个累次积分都存在且相等：</p>
+<div class="formula">$$\int_a^{+\infty}\Bigl(\int_a^{+\infty}f(x,u)\mathrm{d}u\Bigr)\mathrm{d}x=\int_\alpha^{+\infty}\Bigl(\int_a^{+\infty}f(x,u)\mathrm{d}x\Bigr)\mathrm{d}u.\tag{5}$$</div>
+<p><b>课本证明路线</b>：不妨设绝对值叠积分式(6) 存在。</p>
+<ol><li>要证的是 $\lim\limits_{\beta\to+\infty}\int_\alpha^\beta\Bigl(\int_a^{+\infty}f\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^{+\infty}\Bigl(\int_a^{+\infty}f\mathrm{d}u\Bigr)\mathrm{d}x$（式(7)）；</li><li>由条件 (b) 前半与定理18.3.3：$\int_\alpha^\beta\Bigl(\int_a^{+\infty}f\mathrm{d}x\Bigr)\mathrm{d}u=\int_a^{+\infty}\Bigl(\int_\alpha^\beta f\mathrm{d}u\Bigr)\mathrm{d}x$，于是归结为证明式(7)；</li><li>记 $F(\beta,x)=\int_\alpha^\beta f(x,u)\mathrm{d}u$；由 $|F(\beta,x)|\leqslant\int_\alpha^{+\infty}|f(x,u)|\mathrm{d}u$ 与式(6)、Weierstrass 判别法，$\int_a^{+\infty}F(\beta,x)\mathrm{d}x$ 关于 β 在 $[\alpha,+\infty)$ 上一致收敛；</li><li>由条件 (b) 后半，$\beta\to+\infty$ 时 $F(\beta,x)$ 对 x 在任何 $[a,b]$ 上一致收敛于 $\int_\alpha^{+\infty}f\mathrm{d}u$；用定理18.2.10 取极限即得式(7)。</li></ol>
+<h3>18.3.7 定理18.3.5：非负情形（由 Dini 定理推出）</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>设 f 满足下列条件：</p>
+<p>(a) f 在 $[a,+\infty)\times[\alpha,+\infty)$ 上连续、非负；</p>
+<p>(b) $\varphi(u)=\int_a^{+\infty}f(x,u)\mathrm{d}x$ 与 $\psi(x)=\int_\alpha^{+\infty}f(x,u)\mathrm{d}u$ 分别在 $[\alpha,+\infty)$ 和 $[a,+\infty)$ 上连续；</p>
+<p>(c) $\int_\alpha^{+\infty}\varphi(u)\mathrm{d}u$ 与 $\int_a^{+\infty}\psi(x)\mathrm{d}x$ 中至少有一个收敛。</p>
+<p>那么另一个积分也收敛，且两者相等（即等式(5) 成立）。（由反常积分的 Dini 定理（定理18.3.2）从定理18.3.4 推出。）</p>
+<h3>18.3.8 例3（★Gaussian 积分）</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>计算 $\displaystyle\int_0^{+\infty}\mathrm{e}^{-x^2}\mathrm{d}x$。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>形式计算：记 $I=\int_0^{+\infty}\mathrm{e}^{-x^2}\mathrm{d}x>0$；作变换 $x=ut\ (u>0)$ 得 $I=\int_0^{+\infty}u\,\mathrm{e}^{-u^2t^2}\mathrm{d}t$，即 $\varphi(u)=\int_0^{+\infty}u\,\mathrm{e}^{-u^2t^2}\mathrm{d}t\equiv I$ 取常值；于是</li></ol>
+<div class="formula">$$I^2=\int_0^{+\infty}\Bigl(\int_0^{+\infty}u\,\mathrm{e}^{-u^2(1+t^2)}\mathrm{d}t\Bigr)\mathrm{d}u,$$</div>
+<p>若能交换次序，则 $I^2=\int_0^{+\infty}\Bigl(\int_0^{+\infty}u\,\mathrm{e}^{-u^2(1+t^2)}\mathrm{d}u\Bigr)\mathrm{d}t=\dfrac12\int_0^{+\infty}\dfrac{\mathrm{d}t}{1+t^2}=\dfrac\pi4$，故 $I=\dfrac{\sqrt\pi}{2}$；</p>
+<ol><li>合理性：$f(t,u)=u\,\mathrm{e}^{-u^2(1+t^2)}$ 连续非负；$\varphi(u)=I\mathrm{e}^{-u^2}\ (u>0)$、$\varphi(0)=0$ 在 $[\delta,+\infty)$ 上连续，$\psi(t)=\dfrac{1}{2(1+t^2)}$ 在 $[0,+\infty)$ 上连续，由定理18.3.5 得</li></ol>
+<div class="formula">$$\int_\delta^{+\infty}\Bigl(\int_0^{+\infty}u\,\mathrm{e}^{-u^2(1+t^2)}\mathrm{d}t\Bigr)\mathrm{d}u=\int_0^{+\infty}\frac{\mathrm{e}^{-\delta^2(1+t^2)}}{2(1+t^2)}\mathrm{d}t;\tag{8}$$</div>
+<ol><li>令 $\delta\to0$：右端被积函数 $0&lt;\dfrac{\mathrm{e}^{-\delta^2(1+t^2)}}{2(1+t^2)}\leqslant\dfrac{1}{1+t^2}$，故相应积分关于 δ 在 $[0,+\infty)$ 上一致收敛，从而在 $\delta=0$ 处连续；对式(8) 取极限得 $I^2=\dfrac12\int_0^{+\infty}\dfrac{\mathrm{d}t}{1+t^2}=\dfrac\pi4$。</li></ol>
+<h3>18.3.9 例4（★Fresnel 积分）</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>计算 Fresnel 积分 $\displaystyle\int_0^{+\infty}\sin x^2\,\mathrm{d}x$。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>令 $x^2=t$，化为</li></ol>
+<div class="formula">$$\int_0^{+\infty}\sin x^2\,\mathrm{d}x=\frac12\int_0^{+\infty}\frac{\sin t}{\sqrt t}\mathrm{d}t;\tag{9}$$</div>
+<ol><li>对 Gaussian 积分的结果 $\int_0^{+\infty}\mathrm{e}^{-x^2}\mathrm{d}x=\dfrac{\sqrt\pi}{2}$ 作变换 $x=\sqrt t\,u$，得</li></ol>
+<div class="formula">$$\frac{1}{\sqrt t}=\frac{2}{\sqrt\pi}\int_0^{+\infty}\mathrm{e}^{-tu^2}\mathrm{d}u;\tag{10}$$</div>
+<ol><li>直接代入式(9) 并交换次序虽能得到数值，但交换的合法性不易证明；为此引入<b>收敛因子</b> $\mathrm{e}^{-\alpha t}\ (\alpha>0)$，考虑 $\int_0^{+\infty}\mathrm{e}^{-\alpha t}\dfrac{\sin t}{\sqrt t}\mathrm{d}t$，代入式(10) 并交换次序得</li></ol>
+<div class="formula">$$\int_0^{+\infty}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt t}\mathrm{d}t=\frac{2}{\sqrt\pi}\int_0^{+\infty}\frac{\mathrm{d}u}{1+(\alpha+u^2)^2}\quad(\alpha>0);\tag{11}$$</div>
+<ol><li>交换的合法性：由 18.2 节例2、例3，$\int_0^{+\infty}\mathrm{e}^{-t(\alpha+u^2)}\sin t\,\mathrm{d}t$ 关于 u 在 $[0,+\infty)$ 一致收敛、$\int_0^{+\infty}\mathrm{e}^{-t(\alpha+u^2)}\sin t\,\mathrm{d}u$ 关于 t 在 $[0,+\infty)$ 一致收敛，且 $\int_0^{+\infty}\Bigl(\int_0^{+\infty}\mathrm{e}^{-t(\alpha+u^2)}|\sin t|\mathrm{d}t\Bigr)\mathrm{d}u$ 存在，由定理18.3.4 知交换允许；</li><li>令 $\alpha\to0$：因为 $\int_0^{+\infty}\mathrm{e}^{-\alpha t}\dfrac{\sin t}{\sqrt t}\mathrm{d}t$ 与 $\int_0^{+\infty}\dfrac{\mathrm{d}u}{1+(\alpha+u^2)^2}$ 都关于 α 在 $[0,+\infty)$ 上一致收敛，能在积分号下取极限，得</li></ol>
+<div class="formula">$$\int_0^{+\infty}\frac{\sin t}{\sqrt t}\mathrm{d}t=\frac{2}{\sqrt\pi}\int_0^{+\infty}\frac{\mathrm{d}u}{1+u^4}=\sqrt{\frac\pi2},$$</div>
+<p>其中用了 18.2 节例8 的结果；因此</p>
+<div class="formula">$$\int_0^{+\infty}\sin x^2\,\mathrm{d}x=\frac12\sqrt{\frac\pi2}.$$</div>
+<h3>18.3.10 定理18.3.6：积分号下求导</h3>
+<p class="pgref"><b>课本：29</b></p>
+<p>若 f 和 $\dfrac{\partial f}{\partial u}$ 都在 $[a,+\infty)\times[\alpha,\beta]$ 上连续，且积分 $\int_a^{+\infty}\dfrac{\partial f(x,u)}{\partial u}\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛、$\int_a^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上收敛，那么 $\varphi(u)=\int_a^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上可微，且</p>
+<div class="formula">$$\varphi'(u)=\int_a^{+\infty}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x\quad(\alpha\leqslant u\leqslant\beta).\tag{12}$$</div>
+<p><b>课本证明路线</b>：对正整数 $n>a$ 令 $\varphi_n(u)=\int_a^nf(x,u)\mathrm{d}x$；由定理18.1.2，$\varphi_n$ 有连续导函数 $\varphi_n'(u)=\int_a^n\dfrac{\partial f}{\partial u}\mathrm{d}x$；由于 $\int_a^{+\infty}\dfrac{\partial f}{\partial u}\mathrm{d}x$ 一致收敛，$\{\varphi_n'(u)\}$ 在 $[\alpha,\beta]$ 上一致收敛，而 $\{\varphi_n\}$ 在 $[\alpha,\beta]$ 上收敛于 φ，由定理15.3.9 知 φ 连续可微且式(12) 成立。</p>
+<h3>18.3.11 例5（对参数求导）</h3>
+<p class="pgref"><b>课本：p.21-31</b></p>
+<p>计算 $\displaystyle\int_0^{+\infty}\frac{\mathrm{e}^{-ax^2}-\mathrm{e}^{-bx^2}}{x^2}\mathrm{d}x\quad(a>0,b>0)$。</p>
+<p><b>课本证明路线</b>：把 a 看做参数，记积分为 I(a)。</p>
+<ol><li>微分与积分交换的合法性：限制 $a\in[\delta,+\infty)$（δ 任意正数），由 $|\mathrm{e}^{-ax^2}|\leqslant\mathrm{e}^{-\delta x^2}$ 与 Weierstrass 判别法知 $\int_0^{+\infty}\mathrm{e}^{-ax^2}\mathrm{d}x$ 关于 a 在 $[\delta,+\infty)$ 上一致收敛，由定理18.3.6 允许；δ 任意，故下式在 $(0,+\infty)$ 上成立：</li></ol>
+<div class="formula">$$I'(a)=-\int_0^{+\infty}\mathrm{e}^{-ax^2}\mathrm{d}x=-\frac{\sqrt\pi}{2\sqrt a};$$</div>
+<ol><li>积分得 $I(a)=-\sqrt{\pi a}+c$；由 $I(b)=0$ 得 $c=\sqrt{\pi b}$，故</li></ol>
+<div class="formula">$$I(a)=\sqrt\pi\,(\sqrt b-\sqrt a).$$</div>
+<h3>18.3.12 例6（对参数求导）</h3>
+<p class="pgref"><b>课本：p.21-31</b></p>
+<p>计算 $\displaystyle\int_0^{+\infty}\mathrm{e}^{-ax^2}\cos bx\,\mathrm{d}x\quad(a>0)$。</p>
+<p><b>课本证明路线</b>：把 b 看做参数，记积分为 I(b)。</p>
+<ol><li>先证对一切 $b\in(-\infty,+\infty)$</li></ol>
+<div class="formula">$$I'(b)=-\int_0^{+\infty}x\,\mathrm{e}^{-ax^2}\sin bx\,\mathrm{d}x;\tag{14}$$</div>
+<p>由 $|x\,\mathrm{e}^{-ax^2}\sin bx|\leqslant x\,\mathrm{e}^{-ax^2}$ 而 $\int_0^{+\infty}x\,\mathrm{e}^{-ax^2}\mathrm{d}x$ 收敛（Weierstrass 判别法），式(14) 右边关于 b 一致收敛，交换合法；</p>
+<ol><li>分部积分算出微分方程 $I'(b)=-\dfrac{b}{2a}I(b)$，解得 $\ln I(b)=-\dfrac{b^2}{4a}+c$，即 $I(b)=c'\mathrm{e}^{-b^2/(4a)}$；</li><li>由 $I(0)=\dfrac12\sqrt{\pi/a}$ 定常数：</li></ol>
+<div class="formula">$$I(b)=\frac12\sqrt{\frac\pi a}\,\mathrm{e}^{-b^2/(4a)}.$$</div>
+<h3>18.3.13 瑕积分的对应结论（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.21-31</b></p>
+<p>以上这些结果都是对无穷积分来讨论的，对瑕积分这些结果也都成立，课本不再一一叙述。</p>
+<hr>
+<h2 id="sec18_4">§18.4 Γ函数和B函数<span class="freq">◇</span></h2>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<h3>18.4.1 Γ 函数与 B 函数的定义（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p>含参变量的反常积分</p>
+<div class="formula">$$\Gamma(s)=\int_0^{+\infty}t^{s-1}\mathrm{e}^{-t}\mathrm{d}t,\qquad\mathrm{B}(p,q)=\int_0^1 t^{p-1}(1-t)^{q-1}\mathrm{d}t$$</div>
+<p>分别称为 <b>Γ（Gamma）函数</b>和 <b>B（Beta）函数</b>：前者含一个参变量 s，后者含两个参变量 p、q，都是由含参变量反常积分确定的非初等函数。这两个积分都由 Euler 首先提出并研究，分别称为 <b>Euler 第二型积分</b>和 <b>Euler 第一型积分</b>。</p>
+<p>课本引用：16.3 节例4 确定 $\Gamma(s)$ 的定义域是 $s>0$；16.3 节例3 确定 $\mathrm{B}(p,q)$ 的定义域是 $p>0,q>0$。</p>
+<h3>18.4.2 定理18.4.1：Γ 的连续性与各阶导数</h3>
+<p class="pgref"><b>课本：33</b></p>
+<p>$\Gamma(s)$ 在 $(0,+\infty)$ 上连续，且有各阶连续导数。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>把 $\Gamma(s)$ 分成 $\int_0^1$ 与 $\int_1^{+\infty}$ 两部分；</li><li>对任意 $\beta>\alpha>0$、$s\in[\alpha,\beta]$：$0&lt;t&lt;1$ 时 $0&lt;t^{s-1}\mathrm{e}^{-t}\leqslant t^{\alpha-1}\mathrm{e}^{-t}$，$t>1$ 时 $t^{s-1}\mathrm{e}^{-t}\leqslant t^{\beta-1}\mathrm{e}^{-t}$，两端控制积分均收敛，由 Weierstrass 判别法两部分都关于 s 在 $[\alpha,\beta]$ 上一致收敛，故各为连续函数；</li><li>由 $\beta>\alpha>0$ 的任意性，Γ 在 $(0,+\infty)$ 上连续；</li><li>同法知 $\int_0^{+\infty}t^{s-1}\mathrm{e}^{-t}\ln t\,\mathrm{d}t$ 在 $[\alpha,\beta]$ 上一致收敛，由定理18.3.6 得 $\Gamma'(s)=\int_0^{+\infty}t^{s-1}\mathrm{e}^{-t}\ln t\,\mathrm{d}t$ 存在且连续；重复即得任意阶导数。</li></ol>
+<h3>18.4.3 定理18.4.2：Γ 的三条性质</h3>
+<p class="pgref"><b>课本：33</b></p>
+<p>(1) 对任意 $s>0$，$\Gamma(s)>0$，且 $\Gamma(1)=1$；</p>
+<p>(2) 对任意 $s>0$，$\Gamma(s+1)=s\,\Gamma(s)$；</p>
+<p>(3) $\ln\Gamma(s)$ 是 $(0,+\infty)$ 上的凸函数。</p>
+<p><b>课本证明路线</b>：(1) 从定义即得；(2) 分部积分：$\Gamma(s+1)=-t^s\mathrm{e}^{-t}\big|_0^{+\infty}+s\int_0^{+\infty}t^{s-1}\mathrm{e}^{-t}\mathrm{d}t=s\Gamma(s)$；(3) 只要证对 $p\in(1,+\infty),\ \frac1p+\frac1q=1,\ s_1,s_2>0$ 有 $\Gamma\Bigl(\dfrac{s_1}{p}+\dfrac{s_2}{q}\Bigr)\leqslant(\Gamma(s_1))^{1/p}(\Gamma(s_2))^{1/q}$——把被积函数配成两个因子的乘积，用（无穷积分版的）Hölder 不等式即得；无穷积分版 Hölder 不等式从通常的 Hölder 不等式取极限得到。</p>
+<h4>正文推论（叙述式）</h4>
+<ul><li>在性质(2) 中取 $s=n$（正整数）：$\Gamma(n+1)=n(n-1)\cdots1\cdot\Gamma(1)=n!$，因而 <b>Γ 函数可以看做阶乘函数的推广</b>；</li><li>设 $n&lt;s\leqslant n+1$，反复用性质(2)：$\Gamma(s+1)=s(s-1)\cdots(s-n)\Gamma(s-n)$，其中 $0&lt;s-n\leqslant1$；只要知道 Γ 在 $(0,1)$ 上的值，其他正数处的值就能给出。</li></ul>
+<h3>18.4.4 Bohr–Mollerup 说明（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p>出乎意料的是，定理18.4.2 中 Γ 函数的三条性质<b>完全确定</b>了 Γ 函数：任何定义在 $(0,+\infty)$ 上的函数若具有这三条性质，它一定是 Γ 函数。这一结果由 Bohr 和 Mollerup 于 1922 年首先发现。</p>
+<h3>18.4.5 定理18.4.3：唯一性定理（Bohr–Mollerup）</h3>
+<p class="pgref"><b>课本：34</b></p>
+<p>设 $(0,+\infty)$ 上的函数 f 满足三个条件：</p>
+<p>(a) 对任意 $x>0$，$f(x)>0$ 且 $f(1)=1$；</p>
+<p>(b) 对任意 $x>0$，$f(x+1)=xf(x)$；</p>
+<p>(c) $\ln f$ 是 $(0,+\infty)$ 上的凸函数。</p>
+<p>那么 $f(x)=\Gamma(x)$ 对任何 $x>0$ 成立。</p>
+<p><b>课本证明路线</b>（证 f 被 (a)(b)(c) 唯一确定）：</p>
+<ol><li>由条件 (b) 只需对 $x\in(0,1)$ 讨论；由凸函数性质（定理3.5.10）写出差商夹逼不等式；</li><li>由 (a)(b) 知 $f(n)=(n-1)!$，化简得 $x\ln(n-1)\leqslant\ln f(n+x)-\ln(n-1)!\leqslant x\ln n$，即</li></ol>
+<div class="formula">$$(n-1)^x(n-1)!\leqslant f(n+x)\leqslant n^x(n-1)!;$$</div>
+<ol><li>再由 $f(n+x)=(n-1+x)\cdots(1+x)x f(x)$ 得双边估计（式(1)）；</li><li>式(1) 左边的 n−1 换成 n 不等式仍成立，改写成</li></ol>
+<div class="formula">$$\frac{n}{x+n}f(x)\leqslant\frac{n^xn!}{x(x+1)\cdots(x+n)}\leqslant f(x);$$</div>
+<ol><li>令 $n\to\infty$ 得 $f(x)=\lim\limits_{n\to\infty}\dfrac{n^xn!}{x(x+1)\cdots(x+n)}$（式(2)），被唯一确定。</li></ol>
+<h3>18.4.6 定理18.4.4：Γ 的极限表达式</h3>
+<p class="pgref"><b>课本：35</b></p>
+<p>对任意 $x>0$，</p>
+<div class="formula">$$\Gamma(x)=\lim_{n\to\infty}\frac{n^xn!}{x(x+1)\cdots(x+n)}.\tag{3}$$</div>
+<p><b>课本证明路线</b>：式(2) 已证 $0&lt;x&lt;1$ 情形。记 $g(x)=\lim\limits_{n\to\infty}\dfrac{n^xn!}{x(x+1)\cdots(x+n)}$，直接验证</p>
+<div class="formula">$$g(x+1)=xg(x)\tag{4}$$</div>
+<p>（提出因子 x 并乘以 $\frac{n}{n+x+1}\to1$）；设 $n&lt;x\leqslant n+1$，反复用式(4) 归到 $x-n\in(0,1]$ 的已知情形，得 $g(x+1)=x(x-1)\cdots(x-n)\Gamma(x-n)=\Gamma(x+1)$，从而对一切 $x>0$ 式(3) 成立。</p>
+<h3>18.4.7 定理18.4.5：B 的递推公式</h3>
+<p class="pgref"><b>课本：36</b></p>
+<p>对任意 $p>0,q>0$，</p>
+<div class="formula">$$\mathrm{B}(p+1,q)=\frac{p}{p+q}\mathrm{B}(p,q).\tag{5}$$</div>
+<p><b>课本证明路线</b>：一次分部积分，把 $\mathrm{B}(p+1,q)$ 写成 $\int_0^1\bigl(\frac{t}{1-t}\bigr)^p(1-t)^{p+q-1}\mathrm{d}t$ 后凑微分即得 $\dfrac{p}{p+q}\mathrm{B}(p,q)$。</p>
+<h3>18.4.8 定理18.4.6：Γ 与 B 的关系</h3>
+<p class="pgref"><b>课本：36</b></p>
+<p>对任意 $p>0,q>0$，</p>
+<div class="formula">$$\mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.$$</div>
+<p><b>课本证明路线</b>：固定 $q>0$，令 $f(p)=\dfrac{\Gamma(p+q)\,\mathrm{B}(p,q)}{\Gamma(q)}$；验证 f 满足定理18.4.3 的三条性质：</p>
+<ol><li>性质 (b)：由式(5) 与 Γ 的递推关系得 $f(p+1)=pf(p)$；</li><li>性质 (a)：$\mathrm{B}(1,q)=\int_0^1(1-t)^{q-1}\mathrm{d}t=\dfrac1q$，故 $f(1)=\dfrac{\Gamma(q+1)}{q\Gamma(q)}=1$，且显然 $f(p)>0$；</li><li>性质 (c)：$\ln f(p)=\ln\Gamma(p+q)+\ln\mathrm{B}(p,q)-\ln\Gamma(q)$；用与证明 $\ln\Gamma$ 为凸函数完全相同的方法可证 $\ln\mathrm{B}(p,q)$ 关于 p 是 $(0,+\infty)$ 上的凸函数，故 $\ln f$ 也是凸函数。</li></ol>
+<p>于是 $f(p)=\Gamma(p)$，即定理成立。</p>
+<h3>18.4.9 定理18.4.7：B 的性质</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p>(1) $\mathrm{B}(p,q)$ 在 $(0,+\infty)\times(0,+\infty)$ 上连续且有各阶连续偏导数；</p>
+<p>(2) $\mathrm{B}(p,q)=\mathrm{B}(q,p)\ (p>0,q>0)$；</p>
+<p>(3) $\mathrm{B}(p+1,q+1)=\dfrac{pq}{(p+q+1)(p+q)}\mathrm{B}(p,q)\ (p>0,q>0)$。</p>
+<p>课本注明：根据定理18.4.6 从 Γ 函数的性质直接推出，"证明是显然的"。</p>
+<h3>18.4.10 例1（★三角幂积分）</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p>计算 $\displaystyle\int_0^{\pi/2}\cos^\alpha x\sin^\beta x\,\mathrm{d}x\quad(\alpha>-1,\beta>-1)$。</p>
+<p><b>解</b>：令 $t=\sin^2x$，</p>
+<div class="formula">$$\int_0^{\pi/2}\cos^\alpha x\sin^\beta x\,\mathrm{d}x=\frac12\int_0^1 t^{(\beta-1)/2}(1-t)^{(\alpha-1)/2}\mathrm{d}t=\frac12\,\mathrm{B}\Bigl(\frac{\beta+1}{2},\frac{\alpha+1}{2}\Bigr)=\frac12\cdot\frac{\Gamma\bigl(\frac{\beta+1}{2}\bigr)\Gamma\bigl(\frac{\alpha+1}{2}\bigr)}{\Gamma\bigl(\frac{\alpha+\beta}{2}+1\bigr)}.$$</div>
+<p><b>课本随后给出</b>：</p>
+<ul><li>取 $\alpha=\beta=0$ 得</li></ul>
+<div class="formula">$$\Gamma\Bigl(\frac12\Bigr)=\sqrt\pi;\tag{6}$$</div>
+<ul><li>在 Γ 的定义中作代换 $t=x^2$ 得 $\Gamma(s)=2\int_0^{+\infty}x^{2s-1}\mathrm{e}^{-x^2}\mathrm{d}x$；取 $s=1/2$ 并用式(6)，再一次得到 $\displaystyle\int_0^{+\infty}\mathrm{e}^{-x^2}\mathrm{d}x=\frac{\sqrt\pi}{2}$；</li><li>正整数情形可直接写出，例如</li></ul>
+<div class="formula">$$\int_0^{\pi/2}\cos^6x\sin^4x\,\mathrm{d}x=\frac12\cdot\frac{\Gamma\bigl(\frac72\bigr)\Gamma\bigl(\frac52\bigr)}{\Gamma(6)}=\frac{3\pi}{512},$$</div>
+<p>其中 $\Gamma\bigl(\frac52\bigr)=\frac32\cdot\frac12\Gamma\bigl(\frac12\bigr)=\frac34\sqrt\pi$，$\Gamma\bigl(\frac72\bigr)=\frac52\Gamma\bigl(\frac52\bigr)=\frac{15}{8}\sqrt\pi$。</p>
+<h3>18.4.11 例2（★B 的无穷积分表示）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p>证明：$\mathrm{B}(p,q)$ 可表示为</p>
+<div class="formula">$$\mathrm{B}(p,q)=\int_0^{+\infty}\frac{x^{q-1}}{(1+x)^{p+q}}\mathrm{d}x\quad(p>0,q>0);\tag{7}$$</div>
+<p>并利用该公式计算 $I=\displaystyle\int_0^{+\infty}\frac{x^{3/2}}{(1+x^5)^3}\mathrm{d}x$。</p>
+<p><b>证明与解</b>：对 B 的定义式作代换 $t=\dfrac{1}{1+x}$ 即得式(7)。对 I 作代换 $x^5=t$：</p>
+<div class="formula">$$I=\frac15\int_0^{+\infty}\frac{t^{1/2-1}}{(1+t)^3}\mathrm{d}t=\frac15\,\mathrm{B}\Bigl(\frac52,\frac12\Bigr)=\frac15\cdot\frac{\Gamma\bigl(\frac52\bigr)\Gamma\bigl(\frac12\bigr)}{\Gamma(3)}=\frac{3\pi}{40}.$$</div>
+<h3>18.4.12 例3（中心二项式系数级数）</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>计算 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\binom{2n}{n}}$。</p>
+<p><b>解</b>：由定理18.4.6，</p>
+<div class="formula">$$\sum_{n=1}^{\infty}\frac{1}{n\binom{2n}{n}}=\sum_{n=1}^{\infty}\frac{(n-1)!n!}{(2n)!}=\sum_{n=1}^{\infty}\mathrm{B}(n,n+1)=\sum_{n=1}^{\infty}\int_0^1 t^n(1-t)^{n-1}\mathrm{d}t.$$</div>
+<p>因 $0\leqslant t(1-t)\leqslant\frac14$，有 $0\leqslant t^n(1-t)^{n-1}\leqslant\bigl(\frac14\bigr)^{n-1}$，级数在 $[0,1]$ 上一致收敛，逐项积分合法：</p>
+<div class="formula">$$\sum_{n=1}^{\infty}\frac{1}{n\binom{2n}{n}}=\int_0^1\sum_{n=1}^{\infty}t^n(1-t)^{n-1}\mathrm{d}t=\int_0^1\frac{t}{1-t(1-t)}\mathrm{d}t=\int_0^1\frac{t}{t^2-t+1}\mathrm{d}t=\frac{\pi}{3\sqrt3}.$$</div>
+<h3>18.4.13 定理18.4.8：加倍公式</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>对任意 $s>0$，</p>
+<div class="formula">$$\Gamma(2s)=\frac{2^{2s-1}}{\sqrt\pi}\,\Gamma(s)\,\Gamma\Bigl(s+\frac12\Bigr).\tag{8}$$</div>
+<p><b>课本证明路线</b>：令 $p=2s$，式(8) 化为</p>
+<div class="formula">$$\Gamma(p)=\frac{2^{p-1}}{\sqrt\pi}\,\Gamma\Bigl(\frac p2\Bigr)\Gamma\Bigl(\frac{p+1}{2}\Bigr).\tag{9}$$</div>
+<p>验证 $f(p)=\dfrac{2^{p-1}}{\sqrt\pi}\Gamma\bigl(\frac p2\bigr)\Gamma\bigl(\frac{p+1}{2}\bigr)$ 满足定理18.4.3 的三条性质：$f(p+1)=pf(p)$（用 Γ 递推）；$f(1)=\dfrac{1}{\sqrt\pi}\Gamma\bigl(\frac12\bigr)=1$；$\ln f(p)$ 是 $(0,+\infty)$ 上的凸函数（三项凸函数之和）。由定理18.4.3 知式(9) 成立。</p>
+<h3>18.4.14 定理18.4.9：余元公式</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>对任意 $p\in(0,1)$，</p>
+<div class="formula">$$\Gamma(p)\,\Gamma(1-p)=\frac{\pi}{\sin p\pi}.\tag{10}$$</div>
+<p><b>课本证明路线</b>：</p>
+<ol><li>在定理18.4.6 中令 $q=1-p$：</li></ol>
+<div class="formula">$$\Gamma(p)\Gamma(1-p)=\mathrm{B}(1-p,p)=\int_0^1t^{-p}(1-t)^{p-1}\mathrm{d}t;\tag{11}$$</div>
+<ol><li>令 $t=\dfrac{1}{1+x}$，并利用 18.2 节例7 的结果：</li></ol>
+<div class="formula">$$\int_0^1t^{-p}(1-t)^{p-1}\mathrm{d}t=\int_0^{+\infty}\frac{x^{p-1}}{1+x}\mathrm{d}x=\frac{\pi}{\sin p\pi},$$</div>
+<p>代入式(11) 即得式(10)。</p>
+<p>课本注明：根据余元公式，只要知道 Γ 在 $(0,\frac12)$ 上的值，便能算出 Γ 在 $(0,1)$ 上的值，从而算出 Γ 在 $(0,+\infty)$ 上的值。</p>
+<h3>18.4.15 例4（其一，p.40）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p>计算 $\displaystyle\int_0^{\pi/2}(\tan x)^\alpha\mathrm{d}x\quad(|\alpha|&lt;1)$。</p>
+<p><b>解</b>：利用例1 的结果，</p>
+<div class="formula">$$\int_0^{\pi/2}(\tan x)^\alpha\mathrm{d}x=\int_0^{\pi/2}\cos^{-\alpha}x\sin^\alpha x\,\mathrm{d}x=\frac12\,\Gamma\Bigl(\frac{1+\alpha}{2}\Bigr)\Gamma\Bigl(\frac{1-\alpha}{2}\Bigr);$$</div>
+<p>再利用余元公式（视 $\frac{1+\alpha}{2}\in(0,1)$）：</p>
+<div class="formula">$$\int_0^{\pi/2}(\tan x)^\alpha\mathrm{d}x=\frac12\cdot\frac{\pi}{\sin\frac{1+\alpha}{2}\pi}=\frac{\pi}{2\cos\dfrac{\alpha\pi}{2}}.$$</div>
+<h3>18.4.16 Stirling 公式的引入（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p>7.4 节的定理7.4.1 曾给出 n! 的渐近表达式（Stirling 公式）：</p>
+<div class="formula">$$n!\sim\sqrt{2\pi n}\Bigl(\frac ne\Bigr)^n\quad(n\to\infty).\tag{12}$$</div>
+<p>由于 $\Gamma(n+1)=n!$，自然要问：$x\to+\infty$ 时是否有</p>
+<div class="formula">$$\Gamma(x+1)\sim\sqrt{2\pi x}\Bigl(\frac xe\Bigr)^x\quad(x\to+\infty)?\tag{13}$$</div>
+<p>下面证明式(13) 正确，且能得到比式(13) 更精细的结果。</p>
+<h3>18.4.17 定理18.4.10：Stirling 公式（精细形式）</h3>
+<p class="pgref"><b>课本：41</b></p>
+<p>对任意 $x>0$，存在 $\theta(x)\in(0,1)$，使得</p>
+<div class="formula">$$\Gamma(x+1)=\sqrt{2\pi x}\Bigl(\frac xe\Bigr)^x\mathrm{e}^{\frac{\theta(x)}{12x}}.\tag{14}$$</div>
+<p><b>课本证明路线（总纲）</b>：由 $\Gamma(x+1)=x\Gamma(x)$，式(14) 等价于两边取对数后的</p>
+<div class="formula">$$\ln\Gamma(x)=\ln\sqrt{2\pi}+\Bigl(x-\frac12\Bigr)\ln x-x+\frac{\theta(x)}{12x}.\tag{15}$$</div>
+<p>通过四个引理证明式(15)。</p>
+<h3>18.4.18 四个引理</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p><b>引理18.4.1</b>　对任意 $x>0$，</p>
+<div class="formula">$$0&lt;\Bigl(x+\frac12\Bigr)\ln\Bigl(1+\frac1x\Bigr)-1&lt;\frac1{12}\Bigl(\frac1x-\frac1{x+1}\Bigr).\tag{16}$$</div>
+<p><b>课本证明路线</b>：利用 9.5 节例6 的展开式 $\ln\dfrac{1+x}{1-x}=2\sum\limits_{k=0}^{\infty}\dfrac{x^{2k+1}}{2k+1}\ (-1&lt;x&lt;1)$，把左端化为</p>
+<div class="formula">$$\Bigl(x+\frac12\Bigr)\ln\Bigl(1+\frac1x\Bigr)-1=\frac13\Bigl(\frac{1}{2x+1}\Bigr)^2+\frac15\Bigl(\frac{1}{2x+1}\Bigr)^4+\cdots,\tag{17}$$</div>
+<p>右边为正项级数，故左边不等式成立；右边不等式用等比放缩：式(17) 右端小于</p>
+<div class="formula">$$\frac13\Bigl(\frac{1}{2x+1}\Bigr)^2\frac{1}{1-\bigl(\frac{1}{2x+1}\bigr)^2}=\frac1{12}\Bigl(\frac1x-\frac1{x+1}\Bigr).$$</div>
+<p><b>引理18.4.2</b>　对任意 $x>0$，</p>
+<div class="formula">$$0&lt;\int_0^{+\infty}\frac{[t]-t+\frac12}{t+x}\mathrm{d}t&lt;\frac{1}{12x}.$$</div>
+<p><b>课本证明路线</b>：按整数区间分拆求和，直接计算得</p>
+<div class="formula">$$\int_0^{+\infty}\frac{[t]-t+\frac12}{t+x}\mathrm{d}t=\sum_{k=0}^{\infty}\Bigl(\Bigl(k+\frac12+x\Bigr)\ln\Bigl(1+\frac{1}{k+x}\Bigr)-1\Bigr);$$</div>
+<p>在不等式(16) 中以 $k+x$ 代替 x，再裂项相消：</p>
+<div class="formula">$$0&lt;\int_0^{+\infty}\frac{[t]-t+\frac12}{t+x}\mathrm{d}t&lt;\frac1{12}\sum_{k=0}^{\infty}\Bigl(\frac{1}{k+x}-\frac{1}{k+x+1}\Bigr)=\frac{1}{12x}.$$</div>
+<p><b>引理18.4.3</b>　对任意正整数 n 和 $x>0$，</p>
+<div class="formula">$$\int_0^n\frac{[t]-t+\frac12}{t+x}\mathrm{d}t=\Bigl(n+x+\frac12\Bigr)\ln(n+x)-\Bigl(\frac12+x\Bigr)\ln x-\sum_{k=1}^n\ln(k+x)-n.$$</div>
+<p>（证明为直接的分段计算。）</p>
+<p><b>引理18.4.4</b></p>
+<div class="formula">$$\lim_{n\to\infty}\Bigl(\ln n!+n-\Bigl(n+\frac12\Bigr)\ln n\Bigr)=\ln\sqrt{2\pi}.\tag{18}$$</div>
+<p><b>课本证明路线</b>：在 Stirling 公式 $\lim\limits_{n\to\infty}\dfrac{n!}{(\frac ne)^n\sqrt{2\pi n}}=1$ 两边取对数即得式(18)。</p>
+<h3>18.4.19 式(15) 的证明（组装）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>由恒等式 $\ln\dfrac{n^xn!}{x(x+1)\cdots(x+n)}=\ln n!+x\ln n-\sum\limits_{k=0}^n\ln(k+x)$ 与引理18.4.3 相减整理，得（式(19)）</li></ol>
+<div class="formula">$$\ln\frac{n^xn!}{x(x+1)\cdots(x+n)}-\int_0^n\frac{[t]-t+\frac12}{t+x}\mathrm{d}t=\ln n!+n-\Bigl(n+\frac12\Bigr)\ln n-\Bigl(n+x+\frac12\Bigr)\ln\Bigl(1+\frac xn\Bigr)+\Bigl(x-\frac12\Bigr)\ln x;$$</div>
+<ol><li>令 $n\to\infty$：前三项之和的极限为 $\ln\sqrt{2\pi}$（引理18.4.4）；$\Bigl(n+x+\dfrac12\Bigr)\ln\Bigl(1+\dfrac xn\Bigr)=\ln\Bigl(1+\dfrac xn\Bigr)^n\Bigl(1+\dfrac xn\Bigr)^{x+\frac12}\to x$；左边第一项的极限为 $\ln\Gamma(x)$（定理18.4.4）；</li><li>于是得到</li></ol>
+<div class="formula">$$\ln\Gamma(x)-\int_0^{+\infty}\frac{[t]-t+\frac12}{t+x}\mathrm{d}t=\ln\sqrt{2\pi}-x+\Bigl(x-\frac12\Bigr)\ln x;\tag{20}$$</div>
+<ol><li>记 $\theta(x)=12x\displaystyle\int_0^{+\infty}\frac{[t]-t+\frac12}{t+x}\mathrm{d}t$，由引理18.4.2 知 $0&lt;\theta(x)&lt;1$；式(20) 改写即式(15)。□</li></ol>
+<h3>18.4.20 推论18.4.1 与例4（其二）</h3>
+<p class="pgref"><b>课本：45</b></p>
+<p><b>推论18.4.1</b>　对任意实数 a，有</p>
+<div class="formula">$$\lim_{x\to+\infty}\frac{x^a\Gamma(x)}{\Gamma(x+a)}=1.$$</div>
+<p>（证明留作练习。）</p>
+<p><b>例4（其二，p.45）</b>　计算 $\displaystyle\lim_{\alpha\to+\infty}\sqrt\alpha\int_0^1(1-x^2)^\alpha\mathrm{d}x$。</p>
+<p><b>解</b>：令 $x^2=t$，则</p>
+<div class="formula">$$\int_0^1(1-x^2)^\alpha\mathrm{d}x=\frac12\int_0^1t^{-1/2}(1-t)^\alpha\mathrm{d}t=\frac12\,\mathrm{B}\Bigl(\frac12,\alpha+1\Bigr)=\frac12\cdot\frac{\Gamma\bigl(\frac12\bigr)\Gamma(\alpha+1)}{\Gamma\bigl(\alpha+\frac32\bigr)};$$</div>
+<p>由推论18.4.1，</p>
+<div class="formula">$$\lim_{\alpha\to+\infty}\sqrt\alpha\int_0^1(1-x^2)^\alpha\mathrm{d}x=\frac{\sqrt\pi}{2}\lim_{\alpha\to+\infty}\frac{\sqrt\alpha\,\Gamma(\alpha+1)}{\Gamma\bigl(\alpha+\frac32\bigr)}=\frac{\sqrt\pi}{2}.$$</div>
+<h3>18.4.21 应用：n 维球的体积与面积（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.32-49</b></p>
+<p>作为本节的结尾，课本用 Γ 函数表示 n 维球的体积和面积。</p>
+<h4>n 维球的体积（统一公式）</h4>
+<p>10.8 节例2 曾对 n 分奇偶给出半径为 a 的 n 维球体积；用 Γ 函数可统一。$n=2k$ 时</p>
+<div class="formula">$$\mu(B_n(a))=\frac{\pi^k}{\Gamma(k+1)}a^{2k}=\frac{\pi^{n/2}}{\Gamma\bigl(\frac n2+1\bigr)}a^n;$$</div>
+<p>$n=2k-1$ 时经同样的 Γ 函数改写得相同表达式。于是不论 n 的奇偶：</p>
+<div class="formula">$$\mu(B_n(a))=\frac{\pi^{n/2}}{\Gamma\bigl(\dfrac n2+1\bigr)}\,a^n.$$</div>
+<h4>球体积分的统一形式</h4>
+<p>利用这里的推导还可把 10.8 节例3 的积分写成统一形式：</p>
+<div class="formula">$$\iint_{B_n(a)}f(r)\,\mathrm{d}x_1\cdots\mathrm{d}x_n=\frac{2\pi^{n/2}}{\Gamma\bigl(\dfrac n2\bigr)}\int_0^at^{n-1}f(t)\,\mathrm{d}t.\tag{21}$$</div>
+<h4>n 维球面的面积</h4>
+<p>课本仿照定义12.1.1 给出曲面 $S:\ r=r(u_1,\cdots,u_{n-1})\ ((u_1,\cdots,u_{n-1})\in D\subset\mathbb{R}^{n-1})$ 的面积定义</p>
+<div class="formula">$$\sigma(S)=\int\cdots\int_D\bigl\|r_{u_1}\times r_{u_2}\times\cdots\times r_{u_{n-1}}\bigr\|\,\mathrm{d}u_1\cdots\mathrm{d}u_{n-1},$$</div>
+<p>其中 $r_{u_i}=\Bigl(\dfrac{\partial x_1}{\partial u_i},\cdots,\dfrac{\partial x_n}{\partial u_i}\Bigr)$，叉乘按行列式规则定义（$e_1,\cdots,e_n$ 为单位坐标向量）。特别当曲面有显式表示 $x_n=f(x_1,\cdots,x_{n-1})$ 时，</p>
+<div class="formula">$$\sigma(S)=\int\cdots\int_D\sqrt{1+\Bigl(\frac{\partial f}{\partial x_1}\Bigr)^2+\cdots+\Bigl(\frac{\partial f}{\partial x_{n-1}}\Bigr)^2}\,\mathrm{d}x_1\cdots\mathrm{d}x_{n-1}.\tag{22}$$</div>
+<p>对 $\mathbb{R}^n$ 中以原点为中心、半径为 a 的球面 $S_{n-1}(a)$：由对称性与式(22)，</p>
+<div class="formula">$$\sigma(S_{n-1}(a))=2a\iint_{B_{n-1}(a)}\frac{1}{\sqrt{a^2-r^2}}\,\mathrm{d}x_1\cdots\mathrm{d}x_{n-1}\qquad(r^2=x_1^2+\cdots+x_{n-1}^2);$$</div>
+<p>由公式(21) 与代换 $t=as$、$s=\sin\theta$，用 B 函数算出内层积分，最后得</p>
+<div class="formula">$$\sigma(S_{n-1}(a))=\frac{2\pi^{n/2}}{\Gamma\bigl(\dfrac n2\bigr)}\,a^{n-1}.$$</div>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 X.Y</b>（基本）与<b>问题 X.Y</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§18.1</td><td>练习题18.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=373</td><td>p.8（共 7 题）</td><td>问题18.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=373</td><td>p.8（共 3 题）</td></tr><tr><td>§18.2</td><td>练习题18.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=385</td><td>p.20（共 6 题）</td><td>问题18.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=385</td><td>p.20（共 3 题）</td></tr><tr><td>§18.3</td><td>练习题18.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=396\</td><td>p.31（共 6 题）</td><td>问题18.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=396\</td><td>p.31（共 6 题）</td></tr><tr><td>§18.4</td><td>练习题18.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=413\</td><td>p.48（共 7 题）</td><td>问题18.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=413\</td><td>p.48 起（共 7 题，延续至本章末页）</td></tr></tbody></table></div>
+<p>&gt; 注：题数为课本显式编号计数；本章无单独"补充题"档。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">构造新函数的工具：含参变量积分（章首引言，常义/反常之分）
+→ 常义含参积分：连续（18.1.1）、积分号下求导（18.1.2）、积分次序交换（18.1.3）
+→ 例1（(x^b−x^a)/lnx）、例2（Poisson 型积分 ln(1−2rcosx+r²)）
+→ 变限含参积分（式(9)）：连续（18.1.4）、求导公式（18.1.5）＋例3、例4
+→ 一般函数极限的一致收敛（定义18.2.1）→ 序列刻画（18.2.1）→ 极限函数性质（18.2.2、18.2.3）
+→ 含参反常积分一致收敛：定义18.2.2、18.2.3 → η(A) 判别（18.2.4）＋例1
+→ Cauchy 收敛原理（18.2.5）→ Weierstrass 判别法（18.2.6）＋例2、例3
+→ Dirichlet 判别法（18.2.7）、Abel 判别法（18.2.8）＋单因子简化形式＋例4、例5、例6
+→ 无穷区间上的反例（叙述式）→ 极限号与积分号交换：18.2.9、18.2.10
+→ 例7（∫x^(p−1)/(1+x)dx = π/sinpπ）→ 例8（∫dx/(1+x^α)）
+→ 反常含参积分的性质：连续（18.3.1）＋例1 → Dini 定理（18.3.2）
+→ 有限区间积分次序交换（18.3.3）＋例2（Frullani 型）
+→ 双无穷区间交换（18.3.4）→ 非负情形（18.3.5）
+→ 例3（Gaussian 积分 √π/2）→ 例4（Fresnel 积分）
+→ 积分号下求导（18.3.6）→ 例5、例6 → 瑕积分类似结论（叙述式）
+→ Γ 函数与 B 函数定义（Euler 第一、二型积分，叙述式）
+→ Γ 连续且有各阶导数（18.4.1）→ 三条基本性质（18.4.2）＋阶乘推广与递推（正文）
+→ Bohr–Mollerup 说明 → 唯一性定理（18.4.3）→ Γ 的极限表达式（18.4.4）
+→ B 的递推（18.4.5）→ Γ×B 关系（18.4.6）→ B 的性质（18.4.7）
+→ 例1（三角幂积分、Γ(1/2)=√π）→ 例2（B 的无穷表示）→ 例3（中心二项式级数）
+→ 加倍公式（18.4.8）→ 余元公式（18.4.9）→ 例4其一（tan 幂积分）
+→ Stirling 公式引入（式(12)(13)）→ Stirling 精细形式（18.4.10）
+→ 引理18.4.1～18.4.4 → 式(15) 的证明 → 推论18.4.1 → 例4其二（√α·∫(1−x²)^α）
+→ 应用：n 维球体积统一公式、球体积分式(21)、球面面积（叙述式）</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>4/6 年：Leibniz/变限（2023:7、2024:10）；参数极限与支配估计（2020:10、2023:10、2026:8）。</li><li>§18.4 Γ/B 函数：大纲未列，样本未命题。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>45</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§18.1 含参变量积分的性质</h3>
+<h4>练习题 18.1（7 题）</h4>
+<ol class="ex-list">
+<li>求极限：</li>
+<li>设 $f$ 是可微函数。令 $\displaystyle F(u)=\int_0^u(x+u)f(x)\,\mathrm dx$，计算 $F''(u)$。原书 PDF 373</li>
+<li>计算下列函数的导数：</li>
+<li>设 $\varphi,\psi$ 可以分别微分两次和一次。证明：</li>
+<li>设 $f$ 在闭区间 $[0,a]$ 上连续，且当 $t\in[0,a]$ 时，$(x-t)^2+y^2+z^2\ne0$。证明：</li>
+<li>设 $a&lt;b$，$f$ 为可微函数。令 $\displaystyle\varphi(u)=\int_a^bf(x)|x-u|\,\mathrm dx$，计算 $\varphi''(u)$。原书 PDF 373</li>
+<li>在区间 $[1,3]$ 上用线性函数 $a+bx$ 近似代替函数 $f(x)=x^2$。试选取 $a,b$，使得 $\displaystyle\int_1^3(a+bx-x^2)^2\,\mathrm dx$ 取最小值。原书 PDF 373</li>
+</ol>
+<h4>问题 18.1（3 题）</h4>
+<ol class="ex-list">
+<li>证明：$n$ 阶 Bessel 函数 $\displaystyle J_n(x)=\frac1\pi\int_0^\pi\cos(n\varphi-x\sin\varphi)\,\mathrm d\varphi$ 满足 Bessel 方程 $x^2J_n''(x)+xJ_n'(x)+(x^2-n^2)J_n(x)=0$。原书 PDF 373</li>
+<li>利用对参数的微分法，计算下列积分：</li>
+<li>证明：对任意的实数 $u$，有 $\displaystyle\frac1{2\pi}\int_0^{2\pi}e^{u\cos x}\cos(u\sin x)\,\mathrm dx=1$。原书 PDF 374</li>
+</ol>
+<h3>§18.2 含参变量反常积分的一致收敛</h3>
+<h4>练习题 18.2（6 题）</h4>
+<ol class="ex-list">
+<li>研究下列反常积分在指定区间上的一致收敛性：</li>
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{\sin(ux)}x\,\mathrm dx$ 在任何不包含 $u=0$ 的闭区间 $[a,b]$ 上一致收敛，在包含 $u=0$ 的闭区间上不一致收敛。原书 PDF 385</li>
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{\sin(3x)}{x+u}e^{-ux}\,\mathrm dx$ 关于 $u$ 在 $[0,\infty)$ 上一致收敛。原书 PDF 385</li>
+<li>设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续。如果对每个 $u\in[\alpha,\beta)$，积分 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 都收敛，但积分 $\displaystyle\int_a^{+\infty}f(x,\beta)\,\mathrm dx$ 发散，证明：$\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta)$ 上不一致收敛。原书 PDF 385</li>
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\cos(ux)}{a^2+x^2}\,\mathrm dx\ (a>0)$ 在 $[\delta,+\infty)$（$\delta>0$）上一致收敛，但在 $(0,+\infty)$ 上不一致收敛。原书 PDF 385</li>
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\sin(ux)}{a^2+x^2}\,\mathrm dx\ (a>0)$ 在 $(0,+\infty)$ 上不一致收敛。原书 PDF 385</li>
+</ol>
+<h4>问题 18.2（3 题）</h4>
+<ol class="ex-list">
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\sin(\alpha x)}{\alpha(1+x^2)}\,\mathrm dx$ 关于 $\alpha$ 在 $[\eta,+\infty)$ 上一致收敛，关于 $\alpha$ 在 $(0,\delta)$ 上不一致收敛，这里 $\eta,\delta$ 是任意的正数。原书 PDF 385</li>
+<li>证明：积分 $\displaystyle\int_1^{+\infty}e^{-(x-1/\alpha)^2/\alpha^2}\,\mathrm dx$ 关于 $\alpha$ 在 $(0,1]$ 上一致收敛，但不能用 Weierstrass 判别法来判断。原书 PDF 385 续页 PDF 386</li>
+<li>证明：积分 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta]$ 上一致收敛的充分必要条件是，对任一递增趋于 $+\infty$ 的数列 $\{A_n\}$（$A_1=a$），函数项级数 $\displaystyle\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta]$ 上一致收敛。原书 PDF 386</li>
+</ol>
+<h3>§18.3 含参变量反常积分的性质</h3>
+<h4>练习题 18.3（6 题）</h4>
+<ol class="ex-list">
+<li>研究下列函数在指定区间上的连续性：</li>
+<li>利用公式 $\displaystyle\int_0^1x^{\alpha-1}\,\mathrm dx=\frac1\alpha\ (\alpha>0)$，计算积分 $\displaystyle\int_0^1x^{\alpha-1}(\ln x)^m\,\mathrm dx$，其中 $m$ 为正整数。原书 PDF 396</li>
+<li>计算积分 $\displaystyle\int_0^{+\infty}\frac{e^{-ax}-e^{-bx}}x\sin(cx)\,\mathrm dx\ (a>0,b>0,c>0)$。原书 PDF 396</li>
+<li>计算积分 $\displaystyle\int_0^{+\infty}\frac{\ln(a^2+x^2)}{\beta^2+x^2}\,\mathrm dx\ (\beta\ne0)$。原书 PDF 396</li>
+<li>利用已知的积分值，计算下列积分：</li>
+<li>如果 $\displaystyle\int_{-\infty}^{+\infty}|f(x)|\,\mathrm dx$ 收敛，证明：函数 $\displaystyle\varphi(u)=\int_{-\infty}^{+\infty}f(x)\cos(ux)\,\mathrm dx$ 在 $(-\infty,+\infty)$ 上一致连续。原书 PDF 396</li>
+</ol>
+<h4>问题 18.3（6 题）</h4>
+<ol class="ex-list">
+<li>证明：函数 $\displaystyle f(\alpha)=\int_0^{+\infty}\frac{e^{-t}}{|\sin t|^\alpha}\,\mathrm dt$ 在 $[0,1)$ 上连续。原书 PDF 396</li>
+<li>通过积分 $\displaystyle\varphi(u)=\int_0^{+\infty}ue^{-ux}\,\mathrm dx\ (0&lt;u\leqslant1)$、$\displaystyle\psi(u)=\int_0^{+\infty}ue^{u(u-x)}\,\mathrm dx\ (1\leqslant u&lt;+\infty)$，说明含参变量反常积分的 Dini 定理（定理 18.3.2）在开区间或无穷区间上不成立。原书 PDF 396</li>
+<li>计算积分 $\displaystyle\int_0^{+\infty}\frac{\arctan(\alpha x)\arctan(\beta x)}{x^2}\,\mathrm dx$。原书 PDF 396</li>
+<li>计算积分</li>
+<li>利用已知积分，计算下列积分：</li>
+<li>在定理 18.3.6 中，如果把条件 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta]$ 上收敛，减弱为 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta]$ 中的某一点收敛，其他条件不变，证明：积分 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta]$ 上一致收敛于 $\varphi(u)$，且 $\displaystyle\varphi'(u)=\int_a^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm dx$。原书 PDF 397</li>
+</ol>
+<h3>§18.4 $\Gamma$ 函数和 $B$ 函数</h3>
+<h4>练习题 18.4（7 题）</h4>
+<ol class="ex-list">
+<li>证明：</li>
+<li>证明：$\displaystyle B(p,q)=2\int_0^{\pi/2}\sin^{2p-1}\theta\cos^{2q-1}\theta\,\mathrm d\theta\ (p>0,q>0)$。原书 PDF 413</li>
+<li>利用 $\Gamma$ 函数，计算下列积分：</li>
+<li>证明：$\ln B(p,q)$ 关于变量 $p$ 是 $(0,+\infty)$ 上的凸函数。原书 PDF 413</li>
+<li>计算极限 $\displaystyle\lim_{\alpha\to+\infty}\sqrt\alpha\int_0^1x^{3/2}(1-x^5)^\alpha\,\mathrm dx$。原书 PDF 413</li>
+<li>证明推论 18.4.1。原书 PDF 413</li>
+<li>设 $a>0,ac-b^2>0,\alpha>1/2$。证明：</li>
+</ol>
+<h4>问题 18.4（7 题）</h4>
+<ol class="ex-list">
+<li>讨论函数 $\displaystyle f(s,p,q)=\int_0^{+\infty}\frac{x^s}{(a+bx^p)^q}\,\mathrm dx\ (a>0,b>0,p>0)$ 的定义域，并用 $\Gamma$ 函数表示 $f(s,p,q)$。原书 PDF 413</li>
+<li>证明：$\displaystyle\int_0^1\ln\Gamma(x)\,\mathrm dx=\ln\sqrt{2\pi}$。起题 PDF 413 公式 PDF 414</li>
+<li>证明：$\displaystyle\int_0^1\sin(\pi x)\ln\Gamma(x)\,\mathrm dx=\frac1\pi\left(\ln\frac\pi2+1\right)$。原书 PDF 414</li>
+<li>证明：$\displaystyle\int_0^\pi\frac{\mathrm dx}{\sqrt{3-\cos x}}=\frac1{4\sqrt\pi}\Gamma^2\!\left(\frac14\right)$。原书 PDF 414</li>
+<li>证明：$\displaystyle\sum_{k=0}^n\binom nk\frac{(-1)^k}{m+k+1}=\frac{n!m!}{(n+m+1)!}$。原书 PDF 414</li>
+<li>设 $\displaystyle f(x)=\left(\int_0^xe^{-t^2}\,\mathrm dt\right)^2$，$\displaystyle g(x)=\int_0^1\frac{e^{-x^2(1+t^2)}}{1+t^2}\,\mathrm dt$。证明：$f(x)+g(x)=\pi/4$，并由此证明 $\displaystyle\int_0^{+\infty}e^{-x^2}\,\mathrm dx=\frac{\sqrt\pi}2$。原书 PDF 414</li>
+<li>利用公式 $\displaystyle\Gamma(x)=\lim_{n\to\infty}\frac{n^xn!}{x(x+1)\cdots(x+n)}$，证明：对任意的实数 $x$，有 $\displaystyle\sin x=x\prod_{n=1}^{\infty}\left(1-\frac{x^2}{n^2\pi^2}\right)$。原书 PDF 414</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第18章_含参变量积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §18.1 含参变量的常义积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §18.2 含参变量反常积分的一致收敛：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §18.3 含参变量反常积分的性质：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §18.4 Γ函数和B函数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

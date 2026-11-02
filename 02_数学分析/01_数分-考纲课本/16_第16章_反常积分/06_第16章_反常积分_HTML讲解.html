@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第16章 反常积分 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第16章<br>反常积分</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec16_1">§16.1 非负函数无穷积分的收敛判别法</a>
+    <a href="#sec16_2">§16.2 无穷积分的 Dirichlet 和 Abel 收敛判别法</a>
+    <a href="#sec16_3">§16.3 瑕积分的收敛判别法</a>
+    <a href="#sec16_4">§16.4 反常重积分</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第16章 反常积分</h1>
+    <p class="hero-sub">§16.1 非负函数无穷积分的收敛判别法 · §16.2 无穷积分的 Dirichlet 和 Abel 收敛判别法 · §16.3 瑕积分的收敛判别法 · §16.4 反常重积分</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec16_1">§16.1 非负函数无穷积分的收敛判别法<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>章首语（p.1）：课本指出，6.7 节介绍过两种反常积分——无穷积分和瑕积分，但对如何判断敛散性没有进一步讨论；学过无穷级数之后再学反常积分的收敛判别法，会发现两者在许多方面基本一样。本章目的是让读者学会判断反常积分敛散的方法，为讨论含参变量的反常积分作好准备。</p>
+<p>全书约定（课本明确说明）：下面的讨论中总假定 f 在任意有限区间 $[a,A]$（$A>a$）上可积，不再一一说明。</p>
+<h3>16.1.1 无穷积分收敛与部分和类比（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>无穷积分 $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛，是指 f 在任意有限区间 $[a,A]$ 上可积，且</p>
+<div class="formula">$$\lim_{A\to+\infty}\int_a^A f(x)\,\mathrm dx$$</div>
+<p>有有限的极限。记 $F(A)=\displaystyle\int_a^A f(x)\,\mathrm dx$，则 F(A) 相当于无穷级数中的<b>部分和</b>。</p>
+<p>设 $f\ge0$，则 $\int_a^A f\,\mathrm dx$ 是上限 A 的增函数（相当于正项级数的部分和），因而极限存在的充分必要条件是它对 A 而言有界。</p>
+<h3>16.1.2 定理16.1.1：非负函数无穷积分的有界判别法</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>若 f 是 $[a,+\infty)$ 上的非负函数，则积分 $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛的充分必要条件是 $\int_a^A f(x)\,\mathrm dx$ 在 $[a,+\infty)$ 上有界。</p>
+<h4>课本证明路线</h4>
+<p>课本在定理前给出论证思路：$f\ge0$ 时变上限积分 $F(A)$ 是 A 的增函数；增函数存在有限极限当且仅当有界。</p>
+<p>课本说明：根据这个定理，就能得到类似于正项级数中的比较判别法。</p>
+<h3>16.1.3 定理16.1.2：比较判别法</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>设对充分大的 x，函数 f 和 g 满足不等式</p>
+<div class="formula">$$0\leqslant f(x)\leqslant g(x).$$</div>
+<p>那么：</p>
+<p>(1) 若 $\int_a^{+\infty}g(x)\,\mathrm dx$ 收敛，则 $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛；</p>
+<p>(2) 若 $\int_a^{+\infty}f(x)\,\mathrm dx$ 发散，则 $\int_a^{+\infty}g(x)\,\mathrm dx$ 发散。</p>
+<p>课本注明：证明和级数中的比较判别法一样。</p>
+<p><b>p-积分基准（叙述式，无编号）</b>：设 $a>0$，则当 $p>1$ 时 $\int_a^{+\infty}\dfrac{dx}{x^p}$ 收敛；当 $p\le1$ 时发散。所以经常拿 f 与函数 $1/x^p$ 作比较，正像正项级数中经常拿 $a_n$ 与 $1/n^\alpha$ 作比较一样。</p>
+<h3>16.1.4 例1</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>设 $a>0$，则积分 $\displaystyle\int_a^{+\infty}\frac{\mathrm dx}{\sqrt[3]{x^2+x^4}}$ 是收敛的。因为</p>
+<div class="formula">$$\frac{1}{\sqrt[3]{x^2+x^4}}\leqslant\frac{1}{x^{4/3}},$$</div>
+<p>而 $\int_a^{+\infty}\dfrac{dx}{x^{4/3}}$ 收敛，故由比较判别法知原积分收敛。</p>
+<h3>16.1.5 定理16.1.3：比较判别法的极限形式</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>课本说明：定理16.1.2 的极限形式更便于应用。</p>
+<p>设 f 和 g 都是 $[a,+\infty)$ 上的非负函数，且</p>
+<div class="formula">$$\lim_{x\to+\infty}\frac{f(x)}{g(x)}=l.$$</div>
+<p>那么：</p>
+<p>(1) 当 $0&lt;l&lt;+\infty$ 时，$\int_a^{+\infty}f\,\mathrm dx$ 和 $\int_a^{+\infty}g\,\mathrm dx$ 同敛散；</p>
+<p>(2) 当 $l=0$ 时，如果 $\int_a^{+\infty}g\,\mathrm dx$ 收敛，那么 $\int_a^{+\infty}f\,\mathrm dx$ 也收敛；</p>
+<p>(3) 当 $l=+\infty$ 时，如果 $\int_a^{+\infty}g\,\mathrm dx$ 发散，那么 $\int_a^{+\infty}f\,\mathrm dx$ 也发散。</p>
+<p>课本注明：证明和级数中相应的定理一样。</p>
+<h3>16.1.6 例2</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>积分 $\displaystyle\int_1^{+\infty}\frac{x^2}{x^4-x^2+1}\,\mathrm dx$ 是收敛的。因为当 $x\to+\infty$ 时</p>
+<div class="formula">$$\frac{x^2}{x^4-x^2+1}\sim\frac{1}{x^2},$$</div>
+<p>而 $\int_1^{+\infty}\dfrac{dx}{x^2}$ 收敛，由定理16.1.3 知原积分收敛。</p>
+<h3>16.1.7 例3</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>研究 $\displaystyle\int_1^{+\infty}\frac{\arctan x}{(1+x^2)^{3/2}}\,\mathrm dx$ 的敛散性。当 $x\to+\infty$ 时</p>
+<div class="formula">$$\frac{\arctan x}{(1+x^2)^{3/2}}\sim\frac{\pi}{2}\cdot\frac{1}{x^3},$$</div>
+<p>所以原积分收敛。</p>
+<h3>16.1.8 收敛无穷积分的级数分解及其反例（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>设 $\int_a^{+\infty}f$ 收敛（f 不一定非负），$\{A_n\}$（$A_1=a$）是任一递增趋于 $+\infty$ 的数列，令 $N\to\infty$ 即得</p>
+<div class="formula">$$\int_a^{+\infty}f(x)\,\mathrm dx=\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x)\,\mathrm dx.\tag{1}$$</div>
+<p>即收敛的无穷积分总可以写成右端那样的级数。反过来，若存在某个这样的 $\{A_n\}$ 使右端级数收敛，能否断言积分收敛？答案是否定的。例如 $\int_0^{+\infty}\cos x\,\mathrm dx$ 发散（$\lim_{A\to+\infty}\sin A$ 不存在），但取 $A_n=n\pi$ 时，</p>
+<div class="formula">$$\sum_{n=0}^{\infty}\int_{n\pi}^{(n+1)\pi}\cos x\,\mathrm dx=0$$</div>
+<p>却是收敛的。但若 f 是非负的，答案是肯定的——引出定理16.1.4。</p>
+<h3>16.1.9 定理16.1.4：非负时由级数收敛推出积分收敛</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>设 f 是 $[a,+\infty)$ 上的非负函数。如果存在一个递增趋于 $+\infty$ 的数列 $\{A_n\}$（$A_1=a$），使得级数</p>
+<div class="formula">$$\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x)\,\mathrm dx\tag{2}$$</div>
+<p>收敛，那么积分 $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛，并且</p>
+<div class="formula">$$\int_a^{+\infty}f(x)\,\mathrm dx=\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x)\,\mathrm dx.\tag{3}$$</div>
+<h4>课本证明路线</h4>
+<ol><li>因 $\{A_n\}$ 递增趋于 $+\infty$，对任意 $A>a$ 总能找到正整数 N 使 $A_N\leqslant A&lt;A_{N+1}$；</li><li>由 $f(x)\ge0$ 得夹逼不等式</li></ol>
+<div class="formula">$$\sum_{n=1}^{N-1}\int_{A_n}^{A_{n+1}}f\,\mathrm dx\leqslant\int_a^A f\,\mathrm dx\leqslant\sum_{n=1}^{N}\int_{A_n}^{A_{n+1}}f\,\mathrm dx;$$</div>
+<ol><li>由式 (2) 收敛即知积分收敛且式 (3) 成立。</li></ol>
+<h3>16.1.10 例4（★收敛但不满足必要条件）</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\,\mathrm dx}{1+x^6\sin^2x}$ 收敛。</p>
+<h4>课本证明路线</h4>
+<ol><li>被积函数非负，故只需证级数 $\sum_{n=0}^{\infty}\int_{n\pi}^{(n+1)\pi}\dfrac{x\,dx}{1+x^6\sin^2x}$ 收敛；</li><li>因为 $\sin^2x$ 是周期 $\pi$ 的偶函数，当 $n\ge1$ 时逐层放缩并换元 $u=n^3\tan x$：</li></ol>
+<div class="formula">$$\int_{n\pi}^{(n+1)\pi}\frac{x\,dx}{1+x^6\sin^2x}\leqslant(n+1)\pi\int_{n\pi}^{(n+1)\pi}\frac{dx}{1+n^6\sin^2x}=2(n+1)\pi\int_0^{\pi/2}\frac{dx}{1+n^6\sin^2x}$$</div>
+<div class="formula">$$\leqslant 2(n+1)\pi\int_0^{\pi/2}\frac{dx}{\cos^2x+n^6\sin^2x}=\frac{2(n+1)\pi}{n^3}\int_0^{+\infty}\frac{du}{1+u^2}=\frac{(n+1)\pi^2}{n^3}\leqslant\frac{2\pi^2}{n^2};$$</div>
+<ol><li>由 $\sum 1/n^2$ 收敛知级数收敛，因而原积分收敛。</li></ol>
+<h4>课本由此明确指出</h4>
+<p>从级数收敛的定义立刻可得 $\sum a_n$ 收敛的必要条件是 $a_n\to0$；自然联想到 $\int_a^{+\infty}f$ 收敛是否也有 $\lim_{x\to+\infty}f(x)=0$——这是不对的，例4 就是这样一个例子。这里 $f(x)=\dfrac{x}{1+x^6\sin^2x}$ 是 $(0,+\infty)$ 上的连续正值函数，积分虽收敛，但当 $x\to+\infty$ 时 f 不仅不趋于 0，而且是无界的：$f(n\pi)=n\pi$。</p>
+<hr>
+<h2 id="sec16_2">§16.2 无穷积分的 Dirichlet 和 Abel 收敛判别法<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.5-12</b></p>
+<p>课本开头回忆（练习题 2.5 第 9 题）：$\lim\limits_{x\to+\infty}F(x)$ 存在的充分必要条件是，对任意 $\varepsilon>0$，存在正数 A，只要 $A',A''>A$，便有 $\lvert F(A')-F(A'')\rvert&lt;\varepsilon$。利用这个事实立刻可得 Cauchy 收敛原理。</p>
+<h3>16.2.1 定理16.2.1：Cauchy 收敛原理</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>积分 $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛的充分必要条件是，对任意的 $\varepsilon>0$，存在 $A_0>a$，只要 $A',A''>A_0$，便有</p>
+<div class="formula">$$\left|\int_{A'}^{A''}f(x)\,\mathrm dx\right|&lt;\varepsilon.$$</div>
+<p>课本说明：要想使反常积分收敛，必须且只需在充分远的、不管多长的区间上，积分的绝对值可以任意小。</p>
+<h3>16.2.2 定理16.2.2：绝对收敛必收敛</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>如果积分 $\int_a^{+\infty}\lvert f(x)\rvert\,\mathrm dx$ 收敛，那么积分 $\int_a^{+\infty}f(x)\,\mathrm dx$ 也收敛。</p>
+<h4>课本证明路线</h4>
+<p>由 $\int_a^{+\infty}\lvert f\rvert$ 收敛，对任意 $\varepsilon>0$ 存在 $A_0$，当 $A',A''>A_0$ 时 $\int_{A'}^{A''}\lvert f\rvert\,\mathrm dx&lt;\varepsilon$；从而</p>
+<div class="formula">$$\left|\int_{A'}^{A''}f\,\mathrm dx\right|\leqslant\int_{A'}^{A''}\lvert f\rvert\,\mathrm dx&lt;\varepsilon,$$</div>
+<p>再用 Cauchy 收敛原理。</p>
+<h4>绝对收敛与条件收敛（叙述式命名，无编号）</h4>
+<p>若 $\int_a^{+\infty}\lvert f\rvert\,\mathrm dx$ 收敛，称 $\int_a^{+\infty}f\,\mathrm dx$ <b>绝对收敛</b>。定理16.2.2 断言绝对收敛的积分一定收敛；课本注明其逆不成立（见例1）。若 $\int_a^{+\infty}f\,\mathrm dx$ 收敛而 $\int_a^{+\infty}\lvert f\rvert\,\mathrm dx$ 发散，称积分<b>条件收敛</b>。</p>
+<h3>16.2.3 定理16.2.3：第二积分平均值定理</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>若函数 f 在 $[a,b]$ 上可积，g 在 $[a,b]$ 上非负，那么：</p>
+<p>(1) 若 g 在 $[a,b]$ 上递减，则必存在 $\xi\in[a,b]$，使得</p>
+<div class="formula">$$\int_a^b f(x)g(x)\,\mathrm dx=g(a)\int_a^{\xi}f(x)\,\mathrm dx;$$</div>
+<p>(2) 若 g 在 $[a,b]$ 上递增，则必存在 $\eta\in[a,b]$，使得</p>
+<div class="formula">$$\int_a^b f(x)g(x)\,\mathrm dx=g(b)\int_{\eta}^{b}f(x)\,\mathrm dx.$$</div>
+<h4>课本证明路线（分部求和骨架）</h4>
+<ol><li>g 为非负减函数时也可积，故 fg 可积；取分割 $\pi:a=x_0&lt;x_1&lt;\cdots&lt;x_n=b$，把积分恒等拆分：</li></ol>
+<div class="formula">$$\int_a^b fg\,\mathrm dx=\sum_{i=1}^n g(x_{i-1})\int_{x_{i-1}}^{x_i}f\,\mathrm dx+\sum_{i=1}^n\int_{x_{i-1}}^{x_i}f(x)\big(g(x)-g(x_{i-1})\big)\,\mathrm dx;$$</div>
+<ol><li>记 K 为 $\lvert f\rvert$ 的上界、$\omega_i$ 为 g 在小区间上的振幅，第二个和不超过 $K\sum\omega_i\Delta x_i\to0$（g 可积），于是得</li></ol>
+<div class="formula">$$\int_a^b fg\,\mathrm dx=\lim_{\lVert\pi\rVert\to0}\sum_{i=1}^n g(x_{i-1})\int_{x_{i-1}}^{x_i}f\,\mathrm dx;$$</div>
+<ol><li>记 $b_i=g(x_{i-1})$（非负递减：$b_1\ge b_2\ge\cdots\ge b_n\ge0$），$a_i=\int_{x_{i-1}}^{x_i}f\,\mathrm dx$，则部分和 $S_k=\sum_{i=1}^k a_i=F(x_k)=\int_a^{x_k}f\,\mathrm dt$；因 $F(x)=\int_a^x f$ 连续，有 $m\leqslant S_k\leqslant M$（m、M 为 F 的最小、最大值）；</li><li>应用 Abel 分部求和公式：</li></ol>
+<div class="formula">$$\sum_{i=1}^n a_i b_i=\sum_{i=1}^{n-1}S_i(b_i-b_{i+1})+S_nb_n;$$</div>
+<ol><li>结合 (3)(4) 得 $mg(a)\leqslant\sum g(x_{i-1})\int_{x_{i-1}}^{x_i}f\leqslant Mg(a)$；令 $\lVert\pi\rVert\to0$ 得 $mg(a)\leqslant\int_a^b fg\,\mathrm dx\leqslant Mg(a)$；</li><li>由 F 连续与介值定理，存在 $\xi\in[a,b]$ 使 $\int_a^b fg=g(a)\int_a^{\xi}f$；</li><li>(2) 作变量代换 $x=a+b-t$：此时 $g(a+b-t)$ 对 t 递减，用 (1) 后再换回自变量，得 $\int_a^b fg=g(b)\int_{\eta}^{b}f$，其中 $\eta=a+b-\xi\in[a,b]$。</li></ol>
+<h3>16.2.4 定理16.2.4：推广的第二积分平均值定理</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>设 f 在 $[a,b]$ 上可积，g 在 $[a,b]$ 上单调，则必存在 $\xi\in[a,b]$,使得</p>
+<div class="formula">$$\int_a^b f(x)g(x)\,\mathrm dx=g(a)\int_a^{\xi}f(x)\,\mathrm dx+g(b)\int_{\xi}^{b}f(x)\,\mathrm dx.\tag{8}$$</div>
+<h4>课本证明路线</h4>
+<p>不妨设 g 递减，则 $g(x)\geqslant g(b)$；令 $\varphi(x)=g(x)-g(b)$，则 $\varphi$ 非负递减，对 $\varphi$ 用定理16.2.3 并整理即得式 (8)；若 g 递增，令 $\psi(x)=g(b)-g(x)$，仍用定理16.2.3。</p>
+<p>课本说明：利用定理16.2.4 就可得到类似于引理14.4.2 的 Abel 引理。</p>
+<h3>16.2.5 定理16.2.5：Abel 引理型的积分不等式</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设 f 在 $[a,b]$ 上可积，g 在 $[a,b]$ 上单调。如果对任意的 $A\in[a,b]$，有 $\left|\int_a^A f(x)\,\mathrm dx\right|\leqslant M$，那么</p>
+<div class="formula">$$\left|\int_a^b f(x)g(x)\,\mathrm dx\right|\leqslant M\big(\lvert g(a)\rvert+2\lvert g(b)\rvert\big).$$</div>
+<h4>课本证明路线</h4>
+<p>由定理16.2.4，存在 $\xi\in[a,b]$ 使积分等于 $g(a)\int_a^{\xi}f+g(b)\int_{\xi}^b f$；其中 $\left|\int_a^{\xi}f\right|\leqslant M$，而 $\left|\int_{\xi}^{b}f\right|=\left|\int_a^b f-\int_a^{\xi}f\right|\leqslant 2M$，合并即得。</p>
+<h3>16.2.6 定理16.2.6：Dirichlet 判别法</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设 f, g 满足下面两个条件：</p>
+<p>(a) g 在 $[a,+\infty)$ 上单调，且 $\lim\limits_{x\to+\infty}g(x)=0$；</p>
+<p>(b) $F(A)=\int_a^A f(x)\,\mathrm dx$ 在 $[a,+\infty)$ 上有界。</p>
+<p>那么积分 $\int_a^{+\infty}f(x)g(x)\,\mathrm dx$ 收敛。</p>
+<h4>课本证明路线</h4>
+<ol><li>设 $\left|\int_a^A f\right|\leqslant M$。由 $g\to0$，对任意 $\varepsilon>0$ 存在 $A_0$，只要 $A'>A_0$ 便有 $\lvert g(A')\rvert&lt;\varepsilon/(8M)$；</li><li>取 $A''>A'>A_0$，对任一 $A\in[A',A'']$ 有 $\left|\int_{A'}^A f\right|\leqslant 2M$；</li><li>由定理16.2.5 得</li></ol>
+<div class="formula">$$\left|\int_{A'}^{A''}fg\,\mathrm dx\right|\leqslant 2M\big(\lvert g(A')\rvert+2\lvert g(A'')\rvert\big)&lt;\varepsilon;$$</div>
+<ol><li>由 Cauchy 收敛原理即知 $\int_a^{+\infty}fg\,\mathrm dx$ 收敛。</li></ol>
+<h3>16.2.7 例1（★条件收敛的经典例子）</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>证明：$\displaystyle\int_1^{+\infty}\frac{\sin x}{x}\,\mathrm dx$ 收敛，而 $\displaystyle\int_1^{+\infty}\frac{\lvert\sin x\rvert}{x}\,\mathrm dx$ 发散。</p>
+<h4>课本证明要点</h4>
+<ul><li>对任意 $A\ge1$：$\left|\int_1^A\sin x\,\mathrm dx\right|=\lvert\cos A-\cos1\rvert\leqslant2$，且 $1/x$ 递减趋于 0，由 Dirichlet 判别法知 $\int_1^{+\infty}\dfrac{\sin x}{x}\,\mathrm dx$ 收敛；</li><li>因为 $\dfrac{\lvert\sin x\rvert}{x}\geqslant\dfrac{\sin^2x}{x}=\dfrac{1}{2x}-\dfrac{\cos 2x}{2x}$，用同样的方法知 $\int_1^{+\infty}\dfrac{\cos 2x}{2x}\,\mathrm dx$ 收敛而 $\int_1^{+\infty}\dfrac{1}{2x}\,\mathrm dx$ 发散，所以 $\int_1^{+\infty}\dfrac{\lvert\sin x\rvert}{x}\,\mathrm dx$ 发散。</li></ul>
+<p>课本注明：积分 $\int_1^{+\infty}\dfrac{\sin x}{x}\,\mathrm dx$ 是一个<b>条件收敛</b>的例子。</p>
+<h3>16.2.8 例2</h3>
+<p class="pgref"><b>课本：10</b></p>
+<p>讨论 $\displaystyle\int_1^{+\infty}(-1)^{[x]}\,\mathrm dx$ 和 $\displaystyle\int_1^{+\infty}(-1)^{[x^2]}\,\mathrm dx$ 的收敛性（$[x]$ 表示 x 的整数部分）。</p>
+<h4>课本解法要点</h4>
+<ul><li>若第一个积分收敛，则可写为 $\sum_{n=1}^{\infty}\int_n^{n+1}(-1)^{[x]}\,\mathrm dx=\sum_{n=1}^{\infty}(-1)^n$，该级数发散，故此积分发散；</li><li>第二个积分作变量代换 $x^2=t$ 化为 $\dfrac12\int_1^{+\infty}\dfrac{(-1)^{[t]}}{\sqrt t}\,\mathrm dt$；分段计算得 $\left|\int_1^A(-1)^{[t]}\,\mathrm dt\right|=\left|\sum_{k=1}^{n-1}(-1)^k+(-1)^n(A-n)\right|\leqslant2$（$n\leqslant A&lt;n+1$），而 $g(t)=1/\sqrt t$ 递减趋于 0，由 Dirichlet 判别法知其收敛——这是条件收敛的另一个例子。</li></ul>
+<h3>16.2.9 定理16.2.7：Abel 判别法</h3>
+<p class="pgref"><b>课本：10</b></p>
+<p>设 f, g 满足下面两个条件：</p>
+<p>(a) g 在 $[a,+\infty)$ 上单调有界；</p>
+<p>(b) $\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。</p>
+<p>那么积分 $\int_a^{+\infty}f(x)g(x)\,\mathrm dx$ 收敛。</p>
+<h4>课本证明路线</h4>
+<p>由 (a)，$\lim\limits_{x\to+\infty}g(x)=l$ 存在且有限，故 $g(x)-l\to0$；由 Dirichlet 判别法知 $\int_a^{+\infty}f(x)(g(x)-l)\,\mathrm dx$ 收敛；再由</p>
+<div class="formula">$$\int_a^{+\infty}f(x)g(x)\,\mathrm dx=\int_a^{+\infty}f(x)(g(x)-l)\,\mathrm dx+l\int_a^{+\infty}f(x)\,\mathrm dx$$</div>
+<p>即得结论。</p>
+<h3>16.2.10 例3</h3>
+<p class="pgref"><b>课本：11</b></p>
+<p>设 $\max(p,q)>1$。证明：积分 $\displaystyle\int_1^{+\infty}\frac{x\cos x}{x^p+x^q}\,\mathrm dx$ 收敛。</p>
+<h4>课本证明要点</h4>
+<p>不妨设 $p\geqslant q$，$p>1$，则原积分可写为</p>
+<div class="formula">$$\int_1^{+\infty}\frac{\cos x}{x^{p-1}\big(1+(1/x^{p-q})\big)}\,\mathrm dx.$$</div>
+<p>由 Dirichlet 判别法知 $\int_1^{+\infty}\dfrac{\cos x}{x^{p-1}}\,\mathrm dx$ 收敛，又 $\dfrac{1}{1+(1/x^{p-q})}$ 在 $[1,+\infty)$ 上单调有界，故由 Abel 判别法知原积分收敛。</p>
+<hr>
+<h2 id="sec16_3">§16.3 瑕积分的收敛判别法<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.12-19</b></p>
+<h3>16.3.1 瑕点、瑕积分与化归无穷积分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.12-19</b></p>
+<ul><li>若 f 定义在 $(a,b]$ 上，当 $x\to a^+$ 时 f 无界，则称 a 为 f 的<b>瑕点</b>。这时 f 在 $(a,b]$ 上按 Riemann 积分的意义不可积；但若对任意 $\varepsilon>0$，f 在 $[a+\varepsilon,b]$ 上可积，且</li></ul>
+<div class="formula">$$\lim_{\varepsilon\to0}\int_{a+\varepsilon}^{b}f(x)\,\mathrm dx$$</div>
+<p>有有限的极限，则称瑕积分 $\int_a^b f(x)\,\mathrm dx$ 收敛，并把该极限定义为瑕积分的值。</p>
+<ul><li><b>化归无穷积分</b>：为研究 $\int_0^1\dfrac{dx}{\sqrt x}$，作变换 $1/\sqrt x=y$ 即把它归结为无穷积分问题。一般地，若 a 是 f 的瑕点，作变换 $x=a+1/y$，则</li></ul>
+<div class="formula">$$\lim_{\varepsilon\to0}\int_{a+\varepsilon}^{b}f(x)\,\mathrm dx=\int_{1/(b-a)}^{+\infty}f\Big(a+\frac{1}{y}\Big)\frac{\mathrm dy}{y^2}.$$</div>
+<p>即每一个瑕积分一定可以化成一个无穷积分，因此前面判断无穷积分收敛的方法都可以平行地对瑕积分建立起来。课本不再重复这些定理的证明，请读者补出（课本明示：这将是很好的练习）。</p>
+<ul><li><b>约定</b>：为简单起见，下面的定理中都假定积分下限 a 是瑕点，f 和 g 都在 $[a+\varepsilon,b]$ 上可积。</li></ul>
+<h3>16.3.2 定理16.3.1：比较判别法</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>设对充分靠近 a 的 $x$（$x>a$），f 和 g 满足不等式 $0\leqslant f(x)\leqslant g(x)$，那么：</p>
+<p>(1) 若 $\int_a^b g(x)\,\mathrm dx$ 收敛，则 $\int_a^b f(x)\,\mathrm dx$ 收敛；</p>
+<p>(2) 若 $\int_a^b f(x)\,\mathrm dx$ 发散，则 $\int_a^b g(x)\,\mathrm dx$ 发散。</p>
+<p>（课本未给证明，留读者补出。）</p>
+<h3>16.3.3 定理16.3.2：比较判别法的极限形式</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>设 f 和 g 都是 $(a,b]$ 上的非负函数，且</p>
+<div class="formula">$$\lim_{x\to a^+}\frac{f(x)}{g(x)}=l,$$</div>
+<p>那么：</p>
+<p>(1) 当 $0&lt;l&lt;+\infty$ 时，$\int_a^b f\,\mathrm dx$ 与 $\int_a^b g\,\mathrm dx$ 同敛散；</p>
+<p>(2) 当 $l=0$ 时，如果 $\int_a^b g\,\mathrm dx$ 收敛，那么 $\int_a^b f\,\mathrm dx$ 也收敛；</p>
+<p>(3) 当 $l=+\infty$ 时，如果 $\int_a^b g\,\mathrm dx$ 发散，那么 $\int_a^b f\,\mathrm dx$ 也发散。</p>
+<p>（课本未给证明，留读者补出。）</p>
+<h3>16.3.4 定理16.3.3：Cauchy 收敛原理</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>积分 $\int_a^b f(x)\,\mathrm dx$ 收敛的充分必要条件是，对任意的 $\varepsilon>0$，存在 $\delta>0$，只要 $0&lt;\eta&lt;\delta$，$0&lt;\eta'&lt;\delta$，就有</p>
+<div class="formula">$$\left|\int_{a+\eta}^{a+\eta'}f(x)\,\mathrm dx\right|&lt;\varepsilon.$$</div>
+<p>（课本未给证明，留读者补出。）</p>
+<h3>16.3.5 定理16.3.4：绝对收敛必收敛</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>如果积分 $\int_a^b\lvert f(x)\rvert\,\mathrm dx$ 收敛，那么积分 $\int_a^b f(x)\,\mathrm dx$ 也收敛。（课本未给证明，留读者补出。）</p>
+<p>课本注明（重要对比）：这个定理的逆定理是不成立的（例5 便是这样的例子）。从这里可看出反常积分和普通 Riemann 积分的差别：Riemann 积分中，从 f 可积可以推出 $\lvert f\rvert$ 可积，但从 $\lvert f\rvert$ 可积不能推出 f 可积；这里的情况正好反了过来。</p>
+<p>课本说明：瑕积分的绝对收敛和条件收敛的概念与无穷积分是一样的。对瑕积分也有相应的 Dirichlet 和 Abel 收敛判别法，但在考虑这种瑕积分时，往往先作变换把它化成无穷积分，应用无穷积分的相应判别法就可以了（见例5），课本不再详细论述它们。</p>
+<h3>16.3.6 例1</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>研究 $\displaystyle\int_0^1\frac{\ln x}{1-x^2}\,\mathrm dx$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<ul><li>看上去 $x=0,x=1$ 似乎都是瑕点，但由于 $\lim\limits_{x\to1}\dfrac{\ln x}{1-x^2}=-\dfrac12$，被积函数在 $x=1$ 附近有界，所以 $x=1$ 并不是瑕点；</li><li>在 $x=0$ 附近，对充分小的 x 有 $1-x^2\geqslant1/2$，故 $\left|\dfrac{\ln x}{1-x^2}\right|\leqslant2\lvert\ln x\rvert$，而 $\int_0^1\lvert\ln x\rvert\,\mathrm dx=-\int_0^1\ln x\,\mathrm dx$ 收敛，从而原积分收敛。</li></ul>
+<h3>16.3.7 例2</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>研究 $\displaystyle\int_0^1\frac{\mathrm dx}{\sqrt[4]{1-x^4}}$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<p>易知 $x=1$ 是瑕点。当 $x\to1$ 时</p>
+<div class="formula">$$\frac{1}{\sqrt[4]{1-x^4}}=\frac{1}{\sqrt[4]{1-x}}\cdot\frac{1}{\sqrt[4]{(1+x)(1+x^2)}}\sim\frac{1}{\sqrt2}\cdot\frac{1}{\sqrt[4]{1-x}},$$</div>
+<p>由于 $\int_0^1\dfrac{dx}{\sqrt[4]{1-x}}$ 收敛，故原积分收敛。</p>
+<h3>16.3.8 例3（★Beta 函数）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>研究 $\displaystyle\int_0^1 x^{p-1}(1-x)^{q-1}\,\mathrm dx$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<ul><li>当 $p&lt;1$ 时 $x=0$ 是瑕点；当 $q&lt;1$ 时 $x=1$ 是瑕点。取 $a\in(0,1)$ 把积分拆成 $\int_0^a+\int_a^1$ 两部分；</li><li>$x\to0$ 时 $x^{p-1}(1-x)^{q-1}\sim x^{p-1}$，故第一个积分当 $p>0$ 时收敛；$x\to1$ 时 $\sim(1-x)^{q-1}$，第二个积分当 $q>0$ 时收敛；</li><li>综上，原积分在 $p>0,q>0$ 时收敛。</li></ul>
+<p>课本说明：这个积分定义了一个以 $p,q$ 为变量的二元函数 $B(p,q)$，称为 <b>Beta 函数</b>——将要专门讨论的一个重要的特殊函数。</p>
+<h3>16.3.9 例4（★Gamma 函数）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>研究 $\displaystyle\int_0^{+\infty}x^{s-1}e^{-x}\,\mathrm dx$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<ul><li>当 $s&lt;1$ 时 $x=0$ 是瑕点，同时又是无穷积分；拆成 $\int_0^1+\int_1^{+\infty}$ 两部分；</li><li>$x\to0$ 时 $x^{s-1}e^{-x}\sim x^{s-1}$，第一个积分当 $s>0$ 时收敛；</li><li>$x\to+\infty$ 时 $x^2\cdot x^{s-1}e^{-x}\to0$，故对充分大的 x 恒有 $x^{s-1}e^{-x}&lt;1/x^2$，第二个积分不论 s 为何值都收敛；</li><li>综上，原积分当 $s>0$ 时收敛。</li></ul>
+<p>课本说明：这个积分确定了以 s 为变量的函数 $\Gamma(s)$，称为 <b>Gamma 函数</b>——另一个要专门讨论的特殊函数。</p>
+<h3>16.3.10 例5</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设 $p>0$。讨论 $\displaystyle\int_0^1\frac{\sin\frac1x}{x^p}\,\mathrm dx$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<ul><li>以 $x=0$ 为瑕点。作变换 $1/x=t$ 化为无穷积分：</li></ul>
+<div class="formula">$$\int_0^1\frac{\sin\frac1x}{x^p}\,\mathrm dx=\int_1^{+\infty}\frac{\sin t}{t^{2-p}}\,\mathrm dt;\tag{1}$$</div>
+<ul><li>当 $p-2\geqslant0$ 时发散：若式 (1) 收敛，则由 Cauchy 原理，$A',A''$ 充分大时应有 $\left|\int_{A'}^{A''}t^{p-2}\sin t\,\mathrm dt\right|\leqslant1$；但取 $A'=2k\pi$，$A''=(2k+1)\pi$，</li></ul>
+<div class="formula">$$\left|\int_{2k\pi}^{(2k+1)\pi}t^{p-2}\sin t\,\mathrm dt\right|\geqslant(2k\pi)^{p-2}\int_0^{\pi}\sin t\,\mathrm dt=2(2k\pi)^{p-2}\geqslant2,$$</div>
+<p>矛盾；</p>
+<ul><li>由 $\lvert t^{p-2}\sin t\rvert\leqslant\dfrac{1}{t^{2-p}}$，当 $2-p>1$（即 $0&lt;p&lt;1$）时式 (1) 绝对收敛；当 $2-p>0$（即 $0&lt;p&lt;2$）时，$t^{p-2}$ 单调趋于 0，由 Dirichlet 判别法知式 (1) 收敛；再用 §16.2 例1 的方法可知当 $1\leqslant p&lt;2$ 时 $\int_1^{+\infty}\dfrac{\lvert\sin t\rvert}{t^{2-p}}\,\mathrm dt$ 发散；</li><li>综上：$0&lt;p&lt;1$ 时绝对收敛；$1\leqslant p&lt;2$ 时条件收敛；$2\leqslant p&lt;+\infty$ 时发散。</li></ul>
+<h3>16.3.11 例6</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>设 $\alpha>0$。讨论 $\displaystyle I=\int_0^{+\infty}\Big(\Big(1-\frac{\sin x}{x}\Big)^{-\alpha}-1\Big)\,\mathrm dx$ 的敛散性。</p>
+<h4>课本解法要点</h4>
+<ul><li>当 $x\to0$ 时 $(\sin x)/x\to1$，所以 $x=0$ 是瑕点；拆成 $I=I_1+I_2=\int_0^1+\int_1^{+\infty}$；</li><li>$I_1$ 是否收敛取决于 $I_1'=\int_0^1\big(1-\tfrac{\sin x}{x}\big)^{-\alpha}\,\mathrm dx$。由 $x\to0$ 时 $\sin x=x-\dfrac{x^3}{3!}+O(x^5)$ 得</li></ul>
+<div class="formula">$$1-\frac{\sin x}{x}=\frac{1}{3!}x^2+O(x^4)=\frac{1}{6}x^2\big(1+O(x^2)\big),$$</div>
+<p>故 $\big(1-\tfrac{\sin x}{x}\big)^{-\alpha}\sim\big(\tfrac16\big)^{-\alpha}x^{-2\alpha}$，于是 $\alpha&lt;1/2$ 时 $I_1'$ 收敛；由于 $\dfrac{\sin x}{x}\leqslant1$（被积函数非负），$I_1'$ 绝对收敛；</p>
+<ul><li>对 $I_2$：因 $\lvert\sin x/x\rvert&lt;1$，由二项式展开</li></ul>
+<div class="formula">$$\Big(1-\frac{\sin x}{x}\Big)^{-\alpha}-1=\alpha\frac{\sin x}{x}+O\Big(\frac{1}{x^2}\Big),$$</div>
+<p>而 $\int_1^{+\infty}\dfrac{\sin x}{x}\,\mathrm dx$ 条件收敛、$\int_1^{+\infty}O(1/x^2)\,\mathrm dx$ 绝对收敛，所以 $I_2$ 条件收敛；</p>
+<ul><li>综上，当 $0&lt;\alpha&lt;1/2$ 时原积分条件收敛。</li></ul>
+<h3>16.3.12 Cauchy 主值（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.12-19</b></p>
+<ul><li>回顾：$\int_{-\infty}^{+\infty}f\,\mathrm dx$ 收敛是指 $\int_{-\infty}^{a}f$ 与 $\int_a^{+\infty}f$ 都收敛，即 A、A′ <b>独立地</b>趋于 $+\infty$ 时 $\displaystyle\lim_{A\to+\infty\atop A'\to+\infty}\int_{-A}^{A'}f\,\mathrm dx$（式 3）存在。对某些 f 该极限不存在，但取 $A=A'$ 时 $\displaystyle\lim_{A\to+\infty}\int_{-A}^{A}f\,\mathrm dx$（式 4）却可能存在。例如 $\int_{-\infty}^{+\infty}x\,\mathrm dx$：$\int_{-A}^{A'}x\,\mathrm dx=\dfrac12(A'^2-A^2)$，式 (3) 不存在而式 (4) 存在。</li><li><b>无穷积分的 Cauchy 主值</b>：如果 $\displaystyle\lim_{A\to+\infty}\int_{-A}^{A}f\,\mathrm dx$ 存在，则称这个极限为无穷积分的 Cauchy 主值，记为</li></ul>
+<div class="formula">$$\mathrm{P.V.}\int_{-\infty}^{+\infty}f(x)\,\mathrm dx=\lim_{A\to+\infty}\int_{-A}^{A}f(x)\,\mathrm dx.$$</div>
+<p>例如 $\mathrm{P.V.}\displaystyle\int_{-\infty}^{+\infty}\frac{x}{1+x^2}\,\mathrm dx=0$。</p>
+<ul><li><b>瑕积分的 Cauchy 主值</b>：设 c 是 f 在 $[a,b]$ 内唯一的瑕点，定义</li></ul>
+<div class="formula">$$\mathrm{P.V.}\int_a^b f(x)\,\mathrm dx=\lim_{\varepsilon\to0}\Big(\int_a^{c-\varepsilon}f(x)\,\mathrm dx+\int_{c+\varepsilon}^{b}f(x)\,\mathrm dx\Big).$$</div>
+<p>例如 $\int_{-1}^1\dfrac{dx}{x}$ 发散，但其 Cauchy 主值存在：$\mathrm{P.V.}\int_{-1}^1\dfrac{dx}{x}=0$。</p>
+<ul><li>课本注明：容易知道，收敛的无穷积分或瑕积分的 Cauchy 主值一定存在，但反之不然。</li></ul>
+<hr>
+<h2 id="sec16_4">§16.4 反常重积分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.20-30</b></p>
+<p>课本开头指出：与单重积分一样，第 10 章讨论重积分时有两个限制——积分区域必须有界、被积函数在积分域上有界。本章讨论不满足上述条件时如何定义重积分。</p>
+<p><b>16.4.1 无界区域上的反常重积分（课本：p.20-26）</b></p>
+<p>课本说明：为简单起见只对 $\mathbf R^2$ 上的无界区域作详细讨论，一般 $\mathbf R^n$ 上的情形是一样的。</p>
+<h3>16.4.1 定义16.4.1：无界区域上的反常重积分</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>设 D 是 $\mathbf R^2$ 中的无界区域，$f:D\to\mathbf R$，f 在 D 的任何有界子区域上都可积。又设 Γ 是一条面积为零的曲线，它与原点的距离记为</p>
+<div class="formula">$$d(\varGamma)=\inf\{\sqrt{x^2+y^2}:(x,y)\in\varGamma\},$$</div>
+<p>由 Γ 割出来的 D 的子区域记为 $D_\varGamma$（图 16.1）。如果极限</p>
+<div class="formula">$$\lim_{d(\varGamma)\to+\infty}\iint_{D_\varGamma}f(x,y)\,\mathrm dx\,\mathrm dy$$</div>
+<p>存在且有限，并且与 Γ 的选取无关，则称 f 在 D 上<b>反常可积</b>，简称可积，记为</p>
+<div class="formula">$$\iint_D f(x,y)\,\mathrm dx\,\mathrm dy=\lim_{d(\varGamma)\to+\infty}\iint_{D_\varGamma}f(x,y)\,\mathrm dx\,\mathrm dy.$$</div>
+<p>这时称反常重积分 $\iint_D f\,\mathrm dx\,\mathrm dy$ 收敛；反之，称积分发散。</p>
+<h3>16.4.2 例1（★二维 p-积分）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>设 $D=\{(x,y):x^2+y^2\geqslant a^2\}$。讨论 $\displaystyle\iint_D\frac{\mathrm dx\,\mathrm dy}{(x^2+y^2)^{p/2}}$ 的收敛性。</p>
+<h4>课本解法要点</h4>
+<p>取 $\varGamma_s=\{(x,y):x^2+y^2=s^2,\ s>a\}$，则 $D_s=\{(x,y):a^2\leqslant x^2+y^2\leqslant s^2\}$，用极坐标计算：</p>
+<div class="formula">$$\iint_{\bar D_s}\frac{\mathrm dx\,\mathrm dy}{(x^2+y^2)^{p/2}}=\int_0^{2\pi}\mathrm d\theta\int_a^s\frac{r\,\mathrm dr}{r^p}=2\pi\int_a^s\frac{\mathrm dr}{r^{p-1}}.$$</div>
+<p>当 $s\to+\infty$ 时，$p-1>1$ 即 $p>2$ 时原积分收敛；$p\leqslant2$ 时发散。</p>
+<h3>16.4.3 引理16.4.1</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>设 $f(x,y)$ 是无界区域 $D\subset\mathbf R^2$ 上的非负函数。如果 $\{\varGamma_n\}$ 是一列分段光滑曲线，它们割出的 D 的有界子区域 $\{D_n\}$ 满足</p>
+<div class="formula">$$D_1\subset D_2\subset\cdots\subset D_n\subset\cdots,\qquad \lim_{n\to\infty}d(\varGamma_n)=+\infty,$$</div>
+<p>那么 $\iint_D f\,\mathrm dx\,\mathrm dy$ 收敛的充分必要条件是数列 $\left\{\iint_{D_n}f\,\mathrm dx\,\mathrm dy\right\}$ 有界。如果记</p>
+<div class="formula">$$I=\sup_n\iint_{D_n}f(x,y)\,\mathrm dx\,\mathrm dy,$$</div>
+<p>则在收敛时有 $\iint_D f\,\mathrm dx\,\mathrm dy=I$。</p>
+<h4>课本证明路线</h4>
+<ol><li>必要性由收敛的定义即得；</li><li>充分性：设该数列有界，记上确界为 I，要证 $\lim\limits_{d(\varGamma)\to+\infty}\iint_{D_\varGamma}f=I$。任取曲线 Γ，记 $\rho(\varGamma)=\sup\{\sqrt{x^2+y^2}:(x,y)\in\varGamma\}$；</li><li>n 充分大时 $d(\varGamma_n)>\rho(\varGamma)$，因而 $D_\varGamma\subset D_n$，于是 $\iint_{D_\varGamma}f\leqslant\iint_{D_n}f\leqslant I$；</li><li>另一方面，对任意 $\varepsilon>0$ 存在 $n_0$ 使 $\iint_{D_{n_0}}f>I-\varepsilon$；因此当 $d(\varGamma)>d(\varGamma_{n_0})$ 时 $I\geqslant\iint_{D_\varGamma}f\geqslant\iint_{D_{n_0}}f>I-\varepsilon$；</li><li>夹逼即得极限为 I。</li></ol>
+<h3>16.4.4 定理16.4.1：比较判别法</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p>设 D 是 $\mathbf R^2$ 中的无界区域，在 D 上</p>
+<div class="formula">$$0\leqslant f(x,y)\leqslant g(x,y),\tag{2}$$</div>
+<p>那么：</p>
+<p>(1) 当 $\iint_D g\,\mathrm dx\,\mathrm dy$ 收敛时，$\iint_D f\,\mathrm dx\,\mathrm dy$ 也收敛；</p>
+<p>(2) 当 $\iint_D f\,\mathrm dx\,\mathrm dy$ 发散时，$\iint_D g\,\mathrm dx\,\mathrm dy$ 也发散。</p>
+<h4>课本证明路线</h4>
+<p>取 $\{\varGamma_n\}$ 使 $d(\varGamma_n)\to+\infty$。由 $\iint_D g$ 收敛及引理16.4.1，知 $\{\iint_{D_n}g\}$ 有界；由式 (2)，$\{\iint_{D_n}f\}$ 也有界；再用引理16.4.1 即得 (1)。(2) 是显然的。</p>
+<h4>课本说明（单积分与重积分的重要差别）</h4>
+<p>单积分中：$\lvert f\rvert$ 可积可以推出 f 可积，但 f 可积推不出 $\lvert f\rvert$ 可积；在重积分的情形下，两者却是等价的。这是反常单积分和反常重积分的重要差别。</p>
+<h3>16.4.5 定理16.4.2：可积 ⟺ 绝对可积</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p>设 D 是 $\mathbf R^2$ 中的无界区域，那么 $f(x,y)$ 在 D 上可积的充分必要条件是 $\lvert f(x,y)\rvert$ 在 D 上可积。</p>
+<h4>课本证明路线</h4>
+<ol><li>充分性：定义正部与负部</li></ol>
+<div class="formula">$$f^+(x,y)=\begin{cases}f(x,y),&f(x,y)\geqslant0\\0,&f(x,y)&lt;0\end{cases},\qquad f^-(x,y)=\begin{cases}0,&f(x,y)>0\\-f(x,y),&f(x,y)\leqslant0\end{cases},$$</div>
+<p>则 $f=f^+-f^-$，$f^\pm\geqslant0$ 且 $f^\pm\leqslant\lvert f\rvert$；由比较判别法知 $f^+,f^-$ 都可积，故 f 可积；</p>
+<ol><li>必要性（反证）：设 f 可积而 $\lvert f\rvert$ 不可积。由 $\lvert f\rvert=f^++f^-$ 知 $f^+,f^-$ 中必有一个不可积，不妨设 $f^+$ 不可积；</li><li>由引理16.4.1 的思想，对任意大的正数 G，存在一条曲线 Γ 使其割出的 $D_\varGamma$ 上 $\iint_{D_\varGamma}f^+>G$；</li><li>从式 (4) 出发用数学归纳法构造一列曲线 $\{\varGamma_n\}$，使割出的子区域满足 $D_1\subset D_2\subset\cdots$、$d(\varGamma_n)\to+\infty$，且</li></ol>
+<div class="formula">$$\iint_{D_{n+1}}f^+>2\iint_{D_n}\lvert f\rvert+n\quad(n=1,2,\cdots);\tag{5}$$</div>
+<ol><li>由 $f^+\leqslant\lvert f\rvert$ 相减得 $\iint_{D_{n+1}\setminus D_n}f^+>\iint_{D_n}\lvert f\rvert+n$；</li><li>对 $D_{n+1}\setminus D_n$ 作矩形网分割 π（图 16.2），取 $f^+$ 的下和；因 $f^+$ 可积，分割充分细时下和 $>\iint_{D_n}\lvert f\rvert+n-1$；</li><li>取下和中 $m_i^{(n)}>0$ 的小矩形之并为 $P_n$，则 $\iint_{P_n}f^+>\iint_{D_n}\lvert f\rvert+n-1$；再令 $E_n=D_n\cup P_n$，得</li></ol>
+<div class="formula">$$\iint_{E_n}f=\iint_{E_n}(f^+-f^-)\geqslant-\iint_{D_n}\lvert f\rvert+\iint_{P_n}f^+>n-1;$$</div>
+<ol><li>$E_n$ 不一定连通；在 $D_n$ 与 $P_n$ 之间连一些小通道（面积可充分小，f 有界，其上积分的绝对值相应地小），连通后得 $Q_n$，可使 $\iint_{Q_n}f>n-2$——与 f 在 D 上可积矛盾。故 $\lvert f\rvert$ 也可积。</li></ol>
+<h3>16.4.6 例2（收敛但累次积分不可交换次序）</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p>设 $f(x,y)=(2-xy)xye^{-xy}$，$D=\{(x,y):0\leqslant x\leqslant1,\ 0\leqslant y&lt;+\infty\}$。证明：$I=\iint_D f\,\mathrm dx\,\mathrm dy$ 收敛。</p>
+<h4>课本证明要点</h4>
+<p>记 $D_R=\{(x,y):0\leqslant x\leqslant1,\ 0\leqslant y\leqslant R\}$（图 16.3）。按定义计算：</p>
+<div class="formula">$$\iint_{D_R}f\,\mathrm dx\,\mathrm dy=\int_0^1\mathrm dx\int_0^R(2-xy)xye^{-xy}\,\mathrm dy =\int_0^1\mathrm dx\int_0^R\frac{\partial}{\partial y}\big(xy^2e^{-xy}\big)\,\mathrm dy=\int_0^1 xR^2e^{-Rx}\,\mathrm dx$$</div>
+<div class="formula">$$=-R\Big(e^{-R}+\frac{e^{-R}-1}{R}\Big)\to1\quad(R\to+\infty),$$</div>
+<p>故积分收敛。又从</p>
+<div class="formula">$$f(x,y)=\frac{\partial}{\partial y}\big(xy^2e^{-xy}\big)=\frac{\partial}{\partial x}\big(x^2ye^{-xy}\big)$$</div>
+<p>立刻可得 $I_1=\int_0^1\mathrm dx\int_0^{+\infty}f\,\mathrm dy=0$，$I_2=\int_0^{+\infty}\mathrm dy\int_0^1 f\,\mathrm dx=1$。课本由此说明：即使积分收敛，也不一定能交换积分的次序。</p>
+<p><b>16.4.2 无界函数的反常重积分（课本：p.26-30）</b></p>
+<h3>16.4.7 瑕点与瑕线（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.20-30</b></p>
+<p>设 D 为 $\mathbf R^2$ 中的有界区域，点 $p_0\in D$，二元函数 $f(x,y)$ 在 $D\setminus\{p_0\}$ 上有定义，但在 $p_0$ 附近无界，这时称 $p_0$ 为 f 的<b>瑕点</b>。如果曲线 $\gamma\subset D$，f 在 $D\setminus\gamma$ 上有定义，但在 γ 附近无界，则称 γ 为 f 的<b>瑕线</b>。</p>
+<h3>16.4.8 定义16.4.2：无界函数的反常重积分</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>设 $f:D\setminus\{p_0\}\to\mathbf R$，$p_0$ 为 f 的一个瑕点。设 Γ 为 D 中一条分段光滑的闭曲线，$p_0$ 含在 Γ 的内部，Γ 包围的区域记为 σ，且</p>
+<div class="formula">$$\rho(\varGamma)=\sup\{\lVert p-p_0\rVert:p\in\varGamma\}.$$</div>
+<p>如果二重积分 $\iint_{D\setminus\sigma}f(x,y)\,\mathrm dx\,\mathrm dy$ 总存在，而且极限</p>
+<div class="formula">$$\lim_{\rho(\varGamma)\to0}\iint_{D\setminus\sigma}f(x,y)\,\mathrm dx\,\mathrm dy$$</div>
+<p>存在且极限值与 Γ 的取法无关，则称 f 在 D 上可积，并记</p>
+<div class="formula">$$\iint_D f(x,y)\,\mathrm dx\,\mathrm dy=\lim_{\rho(\varGamma)\to0}\iint_{D\setminus\sigma}f(x,y)\,\mathrm dx\,\mathrm dy.$$</div>
+<p>这时称无界函数的反常重积分 $\iint_D f\,\mathrm dx\,\mathrm dy$ 收敛；反之，称积分发散。</p>
+<h3>16.4.9 例3（★瑕点版二维 p-积分）</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>设 $D=\{(x,y):x^2+y^2\leqslant a^2\}$。讨论 $\displaystyle\iint_D\frac{\mathrm dx\,\mathrm dy}{(x^2+y^2)^{p/2}}$（$p>0$）的敛散性。</p>
+<h4>课本解法要点</h4>
+<p>显然 $(0,0)$ 是被积函数的瑕点。记 $\varGamma_\varepsilon=\{(x,y):x^2+y^2=\varepsilon^2\}$（$0&lt;\varepsilon&lt;a$），$D_\varepsilon$ 为 $\varGamma_\varepsilon$ 的内部，则</p>
+<div class="formula">$$\iint_{\bar D\setminus D_\varepsilon}\frac{\mathrm dx\,\mathrm dy}{(x^2+y^2)^{p/2}}=\int_0^{2\pi}\mathrm d\theta\int_\varepsilon^a\frac{\mathrm dr}{r^{p-1}}=2\pi\int_\varepsilon^a\frac{\mathrm dr}{r^{p-1}}\qquad(r=\sqrt{x^2+y^2}).$$</div>
+<p>当 $\varepsilon\to0$ 时，该积分当 $p&lt;2$ 时收敛，当 $p\geqslant2$ 时发散。</p>
+<p>课本说明（例3 后）：与无界区域上的反常积分一样，比较判别法、可积和绝对可积等价的定理对无界函数的反常积分同样成立，不再详述。</p>
+<h3>16.4.10 例4</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>计算反常积分 $\displaystyle I=\iint_D\ln\sin(x-y)\,\mathrm dx\,\mathrm dy$，这里 D 是由 $y=0$、$y=x$ 和 $x=\pi$ 围成的区域（图 16.4）。</p>
+<h4>课本解法要点</h4>
+<p>作变换 $u=x-y$，$v=x+y$（即 $x=\dfrac{u+v}{2}$，$y=\dfrac{v-u}{2}$），其 Jacobi 行列式</p>
+<div class="formula">$$\frac{\partial(x,y)}{\partial(u,v)}=\begin{vmatrix}\frac12&\frac12\\[2pt]-\frac12&\frac12\end{vmatrix}=\frac12.$$</div>
+<p>区域 D 变成 $u,v$ 平面上由直线 $u=v$、$u=0$、$u+v=2\pi$ 围成的区域 $D‘$。于是</p>
+<div class="formula">$$I=\frac12\iint_{D’}\ln\sin u\,\mathrm du\,\mathrm dv=\frac12\int_0^{\pi}\ln\sin u\,\mathrm du\int_u^{2\pi-u}\mathrm dv=\int_0^{\pi}(\pi-u)\ln\sin u\,\mathrm du$$</div>
+<div class="formula">$$=\int_0^{\pi/2}t\ln\sin t\,\mathrm dt+\int_0^{\pi/2}(\pi-t)\ln\sin t\,\mathrm dt=\pi\int_0^{\pi/2}\ln\sin t\,\mathrm dt=-\frac{\pi^2}{2}\ln2,$$</div>
+<p>其中引用了已知结果（6.7 节例9）：$\displaystyle\int_0^{\pi/2}\ln\sin t\,\mathrm dt=-\frac{\pi}{2}\ln2$。</p>
+<h3>16.4.11 例5</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p>研究 $\displaystyle I=\iiint_D\frac{\mathrm dx\,\mathrm dy\,\mathrm dz}{(x+y+z)^p}$ 的敛散性，其中</p>
+<div class="formula">$$D=\{(x,y,z):x>0,\ y>0,\ z>0,\ x+y+z&lt;1\}.$$</div>
+<h4>课本解法要点</h4>
+<p>作变量代换 $x=u(1-v)$，$y=uv(1-w)$，$z=uvw$，它把 D 变成 $D'=\{(u,v,w):0\leqslant u\leqslant1,\ 0\leqslant v\leqslant1,\ 0\leqslant w\leqslant1\}$，Jacobi 行列式为</p>
+<div class="formula">$$\frac{\partial(x,y,z)}{\partial(u,v,w)}=u^2v.$$</div>
+<p>于是（注意 $x+y+z=u$）</p>
+<div class="formula">$$I=\iiint_{D'}\frac{u^2v}{u^p}\,\mathrm du\,\mathrm dv\,\mathrm dw=\int_0^1\frac{\mathrm du}{u^{p-2}}\int_0^1 v\,\mathrm dv\int_0^1\mathrm dw=\frac12\int_0^1 u^{2-p}\,\mathrm du.$$</div>
+<p>因此积分当 $p-2&lt;1$ 即 $p&lt;3$ 时收敛，这时</p>
+<div class="formula">$$I=\frac{1}{2(3-p)}.$$</div>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 16.N</b>（基本）与<b>问题 16.N</b>（提高）；本章无单独的补充题档。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§16.1</td><td>练习题16.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=290\</td><td>p.4-5（共 4 题）</td><td>—</td></tr><tr><td>§16.2</td><td>练习题16.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=297\</td><td>p.11-12（共 7 题）</td><td>问题16.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=298\</td><td>p.12（共 2 题）</td></tr><tr><td>§16.3</td><td>练习题16.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=304\</td><td>p.18-19（共 2 题）</td><td>问题16.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=305\</td><td>p.19（共 7 题）</td></tr><tr><td>§16.4</td><td>练习题16.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=315\</td><td>p.29-30（共 3 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：本章无问题16.1 与问题16.4 档；练习题/问题未进入条目索引，其页码由相邻小节的锚定页定位，个别跨页处可能有 ±1 页偏差。题数为课本显式编号计数（练习题16.3 第 1 题含 (1)-(7)、第 2 题含 (1)(2)；练习题16.4 三大题分别含 8、2、10 小题）。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">章首语（与无穷级数类比；为含参变量反常积分作准备）
+→ 非负函数无穷积分：部分和类比 → 有界判别（定理16.1.1）
+→ 比较判别法（定理16.1.2）与 p-积分基准 → 极限形式（定理16.1.3）
+→ 收敛积分的级数分解与反例（cos x）→ 非负时的正向结果（定理16.1.4）
+→ 例4：收敛但被积函数无界（必要条件 lim f = 0 不成立）
+→ Cauchy 收敛原理（定理16.2.1）→ 绝对收敛必收敛（定理16.2.2）、绝对/条件收敛命名
+→ 第二积分平均值定理（定理16.2.3）→ 推广形式（定理16.2.4）→ Abel 引理型不等式（定理16.2.5）
+→ Dirichlet 判别法（定理16.2.6）→ 例1 sin x/x（条件收敛经典例）→ 例2 (-1)^[x]
+→ Abel 判别法（定理16.2.7）→ 例3（Dirichlet + Abel 联用）
+→ 瑕点、瑕积分定义回顾；变换 x = a + 1/y 化归无穷积分
+→ 四条平行定理（16.3.1 比较、16.3.2 极限形式、16.3.3 Cauchy 原理、16.3.4 绝对⟹收敛）
+→ 与 Riemann 积分可积性的对比；Dirichlet/Abel 通常经变换借用无穷积分判别法
+→ 例1～例6（含 Beta 函数、Gamma 函数、sin(1/x)/x^p 的完整分类、(1-sinx/x)^(-α)-1）
+→ Cauchy 主值（无穷积分版与瑕积分版；收敛 ⟹ 主值存在，反之不然）
+→ 反常重积分：定义16.4.1（无界区域）→ 例1 二维 p-积分（p &gt; 2 收敛）
+→ 引理16.4.1 → 比较判别法（定理16.4.1）→ 可积 ⟺ 绝对可积（定理16.4.2）
+→ 例2：收敛但累次积分不可交换次序
+→ 瑕点与瑕线概念 → 定义16.4.2（无界函数）→ 例3 圆盘瑕点 p-积分（p &lt; 2 收敛）
+→ 例4 ln sin(x-y) 的计算 → 例5 三重反常积分（p &lt; 3 收敛）</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>5/6 年：端点判别（2019:4(1)）、条件/绝对收敛（2019:4(2)、2020:6）、振荡积分（2022:7）。</li><li>与含参积分联动：2023:10、2026:8。</li><li>§16.4 反常重积分未直接命题。</li><li>2025：第10题 由 $\int dx/(f+f')$ 收敛推 $\int dx/f$ 收敛（§16.1）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>25</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§16.1 无穷积分</h3>
+<h4>练习题 16.1（4 题）</h4>
+<ol class="ex-list">
+<li>判断下列无穷积分的敛散性：</li>
+<li>设 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。证明：如果 $\displaystyle\lim_{x\to+\infty}f(x)=b$ 存在，那么必有 $b=0$。原书 PDF 291</li>
+<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\,\mathrm dx}{1+x^\alpha\cos^2x}\ (\alpha>4)$ 收敛。原书 PDF 291</li>
+<li>证明：积分 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛于 $I$ 的充分必要条件是，对任一递增趋于 $+\infty$ 的数列 $\{A_n\}$（$A_1=a$），级数 $\displaystyle\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x)\,\mathrm dx$ 收敛于 $I$。原书 PDF 291</li>
+</ol>
+<h3>§16.2 无穷积分的 Dirichlet 和 Abel 收敛判别法</h3>
+<h4>练习题 16.2（7 题）</h4>
+<ol class="ex-list">
+<li>研究下列积分的敛散性：</li>
+<li>研究下列积分的绝对收敛性和条件收敛性：</li>
+<li>设 $f$ 为非负的减函数，且 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。证明：当 $x\to+\infty$ 时，$f(x)=o\!\left(\frac1x\right)$。原书 PDF 298</li>
+<li>设 $f$ 在 $[a,+\infty)$ 上递减趋于 0。试用 Dirichlet 判别法证明：积分 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f(x)\sin^2x\,\mathrm dx$ 同敛散。原书 PDF 298</li>
+<li>设 $f,g$ 在 $[a,b]$ 上连续，$g$ 在 $(a,b)$ 内可微，且 $g'(x)\geqslant0\ (a&lt;x&lt;b)$。试用分部积分公式证明第二积分平均值定理。原书 PDF 298</li>
+<li>设 $P_m$ 和 $P_n$ 分别为 $m$ 和 $n$ 次多项式，且当 $x\geqslant a$ 时，$P_n(x)>0$。试研究积分 $\displaystyle\int_0^{+\infty}\frac{P_m(x)}{P_n(x)}\sin x\,\mathrm dx$ 的绝对收敛性和条件收敛性。<b>[待核验：PDF 298 的积分起点印作 $0$，但分母正性条件仅写 $x\geqslant a$；保留原书条件，待版本或勘误确认。]</b> 原书 PDF 298</li>
+<li>如果 $f$ 在 $[a,+\infty)$ 上连续可微，且 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f'(x)\,\mathrm dx$ 都收敛，证明：必有 $\displaystyle\lim_{x\to+\infty}f(x)=0$。原书 PDF 298</li>
+</ol>
+<h4>问题 16.2（2 题）</h4>
+<ol class="ex-list">
+<li>设 $0&lt;a\leqslant1/2$。证明：积分 $\displaystyle\int_1^{+\infty}\frac{\sin x}{x^a+\sin x}\,\mathrm dx$ 发散。原书 PDF 298</li>
+<li>对任意的 $b>0$，设 $f$ 在 $[0,b]$ 上可积。如果 $\displaystyle\lim_{x\to+\infty}f(x)=a$，证明：$\displaystyle\lim_{t\to0^+}t\int_0^{+\infty}e^{-tx}f(x)\,\mathrm dx=a$。<b>[待核验：PDF 298 同时印有“任意 $b>0$ 时在 $[0,b]$ 可积”与无穷远极限；题面照录，定义域的严格表述待版本或勘误确认。]</b> 原书 PDF 298</li>
+</ol>
+<h3>§16.3 瑕积分的收敛判别法</h3>
+<h4>练习题 16.3（2 题）</h4>
+<ol class="ex-list">
+<li>判断下列反常积分的敛散性：</li>
+<li>判断下列反常积分的绝对收敛性和条件收敛性：</li>
+</ol>
+<h4>问题 16.3（7 题）</h4>
+<ol class="ex-list">
+<li>判断反常积分 $\displaystyle\int_0^{+\infty}\frac{\sin(x+1/x)}{x^\alpha}\,\mathrm dx$ 的绝对收敛性和条件收敛性。原书 PDF 305</li>
+<li>设函数 $f$ 在 $(0,1)$ 上单调，在点 $x=0$ 和 $x=1$ 的邻域内不必有界。如果 $\displaystyle\int_0^1f(x)\,\mathrm dx$ 收敛，证明：</li>
+<li>上一题的逆命题是否成立？即若 $f$ 在 $(0,1)$ 上单调，且 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^{n-1}f\!\left(\frac kn\right)$ 存在，是否能保证 $\displaystyle\int_0^1f(x)\,\mathrm dx$ 收敛？试研究 $f(x)=\frac1x-\frac1{1-x}$。原书 PDF 305</li>
+<li>利用第 2 题的结果，证明：对任意的 $\alpha>0$，有 $\displaystyle\lim_{n\to\infty}\frac{1^{\alpha-1}+2^{\alpha-1}+\cdots+n^{\alpha-1}}{n^\alpha}=\frac1\alpha$。原书 PDF 305</li>
+<li>设 $f$ 在 $(-\infty,+\infty)$ 上连续，且 $\displaystyle\lim_{x\to+\infty}f(x)=a,\ \lim_{x\to-\infty}f(x)=b$ 都存在。证明：对任意的 $\eta>0$，有 $\displaystyle\int_{-\infty}^{+\infty}\bigl(f(x+\eta)-f(x)\bigr)\,\mathrm dx=\eta(a-b)$。原书 PDF 305</li>
+<li>设 $a>0,b>0$。证明：</li>
+<li>利用上述结果，计算下列积分：</li>
+</ol>
+<h3>§16.4 反常重积分</h3>
+<h4>练习题 16.4（3 题）</h4>
+<ol class="ex-list">
+<li>讨论下列反常重积分的敛散性：</li>
+<li>证明：</li>
+<li>计算下列反常重积分：</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第16章_反常积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §16.1 非负函数无穷积分的收敛判别法：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §16.2 无穷积分的 Dirichlet 和 Abel 收敛判别法：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §16.3 瑕积分的收敛判别法：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §16.4 反常重积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

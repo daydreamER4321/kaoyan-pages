@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10章 多重积分 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第10章<br>多重积分</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec10_1">§10.1 矩形区域上的积分</a>
+    <a href="#sec10_2">§10.2 Lebesgue 定理</a>
+    <a href="#sec10_3">§10.3 矩形区域上二重积分的计算</a>
+    <a href="#sec10_4">§10.4 有界集合上的二重积分</a>
+    <a href="#sec10_5">§10.5 有界集合上积分的计算</a>
+    <a href="#sec10_6">§10.6 二重积分换元</a>
+    <a href="#sec10_7">§10.7 三重积分</a>
+    <a href="#sec10_8">§10.8 n 重积分</a>
+    <a href="#sec10_9">§10.9 重积分物理应用举例</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第10章 多重积分</h1>
+    <p class="hero-sub">§10.1 矩形区域上的积分 · §10.2 Lebesgue 定理 · §10.3 矩形区域上二重积分的计算 · §10.4 有界集合上的二重积分 · §10.5 有界集合上积分的计算 · §10.6 二重积分换元</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec10_1">§10.1 矩形区域上的积分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.2-8</b></p>
+<h3>10.1.1 分割与积分和（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.2-8</b></p>
+<p>对 $I=[a,b]\times[c,d]$ 作分割 $\pi_x:a=x_0&lt;\cdots&lt;x_n=b$ 与 $\pi_y:c=y_0&lt;\cdots&lt;y_m=d$，两族平行直线把 I 分成 $k=n\times m$ 个子矩形，全体组成分割 $\pi=\pi_x\times\pi_y$。在每个子矩形 $I_i$ 中任取值点 $\xi_i$，得<b>积分和（Riemann 和）</b></p>
+<div class="formula">$$S(f,\pi,\xi)=\sum_{i=1}^k f(\xi_i)\sigma(I_i).\tag{1}$$</div>
+<p><b>宽度</b> $\|\pi\|=\max(\mathrm{diam}(I_1),\dots,\mathrm{diam}(I_k))$；$\xi=(\xi_1,\dots,\xi_k)$ 称为值点向量。</p>
+<h3>10.1.2 定义10.1.1（矩形上的二重积分）</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>如果存在数 A，使得对任意给定的 $\varepsilon>0$，存在 $\delta>0$，当 $\|\pi\|&lt;\delta$ 时，不论值点 $\xi_i$ 在 $I_i$ 中如何选择，都有</p>
+<div class="formula">$$\Big|\sum_{i=1}^k f(\xi_i)\sigma(I_i)-A\Big|&lt;\varepsilon,$$</div>
+<p>则称 f 在 I 上<b>可积</b>，A 记作</p>
+<div class="formula">$$\iint_I f(x,y)\,\mathrm{d}x\mathrm{d}y\quad\text{或}\quad\int_I f\,\mathrm{d}\sigma,$$</div>
+<p>称为 f 在矩形 I 上的<b>二重积分</b>（简称积分）；f 称被积函数，I 称积分区域。该极限过程记为</p>
+<div class="formula">$$\lim_{\|\pi\|\to0}\sum_{i=1}^k f(\xi_i)\sigma(I_i)=A.$$</div>
+<h3>10.1.3 定理10.1.1～定理10.1.3（基本运算性质）</h3>
+<p class="pgref"><b>课本：3</b></p>
+<ul><li><b>定理10.1.1</b>：f 在 I 上可积 ⟹ f 在 I 上有界。</li><li><b>定理10.1.2</b>：f, g 可积，则 (1) $cf$ 可积且 $\int_I(cf)\,\mathrm{d}\sigma=c\int_I f\,\mathrm{d}\sigma$；(2) $f\pm g$ 可积且 $\int_I(f\pm g)\,\mathrm{d}\sigma=\int_I f\,\mathrm{d}\sigma\pm\int_I g\,\mathrm{d}\sigma$。</li><li><b>定理10.1.3</b>：f, g 可积，则 (1) $f\ge0$ ⟹ $\int_I f\,\mathrm{d}\sigma\ge0$；(2) $f\ge g$ ⟹ $\int_I f\,\mathrm{d}\sigma\ge\int_I g\,\mathrm{d}\sigma$。</li></ul>
+<h4>课本证明路线</h4>
+<p>(2) 只证定理10.1.3(2)：$\int_I f-\int_I g=\int_I(f-g)\,\mathrm{d}\sigma\ge0$，由 (1)。</p>
+<h3>10.1.4 下和与上和（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.2-8</b></p>
+<p>记 $m_i=\inf f(I_i)$，$M_i=\sup f(I_i)$，定义</p>
+<div class="formula">$$\underline{S}(f,\pi)=\sum_{i=1}^k m_i\sigma(I_i),\qquad \overline{S}(f,\pi)=\sum_{i=1}^k M_i\sigma(I_i),$$</div>
+<p>分别称<b>下和</b>与<b>上和</b>（只与分割有关），任何积分和介于其间：</p>
+<div class="formula">$$\underline{S}(f,\pi)\le S(f,\pi)\le\overline{S}(f,\pi).$$</div>
+<p>若 $\pi_x\le\pi_x'$ 且 $\pi_y\le\pi_y'$（数轴分割粗细比较，见上册6.5节），称 $\pi'$ 比 $\pi$ 细，记 $\pi\le\pi'$。</p>
+<h3>10.1.5 定理10.1.4 与定理10.1.5</h3>
+<p class="pgref"><b>课本：4</b></p>
+<ul><li><b>定理10.1.4</b>：$\pi\le\pi'$ 时</li></ul>
+<div class="formula">$$\underline{S}(f,\pi)\le\underline{S}(f,\pi')\le\overline{S}(f,\pi')\le\overline{S}(f,\pi).$$</div>
+<p>即在细分之下，下和不会减少而上和不会增大。（证明与定理6.5.1 完全相似，从略。）</p>
+<ul><li><b>定理10.1.5</b>：对 I 的任何两个分割 $\pi_1,\pi_2$，</li></ul>
+<div class="formula">$$\underline{S}(f,\pi_1)\le\overline{S}(f,\pi_2).$$</div>
+<h4>课本证明路线</h4>
+<p>把 $\pi_{1x}$ 与 $\pi_{2x}$ 的分点合并成 $\pi_x$、$\pi_{1y}$ 与 $\pi_{2y}$ 的分点合并成 $\pi_y$，令 $\pi=\pi_x\times\pi_y$（课本称之为"把 $\pi_1$ 与 $\pi_2$ 合在一起"）；$\pi$ 比 $\pi_1,\pi_2$ 都细，用定理10.1.4 得链式不等式。</p>
+<h3>10.1.6 下积分与上积分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.2-8</b></p>
+<div class="formula">$$\underline{\int}_I f\,\mathrm{d}\sigma=\sup_\pi\underline{S}(f,\pi)\qquad\text{（下积分）},\qquad \overline{\int}_I f\,\mathrm{d}\sigma=\inf_\pi\overline{S}(f,\pi)\qquad\text{（上积分）}.$$</div>
+<p>对任意两个分割 π 与 $\pi'$ 成立</p>
+<div class="formula">$$\underline{S}(f,\pi)\le\underline{\int}_I f\,\mathrm{d}\sigma\le\overline{\int}_I f\,\mathrm{d}\sigma\le\overline{S}(f,\pi').\tag{2}$$</div>
+<h3>10.1.7 定理10.1.6</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p>等式 $\underline{\int}_I f\,\mathrm{d}\sigma=\overline{\int}_I f\,\mathrm{d}\sigma$ 成立的充分必要条件是：对任意给定的 ε，存在 I 的一个分割 π 使</p>
+<div class="formula">$$\overline{S}(f,\pi)-\underline{S}(f,\pi)&lt;\varepsilon.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>必要性：记公共值为 A，分别由下、上积分定义取分割 $\pi_1,\pi_2$ 使 $\underline{S}(f,\pi_1)>A-\frac\varepsilon2$、$\overline{S}(f,\pi_2)&lt;A+\frac\varepsilon2$；</li><li>把 $\pi_1,\pi_2$ 合并成 π，链式夹逼得 $\overline{S}(f,\pi)-\underline{S}(f,\pi)&lt;\varepsilon$；</li><li>充分性：由不等式 (2)，$0\le\overline{\int}-\underline{\int}\le\overline{S}(f,\pi)-\underline{S}(f,\pi)&lt;\varepsilon$，令 $\varepsilon\to0$。</li></ol>
+<h3>10.1.8 定理10.1.7（可积判据）</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>函数 f 在矩形 I 上可积的充分必要条件是</p>
+<div class="formula">$$\underline{\int}_I f\,\mathrm{d}\sigma=\overline{\int}_I f\,\mathrm{d}\sigma.\tag{3}$$</div>
+<p>这个公共的值就是积分值 $\int_I f\,\mathrm{d}\sigma$。</p>
+<h4>课本证明路线</h4>
+<ol><li>必要性：设积分值为 A，对任意 ε 存在分割使一切积分和落入 $(A-\varepsilon,A+\varepsilon)$；由值点任意性 $A-\varepsilon\le\underline{S}\le\overline{S}\le A+\varepsilon$，进而控制上下积分，令 $\varepsilon\to0$；</li><li>充分性：由定理10.1.6 取分割 $\pi_\varepsilon=\{J_1,\dots,J_t\}$ 使 $\overline S-\underline S&lt;\varepsilon$；将每个 $J_i$ 各边向内平行收缩同一距离 δ 得开矩形 $\widetilde J_i\subset J_i$，令 $K=I\cap(\bigcup\widetilde J_i)^c$（闭集），取 δ 充分小使 $\sigma(K)&lt;\varepsilon$；</li><li>对满足 $\|\pi\|&lt;\delta$ 的分割：$|S(f,\pi)-A|\le\sum_j(M_j-m_j)\sigma(I_j)=\Sigma_1+\Sigma_2$；</li><li>$\Sigma_1\le 2M\sigma(K)&lt;2M\varepsilon$（M 为 $|f|$ 的界）；$\Sigma_2$ 中与 K 不交的 $I_j$ 必含于某 $J_i$，故 $\Sigma_2\le\overline S(f,\pi_\varepsilon)-\underline S(f,\pi_\varepsilon)&lt;\varepsilon$；</li><li>合计 $|S(f,\pi)-A|&lt;(2M+1)\varepsilon$。</li></ol>
+<h3>10.1.9 定理10.1.8（四条件等价）</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>f 在 $I=[a,b]\times[c,d]$ 上有界，则以下四个条件等价：</p>
+<ol><li>f 在 I 上可积；</li><li>$\displaystyle\lim_{\|\pi\|\to0}\sum_{i=1}^k\omega_i\sigma(I_i)=0$，其中 $\omega_i=M_i-m_i$ 为 f 在 $I_i$ 上的振幅；</li><li>对任意 $\varepsilon>0$，存在分割 π 使 $\overline{S}(f,\pi)-\underline{S}(f,\pi)&lt;\varepsilon$；</li><li>$\underline{\int}_I f\,\mathrm{d}\sigma=\overline{\int}_I f\,\mathrm{d}\sigma$。</li></ol>
+<p>课本注明：<b>证明留作练习</b>（练习题10.1 第4题）。并指出由此立刻可得<b>闭矩形上的连续函数可积</b>，证明与单变量相应定理完全相同。</p>
+<h3>10.1.10 例2（Dirichlet 函数不可积）</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>$p=(x,y)$ 为二维有理点指 $x,y\in\mathbb{R}$ 皆为有理数。Dirichlet 函数</p>
+<div class="formula">$$D(p)=\begin{cases}1,&p\text{ 为二维有理点},\\0,&p\text{ 为二维无理点}.\end{cases}$$</div>
+<p>对 $\mathbb{R}^2$ 中任何矩形 I，$\underline{\int}_I D\,\mathrm{d}\sigma=0$ 而 $\overline{\int}_I D\,\mathrm{d}\sigma=\sigma(I)>0$，故 D 在 I 上不可积。</p>
+<hr>
+<h2 id="sec10_2">§10.2 Lebesgue 定理<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.9-16</b></p>
+<p>单变量情形已有"不连续点集为零测集 ⟺ 可积"；二元情形是否也有作为可积充要条件的 Lebesgue 定理？为此引入二维零测集概念。</p>
+<h3>10.2.1 定义10.2.1（零测集）与定义10.2.2（零面积集）</h3>
+<p class="pgref"><b>课本：9</b></p>
+<ul><li><b>定义10.2.1</b>：$B\subset\mathbb{R}^2$。若对任意 $\varepsilon>0$，存在可数个闭矩形 $\{I_i\}$ 使</li></ul>
+<div class="formula">$$B\subset\bigcup_{i=1}^\infty I_i,\qquad \sum_{i=1}^\infty\sigma(I_i)&lt;\varepsilon,$$</div>
+<p>则 B 称为（二维）<b>零测集</b>。</p>
+<ul><li><b>定义10.2.2</b>：若覆盖只需有限个闭矩形 $I_1,\dots,I_m$ 且面积总和小于 ε，则 B 称为<b>零面积集</b>。</li></ul>
+<p>课本注明：零面积集必定是零测集；定义中的闭矩形也可以改为开矩形，视方便而定。</p>
+<h3>10.2.2 定理10.2.1（五条性质）</h3>
+<p class="pgref"><b>课本：10</b></p>
+<ol><li>至多可数集是零测集；</li><li>至多可数个零测集的并是零测集；</li><li>有限个零面积集的并是零面积集；</li><li>B 为零面积集 ⟺ $\bar B$ 也是零面积集；</li><li>若 B 是有界闭集，则 B 为零测集 ⟺ B 为零面积集。</li></ol>
+<h4>课本证明路线</h4>
+<p>前三条至为明显。(4)：充分性显然（$B\subset\bar B$）；必要性中有限个闭矩形之并为闭集，故仍盖住 $\bar B$。(5) 只证必要性：紧致的零测集可被总面积小于 ε 的开矩形序列覆盖，由<b>有限覆盖定理</b>选出有限子覆盖。</p>
+<h4>课本反例（重要）</h4>
+<p>零测集不能断言 $\bar B$ 零测：$[0,1]^2$ 中全体有理点所成之集 B 是可数的（零测），但 $\bar B=[0,1]^2$ 不是零测集。这也说明<b>零测集未必是零面积集</b>。</p>
+<h3>10.2.3 例1（★连续参数曲线是零面积集）</h3>
+<p class="pgref"><b>课本：10</b></p>
+<p><b>命题</b>：设 $B\subset\mathbb{R}^2$ 是一段连续的参数曲线 $x=x(t),y=y(t)\ (\alpha\le t\le\beta)$，其中至少有一个分量有连续的导数，则 B 是零面积集。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>不妨设 y 在 $[\alpha,\beta]$ 上有连续导数；对任意 ε 取分割 $\alpha=t_0&lt;\cdots&lt;t_m=\beta$ 使每个小区间上 $|x(s)-x(t)|&lt;\varepsilon$；</li><li>令 $a_i,b_i$ 为 x 在 $[t_{i-1},t_i]$ 上的最小最大值（$b_i-a_i&lt;\varepsilon$），$c_i,d_i$ 为 y 的最小最大值，作闭矩形 $I_i=[a_i,b_i]\times[c_i,d_i]$ 盖住该段曲线；</li><li>由微分中值定理，$d_i-c_i\le M(t_i-t_{i-1})$（M 为 $|y'|$ 的界）；</li><li>故 $\sum\sigma(I_i)&lt;M\varepsilon(\beta-\alpha)$，由 ε 任意即得。</li></ol>
+<h4>课本注意</h4>
+<p>若 x 与 y 都不具备连续可导的条件，结论可能不成立——课本预告将在 15.8 节构造一条充满整个正方形的连续参数曲线（它不是零面积集）。</p>
+<p>例2（普通例题）：$[a,b]$ 上连续函数 f 的图像 $G(f)$ 是零面积集——改写为参数方程 $x=t,y=f(t)$ 用例1。例3（普通例题）：光滑曲线段（$x',y'$ 连续且 $x'^2+y'^2>0$，见9.5节）当然是零面积集。二者详见 0.6 索引。</p>
+<h3>10.2.4 定义10.2.3（点处的振幅）</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>设 $B\subset\mathbb{R}^2$，$f:B\to\mathbb{R}$ 有界。对 $x\in B,r>0$ 令 $I_{x,r}=B\cap B_r(x)$，$\omega_f(x,r)$ 表 f 在 $I_{x,r}$ 上的振幅，令</p>
+<div class="formula">$$\omega_f(\boldsymbol{x})=\lim_{r\to0^+}\omega_f(\boldsymbol{x},r),$$</div>
+<p>称为 f 在点 x 处的振幅。请读者自行证明</p>
+<div class="formula">$$\omega_f(\boldsymbol{x},r)=\sup\{|f(\boldsymbol{y}_1)-f(\boldsymbol{y}_2)|:\boldsymbol{y}_1,\boldsymbol{y}_2\in I_{\boldsymbol{x},r}\}.$$</div>
+<h3>10.2.5 引理10.2.1～引理10.2.3</h3>
+<p class="pgref"><b>课本：12</b></p>
+<ul><li><b>引理10.2.1</b>：f 在点 $x\in B$ 处连续 ⟺ $\omega_f(\boldsymbol{x})=0$。</li><li>记 $D_\delta=\{x\in I:\omega_f(x)\ge\delta\}$，$D(f)$ 为 f 在矩形 I 上不连续点的全体。</li><li><b>引理10.2.2</b>：$D(f)=\bigcup_{n=1}^\infty D_{1/n}$。</li><li><b>引理10.2.3</b>：若存在一列开矩形 $I_j$ 使 $D(f)\subset\bigcup_j I_j$，记 $K=I\setminus\bigcup_j I_j$，则对任意 $\varepsilon>0$，存在 $\delta>0$：当 $x\in K,y\in I$ 且 $\|x-y\|&lt;\delta$ 时 $|f(x)-f(y)|&lt;\varepsilon$。</li></ul>
+<p>课本注明：这三条引理的证明与单变量的引理 6.6.2～6.6.4 完全类似，从略。</p>
+<h3>10.2.6 定理10.2.2（Lebesgue 定理）</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>设 f 在闭矩形 I 上有界，则 f 在 I 上 Riemann 可积的充分必要条件是：f 在 I 上的全体不连续点所成之集 $D(f)$ 是一零测集。</p>
+<h4>课本证明路线</h4>
+<ol><li><b>必要性</b>：由引理10.2.2，只需证每个 $D_{1/n}$ 是零测集。由可积性与定理10.1.8 取分割使 $\sum\omega_i\sigma(I_i)&lt;\varepsilon/n$；</li><li>令 $E_n=D_{1/n}\setminus l(\pi)$（$l(\pi)$ 为分割线所成之集，由本节例3它是零面积集），则 $E_n\subset\bigcup\{I_i:D_{1/n}\cap I_i\neq\emptyset\}$（诸 $I_i$ 为开矩形）；</li><li>任取 $a\in D_{1/n}\cap I_i$，取 r 充分小使 $B_r(a)\subset I_i$，则振幅链 $\omega_i\ge\omega_f(a,r)\ge\omega_f(a)\ge\frac1n$，从而 $\sum'\sigma(I_i)&lt;\varepsilon$——$E_n$ 是零面积集，$D(f)$ 零测；</li><li><b>充分性</b>：$D(f)$ 零测 ⟹ 存在一列开矩形 $J_i$ 使 $D(f)\subset\bigcup J_i$ 且 $\sum\sigma(J_i)&lt;\frac{\varepsilon}{2\omega}$（ω 为 f 在 I 上的振幅）；</li><li>令 $K=I\setminus\bigcup J_i$；由引理10.2.3 取 δ 使 $x\in K,y\in I$、距离小于 δ 时 $|f(x)-f(y)|&lt;\frac{\varepsilon}{4\sigma(I)}$；再取 $\|\pi\|&lt;\delta$ 的分割，把 $\sum\omega_i\sigma(I_i)$ 分成与 K 相交的 $\Sigma_1$ 与不相交的 $\Sigma_2$；</li><li>$\Sigma_1$ 中的 $\omega_i\le\frac{\varepsilon}{2\sigma(I)}$，故 $\Sigma_1\le\frac\varepsilon2$；$\Sigma_2$ 中的 $I_i\subset\bigcup J_j$，故 $\Sigma_2\le\omega\sum\sigma(J_i)&lt;\frac\varepsilon2$；</li><li>合计 $\sum\omega_i\sigma(I_i)&lt;\varepsilon$，由定理10.1.8 即得可积。</li></ol>
+<h3>10.2.7 定理10.2.3</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>设 $f:I\to\mathbb{R}$ 有界。如果集合 $B=\{x\in I:f(x)\neq0\}$ 为一零面积集，那么 f 在 I 上可积，并且</p>
+<div class="formula">$$\int_I f\,\mathrm{d}\sigma=0.$$</div>
+<h4>课本证明路线</h4>
+<p>开集 $I^\circ\setminus\bar B$ 中的点都是 f 的连续点，可见 $D(f)\subset\partial I\cup\bar B$，而 ∂I 与 $\bar B$ 都是零面积集，由 Lebesgue 定理知可积；又在任何子矩形中总可取到使 $f(\xi_i)=0$ 的值点，Riemann 和恒为 0，故积分为 0。</p>
+<h4>课本必须指出（重要）</h4>
+<p>若 B 仅是零测集，结论不再成立：Dirichlet 函数的 $B$ 是 I 中有理点全体（零测集），但 f 不可积。这说明引入零面积集是非常必要的。</p>
+<h3>10.2.8 定理10.2.4</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设 f, g 在 I 上有界，且 $B=\{x\in I:f(x)\neq g(x)\}$ 为一零面积集。若 f 与 g 中有一个在 I 上可积，则另一个也在 I 上可积，并且</p>
+<div class="formula">$$\int_I f\,\mathrm{d}\sigma=\int_I g\,\mathrm{d}\sigma.$$</div>
+<h4>课本证明路线</h4>
+<p>不妨设 g 可积；$f-g$ 的非零点集是零面积集 B，由定理10.2.3 知 $f-g$ 可积且积分为 0，再用线性性。</p>
+<h4>课本说明</h4>
+<p>只在一个零面积集上改变 f 的值而保持其有界，既不会改变可积性，也不会改变积分值。</p>
+<p>例4、例5（普通例题）：利用上述定理判定两个在个别点/抛物线弧上未定义的函数可积（补值后保持有界即可）。详见 0.6 索引。</p>
+<hr>
+<h2 id="sec10_3">§10.3 矩形区域上二重积分的计算<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.16-23</b></p>
+<h3>10.3.1 累次积分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.16-23</b></p>
+<p>$f:I=[a,b]\times[c,d]\to\mathbb{R}$。记号 $f(x,\cdot)$ 表示固定第一个变量。只要 f 有界，单变量函数</p>
+<div class="formula">$$\varphi(x)=\underline{\int}_c^d f(x,y)\,\mathrm{d}y,\qquad \psi(x)=\overline{\int}_c^d f(x,y)\,\mathrm{d}y$$</div>
+<p>就都在 $[a,b]$ 上有定义。当各截线可积时得累次积分</p>
+<div class="formula">$$\int_a^b\mathrm{d}x\int_c^d f(x,y)\,\mathrm{d}y,\qquad \int_c^d\mathrm{d}y\int_a^b f(x,y)\,\mathrm{d}x.$$</div>
+<p>要问：$\int_I f\,\mathrm{d}\sigma$ 是否等于这两个累次积分？</p>
+<h3>10.3.2 定理10.3.1</h3>
+<p class="pgref"><b>课本：17</b></p>
+<p>如果 f 在 $I=[a,b]\times[c,d]$ 上可积，那么单变量函数 φ 与 ψ 在 $[a,b]$ 上可积，并且</p>
+<div class="formula">$$\int_I f\,\mathrm{d}\sigma=\int_a^b\varphi(x)\,\mathrm{d}x=\int_a^b\psi(x)\,\mathrm{d}x.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>取分割 $\pi=\pi_x\times\pi_y$，其中 $\|\pi_x\|&lt;\delta/\sqrt2,\|\pi_y\|&lt;\delta/\sqrt2$，使 $\|\pi\|&lt;\delta$，从而 Riemann 和被 $A\pm\varepsilon$ 控制；</li><li>把内层和换成 inf/sup 得双和夹逼（式(2)）；</li><li>内层 $\sum_j\inf f(\xi_i,J_j)\Delta y_j$ 是 $f(\xi_i,\cdot)$ 在 $[c,d]$ 上的下和，$\le\varphi(\xi_i)$；sup 版 $\ge\psi(\xi_i)$；</li><li>得 $A-\varepsilon\le\sum\varphi\xi\Delta x_i\le\sum\psi\xi\Delta x_i\le A+\varepsilon$，令宽度趋 0 即得结论。</li></ol>
+<h3>10.3.3 定理10.3.2</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>设 f 在 $I=[a,b]\times[c,d]$ 上可积。如果对每一个 $x\in[a,b]$，函数 $f(x,\cdot)$ 在 $[c,d]$ 上可积，则</p>
+<div class="formula">$$\int_I f\,\mathrm{d}\sigma=\int_a^b\mathrm{d}x\int_c^d f(x,y)\,\mathrm{d}y;\tag{3}$$</div>
+<p>同样，如果对每一个 $y\in[c,d]$，$f(\cdot,y)$ 在 $[a,b]$ 上可积，则</p>
+<div class="formula">$$\int_I f\,\mathrm{d}\sigma=\int_c^d\mathrm{d}y\int_a^b f(x,y)\,\mathrm{d}x.\tag{4}$$</div>
+<h4>课本证明路线</h4>
+<p>只证 (3)：此时 $\varphi(x)=\psi(x)=\int_c^d f(x,y)\,\mathrm{d}y$，代入定理10.3.1。</p>
+<h4>课本顺便指出</h4>
+<p>这个定理实际上提出了<b>累次积分可以交换顺序的一个充分条件</b>。作为特例，当 f 连续时有：</p>
+<p><b>定理10.3.3</b> 设 f 是 $[a,b]\times[c,d]$ 上的连续函数，则</p>
+<div class="formula">$$\int_c^d\mathrm{d}y\int_a^b f(x,y)\,\mathrm{d}x=\int_a^b\mathrm{d}x\int_c^d f(x,y)\,\mathrm{d}y.$$</div>
+<h4>课本说明（否定性答案）</h4>
+<p>f 可积 ⇏ 截线积分存在；截线积分存在且两者相等 ⇏ f 可积。<b>答案都是否定的</b>，问题10.3 中的两个题目给出了这样的例子。</p>
+<p>例1～例3（普通例题）：三个直接化为累次积分的计算演示（结果依次为 $1$、$\frac{e-1}{4}$、$\frac16$），详见 0.6 索引。</p>
+<h3>10.3.4 定理10.3.4（Minkowski 不等式）</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>设 f 在 $[a,b]\times[c,d]$ 上非负、连续，$p\ge1$，那么</p>
+<div class="formula">$$\Big(\int_a^b\Big(\int_c^d f(x,y)\,\mathrm{d}y\Big)^p\mathrm{d}x\Big)^{1/p}\le\int_c^d\Big(\int_a^b f^p(x,y)\,\mathrm{d}x\Big)^{1/p}\mathrm{d}y.\tag{5}$$</div>
+<p>当 $p>1$ 时，等式成立的充分必要条件是 $f(x,y)=u(x)v(y)$。</p>
+<h4>课本证明路线</h4>
+<ol><li>$p=1$ 时等式成立；设 $p>1$，记 $g(x)=\int_c^d f(x,y)\,\mathrm{d}y$（连续）；</li><li>展开 $\int g^p=\int g^{p-1}(x)\left(\int_c^d f\,\mathrm{d}y\right)\mathrm{d}x$ 并交换积分次序（定理10.3.3）；</li><li>用 Hölder 不等式（$1/p+1/q=1$，$(p-1)q=p$）得式(6)；</li><li>两边除以 $\left(\int_a^b g^p\right)^{1/q}$ 即得 (5)；</li><li>等号条件：Hölder 中等号成立 ⟺ $\frac{\varphi^p}{\psi^q}=c$（相对 x 的常数），故 (6) 中等号 ⟺ $\frac{f^p(x,y)}{g^{(p-1)q}(x)}=h(y)$，由此得 $f=u(x)v(y)$。</li></ol>
+<h4>课本说明</h4>
+<p>练习题 7.3 中的单变量 Minkowski 不等式（式(7)）只是式(5)的特例：在 (5) 中取 $[c,d]=[0,2]$、被积函数按 $0\le y\le1$ 取 $h(x)$、$1&lt;y\le2$ 取 $g(x)$ 即得。<b>这是用重积分知识解决单积分问题的一个例子。</b></p>
+<hr>
+<h2 id="sec10_4">§10.4 有界集合上的二重积分<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.23-30</b></p>
+<h3>10.4.1 定义10.4.1（零延拓）</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p>设 $B\subset\mathbb{R}^2$，$f:B\to\mathbb{R}$，令</p>
+<div class="formula">$$f_B(\boldsymbol{p})=\begin{cases}f(\boldsymbol{p}),&\boldsymbol{p}\in B,\\0,&\boldsymbol{p}\in B^c,\end{cases}$$</div>
+<p>$f_B$ 在全平面上有定义，限制在 B 上与 f 相等。</p>
+<h3>10.4.2 定义10.4.2（有界集上的可积性与积分）</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p>任取有界的闭矩形 $I\supset B$。如果 $f_B$ 在 I 上可积，则称 <b>f 在 B 上可积</b>，数值 $\int_I f_B\,\mathrm{d}\sigma$ 称为 f 在 B 上的（二重）积分，记作 $\iint_B f(x,y)\,\mathrm{d}x\mathrm{d}y$ 或 $\int_B f\,\mathrm{d}\sigma$。</p>
+<p>课本证明：此定义不依赖矩形 I 的选择（更大的公共矩形上积分相等）；为方便，今后选 I 时不妨让 $I^\circ\supseteq\bar B$。利用 Lebesgue 定理：<b>f 在有界集 B 上可积 ⟺ $D(f_B)$ 为零测集</b>。</p>
+<h3>10.4.3 定理10.4.1（常用的充分条件）</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>设有界集 $B\subset\mathbb{R}^2$，$f:B\to\mathbb{R}$ 有界。如果 B 的边界 ∂B 和 f 在 B 上的间断点集都是零测集，那么 f 在 B 上可积。</p>
+<h4>课本证明路线</h4>
+<p>$f_B$ 在开集 $\bar B^c$ 上处处为零、在 $B^\circ$ 上等于 f，故 $D(f_B)\subset D(f)\cup\partial B$，右边是两个零测集之并。</p>
+<h4>课本请注意（重要）</h4>
+<p>这只是充分条件而非必要条件。反例：B 为 $[0,1]^2$ 中有理点全体、f 在 B 上取零值，这时 $f_B\equiv0$ 当然可积，但 $\partial B$ 是整个闭正方形，不是零测集。</p>
+<h3>10.4.4 定理10.4.2 与定理10.4.3</h3>
+<p class="pgref"><b>课本：24</b></p>
+<ul><li><b>定理10.4.2（线性性）</b>：f, g 在 B 上可积，则 cf 与 $f\pm g$ 在 B 上可积，且积分线性（证明归结为 $I$ 上 $f_B,g_B$ 的线性性）。</li><li><b>定理10.4.3（积分的集合可加性）</b>：设 $B_1,B_2$ 有界且 $B_1\cap B_2$ 是零面积集。若 f 在 $B_1,B_2$ 上都可积，则 f 在 $B_1\cup B_2$ 上可积，且</li></ul>
+<div class="formula">$$\int_{B_1\cup B_2}f\,\mathrm{d}\sigma=\int_{B_1}f\,\mathrm{d}\sigma+\int_{B_2}f\,\mathrm{d}\sigma.$$</div>
+<h4>课本证明路线</h4>
+<p>除一个零面积集外 $f_{B_1\cup B_2}=f_{B_1}+f_{B_2}$，由定理10.2.4 两边积分相等。</p>
+<h3>10.4.5 定义10.4.3（面积）与特征函数</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p>若常值函数 1 在有界点集 B 上可积，则称积分 $\int_B 1\,\mathrm{d}\sigma$ 为点集 B 的<b>面积</b>，记为 $\sigma(B)$；这时称 B 是<b>有面积的</b>。对任意点集 B，称</p>
+<div class="formula">$$\chi_B(\boldsymbol{p})=\begin{cases}1,&\boldsymbol{p}\in B,\\0,&\boldsymbol{p}\notin B\end{cases}$$</div>
+<p>为 B 的<b>特征函数</b>（叙述式，无编号）。于是</p>
+<div class="formula">$$\sigma(B)=\int_B 1\,\mathrm{d}\sigma=\int_I\chi_B\,\mathrm{d}\sigma.$$</div>
+<h3>10.4.6 定理10.4.4</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p>设 B 是有界集，则 B 为零面积集的充分必要条件是</p>
+<div class="formula">$$\sigma(B)=\int_B 1\,\mathrm{d}\sigma=0.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>先证特征函数的性质 $D(\chi_B)=\partial B$（式(1)）：在开集 $B^\circ$ 与 $(B^c)^\circ$ 上 $\chi_B$ 分别恒为 1、0 故连续；边界点上任何邻域既有 B 的点又有 $B^c$ 的点故不连续。这里用到分解 $\mathbb{R}^2=B^\circ\cup\partial B\cup(B^c)^\circ$（式(2)）；</li><li>必要性：B 零面积时 $\chi_B$ 的非零值点集正是 B，由定理10.2.3 知可积且积分为 0；</li><li>充分性：$\sigma(B)=0$ ⟹ B 无内点；$\chi_B$ 可积 ⟹ $D(\chi_B)=\partial B$ 零测，∂B 又是有界闭集故零面积；$B^\circ=\varnothing$ 时 $B\subset\partial B$，故 B 零面积。</li></ol>
+<h3>10.4.7 定理10.4.5</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>设有界集 $B\subset\mathbb{R}^2$，则 <b>B 有面积 ⟺ B 的边界 ∂B 是一零面积集</b>。（课本指出从定理10.4.4 的证明可以看出其正确性；完整证明列为练习题10.4 第1题。）</p>
+<p>据此并结合 §10.2 例1、例2：<b>由有限个连续曲线段围成、或由有限段光滑参数曲线围成的集合都是有面积的</b>——这是数学分析中常见的集合。反例：$[0,1]^2$ 中有理点全体没有面积。课本强调：<b>作积分必须在有面积的集合上进行</b>。</p>
+<p>课本随后给出积分的 Riemann 和刻画（式(3)）：和式中只需对完全包含于 B 内的子矩形求和，</p>
+<div class="formula">$$\int_B f\,\mathrm{d}\sigma=\int_I f_B\,\mathrm{d}\sigma=\lim_{\|\pi\|\to0}\sum_{i=1}^m f(\xi_i)\sigma(I_i)\qquad(I_i\subset B,\ i=1,\dots,m).$$</div>
+<h3>10.4.8 一般分割下的 Riemann 和与定理10.4.6</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>设 B 有面积、f 在 B 上可积。考察把 B 分成任意有限多个两两不相交的有面积小块 $D_i$ 的分割 T，宽度 $\|T\|=\max_i\mathrm{diam}(D_i)$；$T\le T'$ 指 T 的每块在 T' 中又被细分。作 Riemann 和 $S(f,T)=\sum f(\xi_i)\sigma(D_i)$。</p>
+<p><b>定理10.4.6</b>：对 B 的任意分割 T 作 Riemann 和，则对任意的 $\xi_i\in D_i$，</p>
+<div class="formula">$$\lim_{\|T\|\to0}\sum_{i=1}^m f(\xi_i)\sigma(D_i)=\int_B f\,\mathrm{d}\sigma.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>由可积性取完全含于 B 内的矩形网分割 $\pi_\varepsilon=\{J_i\}$ 使 $\sum(\sup f(J_i)-\inf f(J_i))\sigma(J_i)&lt;\frac\varepsilon2$（式(4)）；</li><li>每个 $J_i$ 向内收缩 δ 得开矩形 $\widetilde J_i$，令 K 为（含于 B 的诸 $J_i$ 之并）去掉这些开矩形后的闭集，取 δ 使 $\sigma(K)&lt;\frac{\varepsilon}{2\omega}$；</li><li>对 $\|T\|&lt;\delta$ 的分割：$A=\int_B f\,\mathrm{d}\sigma=\sum\int_{D_i}f\,\mathrm{d}\sigma=\sum\mu_i\sigma(D_i)$，其中 $\mu_i=\frac{1}{\sigma(D_i)}\int_{D_i}f\,\mathrm{d}\sigma$ 是平均值；</li><li>于是 $\Big|A-\sum f(\xi_i)\sigma(D_i)\Big|\le\sum\omega_i\sigma(D_i)=\Sigma_1+\Sigma_2$；</li><li>$\Sigma_1$（$D_i\subset K$ 者）$\le\omega\sigma(K)&lt;\frac\varepsilon2$；$\Sigma_2$ 中每块 $D_i$ 必含于某个 $J_j$，故 $\Sigma_2\le\sum_j(\sup-\inf)\sigma(J_j)&lt;\frac\varepsilon2$。</li></ol>
+<h3>10.4.9 定理10.4.7（积分平均值定理）与推论10.4.1</h3>
+<p class="pgref"><b>课本：29</b></p>
+<p>设 K 是 $\mathbb{R}^2$ 中由有限条光滑曲线围成的有界闭区域，$f,g:K\to\mathbb{R}$ 连续且 g 在 K 上不变号，则存在 $\xi\in K$ 使</p>
+<div class="formula">$$\int_K fg\,\mathrm{d}\sigma=f(\xi)\int_K g\,\mathrm{d}\sigma.$$</div>
+<p><b>推论10.4.1</b>：取 $g\equiv1$——K 为有界闭区域、f 连续时，存在 $\xi\in K$ 使</p>
+<div class="formula">$$\int_K f\,\mathrm{d}\sigma=f(\xi)\sigma(K).$$</div>
+<h4>课本证明路线</h4>
+<p>K 紧致 ⟹ f 取得最小值 $f(a)$、最大值 $f(b)$；不妨 $g\ge0$，积分夹逼得 $f(a)\le\left(\int_K g\right)^{-1}\int_K fg\le f(b)$；$\int_K g=0$ 时平凡，否则由 K 连通与介值定理定出 ξ。</p>
+<hr>
+<h2 id="sec10_5">§10.5 有界集合上积分的计算<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.30-35</b></p>
+<h3>10.5.1 定理10.5.1</h3>
+<p class="pgref"><b>课本：30</b></p>
+<p>设点集</p>
+<div class="formula">$$B=\{(x,y):y_1(x)\le y\le y_2(x),\ a\le x\le b\},$$</div>
+<p>其中 $y_1,y_2$ 在 $[a,b]$ 上连续，f 在 B 上可积。如果对任意 $x\in[a,b]$ 单变量积分 $\int_{y_1(x)}^{y_2(x)}f(x,y)\,\mathrm{d}y$ 存在，那么</p>
+<div class="formula">$$\int_B f\,\mathrm{d}\sigma=\int_a^b\mathrm{d}x\int_{y_1(x)}^{y_2(x)}f(x,y)\,\mathrm{d}y.\tag{1}$$</div>
+<p>类似地，对 $B=\{(x,y):x_1(y)\le x\le x_2(y),\ c\le y\le d\}$ 型集合（$x_1,x_2$ 连续、截线可积），有</p>
+<div class="formula">$$\int_B f\,\mathrm{d}\sigma=\int_c^d\mathrm{d}y\int_{x_1(y)}^{x_2(y)}f(x,y)\,\mathrm{d}x.\tag{2}$$</div>
+<h4>课本证明路线</h4>
+<p>取 $c=\inf y_1([a,b])$、$d=\sup y_2([a,b])$，则 $I=[a,b]\times[c,d]\supset B$；对每个 x，$f_B(x,\cdot)$ 在 $(c,y_1(x))$ 与 $(y_2(x),d)$ 上为零故截线可积；用定理10.3.2 后把内层积分拆成三段，首尾两段被积函数为零，剩下即 (1)。</p>
+<p>例1、例2（普通例题）：三角形上 $\iint x^2y^2=\frac{1}{18}(ab)^3$；平行四边形上 $\iint(x^2+y^2)=14a^4$（课本点评：此题用公式(1)不合算——上下边界需分段表示，采用公式(2)有利）。详见 0.6 索引。</p>
+<h3>10.5.2 例3（★对称性与奇偶性的免算论证）</h3>
+<p class="pgref"><b>课本：32</b></p>
+<p><b>命题</b>：计算 $A=\iint_B xy^2\,\mathrm{d}x\mathrm{d}y$，$B=\{(x,y):|x|+|y|\le1\}$。</p>
+<p><b>课本要点</b>：</p>
+<ol><li>无论用公式(1)还是(2)，都须把 B 分块处理；两种分块方式（横轴上下两三角形 $B_1,B_2$ 或纵轴左右两三角形 $C_1,C_2$）因被积函数性质繁简不同，课本采取第一种；</li><li>直接算出 $\iint_{B_1}xy^2=\iint_{B_2}xy^2=0$（内层 $\int x\,\mathrm{d}x$ 关于对称区间为 0），故 $A=0$；</li><li>更深刻的认识：积分域 B 关于纵轴对称、被积函数 $xy^2$ 对固定的 y 是 x 的奇函数——作分割时左右取对称小块、值点取对称点，两部分贡献相消，积分和为零，从而 $A=0$，<b>完全不需要任何计算</b>；</li><li>课本说明：这虽是特殊分割与特殊取点，但在确认了 f 可积之后，这种做法是合理的。</li></ol>
+<h3>10.5.3 例4（★交换累次积分次序）</h3>
+<p class="pgref"><b>课本：33</b></p>
+<p><b>命题</b>：计算 $A=\int_0^1\mathrm{d}y\int_y^{\sqrt y}\frac{\sin x}{x}\,\mathrm{d}x$。</p>
+<p><b>课本要点</b>：$(\sin x)/x$ 的原函数不能用初等函数表达（见5.4节），按指定顺序无法计算，<b>必须先交换累次积分顺序</b>——先把累次积分"还原"为由 $x=y,x=\sqrt y,y=0,y=1$ 围成的积分域 B，然后改写为</p>
+<div class="formula">$$A=\int_0^1\mathrm{d}x\int_{x^2}^{x}\frac{\sin x}{x}\,\mathrm{d}y=\int_0^1(1-x)\sin x\,\mathrm{d}x=1-\sin1.$$</div>
+<h3>10.5.4 例5（★两圆柱体交成的体积）</h3>
+<p class="pgref"><b>课本：34</b></p>
+<p><b>命题</b>：计算由圆柱体 $x^2+y^2\le a^2$ 与 $x^2+z^2\le a^2$ 交成的立体体积。</p>
+<p><b>课本要点</b>：由对称性取第一卦限部分的 8 倍，</p>
+<div class="formula">$$A=8\int_0^a\sqrt{a^2-x^2}\,\mathrm{d}x\int_0^{\sqrt{a^2-x^2}}\mathrm{d}y=8\int_0^a(a^2-x^2)\,\mathrm{d}x=\frac{16}{3}a^3.$$</div>
+<p>课本注明：这与 7.1 节例6 的计算结果一致。</p>
+<hr>
+<h2 id="sec10_6">§10.6 二重积分换元<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<h3>10.6.1 动机与一维换元的回顾（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<p>课本指出：二重积分换元有<b>两个目的</b>——第一简化被积函数，第二简化积分域；相比之下第二个目的往往远比第一个重要（哪怕把被积函数弄得更复杂一些也是值得的）。</p>
+<p>回顾改写后的定积分换元公式：F 在 $I=[a,b]$ 上连续，φ 在 $J=[\alpha,\beta]$ 上连续可导且 $\varphi'(t)\neq0$、$I=\varphi(J)$，规定 $\int_I:=\int_a^b$、$\int_J:=\int_\alpha^\beta$，则</p>
+<div class="formula">$$\int_I F(x)\,\mathrm{d}x=\int_J F\circ\varphi(t)\,|\varphi'(t)|\,\mathrm{d}t.\tag{1}$$</div>
+<p>课本讨论了它与定理 6.4.2 写法的一致性（$\varphi'>0$ 或 $\varphi'&lt;0$ 两种情形），并作几何解释：$\Delta x_i/\Delta t_i=\varphi'(\tau_i)$，即 $\varphi'$ 是映射对线段的"伸缩比"。</p>
+<h3>10.6.2 正则映射（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<p>设有界闭域 $D\subset\mathbb{R}^2$、连续函数 $F:D\to\mathbb{R}$，映射</p>
+<div class="formula">$$\varphi:\ x=x(u,v),\ y=y(u,v)\qquad((u,v)\in\Delta)\tag{4}$$</div>
+<p>称 $\varphi$ 为<b>正则的</b>，指：$\varphi$ 是从 Δ 到 D 上的一对一映射，$\varphi$ 在 Δ 上连续可导，且</p>
+<div class="formula">$$\det J\varphi=\frac{\partial(x,y)}{\partial(u,v)}=
+\begin{vmatrix}\dfrac{\partial x}{\partial u}&\dfrac{\partial x}{\partial v}\\[2mm]\dfrac{\partial y}{\partial u}&\dfrac{\partial y}{\partial v}\end{vmatrix}\neq0\tag{5}$$</div>
+<p>在 Δ 上成立。Jacobi 行列式的绝对值相当于映射 (4) 对面积的伸缩比。</p>
+<h3>10.6.3 定理10.6.1（二重积分换元公式）</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p>设 $\mathbb{R}^2$ 中的有界闭区域 D 有面积，$F:D\to\mathbb{R}$ 连续，映射 φ 是从 Δ 到 D 上的正则映射，那么</p>
+<div class="formula">$$\iint_D F(x,y)\,\mathrm{d}x\mathrm{d}y=\iint_\Delta F\circ\varphi(u,v)\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\mathrm{d}u\mathrm{d}v,\tag{6}$$</div>
+<p>也可写成 $\int_{\varphi(\Delta)}F\,\mathrm{d}x\mathrm{d}y=\iint_\Delta F(x(u,v),y(u,v))\big|\partial(x,y)/\partial(u,v)\big|\,\mathrm{d}u\mathrm{d}v$（式(7)）。</p>
+<h3>10.6.4 引理10.6.1（面积伸缩比）</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p>设正则映射 φ 把以 $(u_0,v_0),(u_0+h,v_0),(u_0+h,v_0+k),(u_0,v_0+k)$ 为顶点的矩形 $A_{hk}$ 一对一地映为 $\varphi(A_{hk})$，则</p>
+<div class="formula">$$\lim_{h,k\to0}\frac{\sigma(\varphi(A_{hk}))}{\sigma(A_{hk})}=\left|\frac{\partial(x,y)}{\partial(u,v)}\right|_{(u_0,v_0)}.\tag{8}$$</div>
+<h4>课本证明路线</h4>
+<ol><li>由图示 $\sigma(\varphi(A_{hk}))\approx\|(\varphi(u_0+h,v_0)-\varphi(u_0,v_0))\times(\varphi(u_0,v_0+k)-\varphi(u_0,v_0))\|$；</li><li>用可微性写出 $\varphi(u_0+h,v_0)-\varphi(u_0,v_0)=\frac{\partial\varphi}{\partial u}h+\xi$、$\|\xi\|=o(h)$（v 方向同理）；</li><li>得 $\frac{\sigma(\varphi(A_{hk}))}{\sigma(A_{hk})}\approx\left\|\frac{\partial\varphi}{\partial u}\times\frac{\partial\varphi}{\partial v}\right\|+o(1)$（式(9)）；</li><li>计算 $\frac{\partial\varphi}{\partial u}\times\frac{\partial\varphi}{\partial v}=\frac{\partial(x,y)}{\partial(u,v)}\,\boldsymbol{k}$（式(10)），模长恰为 Jacobi 行列式的绝对值。</li></ol>
+<h4>定理10.6.1 的课本证明骨架</h4>
+<p>用矩形网分割 uv 平面上的 Δ 得 mn 个小矩形，φ 将其映成 xy 平面上的"曲边平行四边形"；只取完全含于 D 内者 $D_i=\varphi(\Delta_i)$，作积分和（式(11)）；由引理10.6.1 有 $\sigma(D_i)\sim|\det J\varphi(\xi_i)|\sigma(\Delta_i)$，两边积分和渐近相等（式(12)）；分割无限加细时差别消失，由定理10.4.6 过渡得换元公式。</p>
+<p>例1、例2（普通例题）：四抛物线围成区域（换元 $y^2=ux,x^2=vy$ 化为矩形）与 $\exp\frac{x-y}{x+y}$（换元 $x-y=u,x+y=v$）的计算演示，详见 0.6 索引。</p>
+<h3>10.6.5 极坐标换元（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<p>令</p>
+<div class="formula">$$x=r\cos\theta,\qquad y=r\sin\theta,\tag{13}$$</div>
+<p>则</p>
+<div class="formula">$$\frac{\partial(x,y)}{\partial(r,\theta)}=\begin{vmatrix}\cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta\end{vmatrix}=r.\tag{14}$$</div>
+<p>若映射 (13) 将 Δ 一对一地变为 D，则</p>
+<div class="formula">$$\iint_D F(x,y)\,\mathrm{d}x\mathrm{d}y=\iint_\Delta F(r\cos\theta,r\sin\theta)\,r\,\mathrm{d}r\mathrm{d}\theta.\tag{15}$$</div>
+<h4>课本说明</h4>
+<p>细心的读者不难发现，公式(15)应当只有在区域 Δ 不包含极点时才严格成立（极点上 Jacobi 行列式为零，不符合换元条件）；事实上即使在这样的点上不满足条件，<b>换元公式仍然成立</b>，严格的证明就不在这里给出了。</p>
+<p>例3、例4（普通例题）：球体被柱面所截的体积 $\frac43(\frac{\pi}{2}-\frac23)a^3$（极坐标）；椭圆面积 $\pi ab$（广义极坐标 $x=ar\cos\theta,y=br\sin\theta$，Jacobi 行列式 $abr$）。详见 0.6 索引。</p>
+<h3>10.6.6 例5（★概率积分）</h3>
+<p class="pgref"><b>课本：42</b></p>
+<p><b>命题</b>：计算 $\displaystyle\int_0^{+\infty}e^{-x^2}\,\mathrm{d}x$。</p>
+<p><b>课本证明要点</b>：$e^{-x^2}$ 的原函数不是初等函数，局限于一元函数无法求值。考虑方形 $[-R,R]^2$ 上的二重积分</p>
+<div class="formula">$$I(R)=\iint_{[-R,R]^2}e^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y=4\Big(\int_0^R e^{-x^2}\,\mathrm{d}x\Big)^2;$$</div>
+<p>圆盘 $x^2+y^2\le R^2$ 含于方形之内、圆盘 $x^2+y^2\le2R^2$ 包含方形，用极坐标换元算出两端</p>
+<div class="formula">$$\pi(1-e^{-R^2})\le4\Big(\int_0^Re^{-x^2}\mathrm{d}x\Big)^2\le\pi(1-e^{-2R^2}),$$</div>
+<p>令 $R\to+\infty$ 得 $4\left(\int_0^{+\infty}e^{-x^2}\mathrm{d}x\right)^2=\pi$，即"概率积分"</p>
+<div class="formula">$$\int_0^{+\infty}e^{-x^2}\,\mathrm{d}x=\frac{\sqrt\pi}{2}.$$</div>
+<hr>
+<h2 id="sec10_7">§10.7 三重积分<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.45-53</b></p>
+<h3>10.7.1 三重积分的概念（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.45-53</b></p>
+<p>课本从物理问题引入：设 V 上分布质量、密度 $\rho:V\to\mathbb{R}$，小块质量近似为 $\rho(p_i)\mu(U_i)$，分割无限加密导致极限过程；若极限存在且不依赖值点选取，称为 ρ 在 V 上的<b>三重积分</b>，记作</p>
+<div class="formula">$$\iiint_V\rho(x,y,z)\,\mathrm{d}x\mathrm{d}y\mathrm{d}z\quad\text{或}\quad\int_V\rho\,\mathrm{d}\mu.$$</div>
+<p>课本说明：三重积分的概念与二重积分实质上没有任何差别，相应名词无须重新定义。长方体 $I=I_1\times I_2\times I_3$（$I_i=[a_i,b_i]$）的体积 $\mu(I)=(b_1-a_1)(b_2-a_2)(b_3-a_3)$；分割、宽度、积分和、上下和、可积性均仿照二重积分建立；Lebesgue 定理照搬（间断点集零测 ⟺ 可积）。由长方体过渡到一般有界点集完全按 10.4 节的办法做，无须改变。</p>
+<p>体积的定义与判据：$\mu(B)=\int_B1\,\mathrm{d}\mu$；<b>B 为零体积集 ⟺ $\mu(B)=0$；B 有体积 ⟺ $\mu(\partial B)=0$</b>。自然地，三重积分只能在有体积的点集上进行。课本还指出：化为累次积分时，二重的顺序只有两种，三重的场合可以有六种（n 重为 n! 种）。</p>
+<h3>10.7.2 定理10.7.1（投影法与截面法）</h3>
+<p class="pgref"><b>课本：47</b></p>
+<p>设有界集 $V\subset\mathbb{R}^3$ 有体积，有界的函数 $f:V\to\mathbb{R}$ 连续。</p>
+<ol><li>若 V 在 xy 平面上的垂直投影为 D，且过 $D$ 中每点垂直于 D 的直线与 V 交成一个区间 $[\varphi_1(x,y),\varphi_2(x,y)]$，则</li></ol>
+<div class="formula">$$\int_V f\,\mathrm{d}\mu=\iint_D\mathrm{d}x\mathrm{d}y\int_{\varphi_1(x,y)}^{\varphi_2(x,y)}f(x,y,z)\,\mathrm{d}z;\tag{3}$$</div>
+<ol><li>若 V 在 z 轴上的垂直投影为区间 J，且 $z\in J$ 时过 $(0,0,z)$ 垂直于 z 轴的平面同 V 交成的图形在 xy 平面上的垂直投影是有面积的点集 $D_z$，则</li></ol>
+<div class="formula">$$\int_V f\,\mathrm{d}\mu=\int_J\mathrm{d}z\iint_{D_z}f(x,y,z)\,\mathrm{d}x\mathrm{d}y.\tag{4}$$</div>
+<h4>课本证明路线</h4>
+<p>作 $I=I_1\times I_2\times I_3\supset V$ 与零延拓 $f_V$：(1) 当 $(x,y)\in D$ 时 $\int_{I_3}f_V\,\mathrm{d}z=\int_{\varphi_1}^{\varphi_2}f\,\mathrm{d}z$，否则为 0，用长方体上的累次积分定理；(2) 当 $z\in J$ 时 $f(\cdot,\cdot,z)$ 在 $D_z$ 上有界连续（$\sigma(\partial D_z)=0$），由定理10.4.1 可积，$\iint_{I_1\times I_2}f_V=\iint_{D_z}f$，$z\notin J$ 时为 0。</p>
+<h3>10.7.3 例1（★四面体上的积分与三种算法）</h3>
+<p class="pgref"><b>课本：48</b></p>
+<p><b>命题</b>：计算 $A=\iiint_V\dfrac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{(1+x+y+z)^3}$，其中 $V=\{(x,y,z):x,y,z\ge0,\ x+y+z\le1\}$。</p>
+<p><b>课本要点</b>：</p>
+<ol><li>公式(3)：V 在 xy 平面的投影为三角形 $D=\{x,y\ge0,\ x+y\le1\}$，$\varphi_1=0,\varphi_2=1-x-y$，逐层积分得</li></ol>
+<div class="formula">$$A=\frac12\iint_D\frac{\mathrm{d}x\mathrm{d}y}{(1+x+y)^2}-\frac18\sigma(D)=\frac12\Big(\ln2-\frac58\Big);$$</div>
+<ol><li>公式(4)：$J=[0,1]$，截面 $D_z=\{x,y\ge0,\ x+y\le1-z\}$（课本注：若再把二重积分化成累次积分，就与第一种算法没有两样）；</li><li><b>富于启发性的算法</b>：被积函数在平面 $x+y+z=t$ 上取常数值（等值面），用等值面族分割 V——一张等值面交 V 于边长 $\sqrt2t$、面积为 $\frac{\sqrt3}{2}t^2$ 的等边三角形，中心到原点距离 $\frac{t}{\sqrt3}$，体积元为 $\frac12t^2\mathrm{d}t$，于是三重积分直接化为单积分</li></ol>
+<div class="formula">$$A=\frac12\int_0^1\frac{t^2}{(1+t)^3}\,\mathrm{d}t=\frac12\Big(\ln2-\frac58\Big)$$</div>
+<p>（部分分式拆项后逐项积分）。</p>
+<h3>10.7.4 定理10.7.2（三重积分换元公式与球坐标特例）</h3>
+<p class="pgref"><b>课本：50</b></p>
+<p>设有界闭区域 $D\subset\mathbb{R}^3$ 有体积，$F:D\to\mathbb{R}$ 连续，映射 $\varphi:(u,v,w)\mapsto(x,y,z)$ 是从 Δ 到 D 上的正则映射（一对一、$C^1$、$\det J\varphi=\frac{\partial(x,y,z)}{\partial(u,v,w)}\neq0$），则有</p>
+<div class="formula">$$\int_{\varphi(\Delta)}F\,\mathrm{d}\mu=\int_\Delta F\circ\varphi\ |\det J\varphi|\ \mathrm{d}\mu.\tag{5}$$</div>
+<p>课本注明：读者可自行证明这一定理，关键的一步是要首先证明 det Jφ 是映射 φ 对<b>体积</b>的伸缩比。</p>
+<p><b>重要特例（球坐标换元公式）</b>：设</p>
+<div class="formula">$$x=r\sin\theta\cos\varphi,\qquad y=r\sin\theta\sin\varphi,\qquad z=r\cos\theta,$$</div>
+<p>则 $\dfrac{\partial(x,y,z)}{\partial(r,\theta,\varphi)}=r^2\sin\theta$，且有</p>
+<div class="formula">$$\int_{\varphi(\Delta)}F\,\mathrm{d}\mu=\iiint_\Delta F\circ\varphi\ r^2\sin\theta\,\mathrm{d}r\mathrm{d}\theta\mathrm{d}\varphi.\tag{6}$$</div>
+<p>例2、例3（普通例题）：球坐标计算的两次演示（结果分别为 $\frac{\pi}{5}(2-\sqrt2)a^5$ 与 $\frac54\pi a^4$；后者另附利用对称性拆分大、小球体的巧妙解法），详见 0.6 索引。</p>
+<hr>
+<h2 id="sec10_8">§10.8 n 重积分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.54-61</b></p>
+<h3>10.8.1 n 重积分的概念（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.54-61</b></p>
+<p>$\mathbb{R}^n$ 中的闭长方体 $I=I_1\times\cdots\times I_n$（$I_i=[a_i,b_i]$）的 n 维体积 $\mu(I)=\prod_{i=1}^n(b_i-a_i)$。用 n 组超平面分割得子长方体，宽度 $\|\pi\|$ 为"对角线"长度的最大者；积分和取极限，极限的存在性和数值不依赖值点选取时称 f 在 I 上可积，积分记作 $\underbrace{\int_I\cdots\int}_{n}f\,\mathrm{d}x_1\cdots\mathrm{d}x_n$ 或 $\int_I f\,\mathrm{d}\mu$。</p>
+<p>课本照搬的结论：可积必有界；上下和及其性质；可积性充要条件仿 10.2 节；连续必可积；n 重积分化为累次积分共有 <b>n! 种</b>不同顺序；由长方体过渡到有界集合参看 10.4 节；Lebesgue 型定理与"有体积 ⟺ 边界为零体积集"同样成立。</p>
+<h3>10.8.2 定理10.8.1（化为低重积分）</h3>
+<p class="pgref"><b>课本：55</b></p>
+<p>设 $V\subset\mathbb{R}^n$ 是有体积的有界闭集，有界函数 $f:V\to\mathbb{R}$ 连续。</p>
+<ol><li>若 $V=\{x:(x_1,\dots,x_{n-1})\in D\subset\mathbb{R}^{n-1},\ \varphi_1(x_1,\dots,x_{n-1})\le x_n\le\varphi_2(x_1,\dots,x_{n-1})\}$（$\varphi_1,\varphi_2$ 连续），则 n 重积分化为一个 $n-1$ 重积分与一个定积分；</li><li>若 $V=\{x:x_n\in[a,b],\ (x_1,\dots,x_{n-1})\in D_{x_n}\subset\mathbb{R}^{n-1}\}$，则化为定积分与截面上的 $n-1$ 重积分；</li><li>当然也可把 n 重积分化成一个 k 重积分和一个 $n-k$ 重积分来计算（$V$ 按 $(x_{k+1},\dots,x_n)\in D_1$、$(x_1,\dots,x_k)\in D_2$ 分离）。</li></ol>
+<h3>10.8.3 定理10.8.2（n 重换元公式）</h3>
+<p class="pgref"><b>课本：55</b></p>
+<p>设 Ω 是 $\mathbb{R}^n$ 中的开集，$\Delta\subset\Omega$ 有体积，映射 $\varphi:x_i=x_i(u_1,\dots,u_n)$ 在 Δ 上正则，则对 $\varphi(\Delta)$ 上的连续函数 F，</p>
+<div class="formula">$$\underbrace{\int_{\varphi(\Delta)}\cdots\int}_n F\,\mathrm{d}x_1\cdots\mathrm{d}x_n=\underbrace{\int_\Delta\cdots\int}_n F(x_1(u),\dots,x_n(u))\left|\frac{\partial(x_1,\dots,x_n)}{\partial(u_1,\dots,u_n)}\right|\mathrm{d}u_1\cdots\mathrm{d}u_n.$$</div>
+<h3>10.8.4 例1（★n 维单形的体积）与例2（★n 维球的体积）</h3>
+<p class="pgref"><b>课本：56</b></p>
+<p><b>例1</b>：n 维单形 $S_n(a)=\{x_i\ge0,\ x_1+\cdots+x_n\le a\}$。课本要点：伸缩换元 $x_i=at_i$ 给出 $\mu(S_n(a))=a^n\mu(S_n(1))$；把 $\mu(S_n(1))$ 化为一个定积分加一个 $n-1$ 重积分并用归纳关系 $\mu(S_{n-1}(1-t))=(1-t)^{n-1}\mu(S_{n-1}(1))$，得递推式 $\mu(S_n(1))=\frac1n\mu(S_{n-1}(1))$；由 $\mu(S_1(1))=1$ 得</p>
+<div class="formula">$$\mu(S_n(a))=\frac{a^n}{n!}\qquad(n\in\mathbb{N}^*).$$</div>
+<p><b>例2</b>：n 维球体 $B_n(a)=\{x_1^2+\cdots+x_n^2\le a^2\}$，定义 $\mu(B_n(a))=\int_{B_n(a)}\mathrm{d}\mu$。课本要点：同样的伸缩换元给 $\mu(B_n(a))=a^n\mu(B_n(1))$；把 n 重积分化成一个 $n-2$ 重积分与一个二重积分，截面 $K_{n-2}=B_{n-2}(\sqrt{1-u^2-v^2})$，得</p>
+<div class="formula">$$\mu(B_n(1))=\mu(B_{n-2}(1))\iint_{u^2+v^2\le1}(1-u^2-v^2)^{(n-2)/2}\,\mathrm{d}u\,\mathrm{d}v;$$</div>
+<p>用极坐标计算二重积分得 $\frac{2\pi}{n}$，即递推公式 $\mu(B_n(1))=\frac{2\pi}{n}\mu(B_{n-2}(1))$；由初值 $\mu(B_2(1))=\pi,\ \mu(B_1(1))=2$ 得</p>
+<div class="formula">$$\mu(B_{2k}(a))=\frac{\pi^k}{k!}a^{2k},\qquad \mu(B_{2k-1}(a))=\frac{2^k\pi^{k-1}}{(2k-1)!!}a^{2k-1}\qquad(k=1,2,\cdots).$$</div>
+<p>课本注明：第18章中将用 Γ 函数给出球体积的统一表达式。</p>
+<h3>10.8.5 n 维球坐标变换（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.54-61</b></p>
+<p>课本给出 n 维球坐标变换（变换的具体表达式由下方程组(10)的反解确定）：</p>
+<div class="formula">$$x_1=r\cos\theta_1,\quad x_2=r\sin\theta_1\cos\theta_2,\quad\cdots,\quad x_{n-1}=r\sin\theta_1\cdots\sin\theta_{n-2}\cos\theta_{n-1},\quad x_n=r\sin\theta_1\cdots\sin\theta_{n-2}\sin\theta_{n-1}.\tag{8}$$</div>
+<p>它把闭 n 维长方体 $0\le r\le a,\ 0\le\theta_1,\dots,\theta_{n-2}\le\pi,\ 0\le\theta_{n-1}\le2\pi$ 映射为闭球 $\bar B_n(a)$，且在长方体的内部是一对一的。</p>
+<p>直接计算 n 阶 Jacobi 行列式非常困难，课本改用<b>隐映射定理（定理9.7.1）</b>：若函数组由方程组 $F_i(x,u)=0$ 确定，则</p>
+<div class="formula">$$\frac{\partial(x_1,\dots,x_n)}{\partial(u_1,\dots,u_n)}=(-1)^n\frac{\det J_uF(x,u)}{\det J_xF(x,u)}.\tag{9}$$</div>
+<p>取方程组</p>
+<div class="formula">$$\begin{cases}F_1=r^2-(x_1^2+\cdots+x_n^2)=0,\\ F_2=r^2\sin^2\theta_1-(x_2^2+\cdots+x_n^2)=0,\\ \quad\vdots\\ F_n=r^2\sin^2\theta_1\cdots\sin^2\theta_{n-1}-x_n^2=0,\end{cases}\tag{10}$$</div>
+<p>计算 $\det J_uF$ 与 $\det J_xF$（均为三角型行列式）后代入 (9)，得 Jacobi 行列式</p>
+<div class="formula">$$\frac{\partial(x_1,\dots,x_n)}{\partial(r,\theta_1,\dots,\theta_{n-1})}=r^{n-1}\sin^{n-2}\theta_1\sin^{n-3}\theta_2\cdots\sin\theta_{n-2}.\tag{11}$$</div>
+<p>例3（普通例题）：球上径向函数的 n 重积分化为单积分 $A_n=n\mu(B_n(1))\int_0^ar^{n-1}f(r)\,\mathrm{d}r$（其中角度部分积分 $I_n=n\mu(B_n(1))$），详见 0.6 索引。</p>
+<hr>
+<h2 id="sec10_9">§10.9 重积分物理应用举例<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.62-65</b></p>
+<p>例1、例2、例3（普通例题）：半圆形水渠满水时闸门压力 $\frac23R^3$（t）；密度 $\rho=a\|\boldsymbol{p}\|$ 的球质量 $m=a\pi R^4$（球坐标）；密度 $\rho=k/r^2$、球心 $(0,0,a)$ 的球之质心 $(0,0,a/2)$。详见 0.6 索引。</p>
+<h3>10.9.1 质心的计算公式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.62-65</b></p>
+<p>n 个质点（位置 $p_i$、质量 $m_i$）的质心为</p>
+<div class="formula">$$P=\frac1M\sum_{i=1}^nm_ip_i=\sum_{i=1}^n\Big(\frac{m_i}{M}\Big)p_i,\qquad M=\sum_{i=1}^nm_i.\tag{1}$$</div>
+<p>其中 $M$ 为总质量；式(1)也可写成 $P=\sum_i(m_i/M)p_i$（式(2)）。</p>
+<p>即位置关于质量的加权平均。质量连续分布于体 V、密度 ρ(p) 时，仿此定义物体的质心为</p>
+<div class="formula">$$P=\frac1M\int_V p\,\rho(p)\,\mathrm{d}\mu,\qquad M=\int_V\rho\,\mathrm{d}\mu,\tag{3}$$</div>
+<p>其中总质量 $M$ 由式(4) $M=\int_V\rho\,\mathrm{d}\mu$ 给出。设 $P=(\bar x,\bar y,\bar z)$ 则分量形式为（式(5)）</p>
+<div class="formula">$$\bar x=\frac1M\int_V x\rho\,\mathrm{d}\mu,\quad \bar y=\frac1M\int_V y\rho\,\mathrm{d}\mu,\quad \bar z=\frac1M\int_V z\rho\,\mathrm{d}\mu.$$</div>
+<h3>10.9.2 例4（★均匀球的引力场）</h3>
+<p class="pgref"><b>课本：64</b></p>
+<p><b>命题</b>：半径为 R 的球、密度常数 ρ=1，试求出其引力场。</p>
+<p><b>课本证明要点</b>：</p>
+<ol><li>由对称性设场点 $p=(0,0,l)\ (l>0)$；球内体积元素 dμ 对 p 的引力在 z 轴上的分量为 $\frac{\cos\beta\,\mathrm{d}\mu}{x^2+y^2+(z-l)^2}$，其中 $\cos\beta=\frac{z-l}{\sqrt{x^2+y^2+(z-l)^2}}$；</li><li>故 $F_z=\displaystyle\iiint_{x^2+y^2+z^2\le R^2}\frac{z-l}{(x^2+y^2+(z-l)^2)^{3/2}}\,\mathrm{d}\mu$；球坐标换元后归结为定积分</li></ol>
+<div class="formula">$$G(r)=\int_0^\pi\frac{(r\cos\theta-l)\sin\theta}{(r^2+l^2-2lr\cos\theta)^{3/2}}\,\mathrm{d}\theta;$$</div>
+<ol><li>换元 $t=(r^2+l^2-2lr\cos\theta)^{1/2}$ 算得 $G(r)=\frac{1}{l^2}\Big(\frac{r-l}{|r-l|}-1\Big)$，即</li></ol>
+<div class="formula">$$G(r)=\begin{cases}0,&r>l,\\-\dfrac{2}{l^2},&r&lt;l;\end{cases}$$</div>
+<ol><li>于是</li></ol>
+<div class="formula">$$F_z=\begin{cases}-\dfrac{4\pi R^3}{3l^2},&l>R,\\[1mm]-\dfrac43\pi l,&l\le R;\end{cases}$$</div>
+<p>且由对称性 $F_x=F_y=0$。</p>
+<p><b>课本综合以上结果得出的三条结论</b>：</p>
+<ol><li>对任何一点所产生的引力指向球心；</li><li>对球外一点所产生的引力，等于在球心上放置一个质量为 $\frac{4\pi R^3}{3}$ 的质点对该点所产生的引力，犹如球的质量全部集中在球心上；</li><li>对球内一点 p 所产生的引力，等于半径为 l（p 到球心的距离）的球体对 p 所产生的引力，犹如球面上一切到球心距离大于 l 的点对 p 的引力不作贡献。</li></ol>
+<h3>10.9.3 微元法总结（叙述式，课本明确说明）</h3>
+<p class="pgref"><b>课本：p.62-65</b></p>
+<p>通过以上四个例子，读者应当学会物理学家心目中产生积分的方法——"<b>微元法</b>"：先取一个很小的面积元素或体积元素，乘以相应的数或量，然后求和便得到积分。这里并不像数学家那样对分割作 Riemann 和再论证极限的存在性，这是因为许多物理问题中涉及的函数和映射都具有连续的性质，积分的存在确定无疑，微元法的合理性有保证。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 N.N</b>（基本）与<b>问题 N.N</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§10.1</td><td>练习题10.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=22</td><td>p.8（共 5 题）</td><td>—</td></tr><tr><td>§10.2</td><td>练习题10.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=29</td><td>p.15-16（共 9 题）</td><td>问题10.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=30</td><td>p.16（共 2 题）</td></tr><tr><td>§10.3</td><td>练习题10.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=36</td><td>p.22-23（共 5 题）</td><td>问题10.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=37\</td><td>p.23（共 2 题）</td></tr><tr><td>§10.4</td><td>练习题10.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=44\</td><td>p.30（共 3 题）</td><td>—</td></tr><tr><td>§10.5</td><td>练习题10.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=48\</td><td>p.34-35（共 8 题）</td><td>—</td></tr><tr><td>§10.6</td><td>练习题10.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=57\</td><td>p.43-44（共 7 题）</td><td>问题10.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=58\</td><td>p.44（共 4 题）</td></tr><tr><td>§10.7</td><td>练习题10.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=66\</td><td>p.52-53（共 5 题）</td><td>问题10.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=67\</td><td>p.53（共 2 题）</td></tr><tr><td>§10.8</td><td>练习题10.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=74\</td><td>p.60-61（共 5 题）</td><td>问题10.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=75\</td><td>p.61（共 3 题）</td></tr><tr><td>§10.9</td><td>练习题10.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=79\</td><td>p.65（共 2 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：§10.1、§10.4、§10.5、§10.9 无问题档。题数为课本显式编号计数；练习题页码按相邻正文条目的印刷页锚定。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">章首：曲顶柱体的体积 → 分两步走（先矩形后一般有界集）→ 矩形面积 σ(I)
+→ 矩形上的积分：分割、Riemann 和、宽度 → 定义10.1.1（二重积分）
+→ 运算性质：可积必有界、线性、保号（定理10.1.1~10.1.3）
+→ 下和/上和 → 细分单调性与上下和比较（定理10.1.4~10.1.5）
+→ 下积分/上积分 → 上下积分相等判据（定理10.1.6）
+→ 可积 ⟺ 上积分=下积分（定理10.1.7）→ 四条件等价（定理10.1.8）→ 连续函数可积
+→ Dirichlet 函数不可积（例2）
+→ 零测集与零面积集（定义10.2.1~10.2.2）→ 五条性质（定理10.2.1）与反例
+→ 参数曲线/函数图像/光滑曲线段都是零面积集（例1~例3，含 Peano 曲线预告）
+→ 点处振幅（定义10.2.3）→ 三条引理（10.2.1~10.2.3）
+→ Lebesgue 定理（定理10.2.2：可积 ⟺ 不连续点集零测）
+→ 零面积集之外为零 ⟹ 积分为 0（定理10.2.3）与改值不变性（定理10.2.4）
+→ 累次积分 → 定理10.3.1~10.3.3（化累次积分与交换顺序）
+→ Minkowski 不等式（定理10.3.4）及单变量特例
+→ 有界集合上的积分：零延拓 f_B（定义10.4.1~10.4.2）
+→ 可积充分条件（定理10.4.1）→ 线性性与集合可加性（定理10.4.2~10.4.3）
+→ 面积与有面积集（定义10.4.3、特征函数 χ_B）
+→ 零面积 ⟺ 面积为 0（定理10.4.4）→ 有面积 ⟺ 边界零面积（定理10.4.5）
+→ 一般分割下的 Riemann 和收敛于积分（定理10.4.6）
+→ 积分平均值定理与中值公式（定理10.4.7、推论10.4.1）
+→ x-型/y-型集合的累次积分（定理10.5.1）与五个例题
+→ 二重积分换元：一维回顾与&quot;伸缩比&quot;观点
+→ 正则映射 → 换元公式（定理10.6.1）与面积伸缩比引理（引理10.6.1）
+→ 极坐标换元 → 四抛物线、概率积分等例（例1~例5）
+→ 三重积分：质量引入 → 长方体理论与零体积集 → 体积 μ(B)
+→ 投影法与截面法（定理10.7.1）→ 四面体例题的三种算法
+→ 三重换元（定理10.7.2）与球坐标特例 → 例2~例3
+→ n 重积分：长方体、n! 种顺序 → 化低重积分（定理10.8.1）
+→ n 重换元（定理10.8.2）→ n 维单形与 n 维球的体积（例1~例2）
+→ n 维球坐标变换与隐映射定理法求 Jacobi 行列式（式8~11）→ 例3
+→ 物理应用：压力、质量、质心公式、均匀球引力场（例1~例4）→ 微元法总结</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>4/6 年：区域识别与换序（2020:4、2024:8）；绝对值分区/坐标变换（2023:3）；与曲面积分联动的三重积分（2026:3）。</li><li>§10.1–§10.2 的积分定义/Lebesgue 定理只作工具，未单独命题。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>62</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§10.1 矩形区域上的积分</h3>
+<h4>练习题 10.1（5 题）</h4>
+<ol class="ex-list">
+<li>设一元函数 $f,g$ 在区间 $[0,1]$ 上可积。求证：二元函数 $f(x)g(y)$ 在 $I=[0,1]^2$ 上可积，并且 $\displaystyle\iint_I f(x)g(y)\,\mathrm dx\,\mathrm dy=\int_0^1 f(x)\,\mathrm dx\int_0^1g(y)\,\mathrm dy$。原书 PDF 23</li>
+<li>计算积分 $\displaystyle\iint_{[0,1]\times[0,1]}e^{x+y}\,\mathrm dx\,\mathrm dy$。原书 PDF 23</li>
+<li>设 $a>0$，$I=[-a,a]\times[-a,a]$。求证：$\displaystyle\iint_I\sin(x+y)\,\mathrm dx\,\mathrm dy=0$，并试从几何上说明这一结果。原书 PDF 23</li>
+<li>证明定理 10.1.8。原书 PDF 23</li>
+<li>证明：闭矩形上的连续函数可积。原书 PDF 23</li>
+</ol>
+<h3>§10.2 Lebesgue 定理</h3>
+<h4>练习题 10.2（9 题）</h4>
+<ol class="ex-list">
+<li>设点列 $\{p_n\}$ 在 $\mathbb R^2$ 中有极限。求证：点集 $B=\{p_n\}$ 是一零面积集。原书 PDF 29</li>
+<li>设有界集 $B\subset\mathbb R^2$ 且 $B$ 是零面积集。求证：$\overline B$ 也是零面积集。原书 PDF 29</li>
+<li>证明：$[0,1]^2$ 中的全体有理点所成的集不是零面积集，但是零测集。原书 PDF 29</li>
+<li>设闭矩形 $J\subset I$，且 $f$ 在 $I$ 上可积。求证：$f$ 在 $J$ 上也可积。原书 PDF 29</li>
+<li>设在 $I$ 上可积函数 $f>0$。求证：$\displaystyle\int_I f\,\mathrm d\sigma>0$。原书 PDF 30</li>
+<li>研究定义在区间 $[0,1]^2$ 上的函数 $\displaystyle f(x,y)=\begin{cases}\sin\dfrac1{xy},&x\ne0\text{ 且 }y\ne0,\\0,&x=0\text{ 或 }y=0\end{cases}$ 的可积性。原书 PDF 30</li>
+<li>设 $I$ 是一个有界的矩形，$B=\{p_1,p_2,\cdots,p_n,\cdots\}\subset I$，定义函数 $\displaystyle f(p)=\begin{cases}0,&p\notin B,\\\dfrac1n,&p=p_n\ (n\in\mathbb N^*).\end{cases}$ 研究函数 $f$ 在 $I$ 上的可积性。原书 PDF 30 [待核验：原页未说点列互异；若 $p_i=p_j$ 而 $i\ne j$，所给分段式可能无法唯一赋值，照录原页。]</li>
+<li>设函数 $f$ 和 $g$ 在 $I$ 上可积。求证：$fg$ 在 $I$ 上也可积；当 $g$ 在 $I$ 上不取零值且 $f/g$ 在 $I$ 上有界时，$f/g$ 在 $I$ 上也可积。原书 PDF 30</li>
+<li>设 $f$ 在 $I$ 上可积。证明：$|f|$ 在 $I$ 上也可积，并且 $\displaystyle\left|\int_I f\,\mathrm d\sigma\right|\le\int_I|f|\,\mathrm d\sigma$。原书 PDF 30</li>
+</ol>
+<h4>问题 10.2（2 题）</h4>
+<ol class="ex-list">
+<li>设 $\displaystyle\int_I f\,\mathrm d\sigma>0$。求证：存在闭矩形 $J\subset I$，使得 $f>0$ 在 $J$ 上成立。原书 PDF 30</li>
+<li>对 $(x,y)\in[0,1]^2$，定义 $\displaystyle f(x,y)=\begin{cases}\dfrac1m+\dfrac1q,&x=\dfrac nm,\ y=\dfrac pq,\\0,&\text{其他。}\end{cases}$ 证明：$f$ 在 $[0,1]^2$ 上可积，这里 $m,n,q,p\in\mathbb N^*$。原书 PDF 30 [待核验：原页未说有理数写作最简分数；若多种表示同点，函数值可能不同，照录。]</li>
+</ol>
+<h3>§10.3 矩形区域上二重积分的计算</h3>
+<h4>练习题 10.3（5 题）</h4>
+<ol class="ex-list">
+<li>计算下列积分：原书 PDF 36</li>
+<li>设函数 $f$ 在矩形 $I=[a,b]\times[c,d]$ 上有连续的二阶偏导数。计算积分 $\displaystyle\iint_I\frac{\partial^2}{\partial x\partial y}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 36</li>
+<li>计算积分 $\int_I f\,\mathrm d\sigma$（$I=[0,1]^2$）：原书 PDF 36</li>
+<li>利用定理 10.3.4 中的 Minkowski 不等式，证明：对 $a_k\ge0,b_k\ge0$（$k=1,2,\cdots,n$），$p\ge1$，有不等式 $\displaystyle\left(\sum_{k=1}^n(a_k+b_k)^p\right)^{1/p}\le\left(\sum_{k=1}^n a_k^p\right)^{1/p}+\left(\sum_{k=1}^n b_k^p\right)^{1/p}$。条件 PDF 36公式 PDF 37</li>
+<li>设 $f,g$ 都在 $[a,b]$ 上可积。利用二重积分不等式 $\displaystyle\iint_{[a,b]^2}(f(x)g(y)-f(y)g(x))^2\,\mathrm dx\,\mathrm dy\ge0$，证明 Cauchy-Schwarz 不等式：$\displaystyle\left(\int_a^b f(x)g(x)\,\mathrm dx\right)^2\le\int_a^b f^2(x)\,\mathrm dx\int_a^b g^2(x)\,\mathrm dx$。原书 PDF 37</li>
+</ol>
+<h4>问题 10.3（2 题）</h4>
+<ol class="ex-list">
+<li>设 $f$ 是问题 10.2 的第 2 题中定义的函数。证明：（1）$f(x,p/q)$ 对 $x$ 在 $[0,1]$ 上不可积；（2）$f(n/m,y)$ 对 $y$ 在 $[0,1]$ 上不可积。原书 PDF 37</li>
+<li>对 $(x,y)\in[0,1]^2$，定义 $\displaystyle g(x,y)=\begin{cases}1,&x=\dfrac nm,\ y=\dfrac pm,\\0,&\text{其他。}\end{cases}$ 证明：$\displaystyle\int_0^1\mathrm dx\int_0^1g(x,y)\,\mathrm dy$ 和 $\displaystyle\int_0^1\mathrm dy\int_0^1g(x,y)\,\mathrm dx$ 都存在，但 $g$ 在 $[0,1]^2$ 上不可积。原书 PDF 37 [待核验：分段式原页没有量词说明 $m,n,p$ 及整除关系；按原图照录，待结合题意核其定义。]</li>
+</ol>
+<h3>§10.4 有界集合上的二重积分</h3>
+<h4>练习题 10.4（3 题）</h4>
+<ol class="ex-list">
+<li>证明定理 10.4.5。原书 PDF 43</li>
+<li>证明：$\displaystyle1.96&lt;\iint_{|x|+|y|\le10}\frac{\mathrm dx\,\mathrm dy}{100+\cos^2x+\cos^2y}&lt;2$。题号 PDF 43不等式 PDF 44</li>
+<li>设 $B\subset\mathbb R^2$ 是一有界集，那么 $B$ 有面积的充分必要条件是，对 $I^\circ\supset B$ 的矩形 $I$ 的任何矩形网分割 $\pi$，均有 $\displaystyle\lim_{\|\pi\|\to0,\ I_j\cap B\ne\varnothing}\sum_j\sigma(I_j)=\lim_{\|\pi\|\to0,\ I_j\subset B}\sum_j\sigma(I_j)$。原书 PDF 44</li>
+</ol>
+<h3>§10.5 有界集合上积分的计算</h3>
+<h4>练习题 10.5（8 题）</h4>
+<ol class="ex-list">
+<li>计算下列积分：原书 PDF 48</li>
+<li>改变下列累次积分的次序：原书 PDF 49</li>
+<li>设 $f$ 为一元连续函数。求证：$\displaystyle\int_0^a\mathrm dx\int_0^x f(x)f(y)\,\mathrm dy=\frac12\left(\int_0^af(t)\,\mathrm dt\right)^2$。原书 PDF 49</li>
+<li>设 $f$ 为连续函数。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x f(y)\,\mathrm dy=\int_0^a(a-t)f(t)\,\mathrm dt$。原书 PDF 49</li>
+<li>设函数 $f$ 连续。证明：$\displaystyle\int_a^b\mathrm dx\int_a^x\mathrm dy\int_a^y f(x,y,z)\,\mathrm dz=\int_a^b\mathrm dz\int_z^b\mathrm dy\int_y^b f(x,y,z)\,\mathrm dx$。原书 PDF 49</li>
+<li>设函数 $f$ 连续。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x\mathrm dy\int_0^y f(x)f(y)f(z)\,\mathrm dz=\frac1{3!}\left(\int_0^a f(t)\,\mathrm dt\right)^3$。原书 PDF 49</li>
+<li>设函数 $f$ 连续。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x\mathrm dy\int_0^y f(z)\,\mathrm dz=\frac12\int_0^a(a-t)^2f(t)\,\mathrm dt$。原书 PDF 49</li>
+<li>设 $f$ 为连续函数。求极限 $\displaystyle\lim_{r\to0}\frac1{\pi r^2}\iint_{x^2+y^2\le r^2}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 49</li>
+</ol>
+<h3>§10.6 二重积分换元</h3>
+<h4>练习题 10.6（7 题）</h4>
+<ol class="ex-list">
+<li>计算下列二重积分：原书 PDF 57</li>
+<li>计算由下列曲线围成的图形的面积：原书 PDF 57</li>
+<li>求证：$\displaystyle\iint_{|x|+|y|\le1}f(x+y)\,\mathrm dx\,\mathrm dy=\int_{-1}^1 f(t)\,\mathrm dt$。原书 PDF 57</li>
+<li>设 $D$ 是由曲线 $xy=1$、$xy=2$、$y=x$ 和 $y=4x$ 围成的图形在第一象限中的那一部分。求证：$\displaystyle\iint_D f(xy)\,\mathrm dx\,\mathrm dy=\ln2\int_1^2 f(t)\,\mathrm dt$。区域 PDF 57结论 PDF 58</li>
+<li>计算下列二重积分：原书 PDF 58</li>
+<li>计算半径为 $R$ 的球的体积。原书 PDF 58</li>
+<li>设常数 $a,b>0$，$\displaystyle D=\left\{(x,y):\frac{x^2}{a^2}+\frac{y^2}{b^2}\le1\text{ 且 }x\ge y\ge0\right\}$。计算二重积分 $\displaystyle\iint_D\sqrt{\frac{x^2}{a^2}+\frac{y^2}{b^2}}\,\mathrm dx\,\mathrm dy$。原书 PDF 58</li>
+</ol>
+<h4>问题 10.6（4 题）</h4>
+<ol class="ex-list">
+<li>证明：$\displaystyle\iint_{[0,1]^2}(xy)^{xy}\,\mathrm dx\,\mathrm dy=\int_0^1t^t\,\mathrm dt$。原书 PDF 58</li>
+<li>设常数 $a,b$ 不全为 0。求证：$\displaystyle\iint_{x^2+y^2\le1}f(ax+by+c)\,\mathrm dx\,\mathrm dy=2\int_{-1}^1\sqrt{1-t^2}\,f\bigl(t\sqrt{a^2+b^2}+c\bigr)\,\mathrm dt$。原书 PDF 58</li>
+<li>设 $f$ 是单变量函数，且连续可导。令 $\displaystyle F(t)=\iint_{[0,t]^2}f(xy)\,\mathrm dx\,\mathrm dy$。求证：（1）$\displaystyle F'(t)=\frac2t\left(F(t)+\iint_{[0,t]^2}xyf'(xy)\,\mathrm dx\,\mathrm dy\right)$；（2）$\displaystyle F'(t)=\frac2t\int_0^{t^2}f(s)\,\mathrm ds$。原书 PDF 58</li>
+<li>计算二重积分 $\displaystyle\iint_D\frac{\mathrm dx\,\mathrm dy}{xy(\ln^2x+\ln^2y)}$，其中 $D$ 是由在第一象限里的圆周 $x^2+y^2=1$ 与直线 $x+y=1$ 所围成的图形。原书 PDF 58</li>
+</ol>
+<h3>§10.7 三重积分</h3>
+<h4>练习题 10.7（5 题）</h4>
+<ol class="ex-list">
+<li>计算下列积分：原书 PDF 66</li>
+<li>计算下列曲面围成的立体的体积：题号 PDF 66（1）—（2）PDF 67</li>
+<li>设 $f$ 为连续函数。求极限 $\displaystyle\lim_{r\to0}\frac3{4\pi r^3}\iiint_{x^2+y^2+z^2\le r^2}f(x,y,z)\,\mathrm dx\,\mathrm dy\,\mathrm dz$。原书 PDF 67</li>
+<li>计算下列积分：原书 PDF 67</li>
+<li>计算由下列曲面围成的立体的体积：原书 PDF 67</li>
+</ol>
+<h4>问题 10.7（2 题）</h4>
+<ol class="ex-list">
+<li>令 $\displaystyle F(t)=\iiint_{[0,t]^3}f(xyz)\,\mathrm dx\,\mathrm dy\,\mathrm dz$，其中单变量函数 $f$ 连续可导。求证：$\displaystyle F'(t)=\frac3t\left(F(t)+\iiint_{[0,t]^3}xyzf'(xyz)\,\mathrm dx\,\mathrm dy\,\mathrm dz\right)$。原书 PDF 67</li>
+<li>设 $f$ 为连续函数，令 $\displaystyle F(t)=\iiint_{[0,t]^3}f(xyz)\,\mathrm dx\,\mathrm dy\,\mathrm dz$。求证：$\displaystyle F'(t)=\frac3t\int_0^{t^3}\frac{g(u)}u\,\mathrm du$，其中 $\displaystyle g(u)=\int_0^u f(s)\,\mathrm ds$。定义 PDF 67结论 PDF 68</li>
+</ol>
+<h3>§10.8 $n$ 重积分</h3>
+<h4>练习题 10.8（5 题）</h4>
+<ol class="ex-list">
+<li>计算下列 $n$ 重积分：原书 PDF 75</li>
+<li>计算累次积分：$\displaystyle\int_0^1\mathrm dx_1\int_0^{x_1}\mathrm dx_2\cdots\int_0^{x_{n-1}}x_1\cdots x_{n-1}x_n\,\mathrm dx_n$。原书 PDF 75</li>
+<li>计算下列 $\mathbb R^n$ 中区域的体积（$a_1,a_2,\cdots,a_n>0$）：原书 PDF 75</li>
+<li>设 $K$ 为二元连续函数，对 $n\in\mathbb N^*$，令 $\displaystyle K_n(x,y)=\int_{[a,b]^n}\cdots\int K(x,t_1)K(t_1,t_2)\cdots K(t_n,y)\,\mathrm dt_1\cdots\mathrm dt_n$。求证：对任何 $m,n\in\mathbb N^*$，有 $\displaystyle K_{m+n+1}(x,y)=\int_a^bK_m(x,t)K_n(t,y)\,\mathrm dt$。原书 PDF 75</li>
+<li>设 $a_1,a_2,\cdots,a_n>0$，$\displaystyle V_n=\left\{(x_1,x_2,\cdots,x_n):\frac{|x_i|}{a_i}+\frac{|x_n|}{a_n}\le1\ (i=1,2,\cdots,n-1)\right\}$。求 $V_n$ 的体积。原书 PDF 75</li>
+</ol>
+<h4>问题 10.8（3 题）</h4>
+<ol class="ex-list">
+<li>设 $f$ 是单变量连续函数。证明：$\displaystyle\int_0^a\mathrm dx_1\int_0^{x_1}\mathrm dx_2\cdots\int_0^{x_{n-1}}f(x_n)\,\mathrm dx_n=\frac1{(n-1)!}\int_0^af(t)(a-t)^{n-1}\,\mathrm dt$。原书 PDF 75</li>
+<li>设 $f$ 是单变量连续函数。证明：$\displaystyle\int_0^a\mathrm dx_1\int_0^{x_1}\mathrm dx_2\cdots\int_0^{x_{n-1}}f(x_1)f(x_2)\cdots f(x_n)\,\mathrm dx_n=\frac1{n!}\left(\int_0^a f(t)\,\mathrm dt\right)^n$。原书 PDF 75</li>
+<li>设 $f$ 为 $n$ 元连续函数。证明：$\displaystyle\int_a^b\mathrm dx_1\int_a^{x_1}\mathrm dx_2\cdots\int_a^{x_{n-1}}f(x_1,x_2,\cdots,x_n)\,\mathrm dx_n=\int_a^b\mathrm dx_n\int_{x_n}^b\mathrm dx_{n-1}\cdots\int_{x_2}^b f(x_1,x_2,\cdots,x_n)\,\mathrm dx_1$。原书 PDF 75</li>
+</ol>
+<h3>§10.9 重积分物理应用举例</h3>
+<h4>练习题 10.9（2 题）</h4>
+<ol class="ex-list">
+<li>设有半径为 $R$ 的均匀圆盘，其密度为 $\mu$。过圆心且与圆垂直的直线上有一密度为 $\rho$ 的均匀细棒，棒长为 $l$，其近圆盘的一端与圆心相距 $a$。求圆盘对细棒的引力。原书 PDF 79</li>
+<li>一圆锥与半球相接构成密度为 $\rho$ 的均匀球锥，球半径为 $R$，圆锥的顶角为 $2\alpha$。试计算球锥对其顶点的引力。原书 PDF 79</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第10章_多重积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §10.1 矩形区域上的积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.2 Lebesgue 定理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.3 矩形区域上二重积分的计算：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.4 有界集合上的二重积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.5 有界集合上积分的计算：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.6 二重积分换元：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.7 三重积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.8 n 重积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §10.9 重积分物理应用举例：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

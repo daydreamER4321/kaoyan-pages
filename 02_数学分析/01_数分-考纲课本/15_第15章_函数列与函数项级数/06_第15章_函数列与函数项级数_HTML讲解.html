@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第15章 函数列与函数项级数 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第15章<br>函数列与函数项级数</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec15_1">§15.1 问题的提出</a>
+    <a href="#sec15_2">§15.2 一致收敛</a>
+    <a href="#sec15_3">§15.3 极限函数与和函数的性质</a>
+    <a href="#sec15_4">§15.4 由幂级数确定的函数</a>
+    <a href="#sec15_5">§15.5 函数的幂级数展开式</a>
+    <a href="#sec15_6">§15.6 用多项式一致逼近连续函数</a>
+    <a href="#sec15_7">§15.7 幂级数在组合数学中的应用</a>
+    <a href="#sec15_8">§15.8 从两个著名的例子谈起</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第15章 函数列与函数项级数</h1>
+    <p class="hero-sub">§15.1 问题的提出 · §15.2 一致收敛 · §15.3 极限函数与和函数的性质 · §15.4 由幂级数确定的函数 · §15.5 函数的幂级数展开式 · §15.6 用多项式一致逼近连续函数</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec15_1">§15.1 问题的提出<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<h3>15.1.1 函数项级数与其收敛点集（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>设 $u_1(x),u_2(x),\cdots,u_n(x),\cdots$ 是定义在区间 $[a,b]$ 上的一列函数，称</p>
+<div class="formula">$$\sum_{n=1}^{\infty}u_n(x)=u_1(x)+u_2(x)+\cdots+u_n(x)+\cdots\tag{1}$$</div>
+<p>是 $[a,b]$ 上的一个<b>函数项级数</b>。对每一点 $x_0$，$\sum u_n(x_0)$ 是数项级数：收敛则称级数 (1) 在点 $x_0$ 处收敛，否则称发散。使级数收敛（或发散）的那些点的全体称为级数的<b>收敛（或发散）点集</b>。例：$\sum_{n=0}^\infty x^n$ 定义在 $(-\infty,+\infty)$，收敛点集是 $(-1,1)$，发散点集是 $(-\infty,-1]\cup[1,+\infty)$。</p>
+<p>若 $[a,b]$ 是级数 (1) 的收敛点集，则 $S(x)=\sum_{n=1}^\infty u_n(x)$（$a\le x\le b$）是一个确定函数，称为级数 (1) 的<b>和函数</b>。</p>
+<h3>15.1.2 三个基本问题及其等价形式（叙述式）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>核心问题：无穷级数的和函数是否具有"有限和"的那些性质？</p>
+<ul><li><b>(a)</b> 各 $u_n$ 在 $[a,b]$ 上连续 ⟹ $S(x)$ 是否连续？</li><li><b>(b)</b> 各 $u_n$ Riemann 可积 ⟹ $S(x)$ 是否可积？等式 $\int_a^bS\,\mathrm{d}x=\sum\limits_{n=1}^{\infty}\int_a^bu_n\,\mathrm{d}x$ 是否成立（能否逐项积分）？</li><li><b>(c)</b> 各 $u_n$ 可导 ⟹ $S(x)$ 是否可导？等式 $S'(x)=\sum u_n'(x)$ 是否成立（能否逐项求导）？</li></ul>
+<p>记部分和序列 $S_n(x)=\sum_{k=1}^{n}u_k(x)$，则 $S(x)=\lim\limits_{n\to\infty}S_n(x)$ 是函数序列 $\{S_n\}$ 的极限函数，三个问题等价地化为：</p>
+<ul><li><b>(a)'</b> 连续函数列的极限函数是否连续？</li><li><b>(b)'</b> 可积函数列的极限函数是否可积？$\displaystyle\int_a^bS\,\mathrm{d}x=\lim_{n\to\infty}\int_a^bS_n\,\mathrm{d}x$ 是否成立（极限号与积分号能否交换）？</li><li><b>(c)'</b> 可导函数列的极限函数是否可导？$S'(x)=\lim\limits_{n\to\infty}S_n'(x)$ 是否成立（极限号与微分号能否交换）？</li></ul>
+<h3>15.1.3 例1～例4（三个问题的否定性答案）</h3>
+<p class="pgref"><b>课本：3</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>否定的问题</th></tr></thead><tbody><tr><td>例1</td><td>$\{x^n\}$ 在 $[0,1]$：各项连续可导，极限函数 $S(x)=\begin{cases}0,&0\le x&lt;1\\1,&x=1\end{cases}$ 在 $x=1$ 处不连续、不可导</td><td>(a)' 与 (c)' 前半</td></tr><tr><td>例2</td><td>$\{r_1,r_2,\cdots\}$ 为 $[0,1]$ 中全体有理数，$S_n(x)=\begin{cases}1,&x=r_1,\cdots,r_n\\0,&\text{其余}\end{cases}$；$S_n\to S$（Dirichlet 型函数）。每个 $S_n$ Riemann 可积而 $S$ 不可积</td><td>(b)' 前半</td></tr><tr><td>例3</td><td>$[0,1]$ 上 $S_n(x)=2n^2x\mathrm{e}^{-n^2x^2}$，$S\equiv0$：$\int_0^1S\,\mathrm{d}x=0$，而 $\lim\limits_{n\to\infty}\int_0^1S_n\,\mathrm{d}x=\lim\limits_{n\to\infty}(1-\mathrm{e}^{-n^2})=1$</td><td>(b)' 后半</td></tr><tr><td>例4</td><td>$\mathbb{R}$ 上 $S_n(x)=\frac{\sin nx}{\sqrt n}$，$S\equiv0$ 可导，但 $S_n'(x)=\sqrt n\cos nx$，故 $\lim\limits_{n\to\infty}S_n'(x)\ne S'(x)$</td><td>(c)' 后半</td></tr></tbody></table></div>
+<p>课本指出：要使三个命题成立还必须补充条件，下节的<b>一致收敛</b>便是这种条件中最重要的一个。</p>
+<hr>
+<h2 id="sec15_2">§15.2 一致收敛<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.4-15</b></p>
+<h3>15.2.1 逐点收敛与 $N(x,\varepsilon)$ 的依赖性（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.4-15</b></p>
+<p>函数列 $\{f_n\}$ 在 $[a,b]$ 内每点都收敛时称其在 $[a,b]$ 上<b>收敛（逐点收敛）</b>。此时对任给的 $x_0$ 与 $\varepsilon>0$，存在 $N=N(x_0,\varepsilon)$，当 $n>N$ 时 $|f_n(x_0)-f(x_0)|&lt;\varepsilon$——$N$ 不仅与 $\varepsilon$ 有关，也与 $x_0$ 有关。</p>
+<p>以 $\{x^n\}$ 在 $(0,1)$ 为例：要使 $x^n&lt;\varepsilon$ 须 $n>N(x,\varepsilon)=\left[\frac{\ln\varepsilon}{\ln x}\right]$（式(1)），不同 $x$ 要求的 $N$ 差别极大；令 $x\to1$ 得 $N(x,\varepsilon)\to+\infty$，故不存在与 $x$ 无关的 $N$。而对 $f_n(x)=\frac{1}{n+x}$（极限 0），因 $\frac{1}{n+x}&lt;\frac1n$，取 $N=[1/\varepsilon]$ 即可与 $x$ 无关。课本说明：后者比前者多满足的条件——<b>存在与 $x$ 无关的 $N$</b>——正是使 15.1 节三命题成立的实质性条件。</p>
+<h3>15.2.2 定义15.2.1（函数列的一致收敛）</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>设函数列 $\{f_n\}$ 在点集 $I$（可以是区间，也可以不是区间）上收敛于 $f$。如果对任意给定的正数 $\varepsilon$，都存在<b>与 $x$ 无关</b>的正整数 $N(\varepsilon)$，使得当 $n>N(\varepsilon)$ 时</p>
+<div class="formula">$$|f_n(x)-f(x)|&lt;\varepsilon$$</div>
+<p>对 $I$ 中一切的 $x$ 都成立，则称 $\{f_n\}$ 在 $I$ 上<b>一致收敛</b>于 $f$。</p>
+<p>据此：$\{x^n\}$ 在 $(0,1)$ 上不一致收敛于 0；$\left\{\frac{1}{n+x}\right\}$ 在 $(0,1)$ 上一致收敛于 0。</p>
+<h3>15.2.3 几何解释与 $\beta_n$（叙述式，图15.1、图15.2）</h3>
+<p class="pgref"><b>课本：p.4-15</b></p>
+<p>一致收敛的几何意义：从某个下标 $N(\varepsilon)$ 之后，曲线 $y=f_n(x)$ 全部落入条形区域 $f(x)-\varepsilon&lt;y&lt;f(x)+\varepsilon$ 之中（图15.1）；而 $y=x^n$ 无论 $n$ 多大都不会全部落入 $0&lt;y&lt;\varepsilon$（图15.2）。</p>
+<p>记 $\beta_n=\sup\limits_{x\in I}|f_n(x)-f(x)|$。</p>
+<h3>15.2.4 定理15.2.1（sup 判别）</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>函数列 $\{f_n\}$ 在 $I$ 上一致收敛于 $f$ 的一个充分必要条件是</p>
+<div class="formula">$$\lim_{n\to\infty}\beta_n=0.\tag{2}$$</div>
+<h4>课本证明路线</h4>
+<ol><li>必要性：一致收敛给出 $|f_n-f|&lt;\varepsilon$ 对一切 $x$ 成立，取上确界得 $\beta_n\le\varepsilon$；</li><li>充分性：$\beta_n&lt;\varepsilon$ 时对一切 $x$ 有 $|f_n(x)-f(x)|\le\beta_n&lt;\varepsilon$，按定义即得。</li></ol>
+<h3>15.2.5 例1（★ sup 方法的标准演示）</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>讨论 $f_n(x)=\dfrac{nx}{1+n^2x^2}$ 在 $(0,+\infty)$ 与 $[\delta,+\infty)$（$\delta>0$）上的一致收敛性。</p>
+<p><b>解要点</b>：逐点极限 $f\equiv0$。在 $[\delta,+\infty)$ 上 $|f_n-f|\le\frac{1}{nx}&lt;\frac{1}{n\delta}$，故 $\beta_n\to0$，一致收敛；在 $(0,+\infty)$ 上 $\beta_n\ge\left|f_n\!\left(\tfrac1n\right)-f\!\left(\tfrac1n\right)\right|=\tfrac12\not\to0$，不一致收敛。课本注明：用定理15.2.1 证明<b>不一致</b>收敛比较方便。</p>
+<h3>15.2.6 例2</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>$f_n(x)=2n^2x\mathrm{e}^{-n^2x^2}$（即 15.1 例3 的函数列）在 $[0,1]$ 上收敛于 0，但 $\beta_n\ge f_n\!\left(\tfrac1n\right)=2n\mathrm{e}^{-1}\not\to0$，故不一致收敛。</p>
+<h3>15.2.7 定理15.2.2（Cauchy 收敛原理·函数列）</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>$\{f_n\}$ 是区间 $I$ 上的函数列，则 $\{f_n\}$ 在 $I$ 上一致收敛的充分必要条件是：对任意 $\varepsilon>0$，存在正整数 $N(\varepsilon)$，当 $n>N(\varepsilon)$ 时</p>
+<div class="formula">$$|f_{n+p}(x)-f_n(x)|&lt;\varepsilon\tag{3}$$</div>
+<p>对任意 $x\in I$ 及任意正整数 $p$ 成立。（好处：无须知道极限函数。）</p>
+<h4>课本证明路线</h4>
+<ol><li>必要性：把 $|f_{n+p}-f_n|$ 拆成两段各小于 $\varepsilon/2$；</li><li>充分性：由数列的 Cauchy 收敛原理知每点收敛，设极限为 $f$；固定 $n>N(\varepsilon)$，在式(3)中令 $p\to\infty$ 得 $|f(x)-f_n(x)|\le\varepsilon$ 对一切 $x$ 成立，按定义15.2.1 即得一致收敛。</li></ol>
+<h3>15.2.8 定义15.2.2（函数项级数的一致收敛）</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>设 $\sum_{n=1}^{\infty}u_n(x)$ 是区间 $I$ 上的函数项级数，$S_n(x)=\sum_{k=1}^{n}u_k(x)$ 为部分和。如果函数列 $\{S_n\}$ 在 $I$ 上一致收敛于 $S(x)$，则称级数 $\sum u_n(x)$ 在 $I$ 上<b>一致收敛</b>于 $S(x)$。</p>
+<h3>15.2.9 定理15.2.3（Cauchy 收敛原理·函数项级数）</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>$\sum_{n=1}^{\infty}u_n(x)$ 在 $I$ 上一致收敛的充分必要条件是：对任意 $\varepsilon>0$，存在正整数 $N(\varepsilon)$，当 $n>N(\varepsilon)$ 时</p>
+<div class="formula">$$|u_{n+1}(x)+\cdots+u_{n+p}(x)|&lt;\varepsilon$$</div>
+<p>对任意 $x\in I$ 及任意正整数 $p$ 成立。（由函数列的 Cauchy 原理直接翻译。）</p>
+<h3>15.2.10 推论15.2.1（必要条件）</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>$\sum u_n(x)$ 在 $I$ 上一致收敛的一个必要条件是：通项 $u_n(x)$ 在 $I$ 上一致收敛于 0。</p>
+<h4>课本说明</h4>
+<p>该条件<b>仅仅必要</b>：例如 $\sum\frac{1}{n+x}$ 的通项在 $[0,+\infty)$ 上一致收敛于 0，但级数本身根本不收敛。此条件经常用来判断非一致收敛性。</p>
+<h3>15.2.11 例3</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>$\sum ne^{-nx}$ 在 $(0,+\infty)$ 上收敛，但通项 $u_n=ne^{-nx}$ 满足 $\sup\limits_{0&lt;x&lt;+\infty}u_n(x)\ge u_n\!\left(\tfrac1n\right)=n\mathrm{e}^{-1}\not\to0$，故由推论15.2.1 知该级数在 $(0,+\infty)$ 上不一致收敛。</p>
+<h3>15.2.12 定理15.2.4（Weierstrass 判别法 / M-判别法）</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>如果存在收敛的正项级数 $\sum_{n=1}^{\infty}a_n$，使得在区间 $I$ 上有不等式</p>
+<div class="formula">$$|u_n(x)|\le a_n\quad(n=1,2,\cdots),\tag{4}$$</div>
+<p>那么级数 $\sum u_n(x)$ 在 $I$ 上一致收敛。</p>
+<h4>课本证明路线</h4>
+<p>由 $\sum a_n$ 收敛的 Cauchy 原理得尾段和 $a_{n+1}+\cdots+a_{n+p}&lt;\varepsilon$；于是 $\Big|\sum_{k=n+1}^{n+p}u_k(x)\Big|\le\sum_{k=n+1}^{n+p}|u_k(x)|\le\sum_{k=n+1}^{n+p}a_k&lt;\varepsilon$，再用定理15.2.3。</p>
+<h4>课本术语与说明</h4>
+<p>满足式(4)的 $\sum a_n$ 称为 $\sum u_n(x)$ 在 $I$ 上的一个<b>优级数</b>。课本指出这是判断一致收敛<b>最常用</b>的方法。</p>
+<h3>15.2.13 例4～例6</h3>
+<p class="pgref"><b>课本：9</b></p>
+<ul><li><b>例4</b>：$\sum\frac{\cos nx}{n^2}$ 在 $\mathbb{R}$ 一致收敛（优级数 $\sum\frac1{n^2}$）。</li><li><b>例5</b>：$\sum\frac{x}{1+n^4x^2}$ 在 $\mathbb{R}$ 一致收敛（$\left|\frac{x}{1+n^4x^2}\right|\le\frac{1}{2n^2}$）。</li><li><b>例6</b>：$\sum ne^{-nx}$ 虽在 $(0,+\infty)$ 不一致收敛，但在任意 $[\delta,+\infty)$（$\delta>0$）上一致收敛：$x\ge\delta$ 且 $n$ 充分大时 $n\mathrm{e}^{-nx}\le n\mathrm{e}^{-n\delta}\le\frac{1}{n^2}$。</li></ul>
+<h3>15.2.14 课本说明：Weierstrass 判别法的局限</h3>
+<p class="pgref"><b>课本：p.4-15</b></p>
+<p>Weierstrass 判别法条件太强：它要求 $\sum u_n(x)$ 绝对收敛、且 $\sum|u_n(x)|$ 一致收敛才行。实际存在一致收敛但不绝对收敛的级数（见例7）；也可能 $\sum u_n(x)$ 绝对且一致收敛而 $\sum|u_n(x)|$ 不一致收敛（见练习题15.2 第5题）。因此需要更精细的判别法。</p>
+<h3>15.2.15 逐点有界与一致有界（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.4-15</b></p>
+<ul><li>$\{f_n\}$ 在 $I$ 上<b>逐点有界</b>：对每个 $x\in I$ 存在正数 $M(x)$ 使 $|f_n(x)|\le M(x)$（$n=1,2,\cdots$）——$M$ 随 $x$ 变化；</li><li>$\{f_n\}$ 在 $I$ 上<b>一致有界</b>：存在常数 $M$ 使 $|f_n(x)|\le M$ 对一切 $x\in I$ 与一切 $n$ 成立。</li></ul>
+<p>课本对比：$\{x^n\}$ 在 $(0,1)$ 上一致有界（$&lt;1$）；$\{nx^n\}$ 在 $(0,1)$ 上逐点有界但<b>不</b>一致有界（否则固定 $n$ 令 $x\to1^-$ 得 $n&lt;M$ 对一切 $n$，矛盾）。</p>
+<h3>15.2.16 定理15.2.5（Dirichlet 判别法）</h3>
+<p class="pgref"><b>课本：11</b></p>
+<p>设级数 $\sum a_n(x)b_n(x)$ 在区间 $I$ 上满足：</p>
+<p>(a) $\{b_n(x)\}$ 对每个固定的 $x\in I$ 单调，且在 $I$ 上一致收敛于 0；</p>
+<p>(b) $\sum a_n(x)$ 的部分和在 $I$ 上一致有界：$\Big|\sum_{k=1}^{n}a_k(x)\Big|\le M$（$x\in I$，$n=1,2,\cdots$）。</p>
+<p>那么 $\sum a_n(x)b_n(x)$ 在 $I$ 上一致收敛。</p>
+<h4>课本证明路线</h4>
+<ol><li>由 (b)，当 $n+1\le m\le n+p$ 时 $\Big|\sum_{k=n+1}^{m}a_k(x)\Big|\le2M$；</li><li>用 <b>Abel 引理</b>（第14章）得 $\Big|\sum_{k=n+1}^{n+p}a_kb_k\Big|\le2M\big(|b_{n+1}(x)|+2|b_{n+p}(x)|\big)$；</li><li>由 $b_n\rightrightarrows0$ 取 $N(\varepsilon)$ 使 $n>N$ 时 $|b_n(x)|&lt;\frac{\varepsilon}{8M}$，代入即得尾和 $&lt;\varepsilon$，用 Cauchy 原理收尾。</li></ol>
+<h3>15.2.17 定理15.2.6（Abel 判别法）</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>设级数 $\sum a_n(x)b_n(x)$ 在区间 $I$ 上满足：</p>
+<p>(a) $\{b_n(x)\}$ 对每个固定的 $x\in I$ 单调，且在 $I$ 上一致有界：$|b_n(x)|\le M$；</p>
+<p>(b) $\sum a_n(x)$ 在 $I$ 上一致收敛。</p>
+<p>那么 $\sum a_n(x)b_n(x)$ 在 $I$ 上一致收敛。</p>
+<h4>课本证明路线</h4>
+<p>由 (b) 取 $N(\varepsilon)$ 使 $n>N$ 时 $\Big|\sum_{k=n+1}^{n+p}a_k(x)\Big|&lt;\frac{\varepsilon}{3M}$；由 Abel 引理得 $\Big|\sum a_kb_k\Big|\le\frac{\varepsilon}{3M}\big(|b_{n+1}|+2|b_{n+p}|\big)&lt;\varepsilon$。</p>
+<h4>课本设问</h4>
+<p>数项级数的 Abel 判别法（定理14.4.4）是用 Dirichlet 判别法证明的。课本请读者想一想：这里为什么不能这样做？</p>
+<h3>15.2.18 例7（★ 三角级数的一致收敛）</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p><b>命题</b>：$\sum\frac{\cos nx}{n}$ 与 $\sum\frac{\sin nx}{n}$ 在 $[\delta,\,2\pi-\delta]$（$0&lt;\delta&lt;\pi$）上一致收敛。</p>
+<p><b>课本证明路线</b>：取 $a_n(x)=\cos nx$，$b_n(x)=1/n$；利用 $\Big|\sum_{k=1}^{n}\cos kx\Big|\le\frac{1}{\sin\frac x2}$，而 $x\in[\delta,2\pi-\delta]$ 时 $\sin\frac x2\ge\sin\frac\delta2$，故部分和一致有界；由 Dirichlet 判别法得结论。$\sum\frac{\sin nx}{n}$ 同理。</p>
+<p>课本随后指出：这两个级数在 $(0,\pi)$ 上不是绝对收敛的——<b>一致收敛未必绝对收敛</b>；而 $\sum(-1)^nx^n$ 在 $[0,1)$ 上绝对收敛但不一致收敛——绝对收敛与一致收敛是互不蕴含的概念。</p>
+<hr>
+<h2 id="sec15_3">§15.3 极限函数与和函数的性质<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.15-24</b></p>
+<h3>15.3.1 定理15.3.1（极限函数的连续性）</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>如果函数列 $\{f_n\}$ 的每一项都在区间 $I$ 上连续，且 $\{f_n\}$ 在 $I$ 上一致收敛于 $f$，那么 $f$ 也在 $I$ 上连续。</p>
+<h4>课本证明路线</h4>
+<p>在任一点 $x_0$ 处：取充分大的 $n_0$ 使 $|f_{n_0}-f|&lt;\varepsilon/3$ 对一切 $x$ 成立（用一致收敛）；再由 $f_{n_0}$ 在 $x_0$ 连续取 $\delta$ 使 $|f_{n_0}(x)-f_{n_0}(x_0)|&lt;\varepsilon/3$；三点拼接 $|f(x)-f(x_0)|\le\dots&lt;\varepsilon/3+\varepsilon/3+\varepsilon/3=\varepsilon$。</p>
+<h3>15.3.2 定理15.3.2（和函数的连续性）</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>如果级数 $\sum u_n(x)$ 在 $I$ 上一致收敛于 $S(x)$，且每一项 $u_n(x)$ 都在 $I$ 上连续，那么和函数 $S(x)$ 也在 $I$ 上连续。（对应函数列情形的直接翻译。）</p>
+<h3>15.3.3 例1～例4</h3>
+<p class="pgref"><b>课本：16</b></p>
+<ul><li><b>例1</b>：$\sum\frac{\cos nx}{n^2}$ 在 $\mathbb{R}$ 一致收敛 ⟹ 其和函数在整个数轴上连续。</li><li><b>例2</b>：$f(x)=\sum\limits_{n=0}^{\infty}\frac{x^n}{3^n}\cos n\pi x^2$：在 $[-2,2]$ 上有优级数 $\sum\left(\tfrac23\right)^n$，一致收敛，故 $f$ 连续，$\lim\limits_{x\to1}f(x)=f(1)=\sum\frac{(-1)^n}{3^n}=\frac34$。</li><li><b>例3</b>：$\sum ne^{-nx}$ 在 $(0,+\infty)$ 不一致收敛，不能直接用定理15.3.2；但对任意 $x_0>0$ 取 $0&lt;\delta&lt;x_0$，级数在 $[\delta,+\infty)$ 一致收敛，故 $f$ 在每点连续——<b>内闭处理</b>的手法。</li><li><b>例4</b>：$\sum_{n=2}^\infty\left(\frac{x}{\ln n}\right)^n$ 在 $\mathbb{R}$ 不一致收敛；但当 $|x|\le M$ 时以 $\sum\left(\frac{M}{\ln n}\right)^n$（Cauchy 判别法收敛）为优级数，在 $[-M,M]$ 上一致收敛，故和函数在 $\mathbb{R}$ 上连续。</li></ul>
+<h3>15.3.4 连续性的逆问题（叙述式）</h3>
+<p class="pgref"><b>课本：p.15-24</b></p>
+<p>课本提问：各项连续的前提下，和函数连续能否推出一致收敛？一般是否定的；但<b>正项级数 + 有界闭区间</b>时答案是肯定的——引出 Dini 定理。</p>
+<h3>15.3.5 定理15.3.3（Dini 定理·函数列）</h3>
+<p class="pgref"><b>课本：17</b></p>
+<p>设函数列 $\{f_n\}$ 在有限闭区间 $[a,b]$ 上连续。如果对每一个 $x\in[a,b]$，数列 $\{f_n(x)\}$ 递减地趋于 0，那么 $\{f_n\}$ 在 $[a,b]$ 上一致收敛于 0。</p>
+<h4>课本证明路线（有限覆盖法）</h4>
+<ol><li>对任意 $\varepsilon>0$，每点 $x$ 有 $N_x$ 使 $0\le f_{N_x}(x)&lt;\varepsilon$；由 $f_{N_x}$ 连续，存在 $\delta_x>0$ 使在 $(x-\delta_x,x+\delta_x)$ 内仍 $0\le f_{N_x}&lt;\varepsilon$（式(1)）；</li><li>这些开区间的并构成 $[a,b]$ 的开覆盖，由<b>有限覆盖定理</b>选出有限子覆盖 $(x_i-\delta_{x_i},x_i+\delta_{x_i})$，$i=1,\cdots,m$；</li><li>令 $N=\max(N_{x_1},\cdots,N_{x_m})$，由递减性，$n\ge N$ 时 $0\le f_n(x)&lt;\varepsilon$ 对一切 $x$ 成立。</li></ol>
+<h4>课本注明（重要）</h4>
+<p>把 $[a,b]$ 改成开区间或无穷区间结论不再成立：$x^n$ 在 $(0,1)$ 递减趋于 0 但不一致收敛；$x/n$ 在 $(0,+\infty)$ 同样反例。</p>
+<h3>15.3.6 定理15.3.4（Dini 定理·级数形式）</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>设级数 $\sum u_n(x)$ 的每一项在有限闭区间 $[a,b]$ 上连续且非负。如果它的和函数 $S(x)$ 也在 $[a,b]$ 上连续，那么该级数在 $[a,b]$ 上一致收敛。</p>
+<h4>课本证明路线</h4>
+<p>令 $f_n=S-S_n$，则 $\{f_n\}$ 是 $[a,b]$ 上连续且递减趋于 0 的函数列，用定理15.3.3。</p>
+<h4>课本注明</h4>
+<p>闭区间换成开区间或无穷区间结论可能不成立：$\sum x^n$ 在 $[0,1)$ 上各项非负连续、和函数 $\frac1{1-x}$ 连续但不一致收敛；无穷区间上例4 的级数在 $[0,+\infty)$ 也是反例（$\beta_n\ge\left(\frac{n}{\ln n}\right)^n\to+\infty$）。</p>
+<h3>15.3.7 定理15.3.5（极限与积分交换·函数列）</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>如果 $[a,b]$ 上的可积函数列 $\{f_n\}$ 在 $[a,b]$ 上一致收敛于 $f$，那么 $f$ 也在 $[a,b]$ 上可积，并且</p>
+<div class="formula">$$\lim_{n\to\infty}\int_a^bf_n(x)\,\mathrm{d}x=\int_a^bf(x)\,\mathrm{d}x.\tag{2}$$</div>
+<h4>课本证明路线</h4>
+<ol><li><b>可积性</b>：记 $D(f),D(f_n)$ 为不连续点集。由 Lebesgue 定理（定理6.6.1），每个 $D(f_n)$ 是零测集；由一致收敛先得 $f$ 有界（$|f|\le M+1$）；再证 $D(f)\subset\bigcup_n D(f_n)$（若 $x_0$ 是所有 $f_n$ 的连续点，由定理15.3.1 它也是 $f$ 的连续点），零测集的可数并仍是零测集，故 $f$ 可积；</li><li><b>积分交换</b>：$n>N(\varepsilon)$ 时 $|f_n-f|&lt;\frac{\varepsilon}{b-a}$，故 $\Big|\int_a^bf_n-\int_a^bf\Big|\le\int_a^b|f_n-f|\,\mathrm{d}x&lt;\varepsilon$。</li></ol>
+<h4>课本注意</h4>
+<p>若 $\{f_n\}$ 不一致收敛，$f$ 可能不可积——15.1 例2 就是这样的例子。</p>
+<h3>15.3.8 推论15.3.1</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>$[a,b]$ 上的<b>连续</b>函数列 $\{f_n\}$ 若一致收敛于 $f$，则 $\lim\limits_{n\to\infty}\int_a^bf_n=\int_a^bf$。（连续函数可积，由定理15.3.5 直接得到。）</p>
+<h3>15.3.9 定理15.3.6（级数的逐项积分）</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>如果级数 $\sum u_n(x)$ 在 $[a,b]$ 上一致收敛于 $S(x)$，且每一项 $u_n(x)$ 都在 $[a,b]$ 上可积，那么 $S(x)$ 也可积，并且</p>
+<div class="formula">$$\int_a^b\Big(\sum_{n=1}^{\infty}u_n(x)\Big)\mathrm{d}x=\sum_{n=1}^{\infty}\int_a^bu_n(x)\,\mathrm{d}x.$$</div>
+<h3>15.3.10 推论15.3.2</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>级数在 $[a,b]$ 上一致收敛且各项连续 ⟹ $\int_a^b\big(\sum u_n\big)\mathrm{d}x=\sum\int_a^bu_n\,\mathrm{d}x$。</p>
+<h3>15.3.11 例5</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>$f(x)=\sum\frac{\cos nx}{n^2}$：级数在 $\mathbb{R}$ 一致收敛，可在任意有限区间内逐项积分，故 $\int_0^\pi f\,\mathrm{d}x=\sum\frac1{n^2}\int_0^\pi\cos nx\,\mathrm{d}x=0$。</p>
+<h3>15.3.12 定理15.3.7（函数列的逐项求导）</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>设函数列 $\{f_n\}$ 满足：</p>
+<p>(a) 每个 $f_n$ 在 $[a,b]$ 上有连续的导函数；</p>
+<p>(b) $\{f_n'\}$ 在 $[a,b]$ 上一致收敛于函数 $g$；</p>
+<p>(c) $\{f_n\}$ 至少在某一点 $x_0\in[a,b]$ 上收敛。</p>
+<p>那么 $\{f_n\}$ 在 $[a,b]$ 上一致收敛于某个连续可微函数 $f$，且对每个 $x\in[a,b]$ 有 $f'(x)=g(x)$，即</p>
+<div class="formula">$$\Big(\lim_{n\to\infty}f_n(x)\Big)'=\lim_{n\to\infty}f_n'(x).$$</div>
+<h4>课本证明路线</h4>
+<ol><li>条件 (c)、(b) 分别给出 $|f_n(x_0)-f_m(x_0)|&lt;\frac\varepsilon2$（式(3)）与 $|f_n'(x)-f_m'(x)|&lt;\frac{\varepsilon}{2(b-a)}$（式(4)）（均由 Cauchy 原理）；</li><li>由 Newton-Leibniz 公式写 $f_n(x)=f_n(x_0)+\int_{x_0}^xf_n'(t)\,\mathrm{d}t$（式(5)），两式相减估计得 $|f_m(x)-f_n(x)|&lt;\varepsilon$，故 $\{f_n\}$ 一致收敛，设极限为 $f$；</li><li>对式(5)取极限并用定理15.3.5（$\int f_n'\to\int g$），得 $f(x)=f(x_0)+\int_{x_0}^xg(t)\,\mathrm{d}t$，从而 $f'=g$。</li></ol>
+<h3>15.3.13 定理15.3.8（级数的逐项求导）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>设级数 $\sum u_n(x)$ 满足：(a) 各项在 $[a,b]$ 上有连续导函数；(b) $\sum u_n'(x)$ 在 $[a,b]$ 上一致收敛于 $g(x)$；(c) 级数至少在某一点 $x_0\in[a,b]$ 收敛。那么级数在 $[a,b]$ 上一致收敛，其和函数 $S(x)$ 在 $[a,b]$ 上连续可导，并且</p>
+<div class="formula">$$\Big(\sum_{n=1}^{\infty}u_n(x)\Big)'=\sum_{n=1}^{\infty}u_n'(x).$$</div>
+<h3>15.3.14 例6</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>$f(x)=\sum\frac{\sin nx}{n^4}$：原级数与每次逐项求导后的级数都在 $\mathbb{R}$ 上一致收敛，故 $f'(x)=\sum\frac{\cos nx}{n^3}$，$f''(x)=-\sum\frac{\sin nx}{n^2}$——$f$ 有二阶连续导函数。</p>
+<h3>15.3.15 极限运算交换的总结（叙述式）</h3>
+<p class="pgref"><b>课本：p.15-24</b></p>
+<p>课本总结：以上定理实质上是断言在一定条件下两种极限运算交换的合理性——</p>
+<div class="formula">$$\lim_{x\to x_0}\lim_{n\to\infty}f_n(x)=\lim_{n\to\infty}\lim_{x\to x_0}f_n(x);\qquad \lim_{n\to\infty}\int_a^bf_n=\int_a^b\lim_{n\to\infty}f_n;\qquad \lim_{n\to\infty}\frac{\mathrm d}{\mathrm dx}(f_n(x))=\frac{\mathrm d}{\mathrm dx}\Big(\lim_{n\to\infty}f_n(x)\Big).$$</div>
+<p>起关键作用的是<b>一致收敛性</b>；后续几章仍以此为中心议题。</p>
+<h3>15.3.16 历史注记：Cauchy 的错误与 Abel 的反例（叙述式）</h3>
+<p class="pgref"><b>课本：p.15-24</b></p>
+<p>Cauchy 曾在《分析教程》中断言"收敛的连续函数项级数的和函数也连续"；Abel 在关于二项式级数的文章中指出错误，并举出：</p>
+<div class="formula">$$\sum_{n=1}^{\infty}\frac{\sin nx}{n}=\frac{\pi-x}{2}\quad(0&lt;x&lt;2\pi).\tag{6}$$</div>
+<p>其和函数在 $2\pi$ 的整数倍点处不连续，而级数处处收敛、各项连续；根源是级数在这些点附近<b>不一致收敛</b>。等式(6)的证明在第17章17.2节给出。</p>
+<hr>
+<h2 id="sec15_4">§15.4 由幂级数确定的函数<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.25-34</b></p>
+<h3>15.4.1 幂级数（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.25-34</b></p>
+<p>一般形式</p>
+<div class="formula">$$\sum_{n=0}^{\infty}a_n(x-x_0)^n=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)^n+\cdots.\tag{1}$$</div>
+<p>多项式是其特例；幂级数可看作"无穷次的多项式"。作变换 $y=x-x_0$ 即化归为</p>
+<div class="formula">$$\sum_{n=0}^{\infty}a_nx^n=a_0+a_1x+\cdots+a_nx^n+\cdots.\tag{2}$$</div>
+<p>课本指出：幂级数的收敛点集一定是一个区间。</p>
+<h3>15.4.2 定理15.4.1（Abel 定理）</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p>如果幂级数(2)在点 $x=x_0\ (\ne0)$ 处收敛，那么它必在 $|x|&lt;|x_0|$ 上绝对收敛；如果在 $x=x_1$ 处发散，那么它必在 $|x|>|x_1|$ 上发散。</p>
+<h4>课本证明路线</h4>
+<p>在 $x_0$ 处收敛 ⟹ 通项有界 $|a_nx_0^n|\le M$；对 $|x|&lt;|x_0|$ 用等比优级数 $M\sum\left|\frac{x}{x_0}\right|^n$ 得绝对收敛。后半句用反证：若某 $|x|>|x_1|$ 处收敛，则由前半句 $\sum a_nx_1^n$ 应绝对收敛，矛盾。</p>
+<h3>15.4.3 定理15.4.2（Cauchy-Hadamard 定理）与收敛半径</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>对给定的幂级数(2)，记 $R=\dfrac{1}{\limsup\limits_{n\to\infty}\sqrt[n]{|a_n|}}$，那么：</p>
+<p>(1) $R=0$ 时级数只在 $x=0$ 处收敛；</p>
+<p>(2) $R=+\infty$ 时级数在整个数轴上都绝对收敛；</p>
+<p>(3) $0&lt;R&lt;+\infty$ 时级数在 $(-R,R)$ 内绝对收敛，在 $[-R,R]$ 之外发散。</p>
+<h4>课本证明路线</h4>
+<p>三种情形都用根值法（定理14.3.2）：$\limsup\sqrt[n]{|a_nx^n|}=\frac{|x|}{R}$，分别得 $+\infty$、$0$、$\frac{|x|}{R}$ 与 1 的比较；发散侧的反证用定理15.4.1。</p>
+<h4>课本术语</h4>
+<p>$R$ 称为级数(2)的<b>收敛半径</b>，$(-R,R)$ 称为<b>收敛区间</b>（级数(1)的收敛区间为 $(x_0-R,x_0+R)$）。定理给出了计算 $R$ 的公式。</p>
+<h3>15.4.4 例1～例2</h3>
+<p class="pgref"><b>课本：27</b></p>
+<ul><li><b>例1</b>：$\sum nx^n$、$\sum\frac{x^n}{n!}$、$\sum n^nx^n$ 的收敛半径分别为 $1$、$+\infty$、$0$。</li><li><b>例2</b>：$\sum_{k=0}^{\infty}2^kx^{2k}$（缺项）：$\limsup\sqrt[n]{|a_n|}=\lim_{k\to\infty}\sqrt[2k]{2^k}=\sqrt2$，故 $R=\frac{1}{\sqrt2}$。</li></ul>
+<h3>15.4.5 端点收敛性说明（叙述式）</h3>
+<p class="pgref"><b>课本：p.25-34</b></p>
+<p>课本强调：在端点 $x=\pm R$ 处级数的收敛性<b>没有肯定的结论</b>。三个收敛半径都是 1 的例子：$\sum\frac{x^n}{n}$ 在 $x=-1$ 条件收敛、$x=1$ 发散；$\sum\frac{x^n}{n^2}$ 在两端点都绝对收敛；$\sum nx^n$ 在两端点都发散。</p>
+<h3>15.4.6 定理15.4.3（内闭一致收敛）</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>设级数(2)的收敛半径为 $R$，则对任意 $r\in(0,R)$，级数(2)在 $[-r,r]$ 上一致收敛。这时称级数(2)在 $(-R,R)$ 上<b>内闭一致收敛</b>。</p>
+<h4>课本证明路线</h4>
+<p>$x\in[-r,r]$ 时 $|a_nx^n|\le|a_n|r^n$，而 $\sum|a_n|r^n$ 收敛，用 Weierstrass 判别法。</p>
+<h3>15.4.7 定理15.4.4（和函数的连续性与任意阶可导）</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p>设级数(2)的收敛半径为 $R$，则其和函数 $S(x)$ 在 $(-R,R)$ 内连续，且在 $(-R,R)$ 内有任意阶导数：</p>
+<div class="formula">$$S^{(k)}(x)=\sum_{n=k}^{\infty}n(n-1)\cdots(n-k+1)a_nx^{n-k}\quad(k=1,2,\cdots).\tag{3}$$</div>
+<h4>课本证明路线</h4>
+<ol><li>任取 $x_0$，取 $r$ 使 $|x_0|&lt;r&lt;R$；由内闭一致收敛与定理15.3.1 得 $S$ 在 $x_0$ 连续；</li><li>逐项求导后的级数 $\sum na_nx^{n-1}$（式(4)）与原级数收敛半径相同（$\sqrt[n]{n}\to1$），故也在 $[-r,r]$ 上一致收敛；对级数(2)而言定理15.3.8 的三个条件在 $[-r,r]$ 上都成立，得 $S'(x)=\sum na_nx^{n-1}$（式(5)）在 $(-R,R)$ 内成立；</li><li>反复推理得式(3)。课本点评：这条定理揭示的正是幂级数与多项式的相似之处。</li></ol>
+<h3>15.4.8 定理15.4.5（逐项积分）</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p>设级数(2)的收敛半径为 $R$，$S(x)$ 是它的和函数，那么对任意 $x\in(-R,R)$，</p>
+<div class="formula">$$\int_0^xS(t)\,\mathrm{d}t=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1},\tag{6}$$</div>
+<p>而且右端幂级数的收敛半径仍为 $R$。（在 $[0,x]$ 上用一致收敛与逐项积分即得。）</p>
+<h3>15.4.9 例3～例4</h3>
+<p class="pgref"><b>课本：29</b></p>
+<ul><li><b>例3</b>：对 $\sum x^n=\frac1{1-x}$（$|x|&lt;1$）逐项求导得 $\sum nx^{n-1}=\frac{1}{(1-x)^2}$，故 $\sum nx^n=\frac{x}{(1-x)^2}$（$|x|&lt;1$）。取 $x=\frac12,\frac13$ 得 $\sum\frac{n}{2^n}=2$、$\sum\frac{n}{3^n}=\frac34$。</li><li><b>例4（★）</b>：由 $\frac{1}{1+x}=\sum(-1)^nx^n$ 从 0 到 $x$ 逐项积分得 $\ln(1+x)=\sum\limits_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^n$；由 $\frac{1}{1+x^2}=\sum(-1)^nx^{2n}$ 逐项积分得 $\arctan x=\sum\limits_{n=0}^{\infty}\frac{(-1)^n}{2n+1}x^{2n+1}$（均 $-1&lt;x&lt;1$）。</li></ul>
+<h3>15.4.10 定理15.4.6（Abel 第二定理）</h3>
+<p class="pgref"><b>课本：30</b></p>
+<p>设级数(2)的收敛半径为 $R$。如果级数在 $x=R$ 处收敛，则其和函数 $S(x)$ 在 $x=R$ 处左连续；如果在 $x=-R$ 处收敛，则 $S(x)$ 在 $x=-R$ 处右连续。</p>
+<h4>课本证明路线</h4>
+<p>设在 $x=R$ 处收敛。改写 $a_nx^n=a_nR^n\left(\frac xR\right)^n$：$\sum a_nR^n$ 收敛，$\left\{\left(\frac xR\right)^n\right\}$ 对每个 $x\in[0,R]$ 递减且一致有界，由级数一致收敛的 <b>Abel 判别法</b>知级数在 $[0,R]$ 上一致收敛，再由定理15.3.2 得左连续。另一半同理。</p>
+<h3>15.4.11 例5～例6</h3>
+<p class="pgref"><b>课本：30</b></p>
+<ul><li><b>例5</b>：由例4 的展开式及右端级数在 $x=1$ 处收敛，用 Abel 第二定理得</li></ul>
+<div class="formula">$$\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\lim_{x\to1^-}\ln(1+x)=\ln2,\qquad \sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}=\frac{\pi}{4}.$$</div>
+<ul><li><b>例6</b>：考虑 $S(x)=\sum(-1)^n\frac{x^{3n+1}}{3n+1}$（$R=1$，$x=1$ 处收敛）。$S'(x)=\sum(-1)^nx^{3n}=\frac1{1+x^3}$，故</li></ul>
+<div class="formula">$$\sum_{n=0}^{\infty}\frac{(-1)^n}{3n+1}=\int_0^1\frac{\mathrm dt}{1+t^3}=\frac13\Big(\ln2+\frac{\pi}{\sqrt3}\Big).$$</div>
+<h3>15.4.12 Abel 第二定理的逆问题与定理15.4.7（Tauber 定理）</h3>
+<p class="pgref"><b>课本：31</b></p>
+<p><b>逆命题一般不成立</b>：$\sum(-1)^nx^n$ 的收敛半径为 1，$\lim\limits_{x\to1^-}\sum(-1)^nx^n=\frac12$ 存在，但 $\sum(-1)^n$ 发散。</p>
+<p><b>定理15.4.7（Tauber 定理）</b> 设幂级数 $\sum a_nx^n$ 的收敛半径为 1，且 $\lim\limits_{x\to1^-}\sum a_nx^n=A$ 存在。如果 $a_n=o\!\left(\frac1n\right)$，那么 $\sum\limits_{n=0}^{\infty}a_n=A$。</p>
+<h4>课本证明路线</h4>
+<ol><li>令 $\delta_n=\sup\limits_{k\ge n}|ka_k|$，则 $\delta_n$ 递减趋于 0；记 $S(x)=\sum a_nx^n$；</li><li>关键拆分（式(7)）：$\sum_{n=0}^{N}a_n-A=I_1(x)+I_2(x)+I_3(x)$，其中 $I_1=(1-x)\sum_{n=1}^Na_n(1+x+\cdots+x^{n-1})$ 型截断项、$I_2=-\sum_{n=N+1}^\infty a_nx^n$ 尾项、$I_3=S(x)-A$；</li><li>估计（式(8)(9)）：$|I_1|\le(1-x)N\delta_1$，$|I_2|\le\frac{\delta_N}{N(1-x)}$；</li><li>取 $x_N=1-\frac{\sqrt{\delta_N}}{N}$（$N(1-x_N)=\sqrt{\delta_N}\to0$，$x_N\to1$），两项都变为 $O(\sqrt{\delta_N})$，得 $|\sum_{n=0}^Na_n-A|\le(\delta_1+1)\sqrt{\delta_N}+|S(x_N)-A|$（式(10)）；</li><li>令 $N\to\infty$ 即得结论。</li></ol>
+<p>课本随后给出另一个简单的充分条件 $a_n\ge0$：由它即可保证同样的结论成立，证明留作练习（练习题15.4 第7题）。</p>
+<h3>15.4.13 定理15.4.8（幂级数的乘法）</h3>
+<p class="pgref"><b>课本：33</b></p>
+<p>设 $\sum a_nx^n$ 与 $\sum b_nx^n$ 的收敛半径均为 $R$，那么当 $x\in(-R,R)$ 时</p>
+<div class="formula">$$\Big(\sum_{n=0}^{\infty}a_nx^n\Big)\Big(\sum_{n=0}^{\infty}b_nx^n\Big)=\sum_{n=0}^{\infty}c_nx^n,\qquad c_n=\sum_{l=0}^{n}a_lb_{n-l}\ (n=0,1,2,\cdots).$$</div>
+<p>（绝对收敛保证乘积等于 Cauchy 乘积。）</p>
+<h3>15.4.14 例7～例8</h3>
+<p class="pgref"><b>课本：33</b></p>
+<ul><li><b>例7</b>：由 $\sum x^n=\frac1{1-x}$（$|x|&lt;1$）与定理15.4.8：$\dfrac{1}{1-x}\sum a_nx^n=\sum S_nx^n$，其中 $S_n=\sum_{l=0}^{n}a_l$（部分和数列的母函数）；类推得 $\dfrac{1}{(1-x)^2}\sum a_nx^n=\sum(S_0+S_1+\cdots+S_n)x^n$ 等。</li><li><b>例8</b>：两次使用例7：$\frac{1}{(1-x)^2}=\sum(n+1)x^n$，进而 $\frac{1}{(1-x)^3}=\sum\frac{(n+1)(n+2)}{2}x^n$，即 $\sum_{n=0}^{\infty}(n+1)(n+2)x^n=\dfrac{2}{(1-x)^3}$（$x\in(-1,1)$）。</li></ul>
+<hr>
+<h2 id="sec15_5">§15.5 函数的幂级数展开式<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.35-42</b></p>
+<h3>15.5.1 展开的唯一性与 Taylor 级数（叙述式定义）</h3>
+<p class="pgref"><b>课本：p.35-42</b></p>
+<p>若 $f$ 能在 $(x_0-R,x_0+R)$ 内展开为幂级数，则由定理15.4.4 它必有任意阶导数（必要性），且系数唯一确定为</p>
+<div class="formula">$$a_k=\frac{f^{(k)}(x_0)}{k!}\quad(k=0,1,2,\cdots).$$</div>
+<p>只要 $f$ 在 $x=x_0$ 处有任意阶导数，就可作出幂级数 $\sum\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$，称为 $f$ 在 $x_0$ 处的 <b>Taylor 级数</b>，记为</p>
+<div class="formula">$$f(x)\sim\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n.\tag{1}$$</div>
+<p>$x_0=0$ 时也称 <b>Maclaurin 级数</b>。注意"$\sim$"只表示作出，不表示相等。</p>
+<h3>15.5.2 Taylor 级数未必收敛到自己（两个课本反例，叙述式）</h3>
+<p class="pgref"><b>课本：p.35-42</b></p>
+<ul><li>$f(x)=\sum\limits_{n=0}^{\infty}\frac{\sin 2^nx}{n!}$：由函数项级数确定的函数，利用逐项求导定理（定理15.3.8）不难证明它在 $\mathbb{R}$ 上有任意阶导数；但其 Taylor 级数 $\sum\limits_{k=0}^{\infty}\frac{(-1)^k\mathrm e^{2^{2k+1}}}{(2k+1)!}x^{2k+1}$ 除 $x=0$ 外<b>处处发散</b>。</li><li>$f(x)=\begin{cases}\mathrm e^{-1/x^2},&x\ne0\\0,&x=0\end{cases}$：由 4.3 节知 $f^{(n)}(0)=0$，Taylor 级数收敛于 0 而不收敛于 $f$ 自己。</li></ul>
+<h3>15.5.3 可展的充要条件与两种余项（叙述式）</h3>
+<p class="pgref"><b>课本：p.35-42</b></p>
+<p>由 Taylor 公式 $f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x)$，余项有 Lagrange 形式 $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$ 与 Cauchy 形式 $R_n(x)=\frac{f^{(n+1)}(\eta)}{n!}(x-\eta)^n(x-x_0)$。$f$ 能展开为 Taylor 级数的充要条件是：对任意 $x$，$\lim\limits_{n\to\infty}R_n(x)=0$。</p>
+<h3>15.5.4 定理15.5.1（可展开的实用充分条件）</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p>如果存在常数 $M$，使得对 $(x_0-R,x_0+R)$ 内的所有 $x$ 及一切充分大的正整数 $n$，均有 $|f^{(n)}(x)|\le M$，那么 $f$ 能在 $(x_0-R,x_0+R)$ 上展开为 Taylor 级数。</p>
+<h4>课本证明路线</h4>
+<p>用 Lagrange 余项：$|R_n(x)|\le M\frac{|x-x_0|^{n+1}}{(n+1)!}\le M\frac{R^{n+1}}{(n+1)!}\to0$（由 $\sum\frac{R^n}{n!}$ 收敛）。</p>
+<h3>15.5.5 例1～例2（基本初等函数的展开）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<ul><li><b>例1</b>：$(\mathrm e^x)^{(n)}=\mathrm e^x$，在任何 $(-R,R)$ 上用定理15.5.1（$|\mathrm e^x|&lt;\mathrm e^R$），得</li></ul>
+<div class="formula">$$\mathrm e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}\quad(-\infty&lt;x&lt;+\infty).\tag{2}$$</div>
+<ul><li><b>例2</b>：$(\sin x)^{(n)}\big|_{x=0}=\sin\frac{n\pi}2=\begin{cases}0,&n=2k\\(-1)^k,&n=2k+1\end{cases}$，且各阶导数有界，得</li></ul>
+<div class="formula">$$\sin x=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}x^{2k+1},\qquad \cos x=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}\quad(-\infty&lt;x&lt;+\infty).$$</div>
+<h3>15.5.6 例3（★ 二项式展开与端点讨论）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p>求 $f(x)=(1+x)^\alpha$（$\alpha$ 为任意实数）的 Maclaurin 展开式。</p>
+<p><b>解要点</b>：由 4.3 节例5 的展开与余项估计，对 $|x|&lt;1$ 证得 $\lim R_n(x)=0$，从而</p>
+<div class="formula">$$(1+x)^\alpha=\sum_{k=0}^{\infty}\binom{\alpha}{k}x^k\quad(|x|&lt;1),\qquad \binom{\alpha}{k}=\frac{\alpha(\alpha-1)\cdots(\alpha-k+1)}{k!}.\tag{3}$$</div>
+<p>端点 $x=\pm1$ 分三种情形（配合 Abel 第二定理）：</p>
+<ul><li><b>(a)</b> $\alpha\le-1$：$\left|\binom{\alpha}{k}\right|\ge1$，两端点处级数发散，式(3)只在 $(-1,1)$ 成立；</li><li><b>(b)</b> $-1&lt;\alpha&lt;0$：$x=-1$ 时通项绝对值不小于 $\frac{|\alpha|}{k}$，发散；$x=1$ 时为交错级数，$\{|\binom{\alpha}{k}|\}$ 递减趋于 0（用 14.7 节例7），由 Leibniz 判别法收敛。式(3)在 $(-1,1]$ 成立；</li><li><b>(c)</b> $\alpha>0$：由 14.3 节例5（Raabe 判别法）知 $\sum|\binom{\alpha}{k}|&lt;+\infty$，两端点都绝对收敛，式(3)在 $[-1,1]$ 成立。</li></ul>
+<h3>15.5.7 展开技巧与例4～例6</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>课本说明：除定理15.5.1 的方法外，还可利用已知展开式通过<b>幂级数的微分、积分以及代数运算</b>作出新的展开式（如 15.4 例4 的 $\ln(1+x)$、$\arctan x$）。</p>
+<ul><li><b>例4</b>：$\frac{1}{(1-x)(2-x)}=\frac{1}{1-x}-\frac{1}{2-x}=\sum\limits_{n=0}^{\infty}\left(1-\frac{1}{2^{n+1}}\right)x^n$（$-1&lt;x&lt;1$）。</li><li><b>例5</b>：$\ln(1-x)=-\sum\frac{x^n}{n}$（$-1\le x&lt;1$），与 $\frac{1}{1-x}$ 作 Cauchy 乘积（用 15.4 节例7 的部分和母函数公式），得</li></ul>
+<div class="formula">$$\frac{\ln(1-x)}{1-x}=-\sum_{n=1}^{\infty}\Big(1+\frac12+\cdots+\frac1n\Big)x^n\quad(-1&lt;x&lt;1).$$</div>
+<ul><li><b>例6</b>：$\ln\frac{1+x}{1-x}=\ln(1+x)-\ln(1-x)=2\sum\limits_{k=0}^{\infty}\frac{x^{2k+1}}{2k+1}$（$-1&lt;x&lt;1$）。</li></ul>
+<h3>15.5.8 六个常用初等函数展开式（课本明示"应该熟练地掌握"）</h3>
+<p class="pgref"><b>课本：p.35-42</b></p>
+<div class="formula">$$\mathrm e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}\ (-\infty&lt;x&lt;+\infty);\qquad \sin x=\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)!}x^{2n+1};\qquad \cos x=\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n)!}x^{2n};$$</div>
+<div class="formula">$$\ln(1+x)=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^n\ (-1&lt;x\le1);\qquad \arctan x=\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}x^{2n+1}\ (-1\le x\le1);$$</div>
+<div class="formula">$$(1+x)^\alpha=1+\sum_{n=1}^{\infty}\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n\quad(\text{成立范围视 }\alpha\text{ 而定，详见例3}).$$</div>
+<hr>
+<h2 id="sec15_6">§15.6 用多项式一致逼近连续函数<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<h3>15.6.1 用多项式一致逼近（叙述式定义）与 Weierstrass 逼近定理</h3>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<p>设 $f$ 定义在有限闭区间 $[a,b]$ 上。如果对任意 $\varepsilon>0$ 总能找到多项式 $P$ 使 $|f(x)-P(x)|&lt;\varepsilon$ 对 $[a,b]$ 中所有 $x$ 成立，则称 $f$ 在 $[a,b]$ 上<b>能用多项式一致逼近</b>。</p>
+<p>课本论证：能展开成幂级数的函数显然可以（取部分和），但这只是很窄的一类；$f$ 能用多项式一致逼近的<b>充要条件是 $f$ 连续</b>。必要性显然（多项式序列一致收敛 ⟹ 极限连续）；充分性即：</p>
+<p><b>定理15.6.1（Weierstrass 逼近定理）</b> 闭区间 $[a,b]$ 上的任何连续函数 $f$ 都能在这个区间上用多项式一致逼近。（Weierstrass 1885 年证明。）</p>
+<h3>15.6.2 Bernstein 基函数 $B_i^n(x)$ 及三条性质（无"性质"编号）</h3>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<p>记</p>
+<div class="formula">$$B_i^n(x)=\binom ni x^i(1-x)^{n-i}\quad(i=0,1,\cdots,n).$$</div>
+<p>三条简单性质：</p>
+<p>(1) 对 $x\in[0,1]$，$B_i^n(x)\ge0$（显然）；</p>
+<p>(2) 对 $x\in[0,1]$，$\sum\limits_{i=0}^{n}B_i^n(x)=1$（由二项式定理 $(x+(1-x))^n=1$）；</p>
+<p>(3) 若 $P(x)=\sum\limits_{i=0}^{n}a_iB_i^n(x)$，则 $P'(x)=n\sum\limits_{i=0}^{n-1}(a_{i+1}-a_i)B_i^{n-1}(x)$（直接求导后错位合并两个和式）。</p>
+<h3>15.6.3 定义15.6.1（Bernstein 多项式）</h3>
+<p class="pgref"><b>课本：45</b></p>
+<p>设 $f:[0,1]\to\mathbb{R}$。称</p>
+<div class="formula">$$B_n(f;x)=\sum_{i=0}^{n}f\Big(\frac in\Big)\binom nix^i(1-x)^{n-i}=\sum_{i=0}^{n}f\Big(\frac in\Big)B_i^n(x)$$</div>
+<p>为 $f$ 的 <b>$n$ 次 Bernstein 多项式</b>。</p>
+<h3>15.6.4 三个基本例算（无编号）</h3>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<p>由上述性质依次算得：</p>
+<div class="formula">$$B_n(1;x)=1;\tag{4}\qquad B_n(x;x)=x;\quad\text{(5)}\qquad B_n(x^2;x)=\Big(1-\frac1n\Big)x^2+\frac xn.\quad\text{(6)}$$</div>
+<h3>15.6.5 引理15.6.1</h3>
+<p class="pgref"><b>课本：46</b></p>
+<p>对 $x\in[0,1]$，有不等式</p>
+<div class="formula">$$\sum_{k=0}^{n}(k-nx)^2B_k^n(x)\le\frac n4.$$</div>
+<h4>课本证明路线</h4>
+<p>展开 $(k-nx)^2=k^2-2knx+n^2x^2$，用式(4)(5)(6) 把三个和式化为 $B_n(x^2;x)$、$B_n(x;x)$ 与 $B_n(1;x)$，算得总和 $=nx(1-x)\le\frac n4$。</p>
+<h3>15.6.6 定理15.6.1 的证明</h3>
+<p class="pgref"><b>课本：43</b></p>
+<p><b>课本证明路线</b>（分两部分）：</p>
+<p><b>(a)</b> 设 $f$ 是 $[0,1]$ 上的连续函数，证 $B_n(f;x)\rightrightarrows f$：</p>
+<ol><li>由一致连续性：给定 $\varepsilon>0$，有 $\delta>0$ 使 $|x'-x''|&lt;\delta$ 时 $|f(x')-f(x'' )|&lt;\varepsilon/2$；又 $|f|\le M$；</li><li>用性质(2) 写 $f(x)=\sum f(x)B_k^n(x)$，拆分</li></ol>
+<div class="formula">$$|B_n(f;x)-f(x)|\le\underbrace{\sum_{k\in E_1}\Big|f\Big(\tfrac kn\Big)-f(x)\Big|B_k^n(x)}_{S_1}+\underbrace{\sum_{k\in E_2}\Big|f\Big(\tfrac kn\Big)-f(x)\Big|B_k^n(x)}_{S_2},$$</div>
+<p>其中 $E_1=\{k:\big|\tfrac kn-x\big|\ge\delta\}$，$E_2=\{k:\big|\tfrac kn-x\big|&lt;\delta\}$；</p>
+<ol><li>估计 $S_1$：放大 $2M\sum_{E_1}B_k^n\le\frac{2M}{\delta^2n^2}\sum_{k=0}^{n}(k-nx)^2B_k^n(x)&lt;\frac{M}{2n\delta^2}$（用引理15.6.1）；</li><li>估计 $S_2$：由一致连续性 $S_2&lt;\frac\varepsilon2$；</li><li>当 $n>\big[M/(\varepsilon\delta^2)\big]$ 时 $|B_n(f;x)-f(x)|&lt;\varepsilon$ 对一切 $x\in[0,1]$ 成立。</li></ol>
+<p><b>(b)</b> 设 $f$ 在 $[a,b]$ 上连续：作变换 $x=a+t(b-a)$，$g(t)=f(a+t(b-a))$ 是 $[0,1]$ 上的连续函数；由 (a) 找到多项式 $P(t)$ 逼近 $g$，代回 $t=\frac{x-a}{b-a}$ 即得 $[a,b]$ 上的逼近多项式 $P\big(\frac{x-a}{b-a}\big)$。</p>
+<h3>15.6.7 课本注明：区间条件不可去</h3>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<p>把有限闭区间改成开区间或无穷区间，定理不再成立：$f(x)=1/x$ 在 $(0,1]$ 连续但在 $x=0$ 附近无界，不可能被一致逼近；$1/x$ 在 $[1,+\infty)$ 连续有界，而任何多项式在 $[1,+\infty)$ 上无界，也不能一致逼近它。</p>
+<h3>15.6.8 课本评注：构造性证明与应用价值</h3>
+<p class="pgref"><b>课本：p.43-49</b></p>
+<ul><li>该证明是<b>构造性证明</b>：不仅证明逼近多项式存在，还具体给出 $B_n(f;x)$；</li><li>但逼近速度很慢：对 $f(x)=x^2$，由式(6)，$B_n(x^2;x)-x^2=\frac{x(1-x)}{n}\le\frac{1}{4n}$，逼近阶仅为 $1/n$；</li><li>课本引 P.J.Davis 的看法：当人们发现逼近多项式的大范围性质比逼近速度更重要时，Bernstein 多项式才能得到有效应用；差不多同时 Bezier 已把 Bernstein 多项式的<b>保形性质</b>（练习题15.6 第1题）用于自由型曲线和曲面的设计。</li></ul>
+<hr>
+<h2 id="sec15_7">§15.7 幂级数在组合数学中的应用<span class="freq">◇</span></h2>
+<p class="pgref"><b>课本：p.49-56</b></p>
+<h3>15.7.1 定义15.7.1（母函数）</h3>
+<p class="pgref"><b>课本：50</b></p>
+<p>设 $\{a_n\}$ 是一个给定的数列。称幂级数</p>
+<div class="formula">$$\sum_{n=0}^{\infty}a_nx^n=a_0+a_1x+\cdots+a_nx^n+\cdots$$</div>
+<p>为 $\{a_n\}$ 的<b>母函数</b>（或生成函数）。</p>
+<p>课本说明：数列和它的母函数之间一一对应；有些与数列有关的问题可以通过母函数解决。</p>
+<h3>15.7.2 $(1+x)^\alpha$ 作为组合数列的母函数（叙述式）</h3>
+<p class="pgref"><b>课本：p.49-56</b></p>
+<p>由 15.5 例3：对任意实数 $\alpha$，</p>
+<div class="formula">$$(1+x)^\alpha=\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n\quad(|x|&lt;1),\tag{1}$$</div>
+<p>即 $(1+x)^\alpha$ 是数列 $\binom{\alpha}{0},\binom{\alpha}{1},\cdots,\binom{\alpha}{n},\cdots$ 的母函数。由此可推出若干组合恒等式。</p>
+<h3>15.7.3 例1（Vandermonde 型恒等式）</h3>
+<p class="pgref"><b>课本：50</b></p>
+<p>设 $\alpha,\beta$ 是任意实数，证明：</p>
+<div class="formula">$$\sum_{k=0}^{n}\binom{\alpha}{k}\binom{\beta}{n-k}=\binom{\alpha+\beta}{n}.\tag{2}$$</div>
+<p><b>课本证明路线</b>：两母函数相乘（幂级数的 Cauchy 乘积），$(1+x)^\alpha(1+x)^\beta=\sum_n\Big(\sum_{k=0}^n\binom{\alpha}{k}\binom{\beta}{n-k}\Big)x^n=(1+x)^{\alpha+\beta}$；由母函数与数列的一一对应比较系数得式(2)。</p>
+<p>特例（取 $\alpha=\beta=n$）：$\sum\limits_{k=0}^{n}\dbinom nk^2=\dbinom{2n}{n}$。</p>
+<h3>15.7.4 例2</h3>
+<p class="pgref"><b>课本：51</b></p>
+<p>设 $p,q,n$ 都是非负整数，证明：</p>
+<div class="formula">$$\sum_{k=0}^{n}\binom{p+k}{p}\binom{q+n-k}{q}=\binom{p+q+n+1}{p+q+1}.\tag{3}$$</div>
+<p><b>课本证明路线</b>：由式(1) 得 $(1-x)^{-p-1}=\sum\limits_{n=0}^{\infty}\binom{p+n}{p}x^n$（同理 $q$）；两式相乘，左端为 $(1-x)^{-(p+q+2)}=\sum\binom{p+q+n+1}{p+q+1}x^n$，比较系数。</p>
+<h3>15.7.5 例3（★ Fibonacci 数列）</h3>
+<p class="pgref"><b>课本：51</b></p>
+<p>设数列 $\{a_n\}$ 满足线性递推关系 $a_n=a_{n-1}+a_{n-2}\ (n=2,3,\cdots)$，$a_0=a_1=1$，求一般表达式。</p>
+<p><b>解要点</b>：</p>
+<ol><li>设母函数为 $f(x)=\sum a_nx^n$；将 $f(x)$、$-xf(x)$、$-x^2f(x)$ 三式相加，递推关系消去所有 $n\ge2$ 的项，得 $(1-x-x^2)f(x)=1$，故</li></ol>
+<div class="formula">$$f(x)=\frac{1}{1-x-x^2};$$</div>
+<ol><li>把 $f(x)$ 分解为部分分式（$r_1=\frac{-1+\sqrt5}2$，$r_2=\frac{-1-\sqrt5}2$ 为 $1-x-x^2=0$ 的两根），各自展开为等比级数后合并，得</li></ol>
+<div class="formula">$$a_n=\frac{1}{\sqrt5}\left[\left(\frac{1+\sqrt5}{2}\right)^{n+1}-\left(\frac{1-\sqrt5}{2}\right)^{n+1}\right]\quad(n=0,1,2,\cdots).\tag{5}$$</div>
+<p>课本评注：这就是 <b>Fibonacci 数列</b>（斐波那契，1170～1250）；一串正整数通过含无理数的式子表示出来，不用此方法很难想象。实际计算时把式(5)改写：$a_n$ 等于最接近 $\frac{1}{\sqrt5}\big(\frac{1+\sqrt5}{2}\big)^{n+1}$ 的整数。</p>
+<h3>15.7.6 线性递推的一般说明（叙述式）</h3>
+<p class="pgref"><b>课本：p.49-56</b></p>
+<p>若 $\{a_n\}$ 满足 $k$ 阶线性递推关系 $a_n=c_1a_{n-1}+\cdots+c_ka_{n-k}$（$c_k\ne0$）且给定 $k$ 个初始值，用例3的方法可求得一般表达式；非线性递推只在特殊情况下可解——下面就是一例。</p>
+<h3>15.7.7 例4（★ 凸多边形三角剖分计数 / Catalan 数）</h3>
+<p class="pgref"><b>课本：53</b></p>
+<p>用 $n-3$ 条在内部不相交的对角线，把凸 $n$ 边形分成 $n-2$ 个三角形，问有多少种不同方法？</p>
+<p><b>解要点</b>（图15.4）：</p>
+<ol><li>设凸 $n+1$ 边形的分法数为 $a_n$，规定 $a_0=0,a_1=1,a_2=1$；取定一边 $AB$ 与一点 $C$，$\triangle ABC$ 把多边形分成凸 $k+1$ 边形与凸 $n-k+1$ 边形两部分，让 $C$ 取遍诸顶点得<b>非线性递推</b></li></ol>
+<div class="formula">$$a_n=a_1a_{n-1}+a_2a_{n-2}+\cdots+a_{n-1}a_1\quad(n\ge3);$$</div>
+<ol><li>设母函数 $f(x)=\sum a_nx^n$，由幂级数乘法 $f^2(x)=\sum_n\big(\sum_{k}a_ka_{n-k}\big)x^n=f(x)-x$，即 $f^2-f+x=0$；</li><li>两根中取满足 $f(0)=a_0=0$ 的那支：$f(x)=\frac{1-\sqrt{1-4x}}{2}$；</li><li>展开 $(1-4x)^{1/2}$（用 $\binom{1/2}{n}$ 的显式计算）得</li></ol>
+<div class="formula">$$a_n=\frac1n\binom{2n-2}{n-1}.$$</div>
+<hr>
+<h2 id="sec15_8">§15.8 从两个著名的例子谈起<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.56-63</b></p>
+<p>作为函数项级数理论的应用，课本介绍两个著名例子（它们在澄清模糊认识方面起过重要作用）。</p>
+<h3>15.8.1 处处连续、处处不可微的函数（van der Waerden 构造）</h3>
+<p class="pgref"><b>课本：p.56-63</b></p>
+<p>课本背景：第一个这样的函数是 1875 年 Weierstrass 作出的；这里介绍 van der Waerden 1930 年的构造，想法更为直观。</p>
+<p><b>构造步骤</b>：</p>
+<ol><li>在 $[-1/2,1/2]$ 上以其为斜边向横轴上方作等腰直角三角形，两条直角边确定一个连续函数；再作周期为 1 的周期延拓，记为 $u_0(x)$——分段线性、以 1 为周期的连续函数，$0\le u_0\le\frac12$，其"线性区间"长度为 $\frac12$，线性区间内部 $u_0'=\pm1$；</li><li>"一分为四"：把 $y=u_0(x)$ 图像与横轴围成的每个等腰直角三角形的斜边四等分，每一小份上方作等腰直角三角形，直角边组成连续折线 $u_1(x)$；同样方式从 $u_{n-1}$ 造出 $u_n$。</li></ol>
+<p><b>几何性质 (a)～(d)（无编号）</b>：</p>
+<ul><li>(a) $u_n(x)$ 是 $\mathbb{R}$ 上连续的周期函数，周期为 $1/4^n$（$n=0,1,2,\cdots$）；</li><li>(b) $0\le u_n(x)\le\frac12\cdot\frac1{4^n}$；</li><li>(c) $u_n$ 的线性区间长度为 $\frac12\cdot\frac1{4^n}$，且完全含于 $u_{n-1}$ 的某个线性区间之内；</li><li>(d) 在 $u_n$ 的线性区间内点上 $u_n'=\pm1$。</li></ul>
+<p><b>级数与连续性</b>：由 (b)，$\sum u_n(x)$ 以收敛级数 $\sum\frac{1}{2\cdot4^n}$ 为优级数，由 Weierstrass 判别法在 $\mathbb{R}$ 上一致收敛，故和函数</p>
+<div class="formula">$$f(x)=\sum_{n=0}^{\infty}u_n(x)$$</div>
+<p>是实数轴上的连续函数。</p>
+<p><b>处处不可微的证明路线</b>：</p>
+<ol><li>任取 $x$，选取 $x_n$ 使 $x,x_n$ 同属 $u_n$ 的某一个线性区间且 $|x-x_n|=\frac14^{n+1}$（式(1)，线性区间长度之半），则 $x_n\to x$；</li><li>关键等式（式(2)）：$\dfrac{u_k(x_n)-u_k(x)}{x_n-x}=\begin{cases}\pm1,&k=0,1,\cdots,n\\0,&k=n+1,n+2,\cdots\end{cases}$（前者反复用性质 (c)(d)；后者因 $1/4^{n+1}$ 是 $u_{n+1},u_{n+2},\cdots$ 的周期）；</li><li>于是差商 $\frac{f(x_n)-f(x)}{x_n-x}=\sum_{k=0}^{n}\pm1$（式(3)）：它是整数且其奇偶性随 $n$ 变化，故 $n\to\infty$ 时极限不存在——$f$ 在 $x$ 处不可微。由 $x$ 任意，$f$ 处处不可微。</li></ol>
+<h3>15.8.2 填满正方形的连续曲线（Peano / Schoenberg 构造）</h3>
+<p class="pgref"><b>课本：p.56-63</b></p>
+<p>课本背景：1890 年 Peano 构造出填满正方形的连续曲线；下面介绍 Schoenberg 1938 年的例子。</p>
+<p><b>构造</b>：记 $I=[0,1]$。在 $I$ 上定义</p>
+<div class="formula">$$\varphi(t)=\begin{cases}0,&t\in[0,\tfrac13),\\ 3t-1,&t\in[\tfrac13,\tfrac23),\\ 1,&t\in[\tfrac23,1],\end{cases}\tag{4}$$</div>
+<p>再把 $\varphi$ 扩充为整个数轴上<b>周期为 2 的偶函数</b>。令</p>
+<div class="formula">$$\begin{cases}x(t)=\sum\limits_{n=1}^{\infty}\dfrac{\varphi(3^{2n-2}t)}{2^n},\\[2mm] y(t)=\sum\limits_{n=1}^{\infty}\dfrac{\varphi(3^{2n-1}t)}{2^n},\end{cases}\quad(t\in I).\tag{5}$$</div>
+<p><b>连续性</b>：由 $0\le\varphi\le1$，$\sum\frac1{2^n}$ 是两级数的收敛优级数，故 $x(t),y(t)$ 都是 $I$ 上的连续函数。</p>
+<p><b>填满 $I\times I$ 的证明路线</b>：只需证对任意 $(a,b)\in I\times I$ 存在 $t_0\in I$ 使 $x(t_0)=a,y(t_0)=b$（式(6)）：</p>
+<ol><li>将 $a,b$ 表为二进制小数 $a=\sum\frac{a_n}{2^n}$，$b=\sum\frac{b_n}{2^n}$；把 $\{a_n\},\{b_n\}$ 交错排列为 $\eta_1,\eta_2,\eta_3,\eta_4,\cdots$（$\eta_{2n-1}=a_n$，$\eta_{2n}=b_n$）；</li><li>定义 $t_0=\sum\limits_{n=1}^{\infty}\frac{2\eta_n}{3^n}$，则 $0\le t_0\le2\sum\frac1{3^n}=1$，$t_0\in I$；</li><li>关键等式（式(7)）：$\varphi(3^kt_0)=\eta_{k+1}\ (k=0,1,2,\cdots)$。$k=0$ 按 $\eta_1=0,1$ 两种情形直接验证；$k\ge1$ 时写 $3^kt_0=2m+\frac23\eta_{k+1}+\alpha_k$（$m$ 为整数，$0\le\alpha_k\le\frac13$），利用 $\varphi$ 的周期 2 与分段定义逐一验证；</li><li>代入式(5)：$x(t_0)=\sum\frac{\eta_{2n-1}}{2^n}=a$，$y(t_0)=\sum\frac{\eta_{2n}}{2^n}=b$。</li></ol>
+<p><b>推广（课本正文给出）</b>：同法可构造填满整个立方体 $I\times I\times I$ 的空间连续曲线（$x,y,z$ 分别叠加 $\varphi(3^{3n-3}t),\varphi(3^{3n-2}t),\varphi(3^{3n-1}t)$；证明留作练习题15.8）。</p>
+<h3>15.8.3 分形几何的背景介绍（叙述式）</h3>
+<p class="pgref"><b>课本：p.56-63</b></p>
+<p>课本以较大篇幅介绍：这两个例子是新兴学科"分形几何"中所谓"分形集"的典型例子。</p>
+<ul><li>长期以来不够光滑、不够规则的函数被视为病态；近年来人们意识到不规则图形更能反映自然现象（布朗运动、湍流、海岸线、材料裂纹、云彩边界等）；</li><li>Mandelbrot（芒德布罗，1924～）1982 年发表《大自然的分形几何》；分形至今没有明确定义，最初定义为 Hausdorff 维数非整数的集合，后被修改为"局部和整体按某种方式相似的集合"；</li><li>分形集的特征大体有：(a) 通常有自相似结构（近似的或统计的）；(b) 有错综复杂的细致构造；(c) 几何性质难以用经典数学语言描述；(d) 整体虽复杂却由简单明了的方式（通常用迭代）确定；</li><li>处处连续、处处不可微的函数的生成正是迭代 + 叠加，而其图像在任何一点的充分小邻域内都非常复杂；Mandelbrot 的贡献在于找到了这些"反例"之间的内在联系。有兴趣的读者可参阅 K. J. Falconer《分形几何——数学基础及其应用》。</li></ul>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 X.Y</b>（基本）与<b>问题 X.Y</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§15.1</td><td>练习题15.1：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=226</td><td>p.3-4（共 8 题）</td><td>问题15.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=227</td><td>p.4（共 3 题）</td></tr><tr><td>§15.2</td><td>练习题15.2：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=236</td><td>p.13-15（共 13 题）</td><td>问题15.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=238</td><td>p.15（共 7 题）</td></tr><tr><td>§15.3</td><td>练习题15.3：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=245\</td><td>p.22-23（共 8 题）</td><td>问题15.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=246\</td><td>p.23（共 7 题）</td></tr><tr><td>§15.4</td><td>练习题15.4：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=257\</td><td>p.34-35（共 8 题）</td><td>问题15.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=258\</td><td>p.35（共 5 题）</td></tr><tr><td>§15.5</td><td>练习题15.5：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=264\</td><td>p.41-42（共 5 题）</td><td>问题15.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=265\</td><td>p.42（共 4 题）</td></tr><tr><td>§15.6</td><td>练习题15.6：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=271\</td><td>p.48-49（共 6 题）</td><td>问题15.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=272\</td><td>p.49（共 3 题）</td></tr><tr><td>§15.7</td><td>练习题15.7：约 ../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=278\</td><td>p.55-56（共 6 题）</td><td>问题15.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=279\</td><td>p.56（共 5 题）</td></tr><tr><td>§15.8</td><td>练习题15.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=286\</td><td>p.63（共 1 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：本章无补充题档。问题档页码来自条目索引的显式定位；练习题档位于本节正文之后、问题档之前，页码按相邻条目推算为近似区间 [待核原页]。§15.8 无问题档。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">函数项级数、收敛/发散点集、和函数；三个基本问题（连续/逐项积分/逐项求导）
+→ 四个否定性反例（x^n、Dirichlet 型、2n²xe^(−n²x²)、sin nx/√n）
+→ 逐点收敛与 N(x,ε) → 一致收敛定义（定义15.2.1）、几何解释、β_n 判别（定理15.2.1）
+→ 函数列 Cauchy 原理（定理15.2.2）→ 级数一致收敛（定义15.2.2）与 Cauchy 原理（定理15.2.3）、必要条件（推论15.2.1）
+→ Weierstrass 判别法与优级数（定理15.2.4）→ 局限性说明
+→ 逐点有界/一致有界 → Dirichlet 判别法（定理15.2.5）、Abel 判别法（定理15.2.6）、Σ±sin nx/n 例
+→ 连续性与一致收敛（定理15.3.1、15.3.2）与四个应用例
+→ Dini 定理（定理15.3.3、15.3.4）及区间条件的反例
+→ 逐项积分（定理15.3.5、推论15.3.1、定理15.3.6、推论15.3.2）
+→ 逐项求导（定理15.3.7、15.3.8）
+→ 极限运算交换总结；历史注记（Cauchy 错误、Abel 反例 Σ sin nx/n = (π−x)/2）
+→ 幂级数（式(1)(2)）→ Abel 定理（定理15.4.1）→ Cauchy-Hadamard（定理15.4.2）、收敛半径/收敛区间
+→ 内闭一致收敛（定理15.4.3）→ 和函数连续且任意阶可导（定理15.4.4）→ 逐项积分（定理15.4.5）
+→ 求和与展开例（Σnx^n、ln(1+x)、arctan x）
+→ Abel 第二定理（定理15.4.6）→ 级数和 ln2、π/4、Σ(−1)^n/(3n+1)
+→ Tauber 定理（定理15.4.7）→ 幂级数乘法（定理15.4.8）、部分和母函数与 2/(1−x)³
+→ Taylor 级数/Maclaurin 级数（~ 记号）、两个反例、余项与充要条件
+→ 可展充分条件（定理15.5.1）→ e^x、sin/cos、二项式展开（含端点讨论）
+→ 展开技巧三例 → 六个常用展开式汇总
+→ 多项式一致逼近概念 → Bernstein 基三条性质 → Bernstein 多项式（定义15.6.1）与三个基本例算
+→ 引理15.6.1 → Weierstrass 逼近定理（定理15.6.1）及其构造性证明
+→ 区间条件反例；逼近速度评注与 Bezier 应用
+→ 母函数（定义15.7.1）→ (1+x)^α 的母函数身份
+→ 组合恒等式两例（Vandermonde 型）→ Fibonacci 数列（线性递推）
+→ k 阶线性递推说明 → 凸多边形剖分计数（非线性递推/Catalan 数）
+→ 著名例子一：van der Waerden 处处连续、处处不可微函数
+→ 著名例子二：Schoenberg/Peano 填满正方形的连续曲线；立方体推广
+→ 分形几何背景（Mandelbrot、分形集特征）</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>2019 第5题：一致收敛 + 逐项求导（§15.2–§15.3）。</li><li>2020 第5题：点态/一致收敛判别（§15.2）。</li><li>2023 第4(2)题：Maclaurin 展开（§15.4–§15.5）；2024 第3题：$x^nf(x)$ 一致收敛充要条件（§15.2）。</li><li>§15.7 组合应用未命题、大纲未列。</li><li>2025：第4题 $f_n=x^{k}/(x^{2}+n)$（$k=1,3$）的一致收敛（§15.2）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>80</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§15.1 函数项级数</h3>
+<h4>问题 15.1（3 题）</h4>
+<ol class="ex-list">
+<li>设函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在有界闭区间 $[a,b]$ 上收敛于 $S(x)$。如果 $u_n(x)$（$n=1,2,\ldots$）都是 $[a,b]$ 上的非负连续函数，证明：$S(x)$ 必在 $[a,b]$ 上取到最小值。原书 PDF 227</li>
+<li>第 1 题中的 $S(x)$ 是否一定能取到最大值？原书 PDF 227</li>
+<li>把第 1 题中的有界闭区间换成开区间或无穷区间，结论是否还成立？原书 PDF 227</li>
+</ol>
+<h3>§15.2 一致收敛</h3>
+<h4>练习题 15.2（13 题）</h4>
+<ol class="ex-list">
+<li>研究下列函数列在指定区间上的一致收敛性：（1）$f_n(x)=\dfrac1{1+nx}$： (a) $0&lt;x&lt;+\infty$；(b) $0&lt;\lambda&lt;x&lt;+\infty$。（2）$f_n(x)=\dfrac{x^n}{1+x^n}$：(a) $0\leqslant x\leqslant1-\lambda$；(b) $1-\lambda\leqslant x\leqslant1+\lambda$；(c) $1+\lambda\leqslant x&lt;+\infty$（$\lambda>0$）。（3）$f_n(x)=e^{-(x-n)^2}$：(a) $-l&lt;x&lt;l$（$l>0$）；(b) $-\infty&lt;x&lt;+\infty$。原书 PDF 236</li>
+<li>研究下列级数在指定区间上的一致收敛性：（1）$\displaystyle\sum_{n=1}^{\infty}\frac1{(x+n)(x+n+1)}$，$(0,+\infty)$；（2）$\displaystyle\sum_{n=1}^{\infty}\frac{nx}{1+n^5x^2}$，$(-\infty,+\infty)$；（3）$\displaystyle\sum_{n=1}^{\infty}\frac{n^2}{\sqrt{n!}}(x^n+x^{-n})$，$[-3,-1/3]\cup[1/3,3]$；（4）$\displaystyle\sum_{n=1}^{\infty}\frac{\sin((n+\frac12)x)}{\sqrt[3]{n^4+x^4}}$，$(-\infty,+\infty)$；（5）$\displaystyle\sum_{n=2}^{\infty}\ln\!\left(1+\frac{x}{n\ln^2 n}\right)$，$(-l,l)$（$l>0$）；（6）$\displaystyle\sum_{n=2}^{\infty}\frac{(-1)^n}{n+\sin x}$，$[0,2\pi]$；（7）$\displaystyle\sum_{n=1}^{\infty}2^n\sin\!\frac{1}{3^n x}$，$(0,+\infty)$。原书 PDF 236续页 PDF 237</li>
+<li>若级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_ne^{-nx}$ 在 $[0,+\infty)$ 上一致收敛。原书 PDF 237</li>
+<li>设 $u_n(x)$（$n=1,2,\ldots$）是 $[a,b]$ 上的单调函数。如果级数 $\displaystyle\sum_{n=1}^{\infty}u_n(a)$ 和 $\displaystyle\sum_{n=1}^{\infty}u_n(b)$ 绝对收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上绝对且一致收敛。原书 PDF 237</li>
+<li>证明：级数 $\displaystyle\sum_{n=0}^{\infty}(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对且一致收敛，但 $\displaystyle\sum_{n=0}^{\infty}x^n(1-x)$ 在 $[0,1]$ 上并不一致收敛。原书 PDF 237</li>
+<li>在区间 $[0,1]$ 上，定义 $\displaystyle u_n(x)=\begin{cases}1/n,&x=1/n,\\0,&x\ne1/n.\end{cases}$ 证明：$\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[0,1]$ 上一致收敛，但它不存在收敛的优级数。原书 PDF 237</li>
+<li>设 $\{u_n(x)\}$ 是 $[a,b]$ 上的连续函数列。证明：如果 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b)$ 内的每一点收敛，但 $\displaystyle\sum_{n=1}^{\infty}u_n(b)$ 发散，那么 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b)$ 上不一致收敛。原书 PDF 237</li>
+<li>设 $a_n\geqslant0$。证明：$\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$ 在 $(-\infty,+\infty)$ 上一致收敛的充分必要条件是 $\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$。原书 PDF 237</li>
+<li>证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac{\cos nx}{n\ln n}$ 在 $(0,\pi]$ 上不一致收敛。原书 PDF 237</li>
+<li>设 $[a,b]$ 是一个有限闭区间。如果对任一点 $x\in[a,b]$，存在一个包含 $x$ 的开区间 $I_x$，使得 $\{f_n\}$ 在 $I_x$ 上一致收敛于 $f$。求证：$\{f_n\}$ 在 $[a,b]$ 上一致收敛于 $f$。（提示：用有限覆盖定理。）原书 PDF 237</li>
+<li>证明：函数列 $f_n(x)=xn^{-x}(\ln n)^\alpha$（$n=1,2,\ldots$）在 $[0,+\infty)$ 上一致收敛的充分必要条件是 $\alpha&lt;1$。原书 PDF 237</li>
+<li>设 $f_1$ 在 $[a,b]$ 上 Riemann 可积，定义 $\displaystyle f_{n+1}(x)=\int_a^x f_n(t)\,\mathrm dt$（$n=1,2,\ldots$）。证明：函数列 $\{f_n\}$ 在 $[a,b]$ 上一致收敛于 $0$。原书 PDF 238</li>
+<li>证明：当 $\alpha>2$ 时，级数 $\displaystyle\sum_{n=1}^{\infty}x^\alpha e^{-nx^2}$ 在 $[0,+\infty)$ 上一致收敛。原书 PDF 238</li>
+</ol>
+<h4>问题 15.2（7 题）</h4>
+<ol class="ex-list">
+<li>讨论级数 $\displaystyle\sum_{n=1}^{\infty}\frac{nx}{(1+x)(1+2x)\cdots(1+nx)}$ 在区间 $[0,\delta]$ 和 $[\delta,+\infty)$ 上的一致收敛性，其中 $\delta>0$。原书 PDF 238</li>
+<li>设函数列 $\{f_n\}$ 和 $\{g_n\}$ 在区间 $I$ 上一致收敛。如果对每个 $n=1,2,\ldots$，$f_n$ 和 $g_n$ 都是 $I$ 上的有界函数（不要求一致有界），证明：$\{f_ng_n\}$ 在 $I$ 上必一致收敛。原书 PDF 238</li>
+<li>如果去掉第 2 题中 $f_n$ 和 $g_n$ 有界的条件，结论是否还成立？试举例说明之。原书 PDF 238</li>
+<li>设 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上收敛。如果存在常数 $M$，使得对任意的 $x\in[a,b]$ 及一切正整数 $n$，都有 $\displaystyle\left|\sum_{k=1}^nu'_k(x)\right|\leqslant M$，证明：$\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上一致收敛。原书 PDF 238</li>
+<li>设函数 $f$ 在 $x=0$ 的邻域内有二阶连续导函数，且 $f(0)=0$，$0&lt;f'(0)&lt;1$。如果记 $f_n$ 是 $f$ 的 $n$ 次复合，证明：级数 $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ 在 $x=0$ 的邻域内一致收敛。原书 PDF 238</li>
+<li>证明：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{1+x+x^2+\cdots+x^{2n-1}}\cos nx$ 在 $[0,1]$ 上一致收敛。原书 PDF 238</li>
+<li>设 $\{a_n\}$ 是递减的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n\sin nx$ 在 $(-\infty,+\infty)$ 上一致收敛的充分必要条件是 $\displaystyle\lim_{n\to\infty}na_n=0$。原书 PDF 238</li>
+</ol>
+<h3>§15.3 极限函数与和函数的性质</h3>
+<h4>练习题 15.3（8 题）</h4>
+<ol class="ex-list">
+<li>确定下列函数的存在域，并研究它们的连续性：（1）$\displaystyle f(x)=\sum_{n=1}^{\infty}\left(1+\frac1n\right)^n$；（2）$\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{x+(-1)^nn}{x^2+n^2}$。原书 PDF 245续页 PDF 246</li>
+<li>证明：函数 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{\cos nx}{n^4}$ 在 $(-\infty,+\infty)$ 上有二阶连续导函数，并计算 $f''(x)$。原书 PDF 246</li>
+<li>证明：Riemann $\zeta$ 函数 $\displaystyle\zeta(x)=\sum_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上是连续的，并在此区间内有各阶连续导函数。原书 PDF 246</li>
+<li>设 $\displaystyle f(x)=\sum_{n=1}^{\infty}ne^{-nx}$（$x>0$），计算 $\displaystyle\int_{\ln2}^{\ln3}f(x)\,\mathrm dx$。原书 PDF 246</li>
+<li>已知 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}n=\ln2$。证明：$\displaystyle\lim_{x\to1}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^x}=\ln2$。原书 PDF 246</li>
+<li>设 $E$ 是 $(-\infty,+\infty)$ 中的一个点集，$x_0$ 是 $E$ 的一个极限点（$x_0$ 可以是 $\pm\infty$）。如果级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $E$ 上一致收敛，而且 $\displaystyle\lim_{x\to x_0}u_n(x)=a_n$（$x\in E$，$n=1,2,\ldots$），证明：（1）$\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛；（2）$\displaystyle\lim_{x\to x_0}\sum_{n=1}^{\infty}u_n(x)=\sum_{n=1}^{\infty}a_n$（$x\in E$）。原书 PDF 246</li>
+<li>设 $\displaystyle f(x)=\sum_{n=1}^{\infty}\left(\frac{x}{1+2x}\right)^n\cos\frac{n\pi}{x}$。计算：$\displaystyle\lim_{x\to1}f(x)$，$\displaystyle\lim_{x\to+\infty}f(x)$。原书 PDF 246</li>
+<li>证明：$\displaystyle\lim_{x\to1}\sum_{n=1}^{\infty}\frac{x^n(1-x)}{n(1-x^{2n})}=\frac12\sum_{n=1}^{\infty}\frac1{n^2}$。原书 PDF 246</li>
+</ol>
+<h4>问题 15.3（7 题）</h4>
+<ol class="ex-list">
+<li>设 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上收敛。如果 $\displaystyle|S_n(x)|=\left|\sum_{k=1}^nu_k(x)\right|\leqslant M$（$a\leqslant x\leqslant b$，$n=1,2,\ldots$），则称级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上有界收敛。设 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上有界收敛，且对任意的 $\delta>0$ 和 $c\in(a,b)$，$\displaystyle\sum_{n=1}^{\infty}u(x)$ 在 $[a,c-\delta]$ 和 $[c+\delta,b]$ 上一致收敛。证明：如果 $u_n(x)$（$n=1,2,\ldots$）在 $[a,b]$ 上 Riemann 可积，那么 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 也在 $[a,b]$ 上 Riemann 可积，而且 $\displaystyle\int_a^b\left(\sum_{n=1}^{\infty}u_n(x)\right)\mathrm dx=\sum_{n=1}^{\infty}\int_a^bu_n(x)\,\mathrm dx$。<b>[待核验：原书 PDF 第 247 页在局部一致收敛条件处印作 $\sum u(x)$，与同题其余 $u_n(x)$ 记法不一致，保留原式。]</b> 原书 PDF 246续页 PDF 247</li>
+<li>设级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 满足下列条件：(a) 反常积分 $\displaystyle\int_a^{+\infty}u_n(x)\,\mathrm dx$（$n=1,2,\ldots$）收敛；(b) 级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在区间 $[a,b]$ 上一致收敛，这里 $b$ 是大于 $a$ 的任何实数；(c) 级数 $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ 在 $[a,+\infty)$ 上一致收敛，这里 $\displaystyle f_n(x)=\int_a^xu_n(t)\,\mathrm dt$。证明：$\displaystyle\int_a^{+\infty}\left(\sum_{n=1}^{\infty}u_n(x)\right)\mathrm dx$ 和 $\displaystyle\sum_{n=1}^{\infty}\int_a^{+\infty}u_n(x)\,\mathrm dx$ 都收敛，而且二者相等。原书 PDF 247</li>
+<li>设级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 满足下列条件：(a) $\sum u_n(x)$ 在 $(x_0-\delta,x_0+\delta)$ 上收敛于 $f(x)$；(b) 级数的每一项 $u_n(x)$ 在 $x=x_0$ 处可微；(c) 级数 $\displaystyle\sum_{n=1}^{\infty}\frac{u_n(x)-u_n(x_0)}{x-x_0}$ 在 $0&lt;|x-x_0|&lt;\delta$ 上一致收敛。证明：$f$ 在 $x_0$ 处可微，而且 $\displaystyle f'(x_0)=\sum_{n=1}^{\infty}u'_n(x_0)$。原书 PDF 247</li>
+<li>在 $(0,1)$ 中任取一数列 $\{a_n\}$，其中两两不相同。证明：函数 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{|x-a_n|}{2^n}$ 在 $(0,1)$ 上连续，且在 $x=a_n$（$n=1,2,\ldots$）处都不可微，而在 $(0,1)$ 中其他点处都可微。原书 PDF 247</li>
+<li>设 $\displaystyle f(x)=\sum_{n=0}^{\infty}\frac1{x+2^n}$（$0\leqslant x&lt;+\infty$）。证明：（1）$f$ 在 $[0,+\infty)$ 上连续；（2）$\displaystyle\lim_{x\to+\infty}f(x)=0$；（3）对一切 $x\in(0,+\infty)$，有 $\displaystyle0&lt;f(x)-\frac{\ln(1+x)}{x\ln2}&lt;\frac1{1+x}$。原书 PDF 247续页 PDF 248</li>
+<li>证明：$\displaystyle\sum_{n=0}^{\infty}\frac{(n!)^2 2^{n+1}}{(2n+1)!}=\pi$。原书 PDF 248</li>
+<li>构造一个可导函数，使它在有理点处取有理数值，它的导数在有理点处取无理数值。原书 PDF 248</li>
+</ol>
+<h3>§15.4 由幂级数确定的函数</h3>
+<h4>练习题 15.4（8 题）</h4>
+<ol class="ex-list">
+<li>求下列幂级数的收敛半径，并研究它们在收敛区间端点处的性质：（1）$\displaystyle\sum_{n=1}^{\infty}\left(1+\frac1n\right)^{n^2}x^n$；（2）$\displaystyle\sum_{n=1}^{\infty}\left(1+\frac12+\cdots+\frac1n\right)x^n$；（3）$\displaystyle\sum_{n=1}^{\infty}\left(\frac{a^n}n+\frac{b^n}{n^2}\right)x^n$（$a>0,b>0$）；（4）$\displaystyle\sum_{n=1}^{\infty}\left(\frac ne\right)^nx^n$。原书 PDF 257</li>
+<li>求下列广义幂级数的收敛点集：（1）$\displaystyle\sum_{n=0}^{\infty}\frac1{2n+1}\left(\frac{1-x}{1+x}\right)^n$；（2）$\displaystyle\sum_{n=1}^{\infty}\left(1+\frac1n\right)^{-n^2}e^{-nx}$；（3）$\displaystyle\sum_{n=1}^{\infty}\left(\frac1x\right)^n\sin\frac{\pi}{2^n}$。原书 PDF 257</li>
+<li>设 $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ 和 $\displaystyle\sum_{n=0}^{\infty}b_nx^n$ 的收敛半径分别为 $R_1$ 和 $R_2$。证明：（1）$\displaystyle\sum_{n=0}^{\infty}(a_n+b_n)x^n$ 的收敛半径 $R\geqslant\min(R_1,R_2)$；（2）$\displaystyle\sum_{n=0}^{\infty}(a_nb_n)x^n$ 的收敛半径 $R\geqslant R_1R_2$；（3）举例说明在（1）中 $R>\min(R_1,R_2)$ 和在（2）中 $R>R_1R_2$ 的情形都是可能发生的。原书 PDF 257</li>
+<li>求下列级数在区间 $(-1,1)$ 上的和：（1）$\displaystyle\sum_{n=0}^{\infty}\frac{x^{2n+1}}{2n+1}$；（2）$\displaystyle\sum_{n=0}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2n+1}$；（3）$\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n(n+1)}$。原书 PDF 257</li>
+<li>证明下列等式在区间 $(-1,1)$ 内成立：（1）$\displaystyle\sum_{n=1}^{\infty}n^3x^n=\frac{x+4x^2+x^3}{(1-x)^4}$；（2）$\displaystyle\sum_{n=0}^{\infty}\frac1{3!}(n+1)(n+2)(n+3)x^n=\frac1{(1-x)^4}$。原书 PDF 257</li>
+<li>设 $\displaystyle l=\liminf_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|$，$\displaystyle L=\limsup_{n\to\infty}\left|\frac{a_n}{a_{n+1}}\right|$。如果幂级数 $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ 的收敛半径为 $R$，证明：$l\leqslant R\leqslant L$。原书 PDF 257续页 PDF 258</li>
+<li>设幂级数 $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ 的收敛半径为 $1$，$\displaystyle\lim_{x\to1^-}\sum_{n=0}^{\infty}a_nx^n=A$。如果 $a_n\geqslant0$，证明：$\displaystyle\sum_{n=0}^{\infty}a_n=A$。原书 PDF 258</li>
+<li>利用定理 15.4.8 和定理 15.4.6，证明定理 14.6.3。原书 PDF 258</li>
+</ol>
+<h4>问题 15.4（5 题）</h4>
+<ol class="ex-list">
+<li>设 $\displaystyle\sum_{n=0}^{\infty}a_n$ 是一个发散的正项级数。如果 $\displaystyle\lim_{n\to\infty}\frac{a_n}{a_0+\cdots+a_n}=0$，证明：级数 $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ 的收敛半径 $R=1$。原书 PDF 258</li>
+<li>求级数 $\displaystyle\frac12-\frac15+\frac18-\frac1{11}+\cdots$ 的和。原书 PDF 258</li>
+<li>证明：$\displaystyle1-\frac15+\frac19-\frac1{13}+\cdots=\frac1{4\sqrt2}\bigl(\pi+2\ln(\sqrt2+1)\bigr)$。原书 PDF 258</li>
+<li>证明：$\displaystyle1+\sum_{n=1}^{\infty}\frac{(2n+1)!!}{(2n)!!}\frac1{(2n+1)^2}=\frac\pi2\ln2$。原书 PDF 258</li>
+<li>设幂级数 $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ 的收敛半径为 $R$，且 $a_n\geqslant0$。（1）证明：$\displaystyle\lim_{x\to R^-}\sum_{n=0}^{\infty}a_nx^n=\sum_{n=0}^{\infty}a_nR_n$；（2）由（1），证明：$\displaystyle\sum_{n=1}^{\infty}\frac1n=+\infty$。<b>[待核验：原书 PDF 第 258 页右端印作 $a_nR_n$；很可能应为 $a_nR^n$，但此处保留原字形。]</b> 原书 PDF 258</li>
+</ol>
+<h3>§15.5 函数的幂级数展开式</h3>
+<h4>练习题 15.5（5 题）</h4>
+<ol class="ex-list">
+<li>利用已知的初等函数展开式，写出下列函数的幂级数展开式：（1）$e^{x^2}$；（2）$\cos^2x$；（3）$\dfrac{x^{12}}{1-x}$；（4）$\dfrac{x}{1+x-2x^2}$；（5）$(1+x)e^{-x}$。原书 PDF 265</li>
+<li>求下列函数的幂级数展开式：（1）$(1+x)\ln(1+x)$；（2）$x\arctan x-\ln\sqrt{1+x^2}$；（3）$\dfrac{x}{(1-x)(1-x^2)}$；（4）$(1+x^2)\arctan x$。原书 PDF 265</li>
+<li>将下列函数展开成幂级数：（1）$\arcsin x$；（2）$\ln(x+\sqrt{1+x^2})$；（3）$\displaystyle\int_0^x\frac{\sin t}{t}\,\mathrm dt$。原书 PDF 265</li>
+<li>把函数 $f(x)=\ln x$ 按 $\dfrac{x-1}{x+1}$ 的正整数幂展开成幂级数。原书 PDF 265</li>
+<li>把函数 $f(x)=\dfrac{x}{\sqrt{1+x}}$ 按 $\dfrac{x}{1+x}$ 的正整数幂展开成幂级数。原书 PDF 265</li>
+</ol>
+<h4>问题 15.5（4 题）</h4>
+<ol class="ex-list">
+<li>证明：$\displaystyle f(x)=\sum_{n=0}^{\infty}\frac{\sin(2^nx)}{n!}$ 在 $x=0$ 处的 Taylor 级数除 $x=0$ 外处处发散。原书 PDF 265续页 PDF 266</li>
+<li>设 $f$ 及其所有导数在区间 $[0,r]$ 上都是非负的。证明：$f$ 能在 $[0,r]$ 上展开为 Taylor 级数 $\displaystyle f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n$（$0\leqslant x&lt;r$）。原书 PDF 266</li>
+<li>求证：$\displaystyle1+\frac13-\frac15-\frac17+\frac19+\frac1{11}+\cdots=\frac{\sqrt2}{4}\pi$。原书 PDF 266</li>
+<li>设 $\displaystyle S_n=\sum_{k=1}^{\infty}\frac1{k^n}$（$n=2,3,\ldots$）。证明：$\displaystyle\sum_{n=2}^{\infty}(-1)^n\frac{S_n}{n}=\gamma$，式中 $\gamma$ 是 Euler 常数。原书 PDF 266</li>
+</ol>
+<h3>§15.6 用多项式一致逼近连续函数</h3>
+<h4>练习题 15.6（6 题）</h4>
+<ol class="ex-list">
+<li>证明 Bernstein 多项式的保形性质：（1）$B_n(f;0)=f(0)$，$B_n(f;1)=f(1)$；（2）如果 $f\geqslant0$，那么 $B_n(f)\geqslant0$；如果 $f\leqslant0$，那么 $B_n(f)\leqslant0$；（3）如果 $f$ 递增（减），那么 $B_n(f)$ 也递增（减）；（4）如果 $f$ 是凸函数，那么 $B_n(f)$ 也是凸函数。原书 PDF 271</li>
+<li>设 $f\in C[a,b]$。（1）如果 $\displaystyle\int_a^b f(x)x^n\,\mathrm dx=0$（$n=0,1,2,\ldots$），那么 $f(x)\equiv0$；（2）如果存在正整数 $N$，使得 $\displaystyle\int_a^b f(x)x^n\,\mathrm dx=0$（$n\geqslant N$），那么 $f(x)\equiv0$。原书 PDF 271</li>
+<li>设 $f\in C[0,1]$。如果存在正整数 $k$，使得 $\displaystyle\int_0^1 f(x)x^{kn}\,\mathrm dx=0$（$n=1,2,\ldots$），证明：$f(x)\equiv0$。原书 PDF 271</li>
+<li>设 $f\in C[-1,1]$。证明：（1）如果 $\displaystyle\int_{-1}^1 x^{2n+1}f(x)\,\mathrm dx=0$（$n=0,1,\ldots$），那么 $f$ 是偶函数；（2）如果 $\displaystyle\int_{-1}^1 x^{2n}f(x)\,\mathrm dx=0$（$n=0,1,\ldots$），那么 $f$ 是奇函数。原书 PDF 271续页 PDF 272</li>
+<li>证明：若 $f$ 在 $(-\infty,+\infty)$ 上能用多项式一致逼近，那么 $f$ 必为一多项式。原书 PDF 272</li>
+<li>设 $f\in C[1,+\infty]$，且 $\displaystyle\lim_{x\to\infty}f(x)=l$ 存在、有限。证明：对任意的 $\varepsilon>0$，存在多项式 $P(x)$，使得 $|f(x)-P(1/x)|&lt;\varepsilon$（$1\leqslant x&lt;+\infty$）。原书 PDF 272</li>
+</ol>
+<h4>问题 15.6（3 题）</h4>
+<ol class="ex-list">
+<li>按照下列步骤给出 Weierstrass 逼近定理的另一证明：（1）设 $\displaystyle c_n=\left(\int_{-1}^1(1-x^2)^n\,\mathrm dx\right)^{-1}$，证明 $c_n&lt;\sqrt n$。（2）设 $f$ 是 $[0,1]$ 上的连续函数，并且 $f(0)=f(1)=0$。当 $x\notin[0,1]$ 时，定义 $f(x)=0$，记 $Q_n(x)=c_n(1-x^2)^n$。证明：$\displaystyle P_n(x)=\int_{-1}^1 f(x+t)Q_n(t)\,\mathrm dt$（$0\leqslant x\leqslant1$）是一个多项式，而且 $\displaystyle\lim_{n\to\infty}P_n(x)=f(x)$ 在 $[0,1]$ 上一致地成立。（3）当 $f(0)=f(1)=0$ 的条件不成立时，证明 Weierstrass 逼近定理。原书 PDF 272</li>
+<li>设 $f$ 在 $[0,1]$ 上有连续的导数。证明：$\displaystyle\lim_{n\to\infty}B'_n(f;x)=f'(x)$ 在 $[0,1]$ 上一致地成立。原书 PDF 272</li>
+<li>设 $f\in C[a,b]$。试证明：存在递增的多项式序列 $P_1(x)\leqslant P_2(x)\leqslant\cdots\leqslant P_n(x)\leqslant P_{n+1}(x)\leqslant\cdots$（$a\leqslant x\leqslant b$），使得 $\{P_n(x)\}$ 在 $[a,b]$ 上一致收敛于 $f(x)$。原书 PDF 272</li>
+</ol>
+<h3>§15.7 幂级数在组合数学中的应用</h3>
+<h4>练习题 15.7（6 题）</h4>
+<ol class="ex-list">
+<li>证明：$\displaystyle\sum_{k=0}^{m}\binom{k+n-1}{n-1}=\binom{m+n}{n}$。原书 PDF 278</li>
+<li>证明：数列 $\displaystyle\left\{\binom{2n}{n}\right\}$ 的母函数是 $(1-4x)^{-1/2}$。原书 PDF 278</li>
+<li>证明：$\displaystyle\sum_{k=0}^{n}\binom{2k}{k}\binom{2n-2k}{n-k}=2^{2n}$。原书 PDF 278</li>
+<li>证明：$\displaystyle\sum_{k=0}^{n}k\binom{2k}{k}\binom{2n-2k}{n-k}=n2^{2n-1}$。（提示：从数列 $\displaystyle\left\{\binom{2n}{n}\right\}$ 的母函数去找数列 $\displaystyle\left\{n\binom{2n}{n}\right\}$ 的母函数。）原书 PDF 278</li>
+<li>证明：$\displaystyle\sum_{k=0}^{n}k\binom{n}{k}\binom{m}{k}=m\binom{n+m-1}{n-1}$。原书 PDF 278</li>
+<li>求满足下列递推关系和初始条件的数列 $\{a_n\}$：（1）$a_n=5a_{n-1}-6a_{n-2}$，$a_0=1$，$a_1=-2$；（2）$a_n=-a_{n-1}+16a_{n-2}-20a_{n-3}$，$a_0=0$，$a_1=1$，$a_2=-1$；（3）$a_n=2a_{n-1}-a_{n-2}+2^{n-2}$，$a_0=a_1=1$。原书 PDF 278</li>
+</ol>
+<h4>问题 15.7（5 题）</h4>
+<ol class="ex-list">
+<li>证明：$\displaystyle\sum_{k=0}^{n}\frac{1}{1-2k}\binom{2k}{k}2^{2n-2k}=\binom{2n}{n}$。原书 PDF 279</li>
+<li>计算 $\displaystyle\sum_{k=0}^{[n/2]}\binom{n-k}{k}$。此处原书使用方括号 $[n/2]$ 表示上限。原书 PDF 279</li>
+<li>设 $\alpha$ 是一个实数。计算 $\displaystyle\sum_{k=0}^{[1/2]}\binom{n-k}{k}\alpha^k$。<b>[待核验：PDF 第 279 页的原书上限清楚印作 $[1/2]$，同页第 2、4 题印作 $[n/2]$；保留原字形，暂不代改。]</b> 原书 PDF 279</li>
+<li>利用第 3 题的结果，证明：（1）$\displaystyle\sum_{k=0}^{[n/2]}2^k\binom{n-k}{k}=\frac13\left(2^{n+1}+(-1)^n\right)$；（2）$\displaystyle\sum_{k=0}^{[n/2]}(-1)^k\binom{n-k}{k}=\frac2{\sqrt3}\sin\frac{n+1}{3}\pi$。原书 PDF 279</li>
+<li>证明：$\displaystyle\sum_{k=0}^{n-1}\left(\binom n0+\binom n1+\cdots+\binom nk\right)\left(\binom n{k+1}+\binom n{k+2}+\cdots+\binom nn\right)=\frac n2\binom{2n}{n}$。原书 PDF 279</li>
+</ol>
+<h3>§15.8 从两个著名的例子谈起</h3>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第15章_函数列与函数项级数_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §15.1 问题的提出：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.2 一致收敛：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.3 极限函数与和函数的性质：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.4 由幂级数确定的函数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.5 函数的幂级数展开式：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.6 用多项式一致逼近连续函数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.7 幂级数在组合数学中的应用：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §15.8 从两个著名的例子谈起：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

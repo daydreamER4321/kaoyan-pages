@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 曲线积分 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第11章<br>曲线积分</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec11_1">§11.1 第一型曲线积分</a>
+    <a href="#sec11_2">§11.2 第二型曲线积分</a>
+    <a href="#sec11_3">§11.3 Green 公式</a>
+    <a href="#sec11_4">§11.4 等周问题</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第11章 曲线积分</h1>
+    <p class="hero-sub">§11.1 第一型曲线积分 · §11.2 第二型曲线积分 · §11.3 Green 公式 · §11.4 等周问题</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec11_1">§11.1 第一型曲线积分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<h3>11.1.1 章首引言：曲线上的质量（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>设 Γ 是 $\mathbb{R}^3$ 中的一条可求长曲线，其上分布着物质，（线）密度为 $\rho(\boldsymbol r)=\rho(x,y,z)$。密度为常数 $c$ 时总质量为 $s(\Gamma)c$（$s(\Gamma)$ 为弧长）。一般情形：在 Γ 上从端点 $A$ 到 $B$ 顺次插入分点 $\boldsymbol r_0,\cdots,\boldsymbol r_n$（$\boldsymbol r_0=A,\boldsymbol r_n=B$），令 $\Delta s_i=s(\widehat{\boldsymbol r_{i-1}\boldsymbol r_i})$，在每段弧上任取 $\boldsymbol\xi_i$，作和式 $\sum_{i=1}^n\rho(\boldsymbol\xi_i)\Delta s_i$，考虑极限 $\lim\limits_{\max\Delta s_i\to0}\sum_{i=1}^n\rho(\boldsymbol\xi_i)\Delta s_i$。若该极限是有限数且不依赖于 $\boldsymbol\xi_i$ 的选取，就把它当作 Γ 上的总质量。这就导致第一型曲线积分的定义；加"第一型"定语是为了区别于 11.2 节的另一类曲线积分。</p>
+<h3>11.1.2 定义11.1.1：第一型曲线积分</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>设 Γ 是 $\mathbb{R}^3$ 中的一条可求长曲线，$f:\Gamma\to\mathbb{R}$，Γ 的两个端点分别记为 A 和 B。在 Γ 上依次取一列点 $\{\boldsymbol r_i:i=0,1,\cdots,n\}$，使 $\boldsymbol r_0=A,\boldsymbol r_n=B$；称 $\widehat{\boldsymbol r_{i-1}\boldsymbol r_i}$ 为 Γ 的第 i 段曲线，令 $\Delta s_i=s(\widehat{\boldsymbol r_{i-1}\boldsymbol r_i})$（第 i 段曲线的弧长），并在其上任取一点 $\boldsymbol\xi_i$。如果极限</p>
+<div class="formula">$$\lim_{\max\Delta s_i\to0}\sum_{i=1}^{n}f(\boldsymbol\xi_i)\Delta s_i$$</div>
+<p>是一个有限数，并且其值不依赖于点 $\boldsymbol\xi_i$ 在 $\widehat{\boldsymbol r_{i-1}\boldsymbol r_i}$ 上的选择，就把这个极限值记为</p>
+<div class="formula">$$\int_\Gamma f(\boldsymbol r)\,\mathrm ds=\int_\Gamma f(x,y,z)\,\mathrm ds,$$</div>
+<p>称之为函数 f 在 Γ 上的<b>第一型曲线积分</b>。</p>
+<h3>11.1.3 积分的直接意义与课本说明</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<ul><li>当可求长曲线 Γ 上有密度函数 ρ 时，Γ 上的质量就是 $\int_\Gamma\rho\,\mathrm ds$。</li><li>若 $f(\boldsymbol r)=1$ 对 $\boldsymbol r\in\Gamma$ 成立，则 $\int_\Gamma\mathrm ds=s(\Gamma)$，即曲线 Γ 的弧长（弧长计算见本教材上册 7.1 节）。</li><li><b>课本说明</b>：第一型曲线积分的定义并不包含新奇的意义，它体现的只不过是在建立定积分、二重积分和三重积分时使用过的同样的方法。</li></ul>
+<h3>11.1.4 定理11.1.1：第一型曲线积分化为定积分</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>设 Γ 是 $\mathbb{R}^3$ 中的一段光滑曲线（有向量参数表示 $\boldsymbol r=\boldsymbol r(t)$（$\alpha\le t\le\beta$）、连续且非零的导向量），函数 $f:\Gamma\to\mathbb{R}$ 连续，那么</p>
+<div class="formula">$$\int_\Gamma f\,\mathrm ds=\int_\alpha^\beta f\circ\boldsymbol r(t)\,\lVert\boldsymbol r'(t)\rVert\,\mathrm dt.$$</div>
+<p>也就是说，第一型曲线积分可以化成定积分来计算。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>分点 $\boldsymbol r_i$ 对应参数 $\alpha=t_0&lt;t_1&lt;\cdots&lt;t_n=\beta$，$\boldsymbol\xi_i=\boldsymbol r(\eta_i)$，$\eta_i\in[t_{i-1},t_i]$；由弧长函数 $s(t)=\int_\alpha^t\lVert\boldsymbol r'(\tau)\rVert\mathrm d\tau$ 得 $\Delta s_i=\int_{t_{i-1}}^{t_i}\lVert\boldsymbol r'(\tau)\rVert\mathrm d\tau$；</li><li>对右端用<b>积分中值定理</b>：$\Delta s_i=\lVert\boldsymbol r'(\zeta_i)\rVert\Delta t_i$，$\zeta_i\in[t_{i-1},t_i]$；</li><li>光滑假设下 $\max\Delta s_i\to0$ 等价于 $\max\Delta t_i\to0$，和式化为 $\sum f\circ\boldsymbol r(\eta_i)\lVert\boldsymbol r'(\zeta_i)\rVert\Delta t_i$；</li><li>一般 $\eta_i\neq\zeta_i$，但同在一个区间内，可把它们统一起来写成 $\sum f\circ\boldsymbol r(\eta_i)\lVert\boldsymbol r'(\eta_i)\rVert\Delta t_i$ 而不影响极限值——这一"统一"手法的严格理由已在定理7.1.1 的证明中说明过（该方法下节定理11.2.1 将再次使用）；</li><li>此时和式已是 Riemann 和，故等于 $\int_\alpha^\beta f\circ\boldsymbol r(t)\lVert\boldsymbol r'(t)\rVert\mathrm dt$。</li></ol>
+<h3>11.1.5 推论11.1.1：显式曲线的计算公式</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>设平面曲线 Γ 有显式表达 $y=\varphi(x)$（$a\le x\le b$），其中 $\varphi$ 在 $[a,b]$ 上连续，那么</p>
+<div class="formula">$$\int_\Gamma f\,\mathrm ds=\int_a^b f(x,\varphi(x))\sqrt{1+(\varphi'(x))^2}\,\mathrm dx.$$</div>
+<h3>11.1.6 计算过程总结（课本三步）</h3>
+<p class="pgref"><b>课本：p.1-4</b></p>
+<p>课本把计算过程总结为：</p>
+<ol><li>求出 Γ 的一个向量参数方程 $\boldsymbol r=\boldsymbol r(t)$；</li><li>计算弧元 $\mathrm ds=\lVert\boldsymbol r'(t)\rVert\mathrm dt$;</li><li>计算定积分 $\int_\alpha^\beta f\circ\boldsymbol r(t)\lVert\boldsymbol r'(t)\rVert\mathrm dt$。</li></ol>
+<h3>11.1.7 例1</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>计算第一型曲线积分 $\int_\Gamma\dfrac{z^2}{x^2+y^2}\mathrm ds$，其中 Γ 为圆柱螺线 $x=a\cos t,\ y=a\sin t,\ z=bt$（$0\le t\le2\pi$）。</p>
+<p>解：$\mathrm ds=\sqrt{a^2+b^2}\,\mathrm dt$，因此</p>
+<div class="formula">$$\int_\Gamma\frac{z^2}{x^2+y^2}\mathrm ds=\Big(\frac ba\Big)^2\sqrt{a^2+b^2}\int_0^{2\pi}t^2\mathrm dt=\frac83\Big(\frac ba\Big)^2\sqrt{a^2+b^2}\,\pi^3.$$</div>
+<h3>11.1.8 例2 ★</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>计算 $\int_\Gamma xy\,\mathrm ds$，其中 Γ 为球面 $x^2+y^2+z^2=a^2$ 与平面 $x+y+z=0$ 交成的圆周。</p>
+<p><b>常规算法</b>：取两两正交的单位向量</p>
+<div class="formula">$$\boldsymbol e_1=\frac1{\sqrt6}(1,-2,1),\quad \boldsymbol e_2=\frac1{\sqrt2}(1,0,-1),\quad \boldsymbol e_3=\frac1{\sqrt3}(1,1,1),$$</div>
+<p>其中 $\boldsymbol e_1,\boldsymbol e_2$ 张成 Γ 所在平面，得向量方程 $\boldsymbol r(\theta)=a(\boldsymbol e_1\cos\theta+\boldsymbol e_2\sin\theta)$（$0\le\theta\le2\pi$），弧元 $\mathrm ds=a\,\mathrm d\theta$；代入 $x,y,z$ 的坐标表达式直接积分：</p>
+<div class="formula">$$\int_\Gamma xy\,\mathrm ds=-\frac13a^3\int_0^{2\pi}\cos^2\theta\,\mathrm d\theta=-\frac13\pi a^3.$$</div>
+<p><b>对称性妙解</b>：结合代数与几何的对称性可知 $\int_\Gamma xy\,\mathrm ds=\int_\Gamma yz\,\mathrm ds=\int_\Gamma zx\,\mathrm ds$，从而</p>
+<div class="formula">$$\int_\Gamma xy\,\mathrm ds=\frac13\int_\Gamma(xy+yz+zx)\mathrm ds=\frac16\int_\Gamma\big((x+y+z)^2-(x^2+y^2+z^2)\big)\mathrm ds=-\frac16a^2s(\Gamma)=-\frac13\pi a^3.$$</div>
+<hr>
+<h2 id="sec11_2">§11.2 第二型曲线积分<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<h3>11.2.1 向量场与有向曲线（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>设区域 $D\subset\mathbb{R}^3$，在 D 上定义了向量值函数 $\boldsymbol F=\boldsymbol F(\boldsymbol r)$，称 F 是 D 上定义的一个<b>向量场</b>（力场、电场、磁场、速度场等）。<b>有向曲线</b>指通常的曲线还带有前进的方向（指明起点 A 与终点 B 即定了方向）；讨论中设 Γ 可求长。</p>
+<h3>11.2.2 力场做功问题（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>质点在力场 F 作用下自起点 A 沿 Γ 运动到终点 B。在 Γ 上插入分点 $\{\boldsymbol r_i\}$（$\boldsymbol r_0=A,\boldsymbol r_n=B$）；分点足够细密时，第 i 段上的运动可看成直线段上的运动、力场基本上是常力 $\boldsymbol F(\boldsymbol\xi_i)$，于是</p>
+<div class="formula">$$W_i\approx\boldsymbol F(\boldsymbol\xi_i)\bullet\overrightarrow{\boldsymbol r_{i-1}\boldsymbol r_i}=\boldsymbol F(\boldsymbol\xi_i)\bullet(\boldsymbol r_i-\boldsymbol r_{i-1}),\qquad W\approx\sum_{i=1}^n\boldsymbol F(\boldsymbol\xi_i)\bullet\Delta\boldsymbol r_i,$$</div>
+<p>其中 $\Delta\boldsymbol r_i=\boldsymbol r_i-\boldsymbol r_{i-1}$。求 W 的精确值需将分割无限细分。</p>
+<h3>11.2.3 定义11.2.1：第二型曲线积分</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>设 Γ 是 $\mathbb{R}^3$ 中一段可求长的有向曲线，映射 $\boldsymbol F:\Gamma\to\mathbb{R}^3$，Γ 的起点记为 A、终点记为 B。在 Γ 上按从 A 到 B 的方向顺次取一列点 $\{\boldsymbol r_i:i=0,1,\cdots,n\}$，使 $\boldsymbol r_0=A,\boldsymbol r_n=B$，令 $\Delta\boldsymbol r_i=\boldsymbol r_i-\boldsymbol r_{i-1}$。如果在弧段 $\widehat{\boldsymbol r_{i-1}\boldsymbol r_i}$ 上任取的点 $\boldsymbol\xi_i$ 处，极限</p>
+<div class="formula">$$\lim_{\max\lVert\Delta\boldsymbol r_i\rVert\to0}\sum_{i=1}^n\boldsymbol F(\boldsymbol\xi_i)\bullet\Delta\boldsymbol r_i$$</div>
+<p>为一确定的有限数，则将这个数记为</p>
+<div class="formula">$$\int_\Gamma\boldsymbol F(\boldsymbol r)\bullet\mathrm d\boldsymbol r,$$</div>
+<p>称它是向量值函数 F 沿有向曲线 Γ 上的<b>第二型曲线积分</b>。</p>
+<h3>11.2.4 运算性质与方向性（课本明确说明）</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>无论第一型还是第二型曲线积分，其运算性质（常数因子提出、积分可加性等）同定积分和重积分没有两样。但第二型有一条特殊性质——<b>方向性</b>：把 Γ 的走向颠倒所得定向曲线记为 $-\Gamma$，则</p>
+<div class="formula">$$\int_\Gamma\boldsymbol F(\boldsymbol p)\bullet\mathrm d\boldsymbol p=-\int_{-\Gamma}\boldsymbol F(\boldsymbol p)\bullet\mathrm d\boldsymbol p.$$</div>
+<p>由此可见，如果没有把定向弄正确，计算的结果就差一个负号。</p>
+<h3>11.2.5 定理11.2.1：第二型曲线积分化为定积分</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>设 Γ 是 $\mathbb{R}^3$ 中一段可求长的有向曲线，连续映射 $\boldsymbol F:\Gamma\to\mathbb{R}^3$；又设 Γ 具有参数向量方程 $\boldsymbol r=\boldsymbol r(t)$（$\alpha\le t\le\beta$），并且参数 t 的增加对应着 Γ 的定向，那么</p>
+<div class="formula">$$\int_\Gamma\boldsymbol F(\boldsymbol r)\bullet\mathrm d\boldsymbol r=\int_\alpha^\beta\boldsymbol F\circ\boldsymbol r(t)\bullet\boldsymbol r'(t)\,\mathrm dt.$$</div>
+<h4>课本证明路线</h4>
+<ol><li>设分点满足 $\boldsymbol r(t_i)=\boldsymbol r_i$（$\alpha=t_0&lt;\cdots&lt;t_n=\beta$），$\boldsymbol\xi_i=\boldsymbol r(\tau_i)$，$\tau_i\in[t_{i-1},t_i]$；则 $\sum\boldsymbol F(\boldsymbol\xi_i)\bullet\Delta\boldsymbol r_i=\sum\boldsymbol F\circ\boldsymbol r(\tau_i)\bullet(\boldsymbol r(t_i)-\boldsymbol r(t_{i-1}))$；</li><li>写 $\boldsymbol r(t)=(x(t),y(t),z(t))$、$\boldsymbol F=(P,Q,R)$，右端拆成三个分量和式；</li><li>用<b>微分中值定理</b>：$x(t_i)-x(t_{i-1})=x'(\lambda_i)\Delta t_i$、$y'=y'(\mu_i)\Delta t_i$、$z'=z'(\nu_i)\Delta t_i$（$\lambda_i,\mu_i,\nu_i\in[t_{i-1},t_i]$）；</li><li>定理条件下 $\max\lVert\Delta\boldsymbol r_i\rVert\to0$ 等价于 $\max\Delta t_i\to0$，得分量公式</li></ol>
+<div class="formula">$$\int_\Gamma\boldsymbol F(\boldsymbol r)\bullet\mathrm d\boldsymbol r=\int_\alpha^\beta\big(P\circ\boldsymbol r(t)\,x'(t)+Q\circ\boldsymbol r(t)\,y'(t)+R\circ\boldsymbol r(t)\,z'(t)\big)\mathrm dt;$$</div>
+<ol><li>采用向量内积记号即得 $\int_\alpha^\beta\boldsymbol F\circ\boldsymbol r(t)\cdot\boldsymbol r'(t)\,\mathrm dt$。</li></ol>
+<h3>11.2.6 $P\mathrm dx+Q\mathrm dy+R\mathrm dz$ 记法与分量公式</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>以 $\boldsymbol r=(x,y,z)$ 表示径向量，则 $\mathrm d\boldsymbol r=(\mathrm dx,\mathrm dy,\mathrm dz)$；设 $\boldsymbol F=(P,Q,R)$，于是 $\boldsymbol F\bullet\mathrm d\boldsymbol r=P\mathrm dx+Q\mathrm dy+R\mathrm dz$，故第二型曲线积分又可记作</p>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy+R\mathrm dz,$$</div>
+<p>且有分量计算公式</p>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy+R\mathrm dz=\int_\alpha^\beta\big(P(x(t),y(t),z(t))x'(t)+Q(x(t),y(t),z(t))y'(t)+R(x(t),y(t),z(t))z'(t)\big)\mathrm dt.$$</div>
+<h3>11.2.7 例1</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>计算第二型曲线积分 $\int_K xy\,\mathrm dx$、$\int_L xy\,\mathrm dx$、$\int_M xy\,\mathrm dx$，其中 K 是从 $(0,0)$ 到 $(1,1)$ 的直线段，L 是从 $(0,0)$ 到 $(1,1)$ 的抛物线 $y=x^2$ 的一段，M 是由 $(0,0)$ 到 $(1,0)$ 的直线段 $M_1$ 与 $(1,0)$ 到 $(1,1)$ 的直线段 $M_2$ 连成的有向折线。</p>
+<p>解：K 与 L 的方程分别是 $y=x$ 与 $y=x^2$，x 从 0 变到 1：</p>
+<div class="formula">$$\int_Kxy\,\mathrm dx=\int_0^1x^2\mathrm dx=\frac13,\qquad\int_Lxy\,\mathrm dx=\int_0^1x^3\mathrm dx=\frac14;$$</div>
+<p>在 $M_1$ 上 $y=0$，在 $M_2$ 上 $x=1$ 故 $\mathrm dx=0$，总起来 $\int_Mxy\,\mathrm dx=0$。（三条路径结果不同——路径相关。）</p>
+<h3>11.2.8 例2</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>设 Γ 是由球面 $x^2+y^2+z^2=a^2$ 和平面 $x+y+z=0$ 交成的圆周，从第一卦限内看 Γ 方向为逆时针。计算 $\int_\Gamma x\mathrm dx+y\mathrm dy+z\mathrm dz$。</p>
+<p>解：利用 11.1 节例2 已得的参数方程（θ 从 0 变到 $2\pi$，与定向匹配，因 $\boldsymbol e_1,\boldsymbol e_2,\boldsymbol e_3$ 组成右手系，坐标行列式为 1）。计算得 $\int_\Gamma y\,\mathrm dy=-\frac23a^2\int_0^{2\pi}\cos\theta\sin\theta\,\mathrm d\theta=0$，由对称性 $\int_\Gamma x\,\mathrm dx=\int_\Gamma z\,\mathrm dz=0$，故积分为 0。</p>
+<p>事实上不通过具体计算也能看出：设 $\boldsymbol r=(x,y,z)$ 是 Γ 上点的径向量，则 $\boldsymbol r\bullet\boldsymbol r=a^2$，所以 $\boldsymbol r\bullet\mathrm d\boldsymbol r=0$ 在 Γ 上成立，因而 $\int_\Gamma\boldsymbol r\bullet\mathrm d\boldsymbol r=0$。</p>
+<h3>11.2.9 两类曲线积分的联系（式(8)）</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>设 s 为 Γ 的弧长参数，弧长的增长对应 Γ 的正方向；由 9.5 节知 $\dfrac{\mathrm d\boldsymbol r}{\mathrm ds}=\boldsymbol t(s)$ 是单位切向量，故 $\mathrm d\boldsymbol r=\boldsymbol t(s)\mathrm ds$，于是</p>
+<div class="formula">$$\int_\Gamma\boldsymbol F\bullet\mathrm d\boldsymbol r=\int_\Gamma\boldsymbol F\bullet\boldsymbol t\,\mathrm ds,$$</div>
+<p>即</p>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy+R\mathrm dz=\int_\Gamma\big(P\cos(\boldsymbol t,\boldsymbol i)+Q\cos(\boldsymbol t,\boldsymbol j)+R\cos(\boldsymbol t,\boldsymbol k)\big)\mathrm ds.$$</div>
+<p>右边是第一型曲线积分。使用时<b>一定要注意让单位切向量指着 Γ 的正方向</b>。</p>
+<hr>
+<h2 id="sec11_3">§11.3 Green 公式<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<h3>11.3.1 甲类区域与 $\int_{\partial D}P\mathrm dx$（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<p>考察 $\mathbb{R}^2$ 中的闭区域</p>
+<div class="formula">$$D=\{(x,y):\varphi(x)\le y\le\psi(x),\ a\le x\le b\},$$</div>
+<p>其中 $\varphi,\psi:[a,b]\to\mathbb{R}$ 连续且 $\varphi\le\psi$——称为<b>甲类区域</b>。∂D 的定向法则：当一个人沿着 ∂D 行进的时候，区域 D 总在这个人的左手边（图11.1）。</p>
+<p>设 $P:D\to\mathbb R$ 连续且有连续偏导数，把 ∂D 分成四段定向曲线 K、L、M、N（下底、右边、上顶、左边），L 与 N 上 x 为常数故 $\int_LP\mathrm dx=\int_NP\mathrm dx=0$，于是</p>
+<div class="formula">$$\int_{\partial D}P\mathrm dx=\int_a^b\big(P(x,\varphi(x))-P(x,\psi(x))\big)\mathrm dx=-\int_a^b\Big(\int_{\varphi(x)}^{\psi(x)}\frac{\partial P}{\partial y}\mathrm dy\Big)\mathrm dx,$$</div>
+<p>即把沿 ∂D 的第二型曲线积分转化为 D 上的二重积分：</p>
+<div class="formula">$$\int_{\partial D}P\mathrm dx=\iint_D\Big(-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy.\tag{1}$$</div>
+<h3>11.3.2 区域的分拆与乙类区域（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<p>设闭区域 Ω 可分拆为有限个甲类区域 $D_1,\cdots,D_m$ 的并集（任意两个无公共内点）。P 在 Ω 上连续且有连续偏导数时，</p>
+<div class="formula">$$\iint_\Omega\Big(-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy=\sum_{i=1}^m\int_{\partial D_i}P\mathrm dx;$$</div>
+<p>相邻两个区域的公共边界段作为两者的边界时定向正好相反，沿这一段的两个积分互相抵消（图11.2），故 $\sum_i\int_{\partial D_i}P\mathrm dx=\int_{\partial\Omega}P\mathrm dx$，得</p>
+<div class="formula">$$\int_{\partial\Omega}P\mathrm dx=\iint_\Omega\Big(-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy.$$</div>
+<p>所谓<b>乙类区域</b>，是指 $D=\{(x,y):\lambda(y)\le x\le\mu(y),\ c\le y\le d\}$（图11.3）。Q 连续并有连续偏导数时，同理可得</p>
+<div class="formula">$$\int_{\partial D}Q\mathrm dy=\iint_D\frac{\partial Q}{\partial x}\mathrm dx\mathrm dy.$$</div>
+<p>综合两种情形：若闭区域 Ω 既可分拆为有限个甲类区域、又可分拆为有限个乙类区域（课本注明：许多具体问题中所涉及的闭区域都能满足这种条件），P、Q 连续且有连续偏导数，则</p>
+<div class="formula">$$\int_{\partial\Omega}P\mathrm dx+Q\mathrm dy=\iint_\Omega\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy.$$</div>
+<p>其实上述公式对更一般的区域也成立，写成下面的定理。</p>
+<h3>11.3.3 定理11.3.1：Green 公式</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p><b>定理11.3.1（Green（格林，1793~1841)）</b> 设 $\Omega\subset\mathbb{R}^2$ 是由有限条分段光滑的曲线围成的闭区域，如果函数 $P(x,y)$ 和 $Q(x,y)$ 在 Ω 上连续，并有连续的偏导数 $\dfrac{\partial Q}{\partial x}$ 和 $\dfrac{\partial P}{\partial y}$，那么</p>
+<div class="formula">$$\int_{\partial\Omega}P\mathrm dx+Q\mathrm dy=\iint_\Omega\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy\quad(\text{Green 公式}),$$</div>
+<p>其中 ∂Ω 是区域 Ω 的边界，其正向按如下规定确定：一个人沿着 ∂Ω 的正方向行进时，区域 Ω 总在这个人的左边。</p>
+<h3>11.3.4 例1 ★：面积的曲线积分表示</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>设 D 是适合 Green 公式的平面闭区域，则</p>
+<div class="formula">$$\sigma(D)=\int_{\partial D}x\mathrm dy=-\int_{\partial D}y\mathrm dx=\frac12\int_{\partial D}x\mathrm dy-y\mathrm dx.$$</div>
+<p><b>课本证明路线</b>：利用 Green 公式，$\int_{\partial D}x\mathrm dy=\iint_D\frac{\partial x}{\partial x}\mathrm dx\mathrm dy=\iint_D\mathrm d\sigma$，即 $\sigma(D)=\int_{\partial D}x\mathrm dy$；同理 $\sigma(D)=-\int_{\partial D}y\mathrm dx$；两式相加得第三式。</p>
+<h3>11.3.5 例2：椭圆面积</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>椭圆参数方程 $x=a\cos t,\ y=b\sin t$（$0\le t\le2\pi$）。由例1 结果：</p>
+<div class="formula">$$\sigma(D)=\int_{\partial D}x\mathrm dy=ab\int_0^{2\pi}\cos^2t\,\mathrm dt=\pi ab.$$</div>
+<h3>11.3.6 例3 ★：Green 公式失效之例</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>计算积分 $\displaystyle\int_\Gamma\frac{x\mathrm dy-y\mathrm dx}{x^2+y^2}$，其中 Γ 是单位圆周 $x^2+y^2=1$，正向逆时针。</p>
+<p>解：注意到 $x^2+y^2=1$，参数化后直接计算得</p>
+<div class="formula">$$\int_\Gamma\frac{x\mathrm dy-y\mathrm dx}{x^2+y^2}=\int_0^{2\pi}(\cos^2t+\sin^2t)\,\mathrm dt=2\pi.$$</div>
+<p>如果令 $P=\dfrac{-y}{x^2+y^2},\ Q=\dfrac{x}{x^2+y^2}$，直接计算易知</p>
+<div class="formula">$$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}\quad(x^2+y^2>0).$$</div>
+<p>可见这时不能应用 Green 公式，原因是在原点处 P、Q 和它们的偏导数不连续。</p>
+<h3>11.3.7 例4 ★：含原点的闭曲线，积分恒为 $2\pi$（挖洞法）</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>计算 $A=\displaystyle\int_\Gamma\frac{x\mathrm dy-y\mathrm dx}{x^2+y^2}$，其中 Γ 是任意一条包含原点（不通过原点）的分段光滑封闭曲线。</p>
+<p>解：Γ 是有界闭集，到原点的最近距离为正数。作以原点为中心、充分小 ε 为半径的圆周 $C_\varepsilon$（正向逆时针），使 Γ 与 $C_\varepsilon$ 夹成区域 D（图11.4）。此时 P、Q 满足 Green 公式的一切条件，且 $\dfrac{\partial Q}{\partial x}=\dfrac{\partial P}{\partial y}$。利用 Green 公式：</p>
+<div class="formula">$$\int_{\partial D}P\mathrm dx+Q\mathrm dy=\iint_D\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy=0.$$</div>
+<p>由于 $\partial D$ 由 Γ 与 $-C_\varepsilon$ 组成，</p>
+<div class="formula">$$A=\int_\Gamma P\mathrm dx+Q\mathrm dy=-\int_{-C_\varepsilon}P\mathrm dx+Q\mathrm dy=\int_{C_\varepsilon}\frac{x\mathrm dy-y\mathrm dx}{x^2+y^2}=\frac{1}{\varepsilon^2}\int_{C_\varepsilon}x\mathrm dy-y\mathrm dx=\frac1{\varepsilon^2}\,2\pi\varepsilon^2=2\pi.$$</div>
+<p>课本注：这个结果令人有点吃惊。注意到被积表达式</p>
+<div class="formula">$$\frac{x\mathrm dy-y\mathrm dx}{x^2+y^2}=\mathrm d\Big(\arctan\frac yx\Big)=\mathrm d\theta,$$</div>
+<p>其中 θ 是径向量 $(x,y)$ 的辐角，就能看出：点 $(x,y)$ 沿无论怎样一条原点在其内部的闭曲线绕行一周之后，辐角的增量总是 $2\pi$。</p>
+<h3>11.3.8 第一型曲线积分表达的 Green 公式（式(2)）</h3>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<p>利用 11.2 节的式(8)，容易得到用第一型曲线积分表达的 Green 公式：</p>
+<div class="formula">$$\int_\Gamma\big(P\cos(\boldsymbol n,\boldsymbol i)+Q\cos(\boldsymbol n,\boldsymbol j)\big)\mathrm ds=\iint_D\Big(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}\Big)\mathrm dx\mathrm dy,\tag{2}$$</div>
+<p>其中 n 是曲线 Γ 上点的单位外法向量。</p>
+<p>推导要点：由图11.5 容易看出 $(\boldsymbol t,\boldsymbol i)=\pi-(\boldsymbol n,\boldsymbol j)$、$(\boldsymbol t,\boldsymbol j)=(\boldsymbol n,\boldsymbol i)$；于是由 11.2 节式(8)（把 P、Q 换成 $-Q$、P）</p>
+<div class="formula">$$\int_\Gamma\big(P\cos(\boldsymbol n,\boldsymbol i)+Q\cos(\boldsymbol n,\boldsymbol j)\big)\mathrm ds=\int_\Gamma\big((-Q)\cos(\boldsymbol t,\boldsymbol i)+P\cos(\boldsymbol t,\boldsymbol j)\big)\mathrm ds=\iint_D\Big(\frac{\partial P}{\partial x}-\frac{\partial(-Q)}{\partial y}\Big)\mathrm dx\mathrm dy,$$</div>
+<p>这就是式(2)。</p>
+<h3>11.3.9 曲线积分与路径无关（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<p>设 D 是 $\mathbb{R}^2$ 中的区域，A、B 是 D 中任意两点，连接它们的分段光滑路径有很多条。设 P、Q 是 D 上的连续函数，若对任意连接 A、B 的分段光滑曲线 Γ，积分 $\int_\Gamma P\mathrm dx+Q\mathrm dy$ 都取相同的数值，就说这个曲线积分<b>与路径无关</b>。下面给出与路径无关的条件，先给出定义。</p>
+<h3>11.3.10 定义11.3.1：单连通与多连通</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设 D 是 $\mathbb{R}^2$ 中的一个区域。如果 D 中由任何简单曲线（即自身不相交的曲线）围成的有界区域全部包含在 D 中，就称 D 是<b>单连通的</b>，否则就说 D 是<b>多连通的</b>。</p>
+<p>例如图11.6 中 (a)(b) 是单连通区域，(c)(d) 则是多连通区域。</p>
+<h3>11.3.11 定理11.3.2：四个等价条件</h3>
+<p class="pgref"><b>课本：16-18</b></p>
+<p>设 D 是 $\mathbb{R}^2$ 中的单连通区域，函数 $P,Q,\dfrac{\partial Q}{\partial x},\dfrac{\partial P}{\partial y}$ 都在 D 上连续，那么以下四个条件等价：</p>
+<ol><li>对 D 中任意的分段光滑闭曲线 Γ，有 $\int_\Gamma P\mathrm dx+Q\mathrm dy=0$；</li><li>对 D 中任意两条连接 A 和 B 的分段光滑曲线 $\Gamma_1,\Gamma_2$，有 $\int_{\Gamma_1}P\mathrm dx+Q\mathrm dy=\int_{\Gamma_2}P\mathrm dx+Q\mathrm dy$，即曲线积分与路径无关；</li><li>存在 D 上连续可微的函数 $u(x,y)$，使得 $\mathrm du=P\mathrm dx+Q\mathrm dy$；</li><li>在 D 上，有 $\dfrac{\partial Q}{\partial x}=\dfrac{\partial P}{\partial y}$。</li></ol>
+<h4>课本证明路线（$(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(4)\Rightarrow(1)$ 推演链）</h4>
+<ul><li><b>(1)⇒(2)</b>：记 $\Gamma=\Gamma_1\cup\Gamma_2^-$（图11.7），是一条封闭曲线；由 (1) 其积分为零，再由反向曲线差负号得 $\int_{\Gamma_1}=-\int_{\Gamma_2^-}=\int_{\Gamma_2}$。</li><li><b>(2)⇒(3)</b>：积分与路径无关，固定 $(a,b)\in D$，定义</li></ul>
+<div class="formula">$$u(x,y)=\int_{(a,b)}^{(x,y)}P\mathrm dx+Q\mathrm dy\tag{4}$$</div>
+<p>（表示法不引起混乱：积分仅由终点唯一确定）。取 $|h|$ 充分小使 $(x+h,y)\in D$，路径取到 $(x,y)$ 后再接水平直线段（图11.8）：</p>
+<div class="formula">$$u(x+h,y)-u(x,y)=\int_x^{x+h}P(t,y)\,\mathrm dt=P(\xi,y)h,$$</div>
+<p>最后一步用连续函数的积分平均值定理。除以 h 并令 $h\to0$，由 P 的连续性得 $\dfrac{\partial u}{\partial x}=P(x,y)$；同理 $\dfrac{\partial u}{\partial y}=Q(x,y)$，故 $\mathrm du=P\mathrm dx+Q\mathrm dy$。</p>
+<ul><li><b>(3)⇒(4)</b>：由 (3) 知 $u_x=P,\ u_y=Q$，故 $\dfrac{\partial P}{\partial y}=\dfrac{\partial^2u}{\partial x\partial y},\ \dfrac{\partial Q}{\partial x}=\dfrac{\partial^2u}{\partial y\partial x}$；二者都在 D 上连续，混合偏导相等，得 $\dfrac{\partial Q}{\partial x}=\dfrac{\partial P}{\partial y}$。</li><li><b>(4)⇒(1)</b>：先设 Γ 是 D 中一条分段光滑的简单闭曲线，围成的闭区域记为 G，由 Green 公式</li></ul>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy=\iint_G\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm dx\mathrm dy=0;$$</div>
+<p>再设 Γ 是有 n 个自交点的分段光滑闭曲线，可把它分成 n 条简单闭曲线 $\Gamma_1,\cdots,\Gamma_n$，求和仍为零。</p>
+<p><b>课本总结</b>：简而言之，对单连通区域来说，积分与路径无关的充分必要条件是 $\dfrac{\partial Q}{\partial x}=\dfrac{\partial P}{\partial y}$。</p>
+<h3>11.3.12 多连通区域的补充讨论（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.10-20</b></p>
+<p>但对多连通区域来说上述结论不再成立：例4 便是一个例子，对该例 (4) 成立而 (1) 不成立。</p>
+<p>一般来说，若 D 是 $\mathbb{R}^2$ 中的多连通区域，定理11.3.2 中条件 (1)~(3) 仍然相互等价，但 (4) 与前三项不再等价。(1) 与 (2) 等价十分明显；(2)⇒(3) 的证明未用到单连通条件；只需补证一般区域的 (3)⇒(2)：由 (3) 存在 u 使 $\mathrm du=P\mathrm dx+Q\mathrm dy$；对 D 中任一条从 A 到 B 的分段光滑曲线 $x=x(t),y=y(t)$（$\alpha\le t\le\beta$），$u(x(t),y(t))$ 分段连续可微，于是</p>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy=\int_\alpha^\beta\mathrm du(x(t),y(t))=u(x(\beta),y(\beta))-u(x(\alpha),y(\alpha))=u(B)-u(A),$$</div>
+<p>与所选路径无关，即 (2)。</p>
+<h3>11.3.13 例5：与路径无关的积分计算</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>计算曲线积分 $I=\displaystyle\int_L\frac{x\mathrm dy-y\mathrm dx}{(x-y)^2}$，其中 L 是连接 $A=(0,-1),B=(1,0)$ 但不通过直线 $y=x$ 的任意路径。</p>
+<p>解：记 $P=-\dfrac{y}{(x-y)^2},\ Q=\dfrac{x}{(x-y)^2}$，那么</p>
+<div class="formula">$$\frac{\partial Q}{\partial x}=-\frac{x+y}{(x-y)^3}=\frac{\partial P}{\partial y},$$</div>
+<p>因此积分与路径无关。记点 C 为 $(1,-1)$，选取 L 为折线 $\overline{AC}\cup\overline{CB}$（图11.9）：</p>
+<div class="formula">$$\int_{\overline{AC}}\frac{x\mathrm dy-y\mathrm dx}{(x-y)^2}=\int_0^1\frac{\mathrm dx}{(x+1)^2}=\frac12,\qquad\int_{\overline{CB}}\frac{x\mathrm dy-y\mathrm dx}{(x-y)^2}=\int_{-1}^0\frac{\mathrm dy}{(1-y)^2}=\frac12,$$</div>
+<p>所以 $I=1$。</p>
+<hr>
+<h2 id="sec11_4">§11.4 等周问题<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.21-24</b></p>
+<h3>11.4.1 等周问题的提法与 Steiner 的三条论据（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.21-24</b></p>
+<p><b>问题</b>：在周长相等的一切封闭曲线中，什么样的曲线包围的图形有最大的面积？——著名的等周问题。古代人们已意识到应是圆周，但其严格数学证明近代才出现。</p>
+<p>19 世纪几何学家 Steiner（施泰纳，1796~1863）用朴素的几何方法证明了：除圆周外任何封闭曲线都不可能是等周问题的解。他的论据包括三个方面：</p>
+<ol><li><b>解必须是凸的点集</b>：若不然，过两点连成线段并把凹入部分朝直线对折，得到周长不变而面积增大的图形（图11.10）；</li><li><b>平分周长的弦必平分面积</b>：若弦 AB 平分 Γ 的周长却未平分面积，则把面积较大的那部分沿 AB 对折过去，得到周长不变而面积更大的图形（图11.11）;</li><li><b>张角必为直角</b>：取既平分周长又平分面积的弦 AB，若 Γ 上某点 P 对 AB 的张角 ∠APB 不是直角，把两块阴影部分绕 P 转动使张角为 $\pi/2$，再关于新弦对折，保持周长而面积增大（图11.12、图11.13）。</li></ol>
+<p>显然，具备性质 (1)~(3) 的图形必须是圆。</p>
+<h3>11.4.2 存在性漏洞：Weierstrass 的批评（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.21-24</b></p>
+<p>Steiner 的证明非常简单、美妙，可惜他并没有完整地解决等周问题——他只证明了"除圆周外的任何其他封闭曲线都不可能是等周问题的解"；换句话说，如果等周问题的解存在，那么非"圆"莫属。</p>
+<p>Weierstrass 指出了 Steiner"证明"中的漏洞，并举例说明忽视存在性问题可能产生重大谬误。课本举出的简单例子：对大于 1 的任何正整数 n，有 $n^2>n$，故 n 不可能是最大的正整数；但由此决不能断言 1 就是全体正整数集中的最大者——因为这个集合中最大者根本不存在。复杂问题中这类漏洞非常隐蔽，一不小心便会落入陷阱。</p>
+<h3>11.4.3 Peter Lax 的证明：最大面积当且仅当单位圆</h3>
+<p class="pgref"><b>课本：p.21-24</b></p>
+<p>现在仅限于在<b>分段连续可微的封闭曲线类</b>中寻求等周问题的解答。以下的证明来自当代美国著名数学家 Peter Lax。</p>
+<p><b>归一化与坐标设置</b>：不失一般性，设封闭曲线 Γ 的周长为 $2\pi$；在 Γ 上任取一点作为弧长起点，沿逆时针方向量出弧长为 π 的那一点；以这两点决定的直线作横轴、它们的中点作原点、起点位于横轴正方向建立直角坐标系。用 Γ 自身的弧长 s 作参数，Γ 上的点写为 $(x(s),y(s))$（$0\le s\le2\pi$），则 $y(0)=y(\pi)=0$ 且 $x(0)+x(\pi)=0$。面积（引用 11.3 节例1）：</p>
+<div class="formula">$$A=-\int_\Gamma y\,\mathrm dx=-\int_0^{2\pi}yx'\,\mathrm ds,$$</div>
+<p>令 $A_1=-\int_0^\pi yx'\mathrm ds,\ A_2=-\int_\pi^{2\pi}yx'\mathrm ds$。要证明：(a) $A_1\le\pi/2$；(b) $A_1=\pi/2$ 当且仅当 Γ 的上半部分是圆周。</p>
+<p><b>估计 (a)</b>：</p>
+<ol><li>平均值不等式给出 $A_1=\int_0^\pi y(-x')\mathrm ds\le\frac12\int_0^\pi(y^2+(x')^2)\mathrm ds$；</li><li>由 s 是弧长参数，$(x')^2+(y')^2=1$，故 $A_1\le\frac12\int_0^\pi(y^2+1-(y')^2)\mathrm ds$；</li><li>令 $u(s)=\dfrac{y(s)}{\sin s}$（$0&lt;s&lt;\pi$）；由 $y(0)=y(\pi)=0$ 补充定义端点值 $u(0)=y'(0)$、$u(\pi)=-y'(\pi)$，故 u 在 $[0,\pi]$ 上连续、在 $(0,\pi)$ 内连续可导；</li><li>由 $y'=u'\sin s+u\cos s$ 展开：</li></ol>
+<div class="formula">$$y^2+1-(y')^2=u^2(\sin^2s-\cos^2s)-2uu'\sin s\cos s+1-(u')^2\sin^2s=-\frac12(u^2\sin2s)'+1-(u')^2\sin^2s;$$</div>
+<ol><li>代入并积分（全导数项积分为零）：</li></ol>
+<div class="formula">$$A_1\le\frac12\int_0^\pi\big(1-(u')^2\sin^2s\big)\mathrm ds\le\frac{\pi}{2}.$$</div>
+<p>这就证明了 (a)。</p>
+<p><b>等号刻画 (b)</b>：式中等号成立的充分必要条件是 $(u')^2\sin^2s=0$，即 $u'=0$，表明 u 只能是常数 λ，从而 $y(s)=\lambda\sin s$；而且由第一步的不等式看出必须且只需 $y=-x'$。将 $y=\lambda\sin s$ 代入 $y^2+(y')^2=(x')^2+(y')^2=1$，得 $\lambda^2=1$；由 $y>0$ 得 $\lambda=1$，即 $y=\sin s$；由 $x'=-y=-\sin s$ 得 $x=\cos s+\mu$，再由 $x(0)+x(\pi)=0$ 得 $\mu=0$。最后得</p>
+<div class="formula">$$x=\cos s,\qquad y=\sin s\qquad(0\le s\le\pi),$$</div>
+<p>这正是上半圆的方程。用同样的方法处理 $A_2$，得出 Γ 的下半部分也必须是一个半圆。这就证明了：为了取得最大的面积，必须且只需 Γ 是单位圆。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本各节配两档习题：<b>练习题 X.Y</b>（基本）与<b>问题 X.Y</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§11.1</td><td>练习题11.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=83\</td><td>p.4（共 5 题，编号 (1)～(5)）</td><td>—</td></tr><tr><td>§11.2</td><td>练习题11.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=88\</td><td>p.9-10（共 5 题；第 1 题含 (1)～(5) 小题、第 3 题含 (1)(2) 小题）</td><td>—</td></tr><tr><td>§11.3</td><td>练习题11.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=98\</td><td>p.19-20（共 8 题；第 1、2、4 题各含 3 个小题，第 7 题含 2 个小题）</td><td>问题11.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=99\</td><td>p.20（共 4 题）</td></tr><tr><td>§11.4</td><td>练习题11.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=103\</td><td>p.24（共 2 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：本章只有 §11.3 配有"问题"档；全章无"补充题"档。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">章首引言：可求长曲线上的质量（密度 ρ、分割、近似和、极限）
+→ 第一型曲线积分（定义11.1.1）
+→ 化为定积分（定理11.1.1）与显式曲线公式（推论11.1.1）、三步计算总结
+→ 例1（圆柱螺线）→ 例2（球面∩平面交线：常规算法 + 对称性妙解）
+→ 力场做功问题（向量场、有向曲线）
+→ 第二型曲线积分（定义11.2.1）与方向性（Γ 与 -Γ 差一负号）
+→ 化为定积分（定理11.2.1）→ Pdx+Qdy+Rdz 记法与分量公式
+→ 例1（三路径比较：1/3、1/4、0）→ 例2（r·dr = 0 ⟹ 积分为零）
+→ 两类曲线积分的联系（式(8)：第二型 = 第一型乘 cos(t,·)）
+→ 甲类区域与 ∫∂D Pdx（式(1)）→ 区域分拆（公共边界抵消）
+→ 乙类区域与 ∫∂D Qdy → 两情形综合
+→ Green 公式（定理11.3.1，边界正向：区域在左）
+→ 面积公式（例1）→ 椭圆面积 πab（例2）
+→ 原点处失效之例（例3，积分 = 2π）→ 挖洞法：含原点任意闭曲线恒为 2π（例4）+ 辐角解释
+→ 第一型表达的 Green 公式（式(2)，外法向量形式）
+→ 曲线积分与路径无关（叙述式）→ 单连通 / 多连通（定义11.3.1）
+→ 四个等价条件（定理11.3.2：(1)⇒(2)⇒(3)⇒(4)⇒(1)）
+→ 多连通补充讨论（(1)(2)(3) 仍等价，(4) 不等价；u(B)−u(A)）
+→ 例5（换折线路径计算，I = 1）
+→ 等周问题：提法 → Steiner 三条论据（凸、弦平分面积、直角）
+→ Weierstrass 的存在性批评（最大正整数反例）
+→ Peter Lax 证明：A₁ ≤ π/2，等号 ⟺ 半圆 ⟹ 最大面积 ⟺ 单位圆</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>2020 第9题：半圆上向量场线积分极限（§11.2 参数化）。</li><li>2022 第5题：球面与平面交线上的线积分（§11.2–§11.3，配合 Stokes/对称）。</li><li>2023 第8题：Green 公式与绕数（§11.3）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>24</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§11.1 第一型曲线积分</h3>
+<h4>练习题 11.1（5 题）</h4>
+<ol class="ex-list">
+<li>$\displaystyle\int_\Gamma(x^2+y^2)^n\,\mathrm ds$，$\Gamma:x=a\cos t,\ y=a\sin t\ (0\leqslant t\leqslant2\pi)$，其中 $n\in\mathbb N^*$。原书 PDF 84</li>
+<li>$\displaystyle\int_\Gamma(x+y)\,\mathrm ds$，$\Gamma$：顶点为 $(0,0)$、$(1,0)$、$(0,1)$ 的三角形的边界。原书 PDF 84</li>
+<li>$\displaystyle\int_\Gamma z\,\mathrm ds$，$\Gamma$：圆锥螺线 $x=t\cos t,\ y=t\sin t,\ z=t\ (0\leqslant t\leqslant2\pi)$。原书 PDF 84</li>
+<li>$\displaystyle\int_\Gamma x^2\,\mathrm ds$，$\Gamma$：圆周 $x^2+y^2+z^2=a^2,\ x+y+z=0$。原书 PDF 84</li>
+<li>$\displaystyle\int_\Gamma y^2\,\mathrm ds$，$\Gamma$：旋轮线的一拱，$x=a(t-\sin t),\ y=a(1-\cos t)\ (0\leqslant t\leqslant2\pi)$。原书 PDF 84</li>
+</ol>
+<h3>§11.2 第二型曲线积分</h3>
+<h4>练习题 11.2（5 题）</h4>
+<ol class="ex-list">
+<li>计算下列第二型曲线积分：</li>
+<li>设常数 $a,b,c$ 满足 $ac-b^2>0$。计算积分 $\displaystyle\int_\Gamma\frac{x\,\mathrm dy-y\,\mathrm dx}{ax^2+2bxy+cy^2}$，其中 $\Gamma$ 为逆时针方向的单位圆周。原书 PDF 89</li>
+<li>计算下列第二型曲线积分，曲线的正向是参数增加的方向：</li>
+<li>计算 $\displaystyle\int_\Gamma(y^2-z^2)\,\mathrm dx+(z^2-x^2)\,\mathrm dy+(x^2-y^2)\,\mathrm dz$，$\Gamma$ 为球面片 $x^2+y^2+z^2=1,\ x\geqslant0,\ y\geqslant0,\ z\geqslant0$ 的边界，方向是 $(1,0,0)\to(0,1,0)\to(0,0,1)\to(1,0,0)$。原书 PDF 89</li>
+<li>证明：$\displaystyle\left|\int_\Gamma F\cdot\mathrm d\boldsymbol\rho\right|\leqslant\int_\Gamma\lVert F\rVert\,\mathrm ds$。原书路径微元印作 $\mathrm d\boldsymbol\rho$，此处保留其字形，不替换成常用的 $\mathrm d\boldsymbol r$。原书 PDF 89</li>
+</ol>
+<h3>§11.3 Green 公式</h3>
+<h4>练习题 11.3（8 题）</h4>
+<ol class="ex-list">
+<li>利用 Green 公式，计算下列积分：</li>
+<li>利用 Green 公式，计算下列曲线围成的面积：</li>
+<li>设封闭曲线 $\Gamma$ 有参数方程 $x=\varphi(t),\ y=\psi(t)\ (\alpha\leqslant t\leqslant\beta)$，参数增加时指示 $\Gamma$ 的正向。证明：$\Gamma$ 围成的面积</li>
+<li>单变量函数 $f$ 连续可微，$\Gamma$ 是任意一条分段光滑的封闭曲线。证明：</li>
+<li>设 $\Gamma$ 为 $\mathbb R^2$ 中的光滑封闭曲线，用 $n$ 表示 $\Gamma$ 上各点处的单位外法向量。设 $a$ 是一个固定的单位向量，求证 $\displaystyle\int_\Gamma\cos(a,n)\,\mathrm ds=0$。这里 $(a,n)$ 表示 $a$ 与 $n$ 之间夹成的角。原书 PDF 99</li>
+<li>设 $\Gamma$ 为一条光滑的封闭曲线，$n$ 表示单位外法向量，用 $(n,i)$ 表示 $n$ 与 $x$ 轴正向的夹角，$(n,j)$ 表示 $n$ 与 $y$ 轴正向的夹角。计算曲线积分 $\displaystyle\int_\Gamma\bigl(x\cos(n,i)+y\cos(n,j)\bigr)\,\mathrm ds$。原书 PDF 99</li>
+<li>计算下列曲线积分：</li>
+<li>计算曲线积分 $\displaystyle\int_\Gamma\frac{e^x}{x^2+y^2}\bigl((x\sin y-y\cos y)\,\mathrm dx+(x\cos y+y\sin y)\,\mathrm dy\bigr)$，其中 $\Gamma$ 是原点在其内部的分段光滑的闭曲线。原书 PDF 99</li>
+</ol>
+<h4>问题 11.3（4 题）</h4>
+<ol class="ex-list">
+<li>设 $P,Q$ 在 $\mathbb R^2$ 上有连续偏导数，用 $\Gamma$ 表示以任意点 $(x_0,y_0)$ 为中心、以任意正数 $r$ 为半径的上半圆周。如果 $\displaystyle\int_\Gamma P(x,y)\,\mathrm dx+Q(x,y)\,\mathrm dy=0$，证明：在 $\mathbb R^2$ 上，有 $P=0,\ \frac{\partial Q}{\partial x}=0$。原书 PDF 99</li>
+<li>证明平面上的 Green 第二公式：</li>
+<li>设 $\Gamma$ 和 $G$ 如第 2 题所示。如果 $u$ 是 $G$ 上的调和函数，即 $\Delta u=0$ 在 $G$ 上成立，证明：对任意的 $(x_0,y_0)\in G$，有等式</li>
+<li>设 $G$ 是 $\mathbb R^2$ 中的区域，$u$ 是 $G$ 中的调和函数，$\Gamma$ 是以 $(x_0,y_0)$ 为中心、以 $R$ 为半径位于 $G$ 中的任意一个圆周，证明：$\displaystyle u(x_0,y_0)=\frac1{2\pi R}\int_\Gamma u(x,y)\,\mathrm ds$。原书 PDF 100</li>
+</ol>
+<h3>§11.4 等周问题</h3>
+<h4>练习题 11.4（2 题）</h4>
+<ol class="ex-list">
+<li>设周长为 $L$ 的任意封闭曲线 $\Gamma$ 围成的区域的面积为 $A$。证明：$\displaystyle A\leqslant\frac{L^2}{4\pi}$，式中等号当且仅当 $\Gamma$ 为圆周时成立。原书 PDF 103</li>
+<li>证明：周长为 $L$ 的四边形中以正方形面积最大。原书 PDF 103</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第11章_曲线积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §11.1 第一型曲线积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §11.2 第二型曲线积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §11.3 Green 公式：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §11.4 等周问题：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

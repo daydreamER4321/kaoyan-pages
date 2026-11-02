@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12章 曲面积分 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第12章<br>曲面积分</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec12_1">§12.1 曲面的面积</a>
+    <a href="#sec12_2">§12.2 第一型曲面积分</a>
+    <a href="#sec12_3">§12.3 第二型曲面积分</a>
+    <a href="#sec12_4">§12.4 Gauss 公式和 Stokes 公式</a>
+    <a href="#sec12_5">§12.5 微分形式和外微分运算</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第12章 曲面积分</h1>
+    <p class="hero-sub">§12.1 曲面的面积 · §12.2 第一型曲面积分 · §12.3 第二型曲面积分 · §12.4 Gauss 公式和 Stokes 公式 · §12.5 微分形式和外微分运算</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec12_1">§12.1 曲面的面积<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<h3>12.1.1 Schwarz 反例：内接多面体逼近失效（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>平面多边形面积的计算早已建立；平面上有界点集的面积已在本书 10.4 节用二重积分定义。多面体的表面积是各平面多边形面积之和，被认为已经解决。对弯曲曲面，人们曾想用<b>内接多面体的表面积来逼近</b>（类比曲线弧长用内接折线逼近）。但 19 世纪末 Schwarz 给出著名反例，说明即使对很简单的曲面这种想法也行不通。</li><li>反例：底半径 1、高 1 的直圆柱面 Σ，其表面积应当等于 $2\pi$。用与母线垂直、间隔均匀的 $m+1$ 张平面截出 $m+1$ 个圆周，每个圆周用 $n$ 个分点等分，且上一圆周的分点对下一圆周的垂直投影落在下一圆周相邻两分点的正中间；把相关三分点连成三角形，作成由 $2mn$ 个全等三角形组成的内接多面体。</li><li>一个小三角形的面积为</li></ul>
+<div class="formula">$$\sin\frac{\pi}{n}\cdot\sqrt{\Big(1-\cos\frac{\pi}{n}\Big)^2+\Big(\frac{1}{m}\Big)^2},$$</div>
+<p>故多面体表面积</p>
+<div class="formula">$$\sigma_{m,n}=2mn\sin\frac{\pi}{n}\sqrt{\Big(1-\cos\frac{\pi}{n}\Big)^2+\Big(\frac{1}{m}\Big)^2}=2n\sin\frac{\pi}{n}\sqrt{m^2\Big(1-\cos\frac{\pi}{n}\Big)^2+1}.$$</div>
+<ul><li>当 $m,n$ 同时无限增加时小三角形的直径趋于零，但 $\sigma_{m,n}$ 没有唯一极限：若令 $\lim\dfrac{m}{n^2}=q$，利用 $\lim n\sin\dfrac{\pi}{n}=\pi$ 与等价无穷小 $1-\cos\dfrac{\pi}{n}\sim\dfrac{\pi^2}{2n^2}$，得</li></ul>
+<div class="formula">$$\lim\sigma_{m,n}=2\pi\sqrt{\frac{q^2}{4}\pi^4+1}.\tag{1}$$</div>
+<p>极限依赖于 $q$，即依赖于 $m$ 与 $n$ 同时增加的方式；当 $q=0$ 时（也只在这时）极限等于 $2\pi$。</p>
+<ul><li>错误根源的分析：$q=0$ 时小三角形可任意贴近圆柱面，极限确能表示表面积；$q=+\infty$ 时小三角形几乎变得与切平面垂直。</li><li>结论：只能放弃"用内接多面体面积的极限定义曲面面积"；课本不去讨论最一般的曲面面积定义，而是<b>假定曲面已有连续可微的参数表示</b>。</li></ul>
+<h3>12.1.2 定义12.1.1：曲面面积与面积元素</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>设曲面 $\Sigma$ 有向量方程 $\boldsymbol{r}=\boldsymbol{r}(u,v)\ ((u,v)\in\Delta)$，$\Delta\subset\mathbb{R}^2$ 是区域；$\Delta$ 与 $\Sigma$ 上的点一一对应，$\boldsymbol{r}\in C^1(\Delta)$，且在 $\Delta$ 上 $\boldsymbol{r}_u\times\boldsymbol{r}_v\ne\boldsymbol{0}$（即 $\Sigma$ 是<b>正则曲面</b>）。用 u 曲线和 v 曲线把 $\Sigma$ 分成小块，每一小块在切平面上投影的面积近似为 $\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\,\Delta u\,\Delta v$，加密取极限得：</p>
+<p><b>定义12.1.1</b> 称</p>
+<div class="formula">$$\sigma(\Sigma)=\iint_{\Delta}\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\,\mathrm{d}u\,\mathrm{d}v\tag{2}$$</div>
+<p>为曲面 $\Sigma$ 的面积，并记</p>
+<div class="formula">$$\mathrm{d}\sigma=\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\,\mathrm{d}u\,\mathrm{d}v,\tag{3}$$</div>
+<p>称 dσ 为曲面的<b>面积元素</b>，简称<b>面元</b>。</p>
+<h3>12.1.3 定义合理性的三点说明（课本说明）</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<p><b>(a) 与参数选择无关。</b> 设参数 $(u,v)$ 经正则映射 $u=u(s,t),\ v=v(s,t)$（式(4)）变换为 $(s,t)\in\Delta'$。由 9.5 节公式(22)：</p>
+<div class="formula">$$\|\boldsymbol{r}_s\times\boldsymbol{r}_t\|=\Big|\frac{\partial(u,v)}{\partial(s,t)}\Big|\,\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|,$$</div>
+<p>再对式(2)换元即得同一数值——曲面面积的定义确实与参数的选择无关。</p>
+<p><b>(b) 单射假设的作用。</b> 关于 r 是单射的假设是为防止曲面上出现重点；若重点只有孤立点、或重点集合对应于 Δ 中的零面积集，公式(2)仍可适用。</p>
+<p><b>(c) 平面情形的退化。</b> 若 D 是 xy 平面上的区域，取 $\boldsymbol{r}(x,y)=(x,y,0)$，则 $\mathrm{d}\sigma=\mathrm{d}x\,\mathrm{d}y$，公式(2)退化为 $\sigma(D)=\iint_D\mathrm{d}x\mathrm{d}y$——正是 10.4 节平面图形面积的定义，两套定义没有冲突。</p>
+<h3>12.1.4 面积的其他表示（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>由 9.5 节式(19)，用雅可比行列式表示：</li></ul>
+<div class="formula">$$\sigma(\Sigma)=\iint_{\Delta}\left(\Big(\frac{\partial(y,z)}{\partial(u,v)}\Big)^2+\Big(\frac{\partial(z,x)}{\partial(u,v)}\Big)^2+\Big(\frac{\partial(x,y)}{\partial(u,v)}\Big)^2\right)^{1/2}\mathrm{d}u\,\mathrm{d}v.\tag{5}$$</div>
+<ul><li>由 9.5 节式(21)，用第一基本量表示：</li></ul>
+<div class="formula">$$\sigma(\Sigma)=\iint_{\Delta}\sqrt{EG-F^2}\,\mathrm{d}u\,\mathrm{d}v,\tag{6}$$</div>
+<p>其中</p>
+<div class="formula">$$E=\Big(\frac{\partial x}{\partial u}\Big)^2+\Big(\frac{\partial y}{\partial u}\Big)^2+\Big(\frac{\partial z}{\partial u}\Big)^2,$$</div>
+<div class="formula">$$F=\frac{\partial x}{\partial u}\frac{\partial x}{\partial v}+\frac{\partial y}{\partial u}\frac{\partial y}{\partial v}+\frac{\partial z}{\partial u}\frac{\partial z}{\partial v},$$</div>
+<div class="formula">$$G=\Big(\frac{\partial x}{\partial v}\Big)^2+\Big(\frac{\partial y}{\partial v}\Big)^2+\Big(\frac{\partial z}{\partial v}\Big)^2.$$</div>
+<ul><li>显式曲面 $z=f(x,y)\ ((x,y)\in D)$：写为参数形式 $x=x,y=y,z=f(x,y)$ 后，$\frac{\partial(y,z)}{\partial(x,y)}=-\frac{\partial f}{\partial x},\ \frac{\partial(z,x)}{\partial(x,y)}=-\frac{\partial f}{\partial y},\ \frac{\partial(x,y)}{\partial(x,y)}=1$，由式(5)得</li></ul>
+<div class="formula">$$\sigma(\Sigma)=\iint_{D}\sqrt{1+\Big(\frac{\partial f}{\partial x}\Big)^2+\Big(\frac{\partial f}{\partial y}\Big)^2}\,\mathrm{d}x\mathrm{d}y.\tag{7}$$</div>
+<h3>12.1.5 例1（★球面的面积）</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p><b>命题</b>：计算半径为 $a$ 的球面的面积。</p>
+<p><b>课本证明要点</b>：</p>
+<ol><li>取球面参数方程 $x=a\sin\theta\cos\varphi,\ y=a\sin\theta\sin\varphi,\ z=a\cos\theta$；</li><li>算得 $E=a^2,\ F=0,\ G=a^2\sin^2\theta$，故面元</li></ol>
+<div class="formula">$$\mathrm{d}\sigma=\sqrt{EG-F^2}\,\mathrm{d}\theta\mathrm{d}\varphi=a^2\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi;\tag{8}$$</div>
+<ol><li>$S=\displaystyle\int_0^{2\pi}\!\!\int_0^{\pi}a^2\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi=4\pi a^2$。</li></ol>
+<p>（面元公式(8)被后续例2 与 12.2 节例3 直接引用。）</p>
+<h3>12.1.6 例3（★旋转曲面的面积）</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p><b>命题</b>：求曲线 $y=f(x)\ (f(x)\ge0,\ a\le x\le b)$ 绕 x 轴旋转所得旋转曲面的面积。</p>
+<p><b>课本证明要点</b>：</p>
+<ol><li>在旋转面上任取点 $P(x,y,z)$，由图 12.3 得 $y^2+z^2=f^2(x)$，故曲面（z 轴正方向一侧）方程为 $z=\sqrt{f^2(x)-y^2}$；</li><li>算得 $1+z_x^2+z_y^2=f^2(x)\dfrac{1+(f'(x))^2}{f^2(x)-y^2}$；</li><li>由公式(7)：</li></ol>
+<div class="formula">$$S=2\iint_D f(x)\frac{\sqrt{1+(f'(x))^2}}{\sqrt{f^2(x)-y^2}}\,\mathrm{d}x\mathrm{d}y=2\int_a^b f(x)\sqrt{1+(f'(x))^2}\,\mathrm{d}x\int_{-f(x)}^{f(x)}\frac{\mathrm{d}y}{\sqrt{f^2(x)-y^2}},$$</div>
+<p>其中 D 为旋转面在 xy 平面上的投影区域；</p>
+<ol><li>内层积分等于 $\pi$，于是</li></ol>
+<div class="formula">$$S=2\pi\int_a^b f(x)\sqrt{1+(f'(x))^2}\,\mathrm{d}x.$$</div>
+<p>课本注明：这个公式曾在 7.1 节中用其他方法得到过。</p>
+<hr>
+<h2 id="sec12_2">§12.2 第一型曲面积分<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.7-11</b></p>
+<h3>12.2.1 物理引入（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.7-11</b></p>
+<p>设 $\Sigma$ 是 $\mathbb{R}^3$ 中一张有面积的曲面，其上按（面）密度 $\rho$ 分布着物质。将 $\Sigma$ 分成小块 $S_1,\cdots,S_n$，每块上任取一点 $p_i$，则小块质量近似于 $\rho(p_i)\sigma(S_i)$，总质量近似于</p>
+<div class="formula">$$\sum_{i=1}^{n}\rho(p_i)\sigma(S_i);$$</div>
+<p>无限细分时的极限定义为分布在 $\Sigma$ 上物质的总质量 $M$。这一实例引导出第一型曲面积分的定义。</p>
+<h3>12.2.2 定义12.2.1：第一型曲面积分</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>设 $\Sigma$ 是一张可求面积的曲面片，f 是定义在 $\Sigma$ 上的函数，分割 π 把 $\Sigma$ 分成若干更小的曲面片 $S_1,\cdots,S_n$。定义分割的宽度</p>
+<div class="formula">$$\|\pi\|=\max\{\operatorname{diam}(S_i):i=1,2,\cdots,n\}.$$</div>
+<p>在每一小片上任取一点 $p_i$，如果和数</p>
+<div class="formula">$$\sum_{i=1}^{n}f(p_i)\sigma(S_i)$$</div>
+<p>当 $\|\pi\|\to0$ 时有有限的极限，并且极限值不依赖点 $p_i$ 在 $S_i$ 上的选择，则称该极限值为 f 沿曲面 $\Sigma$ 的<b>第一型曲面积分</b>，记作 $\displaystyle\int_\Sigma f\,\mathrm{d}\sigma$。</p>
+<h3>12.2.3 计算公式与步骤（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.7-11</b></p>
+<ul><li>若 $\Sigma$ 是正则曲面，参数方程 $\boldsymbol{r}=\boldsymbol{r}(u,v)\ ((u,v)\in\Delta)$，f 在 $\Sigma$ 上连续，则利用 12.1 节面元表达式(3)得计算公式：</li></ul>
+<div class="formula">$$\int_{\Sigma}f\,\mathrm{d}\sigma=\iint_{\Delta}f\circ r\,\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\,\mathrm{d}u\,\mathrm{d}v.\tag{1}$$</div>
+<ul><li>课本说明：定义 12.1.1 之后的前两点说明（即 (a) 与 (b)）对定义 12.2.1 显然仍起作用。</li><li>常值函数 $f\equiv1$ 的第一型曲面积分正是曲面面积 $\sigma(\Sigma)$。</li><li>显式表示 $z=\varphi(x,y)\ ((x,y)\in D)$（D 有面积、$\varphi\in C^1(D)$）时公式变成：</li></ul>
+<div class="formula">$$\int_{\Sigma}f\,\mathrm{d}\sigma=\iint_D f(x,y,\varphi(x,y))\sqrt{1+\Big(\frac{\partial\varphi}{\partial x}\Big)^2+\Big(\frac{\partial\varphi}{\partial y}\Big)^2}\,\mathrm{d}x\mathrm{d}y.\tag{2}$$</div>
+<ul><li>计算步骤程式化：(1) 为 $\Sigma$ 求合格的参数表示 r 或显式 φ，并定出定义域 Δ 或 D；(2) 计算面元 $\mathrm{d}\sigma=\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\mathrm{d}u\mathrm{d}v$ 或 $\mathrm{d}\sigma=\sqrt{1+\varphi_x^2+\varphi_y^2}\,\mathrm{d}x\mathrm{d}y$（式(3)）；(3) 计算二重积分(1)或(2)。</li></ul>
+<p>（例1：上半球面 $\int_\Sigma(x+y+z)\mathrm{d}\sigma=\pi a^3$；例2：整球面 $\int_\Sigma x^2\mathrm{d}\sigma=\frac43\pi a^4$。见 0.6 索引。）</p>
+<h3>12.2.4 例3（★均匀球面质量的引力场）</h3>
+<p class="pgref"><b>课本：9-10</b></p>
+<p><b>命题</b>：半径为 R 的球面上均匀分布着某种质量，求其产生的引力场。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>同 10.9 节例4，计算空间中任一点 p 处单位质量所受的引力；取球心为原点，不妨设 $\boldsymbol{p}=(0,0,l)$；球面上点 $(x,y,z)$ 处的面元 $\mathrm{d}\sigma$ 对 p 的引力在 z 轴上的分量为</li></ol>
+<div class="formula">$$\frac{(z-l)\,\mathrm{d}\sigma}{\big(x^2+y^2+(z-l)^2\big)^{3/2}};$$</div>
+<ol><li>整个球面对 p 的引力在 z 轴上的分量</li></ol>
+<div class="formula">$$F_z=\int_{\Sigma}\frac{z-l}{\big(x^2+y^2+(z-l)^2\big)^{3/2}}\,\mathrm{d}\sigma,\qquad \Sigma:x^2+y^2+z^2=R^2;$$</div>
+<ol><li>用球坐标参数方程，此时 $E=R^2,F=0,G=R^2\sin^2\theta$，$\mathrm{d}\sigma=R^2\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi$，化为</li></ol>
+<div class="formula">$$F_z=2\pi R^2G(R),\qquad G(R)=\int_0^{\pi}\frac{(R\cos\theta-l)\sin\theta}{(R^2-2Rl\cos\theta+l^2)^{3/2}}\,\mathrm{d}\theta;$$</div>
+<ol><li>由 10.9 节例4 已算出</li></ol>
+<div class="formula">$$G(R)=\begin{cases}0,&R>l,\\[2pt]-\dfrac{2}{l^2},&R&lt;l.\end{cases}$$</div>
+<p><b>结论</b>：</p>
+<ul><li>p 点在球外（$l>R$）：$F_z=-\dfrac{4\pi R^2}{l^2}$——相当于把球面上的全部质量集中在球心所产生的引力；</li><li>p 点在球内（$l&lt;R$）：$F_z=0$——球面对其不产生引力。</li></ul>
+<hr>
+<h2 id="sec12_3">§12.3 第二型曲面积分<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.11-19</b></p>
+<h3>12.3.1 双侧曲面与定向（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.11-19</b></p>
+<p>第二型曲面积分与曲面的定向有关，必须首先讲述定向曲面。</p>
+<ul><li><b>正则曲面片都可定向</b>。设 $\Sigma:\boldsymbol{r}=\boldsymbol{r}(u,v)\ ((u,v)\in\Delta)$ 是正则曲面片，因 $\boldsymbol{r}_u\times\boldsymbol{r}_v\ne\boldsymbol{0}$ 处处成立，曲面各点有确定的法向量，</li></ul>
+<div class="formula">$$\pm\frac{\boldsymbol{r}_u\times\boldsymbol{r}_v}{\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|}$$</div>
+<p>都是单位法向量；可指定其一为 $\Sigma$ 的正方向（例如带正号者）。参数 $(u,v)$ 在 $\Delta$ 上连续变化时，指定法向量在 $\Sigma$ 上连续变化，不会突然转到相反方向。</p>
+<ul><li><b>正侧与负侧</b>：约定把正法线指向的一侧叫正侧，相反一侧叫负侧。凡能明确区分正、负两侧的曲面叫<b>双侧曲面</b>。所以正则曲面一定是双侧曲面，即它是<b>可定向的</b>。平面（或一部分）、椭球面（或一部分）等都可定向。</li><li><b>Möbius 带（不可定向的著名例子）</b>：矩形纸带 $ABB_1A_1$ 两端像拧麻花一样扭转后，使 A 与 $B_1$ 黏合、B 与 $A_1$ 黏合，所得曲面记作 M。在 M 上任取一点 P 指定单位法向量，让 P 连续变化扫过一圈回到出发点时，法向量方向恰好与最初相反！通俗地说：刷油漆的人可以把 M 的所有部分全部刷上油漆而无须经过曲面的边界——这说明 Möbius 带不可定向。</li><li><b>第二型曲面积分只能在双侧曲面上定义。</b></li></ul>
+<h3>12.3.2 拼接曲面的定向（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.11-19</b></p>
+<p>常常遇到由若干块连续可微曲面片拼接而成的曲面，给"拼接曲面"定向需进一步说明：</p>
+<ul><li>拼接曲面由有限多块曲面片拼成，任何两块至多相交于边界上一段曲线，任意三块（或更多块）至多相交于一个点；每块小曲面片应是可定向的。</li><li>一块曲面片的正向确定后其边界曲线随之定方向，规则是：<b>人站在正侧沿边界正向绕行时，曲面片的内部应在左手边</b>——只有符合此规则时称曲面片的定向与其边界曲线的定向是<b>协调的</b>。两个有一段公共边界的曲面片，若各自的定向使公共边界上的定向正好相反，也称这两块的定向协调。</li><li>若拼接曲面中任何两块有一段公共边界的曲面片都有协调的定向，称拼接曲面<b>可定向</b>；约定把协调选择的各块曲面片上的正向当作整个曲面的正向。</li><li>课本例1：立方体的表面是由六个正方形组成的封闭拼接曲面，每一正方形规定朝外的法线方向为其正向，从外部看上去各正方形边界按逆时针绕行（图 12.7）——该拼接曲面可定向。</li><li>课本例2：矩形 $ABB_1A_1$ 被 CD 分成两个小矩形并按图 12.8 定向后黏合 AB 与 $A_1B_1$：若 A 黏 $A_1$、B 黏 $B_1$ 得柱面，定向协调，是双侧曲面；若 A 黏 $B_1$、B 黏 $A_1$ 就成了 Möbius 带——不是双侧曲面，它有不协调的定向。</li></ul>
+<h3>12.3.3 流量问题与定义12.3.1：第二型曲面积分</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p><b>流量引入（叙述式，无编号）</b>：设区域 $D\subset\mathbb{R}^3$，$F:D\to\mathbb{R}^3$ 是（姑且设想为流速场的）向量场，$\Sigma\subset D$ 是一张有面积且可定向的曲面片，要计算 F 在单位时间内从 $\Sigma$ 一侧流向另一侧的流量。应先给 $\Sigma$ 定向（任选正侧）；从负侧流向正侧的流量算正、从正侧流向负侧的算负；改变定向结果相差一个符号。通过指向正侧的单位法向量为 n 的面元 $\mathrm{d}\sigma$ 的流量为 $F\cdot n\,\mathrm{d}\sigma$，故单位时间内通过 $\Sigma$ 的流体总量为 $\displaystyle\int_\Sigma F\cdot n\,\mathrm{d}\sigma$。</p>
+<p><b>定义12.3.1</b> 设 $\Sigma$ 是 $\mathbb{R}^3$ 中定向的光滑曲面，其上确定方向的单位向量记为 n，F 是定义在 $\Sigma$ 上的向量值函数。记 $\mathrm{d}\boldsymbol{\sigma}=n\,\mathrm{d}\sigma$（$\mathrm{d}\sigma$ 为 $\Sigma$ 上的面积元素），称</p>
+<div class="formula">$$\int_{\Sigma}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{\sigma}=\int_{\Sigma}\boldsymbol{F}\cdot\boldsymbol{n}\,\mathrm{d}\sigma\tag{1}$$</div>
+<p>为 F 在有向曲面 $\Sigma$ 上的<b>第二型曲面积分</b>。</p>
+<p>记 $F=(P,Q,R),\ n=(\cos\alpha,\cos\beta,\cos\gamma)$（α、β、γ 为 n 的方向角），则式(1)也可表示为</p>
+<div class="formula">$$\int_{\Sigma}\big(P\cos\alpha+Q\cos\beta+R\cos\gamma\big)\,\mathrm{d}\sigma;\tag{2}$$</div>
+<p>再令</p>
+<div class="formula">$$\mathrm{d}y\,\mathrm{d}z=\cos\alpha\,\mathrm{d}\sigma,\quad \mathrm{d}z\,\mathrm{d}x=\cos\beta\,\mathrm{d}\sigma,\quad \mathrm{d}x\,\mathrm{d}y=\cos\gamma\,\mathrm{d}\sigma,\tag{3}$$</div>
+<p>式(2)改写为</p>
+<div class="formula">$$\iint_{\Sigma}P\,\mathrm{d}y\,\mathrm{d}z+Q\,\mathrm{d}z\,\mathrm{d}x+R\,\mathrm{d}x\,\mathrm{d}y.\tag{4}$$</div>
+<p>式(4)是人们普遍使用的第二型曲面积分的记法。</p>
+<p><b>课本解释</b>：以 $\mathrm{d}x\mathrm{d}y=\cos\gamma\,\mathrm{d}\sigma$ 为例，它表明 dxdy 代表面元 $\mathrm{d}\sigma$ 在 xy 平面上的投影，投影面积<b>可正可负</b>，全由 $\mathrm{d}\sigma$ 上的法向量与 z 轴正向夹角小于还是大于 $\pi/2$ 而定；对另外两个等式可作类似解释。</p>
+<h3>12.3.4 第二型曲面积分的计算（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.11-19</b></p>
+<p>考察正则曲面 $\Sigma:\boldsymbol{r}=\boldsymbol{r}(u,v)\ ((u,v)\in\Delta)$，设 r 实现 $\Sigma$ 与 $\Delta$ 的一一对应。单位法向量是</p>
+<div class="formula">$$\pm\frac{\boldsymbol{r}_u\times\boldsymbol{r}_v}{\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|}\tag{5}$$</div>
+<p>（正负号按已指定的定向选定）。由 $\mathrm{d}\sigma=\|\boldsymbol{r}_u\times\boldsymbol{r}_v\|\mathrm{d}u\mathrm{d}v$ 得</p>
+<div class="formula">$$\mathrm{d}\boldsymbol{\sigma}=\boldsymbol{n}\,\mathrm{d}\sigma=\pm(\boldsymbol{r}_u\times\boldsymbol{r}_v)\,\mathrm{d}u\mathrm{d}v,\tag{6}$$</div>
+<p>从而</p>
+<div class="formula">$$\int_{\Sigma}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{\sigma}=\pm\iint_{\Delta}\boldsymbol{F}\circ\boldsymbol{r}\cdot(\boldsymbol{r}_u\times\boldsymbol{r}_v)\,\mathrm{d}u\mathrm{d}v.\tag{7}$$</div>
+<p>展开混合积：</p>
+<div class="formula">$$\pm\iint_{\Delta}\Big(P\circ r\,\frac{\partial(y,z)}{\partial(u,v)}+Q\circ r\,\frac{\partial(z,x)}{\partial(u,v)}+R\circ r\,\frac{\partial(x,y)}{\partial(u,v)}\Big)\mathrm{d}u\mathrm{d}v.\tag{8}$$</div>
+<p>利用行列式可写为</p>
+<div class="formula">$$\pm\iint_{\Delta}\begin{vmatrix}P\circ r & Q\circ r & R\circ r\\[2pt]\dfrac{\partial x}{\partial u} & \dfrac{\partial y}{\partial u} & \dfrac{\partial z}{\partial u}\\[4pt]\dfrac{\partial x}{\partial v} & \dfrac{\partial y}{\partial v} & \dfrac{\partial z}{\partial v}\end{vmatrix}\mathrm{d}u\mathrm{d}v.\tag{9}$$</div>
+<p>若曲面由显式 $\Sigma:z=f(x,y)\ ((x,y)\in D)$ 表达：</p>
+<div class="formula">$$\iint_{\Sigma}P\,\mathrm{d}y\mathrm{d}z+Q\,\mathrm{d}z\mathrm{d}x+R\,\mathrm{d}x\mathrm{d}y=\pm\iint_D\Big(-P\frac{\partial f}{\partial x}-Q\frac{\partial f}{\partial y}+R\Big)\mathrm{d}x\mathrm{d}y,\tag{10}$$</div>
+<p>右边正负号按曲面的定向决定：如取上侧为正侧（正法向量与 z 轴正向夹角为锐角，$\cos\gamma>0$）时取正号。特别地 $P=Q=0$ 时公式特别简单：</p>
+<div class="formula">$$\iint_{\Sigma}R\,\mathrm{d}x\mathrm{d}y=\pm\iint_D R(x,y,f(x,y))\,\mathrm{d}x\mathrm{d}y.\tag{11}$$</div>
+<h3>12.3.5 例3（★一题三解：三角形片上的积分）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p><b>命题</b>：计算 $A=\displaystyle\iint_{\Sigma}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y$，其中 $\Sigma$ 是三角形 $\{(x,y,z):x,y,z\ge0,\ x+y+z=1\}$，法向量与 $(1,1,1)$ 同方向。</p>
+<p><b>课本证明要点（三种解法）</b>：</p>
+<ol><li><b>解法 (a)</b> 先算 $\iint_\Sigma z\,\mathrm{d}x\mathrm{d}y$，按公式(11)：</li></ol>
+<div class="formula">$$\iint_{\substack{x\ge0,\,y\ge0\\ x+y\le1}}(1-x-y)\,\mathrm{d}x\mathrm{d}y=\frac12\int_0^1(1-x)^2\mathrm{d}x=\frac16;$$</div>
+<p>对称地三个积分各为 $\frac16$，故 $A=\frac12$。</p>
+<ol><li><b>解法 (b)</b> 化为第一型：$n=(1,1,1)/\sqrt3$，令 $F=(x,y,z)$，则</li></ol>
+<div class="formula">$$A=\int_\Sigma F\cdot n\,\mathrm{d}\sigma=\frac{1}{\sqrt3}\int_\Sigma(x+y+z)\,\mathrm{d}\sigma=\frac{1}{\sqrt3}\sigma(\Sigma);$$</div>
+<p>$\Sigma$ 是边长 $\sqrt2$ 的等边三角形，$\sigma(\Sigma)=\sqrt3/2$，故 $A=\frac12$。</p>
+<ol><li><b>解法 (c)</b> 用公式(10)：$P=x,Q=y,R=z,\ f=1-x-y$，$f_x=f_y=-1$，取正号：</li></ol>
+<div class="formula">$$A=\iint_D(x+y+1-x-y)\,\mathrm{d}x\mathrm{d}y=\iint_D\mathrm{d}x\mathrm{d}y=\frac12.$$</div>
+<h3>12.3.6 例4（★球面上的基本积分）</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p><b>命题</b>：曲面 $\Sigma$ 是中心在原点、半径为 a 的球面，正向是外法线方向。计算 $A=\displaystyle\iint_\Sigma x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y$。</p>
+<p><b>课本证明要点</b>：此时 $F=(x,y,z)$，单位外法向量 $n=(x/a,y/a,z/a)$，故</p>
+<div class="formula">$$A=\int_\Sigma F\cdot n\,\mathrm{d}\sigma=\frac1a\int_\Sigma(x^2+y^2+z^2)\,\mathrm{d}\sigma=a\int_\Sigma\mathrm{d}\sigma=a\,\sigma(\Sigma)=4\pi a^3.$$</div>
+<p>（此例在 12.4 节例1 中将用 Gauss 公式重做；例5～例7 见 0.6 索引。）</p>
+<hr>
+<h2 id="sec12_4">§12.4 Gauss 公式和 Stokes 公式<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.19-28</b></p>
+<h3>12.4.1 三类特殊区域上的准备（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.19-28</b></p>
+<p>Gauss 公式把沿三维区域边界的第二型曲面积分转换为此区域上的三重积分。仿照 11.3 节对 Green 公式的处理：先简单情形、再一般情形。</p>
+<ul><li><b>丙类区域</b>：$\Omega=\{(x,y,z):\varphi(x,y)\le z\le\psi(x,y),(x,y)\in D\}$，D 为 xy 平面上的闭区域。设 $R:\Omega\to\mathbb{R}$ 连续且有连续一阶偏导数，取 ∂Ω 外侧为定向。</li><li>∂Ω 是拼接曲面：下底 $\Sigma_1:z=\varphi(x,y)$ 法线向下；上底 $\Sigma_2:z=\psi(x,y)$ 法线向上；母线平行于 z 轴的柱面 $\Sigma_3$（其面元在 xy 平面上的投影为零，积分贡献为零）。故</li></ul>
+<div class="formula">$$\iint_{\partial\Omega}R\,\mathrm{d}x\mathrm{d}y=\iint_{\Sigma_1}R\,\mathrm{d}x\mathrm{d}y+\iint_{\Sigma_2}R\,\mathrm{d}x\mathrm{d}y.$$</div>
+<ul><li>按 12.3 节公式(11)：</li></ul>
+<div class="formula">$$\iint_{\Sigma_1}R\,\mathrm{d}x\mathrm{d}y=-\iint_D R(x,y,\varphi(x,y))\,\mathrm{d}x\mathrm{d}y,\qquad \iint_{\Sigma_2}R\,\mathrm{d}x\mathrm{d}y=\iint_D R(x,y,\psi(x,y))\,\mathrm{d}x\mathrm{d}y;$$</div>
+<ul><li>合并并看成累次积分：</li></ul>
+<div class="formula">$$\iint_{\partial\Omega}R\,\mathrm{d}x\mathrm{d}y=\iint_D\big(R(x,y,\psi)-R(x,y,\varphi)\big)\mathrm{d}x\mathrm{d}y=\iint_D\mathrm{d}x\mathrm{d}y\int_{\varphi(x,y)}^{\psi(x,y)}\frac{\partial R}{\partial z}(x,y,z)\,\mathrm{d}z,$$</div>
+<p>即</p>
+<div class="formula">$$\iint_{\partial\Omega}R\,\mathrm{d}x\mathrm{d}y=\iiint_{\Omega}\frac{\partial R}{\partial z}\,\mathrm{d}x\mathrm{d}y\mathrm{d}z.\tag{3}$$</div>
+<ul><li><b>甲类区域</b>：$\Omega=\{(x,y,z):\varphi(y,z)\le x\le\psi(y,z),(y,z)\in D\}$（D 为 yz 平面上的闭区域）时同样有</li></ul>
+<div class="formula">$$\iint_{\partial\Omega}P\,\mathrm{d}y\mathrm{d}z=\iiint_{\Omega}\frac{\partial P}{\partial x}\,\mathrm{d}x\mathrm{d}y\mathrm{d}z.\tag{4}$$</div>
+<ul><li><b>乙类区域</b>：$\Omega=\{(x,y,z):\varphi(x,z)\le y\le\psi(x,z),(x,z)\in D\}$（D 为 zx 平面上的闭区域）时</li></ul>
+<div class="formula">$$\iint_{\partial\Omega}Q\,\mathrm{d}z\mathrm{d}x=\iiint_{\Omega}\frac{\partial Q}{\partial y}\,\mathrm{d}x\mathrm{d}y\mathrm{d}z.\tag{5}$$</div>
+<ul><li><b>一般区域</b>：若 Ω 可同时分拆为有限个甲类、乙类、丙类区域的并，同一类中任何两个区域至多有公共边界，则像 Green 公式时的推理一样，(3)～(5) 都能成立；把三式相加即得 Gauss 公式。</li></ul>
+<h3>12.4.2 定理12.4.1：Gauss 公式</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>设 $\Omega$ 是 $\mathbb{R}^3$ 中由逐片光滑曲面围成的有界闭区域，它可同时分拆为有限个甲类区域、乙类区域和丙类区域的并，同一类中任何两个区域至多有公共的边界。如果函数 P、Q 和 R 都在 $\Omega$ 上连续可微，那么有</p>
+<div class="formula">$$\iint_{\partial\Omega}P\,\mathrm{d}y\mathrm{d}z+Q\,\mathrm{d}z\mathrm{d}x+R\,\mathrm{d}x\mathrm{d}y=\iiint_{\Omega}\Big(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\Big)\mathrm{d}x\mathrm{d}y\mathrm{d}z,\tag{6}$$</div>
+<p>这里 $\partial\Omega$ 表示 $\Omega$ 的边界，∂Ω 按外法线方向来定向。</p>
+<h4>课本证明路线</h4>
+<p>见 12.4.1：对甲、乙、丙三类特殊区域分别推导 (4)(5)(3)；一般区域分拆为有限个同类区域的并后逐块相加（相邻公共边界上的积分互相抵消，同 Green 公式的推理）。</p>
+<p><b>第一型表达形式</b>：式(6)左边用第一型曲面积分表达时，Gauss 公式也可写成</p>
+<div class="formula">$$\iint_{\partial\Omega}(P\cos\alpha+Q\cos\beta+R\cos\gamma)\,\mathrm{d}\sigma=\iiint_{\Omega}\Big(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\Big)\mathrm{d}x\mathrm{d}y\mathrm{d}z,$$</div>
+<p>这和用第一型曲线积分表达的 Green 公式（11.3 节式(9)）是一致的。</p>
+<h3>12.4.3 例1（★Gauss 公式的基本应用）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p><b>命题</b>：计算 $A=\displaystyle\iint_{\Sigma}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y$，其中 $\Sigma$ 是球面 $x^2+y^2+z^2=a^2$ 的外侧（重做 12.3 节例4）。</p>
+<p><b>课本证明要点</b>：记 $\Omega$ 为 $\Sigma$ 包围的球体，由式(6)：</p>
+<div class="formula">$$A=\iiint\Big(\frac{\partial x}{\partial x}+\frac{\partial y}{\partial y}+\frac{\partial z}{\partial z}\Big)\mathrm{d}x\mathrm{d}y\mathrm{d}z=3\iiint_{\Omega}\mathrm{d}\mu=3\mu(\Omega)=4\pi a^3.$$</div>
+<h3>12.4.4 例2（★非闭曲面：补面后用 Gauss 公式）</h3>
+<p class="pgref"><b>课本：21-22</b></p>
+<p><b>命题</b>：计算 $A=\displaystyle\iint_{\Sigma}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y$，其中 $\Sigma=\{(x,y,z):x,y,z\ge0,\ x+y+z=1\}$，法向量与 $(1,1,1)$ 同向（重做 12.3 节例3）。</p>
+<p><b>课本证明要点</b>：这不是封闭曲面。补上它与三个坐标平面截下的三块三角形，作成四面体 $\Omega$；在每个坐标平面上被积表达式 $x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y=0$，故补上去的三块曲面对积分没有贡献，于是</p>
+<div class="formula">$$A=\iint_{\partial\Omega}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y=3\iiint_{\Omega}\mathrm{d}\mu=3\mu(\Omega)=3\cdot\frac16=\frac12.$$</div>
+<h3>12.4.5 例3（★Archimedes 原理）</h3>
+<p class="pgref"><b>课本：22-23</b></p>
+<p><b>命题</b>：物体全部浸入液体中所受的浮力等于与物体同体积液体的重量。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>取坐标系如图 12.11，液体密度为 ρ；物体表面一小块面积 $\mathrm{d}\sigma$ 受到的压力大小是 $\rho gz\,\mathrm{d}\sigma$，方向是 $-\boldsymbol{n}$（n 为物体表面单位外法向量，$n=\cos\alpha\,\boldsymbol{i}+\cos\beta\,\boldsymbol{j}+\cos\gamma\,\boldsymbol{k}$）；物体 V 的表面记为 $\Sigma$；</li><li>整个物体受到的压力</li></ol>
+<div class="formula">$$F=-\int_{\Sigma}\rho gz\cos\alpha\,\mathrm{d}\sigma\,\boldsymbol{i}-\int_{\Sigma}\rho gz\cos\beta\,\mathrm{d}\sigma\,\boldsymbol{j}-\int_{\Sigma}\rho gz\cos\gamma\,\mathrm{d}\sigma\,\boldsymbol{k};$$</div>
+<ol><li>由 Gauss 公式：</li></ol>
+<div class="formula">$$\int_{\Sigma}\rho gz\cos\alpha\,\mathrm{d}\sigma=\iiint_V\frac{\partial(\rho gz)}{\partial x}\mathrm{d}V=0,\qquad \int_{\Sigma}\rho gz\cos\beta\,\mathrm{d}\sigma=\iiint_V\frac{\partial(\rho gz)}{\partial y}\mathrm{d}V=0,$$</div>
+<div class="formula">$$\int_{\Sigma}\rho gz\cos\gamma\,\mathrm{d}\sigma=\iiint_V\frac{\partial(\rho gz)}{\partial z}\mathrm{d}V=\rho g\iiint_V\mathrm{d}x\mathrm{d}y\mathrm{d}z=\rho g\mu(V);$$</div>
+<ol><li>由此即得 $F=-\rho g\mu(V)\,\boldsymbol{k}$——这就是要证明的。</li></ol>
+<h3>12.4.6 体积公式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.19-28</b></p>
+<p>如同 Green 公式可通过第二型曲线积分表示闭曲线围成的面积，Gauss 公式可通过第二型曲面积分表示闭曲面所围立体的体积。因为</p>
+<div class="formula">$$\iint_{\partial\Omega}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y=3\iiint_{\Omega}\mathrm{d}\mu=3\mu(\Omega),$$</div>
+<p>所以</p>
+<div class="formula">$$\mu(\Omega)=\frac{1}{3}\iint_{\partial\Omega}x\,\mathrm{d}y\mathrm{d}z+y\,\mathrm{d}z\mathrm{d}x+z\,\mathrm{d}x\mathrm{d}y.\tag{7}$$</div>
+<p>特别地，若 ∂Ω 有正则参数方程 $\boldsymbol{r}=\boldsymbol{r}(u,v)=(x(u,v),y(u,v),z(u,v))\ ((u,v)\in\Delta)$，则由式(7)与 12.3 节公式(9)可得</p>
+<div class="formula">$$\mu(\Omega)=\pm\frac{1}{3}\iint_{\Delta}\begin{vmatrix}x & y & z\\[2pt]\dfrac{\partial x}{\partial u} & \dfrac{\partial y}{\partial u} & \dfrac{\partial z}{\partial u}\\[4pt]\dfrac{\partial x}{\partial v} & \dfrac{\partial y}{\partial v} & \dfrac{\partial z}{\partial v}\end{vmatrix}\mathrm{d}u\mathrm{d}v.\tag{8}$$</div>
+<p>课本注明：用公式(8)计算体积时不必费心选择曲面的定向（体积总是正数）；若算出的积分为负数，把负号去掉即可。</p>
+<h3>12.4.7 Stokes 公式的推导（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.19-28</b></p>
+<p>Stokes 公式把沿一块曲面边界的第二型曲线积分同展布在这块曲面上的第二型曲面积分联系起来；某种意义下可认为它是 Green 公式的推广，证明要用到 Green 公式。</p>
+<p>设 $\Sigma$ 是正则参数曲面片 $\boldsymbol{r}=\boldsymbol{r}(u,v)\ ((u,v)\in\Delta)$，r 二阶连续可导，函数 $P$ 在包含 $\Sigma$ 的某个三维区域上连续可导。设 $\partial\Delta$ 的参数方程为 $\boldsymbol{f}(t)=(u(t),v(t))$（$\alpha\le t\le\beta$），参数增长方向对应 $\partial\Delta$ 的正向，则 $\partial\Sigma$ 的参数方程为 $\boldsymbol{r}\circ\boldsymbol{f}(t)$，于是</p>
+<div class="formula">$$\int_{\partial\Sigma}P(x,y,z)\,\mathrm{d}x=\int_{\alpha}^{\beta}P\circ r\circ f(t)\Big(\frac{\partial x}{\partial u}u'(t)+\frac{\partial x}{\partial v}v'(t)\Big)\mathrm{d}t=\int_{\partial\Delta}P\circ r\,\frac{\partial x}{\partial u}\,\mathrm{d}u+P\circ r\,\frac{\partial x}{\partial v}\,\mathrm{d}v.$$</div>
+<p>对这个平面第二型曲线积分应用 Green 公式：</p>
+<div class="formula">$$\int_{\partial\Sigma}P\,\mathrm{d}x=\iint_{\Delta}\Big[\frac{\partial}{\partial u}\Big(P\circ r\,\frac{\partial x}{\partial v}\Big)-\frac{\partial}{\partial v}\Big(P\circ r\,\frac{\partial x}{\partial u}\Big)\Big]\mathrm{d}u\mathrm{d}v.\tag{9}$$</div>
+<p>展开两个乘积的偏导数并相减（二阶混合偏导数项相消）：</p>
+<div class="formula">$$\frac{\partial}{\partial u}\Big(P\circ r\,\frac{\partial x}{\partial v}\Big)-\frac{\partial}{\partial v}\Big(P\circ r\,\frac{\partial x}{\partial u}\Big)=\frac{\partial P}{\partial z}\circ r\,\frac{\partial(z,x)}{\partial(u,v)}-\frac{\partial P}{\partial y}\circ r\,\frac{\partial(x,y)}{\partial(u,v)},$$</div>
+<p>代回式(9)得</p>
+<div class="formula">$$\int_{\partial\Sigma}P(x,y,z)\,\mathrm{d}x=\iint_{\Sigma}\frac{\partial P}{\partial z}\,\mathrm{d}z\mathrm{d}x-\frac{\partial P}{\partial y}\,\mathrm{d}x\mathrm{d}y.$$</div>
+<p>类似地还有两个公式（条件：Q、R 在包含 $\Sigma$ 的某三维区域上连续可导）：</p>
+<div class="formula">$$\int_{\partial\Sigma}Q\,\mathrm{d}y=\iint_{\Sigma}\frac{\partial Q}{\partial x}\,\mathrm{d}x\mathrm{d}y-\frac{\partial Q}{\partial z}\,\mathrm{d}y\mathrm{d}z,\qquad \int_{\partial\Sigma}R\,\mathrm{d}z=\iint_{\Sigma}\frac{\partial R}{\partial y}\,\mathrm{d}y\mathrm{d}z-\frac{\partial R}{\partial x}\,\mathrm{d}z\mathrm{d}x.$$</div>
+<h3>12.4.8 定理12.4.2：Stokes 公式</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>把以上三个等式的两边相加，就得到：</p>
+<p><b>定理12.4.2（Stokes 公式）</b> 设 $\Sigma$ 是由有限块二阶连续可微的正则曲面拼接而成的定向曲面。如果 P、Q 和 R 是定义在 $\Sigma$ 上的连续可微函数，那么</p>
+<div class="formula">$$\int_{\partial\Sigma}P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z=\iint_{\Sigma}\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\mathrm{d}y\mathrm{d}z+\Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\mathrm{d}z\mathrm{d}x+\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm{d}x\mathrm{d}y,\tag{10}$$</div>
+<p>这里 $\partial\Sigma$ 表示曲面 $\Sigma$ 的边界，曲面 $\Sigma$ 的定向与其边界曲线 $\partial\Sigma$ 的定向应当是协调的。</p>
+<h4>课本证明路线</h4>
+<p>对单个正则参数曲面片按 12.4.7 分别对 $\int P\mathrm{d}x$、$\int Q\mathrm{d}y$、$\int R\mathrm{d}z$ 化为平面曲线积分并用 Green 公式，三式相加；拼接曲面情形由有限块相加。</p>
+<p><b>便于记忆的两个写法</b>：用行列式的记法，Stokes 公式可以表示为</p>
+<div class="formula">$$\int_{\partial\Sigma}P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z=\iint_{\Sigma}\begin{vmatrix}\mathrm{d}y\,\mathrm{d}z & \mathrm{d}z\,\mathrm{d}x & \mathrm{d}x\,\mathrm{d}y\\[2pt]\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[4pt]P & Q & R\end{vmatrix},\tag{11}$$</div>
+<p>也可表示为</p>
+<div class="formula">$$\int_{\partial\Sigma}P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z=\iint_{\Sigma}\begin{vmatrix}\cos\alpha & \cos\beta & \cos\gamma\\[2pt]\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[4pt]P & Q & R\end{vmatrix}\mathrm{d}\sigma,\tag{12}$$</div>
+<p>其中 $(\cos\alpha,\cos\beta,\cos\gamma)$ 表示曲面 $\Sigma$ 的单位正法向量。公式(11)和(12)可方便人们记忆。</p>
+<p>（例4：力场 $F=(y^2,z^2,x^2)$ 沿三角形片正向边界做的功 $W=-1$。见 0.6 索引。）</p>
+<h3>12.4.9 例5（★Stokes 公式计算空间曲线积分）</h3>
+<p class="pgref"><b>课本：25-26</b></p>
+<p><b>命题</b>：计算</p>
+<div class="formula">$$I=\int_{\Gamma}(y^2+z^2)\,\mathrm{d}x+(z^2+x^2)\,\mathrm{d}y+(x^2+y^2)\,\mathrm{d}z,$$</div>
+<p>其中 $\Gamma:\begin{cases}x^2+y^2+z^2=2ax,\\ x^2+y^2=2bx\end{cases}(z\ge0,\ 0&lt;b&lt;a)$，从点 $(b,0,0)$ 看去 Γ 沿逆时针方向绕行。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>用 $\Sigma$ 记 Γ 在上半球面 $x^2+y^2+z^2=2ax\ (z\ge0)$（即 $(x-a)^2+y^2+z^2=a^2$）上围出的那块曲面，其单位正法向量 $n=\frac1a(x-a,\,y,\,z)$；</li><li>按公式(12)：</li></ol>
+<div class="formula">$$I=\frac1a\iint_{\Sigma}\begin{vmatrix}x-a & y & z\\[2pt]\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[4pt]y^2+z^2 & z^2+x^2 & x^2+y^2\end{vmatrix}\mathrm{d}\sigma=\frac{2}{a}\iint_{\Sigma}\big((y-z)(x-a)+(z-x)y+(x-y)z\big)\mathrm{d}\sigma=2\iint_{\Sigma}(z-y)\,\mathrm{d}\sigma;$$</div>
+<p>由 $\Sigma$ 关于坐标平面 $xOz$ 对称，$\int_\Sigma y\,\mathrm{d}\sigma=0$，故 $I=2\iint_\Sigma z\,\mathrm{d}\sigma$；</p>
+<ol><li>$\Sigma$ 的显式方程 $z=\sqrt{a^2-(x-a)^2-y^2}$，面元 $\mathrm{d}\sigma=\dfrac{a}{z}\,\mathrm{d}x\mathrm{d}y$；Γ 在 $xOy$ 平面上的投影区域 D 就是圆盘 $(x-b)^2+y^2\le b^2$，面积为 $\pi b^2$；</li><li>于是</li></ol>
+<div class="formula">$$I=2\iint_D z\cdot\frac{a}{z}\,\mathrm{d}x\mathrm{d}y=2a\,\sigma(D)=2\pi ab^2.$$</div>
+<hr>
+<h2 id="sec12_5">§12.5 微分形式和外微分运算<span class="freq">◇</span></h2>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<h3>12.5.1 动机（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<p>Green 公式表达了平面区域上的二重积分与其边界上曲线积分的联系，Gauss 公式展示了三维区域上的三重积分与其边界上曲面积分的联系，Stokes 公式叙述了空间中一块曲面上的曲面积分与沿其边界曲线积分的关联。人们自然会想到：n 维空间的 $p\,(p\le n)$ 维曲面上的积分与其边界上的积分之间有没有类似的联系？要说清楚这个问题，必须引进新的数学工具——<b>微分形式和外微分运算</b>。先在 $\mathbb{R}^3$ 中讨论，再向 $\mathbb{R}^n$ 推广。</p>
+<h3>12.5.2 ℝ³ 中的外积运算与微分形式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<p>在微分 dx、dy、dz 之间引进外积运算 ∧：</p>
+<div class="formula">$$\mathrm{d}x\wedge\mathrm{d}x=\mathrm{d}y\wedge\mathrm{d}y=\mathrm{d}z\wedge\mathrm{d}z=0,\qquad \mathrm{d}x\wedge\mathrm{d}y=-\mathrm{d}y\wedge\mathrm{d}x,\quad \mathrm{d}y\wedge\mathrm{d}z=-\mathrm{d}z\wedge\mathrm{d}y,\quad \mathrm{d}z\wedge\mathrm{d}x=-\mathrm{d}x\wedge\mathrm{d}z.$$</div>
+<p>对三个微分作外积允许使用结合律，例如</p>
+<div class="formula">$$\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}x=\mathrm{d}x\wedge(\mathrm{d}y\wedge\mathrm{d}x)=-\mathrm{d}x\wedge(\mathrm{d}x\wedge\mathrm{d}y)=-(\mathrm{d}x\wedge\mathrm{d}x)\wedge\mathrm{d}y=0;$$</div>
+<p>因此在 $\mathbb{R}^3$ 中，多于三个的微分作外积结果必然为 0。</p>
+<p>设 P、Q、R 是 $\mathbb{R}^3$ 中的函数，表达式</p>
+<div class="formula">$$P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z,\qquad P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y,\qquad R\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$$</div>
+<p>分别称为 <b>1 次、2 次和 3 次微分形式</b>；$\mathbb{R}^3$ 中的函数 f 称为 <b>0 次微分形式</b>。</p>
+<p>（课本通过例1、例2 熟悉运算：两个 1 次形式的外积 $\omega\wedge\theta=(gR-hQ)\,\mathrm{d}y\wedge\mathrm{d}z+(hP-fR)\,\mathrm{d}z\wedge\mathrm{d}x+(fQ-gP)\,\mathrm{d}x\wedge\mathrm{d}y$；1 次形式与 2 次形式的外积 $\omega\wedge\theta=(fP+gQ+hR)\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$。见 0.6 索引。）</p>
+<h3>12.5.3 外微分运算 d（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<ul><li>对 0 次形式 f：$\displaystyle\mathrm{d}f=\frac{\partial f}{\partial x}\mathrm{d}x+\frac{\partial f}{\partial y}\mathrm{d}y+\frac{\partial f}{\partial z}\mathrm{d}z$，是 1 次微分形式。</li><li>对 1 次形式 $\omega=P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z$，规定 $\mathrm{d}\omega=\mathrm{d}P\wedge\mathrm{d}x+\mathrm{d}Q\wedge\mathrm{d}y+\mathrm{d}R\wedge\mathrm{d}z$，化简得</li></ul>
+<div class="formula">$$\mathrm{d}\omega=\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\mathrm{d}y\wedge\mathrm{d}z+\Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\mathrm{d}z\wedge\mathrm{d}x+\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\mathrm{d}x\wedge\mathrm{d}y.\tag{1}$$</div>
+<p>这是 2 次形式。</p>
+<ul><li>对 2 次形式 $\omega=P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y$，规定 $\mathrm{d}\omega=\mathrm{d}P\wedge\mathrm{d}y\wedge\mathrm{d}z+\mathrm{d}Q\wedge\mathrm{d}z\wedge\mathrm{d}x+\mathrm{d}R\wedge\mathrm{d}x\wedge\mathrm{d}y$，化简得</li></ul>
+<div class="formula">$$\mathrm{d}\omega=\Big(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\Big)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z.\tag{2}$$</div>
+<p>这是 3 次形式。</p>
+<h3>12.5.4 三个公式的统一形式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<ul><li><b>Green 公式</b>：设 P、Q 是 $D\subset\mathbb{R}^2$ 上的连续可微函数，令 $\omega=P\,\mathrm{d}x+Q\,\mathrm{d}y$，则 $\mathrm{d}\omega=\big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\big)\mathrm{d}x\wedge\mathrm{d}y$，于是 Green 公式可写成</li></ul>
+<div class="formula">$$\int_{\partial D}\omega=\int_D\mathrm{d}\omega.$$</div>
+<ul><li><b>Gauss 公式</b>：根据公式(2)，取 ω 为 2 次形式时可表示为同样的形式 $\int_{\partial D}\omega=\int_D\mathrm{d}\omega$。</li><li><b>Stokes 公式</b>：根据公式(1)，取 ω 为 1 次形式时也可以表示成同样的形式。</li></ul>
+<p>课本评论：三个看上去完全不同的公式，在引进微分形式和外微分运算之后居然得到了外形一模一样的表达式——非常简洁、非常优美、非常和谐、十分便于记忆；这不是偶然的巧合，而恰恰反映了事物的本质，使得我们有可能把这个公式向高维推广。</p>
+<h3>12.5.5 ℝⁿ 中的微分形式及其外微分（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<ul><li>将 $\mathbb{R}^n$ 中向量 $(x_1,\cdots,x_n)$ 记为 x。称表达式</li></ul>
+<div class="formula">$$\sum_{i_1,\cdots,i_p}a_{i_1,\cdots,i_p}(\boldsymbol{x})\,\mathrm{d}x_{i_1}\wedge\cdots\wedge\mathrm{d}x_{i_p}\tag{3}$$</div>
+<p>为一个 <b>p 次微分形式</b>（简称 p 形式），标号 $i_1,\cdots,i_p$ 各自独立地取遍 $1,2,\cdots,n$；常简记为 $\sum_I a_I(\boldsymbol{x})\,\mathrm{d}x_I$，I 为 p 重指标。数值函数 $f(\boldsymbol{x})=f(x_1,\cdots,x_n)$ 叫做 $\mathbb{R}^n$ 中的 0 次微分形式。</p>
+<ul><li>运算：p 形式乘以数量函数 f 按系数相乘定义；两个 p 形式按系数相加定义。</li><li>符号 ∧ 的约定：</li></ul>
+<div class="formula">$$\mathrm{d}x_i\wedge\mathrm{d}x_j=-\mathrm{d}x_j\wedge\mathrm{d}x_i,\qquad \mathrm{d}x_i\wedge\mathrm{d}x_i=0.\tag{4}$$</div>
+<p>由约定(4)，下标有重复出现的外积表达式等于零；故式(3)中许多项为零、另一些可合并，总可写为标准形</p>
+<div class="formula">$$\omega=\sum a_{i_1,\cdots,i_p}(\boldsymbol{x})\,\mathrm{d}x_{i_1}\wedge\cdots\wedge\mathrm{d}x_{i_p}\qquad(1\le i_1&lt;i_2&lt;\cdots&lt;i_p\le n).\tag{5}$$</div>
+<ul><li>对这样的 p 形式定义<b>外微分</b>：</li></ul>
+<div class="formula">$$\mathrm{d}\omega=\sum_{i_1,\cdots,i_p}\mathrm{d}a_{i_1,\cdots,i_p}(\boldsymbol{x})\wedge\mathrm{d}x_{i_1}\wedge\cdots\wedge\mathrm{d}x_{i_p},$$</div>
+<p>它是一个 $p+1$ 次微分形式。</p>
+<h3>12.5.6 p 形式在 p 维曲面上的积分与一般形式的 Stokes 公式（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.28-33</b></p>
+<ul><li>设 $\mathbb{R}^n$ 中的 p 维曲面 Φ 有参数表示</li></ul>
+<div class="formula">$$\Phi:\begin{cases}x_1=x_1(u_1,\cdots,u_p),\\ \ \vdots\\ x_n=x_n(u_1,\cdots,u_p),\end{cases}\qquad (u_1,\cdots,u_p)\in E\subset\mathbb{R}^p,$$</div>
+<p>E 称为这张曲面的<b>参数域</b>；假定诸 $x_i$ 在 E 上有一阶连续偏导数，Φ 实际就是 $C^1$ 映射 $E\to\mathbb{R}^n$。</p>
+<ul><li>设 $\omega=\sum_{i_1,\cdots,i_p}a_{i_1,\cdots,i_p}(\boldsymbol{x})\,\mathrm{d}x_{i_1}\wedge\cdots\wedge\mathrm{d}x_{i_p}$ 是定义在 Φ 上的 p 形式，定义 ω 在 Φ 上的积分为</li></ul>
+<div class="formula">$$\int_{\Phi}\omega=\int_E\sum_{i_1,\cdots,i_p}a_{i_1,\cdots,i_p}\big(\boldsymbol{\phi}(u)\big)\,\frac{\partial(x_{i_1},\cdots,x_{i_p})}{\partial(u_1,\cdots,u_p)}\,\mathrm{d}u_1\cdots\mathrm{d}u_p,$$</div>
+<p>这是 E 上的 p 重积分。（课本指出：对这个计算公式我们并不陌生——12.3 节的第二型曲面积分正是通过化成二重积分来计算的。）</p>
+<ul><li>对这样定义的积分，仍然有公式</li></ul>
+<div class="formula">$$\int_{\partial\Omega}\omega=\int_{\Omega}\mathrm{d}\omega,$$</div>
+<p>这就是<b>一般形式的 Stokes 公式</b>；它的证明已经超出本书的知识范围。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 N.N</b>（基本）与<b>问题 N.N</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§12.1</td><td>练习题12.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=109</td><td>p.6-7（共 7 题，均为曲面面积计算）</td><td>—</td></tr><tr><td>§12.2</td><td>练习题12.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=113</td><td>p.10-11（共 3 题）</td><td>问题12.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=114</td><td>p.11（共 3 题）</td></tr><tr><td>§12.3</td><td>练习题12.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=121</td><td>p.18-19（共 3 题，第 1 题含 5 个小题）</td><td>—</td></tr><tr><td>§12.4</td><td>练习题12.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=129\</td><td>p.26-28（共 9 题，第 1 题含 4 小题、第 4 题含 3 小题）</td><td>—</td></tr><tr><td>§12.5</td><td>练习题12.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=135\</td><td>p.32-33（共 3 题，第 1 题含 2 小题、第 2 题含 7 小题）</td><td>问题12.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=136\</td><td>p.33（共 2 题）</td></tr></tbody></table></div>
+<p>&gt; 注：本章仅 §12.2、§12.5 设有问题档；其余各节只有练习题档。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">本章引言：第一型/第二型曲面积分之分（第二型涉及定向）
+→ Schwarz 反例：内接多面体逼近不能用来定义曲面面积
+→ 正则曲面、曲面面积的定义（定义12.1.1）、面元、与参数选取无关的三点说明
+→ 面积的其他表示：雅可比行列式、第一基本量 EG−F²、显式 z=f(x,y)
+→ 例：球面面积（★）、球面被柱面截下的面积、旋转曲面面积（★）
+→ 第一型曲面积分（定义12.2.1）、化二重积分的计算公式与步骤程式化
+→ 例：半球面积分（对称性）、整球 ∫x²dσ、均匀球面引力场（★）
+→ 双侧曲面与定向、Möbius 带、拼接曲面的协调定向（例1 立方体、例2 黏合对比）
+→ 流量问题 → 第二型曲面积分（定义12.3.1）、dydz/dzdx/dxdy 记法
+→ 计算公式（参数式与显式，式(5)～(11)）
+→ 例：三角形片一题三解（★）、球面基本积分 4πa³（★）、流量为零、椭球面与球面的幂次积分
+→ Gauss 公式：丙/甲/乙三类区域的准备 → 定理12.4.1（Gauss 公式）
+→ 应用例：球面通量（★）、非闭曲面补面（★）、Archimedes 原理（★）
+→ 用曲面积分表示体积（式(7)(8)）
+→ Stokes 公式的推导（借 Green 公式，对 P dx 逐一处理）→ 定理12.4.2（Stokes 公式）及记忆写法
+→ 应用例：力场沿边界做功 −1、空间曲线积分 2πab²（★）
+→ 微分形式的动机：统一 Green/Gauss/Stokes 三公式
+→ ℝ³ 中的外积 ∧、0～3 次微分形式（例1、例2 外积演示）
+→ 外微分 d（0次→1次、1次→2次、2次→3次）与三公式的统一形式 ∫∂Ωω=∫Ωdω
+→ ℝⁿ 中的 p 形式、乘函数/加法/标准形、外微分（p+1 次）
+→ p 形式在 p 维曲面上的积分 → 一般形式的 Stokes 公式（证明超出本书范围）</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>2022 第6题：闭合曲面通量取最小（§12.3–§12.4，Gauss）。</li><li>2026 第3题：补平面后用 Gauss 计算通量（§12.4）。</li><li>§12.5 微分形式与外微分：大纲未列，样本未命题。</li><li>2025：第6题 锥面上的第二型曲面积分（§12.3–§12.4）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>20</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§12.1 曲面的面积</h3>
+<h3>§12.2 第一型曲面积分</h3>
+<h4>问题 12.2（3 题）</h4>
+<ol class="ex-list">
+<li>设 $\Sigma$ 为单位球面 $x^2+y^2+z^2=1$。证明 Poisson（泊松，1781—1840）公式：$\displaystyle\int_\Sigma f(ax+by+cz)\,\mathrm d\sigma=2\pi\int_{-1}^1f\!\left(\sqrt{a^2+b^2+c^2}\,t\right)\mathrm dt$。原书 PDF 114</li>
+<li>设 $\Sigma(t)$ 是平面 $x+y+z=t$ 被球面 $x^2+y^2+z^2=1$ 截下的部分，且 $F(x,y,z)=1-(x^2+y^2+z^2)$。求证：当 $|t|\leqslant\sqrt3$ 时，有 $\displaystyle\int_{\Sigma(t)}F(x,y,z)\,\mathrm d\sigma=\frac\pi{18}(3-t^2)^2$。原书 PDF 114</li>
+<li>设 $f(t)$ 在 $|t|&lt;\sqrt{a^2+b^2+c^2}$ 上连续。证明：$\displaystyle\iiint_{x^2+y^2+z^2\leqslant1} f\!\left(\frac{ax+by+cz}{\sqrt{x^2+y^2+z^2}}\right)\mathrm dx\,\mathrm dy\,\mathrm dz=\frac23\pi\int_{-1}^1f\!\left(\sqrt{a^2+b^2+c^2}\,t\right)\mathrm dt$。原书 PDF 114</li>
+</ol>
+<h3>§12.3 第二型曲面积分</h3>
+<h4>练习题 12.3（3 题）</h4>
+<ol class="ex-list">
+<li>计算下列第二型曲面积分：</li>
+<li>给定流速场 $F=(y,z,x)$，封闭曲面 $x^2+y^2=R^2$，$z=0$，$z=h$。计算 $F$ 流向曲面之外的流量。原书 PDF 122</li>
+<li>设 $\Sigma:z=f(x,y)$（$(x,y)\in D$），法向量向上。求证：</li>
+</ol>
+<h3>§12.4 Gauss 公式和 Stokes 公式</h3>
+<h4>练习题 12.4（9 题）</h4>
+<ol class="ex-list">
+<li>利用 Gauss 公式，计算下列积分：</li>
+<li>设 $\Omega$ 是一闭域，向量 $n$ 是 $\partial\Omega$ 的单位外法向量，$e$ 是一个固定的向量。求证：$\displaystyle\int_{\partial\Omega}\cos(e,n)\,\mathrm d\sigma=0$。原书 PDF 130</li>
+<li>设 $\Omega$ 为一闭区域，向量 $n$ 是 $\Omega$ 的边界 $\partial\Omega$ 的单位外法向量，点 $(a,b,c)\notin\partial\Omega$。令 $\boldsymbol p=(x-a,y-b,z-c)$ 且 $p=\|\boldsymbol p\|$。求证：$\displaystyle\iiint_\Omega\frac{\mathrm dx\,\mathrm dy\,\mathrm dz}{p}=\frac12\int_{\partial\Omega}\cos(\boldsymbol p,n)\,\mathrm d\sigma$。原书 PDF 130</li>
+<li>利用 Stokes 公式，计算下列积分：</li>
+<li>设曲面 $\Sigma$ 有单位法向量 $n$，$a$ 是一个常向量。求证：$\displaystyle\int_{\partial\Sigma}(a\times p)\cdot\mathrm dp=2\iint_\Sigma a\cdot n\,\mathrm d\sigma$。原书 PDF 130</li>
+<li>计算 $\displaystyle\int_\Gamma y\,\mathrm dx+z\,\mathrm dy+x\,\mathrm dz$，$\Gamma$ 是平面 $x+y=2$ 和球面 $x^2+y^2+z^2=2(x+y)$ 交成的圆周，从原点看去，顺时针方向是 $\Gamma$ 的正向。原书 PDF 130</li>
+<li>计算上题中的积分，但 $\Gamma$ 是曲面 $z=xy$ 和 $x^2+y^2=1$ 的交线，沿 $\Gamma$ 的正向行进时，$z$ 轴在左手边。原书 PDF 130</li>
+<li>设定向曲线 $\Gamma$：$x^2+y^2+z^2=a^2$、$x^2+y^2=ax$、$z\geqslant0$。从点 $(a/2,0,0)$ 看去，沿逆时针方向行进。试计算力场 $F=(y^2,z^2,x^2)$ 沿 $\Gamma$ 所做的功。原书 PDF 131</li>
+<li>质量为 $m$ 的质点在力场 $F$ 的作用下沿曲线 $\Gamma$ 运动。$\Gamma$ 的起点为 $a$，终点为 $b$，用 $v$ 记质点移动的速度向量。求证：力场 $F$ 所做的功为 $\displaystyle\int_\Gamma F\cdot\mathrm dp=\left.\frac12mv^2(p)\right|_a^b$。原书 PDF 131</li>
+</ol>
+<h3>§12.5 微分形式和外微分运算</h3>
+<h4>练习题 12.5（3 题）</h4>
+<ol class="ex-list">
+<li>计算：</li>
+<li>计算 $\mathrm d\omega$，设：</li>
+<li>设微分形式 $\omega\in C^2$。证明：$\mathrm d(\mathrm d\omega)=0$。原书 PDF 136</li>
+</ol>
+<h4>问题 12.5（2 题）</h4>
+<ol class="ex-list">
+<li>考察 $\mathbb R^n$ 中的 $n$ 个 1 形式 $\displaystyle\omega_j=\sum_{i=1}^n a_i^j(x)\,\mathrm dx_i$（$j=1,2,\ldots,n$）。求证：$\displaystyle\omega_1\wedge\omega_2\wedge\cdots\wedge\omega_n=\det(a_i^j(x))\,\mathrm dx_1\wedge\mathrm dx_2\wedge\cdots\wedge\mathrm dx_n$。原书 PDF 136</li>
+<li>设 $f_j(x_1,x_2,\ldots,x_n)$ 是 $\mathbb R^n$ 中的 $n$ 个数量函数，$\mathrm df_j$（$j=1,2,\ldots,n$）是它们的微分。求证：$\displaystyle\mathrm df_1\wedge\mathrm df_2\wedge\cdots\wedge\mathrm df_n=\frac{\partial(f_1,f_2,\ldots,f_n)}{\partial(x_1,x_2,\ldots,x_n)}\,\mathrm dx_1\wedge\mathrm dx_2\wedge\cdots\wedge\mathrm dx_n$。原书 PDF 136</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第12章_曲面积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §12.1 曲面的面积：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §12.2 第一型曲面积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §12.3 第二型曲面积分：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §12.4 Gauss 公式和 Stokes 公式：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §12.5 微分形式和外微分运算：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

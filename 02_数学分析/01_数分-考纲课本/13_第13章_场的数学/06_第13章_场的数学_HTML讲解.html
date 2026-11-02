@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13章 场的数学 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第13章<br>场的数学</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec13_1">§13.1 数量场的梯度</a>
+    <a href="#sec13_2">§13.2 向量场的散度</a>
+    <a href="#sec13_3">§13.3 向量场的旋度</a>
+    <a href="#sec13_4">§13.4 有势场和势函数</a>
+    <a href="#sec13_5">§13.5 旋度场和向量势</a>
+    <a href="#sec13_6">§13.6 正交曲线坐标系中梯度、散度和旋度的表达式</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第13章 场的数学</h1>
+    <p class="hero-sub">§13.1 数量场的梯度 · §13.2 向量场的散度 · §13.3 向量场的旋度 · §13.4 有势场和势函数 · §13.5 旋度场和向量势 · §13.6 正交曲线坐标系中梯度、散度和旋度的表达式</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec13_1">§13.1 数量场的梯度<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.1-3</b></p>
+<h3>13.1.1 梯度与方向导数的最大值（叙述式）</h3>
+<p class="pgref"><b>课本：p.1-3</b></p>
+<p>设 $D\subset\mathbb{R}^3$ 为开集，$f:D\to\mathbb{R}$ 连续可微，$\boldsymbol u=(\cos\alpha,\cos\beta,\cos\gamma)$ 为一个方向。由定理9.2.4，$f$ 在 $p_0\in D$ 处沿 $\boldsymbol u$ 的方向导数为</p>
+<div class="formula">$$\frac{\partial f}{\partial x}(p_0)\cos\alpha+\frac{\partial f}{\partial y}(p_0)\cos\beta+\frac{\partial f}{\partial z}(p_0)\cos\gamma.$$</div>
+<p>由 Cauchy-Schwarz 不等式，其平方不超过</p>
+<div class="formula">$$\left.\left(\Big(\frac{\partial f}{\partial x}\Big)^2+\Big(\frac{\partial f}{\partial y}\Big)^2+\Big(\frac{\partial f}{\partial z}\Big)^2\right)\right|_{p_0},$$</div>
+<p>等号成立当且仅当方向 $\boldsymbol u$ 与向量</p>
+<div class="formula">$$\left.\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right|_{p_0}$$</div>
+<p>有相同指向。这个向量曾记作 $Jf(p_0)$（9.2节也用记号 $\operatorname{grad}f(p_0)$），称为 $f$ 在 $p_0$ 处的<b>梯度</b>：</p>
+<div class="formula">$$\operatorname{grad}f(p)=\Big(\frac{\partial f(p)}{\partial x},\ \frac{\partial f(p)}{\partial y},\ \frac{\partial f(p)}{\partial z}\Big).$$</div>
+<p>沿梯度方向方向导数取最大值（函数变化最强烈），最大值正好是 $\|\operatorname{grad}f(p)\|$。</p>
+<h3>13.1.2 等值面（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-3</b></p>
+<ul><li>称点集 $\{p\in D: f(p)=c,\ c\text{ 为常数}\}$ 为数量场 $f$ 的 <b>c 等值面</b>；对某些 $c$，等值面可能是空集。</li><li>由 9.5 节，隐式曲面 $f(x,y,z)-c=0$ 的法向量正是 $\big(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\big)=\operatorname{grad}f$。所以：<b>数量场 $f$ 的梯度正是 $f$ 的等值面的法向量</b>。</li></ul>
+<h3>13.1.3 Nabla 算子及其运算规则</h3>
+<p class="pgref"><b>课本：p.1-3</b></p>
+<p>令</p>
+<div class="formula">$$\nabla=\Big(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\Big),$$</div>
+<p>称之为 <b>Nabla（那勃拉）算子</b>。孤立的算子没有意义，只有作用到对象上才产生数或向量；规定</p>
+<div class="formula">$$\nabla f=\Big(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\Big),$$</div>
+<p>好比把 $f$ 从右边去乘"向量"∇，即放到它的每一个分量上——∇f 是梯度的另一种表示。</p>
+<p>Nabla 算子满足下列规则（直截了当地计算即可验证）：</p>
+<ul><li>(a) $\nabla(cf)=c\nabla f$（$c$ 为常数）；</li><li>(b) $\nabla(f\pm g)=\nabla f\pm\nabla g$；</li><li>(c) $\nabla(fg)=f\nabla g+g\nabla f$；</li><li>(d) 设 $\varphi$ 是单变量函数，则 $\nabla(\varphi\circ f)=(\varphi'\circ f)\,\nabla f$。</li></ul>
+<h3>13.1.4 例1 ★</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p><b>命题</b>：设径向量 $\boldsymbol p=(x,y,z)$，$\rho=\|\boldsymbol p\|$，求梯度 $\nabla\rho$。</p>
+<p><b>要点</b>：由 $\rho^2=\boldsymbol p\cdot\boldsymbol p=x^2+y^2+z^2$ 及规则 (d)，</p>
+<div class="formula">$$2\rho\,\nabla\rho=\nabla\rho^2=\nabla(x^2+y^2+z^2)=2(x,y,z)=2\boldsymbol p,$$</div>
+<p>因此当 $\rho\ne0$ 时</p>
+<div class="formula">$$\nabla\rho=\frac{\boldsymbol p}{\|\boldsymbol p\|}=\frac{\boldsymbol p}{\rho}.$$</div>
+<hr>
+<h2 id="sec13_2">§13.2 向量场的散度<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.3-9</b></p>
+<h3>13.2.1 定义13.2.1：通量</h3>
+<p class="pgref"><b>课本：4</b></p>
+<p>流速场通过曲面的流量与电场通过曲面的电通量物理上完全不同，但数学表达方式完全相同（12.3节）：$\iint_\Sigma\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma$。由此抽象出通量概念。</p>
+<p><b>定义13.2.1</b>：设 $\boldsymbol F$ 是 $\mathbb{R}^3$ 中区域 $D$ 上的一个向量场，$\Sigma$ 是 $D$ 中一张有面积且可定向的曲面，$\boldsymbol n$ 是指向 $\Sigma$ 正侧的单位法向量。称积分</p>
+<div class="formula">$$\iint_{\Sigma}\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma \tag{1}$$</div>
+<p>为向量场 $\boldsymbol F$ 通过 $\Sigma$ 正侧的<b>通量</b>。</p>
+<h3>13.2.2 源的观念（叙述式）</h3>
+<p class="pgref"><b>课本：p.3-9</b></p>
+<p>设 $\boldsymbol F$ 是流速场，$\Sigma$ 是光滑封闭曲面（图13.1）。流体流入时 $\boldsymbol F$ 与外法向 $\boldsymbol n$ 成钝角，流量取负值；流出时成锐角，取正值。若域内有裂缝/小洞使流体下渗，流出少于流入，通量取负值，称有<b>负源</b>；若地下有流体往外冒，流出多于流入，通量取正值，称有<b>正源</b>。</p>
+<p>问题：对给定的场 $\boldsymbol F$，如何判断场中有无源？如何刻画源的强度？在点 $M$ 周围作封闭曲面 $S$，积分 $\iint_S\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma$ 表示单位时间内从 $S$ 内部发出的通量；除以体积得单位体积的平均发出量，让区域无限接近 $M$ 取极限即可刻画发散强度。</p>
+<h3>13.2.3 定义13.2.2：散度</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p><b>定义13.2.2</b>：设 $S$ 是包围点 $M$ 的一个封闭曲面，$V$ 是 $S$ 所包围的空间区域，$\mu(V)$ 记其体积。如果极限</p>
+<div class="formula">$$\lim_{V\to M}\frac{1}{\mu(V)}\iint_S\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma$$</div>
+<p>存在，就称此极限为向量场 $\boldsymbol F$ 在 $M$ 处的<b>散度</b>，记为 $(\operatorname{div}\boldsymbol F)_M$（div 是 divergence 的缩写），即</p>
+<div class="formula">$$(\operatorname{div}\boldsymbol F)_M=\lim_{V\to M}\frac{1}{\mu(V)}\iint_S\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma.$$</div>
+<h3>13.2.4 定理13.2.1：散度的直角坐标计算公式</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p>设向量场</p>
+<div class="formula">$$\boldsymbol F=P(x,y,z)\,\boldsymbol i+Q(x,y,z)\,\boldsymbol j+R(x,y,z)\,\boldsymbol k,$$</div>
+<p>其中 $P,Q,R$ 在区域 $D$ 上有连续偏导数，那么</p>
+<div class="formula">$$\operatorname{div}\boldsymbol F=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z} \tag{3}$$</div>
+<p>在 $D$ 上成立。</p>
+<h4>课本证明路线</h4>
+<ol><li>记 $\boldsymbol n$ 的方向余弦为 $\cos\alpha,\cos\beta,\cos\gamma$，用 Gauss 公式把封闭曲面上的积分化为三重积分：</li></ol>
+<div class="formula">$$\iint_S\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=\iint_V\Big(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\Big)\mathrm dx\,\mathrm dy\,\mathrm dz;\tag{4}$$</div>
+<ol><li>由三重积分的中值公式，存在 $\xi\in V$ 使该三重积分等于被积函数在 $\xi$ 处的值乘 $\mu(V)$；(5)</li><li>两式相除：$\dfrac{1}{\mu(V)}\iint_S\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=\Big(\dfrac{\partial P}{\partial x}+\dfrac{\partial Q}{\partial y}+\dfrac{\partial R}{\partial z}\Big)\Bigg|_{\xi}$；</li><li>令 $V\to M$ 则 $\xi\to M$，由三个偏导数的连续性得 $(\operatorname{div}\boldsymbol F)_M$ 等于该表达式在 $M$ 处的值；$M$ 是 $D$ 中任意点，故式 (3) 在 $D$ 上成立。</li></ol>
+<h3>13.2.5 散度记号与运算法则</h3>
+<p class="pgref"><b>课本：p.3-9</b></p>
+<p>利用 Nabla 算子，散度可写成"数量积"形式：$\operatorname{div}\boldsymbol F=\nabla\cdot\boldsymbol F$。容易验证以下规则：</p>
+<ul><li>(a) $\nabla\cdot(c\boldsymbol F)=c\,\nabla\cdot\boldsymbol F$（$c$ 为常数）；</li><li>(b) $\nabla\cdot(\boldsymbol F_1+\boldsymbol F_2)=\nabla\cdot\boldsymbol F_1+\nabla\cdot\boldsymbol F_2$；</li><li>(c) 设 $\varphi$ 是数量场，则</li></ul>
+<div class="formula">$$\nabla\cdot\varphi\boldsymbol F=\varphi\,\nabla\cdot\boldsymbol F+\boldsymbol F\cdot\nabla\varphi.$$</div>
+<p>课本只证明最后一式：由 $\varphi\boldsymbol F=(\varphi P,\varphi Q,\varphi R)$ 直接展开 $\frac{\partial(\varphi P)}{\partial x}+\frac{\partial(\varphi Q)}{\partial y}+\frac{\partial(\varphi R)}{\partial z}$，拆分为 $\varphi\,\nabla\cdot\boldsymbol F+\boldsymbol F\cdot\nabla\varphi$。</p>
+<h3>13.2.6 Laplace 算子与调和函数（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.3-9</b></p>
+<p>引入记号 $\Delta=\nabla^2=\nabla\cdot\nabla$，即</p>
+<div class="formula">$$\Delta=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2},$$</div>
+<p>称之为 <b>Laplace 算子</b>。设 $\Omega$ 为一区域，如果其上的数量场 $u$ 满足 Laplace 方程</p>
+<div class="formula">$$\Delta u=\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2u}{\partial z^2}=0,$$</div>
+<p>那么称 $u$ 是 $\Omega$ 上的<b>调和函数</b>。</p>
+<h3>13.2.7 例1 ★</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p><b>命题</b>：设 $\boldsymbol p=(x,y,z)$，$\rho=\|\boldsymbol p\|$，计算 $\operatorname{div}(\rho^\alpha\boldsymbol p)$。</p>
+<p><b>要点</b>：</p>
+<ol><li>$\nabla\cdot\boldsymbol p=\frac{\partial x}{\partial x}+\frac{\partial y}{\partial y}+\frac{\partial z}{\partial z}=3$；</li><li>由 §13.1 例1，$\nabla\rho^\alpha=\alpha\rho^{\alpha-1}\nabla\rho=\alpha\rho^{\alpha-1}\dfrac{\boldsymbol p}{\rho}=\alpha\rho^{\alpha-2}\boldsymbol p$；</li><li>用规则 (c)：$\nabla\cdot\rho^\alpha\boldsymbol p=\rho^\alpha\nabla\cdot\boldsymbol p+\boldsymbol p\cdot\nabla\rho^\alpha=3\rho^\alpha+\alpha\rho^\alpha=(3+\alpha)\rho^\alpha$。</li></ol>
+<p>特别地，当 $\alpha=-3$ 时</p>
+<div class="formula">$$\operatorname{div}\frac{\boldsymbol p}{\rho^3}=0.$$</div>
+<hr>
+<h2 id="sec13_3">§13.3 向量场的旋度<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.10-14</b></p>
+<h3>13.3.1 点涡与平均环量（叙述式）</h3>
+<p class="pgref"><b>课本：p.10-14</b></p>
+<p>河面上落叶除向下游漂去外还会打旋——河面上到处有强弱不同的漩涡。第二型曲线积分 $\int_\Gamma P\mathrm dx+Q\mathrm dy+R\mathrm dz$（11.2节）既表示力场做的功，也可刻画漩涡强度；把它写成第一型曲线积分</p>
+<div class="formula">$$\int_\Gamma P\mathrm dx+Q\mathrm dy+R\mathrm dz=\int_\Gamma(P\cos\alpha+Q\cos\beta+R\cos\gamma)\mathrm ds=\int_\Gamma(\boldsymbol F\cdot\boldsymbol t)\,\mathrm ds,$$</div>
+<p>其中 $\boldsymbol t=(\cos\alpha,\cos\beta,\cos\gamma)$ 是 $\Gamma$ 沿正方向的单位切向量。</p>
+<p>考虑点涡 $O$（$O$ 为旋转中心，其余各点绕 $O$ 旋转；图13.2 的带翼片小圆片圆心置于 $O$，旋转快慢度量漩涡强度）。设流速场 $\boldsymbol v$、小圆片半径 $r$、角速度 $\omega$，圆周上每点速度 $\boldsymbol v=\omega r\,\boldsymbol t$，则</p>
+<div class="formula">$$\int_\Gamma\boldsymbol v\cdot\boldsymbol t\,\mathrm ds=\int_0^{2\pi}\omega r^2\,\mathrm d\theta=2\omega\pi r^2,\qquad\text{即}\qquad \frac{1}{\pi r^2}\int_\Gamma\boldsymbol v\cdot\boldsymbol t\,\mathrm ds=2\omega.\tag{2}$$</div>
+<p>称 $\int_\Gamma\boldsymbol v\cdot\boldsymbol t\,\mathrm ds$ 为向量场 $\boldsymbol v$ 沿闭曲线 $\Gamma$ 的<b>环量</b>；式 (2) 左边是小圆片上的平均环量，等于旋转角速度的 2 倍——平均环量可以刻画漩涡强度。</p>
+<h3>13.3.2 定义13.3.1：环量</h3>
+<p class="pgref"><b>课本：11</b></p>
+<p><b>定义13.3.1</b>：设 $\boldsymbol F$ 是区域 $D\subset\mathbb{R}^3$ 上的一个向量场，$\Gamma$ 是 $D$ 中的一条封闭曲线。称积分</p>
+<div class="formula">$$\int_\Gamma(\boldsymbol F\cdot\boldsymbol t)\,\mathrm ds$$</div>
+<p>为向量场 $\boldsymbol F$ 沿闭曲线 $\Gamma$ 的<b>环量</b>，其中 $\boldsymbol t$ 是 $\Gamma$ 的指向正向的单位切向量。</p>
+<h3>13.3.3 定义13.3.2：漩涡的强度</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>过点 $M$ 任作单位向量 $\boldsymbol n$，在与 $\boldsymbol n$ 垂直的平面上取包围 $M$ 的闭曲线 $\Gamma$，其所围面积为 $A$。平均环量 $\frac1A\int_\Gamma(\boldsymbol F\cdot\boldsymbol t)\mathrm ds$ 刻画 $M$ 处以 $\boldsymbol n$ 为旋转轴的漩涡强度；让 $\Gamma$ 收缩到 $M$ 才能真正刻画 $M$ 点的情况。</p>
+<p><b>定义13.3.2</b>：如果平均环量的极限</p>
+<div class="formula">$$\lim_{\Gamma\to M}\frac{1}{A}\int_\Gamma(\boldsymbol F\cdot\boldsymbol t)\,\mathrm ds$$</div>
+<p>存在，就称此极限为向量场 $\boldsymbol F$ 在点 $M$ 处以 $\boldsymbol n$ 为旋转轴的漩涡的强度。</p>
+<p>对不同方向 $\boldsymbol n$，漩涡强度不同（正如不同方向的方向导数不同）。自然的问题：$\boldsymbol F$ 在 $M$ 处沿哪个方向的漩涡强度最大？</p>
+<h3>13.3.4 用 Stokes 公式回答（叙述式推导）</h3>
+<p class="pgref"><b>课本：p.10-14</b></p>
+<p>设 $\boldsymbol F=P\boldsymbol i+Q\boldsymbol j+R\boldsymbol k$。由 Stokes 公式，</p>
+<div class="formula">$$\int_\Gamma(\boldsymbol F\cdot\boldsymbol t)\mathrm ds=\iint_G\Big[\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\cos\alpha+\Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\cos\beta+\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\cos\gamma\Big]\mathrm d\sigma,\tag{3}$$</div>
+<p>这里 $G$ 是 $\Gamma$ 所围的区域，$\boldsymbol n=(\cos\alpha,\cos\beta,\cos\gamma)$。记</p>
+<div class="formula">$$\boldsymbol a=\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\boldsymbol i+\Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\boldsymbol j+\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\boldsymbol k,$$</div>
+<p>则式 (3) 即 $\int_\Gamma\boldsymbol F\cdot\boldsymbol t\,\mathrm ds=\iint_G\boldsymbol a\cdot\boldsymbol n\,\mathrm d\sigma$。由积分中值定理，存在 $\xi\in G$ 使</p>
+<div class="formula">$$\int_\Gamma\boldsymbol F\cdot\boldsymbol t\,\mathrm ds=(\boldsymbol a\cdot\boldsymbol n)\big|_\xi\cdot A\quad(A\ \text{为}\ G\ \text{的面积})，$$</div>
+<p>于是</p>
+<div class="formula">$$\lim_{\Gamma\to M}\frac1A\int_\Gamma\boldsymbol F\cdot\boldsymbol t\,\mathrm ds=(\boldsymbol a\cdot\boldsymbol n)\big|_M=\boldsymbol a\big|_M\cdot\boldsymbol n=\|\boldsymbol a(M)\|\cos\theta,\tag{4}$$</div>
+<p>$\theta$ 是 $\boldsymbol a(M)$ 与 $\boldsymbol n$ 的夹角。式 (4) 说明：漩涡强度是 $\boldsymbol a$ 在 $\boldsymbol n$ 方向上的投影；当 $\theta=0$（$\boldsymbol a$ 与 $\boldsymbol n$ 方向一致）时强度取最大值，最大值为 $\|\boldsymbol a\|$。</p>
+<h3>13.3.5 定义13.3.3：旋度</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p><b>定义13.3.3</b>：向量场 $\boldsymbol F$ 在点 $M$ 的<b>旋度</b>是这样一个向量：以这个向量的方向为旋转轴的漩涡强度的值最大，而且最大值就是这个向量的模。向量场 $\boldsymbol F$ 的旋度记为 $\operatorname{rot}\boldsymbol F$（rot 是 rotation 的缩写）。</p>
+<p>上面的讨论表明向量 $\boldsymbol a$ 就是满足定义的那个向量。由此得到直角坐标系中的表达式：</p>
+<div class="formula">$$\operatorname{rot}\boldsymbol F=\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)\boldsymbol i+\Big(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Big)\boldsymbol j+\Big(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Big)\boldsymbol k,$$</div>
+<p>或用行列式表达为</p>
+<div class="formula">$$\operatorname{rot}\boldsymbol F=\begin{vmatrix}\boldsymbol i&\boldsymbol j&\boldsymbol k\\[2pt]\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[6pt]P&Q&R\end{vmatrix}.$$</div>
+<p>利用 Nabla 算子，旋度能写成"向量积"的形式：$\operatorname{rot}\boldsymbol F=\nabla\times\boldsymbol F$。</p>
+<h3>13.3.6 旋度运算法则</h3>
+<p class="pgref"><b>课本：p.10-14</b></p>
+<ul><li>(a) $\nabla\times(c\boldsymbol F)=c\,\nabla\times\boldsymbol F$（$c$ 为常数）；</li><li>(b) $\nabla\times(\boldsymbol F_1+\boldsymbol F_2)=\nabla\times\boldsymbol F_1+\nabla\times\boldsymbol F_2$；</li><li>(c) 设 $\varphi$ 是数量函数，则 $\nabla\times(\varphi\boldsymbol F)=\varphi\,\nabla\times\boldsymbol F+\nabla\varphi\times\boldsymbol F$；</li><li>(d) $\nabla\cdot(\boldsymbol F_1\times\boldsymbol F_2)=(\nabla\times\boldsymbol F_1)\cdot\boldsymbol F_2-(\nabla\times\boldsymbol F_2)\cdot\boldsymbol F_1$。</li></ul>
+<h4>课本证明（(c) 与 (d)）</h4>
+<p><b>(c)</b>：设 $\boldsymbol F=(P,Q,R)$，按行列式展开 $\nabla\times(\varphi\boldsymbol F)$，其第一个分量</p>
+<div class="formula">$$\frac{\partial}{\partial y}(\varphi R)-\frac{\partial}{\partial z}(\varphi Q)=\varphi\Big(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Big)+R\frac{\partial\varphi}{\partial y}-Q\frac{\partial\varphi}{\partial z},$$</div>
+<p>由此可见 $\nabla\times(\varphi\boldsymbol F)$ 分裂为 $\varphi(\nabla\times\boldsymbol F)$（行列式第一行乘 φ）与 $\nabla\varphi\times\boldsymbol F$（行列式中 $\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}$ 换成 $\frac{\partial\varphi}{\partial x},\frac{\partial\varphi}{\partial y},\frac{\partial\varphi}{\partial z}$）之和。</p>
+<p><b>(d)</b>：设 $\boldsymbol F_i=(P_i,Q_i,R_i)$（$i=1,2$），直接展开</p>
+<div class="formula">$$\nabla\cdot(\boldsymbol F_1\times\boldsymbol F_2)=\frac{\partial(Q_1R_2-Q_2R_1)}{\partial x}+\frac{\partial(R_1P_2-R_2P_1)}{\partial y}+\frac{\partial(P_1Q_2-P_2Q_1)}{\partial z},$$</div>
+<p>重新组合后恰等于 $(\nabla\times\boldsymbol F_1)\cdot\boldsymbol F_2-(\nabla\times\boldsymbol F_2)\cdot\boldsymbol F_1$。</p>
+<h3>13.3.7 例1 ★</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p><b>命题</b>：设 $\boldsymbol p=(x,y,z)$，$\rho=\|\boldsymbol p\|$，向量场 $\boldsymbol F(\boldsymbol p)=f(\rho)\boldsymbol p$ 称为<b>有心场</b>（$f$ 是单变量函数）。求证：$\operatorname{rot}\boldsymbol F=\boldsymbol 0$，其中 $\rho>0$。</p>
+<p><b>课本证明要点</b>：因为 $\nabla\times\boldsymbol p=\boldsymbol 0$，所以</p>
+<div class="formula">$$\nabla\times(f\boldsymbol p)=f\,\nabla\times\boldsymbol p+\nabla f\times\boldsymbol p=\nabla f\times\boldsymbol p=f'(\rho)\,\nabla\rho\times\boldsymbol p=f'(\rho)\,\frac1\rho\,\boldsymbol p\times\boldsymbol p=\boldsymbol 0.$$</div>
+<p><b>课本随后指出</b>：§13.2 例3 中的静电场 $\boldsymbol E=\dfrac{q}{\rho^3}\boldsymbol p$ 是有心场，由本例知 $\operatorname{rot}\boldsymbol E=\boldsymbol 0$——这也是静电场中的一个重要定理。</p>
+<hr>
+<h2 id="sec13_4">§13.4 有势场和势函数<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.15-21</b></p>
+<h3>13.4.1 定义13.4.1：有势场与势函数</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p><b>定义13.4.1</b>：设向量场 $\boldsymbol F=(P,Q,R)$ 定义在区域 $D\subset\mathbb{R}^3$ 上。如果存在 $D$ 上的一个数量场 $\varphi$，满足</p>
+<div class="formula">$$\operatorname{grad}\varphi(\boldsymbol p)=\boldsymbol F(\boldsymbol p)\tag{1}$$</div>
+<p>对一切 $\boldsymbol p\in D$ 成立，则称向量场 $\boldsymbol F$ 为<b>有势场</b>，数量场 $\varphi$ 叫做向量场 $\boldsymbol F$ 的一个<b>势函数</b>。</p>
+<p>等式 (1) 也可以写成</p>
+<div class="formula">$$\frac{\partial\varphi}{\partial x}=P,\qquad\frac{\partial\varphi}{\partial y}=Q,\qquad\frac{\partial\varphi}{\partial z}=R.\tag{2}$$</div>
+<h3>13.4.2 定义13.4.2 与定义13.4.3：保守场与无旋场</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p><b>定义13.4.2</b>：设 $\boldsymbol F$ 是定义在区域 $D\subset\mathbb{R}^3$ 上的向量场。如果对含于 $D$ 中的任何一条封闭曲线 $\Gamma$，都有 $\int_\Gamma\boldsymbol F\cdot\mathrm d\boldsymbol p=0$，则称 $\boldsymbol F$ 是 $D$ 上的一个<b>保守场</b>。</p>
+<p>这就是说：若 $\boldsymbol F$ 是保守场，$\Gamma_1,\Gamma_2$ 是两条都以 $A$ 为起点、以 $B$ 为终点的有向曲线，则 $\int_{\Gamma_1}\boldsymbol F\cdot\mathrm d\boldsymbol p=\int_{\Gamma_2}\boldsymbol F\cdot\mathrm d\boldsymbol p$，即 $\boldsymbol F$ 的曲线积分与路径无关。</p>
+<p><b>定义13.4.3</b>：设 $\boldsymbol F$ 是定义在区域 $D\subset\mathbb{R}^3$ 上的向量场。如果</p>
+<div class="formula">$$\operatorname{rot}\boldsymbol F=\nabla\times\boldsymbol F=\boldsymbol 0$$</div>
+<p>在 $D$ 上处处成立，则称 $\boldsymbol F$ 为 $D$ 上的一个<b>无旋场</b>。</p>
+<p>对平面区域而言，定理11.3.2 表明这三种场等价，但前提是该平面区域必须单连通。对空间区域，单连通的概念更复杂。</p>
+<h3>13.4.3 定义13.4.4 与定义13.4.5：两种单连通</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p><b>定义13.4.4</b>：设 $\Omega$ 是 $\mathbb{R}^3$ 中的区域。如果 $\Omega$ 中任意封闭曲面的内部完全在 $\Omega$ 中，则称 $\Omega$ 为<b>空间单连通区域</b>；否则称为<b>空间多连通区域</b>。</p>
+<p>课本示例：$\Omega_1=\{x^2+y^2+z^2&lt;1\}$、$\Omega_2=\{x^2+y^2&lt;1,\ 0&lt;z&lt;1\}$ 是空间单连通区域；$\Omega_3=\{0&lt;x^2+y^2+z^2&lt;1\}$、$\Omega_4=\{1&lt;x^2+y^2+z^2&lt;4\}$ 都是空间多连通区域。</p>
+<p><b>定义13.4.5</b>：设 $\Omega$ 是 $\mathbb{R}^3$ 中的区域。如果对 $\Omega$ 中任意逐段光滑的曲线 $\Gamma$，总能在 $\Omega$ 中找到一张逐片光滑的曲面 $\Sigma$ 以 $\Gamma$ 为其边界（即 $\partial\Sigma=\Gamma$），则称 $\Omega$ 为<b>曲面单连通区域</b>。</p>
+<p>课本示例与说明：上述 $\Omega_3,\Omega_4$ 不是空间单连通区域，却是曲面单连通区域；也存在空间单连通而非曲面单连通的例子，如 $\Omega_5=\{x^2+y^2+z^2&lt;1,\ x^2+y^2>\tfrac12\}$。因此，<b>空间单连通和曲面单连通是两个不相关的概念，无强弱之分</b>。</p>
+<h3>13.4.4 定理13.4.1：三种场的等价性</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p><b>定理13.4.1</b>：设 $D$ 是 $\mathbb{R}^3$ 中的曲面单连通区域，$\boldsymbol F$ 是定义在 $D$ 上的一个向量场。如果 $\boldsymbol F\in C^{2}(D)$［待核原页］，那么以下三个命题等价：</p>
+<ol><li>$\boldsymbol F$ 是有势场；</li><li>$\boldsymbol F$ 是无旋场；</li><li>$\boldsymbol F$ 是保守场。</li></ol>
+<h4>课本证明路线（按 (1)⇒(2)⇒(3)⇒(1)）</h4>
+<ol><li><b>(1)⇒(2)</b>：存在势函数 $\varphi$ 使式 (2) 成立；利用二阶偏导数可交换次序（如 $\frac{\partial R}{\partial y}=\frac{\partial^2\varphi}{\partial y\partial z}=\frac{\partial^2\varphi}{\partial z\partial y}=\frac{\partial Q}{\partial z}$ 等），得三组对应相等，从而 $\operatorname{rot}\boldsymbol F=\boldsymbol 0$；</li><li><b>(2)⇒(3)</b>：任取闭曲线 $\Gamma\subset D$，在 $D$ 内作以 $\Gamma$ 为边界的曲面 $\Sigma$，由 Stokes 公式</li></ol>
+<div class="formula">$$\int_\Gamma\boldsymbol F\cdot\mathrm d\boldsymbol p=\iint_\Sigma\operatorname{rot}\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=0;$$</div>
+<ol><li><b>(3)⇒(1)</b>：因积分与路径无关，固定 $(a,b,c)\in D$，定义</li></ol>
+<div class="formula">$$\varphi(x,y,z)=\int_{(a,b,c)}^{(x,y,z)}\boldsymbol F\cdot\mathrm d\boldsymbol p,\tag{3}$$</div>
+<p>右端仅由终点唯一确定；考察 $\varphi(x+h,y,z)$，路径末段取直线段，用连续函数的积分平均值定理得差商 $\frac{\varphi(x+h,y,z)-\varphi(x,y,z)}{h}=P(x^*,y,z)$（$x^*$ 介于 $x$ 与 $x+h$ 之间）；令 $h\to0$ 并用 $P$ 的连续性得 $\frac{\partial\varphi}{\partial x}=P$，同理 $\frac{\partial\varphi}{\partial y}=Q$、$\frac{\partial\varphi}{\partial z}=R$，故 $\boldsymbol F$ 是有势场。</p>
+<p><b>课本注明</b>：上面的证明给出了如何求保守场的势函数的具体方法（即公式 (3)）。</p>
+<h3>13.4.5 势能与能量守恒（叙述式正文 + 例3）</h3>
+<p class="pgref"><b>课本：19</b></p>
+<ul><li>如果向量场 $\boldsymbol F$ 在区域 $\Omega$ 上有势函数 $\varphi$，那么称 $-\varphi$ 为 $\boldsymbol F$ 的<b>势能</b>。</li><li>设力场 $\boldsymbol F$ 是一有势场，质点在其作用下运动，运动方程 $\boldsymbol r=\boldsymbol r(t)$，$t\in[a,b]$；如果运动满足 Newton 第二定律，那么一定满足能量守恒定律。（例3 给出证明：动能 $\frac12m(\boldsymbol r'(t))^2$ 与 $-f\circ\boldsymbol r(t)$ 之和对 $t$ 求导，代入 Newton 第二定律 $m\boldsymbol r''(t)=\nabla f\circ\boldsymbol r(t)$ 后为零，故势能与动能之和等于常数。这里 $f$ 为势函数。详见 0.6 索引。）</li></ul>
+<h3>13.4.6 定理13.4.2：势函数的唯一性</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>课本先作准备：设 $\boldsymbol F$ 是区域 $\Omega$ 上的有势场，$f,g$ 都是 $\boldsymbol F$ 的势函数，则 $\operatorname{grad}f=\operatorname{grad}g=\boldsymbol F$ 在 $\Omega$ 上处处成立，即 $\frac{\partial}{\partial x}(f-g)=\frac{\partial}{\partial y}(f-g)=\frac{\partial}{\partial z}(f-g)=0$；由定理9.10.2，$f-g$ 在 $\Omega$ 上是一常数。</p>
+<p><b>定理13.4.2</b>：设 $\boldsymbol F$ 是区域 $\Omega$ 上的有势场，如果不计常数加项，那么势函数是唯一的。</p>
+<h3>13.4.7 恰当微分形式与恰当微分方程（叙述式）</h3>
+<p class="pgref"><b>课本：p.15-21</b></p>
+<ul><li>设 $P\mathrm dx+Q\mathrm dy+R\mathrm dz$ 是开集 $D\subset\mathbb{R}^3$ 上的微分形式。如果 $D$ 上存在一个 0 形式 $\varphi$ 使得</li></ul>
+<div class="formula">$$\mathrm d\varphi=P\mathrm dx+Q\mathrm dy+R\mathrm dz\tag{8}$$</div>
+<p>在 $D$ 上处处成立，则称这个 1 形式为 $D$ 上的一个<b>恰当微分形式</b>（简称恰当微分）。</p>
+<ul><li>很明显，条件组</li></ul>
+<div class="formula">$$\frac{\partial R}{\partial y}=\frac{\partial Q}{\partial z},\qquad\frac{\partial P}{\partial z}=\frac{\partial R}{\partial x},\qquad\frac{\partial Q}{\partial x}=\frac{\partial P}{\partial y}$$</div>
+<p>（课本将其编为式 (5)，出现于例2 的验证中）是判断这个微分形式是恰当微分的充分必要条件；确信之后可用前述办法求出 $\varphi$。</p>
+<ul><li>在开集 $D\subset\mathbb{R}^2$ 上，方程</li></ul>
+<div class="formula">$$P(x,y)\mathrm dx+Q(x,y)\mathrm dy=0\tag{9}$$</div>
+<p>称为<b>恰当微分方程</b>。如果左边是一个恰当微分，设 $\varphi$ 是向量场 $\boldsymbol F=(P,Q)$ 的任一势函数，那么对任意常数 $c$，隐函数 $\varphi(x,y)=c$ 是微分方程 (9) 的通解。（例4 给出求解示范，见 0.6 索引。）</p>
+<hr>
+<h2 id="sec13_5">§13.5 旋度场和向量势<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.22-26</b></p>
+<h3>13.5.1 定义13.5.1：旋度场与向量势</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p><b>定义13.5.1</b>：设 $\boldsymbol F$ 是 $\mathbb{R}^3$ 中的区域 $D$ 上的一个向量场。如果存在向量场 $\boldsymbol G$，使得</p>
+<div class="formula">$$\boldsymbol F=\nabla\times\boldsymbol G,$$</div>
+<p>就称 $\boldsymbol F$ 是一个<b>旋度场</b>，$\boldsymbol G$ 称为 $\boldsymbol F$ 的<b>向量势</b>。</p>
+<h3>13.5.2 无源场未必是旋度场（课本正文推导）</h3>
+<p class="pgref"><b>课本：p.22-26</b></p>
+<p>判断 $\boldsymbol F$ 是否旋度场：容易看出，若 $\boldsymbol F=\nabla\times\boldsymbol G$，则</p>
+<div class="formula">$$\nabla\cdot\boldsymbol F=\nabla\cdot(\nabla\times\boldsymbol G)=0,\tag{1}$$</div>
+<p>即 $\boldsymbol F$ 是<b>无源场</b>。这是因为记 $\boldsymbol G=(G_1,G_2,G_3)$ 时可直接展开验证 $\nabla\cdot(\nabla\times\boldsymbol G)$ 的三项两两相消。</p>
+<p><b>但反过来，从式 (1) 不一定能推出 $\boldsymbol F$ 是旋度场。</b> 课本反例：设 $D=\mathbb{R}^3-\{\boldsymbol 0\}$，$\boldsymbol F=\boldsymbol p/\rho^3$（$\boldsymbol p=(x,y,z)$），由 §13.2 例1 知 $\nabla\cdot\boldsymbol F=0$。假如存在 $\boldsymbol G$ 使 $\boldsymbol F=\nabla\times\boldsymbol G$，考虑以原点为中心、半径 $r$ 的上半球面 $\Sigma_1$ 与下半球面 $\Sigma_2$：二者边界同为赤道圆但方向相反（$\partial\Sigma_1=(\partial\Sigma_2)^-$）。由 Stokes 公式，</p>
+<div class="formula">$$\iint_{\Sigma_1}\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=\int_{\partial\Sigma_1}\boldsymbol G\cdot\mathrm d\boldsymbol p,\qquad \iint_{\Sigma_2}\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=-\int_{\partial\Sigma_1}\boldsymbol G\cdot\mathrm d\boldsymbol p,$$</div>
+<p>两式相加应得 $\boldsymbol F$ 过整个球面的通量为 $0$；而直接计算</p>
+<div class="formula">$$\iint_{\Sigma}\boldsymbol F\cdot\boldsymbol n\,\mathrm d\sigma=\iint_{\Sigma}\frac{\boldsymbol p}{\rho^3}\cdot\frac{\boldsymbol p}{\rho}\,\mathrm d\sigma=\frac{1}{r^2}\,4\pi r^2=4\pi\ne0,$$</div>
+<p>矛盾。故此 $\boldsymbol F$ 不是旋度场。</p>
+<p><b>但是</b>，对很广泛的一类区域——星形域，从式 (1) 能推出 $\boldsymbol F$ 是旋度场。</p>
+<h3>13.5.3 定义13.5.2：星形区域</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p><b>定义13.5.2</b>：设 $\Omega$ 是 $\mathbb{R}^3$ 中的区域，$P_0\in\Omega$。如果对任意 $P\in\Omega$，线段 $\overline{PP_0}$ 完全落在 $\Omega$ 中，就称 $\Omega$ 关于 $P_0$ 是<b>星形区域</b>。</p>
+<p>课本示例：凸域关于其中任意一点都是星形的；空心球 $\{(x,y,z)\in\mathbb{R}^3: 0&lt;x^2+y^2+z^2&lt;r\}$ 关于其中任何一点都不是星形的。</p>
+<h3>13.5.4 定理13.5.1：星形域上旋度场 ⟺ 无源场</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p><b>定理13.5.1</b>：设 $D$ 是 $\mathbb{R}^3$ 中关于 $P_0$ 的星形区域，$\boldsymbol F\in C^1(D)$。那么 $\boldsymbol F$ 是旋度场的充分必要条件是 $\boldsymbol F$ 为无源场，即 $\nabla\cdot\boldsymbol F=0$。</p>
+<h4>课本证明路线（充分性）</h4>
+<p>必要性已证。设 $\nabla\cdot\boldsymbol F=0$，要证存在 $\boldsymbol G$ 使 $\boldsymbol F=\nabla\times\boldsymbol G$：</p>
+<ol><li>先设 $P_0=(0,0,0)$。由星形性，对任意 $(x,y,z)\in D$、$t\in(0,1)$ 有 $(tx,ty,tz)\in D$。设 $\boldsymbol F=(P,Q,R)$，令 $\boldsymbol G$ 的三个分量为</li></ol>
+<div class="formula">$$G_1=z\int_0^1tQ(tx,ty,tz)\,\mathrm dt-y\int_0^1tR(tx,ty,tz)\,\mathrm dt,$$</div>
+<div class="formula">$$G_2=x\int_0^1tR(tx,ty,tz)\,\mathrm dt-z\int_0^1tP(tx,ty,tz)\,\mathrm dt,$$</div>
+<div class="formula">$$G_3=y\int_0^1tP(tx,ty,tz)\,\mathrm dt-x\int_0^1tQ(tx,ty,tz)\,\mathrm dt,$$</div>
+<p>（紧凑写法：$\boldsymbol G=\int_0^1 t\,\boldsymbol F(tx,ty,tz)\times\boldsymbol p\,\mathrm dt$，其中 $\boldsymbol p=(x,y,z)$。）要证</p>
+<div class="formula">$$\frac{\partial G_3}{\partial y}-\frac{\partial G_2}{\partial z}=P,\quad\frac{\partial G_1}{\partial z}-\frac{\partial G_3}{\partial x}=Q,\quad\frac{\partial G_2}{\partial x}-\frac{\partial G_1}{\partial y}=R;\tag{3}$$</div>
+<ol><li>直接计算 $\frac{\partial G_3}{\partial y}$ 与 $\frac{\partial G_2}{\partial z}$，相减并用无源条件 $\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}=0$ 把 $\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$ 换成 $-\frac{\partial P}{\partial x}$，得四个积分的组合；(4)</li><li>关键恒等式：把 $\int_0^1\frac{\partial}{\partial t}\big(t^2P(tx,ty,tz)\big)\mathrm dt=t^2P(tx,ty,tz)\big|_0^1=P(x,y,z)$ (5) 的被积函数展开 (6) 后代回，恰好得到与 (4) 相同的表达式，于是 $\frac{\partial G_3}{\partial y}-\frac{\partial G_2}{\partial z}=P$；</li><li>同理可证式 (3) 的其余两式；</li><li>若 $P_0=(x_0,y_0,z_0)\ne\boldsymbol 0$，则可取</li></ol>
+<div class="formula">$$\boldsymbol G(x,y,z)=\int_0^1 t\,\boldsymbol F\big(x_0+t(x-x_0),\,y_0+t(y-y_0),\,z_0+t(z-z_0)\big)\times(\boldsymbol p-\boldsymbol p_0)\,\mathrm dt,$$</div>
+<p>证明和前面一样。</p>
+<p><b>课本注明</b>：必须注意，旋度场的向量势不是唯一的。</p>
+<h3>13.5.5 定理13.5.2：向量势的不唯一性</h3>
+<p class="pgref"><b>课本：25</b></p>
+<p><b>定理13.5.2</b>：设 $\boldsymbol G$ 是旋度场 $\boldsymbol F$ 的向量势，那么对 $D$ 中任意连续可微的函数 $\varphi$，$\boldsymbol G+\nabla\varphi$ 也是 $\boldsymbol F$ 的向量势。</p>
+<h4>课本证明</h4>
+<div class="formula">$$\nabla\times(\boldsymbol G+\nabla\varphi)=\nabla\times\boldsymbol G+\nabla\times(\nabla\varphi)=\nabla\times\boldsymbol G=\boldsymbol F.$$</div>
+<p>（例1 给出求向量势的具体演算，见 0.6 索引。）</p>
+<hr>
+<h2 id="sec13_6">§13.6 正交曲线坐标系中梯度、散度和旋度的表达式<span class="freq">◇</span></h2>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<h3>13.6.0 正交曲线坐标（叙述式引入）</h3>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<p>为了表达式的对称性，课本暂时放弃过去常用的记号：直角坐标系中的点改记为 $(x_1,x_2,x_3)$，参数空间的点改记为 $(u_1,u_2,u_3)$。</p>
+<p>记 $\boldsymbol p=(x_1,x_2,x_3)$，设映射</p>
+<div class="formula">$$\boldsymbol p=\boldsymbol f(u_1,u_2,u_3)\tag{1}$$</div>
+<p>从参数空间中的区域 $D$ 映到 $\mathbb{R}^3$，分量形式为 $x_i=x_i(u_1,u_2,u_3)\ (i=1,2,3)$ (2)。再设映射满足条件：</p>
+<ul><li>(a) $\boldsymbol f\in C^1(D)$；</li><li>(b) $\boldsymbol f$ 是单射；</li><li>(c) $\dfrac{\partial\boldsymbol f}{\partial u_1},\dfrac{\partial\boldsymbol f}{\partial u_2},\dfrac{\partial\boldsymbol f}{\partial u_3}$ 互相正交；</li><li>(d) $\det J\boldsymbol f>0$。</li></ul>
+<p>于是 $\boldsymbol f$ 建立了 $D$ 与 $f(D)$（也是区域）之间一对一、连续可微的可逆映射；点 $\boldsymbol p$ 对应的三数组 $(u_1,u_2,u_3)$ 称为点 $\boldsymbol p$ 的<b>曲线坐标</b>；由性质 (c)，可更精确地称为<b>正交曲线坐标</b>。</p>
+<p>解说：任意固定 $\boldsymbol u_0=(u_1^0,u_2^0,u_3^0)\in D$，$\boldsymbol p_0=\boldsymbol f(\boldsymbol u_0)$。单参数向量函数 $\boldsymbol p=\boldsymbol f(u_1,u_2^0,u_3^0)$ 是过 $\boldsymbol p_0$ 的一条曲线，称为 $u_1$ 曲线，其在 $\boldsymbol p_0$ 处的切向量为 $\frac{\partial\boldsymbol f}{\partial u_1}(\boldsymbol u_0)$；同理定义 $u_2$ 曲线、$u_3$ 曲线。由条件 (c)(d)，这三个切向量组成<b>正交的右手系</b>——这正是"正交曲线坐标"名称的由来。记</p>
+<div class="formula">$$h_i=\Big\|\frac{\partial\boldsymbol f}{\partial u_i}\Big\|\quad(i=1,2,3),$$</div>
+<p>$h_1,h_2,h_3$ 都是正数且都是点的函数；令 $\dfrac{\partial\boldsymbol f}{\partial u_i}=h_i\boldsymbol e_i\ (i=1,2,3)$，则 $\boldsymbol e_1,\boldsymbol e_2,\boldsymbol e_3$ 是随点变化的规范正交右手系。</p>
+<h3>13.6.1 梯度的表示</h3>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<p>设 $\Phi$ 是定义在 $f(D)$ 上的数量函数，问题是：采用正交坐标 $(u_1,u_2,u_3)$ 时如何表示 $\nabla\Phi$？设</p>
+<div class="formula">$$\nabla\Phi=\sum_{i=1}^3\lambda_i\boldsymbol e_i\tag{3}$$</div>
+<p>（$\lambda_1,\lambda_2,\lambda_3$ 待定）。一方面，由 $\mathrm d\boldsymbol p=\sum_{i=1}^3\frac{\partial\boldsymbol f}{\partial u_i}\mathrm du_i=\sum_{i=1}^3 h_i\,\mathrm du_i\,\boldsymbol e_i$ (4) 得</p>
+<div class="formula">$$\nabla\Phi\cdot\mathrm d\boldsymbol p=\sum_{i=1}^3\lambda_i h_i\,\mathrm du_i;\tag{5}$$</div>
+<p>另一方面，由一阶微分形式的不变性，</p>
+<div class="formula">$$\nabla\Phi\cdot\mathrm d\boldsymbol p=\sum_{i=1}^3\frac{\partial\Phi}{\partial x_i}\mathrm dx_i=\mathrm d\Phi=\sum_{i=1}^3\frac{\partial\Phi}{\partial u_i}\mathrm du_i.\tag{6}$$</div>
+<p>比较 (5)(6) 并注意 $\mathrm du_1,\mathrm du_2,\mathrm du_3$ 任意，得 $\lambda_i=\frac{1}{h_i}\frac{\partial\Phi}{\partial u_i}$，代回 (3)：</p>
+<div class="formula">$$\nabla\Phi=\sum_{i=1}^3\frac{1}{h_i}\frac{\partial\Phi}{\partial u_i}\,\boldsymbol e_i.\tag{7}$$</div>
+<p>式 (7) 是下面讨论散度和旋度表示的出发点。</p>
+<h3>13.6.2 引理13.6.1</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p><b>引理13.6.1</b>：以下三个等式成立：</p>
+<ol><li>$\nabla u_i=\dfrac{\boldsymbol e_i}{h_i}\quad(i=1,2,3)$；</li><li>$\nabla\times\dfrac{\boldsymbol e_i}{h_i}=\boldsymbol 0\quad(i=1,2,3)$；</li><li>$\nabla\cdot\dfrac{\boldsymbol e_1}{h_2h_3}=\nabla\cdot\dfrac{\boldsymbol e_2}{h_1h_3}=\nabla\cdot\dfrac{\boldsymbol e_3}{h_1h_2}=0$；</li></ol>
+<h4>课本证明路线</h4>
+<ol><li><b>(1)</b>：在式 (7) 中依次取 $\Phi=u_1,u_2,u_3$ 即得；</li><li><b>(2)</b>：由 (1)，$\nabla\times\frac{\boldsymbol e_i}{h_i}=\nabla\times(\nabla u_i)=\boldsymbol 0$；</li><li><b>(3)</b>：将 $\frac{\boldsymbol e_1}{h_2h_3}$ 改写为 $\frac{\boldsymbol e_2}{h_2}\times\frac{\boldsymbol e_3}{h_3}$，用公式</li></ol>
+<div class="formula">$$\nabla\cdot(\boldsymbol a\times\boldsymbol b)=(\nabla\times\boldsymbol a)\cdot\boldsymbol b-(\nabla\times\boldsymbol b)\cdot\boldsymbol a$$</div>
+<p>及 (2) 得 $0$；同理得其余两式。</p>
+<p><b>课本注明</b>：上述公式已在 13.3 节旋度运算法则 (d) 中于直角坐标系下证明过；事实上算子 ∇ 的这一性质不依赖于坐标系，课本对此不作详细说明。</p>
+<h3>13.6.3 散度的表示</h3>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<p>设 $\boldsymbol F=F_1\boldsymbol e_1+F_2\boldsymbol e_2+F_3\boldsymbol e_3$，则 $\nabla\cdot\boldsymbol F=\nabla\cdot(F_1\boldsymbol e_1)+\nabla\cdot(F_2\boldsymbol e_2)+\nabla\cdot(F_3\boldsymbol e_3)$。利用引理 13.6.1(3) 和式 (7)，把每一项写成</p>
+<div class="formula">$$\nabla\cdot(F_1\boldsymbol e_1)=\nabla\cdot\Big(F_1h_2h_3\cdot\frac{\boldsymbol e_1}{h_2h_3}\Big)=\nabla(F_1h_2h_3)\cdot\frac{\boldsymbol e_1}{h_2h_3}+F_1h_2h_3\,\nabla\cdot\frac{\boldsymbol e_1}{h_2h_3}
+=\frac{1}{h_1h_2h_3}\frac{\partial(F_1h_2h_3)}{\partial u_1},$$</div>
+<p>（其中 $\nabla(F_1h_2h_3)$ 用式 (7) 展开，与 $\frac{\boldsymbol e_1}{h_2h_3}$ 作数量积后仅剩 $e_1$ 分量。）同理可得其余两项，合并即</p>
+<div class="formula">$$\nabla\cdot\boldsymbol F=\frac{1}{h_1h_2h_3}\Big(\frac{\partial(F_1h_2h_3)}{\partial u_1}+\frac{\partial(F_2h_1h_3)}{\partial u_2}+\frac{\partial(F_3h_1h_2)}{\partial u_3}\Big).\tag{8}$$</div>
+<h3>13.6.4 旋度的表示</h3>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<p>设 $\boldsymbol F=F_1\boldsymbol e_1+F_2\boldsymbol e_2+F_3\boldsymbol e_3$。利用引理 13.6.1(2) 和式 (7)，</p>
+<div class="formula">$$\nabla\times(F_1\boldsymbol e_1)=\nabla\times\Big(F_1h_1\cdot\frac{\boldsymbol e_1}{h_1}\Big)
+=\nabla(F_1h_1)\times\frac{\boldsymbol e_1}{h_1}
+=\frac{1}{h_1h_2h_3}\Big(\frac{\partial(F_1h_1)}{\partial u_3}(h_2\boldsymbol e_2)-\frac{\partial(F_1h_1)}{\partial u_2}(h_3\boldsymbol e_3)\Big),$$</div>
+<p>（$\nabla(F_1h_1)$ 按式 (7) 展开后叉乘 $\frac{\boldsymbol e_1}{h_1}$，$e_1$ 分量自动消失。）同理展开另外两项并相加，得</p>
+<div class="formula">$$\nabla\times\boldsymbol F=\frac{1}{h_1h_2h_3}\begin{vmatrix}h_1\boldsymbol e_1 & h_2\boldsymbol e_2 & h_3\boldsymbol e_3\\[4pt]\dfrac{\partial}{\partial u_1} & \dfrac{\partial}{\partial u_2} & \dfrac{\partial}{\partial u_3}\\[10pt]F_1h_1 & F_2h_2 & F_3h_3\end{vmatrix}.\tag{9}$$</div>
+<h3>13.6.5 Laplace 算子的表达式</h3>
+<p class="pgref"><b>课本：p.26-32</b></p>
+<p>设 $\Phi$ 是数量函数，定义算子</p>
+<div class="formula">$$\Delta\Phi=\nabla\cdot(\nabla\Phi),$$</div>
+<p>$\Delta$ 叫做 <b>Laplace 算子</b>，在数学理论自身和诸多应用中有极其重要的作用。在 $\mathbb{R}^3$ 的直角坐标系中 $\Delta=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}$。结合式 (7) 与式 (8) 立即得到正交曲线坐标下的表达式：</p>
+<div class="formula">$$\Delta\Phi=\frac{1}{h_1h_2h_3}\sum_{i=1}^3\frac{\partial}{\partial u_i}\Big(\frac{h_1h_2h_3}{h_i^2}\,\frac{\partial\Phi}{\partial u_i}\Big).\tag{10}$$</div>
+<p>课本随后讨论三个特殊的正交曲线坐标系（极坐标、柱坐标、球坐标下的 $\Delta$，见 0.6 索引例1～例3：$h$ 分别为 $1,r$；$1,r,1$；$1,r,r\sin\theta$）。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本各节配<b>练习题 X.Y</b>（基本档）；仅 §13.2 另配<b>问题 X.Y</b>（提高档）。本章无补充题。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§13.1</td><td>练习题13.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=139</td><td>p.3（共 5 题）</td><td>—</td></tr><tr><td>§13.2</td><td>练习题13.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=144</td><td>p.8-9（共 4 题）</td><td>问题13.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=145</td><td>p.9（共 3 题）</td></tr><tr><td>§13.3</td><td>练习题13.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=150</td><td>p.14-15（共 3 题）</td><td>—</td></tr><tr><td>§13.4</td><td>练习题13.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=157\</td><td>p.21-22（共 6 题）</td><td>—</td></tr><tr><td>§13.5</td><td>练习题13.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=161\</td><td>p.25-26（共 2 题）</td><td>—</td></tr><tr><td>§13.6</td><td>练习题13.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=168\</td><td>p.32（共 1 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：练习题/问题的页码按条目索引中相邻正文条目（例题页、下一节起始页）锚定推定，可能跨至相邻页；问题档仅见于 §13.2（问题13.2 第1题：调和函数由边界值完全确定；第2题：调和函数的平均值定理；第3题：最大最小值原理）。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">数量场与向量场（章首引言，数学定义）
+→ 梯度：方向导数的最大方向与最大值、等值面的法向量
+→ Nabla 算子 ∇ 与梯度规则 (a)-(d)；例 ∇ρ = p/ρ
+→ 通量（定义13.2.1）→ 正源/负源 → 散度（定义13.2.2）
+→ 直角坐标散度公式（定理13.2.1）→ 散度法则 (a)-(c)
+→ div(ρ^α p)、关键特例 div(p/ρ³)=0
+→ Laplace 算子 Δ 与调和函数；1/ρ 是调和函数
+→ 静电场 Gauss 定理：积分形式（通量 = 4π×电荷）与微分形式 div E = 4πρ
+→ 不可压缩流体的连续性方程 ∂ρ/∂t + div(ρF) = 0
+→ 点涡与平均环量 → 环量（定义13.3.1）→ 漩涡的强度（定义13.3.2）
+→ Stokes 公式定出最强旋转轴 → 旋度（定义13.3.3）与直角坐标表达式
+→ 旋度法则 (a)-(d) → 有心场 rot F = 0（静电场无旋）
+→ 有势场/势函数、保守场、无旋场（定义13.4.1～13.4.3）
+→ 空间单连通、曲面单连通（定义13.4.4～13.4.5，两概念互不蕴含）
+→ 曲面单连通上有势 ⟺ 无旋 ⟺ 保守（定理13.4.1）
+→ 势函数求法（路径无关积分）→ 有心场势函数与引力势 → 势能与能量守恒
+→ 势函数在不计常数加项下唯一（定理13.4.2）
+→ 恰当微分形式、恰当微分方程及其通解 φ = c
+→ 旋度场与向量势（定义13.5.1）→ 无源而非旋度场的反例 p/ρ³（于 R³∖{0}）
+→ 星形区域（定义13.5.2）→ 星形域上无源 ⟺ 旋度场（定理13.5.1）
+→ 向量势不唯一：G+∇φ 也是向量势（定理13.5.2）→ 求向量势示例
+→ 正交曲线坐标：条件 (a)-(d)、uᵢ 曲线、尺度因子 hᵢ 与单位向量 eᵢ
+→ 梯度表示（式7）→ 引理13.6.1 → 散度表示（式8）→ 旋度表示（式9）
+→ Laplace 算子一般式（式10）→ 极坐标、柱坐标、球坐标下的 Δ</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>常与曲线/曲面积分同题出现：2020:9、2022:5–6、2023:8、2026:3。</li><li>重点在 §13.1–§13.3（梯度/散度/旋度）；§13.4 势函数偶作工具，§13.5 向量势未直接命题；§13.6 正交曲线坐标大纲未列。</li><li>2025：第6题 锥面通量，配合散度/Gauss（§13.2）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>23</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§13.1 数量场的梯度</h3>
+<h4>练习题 13.1（5 题）</h4>
+<ol class="ex-list">
+<li>设 $f,g$ 为数量场。证明：$\displaystyle\nabla\frac fg=\frac1{g^2}(g\nabla f-f\nabla g)$。原书 PDF 139</li>
+<li>设 $u$ 为数量场，$f$ 为一向量场。计算 $\nabla(u\circ f)$。原书 PDF 139</li>
+<li>设 $\boldsymbol p=(x,y,z)$，$p=\lVert\boldsymbol p\rVert$，$f$ 为单变量函数。计算：</li>
+<li>求数量场 $f$ 沿数量场 $g$ 的梯度方向的变化率，问何时这个变化率等于零？原书 PDF 139</li>
+<li>设 $\Omega$ 是 Gauss 公式中的闭区域，$\boldsymbol n$ 是 $\partial\Omega$ 的单位外法向量，数量场 $u\in C^1(\Omega)$，点 $p\in\Omega^\circ$。求证：</li>
+</ol>
+<h3>§13.2 向量场的散度</h3>
+<h4>练习题 13.2（4 题）</h4>
+<ol class="ex-list">
+<li>在 $\mathbb R^2$ 中，令 $\boldsymbol p=(x,y)$ 且 $p=\lVert\boldsymbol p\rVert$。求证：当 $p>0$ 时，$\ln p$ 是调和函数。原书 PDF 145</li>
+<li>求证：$\Delta(fg)=f\Delta g+g\Delta f+2\nabla f\cdot\nabla g$。原书 PDF 145</li>
+<li>设 $\Omega$ 是 Gauss 公式中的闭区域，$u,v\in C^1(\Omega)$，$\boldsymbol n$ 表示 $\partial\Omega$ 的单位外法向量。求证：</li>
+<li>设 $u$ 是 $\mathbb R^3$ 中的闭区域 $\Omega$ 上的调和函数，$\boldsymbol n$ 表示 $\partial\Omega$ 的单位外法向量。求证：</li>
+</ol>
+<h4>问题 13.2（3 题）</h4>
+<ol class="ex-list">
+<li>设 $u$ 是 $\mathbb R^3$ 中闭区域 $\Omega$ 上的调和函数。求证：</li>
+<li>（调和函数的平均值定理）若 $u$ 在 $\Omega$ 内是调和函数，$p_0$ 是 $\Omega$ 内的任意一点，$\Sigma$ 是 $\Omega$ 内以 $p_0$ 为球心、以 $R$ 为半径的球面。求证：</li>
+<li>若 $u$ 在闭区域 $\Omega$ 内是调和函数，在 $\Omega$ 上连续且不是常数。求证：$u$ 只在 $\partial\Omega$ 上取到它在 $\Omega$ 上的最大值和最小值。原书 PDF 146</li>
+</ol>
+<h3>§13.3 向量场的旋度</h3>
+<h4>练习题 13.3（3 题）</h4>
+<ol class="ex-list">
+<li>证明：$\nabla\times(\nabla\times F)=\nabla(\nabla\cdot F)-\nabla^2F$。原书 PDF 150</li>
+<li>设 $\Omega$ 是 Gauss 公式中的闭区域，$\boldsymbol n$ 表示 $\partial\Omega$ 的单位外法向量，向量场 $F\in C^1(\Omega)$。求证：</li>
+<li>设 $\Omega$ 是 Gauss 公式中的闭区域，数量场 $f\in C^2(\Omega)$，在 $\Omega$ 中处处不为零，且满足条件 $\operatorname{div}(f\operatorname{grad}f)=af$，$\lVert\nabla f\rVert^2=bf$，其中 $a$ 与 $b$ 为常数。试计算 $\displaystyle\int_{\partial\Omega}\frac{\partial f}{\partial n}\,\mathrm d\sigma$。原书 PDF 150</li>
+</ol>
+<h3>§13.4 有势场和势函数</h3>
+<h4>练习题 13.4（6 题）</h4>
+<ol class="ex-list">
+<li>求下面 $F$ 的势函数：</li>
+<li>计算下列恰当微分的曲线积分：</li>
+<li>设 $f,g,h$ 为单变量的连续函数。计算 $\displaystyle\int_{(x_1,y_1,z_1)}^{(x_2,y_2,z_2)}f(x)\,\mathrm dx+g(y)\,\mathrm dy+h(z)\,\mathrm dz$。原书 PDF 157</li>
+<li>设 $f$ 为单变量的连续函数。计算：</li>
+<li>设弹性力的方向指向坐标原点，力的大小与质点到坐标原点的距离成比例，并设此点依逆时针方向描绘椭圆 $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ 在第一象限的那一段。求弹性力所做的功。原书 PDF 157</li>
+<li>求解下列恰当微分方程：</li>
+</ol>
+<h3>§13.5 旋度场和向量势</h3>
+<h4>练习题 13.5（2 题）</h4>
+<ol class="ex-list">
+<li>证明下列向量场都是 $\mathbb R^3$ 中的旋度场，并求其向量势：</li>
+<li>设 $\Omega$ 是 $\mathbb R^3$ 中关于 $A=(x_0,y_0,z_0)\ne0$ 的星形域。如果 $F$ 是 $\Omega$ 中的无源场，即 $\operatorname{div}F=0$，证明：$F$ 必为 $\Omega$ 中的旋度场。原书 PDF 162</li>
+</ol>
+<h3>§13.6 正交曲线坐标系中梯度、散度和旋度的表达式</h3>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第13章_场的数学_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §13.1 数量场的梯度：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §13.2 向量场的散度：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §13.3 向量场的旋度：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §13.4 有势场和势函数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §13.5 旋度场和向量势：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §13.6 正交曲线坐标系中梯度、散度和旋度的表达式：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+      <label><input type="checkbox"> 任取本章一道习题，能说出它属于哪一节、该先用哪条定理。</label>
+      <label><input type="checkbox"> 能举出本章一个反例，并说明它卡在哪条条件上。</label>
+      <label><input type="checkbox"> 合上页面，能写出本章最重要的一个公式并解释每个符号。</label>
+      <label><input type="checkbox"> 能说出本章哪一节是高频、哪一节只作工具。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

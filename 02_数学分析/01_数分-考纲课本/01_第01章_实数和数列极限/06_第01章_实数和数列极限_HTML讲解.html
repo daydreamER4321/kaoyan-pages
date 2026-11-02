@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第01章 实数和数列极限 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第01章<br>实数和数列极限</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec1_1">§1.1 实数</a>
+    <a href="#sec1_2">§1.2 数列和收敛数列</a>
+    <a href="#sec1_3">§1.3 收敛数列的性质</a>
+    <a href="#sec1_4">§1.4 数列极限概念的推广</a>
+    <a href="#sec1_5">§1.5 单调数列</a>
+    <a href="#sec1_6">§1.6 自然对数的底 e</a>
+    <a href="#sec1_7">§1.7 基本列和 Cauchy 收敛原理</a>
+    <a href="#sec1_8">§1.8 上确界和下确界</a>
+    <a href="#sec1_9">§1.9 有限覆盖定理</a>
+    <a href="#sec1_10">§1.10 上极限和下极限</a>
+    <a href="#sec1_11">§1.11 Stolz 定理</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第01章 实数和数列极限</h1>
+    <p class="hero-sub">§1.1 实数 · §1.2 数列和收敛数列 · §1.3 收敛数列的性质 · §1.4 数列极限概念的推广 · §1.5 单调数列 · §1.6 自然对数的底 e</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec1_1">§1.1 实数<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<h3>1.1.1 有理数与数域</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>有理数 $r=p/q$（$p,q$ 为整数，$q\ne0$）；有理数对加减乘除（除数非零）封闭，<b>称全体有理数组成一个数域</b>（叙述式，无编号）。</li><li>分数 ⟺ 有尽小数或无尽循环小数（课本双向论证：除法余数原理；循环小数化分数示例 $3.\dot{1}4285\dot{7}=22/7$）。</li></ul>
+<h3>1.1.2 无理数与实数的构造</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>$\sqrt2$ 不是分数：设 $\sqrt2=p/q$（无公因子）⟹ $p^2=2q^2$ ⟹ $p$ 偶 ⟹ $q$ 偶，矛盾。</li><li>实数 = 有理数 ∪ 无理数 = 全体无尽小数（有尽小数视为特殊无尽循环小数，如 $1.25=1.2500\cdots$）。</li><li>记号：$\mathbb{Z}$ 整数、$\mathbb{N}$ 自然数、$\mathbb{N}^*$ 正整数、$\mathbb{Q}$ 有理数、$\mathbb{R}$ 实数、$\mathbb{R}\setminus\mathbb{Q}$ 无理数。</li></ul>
+<h3>1.1.3 数轴与实数的稠密性</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>数轴建立：原点 + 单位长，点 ⟷ 坐标。</li><li><b>每一实数可用有理数逼近到任意精度</b>：对任意 $x$ 与正整数 $q$，存在整数 $p$ 使</li></ul>
+<div class="formula">$$\frac{p}{q}\le x&lt;\frac{p+1}{q},\qquad \Big|x-\frac{p}{q}\Big|&lt;\frac1q.$$</div>
+<ul><li>区间记号：$(a,b)$、$[a,b]$、半开区间、$(-\infty,a]$、$(a,+\infty)$，$\mathbb{R}=(-\infty,+\infty)$。</li><li>绝对值 = 到原点距离；<b>三角形不等式</b></li></ul>
+<div class="formula">$$|x+y|\le|x|+|y|,$$</div>
+<p>等号成立条件：$x,y$ 中至少一个为 0，或 $x,y$ 同号。</p>
+<ul><li><b>稠密性</b>（叙述式定义）：数集 $E$ 在 $\mathbb{R}$ 中稠密 ⟺ 任意两实数之间必有 $E$ 中的数。有理数集 $\mathbb{Q}$ 在 $\mathbb{R}$ 中稠密。</li></ul>
+<h3>1.1.4 例1（★无穷递降法）</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p><b>命题</b>：若 $n\in\mathbb{N}^*$ 且 $n$ 不是完全平方数，则 $\sqrt n$ 是无理数。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>反证：设 $\sqrt n=p/q$，取 $m$ 使 $m&lt;p/q&lt;m+1$，得 $0&lt;p-mq&lt;q$；</li><li>由 $p^2=nq^2$ 两边减 $mpq$，得 $\frac pq=\frac{nq-mp}{p-mq}=\frac{p_1}{q_1}$，其中 $p_1&lt;p$、$q_1&lt;q$；</li><li>反复得两串递减正整数列 $p>p_1>p_2>\cdots$，$q>q_1>q_2>\cdots$——正整数不能无止境递减，矛盾。</li></ol>
+<p>课本指出此法名为<b>无穷递降法</b>，记号"□"表示证毕。</p>
+<h3>1.1.5 实数的连续性（课本说明）</h3>
+<p class="pgref"><b>课本：p.1-7</b></p>
+<ul><li>实数与数轴上的点一一对应，全体实数正好充满数轴——这一事实称为<b>实数的连续性</b>。</li><li>课本说明：实数连续性（与数轴连续性）实际上是一条公理；本书不采用公理化处理。每一实数是否为数轴上某点的坐标，其严格证明要等闭区间套定理（定理1.5.2）给出。</li></ul>
+<hr>
+<h2 id="sec1_2">§1.2 数列和收敛数列<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.8-12</b></p>
+<h3>1.2.1 数列概念</h3>
+<p class="pgref"><b>课本：p.8-12</b></p>
+<ul><li>数列 $a_1,a_2,\cdots,a_n,\cdots$；$a_n$ 称第 $n$ 项（通项）；记 $\{a_n\}$，下标为<b>哑符号</b>；数列中可以出现相等的项。</li></ul>
+<h3>1.2.2 定义1.2.1（数列极限）</h3>
+<p class="pgref"><b>课本：9</b></p>
+<p>设 $\{a_n\}$ 是数列，$a$ 是实数。如果对任意给定的 $\varepsilon>0$，存在 $N\in\mathbb{N}^*$，使得当 $n>N$ 时</p>
+<div class="formula">$$|a_n-a|&lt;\varepsilon, $$</div>
+<p>就说 $\{a_n\}$ 当 $n\to\infty$ 时以 $a$ 为极限，记 $\lim\limits_{n\to\infty}a_n=a$，简记 $a_n\to a\ (n\to\infty)$。存在极限的数列称<b>收敛数列</b>；不收敛的称<b>发散数列</b>。</p>
+<h3>1.2.3 对定义的两点深入说明（课本明确说明）</h3>
+<p class="pgref"><b>课本：p.8-12</b></p>
+<ol><li>ε 必须<b>任意给定</b>，强调"任意小"；把"任意 $\varepsilon>0$"改成"任意 $\varepsilon\in(0,1/2)$"仍是等价定义。</li><li>N 通常与 ε 有关，ε 变小则 N 变大；N 具有存在性即可，<b>不需要找最小的 N</b>。</li></ol>
+<h3>1.2.4 例1～例4（ε-N 方法演示）</h3>
+<p class="pgref"><b>课本：10</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>结论</th><th>证明要点</th></tr></thead><tbody><tr><td>例1</td><td>$\lim\frac{3\sqrt n+1}{2\sqrt n-1}=\frac32$</td><td>放缩 $\left\</td><td>\cdot\right\</td><td>&lt;\frac{3}{\sqrt n}$，取 $N=[9/\varepsilon^2]$</td></tr><tr><td>例2</td><td>$\lim\frac{1}{n^\alpha}=0\ (\alpha>0)$</td><td>$\alpha\ge1$ 直接取 $N=[1/\varepsilon]$；$0&lt;\alpha&lt;1$ 归到 $m\alpha>1$</td></tr><tr><td>例3</td><td>$\lim q^n=0\ (\</td><td>q\</td><td>&lt;1)$</td><td>法一：令 $\alpha=\frac{1}{\</td><td>q\</td><td>}-1&gt;0$，二项式 $(1+\alpha)^n&gt;n\alpha$；法二：取对数解 $n$</td></tr><tr><td>例4</td><td>$\lim n^{1/n}=1$</td><td>几何-算术平均不等式得 $0\le n^{1/n}-1&lt;\frac{2}{\sqrt n}$</td></tr></tbody></table></div>
+<p>课本明确说明：例2、例3、例4 的结论本身有重要用处，<b>最好能记住</b>。</p>
+<hr>
+<h2 id="sec1_3">§1.3 收敛数列的性质<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.13-23</b></p>
+<h3>1.3.1 定义1.3.1（几何语言）</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>称 $(a-\varepsilon,a+\varepsilon)$ 为 a 的 <b>ε 邻域</b>。定义1.2.1 等价于：对任意 $\varepsilon>0$，存在 $N$，使除有限多项 $a_1,\cdots,a_N$ 外，其余各项均落在 a 的 ε 邻域内。</p>
+<h3>1.3.2 定理1.3.1（极限唯一性）</h3>
+<p class="pgref"><b>课本：13</b></p>
+<p>收敛数列只有一个极限。</p>
+<p><b>课本证明路线</b>：反证，设 $a&lt;b$ 为两极限，取 $\varepsilon=(b-a)/2$；两邻域无公共点，而 $n>\max(N_1,N_2)$ 时 $a_n$ 须同时属于两者，矛盾。</p>
+<h3>1.3.3 定义1.3.2（有界）与定理1.3.2</h3>
+<p class="pgref"><b>课本：13</b></p>
+<ul><li>定义1.3.2：存在 $A$ 使 $a_n\le A$（有上界）；类似定义有下界；既有上界又有下界称<b>有界数列</b>。⟺ 各项含于同一有限区间。</li><li><b>定理1.3.2 收敛数列有界</b>。证明路线：取 a 的 1-邻域，至多有限项在外；形式化：$n>N$ 时 $|a_n|\le|a_n-a|+|a|&lt;1+|a|$，令 $M=|a_1|+\cdots+|a_N|+|a|+1$。</li><li><b>课本注明：逆命题不正确</b>（发散的有界数列即将出现）。</li></ul>
+<h3>1.3.4 定义1.3.3（子列）与定理1.3.3</h3>
+<p class="pgref"><b>课本：14</b></p>
+<ul><li>子列：$k_1&lt;k_2&lt;\cdots$（$k_i\in\mathbb{N}^*$），$\{a_{k_n}\}$；$\{a_n\}$ 自身也是自己的子列。</li><li><b>定理1.3.3</b>：收敛数列的任何子列都收敛于同一极限。证明要点：$k_n\ge n$。</li><li>用途：两个子列收敛于不同极限 ⟹ 原数列发散（例：$\{(-1)^{n-1}\}$ 有界不收敛，奇偶子列极限 $1,-1$）。</li></ul>
+<h3>1.3.5 推论1.3.1</h3>
+<p class="pgref"><b>课本：14</b></p>
+<p>$\{a_n\}$ 收敛 ⟺ 偶子列 $\{a_{2n}\}$ 与奇子列 $\{a_{2n-1}\}$ 都收敛且极限相同。</p>
+<p><b>课本证明路线</b>：必要性由定理1.3.3；充分性取 $N=\max(2K_1,2K_2-1)$，按 $n=2k$ / $n=2k-1$ 分别估计。</p>
+<h3>1.3.6 定理1.3.4（极限的四则运算）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设 $\{a_n\},\{b_n\}$ 收敛，则 $\{a_n\pm b_n\},\{a_nb_n\}$ 收敛；若 $\lim b_n\ne0$，则 $\{a_n/b_n\}$ 收敛，且</p>
+<div class="formula">$$\lim(a_n\pm b_n)=\lim a_n\pm\lim b_n,\quad \lim a_nb_n=\lim a_n\cdot\lim b_n,\quad \lim\frac{a_n}{b_n}=\frac{\lim a_n}{\lim b_n}.$$</div>
+<p><b>课本证明路线</b>：(1) ε/2 拆分；(2) 用 $\{b_n\}$ 有界性取 $M$，拆项 $|a_nb_n-ab|\le M|a_n-a|+|a||b_n-b|$；(3) 先证 $\lim 1/b_n=1/b$（由 $|b_n-b|&lt;|b|/2$ 得 $|b_n|\ge|b|/2$，再估计 $\left|\frac{1}{b_n}-\frac{1}{b}\right|\le\frac{2}{b^2}|b_n-b|$），结合 (2)。</p>
+<h3>1.3.7 定义1.3.4（无穷小）与定理1.3.5</h3>
+<p class="pgref"><b>课本：17</b></p>
+<ul><li><b>定义1.3.4</b>：极限为 0 的收敛数列称<b>无穷小数列</b>（无穷小）。</li><li><b>定理1.3.5</b>：</li><li>$\{a_n\}$ 为无穷小 ⟺ $\{|a_n|\}$ 为无穷小；</li><li>两无穷小之和（差）仍为无穷小；</li><li>无穷小 × 有界数列 = 无穷小；</li><li>$0\le a_n\le b_n$ 且 $\{b_n\}$ 为无穷小 ⟹ $\{a_n\}$ 为无穷小；</li><li>$\lim a_n=a$ ⟺ $\{a_n-a\}$ 为无穷小。</li><li>课本注明：(2) 由定理1.3.4 直接推出，其余易证留作练习；<b>两无穷小之积必为无穷小，但两无穷小之商未必是无穷小</b>（例 $\{1/n\},\{1/n^2\}$ 之商 $\{n\}$）。</li></ul>
+<h3>1.3.8 定理1.3.6（夹逼原理）</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>设 $a_n\le b_n\le c_n\ (n\in\mathbb{N}^*)$，若 $\lim a_n=\lim c_n=a$，则 $\lim b_n=a$。</p>
+<p><b>课本证明路线</b>：$0\le b_n-a_n\le c_n-a_n$，$\{c_n-a_n\}$ 为无穷小，用定理1.3.5(4)。</p>
+<h3>1.3.9 例1～例9（要点表）</h3>
+<p class="pgref"><b>课本：17</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>方法</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=33</td><td>p17)</td><td>$\lim\frac{2n^2-3n+4}{5n^2+4n-1}=\frac25$</td><td>分子分母同除 $n^2$，用四则运算</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=33</td><td>p17)</td><td>$\lim(1+q+\cdots+q^{n-1})=\frac{1}{1-q}$</td><td>部分和公式 + $\lim q^n=0$</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=33</td><td>p17)</td><td>$\{\sin n\}$ 发散</td><td>反证：$\sin(n+1)-\sin(n-1)=2\sin1\cos n$ 取极限得 $\lim\cos n=0$，再由 $\sin^2n+\cos^2n=1$ 得矛盾</td></tr><tr><td>例4 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=34</td><td>p18)</td><td>$\frac{a_1+\cdots+a_n}{n}\to a$</td><td>化为 $a=0$ 情形；前段（有限项）与后段（$\varepsilon/2$）分段估计</td></tr><tr><td>例5 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=34\</td><td>p18)</td><td>$\frac{a_1b_n+\cdots+a_nb_1}{n}\to ab$</td><td>先 $b=0$（有界性+例4），再化 $b_n\to b$</td></tr><tr><td>例6 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=35\</td><td>p19)</td><td>$\lim a^{1/n}=1\ (a>0)$</td><td>$a\ge1$ 用 $1\le a^{1/n}\le n^{1/n}$ 夹逼；$0&lt;a&lt;1$ 取倒数</td></tr><tr><td>例7 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=35\</td><td>p19)</td><td>$\{n^k/a^n\}$（$a>1$）为无穷小</td><td>$a=1+\eta$ 二项式控制；再化 $n^k/a^n=\left(n/(a^{1/k})^n\right)^k$</td></tr><tr><td>例8 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=36\</td><td>p20)</td><td>$\lim(\sqrt{n+3}-\sqrt{n-1})=0$</td><td>有理化后夹逼</td></tr><tr><td>例9 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=36\</td><td>p20)</td><td>$\lim\sum_{i=1}^n\frac{1}{\sqrt{n^2+i}}=1$</td><td>两端 $\frac{n}{\sqrt{n^2+n}}&lt;a_n&lt;\frac{n}{\sqrt{n^2+1}}$ 夹逼</td></tr></tbody></table></div>
+<h3>1.3.10 定理1.3.7（不等式性质）</h3>
+<p class="pgref"><b>课本：21</b></p>
+<ol><li>若 $\lim a_n=a$，$\alpha&lt;a$，则 n 充分大时 $a_n>\alpha$；同样 $\beta>a$ 则最终 $a_n&lt;\beta$；</li><li>$\lim a_n=a&lt;\lim b_n=b$ ⟹ n 充分大时 $a_n&lt;b_n$；</li><li>$\lim a_n=a$，$\lim b_n=b$，且 n 充分大时 $a_n\le b_n$ ⟹ $a\le b$。</li></ol>
+<p><b>课本证明路线</b>：(1) 取 $\varepsilon=a-\alpha$ 用邻域；(2) 取中点 $m=(a+b)/2$ 用 (1)；(3) 反证用 (2)。 <b>要点</b>：严格不等号取极限后退化为"≥"。</p>
+<hr>
+<h2 id="sec1_4">§1.4 数列极限概念的推广<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.24-25</b></p>
+<h3>1.4.1 定义1.4.1（正、负无穷大）</h3>
+<p class="pgref"><b>课本：24</b></p>
+<ul><li>$\lim a_n=+\infty$：对任何正数 $A$，存在 $N$，当 $n>N$ 时 $a_n>A$；</li><li>$\lim a_n=-\infty$：对任何正数 $A$，存在 $N$，当 $n>N$ 时 $a_n&lt;-A$。</li></ul>
+<p>课本说明：这两种数列按定义1.2.1 是发散的，但仍使用 lim 记号，表明 n 无限增大时有确定的变化趋势。</p>
+<h3>1.4.2 定义1.4.2（无穷大）</h3>
+<p class="pgref"><b>课本：24</b></p>
+<p>若 $\lim|a_n|=+\infty$，则称 $\{a_n\}$ 趋向于 $\infty$。三种情形统称<b>无穷大</b>。</p>
+<h3>1.4.3 无穷大的性质（无编号，课本列出 (1)～(5)）</h3>
+<p class="pgref"><b>课本：p.24-25</b></p>
+<ol><li>无穷大必无界（<b>逆不真</b>：$1,0,2,0,3,0,\cdots$ 无界但不是无穷大）；</li><li>从无界数列中必能选出子列是无穷大；</li><li>无穷大的任何子列仍是无穷大（同号）；</li><li>$+\infty$ 与 $+\infty$ 之和、积仍为 $+\infty$（<b>注意</b>：$a_n-b_n$ 与 $a_n/b_n$ 不成立，反例 $a_n=n,b_n=n$）；</li><li>$\{a_n\}$ 是无穷大 ⟺ $\{1/a_n\}$ 为无穷小。</li></ol>
+<h3>1.4.4 扩充实数系统</h3>
+<p class="pgref"><b>课本：p.24-25</b></p>
+<p>$\mathbb{R}_\infty=\mathbb{R}\cup\{-\infty,+\infty\}$。</p>
+<hr>
+<h2 id="sec1_5">§1.5 单调数列<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.26-31</b></p>
+<h3>1.5.1 定义1.5.1（单调数列）</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>$a_n\le a_{n+1}$（递增）；$a_n\ge a_{n+1}$（递减）；严格不等式时称严格递增（减）。递增或递减统称<b>单调数列</b>。</p>
+<h3>1.5.2 定理1.5.1（单调有界定理）</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p><b>单调且有界的数列一定有极限。</b></p>
+<p><b>课本证明路线</b>（十进制小数逐位固定法）：</p>
+<ol><li>不妨设递增有上界，把各项写成十进制无尽小数；</li><li>整数部分列 $\{A_n\}$ 有界递增，到达最大值后不变；</li><li>逐列（十分位、百分位、……）考察数码：递增性保证每个数码一旦取得最大值便不再改变；</li><li>由这些固定数码拼出的数 a 即为极限：取 $10^{-m}&lt;\varepsilon$，$n>N_m$ 时 $|a_n-a|\le10^{-m}&lt;\varepsilon$。</li></ol>
+<p><b>课本明确说明</b>：</p>
+<ul><li>递增数列的"最小上界"是数列的极限（最小上界的精确定义在 §1.8）；</li><li>这是<b>存在性证明</b>：极限既不需预先给定，也不需预先知道；</li><li>本定理是<b>实数连续性的一种表现形式</b>，有赖于在有理数基础上添加无理数。</li></ul>
+<h3>1.5.3 例1～例3</h3>
+<p class="pgref"><b>课本：27</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>方法</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=43\</td><td>p27)</td><td>$\lim a^n/n!=0$</td><td>$x_n=\</td><td>a\</td><td>^n/n!$ 从某项起递减有下界 0；取极限解出 $x=0$</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=43\</td><td>p27) ★</td><td>$a_n=1+\frac12+\cdots+\frac1n$ 发散</td><td>严格递增 + $a_{2^k}\ge1+\frac{k}{2}$ 无上界（$2^k$ 分组放缩）</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=44\</td><td>p28) ★</td><td>$a_n=1+\frac{1}{2^\alpha}+\cdots+\frac{1}{n^\alpha}\ (\alpha>1)$ 收敛</td><td>子列 $a_{2^k-1}$ 用 $2^k$ 分组 + 等比求和得上有界；递增 ⟹ 收敛</td></tr></tbody></table></div>
+<p>课本说明：例3 只证存在未求值；极限值的计算在第17章给出。</p>
+<h3>1.5.4 定理1.5.2（闭区间套定理）</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p>设 $I_n=[a_n,b_n]$（$n\in\mathbb{N}^*$），$I_1\supset I_2\supset\cdots\supset I_n\supset\cdots$，且长度 $|I_n|=b_n-a_n\to0$，则 $\bigcap_{n=1}^\infty I_n$ 含有唯一的一点。</p>
+<p><b>课本证明路线</b>：$\{a_n\}$ 递增有上界 $b_1$、$\{b_n\}$ 递减有下界 $a_1$，由定理1.5.1 极限存在；$0\le b-a\le|I_n|\to0$ 得 $a=b$；该点属于一切 $I_n$ 且唯一。</p>
+<p><b>课本注明（重要）</b>："闭"字不可去掉——反例：开区间 $I_n=(0,1/n)$ 满足嵌套且长度趋 0，但交集为空。</p>
+<h3>1.5.5 闭区间套定理的应用：实数充满数轴</h3>
+<p class="pgref"><b>课本：p.26-31</b></p>
+<p>对无理数 $x=a.b_1b_2b_3\cdots$ 构造十进制闭区间套 $I_0\supset I_1\supset\cdots$，$|I_n|=10^{-n}\to0$，由定理1.5.2 确定唯一坐标点 x。回答了 §1.1 提出的问题。</p>
+<h3>1.5.6 无穷级数初步（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.26-31</b></p>
+<ul><li>无穷级数 $\sum_{n=1}^\infty a_n$；部分和 $S_n=a_1+\cdots+a_n$，部分和数列 $\{S_n\}$；</li><li>$\lim S_n=S$ 存在称级数<b>收敛</b>（S 为和），否则<b>发散</b>；</li><li>由例2、例3：$\sum\frac1n$ 发散；$\alpha>1$ 时 $\sum\frac{1}{n^\alpha}$ 收敛；</li><li>课本说明：第14、15章详细讨论。</li></ul>
+<hr>
+<h2 id="sec1_6">§1.6 自然对数的底 e<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.31-35</b></p>
+<h3>1.6.1 两个数列与 e 的定义</h3>
+<p class="pgref"><b>课本：p.31-35</b></p>
+<div class="formula">$$e_n=\Big(1+\frac1n\Big)^n,\qquad s_n=1+\frac1{1!}+\frac1{2!}+\cdots+\frac1{n!}.$$</div>
+<p><b>课本证明路线</b>（$e=s$）：</p>
+<ol><li>$\{s_n\}$ 严格递增且 $s_n\le1+1+\frac12+\frac1{2^2}+\cdots&lt;3$，故 $s=\lim s_n$ 存在；</li><li>$e_n$ 二项式展开共 $n+1$ 项，比较 $e_{n+1}$ 的展开：$e_n&lt;e_{n+1}$，且 $e_n\le s_n&lt;3$，故 $e=\lim e_n$ 存在且 $e\le s$；</li><li>固定 $m$，$e_n$ 展开取前 $m+1$ 项估计，令 $n\to\infty$ 得 $e\ge1+\frac1{1!}+\cdots+\frac1{m!}$，再令 $m\to\infty$ 得 $e\ge s$；</li><li>故 $e=s$。</li></ol>
+<p>e 为底的对数称<b>自然对数</b>，记 ln。</p>
+<h3>1.6.2 近似计算与误差估计</h3>
+<p class="pgref"><b>课本：p.31-35</b></p>
+<div class="formula">$$0&lt;e-s_n\le\frac{1}{n!n}\qquad(n\in\mathbb{N}^*).$$</div>
+<p>课本给出 $s_8=2.7182787$，$s_9=2.7182815$，$s_{10}=2.7182818$；用 $s_{10}$ 逼近 e 误差小于 $10^{-7}$；特别地 $e&lt;3$。</p>
+<h3>1.6.3 定理1.6.1（e 是无理数）</h3>
+<p class="pgref"><b>课本：33</b></p>
+<p><b>课本证明路线</b>：反证 $e=p/q$（$p,q\in\mathbb{N}^*$，$q\ge2$，因 $2&lt;e&lt;3$）。由误差估计 $0&lt;q!(e-s_q)\le\frac1q\le\frac12$；而 $q!(e-s_q)=(q-1)!p-q!(1+1+\frac1{2!}+\cdots+\frac1{q!})$ 是整数——整数落在 $(0,\frac12]$ 内，矛盾。</p>
+<p>课本说明：$\{e_n\}$、$\{s_n\}$ 各项都是有理数，极限却是无理数——又一次说明必须在有理数中添加无理数。</p>
+<h3>1.6.4 两个派生极限（课本正文给出）</h3>
+<p class="pgref"><b>课本：p.31-35</b></p>
+<div class="formula">$$\lim_{n\to\infty}\Big(1-\frac1n\Big)^n=\frac1e,\qquad \lim_{n\to\infty}\Big(1+\frac2n\Big)^n=e^2.$$</div>
+<hr>
+<h2 id="sec1_7">§1.7 基本列和 Cauchy 收敛原理<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.36-39</b></p>
+<h3>1.7.1 定义1.7.1（基本列）</h3>
+<p class="pgref"><b>课本：36</b></p>
+<p>设 $\{a_n\}$ 是实数列。若对任意 $\varepsilon>0$，存在 $N\in\mathbb{N}^*$，使得 $m,n>N$ 时 $|a_m-a_n|&lt;\varepsilon$，则称 $\{a_n\}$ 为<b>基本列</b>（Cauchy 列）。</p>
+<p>等价形式（令 $m=n+p$）：对任意 $\varepsilon>0$，存在 $N$，当 $n>N$ 时对一切 $p\in\mathbb{N}^*$ 有 $|a_{n+p}-a_n|&lt;\varepsilon$。</p>
+<h3>1.7.2 例1～例4</h3>
+<p class="pgref"><b>课本：37</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>方法</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=53</td><td>p37)</td><td>$\{q^n\}(\</td><td>q\</td><td>&lt;1)$ 是基本列</td><td>$\</td><td>q^n\</td><td>-\</td><td>q^{n+p}\</td><td>\le(1+\</td><td>q\</td><td>^p)\</td><td>q\</td><td>^n&lt;2\</td><td>q\</td><td>^n$</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=53</td><td>p37)</td><td>$\{(-1)^n\}$ 不是基本列</td><td>取 $\varepsilon_0=1$，相邻项差恒为 2</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=53</td><td>p37)</td><td>$a_n=\sum_{k=1}^n\frac{1}{k^2}$ 是基本列</td><td>裂项 $\frac{1}{k^2}&lt;\frac{1}{k(k-1)}$， telescoping 得 $a_{n+p}-a_n&lt;\frac1n$</td></tr><tr><td>例4 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=53</td><td>p37)</td><td>$\alpha\le1$ 时 $a_n=\sum_{k=1}^n\frac{1}{k^\alpha}$ 不是基本列</td><td>$a_{n+p}-a_n\ge\frac{p}{n+p}$，取 $p=n$ 得 $a_{2n}-a_n\ge\frac12$</td></tr></tbody></table></div>
+<h3>1.7.3 引理1.7.1（单调子列）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p><b>从任一数列中必可取出一个单调子列。</b></p>
+<p><b>课本证明路线</b>（"龙头"法）：</p>
+<ol><li>定义"龙头"：大于其后面所有各项的项；</li><li>情况 (a)：有无穷多个龙头——依次取出得严格递减子列；</li><li>情况 (b)：只有有限个龙头——取最后一个龙头的下一项，它之后必有更大项，递推得递增子列。</li></ol>
+<h3>1.7.4 定理1.7.1（列紧性定理 / Bolzano-Weierstrass 定理）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p><b>从任何有界的数列中必可选出一个收敛的子列。</b></p>
+<p><b>课本证明路线</b>：引理1.7.1 取单调子列 → 子列有界 → 定理1.5.1。</p>
+<h3>1.7.5 定理1.7.2（Cauchy 收敛原理）</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p><b>数列收敛的充分必要条件是：它是基本列。</b></p>
+<p><b>课本证明路线</b>：</p>
+<ul><li>必要性：$|a_n-a_m|\le|a_n-a|+|a-a_m|&lt;\varepsilon/2+\varepsilon/2$；</li><li>充分性：基本列有界（取 $\varepsilon_0=1$）→ 定理1.7.1 取收敛子列 $a_{i_k}\to a$ → 取 $N=\max(N_1,N_2)$，$|a_n-a|\le|a_n-a_{i_k}|+|a_{i_k}-a|&lt;\varepsilon$。</li></ul>
+<p><b>课本明确说明</b>：判断收敛只需数列自身，无须求助另外的数；Bolzano-Weierstrass 定理与 Cauchy 收敛原理是实数连续性的另外两种表现形式。</p>
+<hr>
+<h2 id="sec1_8">§1.8 上确界和下确界<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.40-42</b></p>
+<h3>1.8.1 上界、下界与有界集（叙述式）</h3>
+<p class="pgref"><b>课本：p.40-42</b></p>
+<p>$A$ 是 $E$ 的下界 ⟺ 一切 $x\in E$ 有 $x\ge A$；$B$ 是上界 ⟺ 一切 $x\in E$ 有 $x\le B$；既有下界又有上界称<b>有界集</b>。有限集必有最大最小数；无限集（如 $(0,1)$）未必。</p>
+<h3>1.8.2 定义1.8.1（上确界）</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>设 $E$ 非空有上界，实数 $\beta$ 满足：</p>
+<ol><li>对任何 $x\in E$，$x\le\beta$；</li><li>对任意 $\varepsilon>0$，存在 $x_\varepsilon\in E$ 使 $x_\varepsilon>\beta-\varepsilon$。</li></ol>
+<p>则称 $\beta$ 为 $E$ 的<b>上确界</b>，记 $\beta=\sup E$。⟹ 上确界是<b>最小上界</b>。</p>
+<h3>1.8.3 定义1.8.2（下确界）</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>对偶地：$\alpha=\inf E$ ⟺ (1) 一切 $x\in E$ 有 $x\ge\alpha$；(2) 对任意 $\varepsilon>0$ 存在 $y_\varepsilon\in E$ 使 $y_\varepsilon&lt;\alpha+\varepsilon$。⟹ 下确界是<b>最大下界</b>。</p>
+<p>课本示例：$\inf(0,1)=0$、$\sup(0,1)=1$、$\inf\{1/n\}=0$、$\sup\{1/n\}=1$、$\inf\{\arctan x\}=-\frac\pi2$、$\sup\{\arctan x\}=\frac\pi2$；并指出确界可以不属于集合本身。若 $E$ 有最大（最小）数 a，则 $\sup E$（$\inf E$）$=a$。</p>
+<h3>1.8.4 定理1.8.1（确界原理）</h3>
+<p class="pgref"><b>课本：41</b></p>
+<p><b>非空的有上界的集合必有上确界；非空的有下界的集合必有下确界。</b></p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>上确界：取 $x\in E$ 与上界 $\gamma$，在 $[x,\gamma]$ 上用<b>二分法</b>——每次取右半区间（若含 E 中点），得闭区间套 $I_n$，$|I_n|=(\gamma-x)/2^{n-1}$，满足 (a) $I_n$ 右端点之右无 E 的点，(b) $I_n$ 总含 E 的点；</li><li>由闭区间套定理得唯一 $\beta\in\bigcap I_n$；由 (a) 令 $n\to\infty$ 得 $\beta$ 是上界；由 (b) 对任意 ε 存在 $d\in E\cap I_N>\beta-\varepsilon$，故 $\beta=\sup E$；</li><li>下确界：令 $F=\{-x:x\in E\}$ 归结为上确界，得 $-\beta=\inf E$；</li><li>伴随公式：$\sup(-E)=-\inf E$（即 $\inf E=-\sup(-E)$）。</li></ol>
+<p>课本随后用确界原理重证定理1.5.1：递增有上界时 $a=\sup a_n$，对任意 ε 存在 $a_N>a-\varepsilon$，递增性给出 $n\ge N$ 时 $0\le a-a_n&lt;\varepsilon$。</p>
+<h3>1.8.5 无界集的约定（课本明确说明）</h3>
+<p class="pgref"><b>课本：p.40-42</b></p>
+<p>$E$ 无上界时规定 $\sup E=+\infty$；无下界时规定 $\inf E=-\infty$。当 $E$ 是数列时：$\sup E=+\infty$ ⟺ 可取出趋于 $+\infty$ 的子列；$\inf E=-\infty$ ⟺ 可取出趋于 $-\infty$ 的子列。</p>
+<hr>
+<h2 id="sec1_9">§1.9 有限覆盖定理<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.43-45</b></p>
+<h3>1.9.1 定义1.9.1（开覆盖）</h3>
+<p class="pgref"><b>课本：43</b></p>
+<p>设 $A$ 是实数集，$\mathscr{f}=\{I_\lambda\}$ 是一个开区间族（$\lambda\in\Lambda$，Λ 为指标集）。若 $A\subset\bigcup_{\lambda\in\Lambda}I_\lambda$，称 $\{I_\lambda\}$ 是 $A$ 的一个<b>开覆盖</b>（盖住 $A$）。</p>
+<p>等价叙述：任取 $a\in A$，总有族中成员 $I_{\lambda(a)}$ 使 $a\in I_{\lambda(a)}$。</p>
+<h3>1.9.2 定理1.9.1（紧致性定理 / 有限覆盖定理 / Heine-Borel 定理）</h3>
+<p class="pgref"><b>课本：43</b></p>
+<p>设 $[a,b]$ 是有限闭区间，$\{I_\lambda\}$ 是它的一个开覆盖，则必可从中选出<b>有限个</b>开区间，仍构成 $[a,b]$ 的开覆盖。</p>
+<p><b>课本证明路线</b>（反证 + 二分法）：</p>
+<ol><li>假设任意有限个都不能覆盖；用二分法每次取"不能被有限覆盖"的那一半，得闭区间套 $[a_n,b_n]$，满足 (a) 嵌套、(b) $b_n-a_n=\frac{1}{2^{n-1}}(b_1-a_1)\to0$、(c) 每个 $[a_n,b_n]$ 都不能被有限覆盖；</li><li>由闭区间套定理得唯一 $\eta$；</li><li>$\eta$ 属于覆盖中某区间 $(\alpha,\beta)$，记 $\varepsilon=\min(\eta-\alpha,\beta-\eta)$；</li><li>n 充分大时 $[a_n,b_n]\subset(\alpha,\beta)$——一个区间就盖住了 $[a_n,b_n]$，与 (c) 矛盾。</li></ol>
+<p><b>课本注明（重要）</b>：把有限闭区间换成开区间或无穷区间，结论不再成立。反例：$\{(1/n,1)\}$（$n\ge2$）盖住 $(0,1)$ 但选不出有限子覆盖；$\{(0,n)\}$ 盖住 $(1,+\infty)$ 同样不行。</p>
+<h3>1.9.3 六条等价定理的总结（课本明确说明）</h3>
+<p class="pgref"><b>课本：p.43-45</b></p>
+<p>课本列出实数连续性的六条等价陈述：</p>
+<ol><li>单调有界定理（定理1.5.1）；</li><li>闭区间套定理（定理1.5.2）；</li><li>Bolzano-Weierstrass 定理（定理1.7.1）；</li><li>Cauchy 收敛原理（定理1.7.2）；</li><li>确界原理（定理1.8.1）；</li><li>有限覆盖定理（定理1.9.1）。</li></ol>
+<p>从其中任一条可推出其余；若不添加无理数组成实数系统，这些定理不再成立。课本随后指出实数系统的不足（$x^2+1=0$ 无解），引出复数系统的展望。</p>
+<hr>
+<h2 id="sec1_10">§1.10 上极限和下极限<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.45-51</b></p>
+<h3>1.10.1 极限点（叙述式）</h3>
+<p class="pgref"><b>课本：p.45-51</b></p>
+<p>收敛子列的极限称为 $\{a_n\}$ 的<b>极限点</b>。收敛数列只有一个极限点；有界发散数列可有若干甚至无穷多个极限点；无界数列还可以 $+\infty$ 或 $-\infty$ 为极限点。</p>
+<h3>1.10.2 定义1.10.1（上极限与下极限）</h3>
+<p class="pgref"><b>课本：45</b></p>
+<p>设 $E$ 是 $\{a_n\}$ 的全部极限点构成的集合，记</p>
+<div class="formula">$$a^*=\sup E,\qquad a_*=\inf E,$$</div>
+<p>分别称为 $\{a_n\}$ 的<b>上极限</b>与<b>下极限</b>，记作</p>
+<div class="formula">$$a^*=\limsup_{n\to\infty}a_n,\qquad a_*=\liminf_{n\to\infty}a_n.$$</div>
+<p>例1 (p45)：$a_n=\dfrac{(-1)^n}{1+1/n}$，$a_{2n}\to1$，$a_{2n-1}\to-1$，$E=\{-1,1\}$，故 $\liminf a_n=-1$，$\limsup a_n=1$。</p>
+<h3>1.10.3 定理1.10.1（上极限的三条性质）</h3>
+<p class="pgref"><b>课本：46</b></p>
+<ol><li>$a^*\in E$；</li><li>若 $x>a^*$，则存在 $N$，当 $n\ge N$ 时 $a_n&lt;x$；</li><li>$a^*$ 是满足 (1)(2) 的唯一的数。</li></ol>
+<p><b>课本证明路线</b>：(1) 分 $a^*=+\infty$（E 无上界 ⟹ 有子列 $\to+\infty$）、$a^*=-\infty$（$E=\{-\infty\}$，$\lim a_n=-\infty$）、$a^*$ 有限（用 $\sup E$ 的可达性逐次取 $l_n\in E$ 与下标递增的 $a_{k_n}$，夹逼出子列 $\to a^*$）；(2) 反证：若有穷多/无穷多 $a_n\ge x$，则存在极限点 $y\ge x>a^*$，矛盾；(3) 若 $p&lt;q$ 都满足，取 $p&lt;x&lt;q$，由 p 满足 (2) 推出 q 不满足 (1)。</p>
+<p>课本说明：上（下）极限是一切收敛子列的极限中的最大（小）者；数列可以没有极限，但上下极限一定存在。</p>
+<h3>1.10.4 定理1.10.2（上下极限的关系）</h3>
+<p class="pgref"><b>课本：47</b></p>
+<ol><li>$\liminf a_n\le\limsup a_n$；</li><li>$\lim a_n=a$ ⟺ $\liminf a_n=\limsup a_n=a$；</li><li>n 充分大时 $a_n\le b_n$ ⟹ $\liminf a_n\le\liminf b_n$ 且 $\limsup a_n\le\limsup b_n$。</li></ol>
+<p><b>课本证明路线</b>：(1)(2) 显然；(3) 反证 $b^*&lt;a^*$，取 $x\in(b^*,a^*)$，用定理1.10.1(2) 于两数列导出矛盾。</p>
+<h3>1.10.5 例2（★次可加数列）</h3>
+<p class="pgref"><b>课本：47</b></p>
+<p>设 $0\le a_{m+n}\le a_m+a_n$ 对一切 $m,n$ 成立，则 $\{a_n/n\}$ 收敛。</p>
+<p><b>课本证明路线</b>：任意固定 k，写 $n=mk+l$，得 $\frac{a_n}{n}\le\frac{a_k}{k+l/m}+\frac{a_l}{n}$；令 $n\to\infty$ 取上极限得 $\limsup\frac{a_n}{n}\le\frac{a_k}{k}$；再令 $k\to\infty$ 取下极限，得上下极限相等。</p>
+<h3>1.10.6 定理1.10.3（等差刻画）</h3>
+<p class="pgref"><b>课本：48</b></p>
+<p>对数列 $\{a_n\}$ 定义 $\alpha_n=\inf_{k\ge n}a_k$，$\beta_n=\sup_{k\ge n}a_k$，则：</p>
+<ol><li>$\{\alpha_n\}$ 递增，$\{\beta_n\}$ 递减；</li><li>$\lim\alpha_n=a_*$，$\lim\beta_n=a^*$。</li></ol>
+<p><b>课本证明路线</b>：(1) 集合缩小（增大）故 inf 增（sup 减）；(2) 只证 $\lim\beta_n=a^*$：$a^*$ 有限时先由极限点估计得 $a^*\le\lim\beta_n$，再用定理1.10.1(2) 得 $\beta_{n_0}\le a^*+\varepsilon$，反向夹逼；$a^*=\pm\infty$ 单独讨论。</p>
+<p>课本说明：定理1.10.3 证明了</p>
+<div class="formula">$$a^*=\lim_{n\to\infty}\sup_{k\ge n}a_k,\qquad a_*=\lim_{n\to\infty}\inf_{k\ge n}a_k,$$</div>
+<p>这两个等式常被用作上下极限的定义，也说明了记号 $\limsup$、$\liminf$ 的由来。</p>
+<h3>1.10.7 例3（和的上下极限不等式）</h3>
+<p class="pgref"><b>课本：49</b></p>
+<div class="formula">$$\liminf a_n+\liminf b_n\le\liminf(a_n+b_n)\le\liminf a_n+\limsup b_n, \tag{3}$$</div>
+<div class="formula">$$\liminf a_n+\limsup b_n\le\limsup(a_n+b_n)\le\limsup a_n+\limsup b_n. \tag{4}$$</div>
+<p><b>课本证明路线</b>：由定理1.10.3 归到有限和的 inf/sup 不等式 $\inf a_k+\inf b_k\le\inf(a_k+b_k)\le\inf a_k+\sup b_k$；右边用 $a_k=c_k-b_k$ 与 $\inf(-E)=-\sup E$。</p>
+<p>课本反例（不等号可以严格）：$\{a_n\}=\{0,1,2,\cdots\text{循环}\}$，$\{b_n\}=\{2,3,1,\cdots\text{循环}\}$，则和数列上下极限为 2、4，而 $\liminf a_n+\limsup b_n=3$。</p>
+<hr>
+<h2 id="sec1_11">§1.11 Stolz 定理<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.51-54</b></p>
+<h3>1.11.1 定理1.11.1（Stolz 定理，∞/∞ 型）</h3>
+<p class="pgref"><b>课本：51</b></p>
+<p>设 $\{b_n\}$ 严格递增且趋于 $+\infty$。如果</p>
+<div class="formula">$$\lim_{n\to\infty}\frac{a_n-a_{n-1}}{b_n-b_{n-1}}=A,$$</div>
+<p>那么</p>
+<div class="formula">$$\lim_{n\to\infty}\frac{a_n}{b_n}=A,$$</div>
+<p>其中 A 可以是 $+\infty$ 或 $-\infty$。</p>
+<p><b>课本证明路线</b>：</p>
+<ul><li>(a) A 有限：对任意 ε，从 $n_0$ 起比值被 $A\pm\varepsilon$ 控制；对 $n_0\sim n$ 的各段叠缩相加得 $A-\varepsilon&lt;\frac{a_n-a_{n_0-1}}{b_n-b_{n_0-1}}&lt;A+\varepsilon$；改写为 $\frac{a_n}{b_n}$ 的上下界，令 $n\to\infty$ 得</li></ul>
+<div class="formula">$$A-\varepsilon\le\liminf\frac{a_n}{b_n}\le\limsup\frac{a_n}{b_n}\le A+\varepsilon,$$</div>
+<p>再令 $\varepsilon\to0$（上下极限的应用）；</p>
+<ul><li>(b) $A=+\infty$：n 充分大时 $\{a_n\}$ 也严格递增趋于 $+\infty$，把 (1) 反写为 $\lim\frac{b_n-b_{n-1}}{a_n-a_{n-1}}=0$，由 (a) 得 $\lim\frac{b_n}{a_n}=0$；</li><li>(c) $A=-\infty$：令 $c_n=-a_n$ 归结为 (b)。</li></ul>
+<h3>1.11.2 例1、例2</h3>
+<p class="pgref"><b>课本：52</b></p>
+<ul><li><b>例1</b> (p52)：$\lim x_n=a$（允许 $a=\pm\infty$）⟹ $\lim\frac{x_1+\cdots+x_n}{n}=a$。取 $a_n=x_1+\cdots+x_n$，$b_n=n$ 用 Stolz；优于 §1.3 例4（那里 a 只能是有限数）。</li><li><b>例2</b> (p53)：$\lim\frac{1^k+2^k+\cdots+n^k}{n^{k+1}}=\frac{1}{k+1}$。取 $a_n=\sum i^k$，$b_n=n^{k+1}$，$b_n-b_{n-1}=(k+1)n^k+\cdots$，比值极限 $\frac1{k+1}$。</li></ul>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 X.Y</b>（基本）与<b>问题 X.Y</b>（提高）。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§1.1</td><td>练习题1.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=21</td><td>p.5-6（共 17 题）</td><td>问题1.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=23</td><td>p.7（共 8 题）</td></tr><tr><td>§1.2</td><td>练习题1.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=28</td><td>p.12（共 7 题）</td><td>—</td></tr><tr><td>§1.3</td><td>练习题1.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=37</td><td>p.21-22（共 12 题）</td><td>问题1.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=39\</td><td>p.23（共 4 题）</td></tr><tr><td>§1.4</td><td>练习题1.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=41\</td><td>p.25（共 5 题）</td><td>问题1.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=41\</td><td>p.25（共 2 题）</td></tr><tr><td>§1.5</td><td>练习题1.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=46\</td><td>p.30（共 6 题）</td><td>问题1.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=47\</td><td>p.31（共 4 题）</td></tr><tr><td>§1.6</td><td>练习题1.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=50\</td><td>p.34-35（共 16 题）</td><td>问题1.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=51\</td><td>p.35（共 5 题）</td></tr><tr><td>§1.7</td><td>练习题1.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=55\</td><td>p.39（共 6 题）</td><td>—</td></tr><tr><td>§1.8</td><td>练习题1.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=58\</td><td>p.42（共 5 题）</td><td>—</td></tr><tr><td>§1.9</td><td>—</td><td>问题1.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=61\</td><td>p.45（共 2 题）</td></tr><tr><td>§1.10</td><td>练习题1.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=66\</td><td>p.50（共 3 题）</td><td>问题1.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=67\</td><td>p.51（共 2 题）</td></tr><tr><td>§1.11</td><td>练习题1.11：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=70\</td><td>p.54（共 6 题）</td><td>问题1.11：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=70\</td><td>p.54（共 4 题）</td></tr></tbody></table></div>
+<p>&gt; 注：§1.2、§1.7、§1.8 无问题档；§1.9 无练习题档。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">实数与数轴（分数↔小数、√2 无理数、稠密性、三角形不等式）
+→ 数列极限 ε-N 定义（定义1.2.1）与 ε-N 方法
+→ 收敛数列的性质：唯一、有界、子列、四则运算、无穷小、夹逼、不等式
+  （定理1.3.1～1.3.7，推论1.3.1）
+→ 极限的推广：±∞、∞（定义1.4.1～1.4.2，无穷大五性质）
+→ 单调有界定理（定理1.5.1）→ 闭区间套定理（定理1.5.2）
+→ 无穷级数初步（部分和、Σ1/n 发散、Σ1/n^α 收敛）
+→ e：e_n 与 s_n、e=s、误差估计、e 无理数（定理1.6.1）
+→ 基本列（定义1.7.1）→ 单调子列引理 → B-W 定理（定理1.7.1）
+→ Cauchy 收敛原理（定理1.7.2）
+→ 上确界、下确界（定义1.8.1～1.8.2）→ 确界原理（定理1.8.1）
+→ 开覆盖（定义1.9.1）→ 有限覆盖定理（定理1.9.1）
+→ 六条实数连续性等价定理总结
+→ 极限点、上下极限（定义1.10.1）→ 三组性质定理（1.10.1～1.10.3）
+→ Stolz 定理（定理1.11.1，∞/∞ 型）</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>2019 第6题：次可加数列 $x_{m+n}\le x_m+x_n$，证 $x_n/n$ 极限存在（§1.2–§1.5 的极限工具）。</li><li>2022 第9、10题：积分估计列与生成函数迭代列，均先证极限存在（§1.5 单调有界）。</li><li>2024 第2、4题：一致连续推无穷远极限；递增/递减列构造级数（§1.3、§1.5）。</li><li>2026 第6、7题：数列与连续/微分条件联动（§1.3）。</li><li>2025：第2题 和式极限 $\sum_{i=1}^{n} i/(n^{2}+n+i)$（§1.3–§1.5）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>114</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§1.1 实数</h3>
+<h4>练习题 1.1（17 题）</h4>
+<ol class="ex-list">
+<li>设 $a$ 为有理数，$b$ 为无理数。求证：$a+b$ 与 $a-b$ 都是无理数；当 $a\ne0$ 时，$ab$ 与 $b/a$ 也是无理数。原书 PDF 22</li>
+<li>证明：两个不同的有理数之间有无限多个有理数，也有无限多个无理数。原书 PDF 22</li>
+<li>证明：$\sqrt[3]{2}$ 是无理数。原书 PDF 22</li>
+<li>证明：$\sqrt{2}+\sqrt{3}$ 是无理数。原书 PDF 22</li>
+<li>在平面直角坐标系中，当 $x$ 和 $y$ 都是有理数时，称点 $(x,y)$ 为有理点。证明：圆周 $(x-\sqrt{2})^2+y^2=2$ 上只有唯一的有理点。原书 PDF 22</li>
+<li>证明：任何有理数都可以表示为有尽小数或无尽循环小数；无尽循环小数一定是有理数。原书 PDF 22</li>
+<li>$0.1010010001000010\cdots$ 是有理数还是无理数？原书 PDF 22</li>
+<li>把下列循环小数化为分数：$0.24999\cdots$、$0.\overline{375}$、$4.\overline{518}$。后两项原书以循环节首末数字上的点表示。原书 PDF 22</li>
+<li>逐步地写下所有的正整数以得到无尽小数 $0.1234567891011121314\cdots$。问它是有理数吗？原书 PDF 22</li>
+<li>证明：（1）若 $r+s\sqrt2=0$，其中 $r,s$ 是有理数，则 $r=s=0$；（2）若 $r+s\sqrt2+t\sqrt3=0$，其中 $r,s,t$ 是有理数，则 $r=s=t=0$。原书 PDF 22</li>
+<li>设 $n\ge2$，实数 $a_1,a_2,\ldots,a_n$ 都大于 $-1$，并且它们有着相同的符号。证明：$(1+a_1)(1+a_2)\cdots(1+a_n)>1+a_1+a_2+\cdots+a_n$。原书 PDF 22</li>
+<li>设 $a_1,a_2,\ldots,a_n$（$n\ge2$）都是正数，且 $a_1+a_2+\cdots+a_n&lt;1$。证明：（1）$\displaystyle\frac{1}{1-\sum_{k=1}^n a_k}>\prod_{k=1}^n(1+a_k)>1+\sum_{k=1}^n a_k$；（2）$\displaystyle\frac{1}{1+\sum_{k=1}^n a_k}>\prod_{k=1}^n(1-a_k)>1-\sum_{k=1}^n a_k$。原书 PDF 23</li>
+<li>设 $a_1,a_2,\ldots,a_n$ 为实数。证明 $\displaystyle\left|\sum_{i=1}^n a_i\right|\le\sum_{i=1}^n|a_i|$，并指明等号成立的条件。原书 PDF 23</li>
+<li>求证：$\displaystyle\max(a,b)=\frac{a+b}{2}+\frac{|a-b|}{2}$，$\displaystyle\min(a,b)=\frac{a+b}{2}-\frac{|a-b|}{2}$，并解释其几何意义。原书 PDF 23</li>
+<li>设 $n$ 个分数 $\frac{a_1}{b_1},\frac{a_2}{b_2},\ldots,\frac{a_n}{b_n}$ 的分母 $b_1,b_2,\ldots,b_n$ 都大于零。证明：$\displaystyle\frac{a_1+a_2+\cdots+a_n}{b_1+b_2+\cdots+b_n}$ 介于这些分数的最小值和最大值之间。原书 PDF 23</li>
+<li>设 $n=2,3,\ldots$，$x>-1$ 且 $x\ne0$。求证：$(1+x)^n>1+nx$。（提示：用数学归纳法。）原书 PDF 23</li>
+<li>设 $x,y\ge0$，$m,n$ 为正整数。求证：$x^m y^n+x^n y^m\le x^{m+n}+y^{m+n}$，等号当且仅当 $x=y$ 时成立。原书 PDF 23</li>
+</ol>
+<h4>问题 1.1（8 题）</h4>
+<ol class="ex-list">
+<li>设非负整数 $a,b$ 使得 $\displaystyle\frac{a^2+b^2}{1+ab}$ 为整数。求证：这个整数必是某一整数的平方。原书附注：本题为 1988 年第 29 届国际数学奥林匹克竞赛试题。原书 PDF 23</li>
+<li>设 $n$ 为正整数，且 $x\ge0,y\ge0$。求证：当 $n>1$ 时，$\displaystyle\frac{x^n+y^n}{2}\ge\left(\frac{x+y}{2}\right)^n$，等号当且仅当 $x=y$ 时成立。原书 PDF 23</li>
+<li>设 $a_1\le a_2\le\cdots\le a_n$，且 $b_1\le b_2\le\cdots\le b_n$。证明 Chebychév 不等式：$\displaystyle\left(\sum_{i=1}^n a_i\right)\left(\sum_{i=1}^n b_i\right)\le n\sum_{i=1}^n a_i b_i$。原书 PDF 23续页 PDF 24</li>
+<li>设 $a_1\le a_2\le\cdots\le a_n$，$b_1\le b_2\le\cdots\le b_n$，并且 $b_1+b_2+\cdots+b_n=0$。求证：$\displaystyle\sum_{i=1}^n a_i b_i\ge0$。原书 PDF 24</li>
+<li>已知素数的个数是无限的，考虑无尽小数 $x=0.a_1a_2a_3\cdots$，其中 $\displaystyle a_n=\begin{cases}1,&\text{当 }n\text{ 为素数时},\\0,&\text{其他。}\end{cases}$ 问：$x$ 是有理数吗？原书 PDF 24</li>
+<li>已知圆周率 $\pi=3.1415926535897\cdots$。求证：若正有理数 $p/q$ 比 $355/113$ 更接近于 $\pi$，则 $q>16586$。原书 PDF 24</li>
+<li>设 $x_0=0$，$x_1,\ldots,x_n$ 都是正数，且 $x_1+\cdots+x_n=1$。证明：$\displaystyle\sum_{i=1}^n\frac{x_i}{\sqrt{1+x_0+\cdots+x_{i-1}}\sqrt{x_i+\cdots+x_n}}&lt;\frac{\pi}{2}$。原书 PDF 24</li>
+<li>对任意给定的实数 $x$，证明：存在无穷多个有理数 $p/q$（$q>0$），使得 $\displaystyle\left|x-\frac pq\right|&lt;\frac1{q^2}$。原书 PDF 24</li>
+</ol>
+<h3>§1.2 数列和收敛数列</h3>
+<h4>练习题 1.2（7 题）</h4>
+<ol class="ex-list">
+<li>利用极限定义，证明：原书 PDF 28</li>
+<li>设 $\displaystyle\lim_{n\to\infty}a_n=a$。求证：$\displaystyle\lim_{n\to\infty}|a_n|=|a|$。举例说明，这个命题的逆命题不真。原书 PDF 28</li>
+<li>设 $\{a_n\}$ 是由整数组成的数列。求证：数列 $\{a_n\}$ 收敛，当且仅当从某一项起数列的项都等于一个常数。原书 PDF 28</li>
+<li>下列陈述是否可以作为 $\displaystyle\lim_{n\to\infty}a_n=a$ 的定义？若回答是肯定的，请证明之；若回答是否定的，请举出反例。原书 PDF 28</li>
+<li>用精确语言表达“数列 $\{a_n\}$ 不以 $a$ 为极限”这一陈述。原书 PDF 28</li>
+<li>设数列 $\{a_n\}$ 满足 $\displaystyle\lim_{n\to\infty}\frac{a_n}{n}=0$。证明：$\displaystyle\lim_{n\to\infty}\frac{\max(a_1,a_2,\ldots,a_n)}{n}=0$。原书 PDF 28</li>
+<li>设 $a,b,c$ 是三个给定的实数，令 $a_0=a$，$b_0=b$，$c_0=c$，并归纳地定义</li>
+</ol>
+<h3>§1.3 收敛数列的性质</h3>
+<h4>练习题 1.3（12 题）</h4>
+<ol class="ex-list">
+<li>回答下列问题：原书 PDF 37</li>
+<li>若 $\displaystyle\lim_{n\to\infty}a_n=a\ne0$，求证：$\displaystyle\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=1$。举例说明，当 $a=0$ 时不能得出上述结论。原书 PDF 37</li>
+<li>求下列极限：起始 PDF 37续页 PDF 38</li>
+<li>求下列极限：原书 PDF 38</li>
+<li>求极限：原书 PDF 38</li>
+<li>设 $\displaystyle\lim_{n\to\infty}a_n=a$。证明：$\displaystyle\lim_{n\to\infty}\frac{[na_n]}n=a$。这里 $[x]$ 表示不超过 $x$ 的最大整数。原书 PDF 38</li>
+<li>设 $a_n>0$（$n=1,2,3,\ldots$），且 $\displaystyle\lim_{n\to\infty}a_n=a$。求证：$\displaystyle\lim_{n\to\infty}(a_1a_2\cdots a_n)^{1/n}=a$。原书 PDF 38</li>
+<li>利用第 7 题的结论，证明：起始 PDF 38续页 PDF 39</li>
+<li>证明：$\displaystyle\lim_{n\to\infty}\frac1n\left(1+\frac12+\frac13+\cdots+\frac1n\right)=0$。原书 PDF 39</li>
+<li>如果 $a_0+a_1+\cdots+a_p=0$，求证：$\displaystyle\lim_{n\to\infty}\left(a_0\sqrt n+a_1\sqrt{n+1}+\cdots+a_p\sqrt{n+p}\right)=0$。原书 PDF 39</li>
+<li>设数列 $\{a_n\}$ 满足 $\displaystyle\lim_{n\to\infty}a_{2n-1}=a$，$\displaystyle\lim_{n\to\infty}a_{2n}=b$。证明：$\displaystyle\lim_{n\to\infty}\frac{a_1+a_2+\cdots+a_n}{n}=\frac{a+b}{2}$。原书 PDF 39</li>
+<li>证明：$\displaystyle\lim_{n\to\infty}\sum_{k=1}^n\left(\sqrt{1+\frac{k}{n^2}}-1\right)=\frac14$。原书 PDF 39</li>
+</ol>
+<h4>问题 1.3（4 题）</h4>
+<ol class="ex-list">
+<li>设数列 $\{x_n\}$ 满足 $\displaystyle\lim_{n\to\infty}(x_n-x_{n-2})=0$。求证：$\displaystyle\lim_{n\to\infty}\frac{x_n-x_{n-1}}n=0$。原书 PDF 39</li>
+<li>（Toeplitz（特普利茨，1881—1940）定理）设 $n,k\in\mathbb N^*$ 时 $t_{nk}\ge0$，且 $\displaystyle\sum_{k=1}^n t_{nk}=1$，$\displaystyle\lim_{n\to\infty}t_{nk}=0$。如果 $\displaystyle\lim_{n\to\infty}a_n=a$，令 $\displaystyle x_n=\sum_{k=1}^n t_{nk}a_k$，试证：$\displaystyle\lim_{n\to\infty}x_n=a$。原书 PDF 39</li>
+<li>设 $\displaystyle\lim_{n\to\infty}a_n=a$。证明：$\displaystyle\lim_{n\to\infty}\frac{a_1+2a_2+\cdots+na_n}{n^2}=\frac a2$。原书 PDF 39</li>
+<li>设 $\displaystyle\lim_{n\to\infty}a_n=a$。证明：$\displaystyle\lim_{n\to\infty}\frac1{2^n}\sum_{k=1}^n\binom nk a_k=a$。原书 PDF 39</li>
+</ol>
+<h3>§1.4 数列极限概念的推广</h3>
+<h4>练习题 1.4（5 题）</h4>
+<ol class="ex-list">
+<li>设三次多项式 $p(x)=x^3-4x^2+5x-6$。求证：$\displaystyle\lim_{n\to\infty}p(n)=+\infty$，$\displaystyle\lim_{n\to\infty}p(-n)=-\infty$。原书 PDF 41</li>
+<li>求证：$\displaystyle\lim_{n\to\infty}\frac1n(1+2+3+\cdots+n)=+\infty$。原书 PDF 41</li>
+<li>求证：$\displaystyle\lim_{n\to\infty}\frac1{n^2}(1^2+2^2+3^2+\cdots+n^2)=+\infty$。原书 PDF 41</li>
+<li>求证：$\displaystyle\lim_{n\to\infty}n\left(\sqrt n-\sqrt{n+1}\right)=-\infty$。原书 PDF 41</li>
+<li>求证：$\displaystyle\lim_{n\to\infty}\left(\frac1{\sqrt{n+1}}+\frac1{\sqrt{n+2}}+\cdots+\frac1{\sqrt{n+n}}\right)=+\infty$。原书 PDF 41</li>
+</ol>
+<h4>问题 1.4（2 题）</h4>
+<ol class="ex-list">
+<li>设 $a_0=1$，$a_{n+1}=a_n+1/a_n$（$n=1,2,\ldots$）。求证：$\displaystyle\lim_{n\to\infty}a_n=+\infty$。<b>[待核验：原书页图确实同时写 $a_0=1$ 与 $n=1,2,\ldots$；按所印递推起点，$a_1$ 未被指定。此处照录，不替原书补改。]</b>原书 PDF 41</li>
+<li>设 $\{a_n\}$ 是一个正数数列。如果 $\displaystyle\lim_{n\to\infty}\frac{a_{n+1}+a_{n+2}}{a_n}=+\infty$，那么 $\{a_n\}$ 必为无界数列。原书 PDF 41</li>
+</ol>
+<h3>§1.5 单调数列</h3>
+<h4>练习题 1.5（6 题）</h4>
+<ol class="ex-list">
+<li>利用定理 1.5.1，证明下列数列极限存在：原书 PDF 46</li>
+<li>设 $x_1=\sqrt2$，并定义 $x_{n+1}=\sqrt{2+x_n}$（$n=1,2,3,\ldots$）。求证：$\displaystyle\lim_{n\to\infty}x_n$ 存在。原书 PDF 46</li>
+<li>求证：如果单调数列有一子列收敛，那么原数列也必收敛。原书 PDF 46</li>
+<li>设数列 $\{a_n\}$ 满足 $0&lt;a_n&lt;1$，且有不等式 $(1-a_n)a_{n+1}>1/4$（$n=1,2,3,\ldots$）。求证：$\displaystyle\lim_{n\to\infty}a_n=1/2$。原书提示：$0&lt;a_n(1-a_n)\le1/4$；由题设 $(1-a_n)a_{n+1}>1/4\ge a_n(1-a_n)$，得 $\{a_n\}$ 严格递增。题目 PDF 46提示续页 PDF 47</li>
+<li>求证：$a_n=(n!)^{1/n}$ 是递增数列。原书 PDF 47</li>
+<li>设 $\{x_n\}$ 是一个非负的数列，满足 $x_{n+1}\le x_n+1/n^2$（$n=1,2,\ldots$）。证明：$\{x_n\}$ 收敛。原书 PDF 47</li>
+</ol>
+<h4>问题 1.5（4 题）</h4>
+<ol class="ex-list">
+<li>设 $c>0$，$a_1=c/2$，$a_{n+1}=c/2+a_n^2/2$（$n=1,2,\ldots$）。证明：$\displaystyle\lim_{n\to\infty}a_n=\begin{cases}1-\sqrt{1-c},&0&lt;c\le1,\\+\infty,&c>1.\end{cases}$原书 PDF 47</li>
+<li>设数列 $\{u_n\}$ 定义如下：$u_1=b$，$u_{n+1}=u_n^2+(1-2a)u_n+a^2$（$n=1,2,\ldots$）。问 $a,b$ 为何值时 $\{u_n\}$ 收敛？极限值是什么？原书 PDF 47</li>
+<li>设 $A>0$，$0&lt;y_0&lt;A^{-1}$，且 $y_{n+1}=y_n(2-Ay_n)$（$n=0,1,\ldots$）。证明：$\displaystyle\lim_{n\to\infty}y_n=A^{-1}$。原书 PDF 47</li>
+<li>设数列 $\{a_n\}$ 由下式定义：$a_n=2^{n-1}-3a_{n-1}$（$n=1,2,\ldots$）。求 $a_0$ 所有可能的值，使得 $\{a_n\}$ 是严格递增的。原书 PDF 47</li>
+</ol>
+<h3>§1.6 自然对数的底 e</h3>
+<h4>练习题 1.6（16 题）</h4>
+<ol class="ex-list">
+<li>求下列极限：原书 PDF 50</li>
+<li>设 $k\in\mathbb N^*$，求证：$\displaystyle\lim_{n\to\infty}\left(1+\frac{k}{n}\right)^n=e^k$。原书 PDF 50</li>
+<li>求证：数列 $\{(1+1/n)^n\}$ 是严格递增数列。原书提示：用几何平均—算术平均不等式比较 $1$ 和 $n$ 个 $1+1/n$，即 $\displaystyle\left(1+\frac1n\right)^n=1\cdot\underbrace{\left(1+\frac1n\right)\cdots\left(1+\frac1n\right)}_{n\text{ 个}}&lt;\left(\frac{1+n(1+1/n)}{n+1}\right)^{n+1}$。原书 PDF 50</li>
+<li>求证：数列 $\{(1+1/n)^{n+1}\}$ 是严格递减数列。原书提示：用几何平均—算术平均不等式，$\displaystyle\left(\frac n{n+1}\right)^{n+1}=1\cdot\underbrace{\left(\frac n{n+1}\right)\cdots\left(\frac n{n+1}\right)}_{n+1\text{ 个}}&lt;\left(\frac{1+(n+1)n/(n+1)}{n+2}\right)^{n+2}$。原书 PDF 50</li>
+<li>证明不等式：$\displaystyle\left(1+\frac1n\right)^n&lt;e&lt;\left(1+\frac1n\right)^{n+1}$（$n\in\mathbb N^*$）。原书 PDF 50</li>
+<li>利用对数函数 $\ln x$ 的严格递增性质，证明：$\displaystyle\frac1{n+1}&lt;\ln\left(1+\frac1n\right)&lt;\frac1n$ 对一切 $n\in\mathbb N^*$ 成立。原书 PDF 51</li>
+<li>设 $n\in\mathbb N^*$ 且 $k=1,2,\ldots$。证明不等式：$\displaystyle\frac{k}{n+k}&lt;\ln\left(1+\frac{k}{n}\right)&lt;\frac{k}{n}$。原书 PDF 51</li>
+<li>对 $n\in\mathbb N^*$，求证：$\displaystyle\frac12+\frac13+\cdots+\frac1{n+1}&lt;\ln(n+1)&lt;1+\frac12+\cdots+\frac1n$。原书 PDF 51</li>
+<li>令 $\displaystyle x_n=1+\frac12+\cdots+\frac1n-\ln(n+1)$（$n\in\mathbb N^*$）。证明：$\displaystyle\lim_{n\to\infty}x_n$ 存在，此极限常记为 $\gamma$，叫作 Euler（欧拉，1707—1783）常数。原书 PDF 51</li>
+<li>利用第 9 题，证明：$\displaystyle1+\frac12+\frac13+\cdots+\frac1n=\ln n+\gamma+\varepsilon_n$，其中 $\displaystyle\lim_{n\to\infty}\varepsilon_n=0$。原书 PDF 51</li>
+<li>证明不等式：$\displaystyle\left(\frac{n+1}{e}\right)^n&lt;n!&lt;e\left(\frac{n+1}{e}\right)^{n+1}$。原书 PDF 51</li>
+<li>证明：$\displaystyle\lim_{n\to\infty}\frac{(n!)^{1/n}}n=\frac1e$。原书 PDF 51</li>
+<li>求证：$\displaystyle e=1+\frac1{1!}+\frac1{2!}+\cdots+\frac1{n!}+\frac{\theta_n}{n!n}$，其中 $\theta_n\in\left(\frac n{n+1},1\right)$。原书 PDF 51</li>
+<li>求极限 $\displaystyle\lim_{n\to\infty}\big(n!e-[n!e]\big)$。原书 PDF 51</li>
+<li>求极限 $\displaystyle\lim_{n\to\infty}\left(\frac1{n+1}+\frac1{n+2}+\cdots+\frac1{n+n}\right)$。原书 PDF 51</li>
+<li>设 $\displaystyle x_n=\left(1+\frac12\right)\left(1+\frac1{2^2}\right)\cdots\left(1+\frac1{2^n}\right)$。证明：$\displaystyle\lim_{n\to\infty}x_n$ 存在。原书 PDF 51</li>
+</ol>
+<h4>问题 1.6（5 题）</h4>
+<ol class="ex-list">
+<li>求证：当 $n\ge3$ 时，有不等式 $\displaystyle\sum_{k=1}^n\frac1{k!}-\frac3{2n}&lt;\left(1+\frac1n\right)^n&lt;\sum_{k=1}^n\frac1{k!}$。<b>[待核验：原书页图两侧求和下限确为 $k=1$；但按此式取 $n=3$，中间项 $64/27>5/3=\sum_{k=1}^3 1/k!$，右侧不等式不成立。保留原印法，不推定应如何补改。]</b>题干 PDF 51公式续页 PDF 52</li>
+<li>求证等式：$\displaystyle1+\frac13+\frac15+\cdots+\frac1{2n-1}=\ln(2\sqrt n)+\frac\gamma2+\varepsilon_n$，其中 $\gamma$ 是 Euler 常数，$\displaystyle\lim_{n\to\infty}\varepsilon_n=0$。原书印作 $\ln 2\sqrt n$，此处括号表达对数作用于 $2\sqrt n$。原书 PDF 52</li>
+<li>求极限 $\displaystyle\lim_{n\to\infty}\left(1+\frac1{n^2}\right)\left(1+\frac2{n^2}\right)\cdots\left(1+\frac n{n^2}\right)$。原书 PDF 52</li>
+<li>记 $\displaystyle H_n=1+\frac12+\cdots+\frac1n$（$n=1,2,\ldots$），用 $k_n$ 表示使得 $H_{k_n}\ge n$ 的最小下标。证明：$\displaystyle\lim_{n\to\infty}\frac{k_{n+1}}{k_n}=e$。原书 PDF 52</li>
+<li>设 $s_n=1+2^2+3^3+\cdots+n^n$。求证：当 $n\ge3$ 时，有 $\displaystyle n^n\left(1+\frac1{4(n-1)}\right)&lt;s_n&lt;n^n\left(1+\frac2{e(n-1)}\right)$。原书 PDF 52</li>
+</ol>
+<h3>§1.7 基本列和 Cauchy 收敛原理</h3>
+<h4>练习题 1.7（6 题）</h4>
+<ol class="ex-list">
+<li>对任意给定的 $\varepsilon>0$，存在 $N\in\mathbb N^*$，当 $n>N$ 时，有 $|a_n-a_N|&lt;\varepsilon$。问 $\{a_n\}$ 是不是基本列？原书 PDF 55</li>
+<li>（1）数列 $\{a_n\}$ 满足 $|a_{n+p}-a_n|\le p/n$，且对一切 $n,p\in\mathbb N^*$ 成立。问 $\{a_n\}$ 是不是基本列？（2）当 $|a_{n+p}-a_n|\le p/n^2$ 时，上述结论又如何？原书 PDF 55</li>
+<li>证明下列数列收敛：原书 PDF 55</li>
+<li>设数列 $\{|a_2-a_1|+|a_3-a_2|+\cdots+|a_n-a_{n-1}|\}$ 有界。求证：$\{a_n\}$ 收敛。原书 PDF 56</li>
+<li>用精确语言表达“数列 $\{a_n\}$ 不是基本列”。原书 PDF 56</li>
+<li>设 $a_n\in[a,b]$（$n\in\mathbb N^*$）。证明：如果 $\{a_n\}$ 发散，则 $\{a_n\}$ 必有两个子列收敛于不同的数。原书 PDF 56</li>
+</ol>
+<h3>§1.8 确界原理</h3>
+<h4>练习题 1.8（5 题）</h4>
+<ol class="ex-list">
+<li>指出下列数集的下确界和上确界：原书 PDF 58</li>
+<li>求数列 $\{(1+1/n)^n:n\in\mathbb N^*\}$ 和 $\{(1+1/n)^{n+1}:n\in\mathbb N^*\}$ 的下确界和上确界。原书 PDF 58</li>
+<li>求数列 $\{n^{1/n}:n\in\mathbb N^*\}$ 的下确界和上确界。原书 PDF 58</li>
+<li>设在数列 $\{a_n:n\in\mathbb N^*\}$ 中，既没有最小值，也没有最大值。求证：数列 $\{a_n\}$ 发散。原书 PDF 58</li>
+<li>试用定理 1.8.1 证明中使用的“二分法”，证明定理 1.7.1（Bolzano-Weierstrass 定理）。原书 PDF 58</li>
+</ol>
+<h3>§1.9 有限覆盖定理</h3>
+<h4>问题 1.9（2 题）</h4>
+<ol class="ex-list">
+<li>设开区间族 $\{I_\lambda\}$ 是有限闭区间 $[a,b]$ 的一个开覆盖，则必存在 $\sigma>0$，使得只要区间 $A\subset[a,b]$ 且 $A$ 的长度 $|A|&lt;\sigma$，就必有 $\{I_\lambda\}$ 中的一个区间包含 $A$。其中 $\sigma$ 称为 Lebesgue（勒贝格，1875—1941）数。原书 PDF 61</li>
+<li>试利用上述结论，证明有限覆盖定理。原书 PDF 61</li>
+</ol>
+<h3>§1.10 上极限和下极限</h3>
+<h4>练习题 1.10（3 题）</h4>
+<ol class="ex-list">
+<li>求 $\liminf_{n\to\infty}a_n$ 和 $\limsup_{n\to\infty}a_n$（$n\in\mathbb N^*$），设：原书 PDF 66</li>
+<li>试证下面诸式当两边有意义时成立：原书 PDF 66</li>
+<li>设 $a_n\ge0$（$n\in\mathbb N^*$）。求证：$\displaystyle\limsup_{n\to\infty}\sqrt[n]{a_n}\le1$ 的充分必要条件是，对任意的 $l>1$，有 $\displaystyle\lim_{n\to\infty}\frac{a_n}{l^n}=0$。原书 PDF 66</li>
+</ol>
+<h4>问题 1.10（2 题）</h4>
+<ol class="ex-list">
+<li>设数列 $\{x_n\}$ 有界，且 $\displaystyle\lim_{n\to\infty}(x_{n+1}-x_n)=0$，分别记 $\{x_n\}$ 的上、下极限为 $L$ 和 $l$。证明：$\{x_n\}$ 的极限点充满区间 $[l,L]$。原书 PDF 67</li>
+<li>设 $a_n>0$。求证：$\displaystyle\limsup_{n\to\infty}n\left(\frac{1+a_{n+1}}{a_n}-1\right)\ge1$。原书 PDF 67</li>
+</ol>
+<h3>§1.11 Stolz 定理</h3>
+<h4>练习题 1.11（6 题）</h4>
+<ol class="ex-list">
+<li>计算下列极限：原书 PDF 69</li>
+<li>计算极限 $\displaystyle\lim_{n\to\infty}(n!)^{1/n^2}$。（提示：取对数。）原书 PDF 69</li>
+<li>计算极限 $\displaystyle\lim_{n\to\infty}\frac{1^2+3^2+\cdots+(2n-1)^2}{n^3}$。原书 PDF 69</li>
+<li>设 $\displaystyle\lim_{n\to\infty}a_n=a$。证明：$\displaystyle\lim_{n\to\infty}\frac{a_1+2a_2+\cdots+na_n}{n^2}=\frac a2$。原书 PDF 69</li>
+<li>举例说明 Stolz 定理的逆命题不成立。原书 PDF 69</li>
+<li>证明 $\frac{0}{0}$ 型的 Stolz 定理：设 $a_n\to0$，$b_n\to0$，且 $b_1>b_2>b_3>\cdots$。如果 $\displaystyle\lim_{n\to\infty}\frac{a_n-a_{n-1}}{b_n-b_{n-1}}=A$，那么 $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n}=A$。原书 PDF 70</li>
+</ol>
+<h4>问题 1.11（4 题）</h4>
+<ol class="ex-list">
+<li>设 $0&lt;x_1&lt;1/q$（$0&lt;q\le1$），并且 $x_{n+1}=x_n(1-qx_n)$（$n\in\mathbb N^*$）。求证：$\displaystyle\lim_{n\to\infty}nx_n=1/q$。原书 PDF 70</li>
+<li>设数列 $\{a_n\}$ 满足 $\displaystyle\lim_{n\to\infty}a_n\sum_{i=1}^{n}a_i^2=1$。求证：$\displaystyle\lim_{n\to\infty}\sqrt[3]{3n}\,a_n=1$。原书根号横线只覆盖 $3n$，$a_n$ 在根号外。原书 PDF 70</li>
+<li>令 $\displaystyle x_n=\frac1{n^2}\sum_{k=1}^{n}\ln\left(\frac nk\right)$（$n=1,2,3,\ldots$）。求极限 $\displaystyle\lim_{n\to\infty}x_n$。原书 PDF 70</li>
+<li>试利用问题 1.3 中第 2 题的 Toeplitz 定理，证明 Stolz 定理。原书 PDF 70</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第01章_实数和数列极限_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §1.1 实数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.2 数列和收敛数列：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.3 收敛数列的性质：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.4 数列极限概念的推广：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.5 单调数列：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.6 自然对数的底 e：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.7 基本列和 Cauchy 收敛原理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.8 上确界和下确界：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.9 有限覆盖定理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.10 上极限和下极限：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §1.11 Stolz 定理：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> 能凭记忆画出本章的知识链（从定义到主定理的依赖顺序）。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>

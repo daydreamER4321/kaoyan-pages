@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第02章 函数的连续性 · 数分考纲课本讲解</title>
+<link rel="stylesheet" href="../_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../_html_assets/guide.css">
+<style>
+.freq{display:inline-block;margin-left:8px;color:#b45309;font-weight:700}
+.pgref{color:#8a94a0;font-size:12.5px;margin:2px 0 10px}
+hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
+.code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.ex-list li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 考纲课本</div>
+  <div class="sb-title">第02章<br>函数的连续性</div>
+  <nav class="toc">
+        <a href="#body">正文（按节）</a>
+    <a href="#sec2_1">§2.1 集合的映射</a>
+    <a href="#sec2_2">§2.2 集合的势</a>
+    <a href="#sec2_3">§2.3 函 数</a>
+    <a href="#sec2_4">§2.4 函数的极限</a>
+    <a href="#sec2_5">§2.5 极限过程的其他形式</a>
+    <a href="#sec2_6">§2.6 无穷小与无穷大</a>
+    <a href="#sec2_7">§2.7 连续函数</a>
+    <a href="#sec2_8">§2.8 连续函数与极限计算</a>
+    <a href="#sec2_9">§2.9 函数的一致连续性</a>
+    <a href="#sec2_10">§2.10 有限闭区间上连续函数的性质</a>
+    <a href="#sec2_11">§2.11 函数的上极限和下极限</a>
+    <a href="#sec2_12">§2.12 混沌现象</a>
+    <a href="#exercises">课本习题（全录）</a>
+    <a href="#checklist">自测清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">以《数学分析教程》第三版为准。正文取自本章课本骨架；习题逐题照录，未删减。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 考纲课本</div>
+    <h1>第02章 函数的连续性</h1>
+    <p class="hero-sub">§2.1 集合的映射 · §2.2 集合的势 · §2.3 函 数 · §2.4 函数的极限 · §2.5 极限过程的其他形式 · §2.6 无穷小与无穷大</p>
+  </div>
+</header>
+
+<div class="wrap">
+<section id="body">
+<h2 id="sec2_1">§2.1 集合的映射<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.1-5</b></p>
+<p>课本开篇指出：反映事物运动变化的数量之间相互制约的关系就是函数，函数是数学分析中最重要的研究对象；本章主要内容是<b>函数的概念、函数的极限和连续函数</b>；先从集合间的映射谈起。（叙述式，无编号）</p>
+<h3>2.1.1 定义2.1.1：映射</h3>
+<p class="pgref"><b>课本：1</b></p>
+<p>设 $A,B$ 是两个集合，如果 $f$ 是一种规律，使得对 $A$ 中的每一个元素 $x$，$B$ 中有唯一确定的元素——记为 $f(x)$——与 $x$ 对应，则称 $f$ 是一个从 $A$ 到 $B$ 的映射，用</p>
+<div class="formula">$$f\colon A\to B$$</div>
+<p>表示。集合 $A$ 叫作映射 $f$ 的<b>定义域</b>；$f(x)\in B$ 叫作 $x$ 在映射 $f$ 之下的<b>像</b>或 $f$ 在 $x$ 上的<b>值</b>。</p>
+<h3>2.1.2 像与值域（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.1-5</b></p>
+<ul><li>确定一个映射 $f$ 须有两个要素：(1) $f$ 的定义域 $A$；(2) 规律 $f$，即对任何 $x\in A$，像 $f(x)$ 是什么。</li><li>设 $E\subset A$，令 $f(E)=\{f(x):x\in E\}$，称为 $E$ 的<b>像</b>；显然 $f(E)\subset B$。特别地，定义域 $A$ 的像 $f(A)$ 叫作 $f$ 的<b>值域</b>。</li></ul>
+<h3>2.1.3 定义2.1.2～2.1.5：相等、满射、单射、一对一</h3>
+<p class="pgref"><b>课本：2</b></p>
+<ul><li><b>定义2.1.2（相等）</b>：设 $f,g\colon A\to B$。如果对任何 $x\in A$ 均有 $f(x)=g(x)$，则称 $f$ 与 $g$ 相等，记 $f=g$。</li><li><b>定义2.1.3（满射）</b>：如果 $f(A)=B$，则称 $f$ 是从 $A$ 到 $B$ 上的满射，即 $B$ 中任何元素都是 $A$ 中某一元素的像。</li><li><b>定义2.1.4（单射）</b>：如果当 $x,y\in A$ 且 $x\ne y$ 时有 $f(x)\ne f(y)$，则称 $f$ 为单射。</li><li><b>定义2.1.5（一对一）</b>：若 $f$ 既是单射又是满射，则称 $f$ 是一对一的，这时也说 $f$ 在 $A$ 与 $B$ 之间建立一个一一对应。</li></ul>
+<p>课本注明（叙述式）：当 $f$ 是从 $A$ 到 $B$ 的一一映射时，可定义逆映射 $f^{-1}\colon B\to A$，其规律是：如果 $y=f(x)$，则 $f^{-1}(y)=x$。</p>
+<h3>2.1.4 定义2.1.6：原像</h3>
+<p class="pgref"><b>课本：2</b></p>
+<p>设 $f\colon A\to B$，$F\subset B$，则 $A$ 的子集</p>
+<div class="formula">$$f^{-1}(F)=\{x\in A: f(x)\in F\}$$</div>
+<p>叫作 $F$ 的<b>原像</b>。</p>
+<h3>2.1.5 定义2.1.7：映射的复合</h3>
+<p class="pgref"><b>课本：3</b></p>
+<p>设映射 $f\colon B\to C$，映射 $g$ 的定义域为 $A$。当 $x\in A_1=g^{-1}(B)$ 时，定义映射</p>
+<div class="formula">$$f\circ g(x)=f(g(x)).$$</div>
+<p>显然 $f\circ g\colon A_1\to C$，称为映射 $f$ 与 $g$ 的<b>复合</b>。</p>
+<p>课本随后给出：</p>
+<ul><li><b>结合律</b>（叙述式）：$f\circ(g\circ h)=(f\circ g)\circ h$，“复合”可以“结合”，故可直接写 $f\circ g\circ h$；</li><li><b>$n$ 次复合记号</b>：$f\colon A\to A$ 时，$n$ 个 $f$ 的复合简记为 $f^{n}$；</li><li><b>不可交换</b>（例6）：令 $f(x)=2x+1$，$g(x)=x-1$，则 $f\circ g(x)=2x-1$ 而 $g\circ f(x)=2x$，故 $f\circ g\ne g\circ f$；</li><li><b>恒等映射与逆</b>（叙述式）：$I_A(x)=x$ 为 $A$ 上的恒等映射；$f$ 为一一对应时 $f^{-1}\circ f=I_A$，$f\circ f^{-1}=I_B$；当 $A=B$ 且 $f\colon A\to A$ 一对一时，</li></ul>
+<div class="formula">$$f^{-1}\circ f=f\circ f^{-1}=I_A.$$</div>
+<hr>
+<h2 id="sec2_2">§2.2 集合的势<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<h3>2.2.1 势与等价关系（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.5-9</b></p>
+<p>若存在一个从 $A$ 到 $B$ 上的一对一的映射，就称 $A$ 与 $B$ 有相同的“势”（或相同的“基数”），称 $A$ 与 $B$ 等价，记 $A\sim B$。该关系满足：自反性（$A\sim A$）、对称性（$A\sim B\Rightarrow B\sim A$）、传递性（$A\sim B$ 且 $B\sim C\Rightarrow A\sim C$）。</p>
+<h3>2.2.2 定义2.2.1：有限集、无限集、可数集等</h3>
+<p class="pgref"><b>课本：5</b></p>
+<p>令 $\mathbf{N}^*$ 是正整数的全体，且 $N_n=\{1,2,\cdots,n\}$。</p>
+<ol><li>若存在正整数 $n$ 使 $A\sim N_n$，则 $A$ 叫作<b>有限集</b>；空集也被认为是有限集。</li><li>若 $A$ 不是有限集，则称 $A$ 为<b>无限集</b>。</li><li>若 $A\sim \mathbf{N}^*$，则称 $A$ 为<b>可数集</b>。</li><li>若 $A$ 既不是有限集也不是可数集，则称 $A$ 为<b>不可数集</b>。</li><li>若 $A$ 是有限集或可数集，则称 $A$ 是<b>至多可数的</b>。</li></ol>
+<p>课本说明：对无限集而言“元素个数相等”十分含混，而一一对应的概念明确毫不含糊；<b>集合的势是有限集中“元素个数”概念的推广</b>，“势”是一切互相等价的集合唯一共有的属性。</p>
+<h3>2.2.3 定理2.2.1：可数集的无限子集可数</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>可数集 $A$ 的每一个无限子集是可数集。</p>
+<h4>课本证明路线</h4>
+<ol><li>设 $E\subset A$ 为无限集，将可数集 $A$ 排列成 $a_1,a_2,\cdots,a_n,\cdots$；</li><li>递归构造 $\{k_n\}$：$k_1$ 为使 $a_{k_1}\in E$ 的最小正整数；选定 $k_1,\cdots,k_{s-1}$ 后取大于 $k_{s-1}$ 的最小正整数使 $a_{k_s}\in E$；</li><li>映射 $f(a_{k_n})=n\ (n\in\mathbf{N}^*)$ 即建立 $E$ 与 $\mathbf{N}^*$ 的一一对应。</li></ol>
+<p>课本注明：粗略地说，这个定理表明<b>可数集代表着“最小的”无限势</b>，因为没有不可数的集能作为一个可数集的子集。</p>
+<h3>2.2.4 定理2.2.2：至多可数集的可数并</h3>
+<p class="pgref"><b>课本：6</b></p>
+<p>设 $\{E_n\}\ (n=1,2,3,\cdots)$ 是一列至多可数集，令 $S=\bigcup_{n=1}^\infty E_n$，那么 $S$ 是至多可数集。</p>
+<h4>课本证明路线</h4>
+<ol><li>把每个 $E_n=\{x_{n1},x_{n2},\cdots,x_{nk},\cdots\}$ 排成第 $n$ 行，构成包含 $S$ 全部元素的无穷阵列；</li><li>按“箭头所指示”的对角线方向把这些元素排成一行；</li><li>从左到右顺次查看，重复出现的元素只保留第一次遇见者、剔除其余相同元素，仍得到并集 $S$，故 $S$ 至多可数。</li></ol>
+<h3>2.2.5 定理2.2.3：有理数集可数</h3>
+<p class="pgref"><b>课本：7</b></p>
+<p>$\mathbb{R}$ 中的全体有理数是可数的。</p>
+<h4>课本证明路线</h4>
+<ol><li>先证 $[0,1)$ 中全体有理数可数：按分母分行排列（第 $k$ 行为 $\frac1k,\frac2k,\cdots,\frac{k-1}k$），逐行首尾相接排成一行，剔除重复的数；</li><li>当 $r\in[0,1)$ 时，$r\mapsto r+n$ 是 $[0,1)$ 中有理数与 $[n,n+1)$ 中有理数之间的一一对应，故每个 $[n,n+1)$ 中的有理数全体可数；</li><li>$\mathbb{Q}=\bigcup_{n=-\infty}^{+\infty}\{x: x\in[n,n+1),\ x\in\mathbb{Q}\}$ 是可数个互不相交的可数集之并，依定理2.2.2 可数。</li></ol>
+<h3>2.2.6 定理2.2.4：$[0,1]$ 不可数</h3>
+<p class="pgref"><b>课本：8</b></p>
+<p>$[0,1]$ 上的全体实数是不可数的。</p>
+<h4>课本证明路线</h4>
+<ol><li>反证：假设能把 $[0,1]$ 上的全体实数无遗漏地排成一行 $x_1,x_2,\cdots,x_n,\cdots$；</li><li>把 $[0,1]$ 三等分，取不含 $x_1$ 的那个闭三等分子区间记作 $I_1$（若有两个都不含 $x_1$，取靠左边的）；再将 $I_1$ 三等分，取不含 $x_2$ 者记作 $I_2$；如此继续；</li><li>得闭区间套 $I_0=[0,1]\supset I_1\supset I_2\supset\cdots$，其中 $I_n$ 不含 $x_1,\cdots,x_n$，且 $|I_n|=1/3^n$；</li><li>由闭区间套定理得 $\bigcap_{n=1}^\infty I_n=\{x^*\}$，$x^*\in[0,1]$；$x^*$ 不能等于排列中的任何一个——说明排列并未穷尽 $[0,1]$ 上的所有实数，矛盾。</li></ol>
+<p>课本说明：对集合的势的研究是一门很大的学问，不属于本课程的内容；这里只定义了可数集、陈述了几个简单性质并证明了不可数无限集的存在，特别是长度不为 0 的区间上全体实数所成的集不可数，这将为今后的叙述带来方便。</p>
+<hr>
+<h2 id="sec2_3">§2.3 函 数<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.9-14</b></p>
+<h3>2.3.1 函数概念（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.9-14</b></p>
+<ul><li>函数是一类特殊的映射：如果对映射 $f\colon X\to Y$，$X$ 与 $Y$ 都由实数组成，则 $f$ 称为一个函数；精确地说，$f$ 是<b>单变量函数</b>——从实数到实数的映射。它是本课程最基本、最主要的研究对象。</li><li>2.1 节中所有关于映射的定义和证明过的性质，对函数全都适用。函数也有两个要素：第一是定义域；第二是对应规律。</li></ul>
+<h3>2.3.2 例1～例5：函数的表示法与定义域</h3>
+<p class="pgref"><b>课本：10</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>内容</th><th>要点</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>表格给出的函数：10 种产品的价格表</td><td>没有“公式”但完全符合函数定义，定义域 $\{1,\cdots,10\}$；列表法定义函数在日常生活中常见</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>$f(x)=\sqrt{\frac{1+x}{1-x}}$</td><td>定义域未写明时，理解为使表达式有意义的一切 $x$：此处为 $[-1,1)$</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=80\</td><td>p10)</td><td>图形给出的函数：某日正午12时到下午6时的气温曲线（图2.1）</td><td>定义域 $[12,18]$；读图准确与否是技术问题而非理论问题</td></tr><tr><td>例4 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=81\</td><td>p11)</td><td>行李收费：$0.50x\ (0\le x\le50)$；$0.50\times50+0.75(x-50)\ (x>50)$</td><td>两个公式联合表示<b>一个</b>函数——分段函数；切勿“张冠李戴”</td></tr><tr><td>例5 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=81\</td><td>p11)</td><td>$f(x)=\sqrt{1-x^2}\ (-1\le x\le1)$ 与 $g(x)=\ln x\ (x>0)$</td><td>$f\pm g$、$fg$ 的定义域为 $(0,1]$；$f/g$ 的定义域是 $(0,1)$</td></tr></tbody></table></div>
+<h3>2.3.3 函数的四则运算（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.9-14</b></p>
+<p>设 $f,g$ 的定义域分别为 $A,B$，则在 $A\cap B$ 上：</p>
+<div class="formula">$$(f+g)(x)=f(x)+g(x),\quad(f-g)(x)=f(x)-g(x),\quad(fg)(x)=f(x)g(x),\quad\Big(\frac fg\Big)(x)=\frac{f(x)}{g(x)},$$</div>
+<p>最后一式还要求 $g$ 在 $A\cap B$ 上不取零值。特别地，当 $c$ 为常数时 $(cf)(x)=cf(x)\ (x\in A)$。</p>
+<h3>2.3.4 反函数及其图像（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.9-14</b></p>
+<ul><li>若函数 $f$ 在 $X$ 与 $Y$ 之间建立了一个一一对应，则依 2.1 节有逆映射 $f^{-1}\colon Y\to X$，称为 $f$ 的<b>反函数</b>：</li></ul>
+<div class="formula">$$y=f(x)\ (x\in X)\iff x=f^{-1}(y)\ (y\in Y),$$</div>
+<p>且 $f\circ f^{-1}$ 是 $Y$ 上的恒等映射、$f^{-1}\circ f$ 是 $X$ 上的恒等映射。</p>
+<ul><li>函数 $f\colon X\to Y$ 的图像指平面点集 $G(f)=\{(x,f(x)):x\in X\}$。当 $f$ 有反函数时，同一条曲线本质上也可看成 $f^{-1}$ 的图像；按习惯把定义域画在横轴上时，</li></ul>
+<div class="formula">$$G(f^{-1})=\{(y,f^{-1}(y)):y\in Y\}=\{(f(x),x):x\in X\},$$</div>
+<p>由于 $(a,b)$ 与 $(b,a)$ 关于直线 $y=x$ 镜像对称，故 $G(f)$ 与 $G(f^{-1})$ 相关于第一、第三象限分角线镜像对称（图2.2）。</p>
+<h3>2.3.5 定义2.3.1：单调函数</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>函数 $f\colon X\to Y$ 叫作 $X$ 上的<b>递增（递减）函数</b>，如果对任何 $x_1,x_2\in X$，只要 $x_1&lt;x_2$，便有 $f(x_1)\le f(x_2)$（$f(x_1)\ge f(x_2)$）；叫作<b>严格递增（严格递减）函数</b>，只要 $x_1&lt;x_2$ 便有 $f(x_1)&lt;f(x_2)$（$f(x_1)>f(x_2)$）。$X$ 上的（严格）递增或（严格）递减函数统称为<b>（严格）单调函数</b>。</p>
+<p>课本注明：取常值的函数既是递增函数又是递减函数，但不是严格单调函数；正弦函数在 $[-\pi/2,\pi/2]$ 上严格递增、在 $[\pi/2,3\pi/2]$ 上严格递减；$f(x)=3x-100$ 在全实轴上严格递增。</p>
+<h3>2.3.6 定理2.3.1：反函数存在定理</h3>
+<p class="pgref"><b>课本：12</b></p>
+<p>设函数 $f$ 在其定义域 $X$ 上是严格递增（递减）的，那么反函数 $f^{-1}$ 必存在，$f^{-1}$ 的定义域为 $f(X)$，并且 $f^{-1}$ 在这一集合上也是严格递增（递减）的。</p>
+<h4>课本证明路线</h4>
+<ol><li>令 $Y=f(X)$。由严格单调性，$f(x_1)=f(x_2)$ 只能推出 $x_1=x_2$，故 $f\colon X\to Y$ 是一一对应，$f^{-1}$ 存在；</li><li>设 $f$ 严格递增，用反证法：若 $f^{-1}$ 不严格递增，则存在 $y_1&lt;y_2$ 使 $f^{-1}(y_1)\ge f^{-1}(y_2)$；</li><li>两边作用严格递增的 $f$ 得 $y_1\ge y_2$，与 $y_1&lt;y_2$ 矛盾。</li></ol>
+<hr>
+<h2 id="sec2_4">§2.4 函数的极限<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.14-26</b></p>
+<h3>2.4.1 定义2.4.1：函数极限（ε-δ 定义）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<p>设函数 $f$ 在点 $x_0$ 的近旁有定义，但 $x_0$ 这一点自身可以是例外。设 $l$ 是一个实数。如果对任意给定的 $\varepsilon>0$，存在一个 $\delta>0$，使得对一切满足不等式 $0&lt;|x-x_0|&lt;\delta$ 的 $x$，均有</p>
+<div class="formula">$$|f(x)-l|&lt;\varepsilon,$$</div>
+<p>则称当 $x$ 趋于点 $x_0$ 时函数 $f$ 有极限 $l$，记作</p>
+<div class="formula">$$\lim_{x\to x_0}f(x)=l,\qquad\text{或更简单一些 }f(x)\to l\ (x\to x_0).$$</div>
+<h3>2.4.2 学习定义的三点注意（课本明确说明）</h3>
+<p class="pgref"><b>课本：p.14-26</b></p>
+<ol><li>讨论 $f$ 在点 $x_0$ 的极限时，$f$ 在 $x_0$ 是否有定义并不重要，因为不等式 $0&lt;|x-x_0|$ 已排除 $x=x_0$；</li><li>一般情形下 $\delta$ 与 $\varepsilon$ 有关系，有时写为 $\delta(\varepsilon)$ 以强调依赖关系，但这不意味着 $\delta$ 是 $\varepsilon$ 的函数；</li><li>$f$ 在 $x_0$ 是否有极限、极限值等于多少，只取决于 $f$ 在点 $x_0$ 的充分小的近旁的状态，而与 $f$ 在远处的值无关。</li></ol>
+<h3>2.4.3 例1～例3（ε-δ 方法演示）</h3>
+<p class="pgref"><b>课本：15</b></p>
+<div class="tbl"><table><thead><tr><th>例</th><th>结论</th><th>方法要点</th></tr></thead><tbody><tr><td>例1 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=85\</td><td>p15)</td><td>$\lim\limits_{x\to0}x\sin\frac1x=0$</td><td>取 $\delta=\varepsilon$，用 $\big\</td><td>x\sin\frac1x\big\</td><td>\le\</td><td>x\</td><td>$</td></tr><tr><td>例2 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=85\</td><td>p15)</td><td>$\lim\limits_{x\to3}(x^2-4x+4)=1$</td><td>写成 $(x-3)^2+2(x-3)+1$；取 $\delta=\min(1,\varepsilon/3)$</td></tr><tr><td>例3 (../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=86\</td><td>p16)</td><td>$\lim\limits_{x\to1}\frac{x^2-1}{x^2-x}=2$</td><td>消去公因式 $x-1$；先证 $\</td><td>x\</td><td>&gt;\frac12$ 再估计，取 $\delta=\varepsilon/2$</td></tr></tbody></table></div>
+<p>课本说明：依据定义用 ε-δ 语言证明或计算极限，多做练习是十分必要的，熟练运用常是一个难点；但这并不是说每一个极限都得用“精确语言”，掌握极限运算的一些性质将使计算大为简化。（例2 的解法对计算多项式的极限具有普遍意义。）</p>
+<h3>2.4.4 定理2.4.1：函数极限与数列极限的关系</h3>
+<p class="pgref"><b>课本：16</b></p>
+<p>函数 $f$ 在 $x_0$ 处有极限 $l$ 的充分必要条件是：对任何一个收敛于 $x_0$ 的数列 $\{x_n\ne x_0:n=1,2,3,\cdots\}$，数列 $\{f(x_n)\}$ 有极限 $l$。</p>
+<h4>课本证明路线</h4>
+<ol><li>必要性：由 ε-δ 定义取得 $\delta$，再由 $x_n\to x_0$ 取 $N\in\mathbf{N}^*$ 使 $n>N$ 时 $0&lt;|x_n-x_0|&lt;\delta$，于是 $n>N$ 时 $|f(x_n)-l|&lt;\varepsilon$；</li><li>充分性（反证）：若 $\lim_{x\to x_0}f(x)=l$ 不成立，则必有一个正数 $\varepsilon_0$，对每个正整数 $n$ 存在点 $x_n$ 满足 $0&lt;|x_n-x_0|&lt;1/n$ 且 $|f(x_n)-l|\ge\varepsilon_0$——得到一个收敛于 $x_0$ 但 $f(x_n)\not\to l$ 的数列，矛盾。</li></ol>
+<p>利用定理2.4.1 判断函数极限不存在比较方便。</p>
+<h3>2.4.5 例4、例5（极限不存在的判别）</h3>
+<p class="pgref"><b>课本：17</b></p>
+<ul><li><b>例4</b> (p17)：$\lim_{x\to0}\sin\frac1x$ 不存在。取</li></ul>
+<div class="formula">$$x_n=\frac{1}{(2n+1/2)\pi}\to0,\qquad x_n'=\frac{1}{2n\pi}\to0,$$</div>
+<p>则 $f(x_n)=1\to1$，$f(x_n')=0\to0$，由定理2.4.1 即知。</p>
+<ul><li><b>例5 ★</b> (p17)：Dirichlet 函数 $D\colon\mathbb{R}\to\{0,1\}$：</li></ul>
+<div class="formula">$$D(x)=\begin{cases}1,&x\text{ 为有理数时},\\ 0,&x\text{ 为无理数时}.\end{cases}$$</div>
+<p>证明：对任意 $x_0\in\mathbb{R}$，存在全由有理数组成的数列 $\{s_n\}$ 和全由无理数组成的数列 $\{t_n\}$ 都趋向于 $x_0$，于是 $\lim D(s_n)=1$、$\lim D(t_n)=0$，由定理2.4.1 知 $\lim_{x\to x_0}D(x)$ 不存在。</p>
+<p>&gt; 课本注明：例5 中定义的函数叫作 Dirichlet（狄利克雷，1805～1859）函数；看上去有太多人工雕琢的成分、不太自然，但用它来澄清似是而非的误解十分方便——例如<b>处处不存在极限的函数是存在的</b>。以后还将多次遇到这个函数。</p>
+<h3>2.4.6 定理2.4.2（函数极限的唯一性）</h3>
+<p class="pgref"><b>课本：17</b></p>
+<p>若 $\lim_{x\to x_0}f(x)$ 存在，则它是唯一的。</p>
+<h4>课本证明路线</h4>
+<p>任取一收敛于 $x_0$ 的数列 $\{x_n\ne x_0\}$，由定理2.4.1 有 $\lim_{n\to\infty}f(x_n)=\lim_{x\to x_0}f(x)$；引用数列极限的唯一性即得。</p>
+<h3>2.4.7 定理2.4.3：局部有界性</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>若 $f$ 在 $x_0$ 处有极限，那么 $f$ 在 $x_0$ 的一个近旁是有界的：即存在 $M$ 及 $\delta$，使得当 $0&lt;|x-x_0|&lt;\delta$ 时 $|f(x)|&lt;M$。</p>
+<h4>课本证明路线</h4>
+<p>设极限为 $l$，依定义存在 $\delta>0$ 使 $0&lt;|x-x_0|&lt;\delta$ 时 $|f(x)-l|&lt;1$，故 $|f(x)|\le|f(x)-l|+|l|&lt;1+|l|$，取 $M=1+|l|$。</p>
+<h3>2.4.8 定理2.4.4：极限的四则运算</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>设 $\lim_{x\to x_0}f(x)$ 与 $\lim_{x\to x_0}g(x)$ 存在，那么：</p>
+<div class="formula">$$\lim_{x\to x_0}(f\pm g)(x)=\lim_{x\to x_0}f(x)\pm\lim_{x\to x_0}g(x),$$</div>
+<div class="formula">$$\lim_{x\to x_0}fg(x)=\lim_{x\to x_0}f(x)\cdot\lim_{x\to x_0}g(x),$$</div>
+<div class="formula">$$\lim_{x\to x_0}\frac fg(x)=\frac{\lim\limits_{x\to x_0}f(x)}{\lim\limits_{x\to x_0}g(x)},\qquad \text{其中}\lim_{x\to x_0}g(x)\ne0.$$</div>
+<h4>课本证明路线</h4>
+<p>课本只证 (3)：设 $f(x)\to l$、$g(x)\to m\ne0$；对任意收敛于 $x_0$ 的数列 $\{x_n\}$，有 $f(x_n)\to l$、$g(x_n)\to m\ne0$，用第 1 章数列的已知结果得 $\frac{f(x_n)}{g(x_n)}\to\frac lm$；由于 $\{x_n\}$ 任意，由定理2.4.1 即得。(1) 与 (2) 的证明比较容易。</p>
+<h3>2.4.9 定理2.4.5（夹逼原理）</h3>
+<p class="pgref"><b>课本：18</b></p>
+<p>设函数 $f,g,h$ 在点 $x_0$ 的近旁（点 $x_0$ 自身可能是例外）满足不等式</p>
+<div class="formula">$$f(x)\le h(x)\le g(x).$$</div>
+<p>如果 $f$ 与 $g$ 在点 $x_0$ 有相同的极限 $l$，那么函数 $h$ 在点 $x_0$ 也有极限 $l$。</p>
+<h4>课本证明路线</h4>
+<p>对任意给定的 $\varepsilon>0$，分别有 $\delta_1,\delta_2$ 使得 $l-\varepsilon&lt;f(x)&lt;l+\varepsilon$ 与 $l-\varepsilon&lt;g(x)&lt;l+\varepsilon$；取 $\delta=\min(\delta_1,\delta_2)$，则该范围内 $l-\varepsilon&lt;h(x)&lt;l+\varepsilon$。</p>
+<p>课本注明：这个定理当然也能用定理2.4.1 来证明，留作练习。</p>
+<h3>2.4.10 定理2.4.6：极限的保序性</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>设存在 $r>0$，使得当 $0&lt;|x-x_0|&lt;r$ 时不等式 $f(x)\le g(x)$ 成立；又设在 $x_0$ 处这两个函数都有极限，那么</p>
+<div class="formula">$$\lim_{x\to x_0}f(x)\le\lim_{x\to x_0}g(x).$$</div>
+<h4>课本证明路线</h4>
+<p>取满足 $0&lt;|x_n-x_0|&lt;r$ 且收敛于 $x_0$ 的数列，得 $f(x_n)\le g(x_n)$；令 $n\to\infty$ 并用定理2.4.1。</p>
+<h3>2.4.11 邻域记号（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.14-26</b></p>
+<p>课本引进两个记号：</p>
+<div class="formula">$$B_\delta(x_0)=\{x:|x-x_0|&lt;\delta\},\qquad B_\delta(\mathring{x}_0)=\{x:0&lt;|x-x_0|&lt;\delta\},$$</div>
+<p>分别称 $B_\delta(x_0)$ 为 $x_0$ 的<b>邻域</b>、$B_\delta(\mathring{x}_0)$ 为 $x_0$ 的<b>空心邻域</b>。利用这两个记号，定义2.4.1 可改述为：对任意给定的 $\varepsilon>0$，存在 $\delta>0$，使得对一切 $x\in B_\delta(\mathring{x}_0)$ 均有 $|f(x)-l|&lt;\varepsilon$。</p>
+<h3>2.4.12 定理2.4.7：函数极限的 Cauchy 收敛原理</h3>
+<p class="pgref"><b>课本：19</b></p>
+<p>函数 $f$ 在 $x_0$ 处有极限，必须且只需对任意给定的 $\varepsilon>0$，存在 $\delta>0$，使得对任意的 $x_1,x_2\in B_\delta(\mathring{x}_0)$，都有 $|f(x_1)-f(x_2)|&lt;\varepsilon$。</p>
+<h4>课本证明路线</h4>
+<ol><li>必要性：设极限为 $l$，取 $\varepsilon/2$ 控制，三角不等式相加；</li><li>充分性：条件表明对任何收敛于 $x_0$ 的数列 $\{x_n\ne x_0\}$，$\{f(x_n)\}$ 是基本列因而收敛；再证不同数列对应的极限相同——把 $\{x_n\}$ 与 $\{y_n\}$ 交错排列成 $\{z_n\}$，$z_n\ne x_0$ 且 $z_n\to x_0$，$\{f(z_n)\}$ 的极限同时是 $\{f(x_n)\}$ 与 $\{f(y_n)\}$ 子列的极限，故 $l_x=l_y=l$；</li><li>由定理2.4.1 知 $\lim_{x\to x_0}f(x)$ 存在。</li></ol>
+<p>课本注明：定理2.4.7 称为函数极限的 <b>Cauchy 收敛原理</b>，这是一个非常有用的定理。</p>
+<h3>2.4.13 定理2.4.8：复合函数的极限</h3>
+<p class="pgref"><b>课本：20</b></p>
+<p>设 $\lim_{x\to x_0}f(x)=l$，$\lim_{t\to t_0}g(t)=x_0$。如果在 $t_0$ 的某个邻域 $B_\eta(t_0)$ 内 $g(t)\ne x_0$，那么</p>
+<div class="formula">$$\lim_{t\to t_0}f(g(t))=l.$$</div>
+<h4>课本证明路线</h4>
+<p>对任意 $\varepsilon>0$，由 $f(x)\to l$ 取 $\sigma>0$ 使 $x\in B_\sigma(\mathring{x}_0)$ 时 $|f(x)-l|&lt;\varepsilon$；对这个 $\sigma$，由 $g(t)\to x_0$ 取 $\eta_1>0$ 使 $t\in B_{\eta_1}(\mathring{t}_0)$ 时 $|g(t)-x_0|&lt;\sigma$；取 $\delta=\min(\eta,\eta_1)$，则 $t\in B_\delta(\mathring{t}_0)$ 时 $g(t)\ne x_0$ 且 $0&lt;|g(t)-x_0|&lt;\sigma$，即 $g(t)\in B_\sigma(\mathring{x}_0)$，代入即得。</p>
+<p>&gt; 课本注明（重要）：定理2.4.8 中条件 $g(t)\ne x_0$ <b>至为重要</b>，没有这个条件定理可能就不成立。反例：令 $f(x)=1\ (x=0)$、$f(x)=0\ (x\ne0)$，$g(t)\equiv0$，则 $\lim g(t)=0$、$\lim f(x)=0$，按定理应有 $\lim_{t\to0}f(g(t))=0$，但事实上 $f(g(t))\equiv1$——原因就是条件 $g(t)\ne0$ 被破坏了。</p>
+<h3>2.4.14 定义2.4.2：单边极限</h3>
+<p class="pgref"><b>课本：21</b></p>
+<p>设函数 $f$ 在 $(x_0,x_0+r)$（$r$ 是确定的正数）上有定义，$l$ 是给定实数。若对任意给定的 $\varepsilon>0$，存在 $\delta\in(0,r)$，使得当 $0&lt;x-x_0&lt;\delta$ 时有 $|f(x)-l|&lt;\varepsilon$，则称 $l$ 为 $f$ 在 $x_0$ 处的<b>右极限</b>，记作</p>
+<div class="formula">$$l=\lim_{x\to x_0^+}f(x);$$</div>
+<p>右极限存在时常记为 $f(x_0+)$ 或 $f(x_0+0)$。类似地可定义左极限 $f(x_0-)$。右极限和左极限统称<b>单边极限</b>。</p>
+<p>课本注明（重要）：切勿将 $f(x_0-),f(x_0+)$ 误认为是 $f$ 在 $x_0$ 处的值——$f$ 完全可能在 $x_0$ 处没有定义；即使 $f(x_0)$ 有意义，它与两者也可能毫无联系。课本例子：$[0,2]$ 上 $f(x)=x-5\ (1&lt;x\le2)$、$10\ (x=1)$、$x+2\ (0\le x&lt;1)$，则 $f(1-)=3$、$f(1+)=-4$，它们和 $f(1)=10$ 没有关系。</p>
+<h3>2.4.15 定理2.4.9：单边极限刻画极限</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p>设函数 $f$ 在 $x_0$ 的某个邻域内（$x_0$ 可能是例外）有定义，那么 $\lim_{x\to x_0}f(x)$ 存在的充分必要条件是</p>
+<div class="formula">$$f(x_0+)=f(x_0-),$$</div>
+<p>这个共同的值也就是函数 $f$ 在 $x_0$ 处的极限值。</p>
+<p>课本注明：“这一事实至为明显，略去不证。”</p>
+<h3>2.4.16 例6 ★：重要极限 sin x / x → 1</h3>
+<p class="pgref"><b>课本：22</b></p>
+<p><b>命题</b>：$\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>$f(x)=\frac{\sin x}{x}$ 除 $x=0$ 外处处有定义，且 $f(-x)=f(x)$ 是偶函数；</li><li>先证 $f(0+)=1$：在 $(0,\pi/2)$ 内作单位圆，设 $x=\angle AOB$（弧度），由图2.3 得面积关系“$\triangle AOB$ &lt; 扇形 $OAB$ &lt; $\triangle AOC$”，推出</li></ol>
+<div class="formula">$$\cos x&lt;\frac{\sin x}{x}&lt;1;$$</div>
+<ol><li>进而 $0&lt;1-\frac{\sin x}{x}&lt;1-\cos x=2\sin^2\frac x2&lt;\frac{x^2}{2}&lt;\frac{\pi}{4}x$；</li><li>对任给的 $\varepsilon>0$ 取 $\delta=\min(\pi/2,4\varepsilon/\pi)$，$x\in(0,\delta)$ 时 $0&lt;1-\frac{\sin x}{x}&lt;\frac{\pi}{4}\delta\le\varepsilon$，故 $f(0+)=1$；</li><li>由偶函数性 $f(0-)=1$，依定理2.4.9 即得结论。</li></ol>
+<p>&gt; 课本注明：<b>例6 中所指出的极限是一个十分有用的事实，不可以将它只作为一个普通的例子来对待。</b></p>
+<h3>2.4.17 例7：换元技巧</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p>计算 $\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^2}$。</p>
+<p>解：$\dfrac{1-\cos x}{x^2}=\dfrac{2\sin^2(x/2)}{x^2}=\dfrac12\Big(\big(\sin\frac x2\big)/\frac x2\Big)^2$；令 $t=x/2$，$x\to0$ 等价于 $t\to0$，由例6 得极限为 $\dfrac12\times1^2=\dfrac12$。</p>
+<p>课本注明：技巧 $t=x/2$ 称为<b>变量代换</b>（又称换元），在数学分析的各个部分中都非常有用。</p>
+<h3>2.4.18 例8 ★：Riemann 函数</h3>
+<p class="pgref"><b>课本：23</b></p>
+<p><b>命题</b>：Riemann（黎曼，1826～1866）函数定义为</p>
+<div class="formula">$$R(x)=\begin{cases}\dfrac1q,& x=\dfrac pq\ (q>0,\ p,q\ \text{互质}),\\[2pt] 0,& x\text{ 为无理数},\end{cases}$$</div>
+<p>则对任意实数 $x_0$，$\displaystyle\lim_{x\to x_0}R(x)=0$。</p>
+<p><b>课本证明路线</b>：对任意 $\varepsilon>0$，取充分大的正整数 $q_0$ 使 $1/q_0&lt;\varepsilon$；区间 $(x_0-1,x_0+1)$ 中满足 $0&lt;q\le q_0$ 的分数 $p/q$ 只有有限多个，故能取充分小的 $\delta>0$，使 $(x_0-\delta,x_0+\delta)$ 中有理数的分母都 $q>q_0$；于是无理点处 $R(x)=0$，有理点 $x=p/q$ 处 $0\le R(x)=1/q&lt;1/q_0&lt;\varepsilon$。</p>
+<hr>
+<h2 id="sec2_5">§2.5 极限过程的其他形式<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.26-30</b></p>
+<h3>2.5.1 引言（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.26-30</b></p>
+<p>2.4 节讨论了 $\lim_{x\to x_0}f(x)=l$（$x_0,l$ 为确定实数）。有很多理由说明有必要放宽 $x_0$ 和 $l$ 为实数的限制——例如放射性物质的质量随时间无限延长而“要多小就有多小”，这时 $t$ 所接近的不是一个实数。课本只详细讨论其中两种形式，其余可举一反三。</p>
+<h3>2.5.2 定义2.5.1：$x\to\infty$ 的极限</h3>
+<p class="pgref"><b>课本：26</b></p>
+<p>设 $l$ 是确定的实数，表达式</p>
+<div class="formula">$$\lim_{x\to\infty}f(x)=l$$</div>
+<p>的意思是：对任意给定的 $\varepsilon>0$，存在一个正数 $A$，当 $x$ 满足 $|x|>A$ 时，有 $|f(x)-l|&lt;\varepsilon$。也可简记为 $f(x)\to l=f(\infty)\ (x\to\infty)$。</p>
+<h3>2.5.3 定义2.5.2：负无穷处的极限</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>对任意给定的 $\varepsilon>0$，存在一个正数 $A>0$，使得当 $x&lt;-A$ 时有 $|f(x)-l|&lt;\varepsilon$。此时称“在负无穷处函数 $f$ 有极限 $l$”，记为</p>
+<div class="formula">$$f(-\infty)=\lim_{x\to-\infty}f(x)=l.$$</div>
+<p>课本注明：$f(x)\to l\ (x\to+\infty)$ 的精确定义请读者自行给出。</p>
+<h3>2.5.4 定理2.5.1</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>$\displaystyle\lim_{x\to\infty}f(x)=l$ 当且仅当</p>
+<div class="formula">$$f(-\infty)=\lim_{x\to-\infty}f(x)=l,\qquad f(+\infty)=\lim_{x\to+\infty}f(x)=l$$</div>
+<p>同时成立。（课本标注“显然”。）</p>
+<h3>2.5.5 例1</h3>
+<p class="pgref"><b>课本：27</b></p>
+<p>设 $f(x)=\left(1+\frac{1}{[x]}\right)^{[x]}\ (x\ge1)$，其中 $[x]$ 表示不大于 $x$ 的最大整数，求 $\lim_{x\to+\infty}f(x)$。</p>
+<p>解：第 1 章已证数列 $\{(1+1/n)^n\}$ 递增地趋向于自然对数的底 e，故对任给的 $\varepsilon>0$ 存在 $N\in\mathbf{N}^*$ 使 $0&lt;\mathrm{e}-\left(1+\frac1N\right)^N&lt;\varepsilon$；由于 $f$ 是递增函数，$x\ge N$ 时 $[x]\ge N$，从而 $0&lt;\mathrm{e}-f(x)&lt;\varepsilon$，故极限为 $\mathrm{e}$。课本并建议用 ε-A 语言自证更容易的 $\lim_{x\to+\infty}\left(1+\frac1{[x]}\right)=1$。</p>
+<h3>2.5.6 各定理对其他极限过程的适用性（课本说明）</h3>
+<p class="pgref"><b>课本：p.26-30</b></p>
+<p>2.4 节中关于四则运算、夹逼原理等定理虽是对“$x\to x_0$”叙述和证明的，但对其他极限过程显然也适用，只是应当在<b>同一类</b>极限过程中加以运用；Cauchy 收敛原理只需加以明显的改动也成立（见练习题2.5 第9题）。</p>
+<h3>2.5.7 例2 ★：重要极限 (1+1/x)^x → e</h3>
+<p class="pgref"><b>课本：28</b></p>
+<p><b>命题</b>：$\displaystyle\lim_{x\to\infty}\left(1+\frac1x\right)^x=\mathrm{e}$。</p>
+<p><b>课本证明路线</b>：</p>
+<ol><li>先设 $x\ge1$。由不等式 $[x]\le x&lt;[x]+1$ 得</li></ol>
+<div class="formula">$$\left(1+\frac{1}{[x]+1}\right)^{[x]}&lt;\left(1+\frac1x\right)^x&lt;\left(1+\frac{1}{[x]}\right)^{[x]+1};$$</div>
+<ol><li>用四则运算易知左右两边的函数当 $x\to+\infty$ 时都趋向 e（结合例1），由夹逼原理得 $x\to+\infty$ 的结论；</li><li>再论 $x\to-\infty$：令 $y=-(x+1)$，则 $y\to+\infty$，而</li></ol>
+<div class="formula">$$\left(1+\frac1x\right)^x=\left(1+\frac1y\right)^{y}\left(1+\frac1y\right)\to \mathrm{e}\cdot1=\mathrm{e},$$</div>
+<p>综上得 $\lim_{x\to-\infty}=e$。</p>
+<p>&gt; 课本注明：下面的例子与 2.4 节中的例6 一样是一个重要的极限。</p>
+<hr>
+<h2 id="sec2_6">§2.6 无穷小与无穷大<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.30-35</b></p>
+<h3>2.6.1 定义2.6.1：无穷大</h3>
+<p class="pgref"><b>课本：30</b></p>
+<p>设 $x_0$ 是一个实数，函数 $f(x)$ 在 $x_0$ 的一个近旁（可能除 $x_0$ 之外）有定义。如果对任意给定的正数 $A$，存在 $\delta>0$，使得当 $0&lt;|x-x_0|&lt;\delta$ 时有 $|f(x)|>A$，则称“当 $x$ 趋向于 $x_0$ 时，函数 $f$ 趋向于无穷大”，记作</p>
+<div class="formula">$$\lim_{x\to x_0}f(x)=\infty\qquad\text{或}\qquad f(x)\to\infty\ (x\to x_0).$$</div>
+<p>类似地还可定义 $\lim_{x\to x_0^+}f(x)=+\infty$、$\lim_{x\to x_0^-}f(x)=-\infty$、$\lim_{x\to-\infty}f(x)=\infty$、$\lim_{x\to+\infty}f(x)=\infty$ 等等；所有这些情形都称“在所标明的极限过程中 $f$ 是一个无穷大（量）”。</p>
+<p>与之相对照（叙述式）：如果在某一极限过程中 $\lim f(x)=0$，则称“在该过程中 $f$ 是一个无穷小（量）”。</p>
+<p>课本注明：无穷大的倒数是无穷小；不取零值的无穷小的倒数是无穷大。</p>
+<h3>2.6.2 定义2.6.2：无穷小的比较与阶</h3>
+<p class="pgref"><b>课本：31</b></p>
+<p>设当 $x\to x_0$ 时 $f$ 与 $g$ 都是无穷小，并且 $g$ 在 $x_0$ 的一个充分小的近旁（除 $x_0$ 之外）不取零值：</p>
+<ol><li>若 $\lim_{x\to x_0}\frac{f(x)}{g(x)}=0$，称 $f$ 是比 $g$ <b>更高阶的无穷小</b>；</li><li>若 $\lim_{x\to x_0}\frac{f(x)}{g(x)}=l\ne0$，称 $f$ 与 $g$ 是<b>同阶的无穷小</b>；</li><li>若 (2) 中 $l=1$，称 $f$ 与 $g$ 是<b>等价的无穷小</b>，记为 $f\sim g\ (x\to x_0)$。</li></ol>
+<p>阶的量化（叙述式）：当 $x\to x_0$ 时很自然地取 $x-x_0$ 当作“1 阶无穷小”；若无穷小 $f$ 与 $(x-x_0)^{\alpha}\ (\alpha>0)$ 同阶，就称 $f$ 为 $\alpha$ 阶的无穷小。课本例：由</p>
+<div class="formula">$$\sin x\sim x,\qquad \sqrt{1+x}-1\sim\frac12x,\qquad 1-\cos x\sim\frac12x^2\qquad(x\to0),$$</div>
+<p>可见 $\sin x$ 与 $\sqrt{1+x}-1$ 都是 1 阶无穷小，$1-\cos x$ 是 2 阶无穷小（$x\to0$）。</p>
+<h3>2.6.3 无穷大的比较（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.30-35</b></p>
+<p>同一极限过程中的两个无穷大同样比较：$\lim\frac{f(x)}{g(x)}=0$ 时称 $g$ 是比 $f$ 更高阶的无穷大（$f$ 是比 $g$ 更低阶的无穷大）；该极限存在且不为 0 时称为同阶的无穷大；极限值为 1 时称为等价的无穷大。</p>
+<p>课本例子：</p>
+<ul><li>当 $x\to1$ 时取 $\frac{1}{x-1}$ 作标准无穷大，由</li></ul>
+<div class="formula">$$\frac{x^2+x-2}{(x^2-1)^3}=\Big(\frac{1}{x-1}\Big)^2\frac{x+2}{(x+1)^3},\qquad \lim_{x\to1}\frac{x+2}{(x+1)^3}=\frac38\ne0,$$</div>
+<p>知 $\frac{x^2+x-2}{(x^2-1)^3}$ 是 2 阶的无穷大；</p>
+<ul><li>当 $x\to\infty$ 时取 $|x|$ 为标准无穷大，由 $\sqrt{2x^2+1}=|x|\sqrt{2+\frac1{x^2}}$ 得 $\lim_{x\to\infty}\frac{\sqrt{2x^2+1}}{|x|}=\sqrt2\ne0$，故 $\sqrt{2x^2+1}$ 是 1 阶的无穷大。</li></ul>
+<p>课本注明（重要）：不是对每一个无穷小或无穷大都能定出“阶”——例如 $x\to0$ 时 $x\sin\frac1x$ 是无穷小，但把 $x$ 取作标准无穷小时不可能为它“定阶”。又：当 $x\to+\infty$ 时，</p>
+<div class="formula">$$\ln x,\qquad x^{\alpha}\ (\alpha>0),\qquad a^x\ (a>1),\qquad x^x$$</div>
+<p>都是无穷大，课本预告将在 3.6 节证明：按上述顺序后一个是比前一个更高阶的无穷大——这一认识在讨论许多问题时都要用到。</p>
+<h3>2.6.4 定理2.6.1：等价无穷小（大）的因式替换</h3>
+<p class="pgref"><b>课本：32</b></p>
+<p>如果当 $x\to x_0$（$x_0$ 可以是 $\pm\infty$）时，$f,g$ 是等价的无穷小或无穷大，那么：</p>
+<div class="formula">$$\text{(1)}\ \lim_{x\to x_0}f(x)h(x)=\lim_{x\to x_0}g(x)h(x);\qquad \text{(2)}\ \lim_{x\to x_0}\frac{f(x)}{h(x)}=\lim_{x\to x_0}\frac{g(x)}{h(x)}.$$</div>
+<h4>课本证明路线</h4>
+<p>因为 $f\sim g$，$\lim fh=\lim\frac fg gh=\lim gh$；(2) 的证明与 (1) 一样。</p>
+<p>课本应用示例：</p>
+<ul><li>由 $\sin ax\sim ax$、$\sin bx\sim bx$（$a,b\ne0$）得 $\lim_{x\to0}\dfrac{\sin ax}{\sin bx}=\dfrac ab$；</li><li>$\displaystyle\lim_{x\to0}\frac{\left(\sqrt{1+\sqrt x}-1\right)\tan\frac x2}{1-\cos x^{3/4}}=\lim_{x\to0}\frac{\frac12\sqrt x\cdot\frac x2}{\frac12x^{3/2}}=\frac12$（用到 $\sqrt{1+\sqrt x}-1\sim\frac12\sqrt x$、$\tan\frac x2\sim\frac x2$、$1-\cos x^{3/4}\sim\frac12x^{3/2}$）。</li></ul>
+<p>&gt; 课本注明（重要）：这种代替<b>只能发生在以因式形式出现的无穷小（或无穷大）上</b>，不能发生在以加项或减项出现者上，否则会产生错误。反例：计算 $\lim_{x\to0}\frac{\sin x-\tan x}{x^3}$，错误地把 $\sin x,\tan x$ 都换成 $x$ 会得到 0；事实上</p>
+<div class="formula">$$\sin x-\tan x=\sin x\Big(1-\frac{1}{\cos x}\Big)=\frac{\sin x(\cos x-1)}{\cos x},$$</div>
+<p>正确结果是 $-\lim\dfrac{\sin x}{x}\cdot\dfrac{1-\cos x}{x^2}\cdot\dfrac{1}{\cos x}=-\dfrac12$。</p>
+<h3>2.6.5 定义2.6.3：记号 O 与 o</h3>
+<p class="pgref"><b>课本：34</b></p>
+<p>设函数 $f$ 与 $g$ 在 $x_0$ 的近旁（$x_0$ 除外）有定义，并且 $g(x)\ne0$：</p>
+<ol><li>当 $x\to x_0$ 时若比值 $\frac{f(x)}{g(x)}$ 保持有界，即存在正常数 $M$ 使 $|f(x)|\le M|g(x)|$ 成立，就用 $f(x)=O(g(x))\ (x\to x_0)$ 表示；</li><li>当 $x\to x_0$ 时若 $f(x)/g(x)$ 是一个无穷小（即 $\lim_{x\to x_0}\frac{f(x)}{g(x)}=0$），就用 $f(x)=o(g(x))\ (x\to x_0)$ 表示。</li></ol>
+<p>特别地，$f(x)=O(1)$ 与 $f(x)=o(1)$ 分别表示在 $x\to x_0$ 的过程中 $f$ 有界与 $f$ 是无穷小。课本例子：$3x^2-2x+10=O(x^2)\ (x\to\infty)$；$x=O(\sin x)\ (x\to0)$；$x^{3/2}\sin\frac1x=o(x)\ (x\to0)$。</p>
+<h4>课本说明（记号用法）</h4>
+<ul><li>记号 $O(g(x))$、$o(g(x))$ 并不具体代表一个量，只表示量的一种状态、一种类型；</li><li>式中的“=”应理解为属于（$\in$）的意思；“等式”两边的项<b>不能像通常等式那样交换</b>（$O(g(x))=f(x)$ 没有明确意义）；</li><li>$O(1)+o(1)=O(1)\ (x\to x_0)$ 有意义（有界量加无穷小仍是有界量），但不能从两边去掉 $O(1)$ 得出 $o(1)=0$；$O(1)+O(1)=O(1)$ 有明确意义，既不能两边同时取走一个 $O(1)$，也无须写成 $O(1)+O(1)=2O(1)$。</li></ul>
+<hr>
+<h2 id="sec2_7">§2.7 连续函数<span class="freq">★★</span></h2>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<h3>2.7.1 引言（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.35-44</b></p>
+<p>课本以气温为例引入直觉：正午前后很小时间区间内气温变化不会太大，且这种温差要多小就可以有多小；同时一定存在某时刻气温等于当日最低与最高气温之间任何指定的气温。为了描述和研究这类函数，给出如下定义。</p>
+<h3>2.7.2 定义2.7.1：函数在一点连续</h3>
+<p class="pgref"><b>课本：36</b></p>
+<p>设 $f\colon[a,b]\to\mathbb{R}$。称函数 $f$ 在点 $x_0\in(a,b)$ <b>连续</b>，如果</p>
+<div class="formula">$$\lim_{x\to x_0}f(x)=f(x_0);$$</div>
+<p>也就是说，对任意给定的 $\varepsilon>0$，存在适当的 $\delta>0$，使得当 $|x-x_0|&lt;\delta$ 时有 $|f(x)-f(x_0)|&lt;\varepsilon$。</p>
+<p>课本注明：若 $f$ 在 $x_0$ 处连续，则 $f$ 在 $x_0$ 必有极限且极限值正是 $f(x_0)$，因此 $f$ 必须在点 $x_0$ 处<b>有定义</b>。几何解释（图2.5）：不论带状区域 $y=f(x_0)\pm\varepsilon$ 多么狭窄，必可找到竖直线 $x=x_0\pm\delta$，使相应曲线段全部落在两组平行线围成的矩形之中。</p>
+<h3>2.7.3 例1～例3（基本初等函数的连续性）</h3>
+<p class="pgref"><b>课本：36</b></p>
+<ul><li><b>例1</b> (p36)：常值函数处处连续。取 $\delta=1$ 即可。</li><li><b>例2</b> (p36)：$f(x)=x$ 处处连续。取 $\delta=\varepsilon$。</li><li><b>例3</b> (p37)：正弦函数与余弦函数在每一点连续。和差化积</li></ul>
+<div class="formula">$$\sin x-\sin x_0=2\sin\frac{x-x_0}{2}\cos\frac{x+x_0}{2},$$</div>
+<p>取 $\delta=\varepsilon$ 得 $|\sin x-\sin x_0|\le|x-x_0|&lt;\varepsilon$；余弦情形化为 $\sin(\frac\pi2-x)$ 归到正弦。</p>
+<h3>2.7.4 例4 ★：Dirichlet 函数的连续点集</h3>
+<p class="pgref"><b>课本：37</b></p>
+<p><b>命题</b>：(1) Dirichlet 函数 $D$ 在每一点都不连续；(2) 令 $f(x)=xD(x)$，则 $f$ 除在 $x=0$ 处连续外其他各点都不连续。</p>
+<p><b>课本证明路线</b>：(1) 2.4 节例5 已证 $\lim_{x\to x_0}D(x)$ 处处不存在；(2) 在 $x=0$ 处 $|f(x)-f(0)|=|xD(x)|\le|x|$，取 $\delta=\varepsilon$ 即连续；当 $x_0\ne0$ 时若 $f$ 连续，则由四则运算 $\lim D(x)=\lim\frac{f(x)}x=\frac{f(x_0)}{x_0}=D(x_0)$，即 $D$ 在 $x_0$ 连续，矛盾。</p>
+<p>&gt; 课本注明：这个例子说明，<b>存在处处不连续的函数，也存在只有一个连续点的函数</b>，而这些都是通过 Dirichlet 函数来表达的。</p>
+<h3>2.7.5 定义2.7.2：左连续与右连续</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p>如果 $f(x_0+)=f(x_0)$，则称 $f$ 在 $x_0$ 处<b>右连续</b>；如果 $f(x_0-)=f(x_0)$，则称 $f$ 在 $x_0$ 处<b>左连续</b>。</p>
+<p>课本注明：非常明显，函数 $f$ 在 $x_0$ 处连续必须且只需 $f(x_0-)=f(x_0+)=f(x_0)$。</p>
+<h3>2.7.6 例5：指数函数连续</h3>
+<p class="pgref"><b>课本：38</b></p>
+<p><b>命题</b>：指数函数 $a^x\ (a>0,a\ne1)$ 在其定义域上的每一个点处连续。</p>
+<p><b>课本证明路线</b>：先证在 $x=0$ 处连续。设 $a>1$：引用第 1 章例题 $\lim a^{1/n}=1$，对任给 $\varepsilon>0$ 存在 $N$ 使 $0&lt;a^{1/N}-1&lt;\varepsilon$，取 $\delta&lt;1/N$，则 $x\in(0,\delta)$ 时 $0&lt;a^x-1&lt;a^\delta-1&lt;a^{1/N}-1&lt;\varepsilon$，故 $\lim_{x\to0^+}a^x=1$；$0&lt;a&lt;1$ 时取倒数归结为 $1/a>1$。再用变换 $y=-x$ 求 $f(0-)=\lim_{y\to0^+}a^{-y}=1$。最后对任意 $x_0$：</p>
+<div class="formula">$$\lim_{x\to x_0}a^x=\lim a^{x_0}a^{x-x_0}=a^{x_0}\lim_{t\to0}a^t=a^{x_0}.$$</div>
+<h3>2.7.7 定理2.7.1：连续函数的四则运算</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>如果函数 $f$ 与 $g$ 在 $x_0$ 处连续，那么 $f\pm g$ 与 $fg$ 都在 $x_0$ 处连续；进一步，若 $g(x_0)\ne0$，则 $f/g$ 也在 $x_0$ 处连续。</p>
+<p>课本说明（叙述式）：这样一来，多项式函数、三角函数在其各自定义域上每一点连续；有理函数（两个多项式之商）在除去分母零点之外的其他点处都连续。</p>
+<h3>2.7.8 定理2.7.2：复合函数的连续性</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>设函数 $g$ 在 $t_0$ 处连续，记 $g(t_0)=x_0$。如果函数 $f$ 在 $x_0$ 处连续，那么复合函数 $f\circ g$ 在 $t_0$ 处连续。</p>
+<p>（利用证明复合函数极限定理的方法立刻得到。）</p>
+<h3>2.7.9 定义2.7.3：区间上的连续函数与 C(I)</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>设 $I$ 是一个开区间（如 $(a,b),(a,+\infty),(-\infty,b),(-\infty,+\infty)$）。如果函数 $f$ 在 $I$ 上的每一点处都连续，则称 $f$ 在 $I$ 上连续。设 $I=[a,b]$，称 $f$ 在 $I$ 上连续，是指 $f$ 在 $(a,b)$ 上连续，并且在 $a$ 点处右连续、在 $b$ 点处左连续。不论区间开闭、有限无穷，用 $C(I)$ 记 $I$ 上连续函数的全体。</p>
+<p>课本说明：利用定理2.7.2 可以从已知连续函数出发经复合得出大量新的连续函数，如 $\sin a^x$、$\cos\sin x$ 等等。</p>
+<h3>2.7.10 定理2.7.3：反函数的连续性</h3>
+<p class="pgref"><b>课本：39</b></p>
+<p>设 $f$ 是在区间 $I$ 上严格递增（减）的连续函数，那么 $f^{-1}$ 是 $f(I)$ 上的严格递增（减）的连续函数。</p>
+<h4>课本证明路线</h4>
+<ol><li>在推论2.10.1 中将看到 $J=f(I)$ 也是一个区间（课本在此前引后文结论）；</li><li>不妨设 $f$ 严格递增，任取 $y_0\in J$，令 $x_0=f^{-1}(y_0)$；给定 $\varepsilon>0$ 使 $x_0\pm\varepsilon\in I$，令</li></ol>
+<div class="formula">$$\delta_1=y_0-f(x_0-\varepsilon)>0,\quad \delta_2=f(x_0+\varepsilon)-y_0>0,\quad \delta=\min(\delta_1,\delta_2);$$</div>
+<ol><li>当 $|y-y_0|&lt;\delta$ 时，利用 $f^{-1}$ 严格递增得 $x_0-\varepsilon&lt;f^{-1}(y)&lt;x_0+\varepsilon$，即 $|f^{-1}(y)-f^{-1}(y_0)|&lt;\varepsilon$。</li></ol>
+<p>由此得到的系列结论（叙述式）：$x^{1/n}$ 在 $[0,+\infty)$ 上连续，进而对任何正有理数 $r$，$x^r$ 在 $[0,+\infty)$ 上连续；$\log_a x$（特别是 $\ln x$）是 $(0,+\infty)$ 上严格递增的连续函数；幂函数 $x^\mu=e^{\mu\ln x}\ (x>0)$ 连续；反三角函数 $\arcsin x$（$[-1,1]$）、$\arccos x$（$[-1,1]$）、$\arctan x$（$\mathbb{R}$）在各自定义域上连续。</p>
+<h3>2.7.11 定理2.7.4：初等函数的连续性</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>多项式函数、幂函数、指数函数、对数函数、三角函数与反三角函数，以及由它们经过有限次四则运算、有限次复合所形成的函数，统称为<b>初等函数</b>（叙述式）。</p>
+<p><b>定理2.7.4：初等函数在它们各自的定义域上都是连续的。</b></p>
+<h3>2.7.12 定义2.7.4：间断点的分类</h3>
+<p class="pgref"><b>课本：40</b></p>
+<p>设 $x_0$ 是函数 $f$ 的间断点：</p>
+<ol><li>若 $f(x_0+)$ 与 $f(x_0-)$ 存在且有限，但 $f(x_0+)\ne f(x_0-)$，称 $x_0$ 为 $f$ 的一个<b>跳跃点</b>，差 $|f(x_0+)-f(x_0-)|>0$ 称为 $f$ 在这一点的跳跃；</li><li>若 $f(x_0+)$ 与 $f(x_0-)$ 存在有限且相等，但不等于 $f(x_0)$，称 $x_0$ 为 $f$ 的<b>可去间断点</b>（修改 $f$ 在 $x_0$ 的值可使 $x_0$ 成为新函数的连续点）；</li><li>若二者中至少有一个不存在或者不是有限的数，称 $x_0$ 为 $f$ 的<b>第二类间断点</b>。</li></ol>
+<p>跳跃点和可去间断点统称为第一类间断点。</p>
+<p>课本三个例子：$f(x)=x^2+1\ (x\ge0),\ x\ (x&lt;0)$ 以 $x=0$ 为跳跃点；$g(x)=\frac{\sin x}{x}\ (x\ne0)$ 以 $x=0$ 为可去间断点；$h(x)=\sin\frac1x\ (x\ne0),\ h(0)=0$ 以 $x=0$ 为第二类间断点。</p>
+<h3>2.7.13 定理2.7.5：单调函数的间断点</h3>
+<p class="pgref"><b>课本：41</b></p>
+<p>设 $f$ 是区间 $(a,b)$ 上的递增（减）函数，则 $f$ 的间断点一定是跳跃点，而且跳跃点集是至多可数的。</p>
+<h4>课本证明路线</h4>
+<ol><li>不妨设 $f$ 递增。任取 $x\in(a,b)$，数集 $\{f(t):a&lt;t&lt;x\}$ 有上界（$f(x)$ 即其一），故有上确界 $A\le f(x)$；</li><li>对任意 $\varepsilon>0$，由上确界的最小性存在 $\delta>0$ 使 $A-\varepsilon&lt;f(x-\delta)$，结合单调性得 $t\in(x-\delta,x)$ 时 $|f(t)-A|&lt;\varepsilon$，故 $f(x-)=A$ 存在有限；同法 $f(x+)$ 存在有限，且 $f(x-)\le f(x)\le f(x+)$；</li><li>只有当 $f(x+)>f(x-)$ 时 $x$ 才是跳跃点，故间断点只能是跳跃型；</li><li>跳跃点集至多可数：对每个间断点 $x$ 取有理数 $r(x)\in(f(x-),f(x+))$；当 $x_1&lt;x_2$ 时 $f(x_1+)\le f(x_2-)$，故 $r(x_1)&lt;r(x_2)$，$x\mapsto r(x)$ 把间断点集一一对应到有理数集的一个子集。</li></ol>
+<p>课本结尾指出：Dirichlet 函数是处处不连续的函数的例子，它的间断点的集合为 $\mathbb{R}$，是不可数集。</p>
+<hr>
+<h2 id="sec2_8">§2.8 连续函数与极限计算<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.44-48</b></p>
+<h3>2.8.1 连续点处求极限（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.44-48</b></p>
+<p>如果 $f$ 在 $x_0$ 处连续，则 $\lim_{x\to x_0}f(x)=f(x_0)$——在连续点的极限就是函数值。这一事实也可表示为</p>
+<div class="formula">$$\lim_{x\to x_0}f(x)=f\Big(\lim_{x\to x_0}x\Big),$$</div>
+<p>即<b>对连续函数而言，极限符号与函数符号可交换</b>。这大大简化了初等函数在其定义域上每一点的极限的计算。</p>
+<h3>2.8.2 例1：三个标准极限</h3>
+<p class="pgref"><b>课本：44</b></p>
+<p>(1) $\lim_{x\to0}\dfrac{\ln(1+x)}{x}=1$；(2) $\lim_{x\to0}\dfrac{a^x-1}{x}=\ln a\ (a>0)$；(3) $\lim_{x\to0}\dfrac{(1+x)^{\alpha}-1}{x}=\alpha$。</p>
+<p>解的路线：</p>
+<ul><li>(1) $\frac{\ln(1+x)}{x}=\ln(1+x)^{1/x}$，而 $\lim_{x\to0}(1+x)^{1/x}=\lim_{y\to\infty}(1+\frac1y)^y=\mathrm{e}$，由 $\ln$ 的连续性得极限为 $\ln\mathrm{e}=1$；</li><li>(2) 作变换 $t=a^x-1$（$x\to0\Leftrightarrow t\to0$），解出 $x=\frac{\ln(1+t)}{\ln a}$，于是 $\frac{a^x-1}{x}=\frac{t}{\ln(1+t)}\ln a$，由 (1) 得 $\ln a$；</li><li>(3) $\alpha=0$ 时显然为 0；$\alpha\ne0$ 时</li></ul>
+<div class="formula">$$\frac{(1+x)^{\alpha}-1}{x}=\frac{\mathrm{e}^{\alpha\ln(1+x)}-1}{\alpha\ln(1+x)}\cdot\frac{\alpha\ln(1+x)}{x},$$</div>
+<p>由 (1)(2) 得 $\alpha$。</p>
+<h3>2.8.3 有理函数极限的一般方法（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.44-48</b></p>
+<p>考察 $l=\lim_{x\to x_0}\frac{p(x)}{q(x)}$（$p,q$ 为多项式）：</p>
+<ul><li>若 $q(x_0)\ne0$，则 $l=p(x_0)/q(x_0)$；</li><li>若 $q(x_0)=0$ 而 $l$ 为有限数，则必有 $p(x_0)=0$（因为 $\lim p(x)=\lim\frac pq\cdot q=l\cdot0=0$）；</li><li>设 $p(x)=(x-x_0)^\alpha p_1(x)$、$q(x)=(x-x_0)^\beta q_1(x)$（$\alpha,\beta\in\mathbf{N}^*$，$p_1(x_0)\ne0$，$q_1(x_0)\ne0$），则</li></ul>
+<div class="formula">$$\frac{p(x)}{q(x)}=(x-x_0)^{\alpha-\beta}\frac{p_1(x)}{q_1(x)},$$</div>
+<p>$l$ 为有限数当且仅当 $\alpha\ge\beta$；更精确地说：$\alpha>\beta$ 时 $l=0$；$\alpha=\beta$ 时 $l=p_1(x_0)/q_1(x_0)$。</p>
+<p>课本结论：我们有一种确定的方法来计算任何有理函数的极限。</p>
+<h3>2.8.4 例2：用 o 记号展开求差商极限</h3>
+<p class="pgref"><b>课本：45</b></p>
+<p>设 $m,n\in\mathbf{N}^*$，计算 $l=\lim_{x\to1}\left(\dfrac{m}{x^m-1}-\dfrac{n}{x^n-1}\right)$。</p>
+<p>解：作代换 $x-1=t$，通分后利用二项式定理展开</p>
+<div class="formula">$$(1+t)^m=1+mt+o(t),\qquad (1+t)^m=1+mt+\tfrac12m(m-1)t^2+o(t^2)\qquad(t\to0)$$</div>
+<p>（$(1+t)^n$ 类似），代入化简得</p>
+<div class="formula">$$\frac{m((1+t)^n-1)-n((1+t)^m-1)}{((1+t)^m-1)((1+t)^n-1)}=\frac{\frac{mn(n-m)}2t^2+o(t^2)}{mnt^2+o(t^2)},$$</div>
+<p>令 $t\to0$ 得 $l=\dfrac{n-m}{2}$。课本注明：从这道例题可以看出 $O,o$ 这套记号的方便之处。</p>
+<h3>2.8.5 幂指函数与 $1^\infty$ 型（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.44-48</b></p>
+<ul><li>函数 $u(x)^{v(x)}\ (u(x)>0)$ 称为<b>幂指函数</b>；在其定义域内有等式 $u(x)^{v(x)}=\mathrm{e}^{v(x)\ln u(x)}$，故 $u,v$ 连续时幂指函数也连续。</li><li>若某过程中 $\lim u(x)=1$ 且 $\lim v(x)=\infty$，则称 $\lim u(x)^{v(x)}$ 是“$1^\infty$ 型”的；这里 $1^\infty$ 仅是一个符号，“1 的无穷次幂”这种说法本身毫无意义。</li><li>固定步骤：改写 $u^{v}=\left(\left(1+(u-1)\right)^{1/(u-1)}\right)^{(u-1)v}$；记 $\lambda=\lim(u-1)v$，当 $\lambda$ 存在且有限时立即得出 $\lim u^{v}=\mathrm{e}^{\lambda}$。（课本以 $\lim_{x\to\infty}(1+\frac1x)^x=\mathrm{e}$ 为 $1^\infty$ 型之例。）</li></ul>
+<h3>2.8.6 例3：几何平均</h3>
+<p class="pgref"><b>课本：47</b></p>
+<p>设 $a_1,a_2,\cdots,a_n$ 是任意给定的正数，计算</p>
+<div class="formula">$$l=\lim_{x\to0}\left(\frac{a_1^x+a_2^x+\cdots+a_n^x}{n}\right)^{1/x}.$$</div>
+<p>解：这是 $1^\infty$ 型。令 $A=\frac{a_1^x+\cdots+a_n^x-n}{n}$，$v=\frac1x$，则 $Av=\frac1n\sum_{i=1}^n\frac{a_i^x-1}{x}$，</p>
+<div class="formula">$$\lambda=\lim_{x\to0}Av=\frac1n\sum_{i=1}^n\ln a_i=\ln(a_1a_2\cdots a_n)^{1/n},$$</div>
+<p>故 $l=\mathrm{e}^{\lambda}=(a_1a_2\cdots a_n)^{1/n}$——极限等于 $n$ 个正数的<b>几何平均数</b>。</p>
+<h3>2.8.7 例4</h3>
+<p class="pgref"><b>课本：47</b></p>
+<p>计算 $\displaystyle\lim_{x\to\infty}\left(\cos\frac1x\right)^{x^2}$。</p>
+<p>解：这是 $1^\infty$ 型。令 $A=\cos\frac1x-1$，$v=x^2$，用代换 $t=1/x$ 得</p>
+<div class="formula">$$\lim Av=\lim_{x\to\infty}x^2\Big(\cos\frac1x-1\Big)=\lim_{t\to0}\frac{\cos t-1}{t^2}=-\frac12,$$</div>
+<p>故 $\lim_{x\to\infty}\left(\cos\frac1x\right)^{x^2}=\mathrm{e}^{-1/2}=\dfrac{1}{\sqrt{\mathrm{e}}}$。</p>
+<hr>
+<h2 id="sec2_9">§2.9 函数的一致连续性<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.48-52</b></p>
+<h3>2.9.1 定义2.9.1：一致连续</h3>
+<p class="pgref"><b>课本：48</b></p>
+<p>设 $I$ 是一个区间（可以是开的、半开的、闭的，也可以是无界的），$f\colon I\to\mathbb{R}$。如果对任意给定的 $\varepsilon>0$，总存在一个 $\delta>0$，使得当 $x_1,x_2\in I$ 且 $|x_1-x_2|&lt;\delta$ 时有 $|f(x_1)-f(x_2)|&lt;\varepsilon$，则称函数 $f$ 在区间 $I$ 上是<b>一致连续的</b>。</p>
+<p>课本说明：乍看与在一点连续的定义非常相近，实际上两者之间存在原则上的差别：若 $f$ 在 $I$ 上一致连续，则 $f$ 在 $I$ 上连续；但当 $f$ 在 $I$ 上连续时，一般地<b>不能</b>得出一致连续。</p>
+<h3>2.9.2 不一致连续的精确表述（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.48-52</b></p>
+<p>函数 $f$ 在区间 $I$ 上不是一致连续的，当且仅当存在一个 $\varepsilon_0>0$，对每一个 $n\in\mathbf{N}^*$ 都可在 $I$ 中找到两点 $s_n,t_n$，使虽有 $|s_n-t_n|&lt;1/n$，但是</p>
+<div class="formula">$$|f(s_n)-f(t_n)|\ge\varepsilon_0.$$</div>
+<p>按照这个表述，证明“不一致连续”就变得比较容易了。</p>
+<h3>2.9.3 例1～例5</h3>
+<p class="pgref"><b>课本：49</b></p>
+<ul><li><b>例1</b> (p49)：$\sqrt{x}$ 在 $[0,+\infty)$ 上一致连续。先证对任何 $x_1,x_2\ge0$ 有 $\sqrt{x_1}+\sqrt{x_2}\ge\sqrt{|x_2-x_1|}$，于是当 $x_1\ne x_2$ 时</li></ul>
+<div class="formula">$$\big|\sqrt{x_2}-\sqrt{x_1}\big|=\frac{|x_2-x_1|}{\sqrt{x_2}+\sqrt{x_1}}\le|x_2-x_1|^{1/2};$$</div>
+<p>取 $\delta=\varepsilon^2$ 即可。</p>
+<ul><li><b>例2</b> (p49)：由 $|\sin x_1-\sin x_2|\le|x_1-x_2|$、$|\cos x_1-\cos x_2|\le|x_1-x_2|$ 可见 $\sin x$ 与 $\cos x$ 在 $\mathbb{R}$ 上一致连续。</li><li><b>例3</b> (p49)：在 $[0,+\infty)$ 上，(1) 函数 $x$ 一致连续（取 $\delta=\varepsilon$）；(2) 当 $n=2,3,4,\cdots$ 时 $x^n$ 不一致连续。对 $x^2$ 取 $s_n=n$、$t_n=n+\frac{1}{2n}$：$t_n-s_n=\frac{1}{2n}&lt;\frac1n$ 而 $t_n^2-s_n^2=\frac{1}{2n}(2n+\frac{1}{2n})>1$；当 $n\ge3$ 时在条件 $x_2\ge x_1+1$ 下有 $x_2^n-x_1^n>x_2^2-x_1^2$，故归结为 $x^2$ 的情形。</li><li><b>例4</b> (p50)：$\sin\frac1x$ 在 $(0,1)$ 上不一致连续。取</li></ul>
+<div class="formula">$$s_n=\frac{1}{2n\pi+\pi/2},\qquad t_n=\frac{1}{2n\pi},$$</div>
+<p>则 $0&lt;t_n-s_n&lt;\frac{1}{2n\pi}&lt;\frac1n$，但 $\big|\sin\frac{1}{t_n}-\sin\frac{1}{s_n}\big|=1$。</p>
+<ul><li><b>例5</b> (p51)：对任意固定的 $\sigma>0$，函数 $1/x$ 在 $[\sigma,+\infty)$ 上一致连续。任取 $s,t\in[\sigma,+\infty)$：</li></ul>
+<div class="formula">$$\Big|\frac1s-\frac1t\Big|=\frac{|s-t|}{st}\le\frac{1}{\sigma^2}|s-t|,$$</div>
+<p>取 $\delta=\sigma^2\varepsilon$。</p>
+<p>课本注明：例3(2) 与例4 中的函数在指定区间上虽不是一致连续的，但作为初等函数它们在相应区间上是<b>连续</b>的——由此可见“连续”和“一致连续”有着重大区别；当然，一致连续性蕴涵连续性。</p>
+<h3>2.9.4 差异的根源（课本说明，叙述式）</h3>
+<p class="pgref"><b>课本：p.48-52</b></p>
+<p>为什么有些函数连续但不一致连续？逐点连续的定义中 $\delta$ 不仅与给定的 $\varepsilon$ 有关，而且与点 $x_0$ 的位置有关；区间上有不可数无穷个点，对同一个 $\varepsilon$ 相应地就有不可数无穷个 $\delta$，无法保证最小的 $\delta$ 存在。而一致连续的定义中 $\delta$ 完全由 $\varepsilon$ 所决定，与自变量在区间上的位置毫无关系。课本以 $y=1/x\ (0&lt;x&lt;1)$ 配图2.6 作几何解释：带形区域宽为 $\varepsilon$，对应区间长度满足 $\lim_{x\to0}|I(x)|=0$（曲线越来越陡峭），因此对这个 $\varepsilon$ 一个统一的正数 $\delta$ 根本找不到；并结合不等式</p>
+<div class="formula">$$\Big|\sin\frac1{x_1}-\sin\frac1{x_2}\Big|\le\Big|\frac1{x_1}-\frac1{x_2}\Big|\qquad(0&lt;x_1,x_2&lt;1)$$</div>
+<p>及例4 说明 $1/x$ 在该开区间上也不一致连续。</p>
+<p>课本结尾指出：$1/x$ 之所以在 $(0,1)$ 上不一致连续，是因为允许自变量向 0 无限制地靠近；如果不允许自变量任意接近 0，也许可以使连续变成一致——例5 表明这一观察完全正确。那么在怎样的区间上连续性蕴涵一致性？<b>有界的闭区间</b>就有这种特性；在这类区间上连续函数还有其他重要性质，正是下一节的内容。</p>
+<hr>
+<h2 id="sec2_10">§2.10 有限闭区间上连续函数的性质<span class="freq">★★★</span></h2>
+<p class="pgref"><b>课本：p.52-57</b></p>
+<p>本节讨论闭区间 $[a,b]$（$a$ 与 $b$ 都是实数）上的连续函数 $f\colon[a,b]\to\mathbb{R}$。</p>
+<h3>2.10.1 定理2.10.1：闭区间上连续必一致连续</h3>
+<p class="pgref"><b>课本：52</b></p>
+<p>设函数 $f$ 在 $[a,b]$ 上连续，那么 $f$ 在 $[a,b]$ 上必定一致连续。</p>
+<h4>课本证明路线</h4>
+<ol><li>反证：存在 $\varepsilon_0>0$ 及 $s_n,t_n\in[a,b]$ 使 $|s_n-t_n|&lt;1/n$ 但 $|f(s_n)-f(t_n)|\ge\varepsilon_0$；</li><li>由列紧性定理选子列 $s_{k_n}\to s^*\in[a,b]$；估计 $|t_{k_n}-s^*|\le|t_{k_n}-s_{k_n}|+|s_{k_n}-s^*|\le\frac1n+|s_{k_n}-s^*|$ 得 $t_{k_n}\to s^*$；</li><li>在 $|f(s_{k_n})-f(t_{k_n})|\ge\varepsilon_0$ 两边令 $n\to\infty$，由 $f$ 的连续性左边为 0，得矛盾。</li></ol>
+<p>课本注明：<b>区间必须是闭的、有界的，这两个条件缺一不可</b>，缺了其中任何一个定理的结论可能就不成立（反例见 §2.9 例3(2) 及例4）。</p>
+<h3>2.10.2 定理2.10.2：有界性</h3>
+<p class="pgref"><b>课本：53</b></p>
+<p>有界闭区间上的连续函数必在该区间上有界。</p>
+<h4>课本证明路线</h4>
+<ol><li>反证：若 $f$ 在 $[a,b]$ 上没有上界，则对每个自然数 $n$ 存在 $x_n\in[a,b]$ 使 $f(x_n)>n$；</li><li>从 $\{x_n\}$ 中选出收敛子列 $x_{k_n}\to\xi\in[a,b]$；</li><li>一方面连续性要求 $\lim f(x_{k_n})=f(\xi)$；另一方面 $f(x_{k_n})>k_n\ge n$ 迫使极限为 $+\infty$，矛盾。下界同理。</li></ol>
+<p>课本注明：如果 $f$ 在某个开区间上连续，结论不再成立——可能无界（如 $1/x$ 在 $(0,1)$）也可能有界（如 $x$ 在 $(0,1)$）；无穷区间上同样不成立。</p>
+<h3>2.10.3 定理2.10.3：最值定理</h3>
+<p class="pgref"><b>课本：54</b></p>
+<p>设 $f$ 在 $[a,b]$ 上连续，记</p>
+<div class="formula">$$M=\sup_{x\in[a,b]}f(x),\qquad m=\inf_{x\in[a,b]}f(x),$$</div>
+<p>则必存在 $x^*,x_*\in[a,b]$，使得 $f(x^*)=M,\ f(x_*)=m$。也就是说，<b>有界闭区间上的连续函数必能取到它在此区间上的最大值和最小值</b>。</p>
+<h4>课本证明路线</h4>
+<p>由定理2.10.2 知 $M,m$ 都是有限数；按上确界的定义对每个 $n$ 取 $x_n\in[a,b]$ 使 $M-\frac1n&lt;f(x_n)\le M$；选收敛子列 $x_{k_n}\to x^*\in[a,b]$，在 $M-\frac{1}{k_n}&lt;f(x_{k_n})\le M$ 两边令 $n\to\infty$ 并用连续性得 $f(x^*)=M$；同理存在 $x_*$ 使 $f(x_*)=m$。</p>
+<h3>2.10.4 定理2.10.4（零值定理）</h3>
+<p class="pgref"><b>课本：54</b></p>
+<p>设 $f$ 在 $[a,b]$ 上连续。如果 $f(a)f(b)&lt;0$，则必存在一点 $c\in(a,b)$，使得 $f(c)=0$。</p>
+<h4>课本证明路线（二分法 + 闭区间套定理）</h4>
+<ol><li>不妨设 $f(a)&lt;0&lt;f(b)$。把 $[a,b]$ 二等分：若 $f((a+b)/2)=0$ 则取 $c=(a+b)/2$；否则两个闭子区间中必有一个使 $f$ 在端点异号，记为 $[a_1,b_1]$；</li><li>无限进行下去得一列闭区间满足：(a) 嵌套；(b) $b_k-a_k=\frac{1}{2^k}(b-a)\to0$；(c) $f(a_k)&lt;0&lt;f(b_k)$；</li><li>由闭区间套定理得公共点 $c\in[a_k,b_k]$（一切 $k$）；在 (c) 中令 $k\to\infty$ 得 $f(c)\le0\le f(c)$，即 $f(c)=0$。</li></ol>
+<h3>2.10.5 零值定理的应用（例1～例3）</h3>
+<p class="pgref"><b>课本：55</b></p>
+<ul><li><b>例1</b> (p55)：方程 $2^x-4x=0$ 在 $(0,\frac12)$ 内有一个根。$f(0)=1$、$f(\frac12)=\sqrt2-2&lt;0$。</li><li><b>例2</b> (p55)：任何实系数奇次代数方程必有实根。将多项式写成</li></ul>
+<div class="formula">$$p(x)=x^{2n+1}\Big(1+\frac{a_0}{x}+\frac{a_1}{x^2}+\cdots+\frac{a_{2n}}{x^{2n+1}}\Big),$$</div>
+<p>知 $\lim_{x\to+\infty}p(x)=+\infty$、$\lim_{x\to-\infty}p(x)=-\infty$，故存在实数 $a&lt;b$ 使 $p(a)&lt;0&lt;p(b)$，由零值定理得实根。</p>
+<ul><li><b>例3</b> (p55)：短跑运动员用 10 s 跑完 100 m，证明至少有一段 10 m 路程恰用 1 s 跑完。设 $f(x)$ 为跑完 $[x,x+10]$ 所需时间（$x\in[0,90]$），$f$ 连续；若有 $x_1$ 使 $f(x_1)>1$，则由总用时约束必存在 $x_2$ 使 $f(x_2)&lt;1$；令 $g=f-1$ 用零值定理得 $x_0$ 使 $f(x_0)=1$。</li></ul>
+<h3>2.10.6 定理2.10.5（介值定理）</h3>
+<p class="pgref"><b>课本：55</b></p>
+<p>设 $f$ 是区间 $[a,b]$ 上非常值的连续函数，$\gamma$ 是介于 $f(a)$ 与 $f(b)$ 之间的任何实数，则必存在 $c\in(a,b)$，使得 $f(c)=\gamma$。</p>
+<h4>课本证明路线</h4>
+<p>不妨设 $f(a)&lt;\gamma&lt;f(b)$；令 $g(x)=f(x)-\gamma$，则 $g$ 在 $[a,b]$ 上连续且 $g(a)&lt;0&lt;g(b)$，由零值定理得 $c\in(a,b)$ 使 $g(c)=0$。</p>
+<h3>2.10.7 推论2.10.1：值域是闭区间</h3>
+<p class="pgref"><b>课本：56</b></p>
+<p>设非常值函数 $f$ 在 $I=[a,b]$ 上连续，那么 $f$ 的值域 $f(I)$ 是一个闭区间。</p>
+<p>事实上，设 $M$ 与 $m$ 分别为 $f$ 在 $[a,b]$ 上的最大值和最小值，由介值定理可知 $f(I)=[m,M]$。</p>
+<p>课本注明：我们在证明定理2.7.3 时用过这一结论。</p>
+<hr>
+<h2 id="sec2_11">§2.11 函数的上极限和下极限<span class="freq">★</span></h2>
+<p class="pgref"><b>课本：p.57-60</b></p>
+<h3>2.11.1 引言（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.57-60</b></p>
+<p>1.10 节引进过数列的上极限和下极限：数列的极限不一定存在，但其上下极限总是存在，且极限存在时正好等于上下极限——使用上下极限讨论问题可以较少受到约束。根据同样的理由引进函数的上下极限。课本回顾记号 $\mathbb{R}_\infty=\mathbb{R}\cup\{-\infty,+\infty\}$。</p>
+<p>课本指出：设 $f$ 定义在 $B_\delta(\mathring{x}_0)$ 上且在点 $x_0$ 的近旁有界，则一定存在 $x_n\in B_\delta(\mathring{x}_0)$，$x_n\to x_0$ 且 $\{f(x_n)\}$ 收敛；若 $f$ 在 $x_0$ 的近旁无上（下）界，则必存在 $x_n\to x_0$ 使 $f(x_n)\to+\infty$（$-\infty$）。</p>
+<h3>2.11.2 定义2.11.1：函数的上极限与下极限</h3>
+<p class="pgref"><b>课本：57</b></p>
+<p>令</p>
+<div class="formula">$$E=\{l\in\mathbb{R}_\infty:\text{存在数列 }x_n\in B_\delta(\mathring{x}_0),\ x_n\to x_0,\ \text{使得 }f(x_n)\to l\},$$</div>
+<p>这是一个非空的集合。设 $a^*=\sup E,\ a_*=\inf E$，分别称它们为 $f$ 当 $x\to x_0$ 时的<b>上极限和下极限</b>，分别记作 $\limsup_{x\to x_0}f(x)$ 与 $\liminf_{x\to x_0}f(x)$。</p>
+<p>对其他极限过程（$x\to x_0^\pm,\ x\to-\infty,\ x\to+\infty,\ x\to\infty$）可类似定义。</p>
+<h3>2.11.3 例1</h3>
+<p class="pgref"><b>课本：58</b></p>
+<p>设 $f(x)=\sin\frac1x\ (x\ne0)$，$f(0)=0$。令</p>
+<div class="formula">$$x_n=\Big(2n\pi+\frac{\pi}{2}\Big)^{-1},\qquad y_n=\Big(2n\pi-\frac{\pi}{2}\Big)^{-1},$$</div>
+<p>显然 $x_n\to0,y_n\to0$，且 $f(x_n)=f(-y_n)=1$、$f(-x_n)=f(y_n)=-1$。因此当 $x\to0^+$、$x\to0^-$ 及 $x\to0$ 时，上极限都是 1，下极限都是 $-1$。</p>
+<h3>2.11.4 定理2.11.1：上极限的三条性质</h3>
+<p class="pgref"><b>课本：58</b></p>
+<p>设函数 $f$ 定义在 $I$ 上，那么：</p>
+<ol><li>$a^*\in E$；</li><li>若 $y>a^*$，则存在 $\delta>0$，使得当 $0&lt;|x-x_0|&lt;\delta$ 时 $f(x)&lt;y$；</li><li>$a^*$ 是满足前述两条性质的唯一的数。</li></ol>
+<h4>课本证明路线</h4>
+<ul><li>(1) 分三种情形：$a^*=+\infty$ 时对每个 $n$ 取 $l_n>n$ 对应的点 $x_n$（$0&lt;|x_n-x_0|&lt;1/n$），得 $f(x_n)\to+\infty$；$a^*=-\infty$ 即 $E=\{-\infty\}$ 平凡；$a^*$ 有限时取 $l_n\in E$ 满足 $a^*-\frac1n&lt;l_n&lt;a^*+\frac1n$，对应的 $x_n$ 满足 $a^*-\frac1n&lt;f(x_n)&lt;a^*+\frac1n$，故有子列趋于 $a^*$；</li><li>(2) 反证：否则对每个 $n$ 存在 $x_n$（$0&lt;|x_n-x_0|&lt;1/n$）使 $f(x_n)\ge y$；取子列使 $f(x_{k_n})\to y_1$，得 $y_1\ge y>a^*$ 且 $y_1\in E$，与 $a^*$ 的定义矛盾；</li><li>(3) 设 $p&lt;q$ 都满足 (1)(2)，选 $y\in(p,q)$：由 $p$ 满足 (2) 知近旁内 $f(x)&lt;y$，因而 $q$ 不能满足 (1)。</li></ul>
+<p>课本注明：对 $a_*$ 也可以建立类似的定理。</p>
+<h3>2.11.5 定理2.11.2：上下极限的关系</h3>
+<p class="pgref"><b>课本：59</b></p>
+<p>设 $f,g$ 在 $I$ 上有定义，那么：</p>
+<ol><li>$\liminf_{x\to x_0}f(x)\le\limsup_{x\to x_0}f(x)$；</li><li>$\lim_{x\to x_0}f(x)=a$ 当且仅当 $\liminf_{x\to x_0}f(x)=\limsup_{x\to x_0}f(x)=a$；</li><li>若当 $x\in I$ 时 $f(x)\le g(x)$ 成立，则</li></ol>
+<div class="formula">$$\liminf_{x\to x_0}f(x)\le\liminf_{x\to x_0}g(x),\qquad \limsup_{x\to x_0}f(x)\le\limsup_{x\to x_0}g(x).$$</div>
+<h4>课本证明路线</h4>
+<p>(1)(2) 甚为明显；(3) 只证第二个不等式：记 $a^*=\limsup f$、$b^*=\limsup g$，取子列 $x_n\to x_0$ 使 $f(x_n)\to a^*$；由 $f(x_n)\le g(x_n)$ 再取子列使 $g(x_{k_n})\to b\ge a^*$；又由 $b^*$ 的定义知 $b^*\ge b\ge a^*$。第一个不等式类似。</p>
+<h3>2.11.6 数列上下极限是函数上下极限的特例（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.57-60</b></p>
+<p>设有数列 $\{a_n\}$，在 $(0,1)$ 上定义阶梯函数</p>
+<div class="formula">$$f(x)=a_n,\qquad x\in\Big[\frac{1}{n+1},\frac1n\Big)\ (n=1,2,\cdots),$$</div>
+<p>不难证明（课本请读者作为练习）：</p>
+<div class="formula">$$\limsup_{n\to\infty}a_n=\limsup_{x\to0^+}f(x),\qquad \liminf_{n\to\infty}a_n=\liminf_{x\to0^+}f(x).$$</div>
+<hr>
+<h2 id="sec2_12">§2.12 混沌现象<span class="freq">◇</span></h2>
+<p class="pgref"><b>课本：p.60-67</b></p>
+<h3>2.12.1 动力系统与函数迭代（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.60-67</b></p>
+<p>完全由因果关系所制约的系统叫作<b>决定性系统</b>；研究决定性系统的数学分支称为<b>动力系统理论</b>。设函数 $f$ 代表某种因果规律，由状态 $x$ 到下一状态 $f(x)$，再考虑 $f\circ f(x)=f^2(x)$……促使我们研究函数的迭代。</p>
+<p>设 $I$ 是任意一个区间，$f\colon I\to I$。将 $f$ 反复复合产生 $f^2(x)=f\circ f(x)$、$f^3(x)=f\circ f^2(x)$，一般地 $f^n(x)=f\circ f^{n-1}(x)\ (n\ge3)$；规定 $f^0(x)=x$（恒等映射）、$f^1=f$。称 $f^n$ 为 $f$ 的第 $n$ 次<b>迭代</b>。</p>
+<p>课本注明：寻找 $f^n$ 的解析表达式不是研究函数迭代的正确方向——除对很简单、很特殊的 $f$ 外，$f^n$ 的表达式要么根本求不出来，要么即使求了出来也因太复杂而没有实用价值。</p>
+<h3>2.12.2 周期点与周期轨（叙述式，无编号）</h3>
+<p class="pgref"><b>课本：p.60-67</b></p>
+<p>对固定的 $x\in I$ 考虑序列 $x,f(x),f^2(x),\cdots,f^n(x),\cdots$：</p>
+<ul><li>若正整数 $m$ 使 $f^m(x)=x$，称 $m$ 为点 $x$ 的一个<b>周期</b>，称 $x$ 为 $f$ 的一个<b>周期点</b>；$m$ 的任何正整数倍也是 $x$ 的周期；</li><li>周期中的最小者称为<b>最小周期</b>；设最小周期为 $p$，则任何大于 $p$ 的周期必被 $p$ 整除（反证：带余除法 $n=pq+r$ 导出更小周期 $r$）；</li><li>若 $x$ 的最小周期是 $n$，称 $x$ 是 $f$ 的一个 <b>n 周期点</b>；此时序列实为 $n$ 个不同点 $x,f(x),\cdots,f^{n-1}(x)$ 构成的有限数列的无限反复，该有限数列叫作点 $x$ 的 <b>n 周期轨</b>；</li><li>1 周期点即 $f$ 的不动点；其几何特征是图像与正方形 $I\times I$ 的对角线 $y=x$ 的交点的横坐标；2 周期点 $\alpha,\beta=f(\alpha)$ 对应的两点 $(\alpha,\beta)$ 与 $(\beta,\alpha)$ 同在曲线上且关于对角线镜像对称——为寻找 2 周期点提供几何方法；但 3 周期点、4 周期点等没有这么简单的判别方法。</li></ul>
+<h3>2.12.3 例1</h3>
+<p class="pgref"><b>课本：62</b></p>
+<p>在区间 $[0,1]$ 上考察</p>
+<div class="formula">$$f(x)=\begin{cases}x+\dfrac12,& x\in\Big[0,\dfrac12\Big],\\[6pt] 2(1-x),& x\in\Big[\dfrac12,1\Big].\end{cases}$$</div>
+<p>由图2.7 可知 $f$ 有 1 周期点（不动点）和 2 周期点；此外由 $f(0)=\frac12$、$f(\frac12)=1$、$f(1)=0$ 知 $f^3(0)=0$，故 0 是 $f$ 的一个 3 周期点（$\frac12$ 与 1 也是）。课本随后指出：即使对图2.7 这样最简单的图像，也看不出 $f$ 是否还有 4 周期点、5 周期点……</p>
+<h3>2.12.4 定理2.12.1（Li-Yorke 定理）</h3>
+<p class="pgref"><b>课本：62</b></p>
+<p>1975 年李天岩（Tien-Yien Li）与 J. A. Yorke 在《美国数学月刊》上发表论文《周期 3 蕴涵混沌》（Period Three Implies Chaos），揭示如下惊人的事实：</p>
+<p><b>定理2.12.1（Li-Yorke）：设 $f\colon I\to I$ 为连续函数。若 $f$ 有 3 周期点，那么对任何 $n\in\mathbf{N}^*$，$f$ 有 n 周期点。</b></p>
+<p>定理的证明并不复杂；课本为方便读者把证明分解成三个简单的引理。</p>
+<h3>2.12.5 引理2.12.1</h3>
+<p class="pgref"><b>课本：62</b></p>
+<p>设函数 $f\colon I\to I$ 连续，并且 $J=[a,b]\subset I$。如果 $f(J)\supset J$，那么 $f$ 在 $J$ 上有一个不动点。</p>
+<h4>课本证明路线</h4>
+<p>由 $f(J)\supset J$ 可找 $c,d\in J$ 使 $f(c)=a,f(d)=b$；若 $c=a$ 或 $d=b$ 即得不动点；否则连续函数 $\varphi(x)=f(x)-x$ 满足 $\varphi(c)=a-c&lt;0&lt;\varphi(d)=b-d$，由零值定理得零点——它正是 $f$ 的不动点。</p>
+<h3>2.12.6 引理2.12.2</h3>
+<p class="pgref"><b>课本：62</b></p>
+<p>设函数 $f\colon I\to I$ 连续，$J_1,J_2$ 是 $I$ 的两个闭子区间。如果 $f(J_1)\supset J_2$，那么必存在 $J_1$ 的闭子区间 $K$，使得 $f(K)=J_2$。</p>
+<h4>课本证明路线</h4>
+<ol><li>设 $J_1=[a,b]$、$J_2=[U,V]$，取 $u,v\in[a,b]$ 使 $f(u)=U,f(v)=V$，不妨设 $u&lt;v$；</li><li>令 $E=\{s:f(s)=U,\ u\le s&lt;v\}$，记 $u^*=\sup E$；由上确界定义取 $s_n\in E$ 使 $u^*-\frac1n&lt;s_n\le u^*$，令 $n\to\infty$ 并用 $f$ 的连续性得 $f(u^*)=U$（且 $u^*\ne v$）；</li><li>同法对 $F=\{t:f(t)=V,\ u^*&lt;t\le v\}$ 记 $v^*=\inf F$，得 $f(v^*)=V$ 且 $u^*\ne v^*$；记 $K=[u^*,v^*]$；</li><li>由介值定理 $f(K)\supset[U,V]$；再证反包含：若某个 $x&lt;U$（或 $x>V$）被 $[u^*,v^*]$ 中某点取到，则将它与 $(U,V)$ 中某像点之间再用介值定理会导出在 $u^*$ 之后仍有 $f=U$ 的点，与 $u^*$ 的最大性矛盾。</li></ol>
+<h3>2.12.7 引理2.12.3</h3>
+<p class="pgref"><b>课本：63</b></p>
+<p>设函数 $f\colon I\to I$ 连续，$J_0,J_1,\cdots,J_{n-1}$ 是 $I$ 的 n 个闭子区间。如果</p>
+<div class="formula">$$f(J_0)\supset J_1,\ f(J_1)\supset J_2,\ \cdots,\ f(J_{n-2})\supset J_{n-1},\ f(J_{n-1})\supset J_0,$$</div>
+<p>那么：(1) 存在 $x_0\in J_0$ 使得 $f^n(x_0)=x_0$；(2) $f(x_0)\in J_1,\ f^2(x_0)\in J_2,\ \cdots,\ f^{n-1}(x_0)\in J_{n-1}$。</p>
+<p>用一句通俗的话说：当 $j$ 从 $0$ “跑过” $1,2,\cdots,n-1$ 时，$f^{j}(x_0)$ 依次地“拜访” $J_0,J_1,\cdots,J_{n-1}$，最后仍然回到 $x_0$。</p>
+<h4>课本证明路线</h4>
+<p>从 $f(J_{n-1})\supset J_0$ 出发逐级用引理2.12.2“往回拉”：存在闭子区间 $K_{n-1}\subset J_{n-1}$ 使 $f(K_{n-1})=J_0$；又因 $f(J_{n-2})\supset J_{n-1}\supset K_{n-1}$，存在 $K_{n-2}\subset J_{n-2}$ 使 $f(K_{n-2})=K_{n-1}$；……直到存在 $K_0\subset J_0$ 使 $f(K_0)=K_1$。于是</p>
+<div class="formula">$$f(K_0)=K_1,\ f^2(K_0)=K_2,\ \cdots,\ f^{n-1}(K_0)=K_{n-1},\ f^n(K_0)=J_0\supset K_0;$$</div>
+<p>对函数 $f^n$ 运用引理2.12.1 得 $x_0\in K_0\subset J_0$ 使 $f^n(x_0)=x_0$，且显然 $f^k(x_0)\in K_k\subset J_k\ (k=1,\cdots,n-1)$。</p>
+<h3>2.12.8 定理2.12.1 的证明</h3>
+<p class="pgref"><b>课本：62</b></p>
+<h4>课本证明路线</h4>
+<ol><li>设 $\eta$ 是 $f$ 的一个 3 周期点，不妨设 $\eta&lt;f(\eta)&lt;f^2(\eta)$；记 $\alpha=\eta,\ \beta=f(\eta),\ \gamma=f^2(\eta)$，则</li></ol>
+<div class="formula">$$f(\alpha)=\beta,\qquad f(\beta)=\gamma,\qquad f(\gamma)=\alpha;$$</div>
+<p>记 $H=[\alpha,\beta],\ K=[\beta,\gamma]$；</p>
+<ol><li>由介值定理：因 $f(\alpha)=\beta,f(\beta)=\gamma$ 得 $f(H)\supset K$（式(3)）；因 $f(\beta)=\gamma,f(\gamma)=\alpha$ 得 $f(K)\supset[\alpha,\gamma]=H\cup K$（式(4)）；</li><li>$n=1$：式(4) 给出 $f(K)\supset K$，由引理2.12.1 知 $f$ 在 $K$ 上有不动点（1 周期点）；</li><li>$n=2$：取 $J_0=K,J_1=H$，由式(4)(3) 合于引理2.12.3，存在 $x_0\in K$ 使 $f^2(x_0)=x_0$ 且 $f(x_0)\in H$；因 $H\cap K=\{\beta\}$，若再有 $f(x_0)=x_0$ 则 $x_0=\beta$，导致 $f(x_0)=f(\beta)=\gamma>\beta=x_0$ 的矛盾，故 2 是 $x_0$ 的最小周期；</li><li>$n>3$：取 $J_0=J_1=\cdots=J_{n-2}=K,\ J_{n-1}=H$，引理2.12.3 的要求全部满足，故存在 $x_0\in K$ 使 $f^n(x_0)=x_0$ 且 (5) $f^j(x_0)\in J_j\ (j=1,\cdots,n-1)$；若最小周期 $k&lt;n$，则 $f^{n-1}(x_0)$ 必是 $x_0,f(x_0),\cdots,f^{n-2}(x_0)$ 之一而落在 $K$ 内，但 (5) 给 $f^{n-1}(x_0)\in H$，于是 $f^{n-1}(x_0)\in K\cap H=\{\beta\}$，进而 $x_0=f^n(x_0)=f(\beta)=\gamma\notin K$，矛盾。</li></ol>
+<p>根据定理2.12.1 可断言：图2.7 所表示的函数对一切 $n\in\mathbf{N}^*$ 有 n 周期点。</p>
+<h3>2.12.9 Sharkovsky 定理（定理2.12.2）</h3>
+<p class="pgref"><b>课本：65</b></p>
+<p>课本指出：李天岩与 Yorke 的论文发表后不久，有人指出这一结果只不过是乌克兰数学家 A. N. Sharkovsky 一个定理的特殊情况（该定理于 1964 年用俄文发表）。任何 $n\in\mathbf{N}^*$ 都可唯一表示成 $n=2^s(2p+1)$（$s,p$ 为非负整数）；$s=0$ 当且仅当 $n$ 是奇数，$p=0$ 意味着 $n$ 是 2 的非负方幂。Sharkovsky 将正整数排序：</p>
+<div class="formula">$$3\prec5\prec7\prec9\prec\cdots,$$</div>
+<div class="formula">$$2\cdot3\prec2\cdot5\prec2\cdot7\prec2\cdot9\prec\cdots,$$</div>
+<div class="formula">$$2^2\cdot3\prec2^2\cdot5\prec2^2\cdot7\prec2^2\cdot9\prec\cdots,$$</div>
+<div class="formula">$$\cdots,\qquad \cdots\prec2^5\prec2^4\prec2^3\prec2^2\prec2\prec1,$$</div>
+<p><b>定理2.12.2（Sharkovsky）：设函数 $f\colon I\to I$ 连续且具有 m 周期点。若在上述排序中，m 先于 n（$n\in\mathbf{N}^*$），那么 f 必具有 n 周期点。</b></p>
+<p>容易看出，Li-Yorke 定理只是 Sharkovsky 定理的特殊情况。</p>
+<p>课本还转述：Sharkovsky 定理断言其逆方向不成立——对排序中先于 $m$ 的每个 $n$，存在连续映射 $f\colon I\to I$，它有 n 周期点但没有 m 周期点 [待核原页]。</p>
+<h3>2.12.10 例2</h3>
+<p class="pgref"><b>课本：65</b></p>
+<p>考察由图2.8 表示的分段线性函数 $f\colon[0,4]\to[0,4]$。由于</p>
+<div class="formula">$$f(0)=2,\quad f(1)=4,\quad f(2)=3,\quad f(3)=1,\quad f(4)=0,$$</div>
+<p>因此 0,1,2,3,4 都是 5 周期点。再证 $f$ 没有 3 周期点：</p>
+<ul><li>计算区间的像：$f([0,1])=[2,4]$，$f^2([0,1])=f([2,4])=[0,3]$，$f^3([0,1])=[1,4]$；类似地 $f^3([1,2])=[2,4]$、$f^3([3,4])=[0,3]$——故在 $[0,1],[1,2],[3,4]$ 中 $f^3$ 没有不动点；</li><li>因为 $f^3([2,3])=[0,4]\supset[2,3]$，故 $f^3$ 在 $[2,3]$ 中至少有一个不动点；又 $f$ 在 $[2,3]\to[1,3]$、$[1,3]\to[1,4]$、$[1,4]\to[0,4]$ 上都是严格递减的，故 $f^3$ 在 $[2,3]$ 上严格递减，其不动点 $x_0$ 唯一；</li><li>由图2.8 看出 $f$ 有唯一不动点，记作 $x_1$；由 $f^3(x_1)=x_1$ 及 $f^3$ 不动点的唯一性知 $x_0=x_1$——这说明 $x_0$ 是 $f$ 的不动点而不是 $f$ 的 3 周期点。</li></ul>
+<p>即：此 $f$ 有 5 周期点（因而有位于 5 之后的任何 n 周期点），但没有位于 5 之前的 3 周期点。</p>
+<h3>2.12.11 定义2.12.1：混沌系统</h3>
+<p class="pgref"><b>课本：66</b></p>
+<p>虽然 Sharkovsky 定理的内容比 Li-Yorke 定理更广泛、深刻且早发表 10 年，但后者的论文仍有其自身的价值：<b>他们第一次提出了“混沌现象”的严格的数学定义</b>。</p>
+<p><b>定义2.12.1：设 f 是区间 I 到自身的连续映射，若 f 满足下列条件：</b></p>
+<ol><li>$f$ 的周期点的最小周期没有上界；</li><li>存在 $I$ 的不可数子集 $S$，满足：</li><li>(a) 对任何 $x,y\in S$ 且 $x\ne y$，有 $\limsup_{n\to\infty}|f^n(x)-f^n(y)|>0$；</li><li>(b) 对任何 $x,y\in S$，有 $\liminf_{n\to\infty}|f^n(x)-f^n(y)|=0$；</li></ol>
+<p>则称 $f$ 描述的系统为<b>混沌系统</b>。</p>
+<p>课本注明：李天岩与 Yorke 还证明了——如果 $f$ 有 3 周期点，那么 $f$ 是混沌的，即 $f$ 所描述的系统是一个混沌系统。</p>
+<h4>定义2.12.1(2) 的解读（课本说明）</h4>
+<p>对集合 $S$ 中任何初始值 $x_0\ne y_0$ 考虑各自的迭代序列，(a)(b) 说明：在数列 $\{|f^n(x_0)-f^n(y_0)|:n\in\mathbf{N}^*\}$ 中必可找到一个子列极限为正数，又一定存在一个子列收敛于 0。这意味着系统在迭代（演化）过程中，两条轨道对应项的距离既可以无限次地接近 0，又可以无限次地超过一个正常数——两条轨道时而无限靠近、时而相互远离，忽分忽合，无限次反复出现；系统长期行为没有规律，飘忽不定，类似于随机现象。由于能导致这种不规则行为的初始值来自一个不可数集 $S$，这种不规则行为成了不可忽视的现象。</p>
+<p>课本结尾（方法论注记）：混沌现象可能出现在物理、化学、生物以及社会科学等许多领域所遇到的数学问题中。古典微积分关心的是迭代极限 $\lim_{n\to\infty}f^n(x)$，一旦不存在便搁置一边；而正是在这个极限不存在时再来研究序列的变化，才能发现各种各样的复杂变化，因此才有 Sharkovsky 定理和李天岩与 Yorke 的定理。</p>
+<hr>
+<h3>习题与补充题位置</h3>
+<p>本骨架不重抄题目，只保留位置。课本每节配两档习题：<b>练习题 N.N</b>（基本）与<b>问题 N.N</b>（提高）。习题块页码由相邻正文锚点推定。</p>
+<div class="tbl"><table><thead><tr><th>节</th><th>练习题</th><th>问题</th></tr></thead><tbody><tr><td>§2.1</td><td>练习题2.1：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=74</td><td>p.4-5（共 5 题）</td><td>—</td></tr><tr><td>§2.2</td><td>练习题2.2：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=78</td><td>p.8-9（共 6 题）</td><td>—</td></tr><tr><td>§2.3</td><td>练习题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=83</td><td>p.13-14（共 11 题）</td><td>问题2.3：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=84</td><td>p.14（共 2 题）</td></tr><tr><td>§2.4</td><td>练习题2.4：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=94\</td><td>p.24-25（共 16 题）</td><td>—</td></tr><tr><td>§2.5</td><td>练习题2.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=99\</td><td>p.29（共 10 题）</td><td>问题2.5：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=99\</td><td>p.29（共 4 题）</td></tr><tr><td>§2.6</td><td>练习题2.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=104\</td><td>p.34-35（共 3 题）</td><td>问题2.6：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=105\</td><td>p.35（共 2 题）</td></tr><tr><td>§2.7</td><td>练习题2.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=112\</td><td>p.42-43（共 10 题）</td><td>问题2.7：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=113\</td><td>p.43（共 7 题）</td></tr><tr><td>§2.8</td><td>练习题2.8：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=117\</td><td>p.47-48（共 4 题）</td><td>—</td></tr><tr><td>§2.9</td><td>练习题2.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=121\</td><td>p.51-52（共 3 题）</td><td>问题2.9：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=122\</td><td>p.52（共 2 题）</td></tr><tr><td>§2.10</td><td>练习题2.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=126\</td><td>p.56-57（共 12 题）</td><td>问题2.10：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=127\</td><td>p.57（共 4 题）</td></tr><tr><td>§2.11</td><td>练习题2.11：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=129\</td><td>p.59-60（共 3 题）</td><td>—</td></tr><tr><td>§2.12</td><td>练习题2.12：../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed上册.pdf#page=136\</td><td>p.66-67（共 4 题）</td><td>—</td></tr></tbody></table></div>
+<p>&gt; 注：§2.1、§2.2、§2.4、§2.8、§2.11、§2.12 无问题档。题数为课本显式编号计数。</p>
+<hr>
+<h3>全章正文顺序索引</h3>
+<pre class="code">集合间的映射（定义域、像、单射/满射/一一对应、原像、复合及其结合律）
+→ 集合的势：等价关系、有限/无限/可数/不可数（定义2.2.1）
+   → 可数集子集可数、可数并至多可数、Q 可数、[0,1] 不可数（定理2.2.1～2.2.4）
+→ 函数：表示法（表、式、图）、分段函数、四则运算、反函数及其图像
+   → 单调函数（定义2.3.1）→ 反函数存在定理（定理2.3.1）
+→ 函数极限 ε-δ 定义（定义2.4.1）与 ε-δ 方法
+   → 归结原理：函数极限 ⟷ 数列极限（定理2.4.1）；Dirichlet 函数处处无极限
+   → 极限性质：唯一性、局部有界、四则运算、夹逼、保序（定理2.4.2～2.4.6）
+   → 邻域记号 → Cauchy 收敛原理（定理2.4.7）→ 复合函数极限（定理2.4.8）
+   → 单边极限（定义2.4.2）→ 左右极限刻画极限（定理2.4.9）
+   → 重要极限 sin x/x →1（例6）；换元技巧（例7）；Riemann 函数（例8）
+→ 其他极限过程：x→∞ 与 x→−∞（定义2.5.1～2.5.2、定理2.5.1）
+   → 重要极限 (1+1/x)^x → e（例2）
+→ 无穷小与无穷大：无穷大定义、互倒性（定义2.6.1）
+   → 无穷小的比较与阶（定义2.6.2）；无穷大的阶（叙述式）
+   → 等价替换定理及其限制（定理2.6.1，只能替换因式）
+   → 记号 O 与 o 及其用法（定义2.6.3）
+→ 连续函数：逐点连续（定义2.7.1）；常值、恒等、正弦余弦连续
+   → Dirichlet 函数：处处不连续；xD(x) 仅一点连续（例4）
+   → 左右连续（定义2.7.2）→ 指数函数连续（例5）
+   → 四则运算、复合（定理2.7.1～2.7.2）→ 区间上连续与 C(I)（定义2.7.3）
+   → 反函数连续（定理2.7.3）→ 初等函数连续（定理2.7.4）
+   → 间断点分类（定义2.7.4）→ 单调函数间断点至多可数（定理2.7.5）
+→ 连续函数与极限计算：极限符号与函数符号交换
+   → 标准极限 ln(1+x)/x、(a^x−1)/x、((1+x)^α−1)/x（例1）
+   → 有理函数极限的一般方法 → o 记号展开（例2）
+   → 幂指函数与 1^∞ 型：lim u^v = e^λ → 几何平均（例3）、(cos(1/x))^(x²)（例4）
+→ 一致连续（定义2.9.1）：√x、sin、cos 一致连续；x^n、sin(1/x)、1/x 不一致连续
+   → 连续但不一致连续的差异根源（δ 依赖 x₀ 的位置）
+→ 有限闭区间上连续函数：一致连续（定理2.10.1）、有界（定理2.10.2）
+   → 最值定理（定理2.10.3）→ 零值定理（定理2.10.4）及其应用
+   → 介值定理（定理2.10.5）→ 值域是闭区间（推论2.10.1）
+→ 函数的上、下极限（定义2.11.1）：sin(1/x) 例
+   → 上极限三性质（定理2.11.1）、上下极限关系（定理2.11.2）
+   → 数列上下极限作为特例
+→ 混沌现象：迭代、周期点与周期轨 → 3 周期点例子（例1）
+   → 三个引理（引理2.12.1～2.12.3）→ Li-Yorke 定理（定理2.12.1）
+   → Sharkovsky 排序与定理2.12.2；5 周期无 3 周期之例（例2）
+   → 混沌系统的定义（定义2.12.1）与解读</pre>
+<p>&gt; 此处只按课本正文的出现顺序压缩列出对象与结论，不加入课外解释。</p>
+<hr>
+<h3>真题考法（2019–2026 样本）</h3>
+<ul><li>2020 第2题：不相交闭区间并集上的连续与振幅控制（§2.9–§2.10）。</li><li>2024 第2题、2026 第6题：一致连续的量词结构与极限传递（§2.9）。</li><li>2019 第8题、2022 第10题：连续性配合迭代/极限（§2.7）。</li><li>映射、势、上下极限、混沌等小节：样本内未直接命题（§2.12 大纲未列）。</li><li>2025：第3题 连续＋$\lim_{x\to+\infty}f(x)$ 存在 ⇒ 一致连续（§2.9）。</li></ul>
+<p>&gt; 标记口径：★★★ 本章核心（真题反复直接考，含跨年重复）｜★★ 真题直接考过 1–2 次｜★ 低频或样本未直接考（大纲内基础）｜◇ 大纲未列或边缘（保底/可跳）。样本：数分 2019、2020、2022–2025、2026（2021 仅回忆提纲；2019 缺第 1、2 题；2025 为单一来源重排版；2026 为回忆版）。</p>
+</section>
+
+<section id="exercises">
+<h2>课本习题（全录）</h2>
+<p>共 <b>108</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<h3>§2.1 集合的映射</h3>
+<h4>练习题 2.1（5 题）</h4>
+<ol class="ex-list">
+<li>设 $A=\{a,b,c,d\}$，证明有唯一映射 $f:A\to A$，满足：（1）$f(a)=b,f(c)=d$；（2）$f\circ f(x)=x$ 对一切 $x\in A$ 成立。原书 PDF 74</li>
+<li>设映射 $f$ 满足 $f\circ f(a)=a$。求 $f^n(a)$。原书 PDF 74</li>
+<li>定义映射 $D:\mathbb R\to\{0,1\}$：$D(x)=\begin{cases}1,&x\text{ 为有理数时},\\0,&x\text{ 为无理数时}.\end{cases}$（1）求复合映射 $D\circ D$；（2）求 $D^{-1}(\{0\})$、$D^{-1}(\{1\})$、$D^{-1}(\{0,1\})$。题干 PDF 74续页 PDF 75</li>
+<li>设 $A$ 是由 $n$ 个元素组成的集合。若映射 $f:A\to A$ 是单射，则称 $f$ 是 $A$ 的一个排列。（1）证明 $f(A)=A$；（2）证明 $f^{-1}$ 存在；（3）$A$ 共有多少个排列？原书 PDF 75</li>
+<li>设 $A$ 是由 $n$ 个元素组成的集合。若映射 $f$ 满足 $f(a)=a$ 对一切 $a\in A$ 成立，则称 $f$ 为 $A$ 的恒等排列。求证：当 $n\ge2$ 时，存在非恒等排列 $f$，使得 $f\circ f$ 为恒等排列。原书 PDF 75</li>
+</ol>
+<h3>§2.2 集合的势</h3>
+<h4>练习题 2.2（6 题）</h4>
+<ol class="ex-list">
+<li>在平面直角坐标系中，两坐标均为有理数的点 $(x,y)$ 称为有理点。试证：平面上全体有理点所成的集合是一可数集。原书 PDF 79</li>
+<li>如果复数 $x$ 满足多项式方程 $a_0x^n+a_1x^{n-1}+\cdots+a_{n-1}x+a_n=0$，其中 $a_0\ne0$，$a_1,\ldots,a_n$ 都是整数，那么 $x$ 称为代数数。试证：代数数全体是可数集。原书 PDF 79</li>
+<li>设 $A$ 是数轴上长度不为零的、互不相交的区间所成的集合（注意：集合 $A$ 的元素是区间）。试证：$A$ 是至多可数的。原书 PDF 79</li>
+<li>设 $S=\{(x_1,x_2,\ldots,x_n,\ldots):x_i=0\text{ 或 }1,\ i=1,2,\ldots\}$。求证：$S$ 与区间 $[0,1]$ 有相等的势。原书 PDF 79</li>
+<li>按下列步骤证明 $\mathbb R$ 是不可数的：（1）若 $\mathbb R$ 可数，则 $[0,1)$ 上的实数也可数。将 $[0,1)$ 排成 $[0,1)=\{x_1,x_2,\ldots,x_n,\ldots\}$，把 $x_1,x_2,x_3,\ldots$ 写成二进制小数的形式：$x_1=0.x_{11}x_{12}x_{13}\cdots$，$x_2=0.x_{21}x_{22}x_{23}\cdots$，$x_3=0.x_{31}x_{32}x_{33}\cdots$，……；（2）令 $a_k=\begin{cases}0,&x_{kk}=1,\\1,&x_{kk}=0\end{cases}$（$k\ge1$）。考察 $x=0.a_1a_2a_3\cdots$，然后证明 $x\in[0,1)$，并且 $x\ne x_k$ 对一切自然数 $k\ge1$ 成立。原书 PDF 79</li>
+<li>证明：可数条直线绝不可能覆盖住全平面。原书 PDF 79</li>
+</ol>
+<h3>§2.3 函数</h3>
+<h4>练习题 2.3（11 题）</h4>
+<ol class="ex-list">
+<li>求下列函数的定义域：（1）$f(x)=\sqrt{1-x^2}$；（2）$\displaystyle f(x)=\sqrt[3]{\frac{1+x}{1-x}}$；（3）$\displaystyle f(x)=\frac{x+1}{x^2+x-2}$；（4）$\displaystyle f(x)=\ln\frac{1+\sin x}{1-\cos x}$。原书 PDF 83</li>
+<li>给定函数 $f:\mathbb R\to\mathbb R$，如果 $x\in\mathbb R$ 使 $f(x)=x$，则称 $x$ 为 $f$ 的一个不动点。若 $f\circ f$ 有唯一的不动点，求证：$f$ 也有唯一的不动点。原书 PDF 83</li>
+<li>设 $f:\mathbb R\to\mathbb R$。若 $f\circ f$ 有且仅有两个不动点 $a,b$（$a\ne b$），求证只有以下两种情况：（1）$a,b$ 都是 $f$ 的不动点；（2）$f(a)=b,f(b)=a$。原书 PDF 83</li>
+<li>设函数 $f:\mathbb R\to\mathbb R$，且每一实数都是 $f\circ f$ 的不动点。试问：（1）有几个这样的函数？（2）若 $f$ 在 $\mathbb R$ 上递增，有几个这样的函数？原书 PDF 83</li>
+<li>求下列函数 $f$ 的 $n$ 次复合 $f^n$：（1）$\displaystyle f(x)=\frac{x}{\sqrt{1+x^2}}$；（2）$\displaystyle f(x)=\frac{x}{1+bx}$。题干及（1）PDF 83（2）续页 PDF 84</li>
+<li>设 $f:\mathbb R\to\mathbb R$ 满足 $f(x+y)=f(x)+f(y)$（$x,y\in\mathbb R$）。试证：对一切有理数 $x$，有 $f(x)=xf(1)$。原书 PDF 84</li>
+<li>设函数 $f:\mathbb R\to\mathbb R$，$l$ 为一正数。如果 $f(x+l)=f(x)$ 对一切 $x$ 成立，则称 $f$ 是周期为 $l$ 的周期函数。如果 $f$ 以任何正数为周期，求证：$f$ 为常值函数。原书 PDF 84</li>
+<li>试证：$\sin x^2$、$\sin x+\cos(\sqrt2x)$ 均不是周期函数。原书 PDF 84</li>
+<li>设函数 $f:(-a,a)\to\mathbb R$，如果对任何 $x\in(-a,a)$，有 $f(x)=f(-x)$，则称 $f$ 为偶函数；若 $f(x)=-f(-x)$，则称 $f$ 为奇函数。求证：$(-a,a)$ 上的任何函数均可表示为一个奇函数和一个偶函数之和。原书 PDF 84</li>
+<li>函数 $\displaystyle\cosh x=\frac{e^x+e^{-x}}2$、$\displaystyle\sinh x=\frac{e^x-e^{-x}}2$ 分别称为双曲余弦和双曲正弦。证明：（1）$\cosh x$ 是偶函数，$\sinh x$ 是奇函数；（2）$\cosh^2x-\sinh^2x=1$（$x\in\mathbb R$）。原书 PDF 84</li>
+<li>求双曲正弦 $y=\sinh x$ 和双曲余弦 $y=\cosh x$ 的反函数。原书 PDF 84</li>
+</ol>
+<h4>问题 2.3（2 题）</h4>
+<ol class="ex-list">
+<li>设 $f(x+T)=kf(x)$ 对一切 $x\in\mathbb R$ 成立，其中 $T$ 和 $k$ 是两个正数。证明：$f(x)=a^x\varphi(x)$ 对一切 $x\in\mathbb R$ 成立，其中 $a$ 为常数，$\varphi$ 是周期为 $T$ 的函数。原书 PDF 84</li>
+<li>设 $a&lt;b$。证明：（1）若 $f$ 的图像关于直线 $x=a$ 对称，也关于直线 $x=b$ 对称，则 $f$ 是以 $2(b-a)$ 为周期的周期函数；（2）若 $f$ 的图像关于直线 $x=a$ 对称，也关于点 $(b,y_0)$ 中心对称，则 $f$ 是以 $4(b-a)$ 为周期的周期函数；（3）若 $f$ 的图像关于点 $(a,y_0)$ 中心对称，也关于点 $(b,y_1)$ 中心对称，则 $f(x)=\varphi(x)+cx$（$x\in\mathbb R$），其中 $\varphi$ 是周期函数，$c$ 是常数。特别地，当 $y_0=y_1$ 时，$c=0$。原书 PDF 84</li>
+</ol>
+<h3>§2.4 函数的极限</h3>
+<h4>练习题 2.4（16 题）</h4>
+<ol class="ex-list">
+<li>用 $\varepsilon$-$\delta$ 语言表述 $f(x_0-)=1$。原书 PDF 94</li>
+<li>求证：$\displaystyle\lim_{x\to x_0}f(x)$ 存在当且仅当 $f(x_0-)=f(x_0+)$ 为有限数。原书 PDF 94</li>
+<li>设 $\displaystyle\lim_{x\to x_0}f(x)=A$。用 $\varepsilon$-$\delta$ 语言证明：（1）$\displaystyle\lim_{x\to x_0}|f(x)|=|A|$；（2）$\displaystyle\lim_{x\to x_0}f^2(x)=A^2$；（3）$\displaystyle\lim_{x\to x_0}\sqrt{f(x)}=\sqrt A$（$A>0$）；（4）$\displaystyle\lim_{x\to x_0}\sqrt[3]{f(x)}=\sqrt[3]A$。原书 PDF 94</li>
+<li>用 $\varepsilon$-$\delta$ 语言证明：（1）$\displaystyle\lim_{x\to2}x^3=8$；（2）$\displaystyle\lim_{x\to3}\frac{x-3}{x^2-9}=\frac16$；（3）$\displaystyle\lim_{x\to1}\frac{x^4-1}{x-1}=4$；（4）$\displaystyle\lim_{x\to0}\sqrt{1+2x}=1$；（5）$\displaystyle\lim_{x\to1^+}\frac{x-1}{\sqrt{x^2-1}}=0$。原书 PDF 94</li>
+<li>设 $f(x)=\begin{cases}x^2,&x\ge2,\\-ax,&x&lt;2.\end{cases}$（1）求 $f(2+)$ 与 $f(2-)$；（2）若 $\displaystyle\lim_{x\to2}f(x)$ 存在，$a$ 应取何值？原书 PDF 94</li>
+<li>设 $\displaystyle\lim_{x\to x_0}f(x)>a$。求证：当 $x$ 足够靠近 $x_0$ 但 $x\ne x_0$ 时，$f(x)>a$。原书 PDF 94</li>
+<li>设 $f(x_0-)&lt;f(x_0+)$。求证：存在 $\delta>0$，使得当 $x\in(x_0-\delta,x_0)$、$y\in(x_0,x_0+\delta)$ 时，有 $f(x)&lt;f(y)$。题干 PDF 94结论 PDF 95</li>
+<li>设 $f$ 在 $(-\infty,x_0)$ 上是递增的，并且存在一个数列 $\{x_n\}$ 满足 $x_n&lt;x_0$（$n=1,2,\ldots$），$x_n\to x_0$（$n\to\infty$），且 $\displaystyle\lim_{n\to\infty}f(x_n)=A$。求证：$f(x_0-)=A$。原书 PDF 95</li>
+<li>用肯定的语气表述“当 $x\to x_0$ 时，$f(x)$ 不收敛于 $l$”。原书 PDF 95</li>
+<li>对任何 $n\in\mathbb N^*$，$A_n\subset[0,1]$ 是有限集，且 $A_i\cap A_j=\varnothing$（$i\ne j$，$i,j\in\mathbb N^*$）。定义函数 $f(x)=\begin{cases}1/n,&x\in A_n,\\0,&x\in[0,1],\ x\notin A_n.\end{cases}$。对任意 $x_0\in[0,1]$，求极限 $\displaystyle\lim_{x\to x_0}f(x)$。原书 PDF 95</li>
+<li>计算下列极限：原书 PDF 95</li>
+<li>求下列极限：原书 PDF 95</li>
+<li>求下列极限（$[\,\cdot\,]$ 为原书整数部分记号）：原书 PDF 95</li>
+<li>求极限 $\displaystyle\lim_{n\to\infty}n\sin(2\pi n!e)$ 的值。原书 PDF 95</li>
+<li>设 $f(x)=\begin{cases}1,&x\ne0,\\0,&x=0,\end{cases}$，$g(t)=\begin{cases}1/q,&t=p/q,\\0,&t\text{ 为无理数}.\end{cases}$。易知 $\displaystyle\lim_{x\to0}f(x)=1$，$\displaystyle\lim_{t\to0}g(t)=0$。根据定理 2.4.8，应有 $\displaystyle\lim_{t\to0}f(g(t))=1$。但事实上 $f(g(t))=D(t)$ 是 Dirichlet 函数。根据例 5，它处处没有极限。问发生这个矛盾的原因是什么？题号 PDF 95函数与问题 PDF 96</li>
+<li>设 $f(x)=\begin{cases}1,&x=0,\\q,&x=p/q\ (q>0,\ p,q\text{ 互素}),\\0,&x\text{ 为无理数}.\end{cases}$。证明：$f$ 在 $(-\infty,+\infty)$ 上每点的邻域内都无界。原书 PDF 96</li>
+</ol>
+<h3>§2.5 极限过程的其他形式</h3>
+<h4>练习题 2.5（10 题）</h4>
+<ol class="ex-list">
+<li>用 $\varepsilon$-$A$ 语言证明：（1）$\displaystyle\lim_{x\to\infty}\frac{x^2+1}{3x^2-x+1}=\frac13$；（2）$\displaystyle\lim_{x\to\infty}\frac{3x+2}{2x+3}=\frac32$；（3）$\displaystyle\lim_{x\to+\infty}\left(x-\sqrt{x^2-a}\right)=0$；（4）$\displaystyle\lim_{x\to+\infty}\left(\sqrt{x+1}-\sqrt{x-1}\right)=0$。（1）（2）PDF 98（3）（4）PDF 99</li>
+<li>定出常数 $a$ 和 $b$，使得下列等式成立：（1）$\displaystyle\lim_{x\to\infty}\left(\frac{x^2+1}{x+1}-ax-b\right)=0$；（2）$\displaystyle\lim_{x\to+\infty}\left(\sqrt{x^2-x+1}-ax-b\right)=0$；（3）$\displaystyle\lim_{x\to-\infty}\left(\sqrt{x^2-x+1}-ax-b\right)=0$。原书 PDF 99</li>
+<li>证明：$\displaystyle\lim_{x\to+\infty}\left(\sin\sqrt{x+1}-\sin\sqrt{x-1}\right)=0$。原书 PDF 99</li>
+<li>设常数 $a_1,a_2,\ldots,a_n$ 满足 $a_1+a_2+\cdots+a_n=0$。求证：$\displaystyle\lim_{x\to+\infty}\sum_{k=1}^n a_k\sin\sqrt{x+k}=0$。原书 PDF 99</li>
+<li>求极限 $\displaystyle\lim_{n\to\infty}\sin\left(\pi\sqrt{n^2+1}\right)$。原书 PDF 99</li>
+<li>求下列极限：（1）$\displaystyle\lim_{x\to\infty}\left(\frac{1+x}{3+x}\right)^x$；（2）$\displaystyle\lim_{x\to\infty}\left(\frac{x+a}{x-a}\right)^x$；（3）$\displaystyle\lim_{x\to0}(1-2x)^{1/x}$；（4）$\displaystyle\lim_{n\to\infty}\left(\frac{n+x}{n-2}\right)^n$。原书 PDF 99</li>
+<li>用极限来定义函数 $f(x)=\displaystyle\lim_{n\to\infty}n^x\left[\left(1+\frac1n\right)^{n+1}-\left(1+\frac1n\right)^n\right]$。求 $f$ 的定义域，并写出 $f$ 的表达式。原书 PDF 99</li>
+<li>如果对 $x\in(-1,1)$，有 $\displaystyle\left|\sum_{k=1}^n a_k\sin kx\right|\le|\sin x|$，求证：$\displaystyle\left|\sum_{k=1}^n ka_k\right|\le1$。原书 PDF 99</li>
+<li>证明：$\displaystyle\lim_{x\to+\infty}f(x)$ 存在的充分必要条件是，对任意 $\varepsilon>0$，存在正数 $A$，只要 $x_1>A$、$x_2>A$，便有 $|f(x_1)-f(x_2)|&lt;\varepsilon$。原书 PDF 99</li>
+<li>设 $f$ 是 $(-\infty,+\infty)$ 上的周期函数，且 $\displaystyle\lim_{x\to+\infty}f(x)=0$。求证：$f=0$。原书 PDF 99</li>
+</ol>
+<h4>问题 2.5（4 题）</h4>
+<ol class="ex-list">
+<li>设 $f$ 在 $(0,+\infty)$ 上满足函数方程 $f(2x)=f(x)$（$x>0$），并且 $\displaystyle\lim_{x\to+\infty}f(x)$ 存在且有限。求证：$f$ 为常值函数。原书 PDF 99</li>
+<li>设 $a,b$ 是两个大于 $1$ 的常数，函数 $f:\mathbb R\to\mathbb R$ 在 $x=0$ 的邻域内有界，并且对一切 $x\in\mathbb R$ 有 $f(ax)=bf(x)$。求证：$\displaystyle\lim_{x\to0}f(x)=f(0)$。题干 PDF 99结论 PDF 100</li>
+<li>设 $f$ 和 $g$ 是两个周期函数，且满足 $\displaystyle\lim_{x\to+\infty}(f(x)-g(x))=0$。证明：$f=g$。原书 PDF 100</li>
+<li>设 $x_n>0$，证明：（1）$\displaystyle\limsup_{n\to\infty}\left(\frac{x_1+x_{n+1}}{x_n}\right)^n\ge e$；（2）上式中的 $e$ 是最佳常数。原书 PDF 100</li>
+</ol>
+<h3>§2.6 无穷小与无穷大</h3>
+<h4>练习题 2.6（3 题）</h4>
+<ol class="ex-list">
+<li>求下列无穷小或无穷大的阶：（1）—（6）PDF 104（7）—（14）PDF 105</li>
+<li>当 $x\to x_0$ 时，$\alpha=o(1)$。求证：（1）$o(\alpha)+o(\alpha)=o(\alpha)$；（2）$o(c\alpha)=o(\alpha)$（$c$ 为常数）；（3）$(o(\alpha))^k=o(\alpha^k)$；（4）$\displaystyle\frac1{1+\alpha}=1-\alpha+o(\alpha)$。原书 PDF 105</li>
+<li>利用等价无穷小替换，求下列极限：原书 PDF 105</li>
+</ol>
+<h4>问题 2.6（2 题）</h4>
+<ol class="ex-list">
+<li>设 $\displaystyle\lim_{x\to0}f(x)=0$，且 $f(x)-f(x/2)=o(x)$（$x\to0$）。求证：$f(x)=o(x)$（$x\to0$）。原书 PDF 105</li>
+<li>设函数列 $f_n:(0,+\infty)\to\mathbb R$（$n=1,2,3,\ldots$）；对任何 $n\in\mathbb N^*$，$f_n$ 都是无穷大（$x\to+\infty$）。试证：存在 $(0,+\infty)$ 上的一个函数 $f$，当 $x\to+\infty$ 时，$f$ 是比 $f_n$（$n\in\mathbb N^*$）更高阶的无穷大。原书 PDF 105</li>
+</ol>
+<h3>§2.7 函数的连续性</h3>
+<h4>练习题 2.7（10 题）</h4>
+<ol class="ex-list">
+<li>回答下列问题：（1）设 $f(x)=\sin\frac1x$，能否定义 $f(0)$，使得 $f$ 在 $x=0$ 处是连续的？（2）设 $f(x)=x\sin\frac1x$，如何理解函数 $f$ 的定义域？（3）设函数 $f$ 在点 $x_0$ 的近旁有定义，并且 $\displaystyle\lim_{h\to0}f(x_0+h)=f(x_0)$，$f$ 是否在 $x_0$ 处连续？（4）设函数 $f$ 在点 $x_0$ 的近旁有定义，并且 $\displaystyle\lim_{h\to0}(f(x_0+h)-f(x_0-h))=0$，$f$ 是否在 $x_0$ 处连续？（5）设连续函数 $f$ 在区间 $(a,b)$ 中的全体有理点上取零值，$f$ 是怎样的函数？原书 PDF 112</li>
+<li>研究下列函数在 $x=0$ 处的连续性：（1）$f(x)=|x|$；（2）$f(x)=[x]$；（3）$f(x)=\begin{cases}e^{-1/x^2},&x\ne0,\\0,&x=0;\end{cases}$（4）$f(x)=\begin{cases}\dfrac{\sin x}{|x|},&x\ne0,\\1,&x=0;\end{cases}$（5）$f(x)=\begin{cases}(1+x^2)^{1/x^2},&x\ne0,\\2.7,&x=0.\end{cases}$原书 PDF 112</li>
+<li>定出 $a,b$ 和 $c$，使得函数 $f(x)=\begin{cases}-1,&x\le-1,\\ax^2+bx+c,&|x|&lt;1\text{ 且 }x\ne0,\\0,&x=0,\\1,&x\ge1\end{cases}$ 在 $(-\infty,+\infty)$ 上连续。原书 PDF 112</li>
+<li>讨论函数 $f+g$ 和 $fg$ 在 $x_0$ 处的连续性，如果：（1）$f$ 在 $x_0$ 处连续，但 $g$ 在 $x_0$ 处不连续；（2）$f$ 和 $g$ 在 $x_0$ 处都不连续。原书 PDF 112</li>
+<li>设函数 $f$ 在 $x_0$ 处连续，$f(x_0)>0$。证明：当 $x$ 充分靠近 $x_0$ 时，有 $f(x)>\dfrac{f(x_0)}2$。原书 PDF 113</li>
+<li>设函数 $f$ 在 $x_0$ 处连续。证明 $|f|$ 和 $f^2$ 都在 $x_0$ 处连续。反之是否成立？原书 PDF 113</li>
+<li>设函数 $f,g$ 在 $(a,b)$ 上连续，又令 $F(x)=\max(f(x),g(x))$、$G(x)=\min(f(x),g(x))$（$a&lt;x&lt;b$）。证明：$F$ 和 $G$ 是 $(a,b)$ 上的连续函数。原书 PDF 113</li>
+<li>设函数 $f$ 只有可去间断点，又令 $g(x)=\displaystyle\lim_{t\to x}f(t)$。证明：$g$ 是连续函数。原书 PDF 113</li>
+<li>设函数 $f$ 在 $\mathbb R$ 上递增（或递减）。若定义 $F(x)=f(x+)$，试证明：$F$ 在 $\mathbb R$ 上右连续。原书 PDF 113</li>
+<li>设 $f$ 在 $\mathbb R$ 上连续，且对一切 $x,y\in\mathbb R$，有 $f(x+y)=f(x)+f(y)$。证明：$f(x)=f(1)x$ 对一切 $x\in\mathbb R$ 成立。原书 PDF 113</li>
+</ol>
+<h4>问题 2.7（7 题）</h4>
+<ol class="ex-list">
+<li>设 $f_i\in C[a,b]$（$i=1,2,3$），定义 $f(x)$ 是三个数 $f_1(x),f_2(x),f_3(x)$ 中处于中间的那一个。证明：$f\in C[a,b]$。原书 PDF 113</li>
+<li>设 $f$ 在 $(a,b)$ 内只有第一类间断点，且对一切 $x,y\in(a,b)$，有不等式 $\displaystyle f\left(\frac{x+y}2\right)\le\frac{f(x)+f(y)}2$。求证：$f\in C(a,b)$。原书 PDF 113</li>
+<li>设 $f$ 对一切 $x,y\in\mathbb R$，满足函数方程 $f(x+y)=f(x)+f(y)$。证明：（1）若 $f$ 在一点 $x_0$ 处连续，则 $f(x)=f(1)x$；（2）若 $f$ 在 $\mathbb R$ 上单调，则 $f(x)=f(1)x$。原书 PDF 113</li>
+<li>设 $f$ 是 $\mathbb R$ 上不恒等于零的连续函数，如果对任何 $x,y\in\mathbb R$，有等式 $f(x+y)=f(x)f(y)$，试证明：$f(x)=a^x$，其中 $a=f(1)$ 是一个正数。原书 PDF 113</li>
+<li>设 $f\in C(0,+\infty)$。如果对任何 $x,y\in\mathbb R$，有等式 $f(xy)=f(x)f(y)$，试证明：$f=0$，或者 $f(x)=x^a$，其中 $a$ 为常数。<b>[待核验：原页同时写 $f\in C(0,+\infty)$ 与“任何 $x,y\in\mathbb R$”；此处按页图照录。]</b>原书 PDF 113</li>
+<li>设 $n\in\mathbb N^*$。求满足函数方程 $f(x+y^n)=f(x)+(f(y))^n$（$x,y\in\mathbb R$）的一切连续函数 $f$。原书 PDF 113</li>
+<li>设 $f:\mathbb R\to\mathbb R$，$f(x^2)=f(x)$ 对一切实数 $x$ 成立，且 $f$ 在 $x=0$ 与 $x=1$ 处连续。证明：$f$ 为常值函数。原书 PDF 114</li>
+</ol>
+<h3>§2.8 连续函数与极限计算</h3>
+<h4>练习题 2.8（4 题）</h4>
+<ol class="ex-list">
+<li>计算下列极限：（1）—（3）PDF 117（4）（5）PDF 118</li>
+<li>计算下列极限：原书 PDF 118</li>
+<li>计算下列极限：原书 PDF 118</li>
+<li>设 $|x|&lt;1$。求极限 $\displaystyle\lim_{n\to\infty}\left(1+\frac{x+x^2+\cdots+x^n}{n}\right)^n$。原书 PDF 118</li>
+</ol>
+<h3>§2.9 函数的一致连续性</h3>
+<h4>练习题 2.9（3 题）</h4>
+<ol class="ex-list">
+<li>研究下列函数的一致连续性：（1）$f(x)=\cos\frac1x$（$x>0$）；（2）$f(x)=\sin^2x$（$x\in\mathbb R$）；（3）$f(x)=\sqrt[3]x$（$x\ge0$）；（4）$f(x)=\sin x^2$（$x\in\mathbb R$）；（5）$\displaystyle f(x)=\frac{x}{1+x^2\sin^2x}$（$x\ge0$）。原书 PDF 122</li>
+<li>设函数 $f$ 和 $g$ 在区间 $I$ 上一致连续。证明：$f+g$ 也在 $I$ 上一致连续。原书 PDF 122</li>
+<li>如果 $f$ 在 $(a,b)$ 上一致连续，证明：$f(a+)$ 和 $f(b-)$ 存在且有限。原书 PDF 122</li>
+</ol>
+<h4>问题 2.9（2 题）</h4>
+<ol class="ex-list">
+<li>设 $f$ 在 $[0,+\infty)$ 上一致连续，且对任何 $x\in[0,1]$，有 $\displaystyle\lim_{n\to\infty}f(x+n)=0$（$n\in\mathbb N^*$）。证明：$\displaystyle\lim_{x\to\infty}f(x)=0$。举例说明，仅由 $f$ 在 $[0,+\infty)$ 上的连续性推不出上述结论。原书 PDF 122</li>
+<li>设 $I$ 为区间。如果存在正常数 $k$，使得 $|f(x)-f(y)|\le k|x-y|$ 对任何 $x,y\in I$ 成立，那么称 $f$ 在 $I$ 上满足 Lipschitz（利普希茨，1832～1903）条件。求证：如果 $f$ 在 $[a,+\infty)$（$a>0$）上满足 Lipschitz 条件，那么 $f(x)/x$ 在 $[a,+\infty)$ 上一致连续。原书 PDF 122</li>
+</ol>
+<h3>§2.10 有限闭区间上连续函数的性质</h3>
+<h4>练习题 2.10（12 题）</h4>
+<ol class="ex-list">
+<li>如果 $f$ 在 $(a,b)$ 上一致连续，证明：$f$ 在 $(a,b)$ 上有界。原书 PDF 126</li>
+<li>若函数 $f$ 和 $g$ 都在区间 $I$ 上一致连续，问 $fg$ 是否在 $I$ 上一致连续？试就 $I$ 为有限区间或无穷区间分别讨论之。原书 PDF 126</li>
+<li>设函数 $f$ 在开区间 $(a,b)$ 上连续，$f(a+)$ 和 $f(b-)$ 存在且有限。证明：$f$ 在 $(a,b)$ 上一致连续。原书 PDF 126</li>
+<li>设函数 $f$ 在区间 $[a,+\infty)$ 上连续，$f(+\infty)$ 存在且有限。证明：$f$ 在 $[a,+\infty)$ 上一致连续。原书 PDF 126</li>
+<li>设 $f$ 在区间 $[a,+\infty)$ 上连续。若存在常数 $b$ 和 $c$，使得 $\displaystyle\lim_{x\to+\infty}(f(x)-bx-c)=0$，证明：$f$ 在 $[a,+\infty)$ 上一致连续。原书 PDF 126</li>
+<li>求证：三次方程 $x^3+2x-1=0$ 只有唯一的实根，且此根在 $(0,1)$ 内。原书 PDF 126</li>
+<li>设 $\varphi\in C(\mathbb R)$，且 $\displaystyle\lim_{x\to+\infty}\frac{\varphi(x)}{x^n}=\lim_{x\to-\infty}\frac{\varphi(x)}{x^n}=0$。（1）证明：当 $n$ 为奇数时，方程 $x^n+\varphi(x)=0$ 有一个实根；（2）证明：当 $n$ 为偶数时，存在 $y$，使得对所有的 $x\in\mathbb R$，有 $y^n+\varphi(y)\le x^n+\varphi(x)$。原书 PDF 126</li>
+<li>设 $f\in C[0,1]$ 且 $f(0)=f(1)$。求证：对任何 $n\in\mathbb N^*$，存在 $x_n\in[0,1]$，使得 $f(x_n)=f(x_n+1/n)$。原书 PDF 126</li>
+<li>设 $f\in C(\mathbb R)$ 且 $\displaystyle\lim_{x\to+\infty}f(x)=\lim_{x\to-\infty}f(x)=+\infty$，又设 $f$ 的最小值 $f(a)&lt;a$。求证：$f\circ f$ 至少在两个点上取到最小值。原书 PDF 126</li>
+<li>设函数 $f:[a,b]\to\mathbb R$ 在有理点上取无理数值，在无理点上取有理数值。证明：$f$ 不是 $[a,b]$ 上的连续函数。原书 PDF 126</li>
+<li>设对任意的 $x,y\in(-\infty,+\infty)$，函数 $f$ 满足 $|f(x)-f(y)|\le k|x-y|$（$0&lt;k&lt;1$）。求证：（1）函数 $kx-f(x)$ 递增；（2）存在唯一的 $\xi\in(-\infty,+\infty)$，使得 $f(\xi)=\xi$。题干 PDF 126结论 PDF 127</li>
+<li>证明：在 $(-\infty,+\infty)$ 上连续的周期函数必在 $(-\infty,+\infty)$ 上一致连续。由此证明：$\sin^2x+\sin x^2$ 不是周期函数。原书 PDF 127</li>
+</ol>
+<h4>问题 2.10（4 题）</h4>
+<ol class="ex-list">
+<li>设 $f\in C(\mathbb R)$，且 $\displaystyle\lim_{x\to\infty}f(f(x))=\infty$。求证：$\displaystyle\lim_{x\to\infty}f(x)=\infty$。原书 PDF 127</li>
+<li>设 $f,g\in C[a,b]$。如果存在 $x_n\in[a,b]$，使得 $g(x_n)=f(x_{n+1})$（$n=1,2,\ldots$），则必存在 $x_0\in[a,b]$，使得 $f(x_0)=g(x_0)$。原书 PDF 127</li>
+<li>设函数 $f$ 在区间 $[a,+\infty)$ 上连续且有界。求证：对每一个数 $\lambda>0$，存在数列 $x_n\to+\infty$，使得 $\displaystyle\lim_{n\to\infty}(f(x_n+\lambda)-f(x_n))=0$。原书 PDF 127</li>
+<li>（1）证明：不存在 $\mathbb R$ 上的连续函数，使它的任一个函数值都恰好被取到两次。（2）是否存在 $\mathbb R$ 上的连续函数，使它的任一个函数值都恰好被取到三次？原书 PDF 127</li>
+</ol>
+<h3>§2.11 函数的上极限和下极限</h3>
+<h4>练习题 2.11（3 题）</h4>
+<ol class="ex-list">
+<li>对下列函数 $f$，求 $\displaystyle\limsup_{x\to\infty}f(x)$、$\displaystyle\liminf_{x\to\infty}f(x)$：（1）$f(x)=\sin x$；（2）$f(x)=x^2\cos x$；（3）$\displaystyle f(x)=\frac{x}{1+x^2\sin^2x}$。题干 PDF 129（1）—（3）PDF 130</li>
+<li>设函数 $f$ 在一点 $x_0$ 的左边 $(x_0-\delta,x_0)$ 上连续，且 $\displaystyle\liminf_{x\to x_0^-}f(x)&lt;\alpha&lt;\limsup_{x\to x_0^-}f(x)$。求证：一定有数列 $x_n\to x_0^-$，使得 $f(x_n)=\alpha$（$n=1,2,3,\ldots$）。原书 PDF 130</li>
+<li>设函数 $f$ 在 $x_0$ 的空心邻域内有定义，令 $\varphi(\delta)=\inf\{f(x):0&lt;|x-x_0|&lt;\delta\}$，$\psi(\delta)=\sup\{f(x):0&lt;|x-x_0|&lt;\delta\}$。求证：（1）$\varphi$ 和 $\psi$ 分别是递减和递增函数；（2）令 $\displaystyle\alpha=\lim_{\delta\to0^+}\varphi(\delta)$、$\displaystyle\beta=\lim_{\delta\to0^+}\psi(\delta)$，则 $\displaystyle\alpha=\liminf_{x\to x_0}f(x)$、$\displaystyle\beta=\limsup_{x\to x_0}f(x)$。原书 PDF 130</li>
+</ol>
+<h3>§2.12 混沌现象</h3>
+<h4>练习题 2.12（4 题）</h4>
+<ol class="ex-list">
+<li>设 $x$ 是 $f$ 的一个 $n$ 周期点，记 $x_0=x$，$x_k=f^k(x)$（$k=1,2,\ldots,n-1$）。证明：$x$ 的 $n$ 周期轨 $\{x_0,x_1,\ldots,x_{n-1}\}$ 中各点两两不同，且都是 $f$ 的 $n$ 周期点。原书 PDF 137</li>
+<li>设 $f:[a,b]\to[a,b]$ 连续。若 $f$ 有 4 周期点，求证：$f$ 必有 2 周期点。原书 PDF 137</li>
+<li>设 $f:[a,b]\to[a,b]$ 连续。若对某个正整数 $n$，$f$ 有 $2^n$ 周期点，求证：$f$ 必有 2 周期点，$2^2$ 周期点……$2^{n-1}$ 周期点。原书 PDF 137</li>
+<li>设 $I_0,I_1,\ldots,I_n$ 是 $I$ 的闭子区间，$f$ 在 $I$ 上连续，且满足 $f(I_i)\supset I_{i+1}$（$i=0,1,\ldots,n-1$）。求证：存在一点 $x\in I_0$，使得 $f^i(x)\in I_i$（$i=1,2,\ldots,n$）。原书 PDF 137</li>
+</ol>
+</section>
+
+<section id="source">
+<h2>来源与边界</h2>
+<ul>
+  <li><b>正文</b>：本章 <code>01_第02章_函数的连续性_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
+  <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
+  <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
+  <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>自测清单</h2>
+<p>逐条闭卷回答，答不出再回看对应小节。勾选状态只存在本机浏览器。</p>
+      <label><input type="checkbox"> §2.1 集合的映射：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.2 集合的势：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.3 函 数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.4 函数的极限：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.5 极限过程的其他形式：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.6 无穷小与无穷大：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.7 连续函数：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.8 连续函数与极限计算：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.9 函数的一致连续性：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.10 有限闭区间上连续函数的性质：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.11 函数的上极限和下极限：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+      <label><input type="checkbox"> §2.12 混沌现象：能闭卷说出本节核心定义/定理的条件与结论，不看页面。</label>
+</section>
+<div class="foot">本页由 Hermes 依据课本骨架与习题 OCR 生成（以指定课本原文为准）。</div>
+</div>
+</main>
+</div>
+<button id="tocToggle" class="toc-toggle" aria-label="目录">☰</button>
+<script src="../_html_assets/katex/katex.min.js"></script>
+<script src="../_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../_html_assets/guide.js"></script>
+<style id="site-home-style">
+.site-home{position:fixed;left:18px;bottom:18px;z-index:2147482985;display:inline-flex;
+align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#17548a;color:#fff;
+text-decoration:none;font-size:13px;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,.22);}
+.site-home:hover{background:#2f6fb3;color:#fff;}
+@media (max-width:1100px){.site-home{left:12px;bottom:auto;top:12px;}}
+@media print{.site-home{display:none !important;}}
+</style>
+<a class="site-home" href="../../../00_AI/00_页面总入口.html" title="回到所有页面的总入口">⌂ 页面总入口</a>
+</body>
+</html>
