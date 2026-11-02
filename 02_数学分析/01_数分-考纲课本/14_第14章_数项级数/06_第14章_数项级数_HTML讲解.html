@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -673,6 +674,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>86</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§14.1 数项级数的基本概念</h3>
 <h4>练习题 14.1（8 题）</h4>
 <ol class="ex-list">
@@ -689,21 +691,21 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <ol class="ex-list">
 <li>求证：$\displaystyle\sum_{n=1}^{\infty}\frac1{(pn+q)(pn+q+pr)}=\frac1{pr}\left(\frac1{q+p}+\frac1{q+2p}+\cdots+\frac1{q+rp}\right)$，这里 $r$ 是正整数，$pn+q\ne0$（$n=1,2,\cdots$）。原书 PDF 176 [待核验：原页仅列出 $pn+q\ne0$；等式还出现 $p$ 与 $pn+q+pr$ 的分母，条件照录。]</li>
 <li>求证：$\displaystyle\sum_{\substack{n=1\\n\ne m}}^{\infty}\frac1{m^2-n^2}=-\frac3{4m^2}$，这里 $m$ 是给定的正整数。原书 PDF 176</li>
-<li>求证：$\displaystyle 12&lt;1+\frac12+\frac13+\cdots+\frac1{10^6}&lt;15$。原书 PDF 176</li>
+<li><span class="star">★★★</span> 求证：$\displaystyle 12&lt;1+\frac12+\frac13+\cdots+\frac1{10^6}&lt;15$。原书 PDF 176</li>
 <li>设 $a_n>0$，$\{a_n-a_{n+1}\}$ 为一个严格递减的数列。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，求证：$\displaystyle\lim_{n\to\infty}\left(\frac1{a_{n+1}}-\frac1{a_n}\right)=+\infty$。原书 PDF 176</li>
-<li>证明：存在正常数 $K$，使得不等式 $\displaystyle\sum_{n=1}^{\infty}\frac n{a_1+a_2+\cdots+a_n}\le K\sum_{n=1}^{\infty}\frac1{a_n}$ 对任何正数列 $\{a_n\}$ 成立。原书 PDF 176 [待核验：原页写无穷和不等式；若两侧同为 $+\infty$，它并非有限数值比较，题面照录。]</li>
+<li><span class="star">★★</span> 证明：存在正常数 $K$，使得不等式 $\displaystyle\sum_{n=1}^{\infty}\frac n{a_1+a_2+\cdots+a_n}\le K\sum_{n=1}^{\infty}\frac1{a_n}$ 对任何正数列 $\{a_n\}$ 成立。原书 PDF 176 [待核验：原页写无穷和不等式；若两侧同为 $+\infty$，它并非有限数值比较，题面照录。]</li>
 </ol>
 <h3>§14.2 正项级数的比较判别法</h3>
 <h4>练习题 14.2（12 题）</h4>
 <ol class="ex-list">
 <li>设 $a_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}b_n$ 收敛，能否断言 $\displaystyle\sum_{n=1}^{\infty}a_n$ 也收敛？试举例说明之。原书 PDF 180</li>
 <li>用比较判别法讨论下列级数的敛散性：（1）—（8）PDF 180（9）—（10）PDF 181</li>
-<li>若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 也收敛。但反之不然，举例说明之。原书 PDF 181</li>
+<li><span class="star">★★</span> 若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 也收敛。但反之不然，举例说明之。原书 PDF 181</li>
 <li>若 $\displaystyle\sum_{n=1}^{\infty}a_n^2$、$\displaystyle\sum_{n=1}^{\infty}b_n^2$ 收敛，试证：$\displaystyle\sum_{n=1}^{\infty}|a_nb_n|$、$\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)^2$ 也收敛。原书 PDF 181</li>
 <li>若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}\sqrt{a_na_{n+1}}$ 也收敛。举例说明其逆命题不成立。但若 $\{a_n\}$ 是递减数列，则逆命题成立。原书 PDF 181</li>
 <li>证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac1{\ln n!}$ 发散。原书 PDF 181</li>
 <li>证明：级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n\ln n\ln\ln n}$ 发散。原书 PDF 181</li>
-<li>问 $p,q$ 取何值时，级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln\ln n)^q}$ 收敛？原书 PDF 181</li>
+<li><span class="star">★★★</span> 问 $p,q$ 取何值时，级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln\ln n)^q}$ 收敛？原书 PDF 181</li>
 <li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛的正项级数。证明：对任何 $\delta>0$，级数 $\displaystyle\sum_{n=1}^{\infty}n^{-(1+\delta)/2}\sqrt{a_n}&lt;+\infty$。当 $\delta=0$ 时情况如何？原书 PDF 181</li>
 <li>设 $\sigma>0$，$a_n>0$（$n=1,2,\cdots$）。试证：原书 PDF 181</li>
 <li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。试证：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 发散，$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+n^2a_n}$ 收敛。原书 PDF 181</li>
@@ -714,14 +716,14 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <li>试证：级数 $\displaystyle\sum_{n=1}^{\infty}x^{1+\frac12+\cdots+\frac1n}$ 当 $0&lt;x&lt;e^{-1}$ 时收敛，当 $x\ge e^{-1}$ 时发散。原书 PDF 182</li>
 <li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。问 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n^2}$、$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+na_n}$ 的敛散情况如何？原书 PDF 182</li>
 <li>设 $a_n>0$，$S_n=\displaystyle\sum_{k=1}^{n}a_k$。证明：原书 PDF 182</li>
-<li>设 $\{a_n\}$ 是递减的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 与 $\displaystyle\sum_{n=0}^{\infty}2^na_{2^n}$ 同收敛。利用这一结果，证明：原书 PDF 182</li>
+<li><span class="star">★★</span> 设 $\{a_n\}$ 是递减的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 与 $\displaystyle\sum_{n=0}^{\infty}2^na_{2^n}$ 同收敛。利用这一结果，证明：原书 PDF 182</li>
 <li>证明：从调和级数 $\displaystyle\sum_{n=1}^{\infty}\frac1n$ 中划去所有分母中含有数字 9 的那些项（例如 $\frac19$、$\frac1{19}$、$\frac1{391}$ 等）之后，所得的新级数是收敛的，且其和不超过 80。原书 PDF 182</li>
 </ol>
 <h3>§14.3 正项级数的其他判别法</h3>
 <h4>练习题 14.3（5 题）</h4>
 <ol class="ex-list">
 <li>讨论下列级数的敛散性：原书 PDF 193</li>
-<li>利用 Raabe 判别法，讨论下列级数的敛散性：原书 PDF 193</li>
+<li><span class="star">★★</span> 利用 Raabe 判别法，讨论下列级数的敛散性：原书 PDF 193</li>
 <li>证明定理 14.3.5 中最左端的不等式。原书 PDF 193</li>
 <li>证明定理 14.3.7。原书 PDF 193</li>
 <li>利用 Gauss 判别法，判别例 6 中的级数当 $p=q$ 时的敛散性。原书 PDF 193</li>
@@ -736,9 +738,9 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 14.4（12 题）</h4>
 <ol class="ex-list">
 <li>利用 Cauchy 收敛原理，讨论下列级数的敛散性：原书 PDF 199</li>
-<li>试利用 Cauchy 收敛原理，证明交错级数的 Leibniz 判别法。（提示：证明 $\displaystyle\left|\sum_{n=N+1}^{N+p}(-1)^{n-1}a_n\right|\le a_N$。）原书 PDF 199</li>
+<li><span class="star">★★★</span> 试利用 Cauchy 收敛原理，证明交错级数的 Leibniz 判别法。（提示：证明 $\displaystyle\left|\sum_{n=N+1}^{N+p}(-1)^{n-1}a_n\right|\le a_N$。）原书 PDF 199</li>
 <li>设 $a_n\le c_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都是收敛级数，证明 $\displaystyle\sum_{n=1}^{\infty}c_n$ 也收敛。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都发散，结论如何？首句 PDF 199末句 PDF 200</li>
-<li>在交错级数的 Leibniz 判别法中，如果去掉 $\{a_n\}$ 递减这个条件，结论可能不成立。试以 $\displaystyle\sum_{n=3}^{\infty}\frac{(-1)^{n-1}}{\sqrt{\left[\frac{n+1}{2}\right]}+(-1)^n}=\frac1{\sqrt2-1}-\frac1{\sqrt2+1}+\frac1{\sqrt3-1}-\frac1{\sqrt3+1}+\cdots$ 说明之。原书 PDF 200 [待核验：原页用方括号表示整数部分；照录方括号与逐项展开。]</li>
+<li><span class="star">★★</span> 在交错级数的 Leibniz 判别法中，如果去掉 $\{a_n\}$ 递减这个条件，结论可能不成立。试以 $\displaystyle\sum_{n=3}^{\infty}\frac{(-1)^{n-1}}{\sqrt{\left[\frac{n+1}{2}\right]}+(-1)^n}=\frac1{\sqrt2-1}-\frac1{\sqrt2+1}+\frac1{\sqrt3-1}-\frac1{\sqrt3+1}+\cdots$ 说明之。原书 PDF 200 [待核验：原页用方括号表示整数部分；照录方括号与逐项展开。]</li>
 <li>讨论下列级数的敛散性：原书 PDF 200</li>
 <li>设 $\{a_n\}$ 递减趋于 0。讨论级数 $\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$、$\displaystyle\sum_{n=1}^{\infty}a_n\sin nx$ 的敛散性。原书 PDF 200</li>
 <li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛级数。如果 $\displaystyle\lim_{n\to\infty}\frac{b_n}{a_n}=1$，能否断言 $\displaystyle\sum_{n=1}^{\infty}b_n$ 也是收敛级数？请研究级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt n}$、$\displaystyle\sum_{n=1}^{\infty}\left(\frac{(-1)^{n-1}}{\sqrt n}+\frac1n\right)$。原书 PDF 200</li>
@@ -816,6 +818,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第14章_数项级数_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>

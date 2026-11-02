@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -526,25 +527,26 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>80</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§15.1 函数项级数</h3>
 <h4>问题 15.1（3 题）</h4>
 <ol class="ex-list">
-<li>设函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在有界闭区间 $[a,b]$ 上收敛于 $S(x)$。如果 $u_n(x)$（$n=1,2,\ldots$）都是 $[a,b]$ 上的非负连续函数，证明：$S(x)$ 必在 $[a,b]$ 上取到最小值。原书 PDF 227</li>
+<li><span class="star">★★</span> 设函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在有界闭区间 $[a,b]$ 上收敛于 $S(x)$。如果 $u_n(x)$（$n=1,2,\ldots$）都是 $[a,b]$ 上的非负连续函数，证明：$S(x)$ 必在 $[a,b]$ 上取到最小值。原书 PDF 227</li>
 <li>第 1 题中的 $S(x)$ 是否一定能取到最大值？原书 PDF 227</li>
 <li>把第 1 题中的有界闭区间换成开区间或无穷区间，结论是否还成立？原书 PDF 227</li>
 </ol>
 <h3>§15.2 一致收敛</h3>
 <h4>练习题 15.2（13 题）</h4>
 <ol class="ex-list">
-<li>研究下列函数列在指定区间上的一致收敛性：（1）$f_n(x)=\dfrac1{1+nx}$： (a) $0&lt;x&lt;+\infty$；(b) $0&lt;\lambda&lt;x&lt;+\infty$。（2）$f_n(x)=\dfrac{x^n}{1+x^n}$：(a) $0\leqslant x\leqslant1-\lambda$；(b) $1-\lambda\leqslant x\leqslant1+\lambda$；(c) $1+\lambda\leqslant x&lt;+\infty$（$\lambda>0$）。（3）$f_n(x)=e^{-(x-n)^2}$：(a) $-l&lt;x&lt;l$（$l>0$）；(b) $-\infty&lt;x&lt;+\infty$。原书 PDF 236</li>
+<li><span class="star">★★★</span> 研究下列函数列在指定区间上的一致收敛性：（1）$f_n(x)=\dfrac1{1+nx}$： (a) $0&lt;x&lt;+\infty$；(b) $0&lt;\lambda&lt;x&lt;+\infty$。（2）$f_n(x)=\dfrac{x^n}{1+x^n}$：(a) $0\leqslant x\leqslant1-\lambda$；(b) $1-\lambda\leqslant x\leqslant1+\lambda$；(c) $1+\lambda\leqslant x&lt;+\infty$（$\lambda>0$）。（3）$f_n(x)=e^{-(x-n)^2}$：(a) $-l&lt;x&lt;l$（$l>0$）；(b) $-\infty&lt;x&lt;+\infty$。原书 PDF 236</li>
 <li>研究下列级数在指定区间上的一致收敛性：（1）$\displaystyle\sum_{n=1}^{\infty}\frac1{(x+n)(x+n+1)}$，$(0,+\infty)$；（2）$\displaystyle\sum_{n=1}^{\infty}\frac{nx}{1+n^5x^2}$，$(-\infty,+\infty)$；（3）$\displaystyle\sum_{n=1}^{\infty}\frac{n^2}{\sqrt{n!}}(x^n+x^{-n})$，$[-3,-1/3]\cup[1/3,3]$；（4）$\displaystyle\sum_{n=1}^{\infty}\frac{\sin((n+\frac12)x)}{\sqrt[3]{n^4+x^4}}$，$(-\infty,+\infty)$；（5）$\displaystyle\sum_{n=2}^{\infty}\ln\!\left(1+\frac{x}{n\ln^2 n}\right)$，$(-l,l)$（$l>0$）；（6）$\displaystyle\sum_{n=2}^{\infty}\frac{(-1)^n}{n+\sin x}$，$[0,2\pi]$；（7）$\displaystyle\sum_{n=1}^{\infty}2^n\sin\!\frac{1}{3^n x}$，$(0,+\infty)$。原书 PDF 236续页 PDF 237</li>
 <li>若级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_ne^{-nx}$ 在 $[0,+\infty)$ 上一致收敛。原书 PDF 237</li>
-<li>设 $u_n(x)$（$n=1,2,\ldots$）是 $[a,b]$ 上的单调函数。如果级数 $\displaystyle\sum_{n=1}^{\infty}u_n(a)$ 和 $\displaystyle\sum_{n=1}^{\infty}u_n(b)$ 绝对收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上绝对且一致收敛。原书 PDF 237</li>
+<li><span class="star">★★</span> 设 $u_n(x)$（$n=1,2,\ldots$）是 $[a,b]$ 上的单调函数。如果级数 $\displaystyle\sum_{n=1}^{\infty}u_n(a)$ 和 $\displaystyle\sum_{n=1}^{\infty}u_n(b)$ 绝对收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上绝对且一致收敛。原书 PDF 237</li>
 <li>证明：级数 $\displaystyle\sum_{n=0}^{\infty}(-1)^nx^n(1-x)$ 在 $[0,1]$ 上绝对且一致收敛，但 $\displaystyle\sum_{n=0}^{\infty}x^n(1-x)$ 在 $[0,1]$ 上并不一致收敛。原书 PDF 237</li>
 <li>在区间 $[0,1]$ 上，定义 $\displaystyle u_n(x)=\begin{cases}1/n,&x=1/n,\\0,&x\ne1/n.\end{cases}$ 证明：$\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[0,1]$ 上一致收敛，但它不存在收敛的优级数。原书 PDF 237</li>
 <li>设 $\{u_n(x)\}$ 是 $[a,b]$ 上的连续函数列。证明：如果 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b)$ 内的每一点收敛，但 $\displaystyle\sum_{n=1}^{\infty}u_n(b)$ 发散，那么 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b)$ 上不一致收敛。原书 PDF 237</li>
-<li>设 $a_n\geqslant0$。证明：$\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$ 在 $(-\infty,+\infty)$ 上一致收敛的充分必要条件是 $\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$。原书 PDF 237</li>
-<li>证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac{\cos nx}{n\ln n}$ 在 $(0,\pi]$ 上不一致收敛。原书 PDF 237</li>
+<li><span class="star">★★★</span> 设 $a_n\geqslant0$。证明：$\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$ 在 $(-\infty,+\infty)$ 上一致收敛的充分必要条件是 $\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$。原书 PDF 237</li>
+<li><span class="star">★★</span> 证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac{\cos nx}{n\ln n}$ 在 $(0,\pi]$ 上不一致收敛。原书 PDF 237</li>
 <li>设 $[a,b]$ 是一个有限闭区间。如果对任一点 $x\in[a,b]$，存在一个包含 $x$ 的开区间 $I_x$，使得 $\{f_n\}$ 在 $I_x$ 上一致收敛于 $f$。求证：$\{f_n\}$ 在 $[a,b]$ 上一致收敛于 $f$。（提示：用有限覆盖定理。）原书 PDF 237</li>
 <li>证明：函数列 $f_n(x)=xn^{-x}(\ln n)^\alpha$（$n=1,2,\ldots$）在 $[0,+\infty)$ 上一致收敛的充分必要条件是 $\alpha&lt;1$。原书 PDF 237</li>
 <li>设 $f_1$ 在 $[a,b]$ 上 Riemann 可积，定义 $\displaystyle f_{n+1}(x)=\int_a^x f_n(t)\,\mathrm dt$（$n=1,2,\ldots$）。证明：函数列 $\{f_n\}$ 在 $[a,b]$ 上一致收敛于 $0$。原书 PDF 238</li>
@@ -564,9 +566,9 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 15.3（8 题）</h4>
 <ol class="ex-list">
 <li>确定下列函数的存在域，并研究它们的连续性：（1）$\displaystyle f(x)=\sum_{n=1}^{\infty}\left(1+\frac1n\right)^n$；（2）$\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{x+(-1)^nn}{x^2+n^2}$。原书 PDF 245续页 PDF 246</li>
-<li>证明：函数 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{\cos nx}{n^4}$ 在 $(-\infty,+\infty)$ 上有二阶连续导函数，并计算 $f''(x)$。原书 PDF 246</li>
+<li><span class="star">★★★</span> 证明：函数 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{\cos nx}{n^4}$ 在 $(-\infty,+\infty)$ 上有二阶连续导函数，并计算 $f''(x)$。原书 PDF 246</li>
 <li>证明：Riemann $\zeta$ 函数 $\displaystyle\zeta(x)=\sum_{n=1}^{\infty}\frac1{n^x}$ 在 $(1,+\infty)$ 上是连续的，并在此区间内有各阶连续导函数。原书 PDF 246</li>
-<li>设 $\displaystyle f(x)=\sum_{n=1}^{\infty}ne^{-nx}$（$x>0$），计算 $\displaystyle\int_{\ln2}^{\ln3}f(x)\,\mathrm dx$。原书 PDF 246</li>
+<li><span class="star">★★</span> 设 $\displaystyle f(x)=\sum_{n=1}^{\infty}ne^{-nx}$（$x>0$），计算 $\displaystyle\int_{\ln2}^{\ln3}f(x)\,\mathrm dx$。原书 PDF 246</li>
 <li>已知 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}n=\ln2$。证明：$\displaystyle\lim_{x\to1}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^x}=\ln2$。原书 PDF 246</li>
 <li>设 $E$ 是 $(-\infty,+\infty)$ 中的一个点集，$x_0$ 是 $E$ 的一个极限点（$x_0$ 可以是 $\pm\infty$）。如果级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $E$ 上一致收敛，而且 $\displaystyle\lim_{x\to x_0}u_n(x)=a_n$（$x\in E$，$n=1,2,\ldots$），证明：（1）$\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛；（2）$\displaystyle\lim_{x\to x_0}\sum_{n=1}^{\infty}u_n(x)=\sum_{n=1}^{\infty}a_n$（$x\in E$）。原书 PDF 246</li>
 <li>设 $\displaystyle f(x)=\sum_{n=1}^{\infty}\left(\frac{x}{1+2x}\right)^n\cos\frac{n\pi}{x}$。计算：$\displaystyle\lim_{x\to1}f(x)$，$\displaystyle\lim_{x\to+\infty}f(x)$。原书 PDF 246</li>
@@ -575,7 +577,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>问题 15.3（7 题）</h4>
 <ol class="ex-list">
 <li>设 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上收敛。如果 $\displaystyle|S_n(x)|=\left|\sum_{k=1}^nu_k(x)\right|\leqslant M$（$a\leqslant x\leqslant b$，$n=1,2,\ldots$），则称级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上有界收敛。设 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在 $[a,b]$ 上有界收敛，且对任意的 $\delta>0$ 和 $c\in(a,b)$，$\displaystyle\sum_{n=1}^{\infty}u(x)$ 在 $[a,c-\delta]$ 和 $[c+\delta,b]$ 上一致收敛。证明：如果 $u_n(x)$（$n=1,2,\ldots$）在 $[a,b]$ 上 Riemann 可积，那么 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 也在 $[a,b]$ 上 Riemann 可积，而且 $\displaystyle\int_a^b\left(\sum_{n=1}^{\infty}u_n(x)\right)\mathrm dx=\sum_{n=1}^{\infty}\int_a^bu_n(x)\,\mathrm dx$。<b>[待核验：原书 PDF 第 247 页在局部一致收敛条件处印作 $\sum u(x)$，与同题其余 $u_n(x)$ 记法不一致，保留原式。]</b> 原书 PDF 246续页 PDF 247</li>
-<li>设级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 满足下列条件：(a) 反常积分 $\displaystyle\int_a^{+\infty}u_n(x)\,\mathrm dx$（$n=1,2,\ldots$）收敛；(b) 级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在区间 $[a,b]$ 上一致收敛，这里 $b$ 是大于 $a$ 的任何实数；(c) 级数 $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ 在 $[a,+\infty)$ 上一致收敛，这里 $\displaystyle f_n(x)=\int_a^xu_n(t)\,\mathrm dt$。证明：$\displaystyle\int_a^{+\infty}\left(\sum_{n=1}^{\infty}u_n(x)\right)\mathrm dx$ 和 $\displaystyle\sum_{n=1}^{\infty}\int_a^{+\infty}u_n(x)\,\mathrm dx$ 都收敛，而且二者相等。原书 PDF 247</li>
+<li><span class="star">★★</span> 设级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 满足下列条件：(a) 反常积分 $\displaystyle\int_a^{+\infty}u_n(x)\,\mathrm dx$（$n=1,2,\ldots$）收敛；(b) 级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 在区间 $[a,b]$ 上一致收敛，这里 $b$ 是大于 $a$ 的任何实数；(c) 级数 $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ 在 $[a,+\infty)$ 上一致收敛，这里 $\displaystyle f_n(x)=\int_a^xu_n(t)\,\mathrm dt$。证明：$\displaystyle\int_a^{+\infty}\left(\sum_{n=1}^{\infty}u_n(x)\right)\mathrm dx$ 和 $\displaystyle\sum_{n=1}^{\infty}\int_a^{+\infty}u_n(x)\,\mathrm dx$ 都收敛，而且二者相等。原书 PDF 247</li>
 <li>设级数 $\displaystyle\sum_{n=1}^{\infty}u_n(x)$ 满足下列条件：(a) $\sum u_n(x)$ 在 $(x_0-\delta,x_0+\delta)$ 上收敛于 $f(x)$；(b) 级数的每一项 $u_n(x)$ 在 $x=x_0$ 处可微；(c) 级数 $\displaystyle\sum_{n=1}^{\infty}\frac{u_n(x)-u_n(x_0)}{x-x_0}$ 在 $0&lt;|x-x_0|&lt;\delta$ 上一致收敛。证明：$f$ 在 $x_0$ 处可微，而且 $\displaystyle f'(x_0)=\sum_{n=1}^{\infty}u'_n(x_0)$。原书 PDF 247</li>
 <li>在 $(0,1)$ 中任取一数列 $\{a_n\}$，其中两两不相同。证明：函数 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{|x-a_n|}{2^n}$ 在 $(0,1)$ 上连续，且在 $x=a_n$（$n=1,2,\ldots$）处都不可微，而在 $(0,1)$ 中其他点处都可微。原书 PDF 247</li>
 <li>设 $\displaystyle f(x)=\sum_{n=0}^{\infty}\frac1{x+2^n}$（$0\leqslant x&lt;+\infty$）。证明：（1）$f$ 在 $[0,+\infty)$ 上连续；（2）$\displaystyle\lim_{x\to+\infty}f(x)=0$；（3）对一切 $x\in(0,+\infty)$，有 $\displaystyle0&lt;f(x)-\frac{\ln(1+x)}{x\ln2}&lt;\frac1{1+x}$。原书 PDF 247续页 PDF 248</li>
@@ -661,6 +663,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第15章_函数列与函数项级数_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>

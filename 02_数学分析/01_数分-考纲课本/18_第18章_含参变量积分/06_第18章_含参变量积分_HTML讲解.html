@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -574,15 +575,16 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>45</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§18.1 含参变量积分的性质</h3>
 <h4>练习题 18.1（7 题）</h4>
 <ol class="ex-list">
 <li>求极限：</li>
-<li>设 $f$ 是可微函数。令 $\displaystyle F(u)=\int_0^u(x+u)f(x)\,\mathrm dx$，计算 $F''(u)$。原书 PDF 373</li>
-<li>计算下列函数的导数：</li>
+<li><span class="star">★★</span> 设 $f$ 是可微函数。令 $\displaystyle F(u)=\int_0^u(x+u)f(x)\,\mathrm dx$，计算 $F''(u)$。原书 PDF 373</li>
+<li><span class="star">★★★</span> 计算下列函数的导数：</li>
 <li>设 $\varphi,\psi$ 可以分别微分两次和一次。证明：</li>
 <li>设 $f$ 在闭区间 $[0,a]$ 上连续，且当 $t\in[0,a]$ 时，$(x-t)^2+y^2+z^2\ne0$。证明：</li>
-<li>设 $a&lt;b$，$f$ 为可微函数。令 $\displaystyle\varphi(u)=\int_a^bf(x)|x-u|\,\mathrm dx$，计算 $\varphi''(u)$。原书 PDF 373</li>
+<li><span class="star">★★</span> 设 $a&lt;b$，$f$ 为可微函数。令 $\displaystyle\varphi(u)=\int_a^bf(x)|x-u|\,\mathrm dx$，计算 $\varphi''(u)$。原书 PDF 373</li>
 <li>在区间 $[1,3]$ 上用线性函数 $a+bx$ 近似代替函数 $f(x)=x^2$。试选取 $a,b$，使得 $\displaystyle\int_1^3(a+bx-x^2)^2\,\mathrm dx$ 取最小值。原书 PDF 373</li>
 </ol>
 <h4>问题 18.1（3 题）</h4>
@@ -594,8 +596,8 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h3>§18.2 含参变量反常积分的一致收敛</h3>
 <h4>练习题 18.2（6 题）</h4>
 <ol class="ex-list">
-<li>研究下列反常积分在指定区间上的一致收敛性：</li>
-<li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{\sin(ux)}x\,\mathrm dx$ 在任何不包含 $u=0$ 的闭区间 $[a,b]$ 上一致收敛，在包含 $u=0$ 的闭区间上不一致收敛。原书 PDF 385</li>
+<li><span class="star">★★</span> 研究下列反常积分在指定区间上的一致收敛性：</li>
+<li><span class="star">★★★</span> 证明：积分 $\displaystyle\int_0^{+\infty}\frac{\sin(ux)}x\,\mathrm dx$ 在任何不包含 $u=0$ 的闭区间 $[a,b]$ 上一致收敛，在包含 $u=0$ 的闭区间上不一致收敛。原书 PDF 385</li>
 <li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{\sin(3x)}{x+u}e^{-ux}\,\mathrm dx$ 关于 $u$ 在 $[0,\infty)$ 上一致收敛。原书 PDF 385</li>
 <li>设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续。如果对每个 $u\in[\alpha,\beta)$，积分 $\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 都收敛，但积分 $\displaystyle\int_a^{+\infty}f(x,\beta)\,\mathrm dx$ 发散，证明：$\displaystyle\int_a^{+\infty}f(x,u)\,\mathrm dx$ 在 $[\alpha,\beta)$ 上不一致收敛。原书 PDF 385</li>
 <li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\cos(ux)}{a^2+x^2}\,\mathrm dx\ (a>0)$ 在 $[\delta,+\infty)$（$\delta>0$）上一致收敛，但在 $(0,+\infty)$ 上不一致收敛。原书 PDF 385</li>
@@ -612,15 +614,15 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <ol class="ex-list">
 <li>研究下列函数在指定区间上的连续性：</li>
 <li>利用公式 $\displaystyle\int_0^1x^{\alpha-1}\,\mathrm dx=\frac1\alpha\ (\alpha>0)$，计算积分 $\displaystyle\int_0^1x^{\alpha-1}(\ln x)^m\,\mathrm dx$，其中 $m$ 为正整数。原书 PDF 396</li>
-<li>计算积分 $\displaystyle\int_0^{+\infty}\frac{e^{-ax}-e^{-bx}}x\sin(cx)\,\mathrm dx\ (a>0,b>0,c>0)$。原书 PDF 396</li>
+<li><span class="star">★★</span> 计算积分 $\displaystyle\int_0^{+\infty}\frac{e^{-ax}-e^{-bx}}x\sin(cx)\,\mathrm dx\ (a>0,b>0,c>0)$。原书 PDF 396</li>
 <li>计算积分 $\displaystyle\int_0^{+\infty}\frac{\ln(a^2+x^2)}{\beta^2+x^2}\,\mathrm dx\ (\beta\ne0)$。原书 PDF 396</li>
-<li>利用已知的积分值，计算下列积分：</li>
+<li><span class="star">★★★</span> 利用已知的积分值，计算下列积分：</li>
 <li>如果 $\displaystyle\int_{-\infty}^{+\infty}|f(x)|\,\mathrm dx$ 收敛，证明：函数 $\displaystyle\varphi(u)=\int_{-\infty}^{+\infty}f(x)\cos(ux)\,\mathrm dx$ 在 $(-\infty,+\infty)$ 上一致连续。原书 PDF 396</li>
 </ol>
 <h4>问题 18.3（6 题）</h4>
 <ol class="ex-list">
 <li>证明：函数 $\displaystyle f(\alpha)=\int_0^{+\infty}\frac{e^{-t}}{|\sin t|^\alpha}\,\mathrm dt$ 在 $[0,1)$ 上连续。原书 PDF 396</li>
-<li>通过积分 $\displaystyle\varphi(u)=\int_0^{+\infty}ue^{-ux}\,\mathrm dx\ (0&lt;u\leqslant1)$、$\displaystyle\psi(u)=\int_0^{+\infty}ue^{u(u-x)}\,\mathrm dx\ (1\leqslant u&lt;+\infty)$，说明含参变量反常积分的 Dini 定理（定理 18.3.2）在开区间或无穷区间上不成立。原书 PDF 396</li>
+<li><span class="star">★★</span> 通过积分 $\displaystyle\varphi(u)=\int_0^{+\infty}ue^{-ux}\,\mathrm dx\ (0&lt;u\leqslant1)$、$\displaystyle\psi(u)=\int_0^{+\infty}ue^{u(u-x)}\,\mathrm dx\ (1\leqslant u&lt;+\infty)$，说明含参变量反常积分的 Dini 定理（定理 18.3.2）在开区间或无穷区间上不成立。原书 PDF 396</li>
 <li>计算积分 $\displaystyle\int_0^{+\infty}\frac{\arctan(\alpha x)\arctan(\beta x)}{x^2}\,\mathrm dx$。原书 PDF 396</li>
 <li>计算积分</li>
 <li>利用已知积分，计算下列积分：</li>
@@ -655,6 +657,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第18章_含参变量积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>

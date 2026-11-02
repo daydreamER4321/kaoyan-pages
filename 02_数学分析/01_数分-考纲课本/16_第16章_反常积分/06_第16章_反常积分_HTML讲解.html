@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -436,11 +437,12 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>25</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§16.1 无穷积分</h3>
 <h4>练习题 16.1（4 题）</h4>
 <ol class="ex-list">
 <li>判断下列无穷积分的敛散性：</li>
-<li>设 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。证明：如果 $\displaystyle\lim_{x\to+\infty}f(x)=b$ 存在，那么必有 $b=0$。原书 PDF 291</li>
+<li><span class="star">★★</span> 设 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。证明：如果 $\displaystyle\lim_{x\to+\infty}f(x)=b$ 存在，那么必有 $b=0$。原书 PDF 291</li>
 <li>证明：积分 $\displaystyle\int_0^{+\infty}\frac{x\,\mathrm dx}{1+x^\alpha\cos^2x}\ (\alpha>4)$ 收敛。原书 PDF 291</li>
 <li>证明：积分 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛于 $I$ 的充分必要条件是，对任一递增趋于 $+\infty$ 的数列 $\{A_n\}$（$A_1=a$），级数 $\displaystyle\sum_{n=1}^{\infty}\int_{A_n}^{A_{n+1}}f(x)\,\mathrm dx$ 收敛于 $I$。原书 PDF 291</li>
 </ol>
@@ -448,27 +450,27 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 16.2（7 题）</h4>
 <ol class="ex-list">
 <li>研究下列积分的敛散性：</li>
-<li>研究下列积分的绝对收敛性和条件收敛性：</li>
+<li><span class="star">★★★</span> 研究下列积分的绝对收敛性和条件收敛性：</li>
 <li>设 $f$ 为非负的减函数，且 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 收敛。证明：当 $x\to+\infty$ 时，$f(x)=o\!\left(\frac1x\right)$。原书 PDF 298</li>
-<li>设 $f$ 在 $[a,+\infty)$ 上递减趋于 0。试用 Dirichlet 判别法证明：积分 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f(x)\sin^2x\,\mathrm dx$ 同敛散。原书 PDF 298</li>
+<li><span class="star">★★★</span> 设 $f$ 在 $[a,+\infty)$ 上递减趋于 0。试用 Dirichlet 判别法证明：积分 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f(x)\sin^2x\,\mathrm dx$ 同敛散。原书 PDF 298</li>
 <li>设 $f,g$ 在 $[a,b]$ 上连续，$g$ 在 $(a,b)$ 内可微，且 $g'(x)\geqslant0\ (a&lt;x&lt;b)$。试用分部积分公式证明第二积分平均值定理。原书 PDF 298</li>
 <li>设 $P_m$ 和 $P_n$ 分别为 $m$ 和 $n$ 次多项式，且当 $x\geqslant a$ 时，$P_n(x)>0$。试研究积分 $\displaystyle\int_0^{+\infty}\frac{P_m(x)}{P_n(x)}\sin x\,\mathrm dx$ 的绝对收敛性和条件收敛性。<b>[待核验：PDF 298 的积分起点印作 $0$，但分母正性条件仅写 $x\geqslant a$；保留原书条件，待版本或勘误确认。]</b> 原书 PDF 298</li>
-<li>如果 $f$ 在 $[a,+\infty)$ 上连续可微，且 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f'(x)\,\mathrm dx$ 都收敛，证明：必有 $\displaystyle\lim_{x\to+\infty}f(x)=0$。原书 PDF 298</li>
+<li><span class="star">★★</span> 如果 $f$ 在 $[a,+\infty)$ 上连续可微，且 $\displaystyle\int_a^{+\infty}f(x)\,\mathrm dx$ 和 $\displaystyle\int_a^{+\infty}f'(x)\,\mathrm dx$ 都收敛，证明：必有 $\displaystyle\lim_{x\to+\infty}f(x)=0$。原书 PDF 298</li>
 </ol>
 <h4>问题 16.2（2 题）</h4>
 <ol class="ex-list">
-<li>设 $0&lt;a\leqslant1/2$。证明：积分 $\displaystyle\int_1^{+\infty}\frac{\sin x}{x^a+\sin x}\,\mathrm dx$ 发散。原书 PDF 298</li>
+<li><span class="star">★★</span> 设 $0&lt;a\leqslant1/2$。证明：积分 $\displaystyle\int_1^{+\infty}\frac{\sin x}{x^a+\sin x}\,\mathrm dx$ 发散。原书 PDF 298</li>
 <li>对任意的 $b>0$，设 $f$ 在 $[0,b]$ 上可积。如果 $\displaystyle\lim_{x\to+\infty}f(x)=a$，证明：$\displaystyle\lim_{t\to0^+}t\int_0^{+\infty}e^{-tx}f(x)\,\mathrm dx=a$。<b>[待核验：PDF 298 同时印有“任意 $b>0$ 时在 $[0,b]$ 可积”与无穷远极限；题面照录，定义域的严格表述待版本或勘误确认。]</b> 原书 PDF 298</li>
 </ol>
 <h3>§16.3 瑕积分的收敛判别法</h3>
 <h4>练习题 16.3（2 题）</h4>
 <ol class="ex-list">
 <li>判断下列反常积分的敛散性：</li>
-<li>判断下列反常积分的绝对收敛性和条件收敛性：</li>
+<li><span class="star">★★</span> 判断下列反常积分的绝对收敛性和条件收敛性：</li>
 </ol>
 <h4>问题 16.3（7 题）</h4>
 <ol class="ex-list">
-<li>判断反常积分 $\displaystyle\int_0^{+\infty}\frac{\sin(x+1/x)}{x^\alpha}\,\mathrm dx$ 的绝对收敛性和条件收敛性。原书 PDF 305</li>
+<li><span class="star">★★★</span> 判断反常积分 $\displaystyle\int_0^{+\infty}\frac{\sin(x+1/x)}{x^\alpha}\,\mathrm dx$ 的绝对收敛性和条件收敛性。原书 PDF 305</li>
 <li>设函数 $f$ 在 $(0,1)$ 上单调，在点 $x=0$ 和 $x=1$ 的邻域内不必有界。如果 $\displaystyle\int_0^1f(x)\,\mathrm dx$ 收敛，证明：</li>
 <li>上一题的逆命题是否成立？即若 $f$ 在 $(0,1)$ 上单调，且 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^{n-1}f\!\left(\frac kn\right)$ 存在，是否能保证 $\displaystyle\int_0^1f(x)\,\mathrm dx$ 收敛？试研究 $f(x)=\frac1x-\frac1{1-x}$。原书 PDF 305</li>
 <li>利用第 2 题的结果，证明：对任意的 $\alpha>0$，有 $\displaystyle\lim_{n\to\infty}\frac{1^{\alpha-1}+2^{\alpha-1}+\cdots+n^{\alpha-1}}{n^\alpha}=\frac1\alpha$。原书 PDF 305</li>
@@ -479,7 +481,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h3>§16.4 反常重积分</h3>
 <h4>练习题 16.4（3 题）</h4>
 <ol class="ex-list">
-<li>讨论下列反常重积分的敛散性：</li>
+<li><span class="star">★★</span> 讨论下列反常重积分的敛散性：</li>
 <li>证明：</li>
 <li>计算下列反常重积分：</li>
 </ol>
@@ -491,6 +493,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第16章_反常积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>

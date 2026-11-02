@@ -12,6 +12,7 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
 <body>
@@ -498,6 +499,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <section id="exercises">
 <h2>课本习题（全录）</h2>
 <p>共 <b>62</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§10.1 矩形区域上的积分</h3>
 <h4>练习题 10.1（5 题）</h4>
 <ol class="ex-list">
@@ -529,7 +531,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 10.3（5 题）</h4>
 <ol class="ex-list">
 <li>计算下列积分：原书 PDF 36</li>
-<li>设函数 $f$ 在矩形 $I=[a,b]\times[c,d]$ 上有连续的二阶偏导数。计算积分 $\displaystyle\iint_I\frac{\partial^2}{\partial x\partial y}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 36</li>
+<li><span class="star">★★</span> 设函数 $f$ 在矩形 $I=[a,b]\times[c,d]$ 上有连续的二阶偏导数。计算积分 $\displaystyle\iint_I\frac{\partial^2}{\partial x\partial y}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 36</li>
 <li>计算积分 $\int_I f\,\mathrm d\sigma$（$I=[0,1]^2$）：原书 PDF 36</li>
 <li>利用定理 10.3.4 中的 Minkowski 不等式，证明：对 $a_k\ge0,b_k\ge0$（$k=1,2,\cdots,n$），$p\ge1$，有不等式 $\displaystyle\left(\sum_{k=1}^n(a_k+b_k)^p\right)^{1/p}\le\left(\sum_{k=1}^n a_k^p\right)^{1/p}+\left(\sum_{k=1}^n b_k^p\right)^{1/p}$。条件 PDF 36公式 PDF 37</li>
 <li>设 $f,g$ 都在 $[a,b]$ 上可积。利用二重积分不等式 $\displaystyle\iint_{[a,b]^2}(f(x)g(y)-f(y)g(x))^2\,\mathrm dx\,\mathrm dy\ge0$，证明 Cauchy-Schwarz 不等式：$\displaystyle\left(\int_a^b f(x)g(x)\,\mathrm dx\right)^2\le\int_a^b f^2(x)\,\mathrm dx\int_a^b g^2(x)\,\mathrm dx$。原书 PDF 37</li>
@@ -543,28 +545,28 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 10.4（3 题）</h4>
 <ol class="ex-list">
 <li>证明定理 10.4.5。原书 PDF 43</li>
-<li>证明：$\displaystyle1.96&lt;\iint_{|x|+|y|\le10}\frac{\mathrm dx\,\mathrm dy}{100+\cos^2x+\cos^2y}&lt;2$。题号 PDF 43不等式 PDF 44</li>
+<li><span class="star">★★</span> 证明：$\displaystyle1.96&lt;\iint_{|x|+|y|\le10}\frac{\mathrm dx\,\mathrm dy}{100+\cos^2x+\cos^2y}&lt;2$。题号 PDF 43不等式 PDF 44</li>
 <li>设 $B\subset\mathbb R^2$ 是一有界集，那么 $B$ 有面积的充分必要条件是，对 $I^\circ\supset B$ 的矩形 $I$ 的任何矩形网分割 $\pi$，均有 $\displaystyle\lim_{\|\pi\|\to0,\ I_j\cap B\ne\varnothing}\sum_j\sigma(I_j)=\lim_{\|\pi\|\to0,\ I_j\subset B}\sum_j\sigma(I_j)$。原书 PDF 44</li>
 </ol>
 <h3>§10.5 有界集合上积分的计算</h3>
 <h4>练习题 10.5（8 题）</h4>
 <ol class="ex-list">
 <li>计算下列积分：原书 PDF 48</li>
-<li>改变下列累次积分的次序：原书 PDF 49</li>
+<li><span class="star">★★★</span> 改变下列累次积分的次序：原书 PDF 49</li>
 <li>设 $f$ 为一元连续函数。求证：$\displaystyle\int_0^a\mathrm dx\int_0^x f(x)f(y)\,\mathrm dy=\frac12\left(\int_0^af(t)\,\mathrm dt\right)^2$。原书 PDF 49</li>
 <li>设 $f$ 为连续函数。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x f(y)\,\mathrm dy=\int_0^a(a-t)f(t)\,\mathrm dt$。原书 PDF 49</li>
 <li>设函数 $f$ 连续。证明：$\displaystyle\int_a^b\mathrm dx\int_a^x\mathrm dy\int_a^y f(x,y,z)\,\mathrm dz=\int_a^b\mathrm dz\int_z^b\mathrm dy\int_y^b f(x,y,z)\,\mathrm dx$。原书 PDF 49</li>
 <li>设函数 $f$ 连续。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x\mathrm dy\int_0^y f(x)f(y)f(z)\,\mathrm dz=\frac1{3!}\left(\int_0^a f(t)\,\mathrm dt\right)^3$。原书 PDF 49</li>
 <li>设函数 $f$ 连续。证明：$\displaystyle\int_0^a\mathrm dx\int_0^x\mathrm dy\int_0^y f(z)\,\mathrm dz=\frac12\int_0^a(a-t)^2f(t)\,\mathrm dt$。原书 PDF 49</li>
-<li>设 $f$ 为连续函数。求极限 $\displaystyle\lim_{r\to0}\frac1{\pi r^2}\iint_{x^2+y^2\le r^2}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 49</li>
+<li><span class="star">★★</span> 设 $f$ 为连续函数。求极限 $\displaystyle\lim_{r\to0}\frac1{\pi r^2}\iint_{x^2+y^2\le r^2}f(x,y)\,\mathrm dx\,\mathrm dy$。原书 PDF 49</li>
 </ol>
 <h3>§10.6 二重积分换元</h3>
 <h4>练习题 10.6（7 题）</h4>
 <ol class="ex-list">
 <li>计算下列二重积分：原书 PDF 57</li>
 <li>计算由下列曲线围成的图形的面积：原书 PDF 57</li>
-<li>求证：$\displaystyle\iint_{|x|+|y|\le1}f(x+y)\,\mathrm dx\,\mathrm dy=\int_{-1}^1 f(t)\,\mathrm dt$。原书 PDF 57</li>
-<li>设 $D$ 是由曲线 $xy=1$、$xy=2$、$y=x$ 和 $y=4x$ 围成的图形在第一象限中的那一部分。求证：$\displaystyle\iint_D f(xy)\,\mathrm dx\,\mathrm dy=\ln2\int_1^2 f(t)\,\mathrm dt$。区域 PDF 57结论 PDF 58</li>
+<li><span class="star">★★</span> 求证：$\displaystyle\iint_{|x|+|y|\le1}f(x+y)\,\mathrm dx\,\mathrm dy=\int_{-1}^1 f(t)\,\mathrm dt$。原书 PDF 57</li>
+<li><span class="star">★★</span> 设 $D$ 是由曲线 $xy=1$、$xy=2$、$y=x$ 和 $y=4x$ 围成的图形在第一象限中的那一部分。求证：$\displaystyle\iint_D f(xy)\,\mathrm dx\,\mathrm dy=\ln2\int_1^2 f(t)\,\mathrm dt$。区域 PDF 57结论 PDF 58</li>
 <li>计算下列二重积分：原书 PDF 58</li>
 <li>计算半径为 $R$ 的球的体积。原书 PDF 58</li>
 <li>设常数 $a,b>0$，$\displaystyle D=\left\{(x,y):\frac{x^2}{a^2}+\frac{y^2}{b^2}\le1\text{ 且 }x\ge y\ge0\right\}$。计算二重积分 $\displaystyle\iint_D\sqrt{\frac{x^2}{a^2}+\frac{y^2}{b^2}}\,\mathrm dx\,\mathrm dy$。原书 PDF 58</li>
@@ -572,7 +574,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>问题 10.6（4 题）</h4>
 <ol class="ex-list">
 <li>证明：$\displaystyle\iint_{[0,1]^2}(xy)^{xy}\,\mathrm dx\,\mathrm dy=\int_0^1t^t\,\mathrm dt$。原书 PDF 58</li>
-<li>设常数 $a,b$ 不全为 0。求证：$\displaystyle\iint_{x^2+y^2\le1}f(ax+by+c)\,\mathrm dx\,\mathrm dy=2\int_{-1}^1\sqrt{1-t^2}\,f\bigl(t\sqrt{a^2+b^2}+c\bigr)\,\mathrm dt$。原书 PDF 58</li>
+<li><span class="star">★★★</span> 设常数 $a,b$ 不全为 0。求证：$\displaystyle\iint_{x^2+y^2\le1}f(ax+by+c)\,\mathrm dx\,\mathrm dy=2\int_{-1}^1\sqrt{1-t^2}\,f\bigl(t\sqrt{a^2+b^2}+c\bigr)\,\mathrm dt$。原书 PDF 58</li>
 <li>设 $f$ 是单变量函数，且连续可导。令 $\displaystyle F(t)=\iint_{[0,t]^2}f(xy)\,\mathrm dx\,\mathrm dy$。求证：（1）$\displaystyle F'(t)=\frac2t\left(F(t)+\iint_{[0,t]^2}xyf'(xy)\,\mathrm dx\,\mathrm dy\right)$；（2）$\displaystyle F'(t)=\frac2t\int_0^{t^2}f(s)\,\mathrm ds$。原书 PDF 58</li>
 <li>计算二重积分 $\displaystyle\iint_D\frac{\mathrm dx\,\mathrm dy}{xy(\ln^2x+\ln^2y)}$，其中 $D$ 是由在第一象限里的圆周 $x^2+y^2=1$ 与直线 $x+y=1$ 所围成的图形。原书 PDF 58</li>
 </ol>
@@ -580,7 +582,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 <h4>练习题 10.7（5 题）</h4>
 <ol class="ex-list">
 <li>计算下列积分：原书 PDF 66</li>
-<li>计算下列曲面围成的立体的体积：题号 PDF 66（1）—（2）PDF 67</li>
+<li><span class="star">★★★</span> 计算下列曲面围成的立体的体积：题号 PDF 66（1）—（2）PDF 67</li>
 <li>设 $f$ 为连续函数。求极限 $\displaystyle\lim_{r\to0}\frac3{4\pi r^3}\iiint_{x^2+y^2+z^2\le r^2}f(x,y,z)\,\mathrm dx\,\mathrm dy\,\mathrm dz$。原书 PDF 67</li>
 <li>计算下列积分：原书 PDF 67</li>
 <li>计算由下列曲面围成的立体的体积：原书 PDF 67</li>
@@ -619,6 +621,7 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
   <li><b>正文</b>：本章 <code>01_第10章_多重积分_课本骨架.md</code>（课本原文的结构化摘录，含定义/定理编号与页码）。</li>
   <li><b>习题</b>：<code>05_教材习题_OCR核对版.md</code>，逐题照录，未删减。</li>
   <li><b>教材</b>：常庚哲、史济怀《数学分析教程》第 3 版，下册；页码链指向整本 PDF 物理页。</li>
+  <li><b>星标依据</b>：<code>00_AI/真题分析_2026-09-13/01_逐年题目账本.md</code> 与 <code>02_章节命题矩阵.md</code>。★★★ 对应真题反复出现的手法，★★ 为同型模板；<b>未标星不代表不考</b>，只是排序靠后。</li>
   <li><b>边界</b>：本页不替代课本证明；〔★〕为骨架原有的重要度标记，转化为星标只用于排序，不代表必考。</li>
   <li><b>证据口径</b>：读过本页不构成掌握；掌握以闭卷复述、独立作答与间隔复现为准。</li>
 </ul>
