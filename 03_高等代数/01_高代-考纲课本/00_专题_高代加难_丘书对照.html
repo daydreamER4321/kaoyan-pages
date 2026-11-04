@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题 · 高代加难：丘书对照（801）</title>
+<link rel="stylesheet" href="_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="_html_assets/guide.css">
+<style>
+  table.map td{vertical-align:top;font-size:13px}
+  table.map td:nth-child(2){min-width:230px}
+  table.map td:nth-child(3),table.map td:nth-child(4){font-size:12.5px;color:var(--muted)}
+  .kpi{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0}
+  .kpi div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:170px}
+  .kpi b{display:block;font-size:22px;color:var(--acc)}
+  .kpi span{font-size:12px;color:var(--muted)}
+  .warnbox{background:var(--card);border-left:3px solid #b45309;border-radius:6px;padding:8px 12px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">高等代数 · 专题</div>
+  <div class="sb-title">高代加难 · 丘书对照</div>
+  <nav class="toc">
+    <a href="#s1">01 证据：801 难在哪</a>
+    <a href="#s2">02 加难原则</a>
+    <a href="#s3">03 丘书对照表</a>
+    <a href="#s4">04 怎么读一节</a>
+    <a href="#s5">05 预算与不做的事</a>
+    <a href="#s6">06 数分侧：裴书</a>
+    <a href="#checklist">07 闭卷清单</a>
+    <a href="#source">08 来源与边界</a>
+  </nav>
+  <div class="sb-foot">加难只加在 801 的 D4 集中区；不整本读丘书，不新增总时长。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 高等代数 · 801 · 难度路线</div>
+    <h1>高代加难：丘书对照</h1>
+    <p class="hero-sub">用丘维声《高等代数》第二版的「内容精华＋典型例题」补 801 的 D4 区；数分侧用裴礼文，不跟着加难。</p>
+    <div class="hero-tags"><span class="tag">2026-11-04</span><span class="tag">801 难度证据</span><span class="tag">丘书下册无 OCR，按 PDF 页读</span></div>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="s1">
+  <h2><span class="h2-no">01</span>证据：801 难在哪</h2>
+  <div class="kpi">
+    <div><b>38%</b><span>801 的 D4 占比（25/65 题）</span></div>
+    <div><b>21%</b><span>610 的 D4 占比（15/73 题）</span></div>
+    <div><b>9 题</b><span>801 的 D4 里，二次型/分块/正定占最多</span></div>
+  </div>
+  <p>账本统计（2019–2026，缺 2025 高代；回忆版按账本标 D4）：801 的 D4 集中在四块——<b>二次型与分块（9 题）</b>、<b>线性变换/Jordan（4 题）</b>、<b>矩阵方程与秩结构（4 题）</b>、<b>行列式组合结构（2 题）</b>；610 的 D4 分散在数列、导数反例、含参积分，单题难度上限低于 801。</p>
+  <div class="note"><b>结论</b>：数分按现有难度走，用裴书补“方法覆盖”即可；高代要把上表的四块练到能闭卷写结构，不要平均加难。</div>
+</section>
+
+<section id="s2">
+  <h2><span class="h2-no">02</span>加难原则</h2>
+  <ol>
+    <li><b>只加 D4 区</b>：丘书只读下表 6 个块；第 7 章多项式、第 11 章张量积、第 9.9 有理标准形不新读。</li>
+    <li><b>丘书当“结构讲解”，801 真题当验收</b>：每块先读「内容精华」，再做「典型例题」1–2 道，最后手写 1 道 801 D4 真题。</li>
+    <li><b>不加总时长</b>：阅读塞进 60 天表已有的 ch9（4 天）与题族（18 天）预算里，每块 60–90 分钟；不够就砍例题，不砍 801 真题。</li>
+  </ol>
+</section>
+
+<section id="s3">
+  <h2><span class="h2-no">03</span>丘书对照表</h2>
+  <p class="meta">页码＝该分卷 PDF 的<b>物理页</b>（阅读器跳页直接输入）；“精华/例题”指丘书每节的 7.x.1 / 7.x.2 两段。</p>
+  <table class="tbl map">
+    <tr><th>主题 / 801 位置</th><th>丘书位置（分卷＋页）</th><th>读哪几节</th><th>801 真题锚点</th><th>验收出口</th></tr>
+    <tr><td><b>第 9 章 欧几里得空间（A 档，正在学）</b></td><td>下册 _401-600.pdf：10.2 p89（精华）/ p97（例题）；10.3 p105 / p109；10.4 p116 / p121</td><td>10.2 内积、Gram、Cauchy–Schwarz；10.3 正交补与正交投影；10.4 正交变换、对称变换</td><td>2024#2（D4，$AX+X^TA=0$ 解空间维数）、2024#7（D3，正交对角化）、2022#9（D3，Gram）、2023#9（D3，内积上界）</td><td>闭卷写内积四公理、Gram 正定、$V=U\oplus U^{\perp}$、正交变换四等价；手写 2024#2</td></tr><tr><td><b>题族④ Jordan 与最小多项式</b></td><td>下册 _201-400.pdf：9.5 p115、9.6 p136、9.7 p161、9.8 p173；_401-600.pdf：9.9 p17</td><td>9.5 不变子空间与 Hamilton–Cayley；9.6 最小多项式；9.7 幂零 Jordan；9.8 一般 Jordan；9.9 有理标准形只认结论</td><td>2019#5、2021#6、2023#2、2023#4（全 D4）</td><td>给 $A$ 求 $m_A(\lambda)$、Jordan 形与相似矩阵；由 $A^3=2A+4E$ 分类全部 Jordan 结构（2023#2）</td></tr><tr><td><b>题族① 核/像 + 题族⑥ 直和/投影</b></td><td>下册 _201-400.pdf：8.2 p9（直和）、9.2 p71（核与象）；_401-600.pdf：10.3 p105（正交投影）</td><td>8.2 交与和、直和充要；9.2 $\dim V=\dim\ker T+\dim\operatorname{Im}T$；10.3 投影分解</td><td>2021#5、2021#8、2023#8（均 D4）、2026#7（D3，幂等像核）</td><td>闭卷证直和三条等价；写 $\dim AU+\dim(A^{-1}(0)\cap U)=\dim U$；幂等 $T^2=T$ 的投影分解</td></tr><tr><td><b>题族③ 正定、分块与 Schur 补</b></td><td>上册 _201-400.pdf：6.1 p125、6.2 p142、6.3 p150；_401-429.pdf：第 6 章续 p14</td><td>6.1 标准形；6.2 规范形与惯性；6.3 正定判据与分块（Schur 补）</td><td>2019#6、#7、#8；2022#6、#7、#8；2023#3；2024#9（全 D4）</td><td>闭卷写 $A&gt;0\iff A_{11}&gt;0,\ S=D-CA^{-1}B&gt;0$；用 Schur 补判分块正定并数惯性（2023#3）</td></tr><tr><td><b>题族⑤ 矩阵方程与交换</b></td><td>上册 _201-400.pdf：5.4 p84、5.5 p89、5.6 p102</td><td>5.4 相似；5.5 特征值；5.6 可对角化条件（用 Jordan/最小多项式视角回看）</td><td>2020#3（D3）、2022#3（D4）、2022#5（D4）</td><td>解 $CD+DC=0$ 的全解并给存在条件；证 $T(AB)=T(BA)$ 时 $T=\lambda\operatorname{tr}$（2022#5）</td></tr><tr><td><b>题族② 结构行列式</b></td><td>上册 _1-200.pdf：2.4 p72、2.6 p92；配 5.4 p84（上册 _201-400）</td><td>2.4 按行展开；2.6 按 k 行展开；5.4 循环/分块结构的相似化简</td><td>2021#4、2022#4、2023#7、2026#2、2026#8</td><td>三对角/循环/0-1 交集矩阵：先找递推或分解，再展开；每类各手写 1 题</td></tr>
+  </table>
+  <div class="warnbox"><b>先读哪一块</b>：当前 ch9 欧氏空间是 A 档主线，先读 10.2–10.4；Jordan 与 Schur 两块排在其后，按题族顺序插入，不并排开工。</div>
+</section>
+
+<section id="s4">
+  <h2><span class="h2-no">04</span>怎么读一节（60–90 分钟）</h2>
+  <ol>
+    <li><b>10 分钟</b>：只看本节「内容精华」的定理陈述，合书用一张白纸写条件与结论，写不出的做记号。</li>
+    <li><b>20 分钟</b>：看「典型例题」1 道，遮住解答，只写入口（用哪条定理、构造什么）；再对照，标出推理缺口。</li>
+    <li><b>25 分钟</b>：手写对应的 801 D4 真题（只写第一问或结构判定），不查答案。</li>
+    <li><b>5 分钟</b>：把卡点写成一句「哪一步没想到」，进章节 state.md；答对的也不记掌握，等间隔复现。</li>
+  </ol>
+  <div class="note">丘书的例题难度高于 801 样本；<b>例题做不出不算失败</b>，能说清它用哪条结构就是本轮的合格线。不要用丘书例题替代 801 真题。</div>
+</section>
+
+<section id="s5">
+  <h2><span class="h2-no">05</span>预算与不做的事</h2>
+  <table class="tbl">
+    <tr><th>块</th><th>阅读</th><th>手写</th><th>时间</th></tr>
+    <tr><td>欧氏空间 10.2–10.4</td><td>精华 3 节＋例题 2 道</td><td>2024#2 或 2024#7</td><td>90 分钟</td></tr>
+    <tr><td>Jordan 9.5–9.8</td><td>精华 4 节＋例题 2 道</td><td>2019#5 或 2023#2</td><td>90 分钟</td></tr>
+    <tr><td>核/像/直和 8.2、9.2、10.3</td><td>精华 3 节＋例题 1 道</td><td>2021#5 或 2026#7</td><td>60 分钟</td></tr>
+    <tr><td>正定/分块 6.1–6.3</td><td>精华 3 节＋例题 2 道</td><td>2023#3 或 2024#9</td><td>90 分钟</td></tr>
+    <tr><td>矩阵方程 5.4–5.6</td><td>精华 3 节＋例题 1 道</td><td>2022#5 或 2022#3</td><td>60 分钟</td></tr>
+    <tr><td>结构行列式 2.4、2.6</td><td>精华 2 节＋例题 1 道</td><td>2022#4 或 2026#8</td><td>60 分钟</td></tr>
+  </table>
+  <p class="meta">合计约 7.5 小时，摊进 ch9 与题族的 22 天，不新增天数。</p>
+  <p><b>明确不做</b>：不读丘书第 11 章（张量积/外代数，801 大纲不列）；不新读第 7 章多项式（已学，只回看 2026#1）；不刷丘书习题全本；不因为“加难”改 60 天表的总量。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="h2-no">06</span>数分侧：裴书只补方法，不跟着加难</h2>
+  <p>610 的 D4 占 21%，且集中在数列反例、含参积分；数分不加难，按 <a href="../../02_数学分析/01_数分-考纲课本/00_专题_裴礼文方法地图.html">裴礼文方法地图</a> 每章抽 2 道（16 反常、14 数项、15 函数列、18 含参优先），做完即回课本与真题。</p>
+  <p class="meta">数分的失败模式是“计算与判据不熟”，不是“结构不会”；用裴书补方法覆盖就够，硬拔到 801 的证明难度会挤掉真题时间。</p>
+</section>
+
+<section id="checklist">
+  <h2><span class="h2-no">07</span>闭卷清单（高代加难部分）</h2>
+  <ul class="checklist">
+    <li><label><input type="checkbox"> <span>内积四公理＋Gram 正定＋$V=U\oplus U^{\perp}$ 能脱稿写</span></label></li>
+    <li><label><input type="checkbox"> <span>正交变换的四条等价（保长/保内积/标准正交基到标准正交基/正交矩阵）能写</span></label></li>
+    <li><label><input type="checkbox"> <span>Hamilton–Cayley 与最小多项式的定义、$m_A\mid f$ 的用法能说</span></label></li>
+    <li><label><input type="checkbox"> <span>给矩阵能写出 Jordan 形与相似变换的存在条件</span></label></li>
+    <li><label><input type="checkbox"> <span>$\dim V=\dim\ker T+\dim\operatorname{Im}T$ 能证</span></label></li>
+    <li><label><input type="checkbox"> <span>直和的三条等价条件能证；幂等变换的投影分解能写</span></label></li>
+    <li><label><input type="checkbox"> <span>Schur 补判正定/半正定、数惯性指数能写</span></label></li>
+    <li><label><input type="checkbox"> <span>$CD+DC=0$ 与 $T(AB)=T(BA)$ 两类的结构结论能复述</span></label></li>
+  </ul>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">08</span>来源与边界</h2>
+  <p><b>难度证据</b>：`考研/00_AI/真题分析_2026-09-13/01_逐年题目账本.md`，610 共 73 条、801 共 65 条可判难度记录；D4 计数为 15 与 25。缺 2025 高代与 2021 数分完整卷，2026 为回忆版，故是样本估计，不是官方难度。</p>
+  <p><b>丘书页码</b>：来自 PDF 书签（pypdf 读取），已逐条核对落在分卷页数内；`下册` 没有 OCR 文本，只能按页读图，公式以原书为准。文件名：`高等代数 下册 第二版 (丘维声)_401-600.pdf` 等，在 `01_原始资料/03_高等代数/02 其他补充教材/教材与理解拓展/`。</p>
+  <p><b>边界</b>：本页是投入排序与阅读路线，<b>不是学习进度或掌握证据</b>；勾选、阅读、例题看懂了都不算独立做出，出口仍是手写验收件。</p>
+</section>
+
+</div>
+</main>
+</div>
+<script src="_html_assets/katex/katex.min.js"></script>
+<script src="_html_assets/katex/auto-render.min.js"></script>
+<script src="_html_assets/guide.js"></script>
+</body>
+</html>
