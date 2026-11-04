@@ -19,6 +19,11 @@
   .chip{display:inline-flex;align-items:center;gap:3px;background:var(--chip);color:var(--chip-ink);border:1px solid transparent;border-radius:4px;padding:0 5px;font-size:10.5px;line-height:1.7;opacity:.9}
   .chip.sel{background:var(--acc);color:#fff}
   .chip.small{font-size:10.5px;padding:0 5px}
+  .chip.part{font-size:14px;line-height:1.9;padding:3px 11px;border-radius:8px;gap:6px;opacity:1;cursor:pointer}
+  .chip.part .num{font-weight:600;opacity:.82}
+  .chip.part .cnt{font-size:11.5px;opacity:.68}
+  .chip.part.sel .cnt,.chip.part.sel .num{opacity:.9}
+  .chip.year{font-size:13.5px;line-height:1.9;padding:2px 11px;border-radius:7px;cursor:pointer}
   main{max-width:1080px;margin:0 auto;padding:16px 18px 60px}
   .note{background:var(--warn-bg);border-left:3px solid var(--warn);padding:8px 12px;border-radius:6px;font-size:12.5px;margin:0 0 12px;color:var(--muted)}
   .bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:10px 0;font-size:13.5px;color:var(--muted)}
@@ -71,7 +76,7 @@
   <div class="row" style="margin-top:8px" id="modeRow"></div>
 </header>
 <main>
-  <div class="note"><b>数据口径</b>：题目下的“考点提要”来自历年账本的压缩记录，<b>不是原题</b>；原题以「原卷 PDF」为准。答案折叠区显示该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位；2019 数分缺 1、2 题，2023 高代解析缺一题，2024 数分、2025 数分无电子解析）。“做过”只记在本机浏览器。</div>
+  <div class="note"><b>数据口径</b>：题目下的“考点提要”来自历年账本的压缩记录，<b>不是原题</b>；原题以「原卷 PDF」为准。答案折叠区显示该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位；2019 数分缺 1、2 题，2023 高代解析缺一题，2024 数分、2025 数分无电子解析）。“做过”只记在本机浏览器。筛选按<b>考纲部分</b>（第几部分），细考点保留在每题卡片上。</div>
   <div id="filters"></div>
   <div id="freq"></div>
   <div class="bar" id="countBar"></div>
@@ -85,7 +90,7 @@
 (function(){
   "use strict";
   var DATA = JSON.parse(document.getElementById('zt-data').textContent);
-  var state = {subject:'610', mode:'paper', year:null, chapters:new Set(), years:new Set(), q:''};
+  var state = {subject:'610', mode:'paper', year:null, parts:new Set(), years:new Set(), q:''};
   var ANS = null; // currently open answer card id
   var IS_WEB = /(^|\.)github\.io$/.test(location.hostname);
   function zurl(r, kind){
@@ -99,17 +104,47 @@
     ys.sort();
     return ys;
   }
-  function chaptersOf(subject){
-    var m = {};
-    DATA.forEach(function(r){ if(r.subject===subject) r.chapters.forEach(function(c){ m[c]=(m[c]||0)+1; }); });
-    return Object.keys(m).sort(function(a,b){ return m[b]-m[a] || a.localeCompare(b,'zh'); });
+  var PARTS = {
+    '610':[
+      {k:'P1', n:'第一部分', name:'极限论', chs:['01','02']},
+      {k:'P2', n:'第二部分', name:'一元微分学', chs:['03','04']},
+      {k:'P3', n:'第三部分', name:'一元积分学', chs:['05','06','07']},
+      {k:'P4', n:'第四部分', name:'多元微分学', chs:['08','09']},
+      {k:'P5', n:'第五部分', name:'多元积分学', chs:['10','11','12','13']},
+      {k:'P6', n:'第六部分', name:'级数与含参积分', chs:['14','15','16','17','18']}
+    ],
+    '801':[
+      {k:'P1', n:'第一部分', name:'多项式与方程组', chs:['01','02','03']},
+      {k:'P2', n:'第二部分', name:'矩阵与二次型', chs:['04','05']},
+      {k:'P3', n:'第三部分', name:'线性空间与线性变换', chs:['06','07','08','09']},
+      {k:'P4', n:'第四部分', name:'双线性与辛空间', chs:['10']}
+    ]
+  };
+  function partKey(c){
+    var s = String(c), a = s.charAt(0), b = s.charAt(1);
+    if(/[0-9]/.test(a) && /[0-9]/.test(b)) return a+b;
+    return '?';
+  }
+  function partOf(subject, c){
+    var k = partKey(c), ps = PARTS[subject];
+    for(var i=0;i<ps.length;i++){ if(ps[i].chs.indexOf(k)>=0) return ps[i].k; }
+    return '?';
+  }
+  function partsOf(subject){
+    var ps = PARTS[subject].slice();
+    var hasUnknown = DATA.some(function(r){ return r.subject===subject && r.chapters.some(function(c){ return partOf(subject,c)==='?'; }); });
+    if(hasUnknown) ps.push({k:'?', n:'未分类', name:'题面缺 / 未知', chs:[]});
+    return ps;
+  }
+  function partTotal(subject, key){
+    return DATA.filter(function(r){ return r.subject===subject && r.chapters.some(function(c){ return partOf(subject,c)===key; }); }).length;
   }
   function rowsOf(){
     var rs = DATA.filter(function(r){return r.subject===state.subject;});
     if(state.mode==='paper'){
       if(state.year) rs = rs.filter(function(r){return r.year===state.year;});
     } else {
-      if(state.chapters.size) rs = rs.filter(function(r){ return r.chapters.some(function(c){return state.chapters.has(c);}); });
+      if(state.parts.size) rs = rs.filter(function(r){ return r.chapters.some(function(c){return state.parts.has(partOf(state.subject,c));}); });
       if(state.years.size) rs = rs.filter(function(r){return state.years.has(r.year);});
       if(state.q.trim()){ var q=state.q.trim().toLowerCase(); rs = rs.filter(function(r){ return (r.desc+' '+r.chapters.join(' ')+' '+r.type+' '+r.year).toLowerCase().indexOf(q)>=0; }); }
     }
@@ -122,11 +157,11 @@
     var srow = document.getElementById('subjRow'); srow.innerHTML='';
     [['610','610 数学分析'],['801','801 高等代数']].forEach(function(p){
       var b=document.createElement('button'); b.textContent=p[1]; b.className = state.subject===p[0]?'on':'';
-      b.onclick=function(){ state.subject=p[0]; state.year=null; state.chapters.clear(); state.years.clear(); renderAll(); };
+      b.onclick=function(){ state.subject=p[0]; state.year=null; state.parts.clear(); state.years.clear(); renderAll(); };
       srow.appendChild(b);
     });
     var mrow = document.getElementById('modeRow'); mrow.innerHTML='';
-    [['paper','套题模式（按年份）'],['point','考点模式（筛选）']].forEach(function(p){
+    [['paper','套题模式（按年份）'],['point','按考纲部分筛选']].forEach(function(p){
       var b=document.createElement('button'); b.textContent=p[1]; b.className = state.mode===p[0]?'on':'';
       b.onclick=function(){ state.mode=p[0]; renderAll(); };
       mrow.appendChild(b);
@@ -135,7 +170,7 @@
 
   function renderFilters(){
     var box=document.getElementById('filters'); box.innerHTML='';
-    var ys = yearsOf(state.subject), chs = chaptersOf(state.subject);
+    var ys = yearsOf(state.subject);
     if(state.mode==='paper'){
       if(!state.year) state.year = ys[ys.length-1];
       var row=document.createElement('div'); row.className='row';
@@ -147,22 +182,26 @@
       box.appendChild(row);
     } else {
       var r1=document.createElement('div'); r1.className='row';
-      var l1=document.createElement('span'); l1.className='meta'; l1.textContent='考点（可多选）：'; r1.appendChild(l1);
-      chs.forEach(function(c){
-        var b=document.createElement('span'); b.className='chip small'+(state.chapters.has(c)?' sel':''); b.textContent=c;
-        b.onclick=function(){ if(state.chapters.has(c)) state.chapters.delete(c); else state.chapters.add(c); renderAll(); };
+      var l1=document.createElement('span'); l1.className='meta'; l1.textContent='按考纲部分筛选（可多选）：'; r1.appendChild(l1);
+      partsOf(state.subject).forEach(function(p){
+        var b=document.createElement('span'); b.className='chip part'+(state.parts.has(p.k)?' sel':'');
+        var nm=document.createElement('span'); nm.className='num'; nm.textContent=p.n; b.appendChild(nm);
+        b.appendChild(document.createTextNode(' · '+p.name));
+        var cnt=document.createElement('span'); cnt.className='cnt'; cnt.textContent='('+partTotal(state.subject,p.k)+' 题)'; b.appendChild(cnt);
+        b.title = p.chs.length ? p.chs.map(function(n){ return '第 '+n+' 章'; }).join(' · ') : '题面缺失，无法归类';
+        b.onclick=function(){ if(state.parts.has(p.k)) state.parts.delete(p.k); else state.parts.add(p.k); renderAll(); };
         r1.appendChild(b);
       });
-      var clr=document.createElement('button'); clr.textContent='清空考点'; clr.onclick=function(){state.chapters.clear(); renderAll();}; r1.appendChild(clr);
+      var clr=document.createElement('button'); clr.textContent='清空部分'; clr.onclick=function(){state.parts.clear(); renderAll();}; r1.appendChild(clr);
       box.appendChild(r1);
       var r2=document.createElement('div'); r2.className='row'; r2.style.marginTop='8px';
       var l2=document.createElement('span'); l2.className='meta'; l2.textContent='年份（可多选）：'; r2.appendChild(l2);
       ys.forEach(function(y){
-        var b=document.createElement('span'); b.className='chip small'+(state.years.has(y)?' sel':''); b.textContent=y;
+        var b=document.createElement('span'); b.className='chip year'+(state.years.has(y)?' sel':''); b.textContent=y;
         b.onclick=function(){ if(state.years.has(y)) state.years.delete(y); else state.years.add(y); renderAll(); };
         r2.appendChild(b);
       });
-      var inp=document.createElement('input'); inp.type='search'; inp.placeholder='搜关键词（考点/类型/年份）'; inp.value=state.q; inp.style.minWidth='220px';
+      var inp=document.createElement('input'); inp.type='search'; inp.placeholder='搜关键词（提要/章节/类型/年份）'; inp.value=state.q; inp.style.minWidth='300px';
       inp.oninput=function(){ state.q=inp.value; renderListOnly(); };
       r2.appendChild(inp);
       box.appendChild(r2);
@@ -172,34 +211,37 @@
   function renderFreq(){
     var box=document.getElementById('freq'); box.innerHTML='';
     if(state.mode!=='point') return;
-    var ys=yearsOf(state.subject);
+    var ys=yearsOf(state.subject), ps=partsOf(state.subject);
     var m={}, totals={};
     ys.forEach(function(y){ totals[y]=0; });
+    ps.forEach(function(p){ m[p.k]={by:{},total:0}; });
     DATA.forEach(function(r){
       if(r.subject!==state.subject) return;
       totals[r.year]=(totals[r.year]||0)+1;
+      var seen={};
       r.chapters.forEach(function(c){
-        if(!m[c]) m[c]={by:{},total:0};
-        m[c].by[r.year]=(m[c].by[r.year]||0)+1; m[c].total++;
+        var k=partOf(state.subject,c);
+        if(seen[k]) return; seen[k]=1;
+        if(!m[k]) m[k]={by:{},total:0};
+        m[k].by[r.year]=(m[k].by[r.year]||0)+1; m[k].total++;
       });
     });
-    var chs=Object.keys(m).sort(function(a,b){ return m[b].total-m[a].total || a.localeCompare(b,'zh'); });
-    var max=0;
-    chs.forEach(function(c){ ys.forEach(function(y){ var v=m[c].by[y]||0; if(v>max) max=v; }); });
-    if(!max) max=1;
+    var rows=ps.filter(function(p){ return m[p.k] && m[p.k].total>0; });
+    var max=1;
+    rows.forEach(function(p){ ys.forEach(function(y){ var v=m[p.k].by[y]||0; if(v>max) max=v; }); });
 
     var d=document.createElement('details'); d.className='freqwrap'; d.open=true;
     var sm=document.createElement('summary');
-    sm.textContent='考频表：考点 × 年份命中题数';
+    sm.textContent='考频表：考纲部分 × 年份命中题数';
     var hint=document.createElement('span'); hint.className='hint';
-    hint.textContent='（点考点名＝筛选该考点；一题多考点会重复计数）';
+    hint.textContent='（点部分名＝筛选该部分；一题跨两个部分时两边都计数）';
     sm.appendChild(hint); d.appendChild(sm);
 
     var scroll=document.createElement('div'); scroll.className='freqscroll';
     var tb=document.createElement('table'); tb.className='freq';
 
     var thead=document.createElement('thead'); var htr=document.createElement('tr');
-    var th0=document.createElement('th'); th0.className='c'; th0.textContent='考点'; htr.appendChild(th0);
+    var th0=document.createElement('th'); th0.className='c'; th0.textContent='考纲部分'; htr.appendChild(th0);
     ys.forEach(function(y){
       var th=document.createElement('th'); th.textContent=y;
       if(state.years.size && !state.years.has(y)) th.className='off';
@@ -209,20 +251,20 @@
     thead.appendChild(htr); tb.appendChild(thead);
 
     var tbody=document.createElement('tbody');
-    chs.forEach(function(c){
+    rows.forEach(function(p){
       var tr=document.createElement('tr');
-      if(state.chapters.has(c)) tr.className='sel';
+      if(state.parts.has(p.k)) tr.className='sel';
       var th=document.createElement('th'); th.className='c';
-      var btn=document.createElement('button'); btn.className='freqch'; btn.textContent=c;
-      btn.onclick=function(){ if(state.chapters.has(c)) state.chapters.delete(c); else state.chapters.add(c); renderAll(); };
+      var btn=document.createElement('button'); btn.className='freqch'; btn.textContent=p.n+' · '+p.name;
+      btn.onclick=function(){ if(state.parts.has(p.k)) state.parts.delete(p.k); else state.parts.add(p.k); renderAll(); };
       th.appendChild(btn); tr.appendChild(th);
       ys.forEach(function(y){
-        var v=m[c].by[y]||0;
+        var v=m[p.k].by[y]||0;
         var td=document.createElement('td'); td.className='v'+(v?'':' z'); td.textContent=v;
         if(v) td.style.background='color-mix(in srgb, var(--acc) '+Math.round(6+62*(v/max))+'%, transparent)';
         tr.appendChild(td);
       });
-      var tt=document.createElement('td'); tt.className='tot'; tt.textContent=m[c].total; tr.appendChild(tt);
+      var tt=document.createElement('td'); tt.className='tot'; tt.textContent=m[p.k].total; tr.appendChild(tt);
       tbody.appendChild(tr);
     });
     tb.appendChild(tbody);
@@ -241,7 +283,7 @@
     }
     tfoot.appendChild(footRow('当年全部题', totals));
 
-    if(state.chapters.size||state.years.size||state.q.trim()){
+    if(state.parts.size||state.years.size||state.q.trim()){
       var cur={}; var rs=rowsOf();
       rs.forEach(function(r){ cur[r.year]=(cur[r.year]||0)+1; });
       tfoot.appendChild(footRow('当前筛选', cur, 'cur'));
@@ -323,7 +365,7 @@
     var list=document.getElementById('list'); list.innerHTML='';
     var rs=rowsOf();
     var cb=document.getElementById('countBar');
-    cb.innerHTML = '共 <b>'+rs.length+'</b> 条' + (state.mode==='point' && (state.chapters.size||state.years.size||state.q) ? '（已筛选）' : '');
+    cb.innerHTML = '共 <b>'+rs.length+'</b> 条' + (state.mode==='point' && (state.parts.size||state.years.size||state.q) ? '（已筛选）' : '');
     if(!rs.length){ var e=document.createElement('div'); e.className='empty'; e.textContent='没有符合条件的题目'; list.appendChild(e); return; }
     if(state.mode==='paper'){
       var pc = paperCard(state.year); if(pc) list.appendChild(pc);
