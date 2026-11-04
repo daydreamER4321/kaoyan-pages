@@ -44,6 +44,24 @@
   label.done{display:inline-flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:var(--muted)}
   .diff{font-size:10px;border-radius:4px;padding:0 4px;background:transparent;border:1px solid var(--line);color:var(--muted)}
   .toTop{position:fixed;right:18px;bottom:18px;border-radius:999px;padding:8px 12px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+  .freqwrap{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:10px 0}
+  .freqwrap summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--acc)}
+  .freqwrap .hint{font-size:11px;color:var(--muted);font-weight:400;margin-left:6px}
+  .freqscroll{overflow-x:auto;margin-top:8px}
+  table.freq{border-collapse:collapse;font-size:11.5px;width:100%;min-width:520px}
+  table.freq th,table.freq td{border:1px solid var(--line);padding:2px 6px;text-align:center;white-space:nowrap}
+  table.freq thead th{background:var(--acc-soft);font-weight:600;font-size:11px}
+  table.freq thead th.off{opacity:.4}
+  table.freq th.c{text-align:left;font-weight:500}
+  table.freq td.v{font-variant-numeric:tabular-nums;min-width:34px}
+  table.freq td.z{opacity:.3}
+  table.freq td.tot{font-weight:600;background:var(--acc-soft)}
+  table.freq tr.sel th.c{background:var(--acc)}
+  table.freq tr.sel .freqch{color:#fff;font-weight:700}
+  table.freq tfoot th{font-weight:600;font-size:11px;background:var(--acc-soft)}
+  table.freq tfoot tr.cur th{color:var(--acc)}
+  .freqch{font:inherit;font-size:11.5px;border:0;background:transparent;padding:0;cursor:pointer;color:inherit;text-align:left}
+  .freqch:hover{color:var(--acc);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -55,6 +73,7 @@
 <main>
   <div class="note"><b>数据口径</b>：题目下的“考点提要”来自历年账本的压缩记录，<b>不是原题</b>；原题以「原卷 PDF」为准。答案折叠区显示该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位；2019 数分缺 1、2 题，2023 高代解析缺一题，2024 数分、2025 数分无电子解析）。“做过”只记在本机浏览器。</div>
   <div id="filters"></div>
+  <div id="freq"></div>
   <div class="bar" id="countBar"></div>
   <section id="list"></section>
 </main>
@@ -150,6 +169,88 @@
     }
   }
 
+  function renderFreq(){
+    var box=document.getElementById('freq'); box.innerHTML='';
+    if(state.mode!=='point') return;
+    var ys=yearsOf(state.subject);
+    var m={}, totals={};
+    ys.forEach(function(y){ totals[y]=0; });
+    DATA.forEach(function(r){
+      if(r.subject!==state.subject) return;
+      totals[r.year]=(totals[r.year]||0)+1;
+      r.chapters.forEach(function(c){
+        if(!m[c]) m[c]={by:{},total:0};
+        m[c].by[r.year]=(m[c].by[r.year]||0)+1; m[c].total++;
+      });
+    });
+    var chs=Object.keys(m).sort(function(a,b){ return m[b].total-m[a].total || a.localeCompare(b,'zh'); });
+    var max=0;
+    chs.forEach(function(c){ ys.forEach(function(y){ var v=m[c].by[y]||0; if(v>max) max=v; }); });
+    if(!max) max=1;
+
+    var d=document.createElement('details'); d.className='freqwrap'; d.open=true;
+    var sm=document.createElement('summary');
+    sm.textContent='考频表：考点 × 年份命中题数';
+    var hint=document.createElement('span'); hint.className='hint';
+    hint.textContent='（点考点名＝筛选该考点；一题多考点会重复计数）';
+    sm.appendChild(hint); d.appendChild(sm);
+
+    var scroll=document.createElement('div'); scroll.className='freqscroll';
+    var tb=document.createElement('table'); tb.className='freq';
+
+    var thead=document.createElement('thead'); var htr=document.createElement('tr');
+    var th0=document.createElement('th'); th0.className='c'; th0.textContent='考点'; htr.appendChild(th0);
+    ys.forEach(function(y){
+      var th=document.createElement('th'); th.textContent=y;
+      if(state.years.size && !state.years.has(y)) th.className='off';
+      htr.appendChild(th);
+    });
+    var thT=document.createElement('th'); thT.textContent='合计'; htr.appendChild(thT);
+    thead.appendChild(htr); tb.appendChild(thead);
+
+    var tbody=document.createElement('tbody');
+    chs.forEach(function(c){
+      var tr=document.createElement('tr');
+      if(state.chapters.has(c)) tr.className='sel';
+      var th=document.createElement('th'); th.className='c';
+      var btn=document.createElement('button'); btn.className='freqch'; btn.textContent=c;
+      btn.onclick=function(){ if(state.chapters.has(c)) state.chapters.delete(c); else state.chapters.add(c); renderAll(); };
+      th.appendChild(btn); tr.appendChild(th);
+      ys.forEach(function(y){
+        var v=m[c].by[y]||0;
+        var td=document.createElement('td'); td.className='v'+(v?'':' z'); td.textContent=v;
+        if(v) td.style.background='color-mix(in srgb, var(--acc) '+Math.round(6+62*(v/max))+'%, transparent)';
+        tr.appendChild(td);
+      });
+      var tt=document.createElement('td'); tt.className='tot'; tt.textContent=m[c].total; tr.appendChild(tt);
+      tbody.appendChild(tr);
+    });
+    tb.appendChild(tbody);
+
+    var tfoot=document.createElement('tfoot');
+    function footRow(label, perYear, cls){
+      var tr=document.createElement('tr'); if(cls) tr.className=cls;
+      var th=document.createElement('th'); th.className='c'; th.textContent=label; tr.appendChild(th);
+      var sum=0;
+      ys.forEach(function(y){
+        var v=perYear[y]||0; sum+=v;
+        var td=document.createElement('td'); td.className='v'; td.textContent=v; tr.appendChild(td);
+      });
+      var tt=document.createElement('td'); tt.className='tot'; tt.textContent=sum; tr.appendChild(tt);
+      return tr;
+    }
+    tfoot.appendChild(footRow('当年全部题', totals));
+
+    var cur={}; var rs=rowsOf();
+    rs.forEach(function(r){ cur[r.year]=(cur[r.year]||0)+1; });
+    var curLabel = (state.chapters.size||state.years.size||state.q.trim()) ? '当前筛选' : '当前筛选（未筛）';
+    tfoot.appendChild(footRow(curLabel, cur, 'cur'));
+    tb.appendChild(tfoot);
+
+    scroll.appendChild(tb); d.appendChild(scroll);
+    box.appendChild(d);
+  }
+
   function paperCard(year){
     var rows = DATA.filter(function(r){return r.subject===state.subject && r.year===year;});
     if(!rows.length) return null;
@@ -234,7 +335,7 @@
     if(window.renderMathInElement){ try{ renderMathInElement(list,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false,strict:false}); }catch(e){} }
   }
 
-  function renderAll(){ renderTop(); renderFilters(); renderListOnly(); }
+  function renderAll(){ renderTop(); renderFilters(); renderFreq(); renderListOnly(); }
   renderAll();
 })();
 </script>
