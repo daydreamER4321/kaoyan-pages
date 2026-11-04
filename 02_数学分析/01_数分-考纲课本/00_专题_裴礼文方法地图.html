@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题 · 裴礼文方法地图（数分）</title>
+<link rel="stylesheet" href="_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="_html_assets/guide.css">
+<style>
+  .subs{color:var(--muted);font-size:12.5px}
+  .methods{margin:6px 0 14px 1.2em;padding:0}
+  .methods li{margin:3px 0;line-height:1.55}
+  h3 .meta{font-weight:400;font-size:12px}
+  .num{text-align:right;font-variant-numeric:tabular-nums}
+  .gap{color:#b45309}
+  .gap-note{color:var(--muted);background:var(--card);border-left:3px solid #b45309;padding:6px 10px;border-radius:6px}
+  .howto{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  .howto ol{margin:6px 0 0 1.2em;padding:0}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sb-crumb">数学分析 · 专题</div>
+  <div class="sb-title">裴礼文方法地图</div>
+  <nav class="toc">
+    <a href="#c01">01 实数与数列极限</a>
+    <a href="#c02">02 函数的连续性</a>
+    <a href="#c03">03 函数的导数</a>
+    <a href="#c04">04 Taylor 定理</a>
+    <a href="#c05">05 求导的逆运算</a>
+    <a href="#c06">06 函数的积分</a>
+    <a href="#c07">07 积分学的应用</a>
+    <a href="#c08">08 多变量函数的连续性</a>
+    <a href="#c09">09 多变量函数的微分学</a>
+    <a href="#c10">10 多重积分</a>
+    <a href="#c11">11 曲线积分</a>
+    <a href="#c12">12 曲面积分</a>
+    <a href="#c13">13 场的数学</a>
+    <a href="#c14">14 数项级数</a>
+    <a href="#c15">15 函数列与函数项级数</a>
+    <a href="#c16">16 反常积分</a>
+    <a href="#c17">17 Fourier 分析</a>
+    <a href="#c18">18 含参变量积分</a>
+    <a href="#checklist">闭卷清单</a>
+    <a href="#source">来源与边界</a>
+  </nav>
+  <div class="sb-foot">按 610 章节列裴书的方法标题；只作清单与检索入口，不替代做题。</div>
+</aside>
+<main class="content">
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-crumb">考研 · 数学分析 · 610 · 补充题源</div>
+    <h1>裴礼文方法地图</h1>
+    <p class="hero-sub">《数学分析中的典型问题与方法》第 3 版 · 按 610 章节列出方法清单、例数与单元练习数</p>
+    <div class="hero-tags"><span class="tag">方法清单</span><span class="tag">OCR 结构提取</span><span class="tag">不替代做题</span></div>
+  </div>
+</header>
+<div class="wrap">
+
+<section id="howto">
+  <h2><span class="h2-no">00</span>怎么用这一页</h2>
+  <div class="howto">
+    <ol>
+      <li><b>先闭卷说</b>：看章节标题，不看下面，自己说这一章有哪几类方法、入口判据是什么。</li>
+      <li><b>再对清单</b>：只补说不出来的那几条；说得出但没用过的，标出来等做题验证。</li>
+      <li><b>要题就点名</b>：说「§4.5 反常积分判敛第 3 法，给我一道例」，我从原书 OCR 里取题面与解答，按提示层给，不直接甩答案。</li>
+    </ol>
+    <p class="meta">清单只证明「书里有这些方法」，不证明你会用；能否独立做出仍以手写验收为准。</p>
+  </div>
+  <table class="tbl">
+    <tr><th>610 章</th><th>裴小节</th><th>一级方法</th><th>例</th><th>练习</th></tr>
+<tr><td><a href="#c01">01 实数与数列极限</a></td><td>§1.1、§1.2、§1.3、§1.4、§1.5、§1.6、§1.7、§1.8</td><td class="num">34</td><td class="num">178</td><td class="num">7</td></tr>
+<tr><td><a href="#c02">02 函数的连续性</a></td><td>§2.1、§2.2、§2.3、§2.4</td><td class="num">10</td><td class="num">86</td><td class="num">4</td></tr>
+<tr><td><a href="#c03">03 函数的导数</a></td><td>§3.1、§3.2、§3.5</td><td class="num">10</td><td class="num">100</td><td class="num">3</td></tr>
+<tr><td><a href="#c04">04 Taylor 定理</a></td><td>§3.3、§3.4</td><td class="num">11</td><td class="num">51</td><td class="num">2</td></tr>
+<tr><td><a href="#c05">05 求导的逆运算</a></td><td><span class="gap">无对应小节</span></td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td><a href="#c06">06 函数的积分</a></td><td>§4.1、§4.2、§4.3、§4.4</td><td class="num">12</td><td class="num">125</td><td class="num">4</td></tr>
+<tr><td><a href="#c07">07 积分学的应用</a></td><td><span class="gap">无对应小节</span></td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+<tr><td><a href="#c08">08 多变量函数的连续性</a></td><td>§6.1</td><td class="num">2</td><td class="num">48</td><td class="num">1</td></tr>
+<tr><td><a href="#c09">09 多变量函数的微分学</a></td><td>§6.2、§6.3、§6.4、§6.5</td><td class="num">13</td><td class="num">79</td><td class="num">4</td></tr>
+<tr><td><a href="#c10">10 多重积分</a></td><td>§7.2</td><td class="num">4</td><td class="num">58</td><td class="num">1</td></tr>
+<tr><td><a href="#c11">11 曲线积分</a></td><td>§7.3</td><td class="num">3</td><td class="num">37</td><td class="num">1</td></tr>
+<tr><td><a href="#c12">12 曲面积分</a></td><td>§7.4</td><td class="num">4</td><td class="num">35</td><td class="num">1</td></tr>
+<tr><td><a href="#c13">13 场的数学</a></td><td>§7.5</td><td class="num">4</td><td class="num">20</td><td class="num">1</td></tr>
+<tr><td><a href="#c14">14 数项级数</a></td><td>§5.1</td><td class="num">5</td><td class="num">82</td><td class="num">1</td></tr>
+<tr><td><a href="#c15">15 函数列与函数项级数</a></td><td>§5.2、§5.3</td><td class="num">8</td><td class="num">135</td><td class="num">2</td></tr>
+<tr><td><a href="#c16">16 反常积分</a></td><td>§4.5</td><td class="num">6</td><td class="num">65</td><td class="num">1</td></tr>
+<tr><td><a href="#c17">17 Fourier 分析</a></td><td>§5.4</td><td class="num">4</td><td class="num">46</td><td class="num">1</td></tr>
+<tr><td><a href="#c18">18 含参变量积分</a></td><td>§7.1</td><td class="num">7</td><td class="num">92</td><td class="num">1</td></tr>
+  </table>
+  <div class="note"><b>读表提醒</b>：例数是按书里「例 x.y.z」编号计的出现次数，不等于必刷题量；裴书例题的难度普遍高于 610 样本，按 A/B/C 档挑，不整章刷。</div>
+</section>
+
+<section id="c01">
+  <h2><span class="h2-no">01</span>实数与数列极限 <span class="meta">裴小节：§1.1、§1.2、§1.3、§1.4、§1.5、§1.6、§1.7、§1.8 · 一级方法 34 · 例 178 · 单元练习 7</span></h2>
+  <h3>§1.1 预 备 <span class="meta">例 13 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>几点注释 <span class="subs">（关于反函数；关于奇函数和偶函数；关于周期函数）</span></li>
+<li>几个常用的不等式</li>
+<li>Wallis 公式</li>
+</ol>
+  <h3>§1.2 用定义证明极限的存在性 <span class="meta">例 25 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>用定义证明极限 <span class="subs">（拟合法；用邻域描述极限）</span></li>
+<li>用Cauchy准则证明极限</li>
+<li>否定形式及“∀”和“∃”的使用法则</li>
+<li>利用单调有界原理证明极限存在</li>
+<li>数列与子列、函数与数列的极限关系</li>
+<li>极限的运算性质</li>
+</ol>
+  <h3>§1.3 求极限值的若干方法 <span class="meta">例 45 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用等价代换和初等变形求极限 <span class="subs">（等价代换；利用初等变形求极限）</span></li>
+<li>利用已知极限</li>
+<li>利用变量替换求极限</li>
+<li>两边夹法则</li>
+<li>两边夹法则的推广形式</li>
+<li>求极限其他常用方法 <span class="subs">（L'Hospital 法则；利用级数求解极限问题；利用连续性求极限）</span></li>
+</ol>
+  <h3>§1.4 Stolz 公式 <span class="meta">例 10 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>数列的情况</li>
+<li>函数极限的情况</li>
+</ol>
+  <h3>§1.5 递推形式的极限 <span class="meta">例 38 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用存在性求极限</li>
+<li>写出通项求极限</li>
+<li>替换与变形</li>
+<li>图解法</li>
+<li>不动点方法的推广</li>
+<li>Stolz 公式的应用</li>
+<li>递推极限的直接法</li>
+</ol>
+  <h3>§1.6 序列的上、下极限 <span class="meta">例 22 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用语言描述上、下极限</li>
+<li>利用子列的极限描述上、下极限</li>
+<li>利用确界的极限描述上、下极限</li>
+<li>利用上、下极限研究序列的极限</li>
+<li>上、下极限的运算性质</li>
+</ol>
+  <h3>§1.7 函数的上、下极限 <span class="meta">例 12 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>函数上、下极限的定义及等价描述</li>
+<li>单侧上、下极限</li>
+<li>函数上、下极限的不等式</li>
+</ol>
+  <h3>§1.8 实数及其基本定理 <span class="meta">例 13 · 单元练习 0</span></h3>
+  <ol class="methods">
+<li>实数的引入</li>
+<li>实数基本定理</li>
+</ol>
+</section>
+
+<section id="c02">
+  <h2><span class="h2-no">02</span>函数的连续性 <span class="meta">裴小节：§2.1、§2.2、§2.3、§2.4 · 一级方法 10 · 例 86 · 单元练习 4</span></h2>
+  <h3>§2.1 连续性的证明与应用 <span class="meta">例 29 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>连续性的证明</li>
+<li>连续性的应用</li>
+</ol>
+  <h3>§2.2 一致连续性 <span class="meta">例 19 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用一致连续的定义及其否定形式证题</li>
+<li>一致连续与连续的关系</li>
+<li>用连续模数描述一致连续性</li>
+<li>集上的连续函数及一致连续函数的延拓问题</li>
+</ol>
+  <h3>§2.3 上、下半连续 <span class="meta">例 1 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>上、下半连续的定义及等价条件</li>
+<li>上、下半连续的性质</li>
+</ol>
+  <h3>§2.4 函数方程 <span class="meta">例 37 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>问题的提出</li>
+<li>求解函数方程 <span class="subs">（推归法；转化法）</span></li>
+</ol>
+</section>
+
+<section id="c03">
+  <h2><span class="h2-no">03</span>函数的导数 <span class="meta">裴小节：§3.1、§3.2、§3.5 · 一级方法 10 · 例 100 · 单元练习 3</span></h2>
+  <h3>§3.1 导数 <span class="meta">例 29 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>关于导数的定义与可微性</li>
+<li>高阶导数与Leibniz公式 <span class="subs">（先拆项再求导；直接使用 Leibniz 公式；用数学归纳法求高阶导数；用递推公式求导；用 Taylor 展开式求导数）</span></li>
+</ol>
+  <h3>§3.2 微分中值定理 <span class="meta">例 55 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>Rolle定理 <span class="subs">（函数零(值)点问题）</span></li>
+<li>Lagrange定理 <span class="subs">（利用几何意义(弦线法)；利用有限增量公式导出新的中值公式；作为函数的变形）</span></li>
+<li>导数的两大特性 <span class="subs">（导数无第一类间断点；导数的介值性）</span></li>
+<li>Cauchy 中值定理及 L'Hospital 法则 <span class="subs">（推导中值公式）</span></li>
+</ol>
+  <h3>§3.5 导数的综合应用 <span class="meta">例 16 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>极值问题</li>
+<li>导数在几何中的应用(举例)</li>
+<li>导数的实际应用(举例)</li>
+<li>导数在求极限中的应用</li>
+</ol>
+  <p class="meta">§3.5 是导数的综合应用（极值/几何/求极限），与本章联动。</p>
+</section>
+
+<section id="c04">
+  <h2><span class="h2-no">04</span>Taylor 定理 <span class="meta">裴小节：§3.3、§3.4 · 一级方法 11 · 例 51 · 单元练习 2</span></h2>
+  <h3>§3.3 Taylor 公式 <span class="meta">例 30 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>证明中值公式</li>
+<li>用Taylor公式证明不等式</li>
+<li>用Taylor公式作导数的中值估计</li>
+<li>关于界的估计</li>
+<li>求无穷远处的极限</li>
+<li>中值点的极限</li>
+<li>函数方程中的应用</li>
+<li>Taylor展开的唯一性问题</li>
+<li>符号“O”与“o”的含义和应用</li>
+</ol>
+  <h3>§3.4 不等式与凸函数 <span class="meta">例 21 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>不等式 <span class="subs">（利用单调性证明不等式；利用微分中值定理证明不等式；利用 Taylor 公式证明不等式；用求极值的方法证明不等式；利用单调极限证明不等式）</span></li>
+<li>凸函数 <span class="subs">（凸函数的几种定义以及它们的关系；凸函数的等价描述）</span></li>
+</ol>
+  <p class="meta">§3.5 导数的综合应用也常与本块联动。</p>
+</section>
+
+<section id="c05">
+  <h2><span class="h2-no">05</span>求导的逆运算 <span class="meta">裴小节：无 · 一级方法 0 · 例 0 · 单元练习 0</span></h2>
+  <p class="gap-note">裴书未把原函数计算单列成节；相关技巧散在 §4.x 的例里。</p>
+</section>
+
+<section id="c06">
+  <h2><span class="h2-no">06</span>函数的积分 <span class="meta">裴小节：§4.1、§4.2、§4.3、§4.4 · 一级方法 12 · 例 125 · 单元练习 4</span></h2>
+  <h3>§4.1 积分与极限 <span class="meta">例 24 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用积分求极限</li>
+<li>积分的极限</li>
+</ol>
+  <h3>§4.2 定积分的可积性 <span class="meta">例 24 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>直接用定义证明可积性</li>
+<li>利用定理证明可积性 <span class="subs">（利用定理2证明可积性；利用定理 1 与定理 1' 证明可积性；利用定理 3 证明可积性）</span></li>
+</ol>
+  <h3>§4.3 有关积分的几类典型问题 <span class="meta">例 63 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>积分值估计 <span class="subs">（利用 Darboux 和估计积分值；利用变形求估计及积分估计的应用）</span></li>
+<li>积分不等式 <span class="subs">（用微分学的方法证明积分不等式）</span></li>
+<li>另一些问题</li>
+</ol>
+  <h3>§4.4 几个著名的不等式 <span class="meta">例 14 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>Cauchy 不等式及 Schwarz 不等式 <span class="subs">（Cauchy 不等式；Schwarz 不等式；Schwarz 不等式的应用）</span></li>
+<li>平均值不等式 <span class="subs">（基本形式；平均值不等式的推广形式）</span></li>
+<li>Hölder 不等式 <span class="subs">（基本形式；Hölder 不等式的积分形式）</span></li>
+<li>Minkowski 不等式 <span class="subs">（基本形式；Minkowski 不等式的积分形式；元Minkowski不等式）</span></li>
+<li>Young 不等式</li>
+</ol>
+</section>
+
+<section id="c07">
+  <h2><span class="h2-no">07</span>积分学的应用 <span class="meta">裴小节：无 · 一级方法 0 · 例 0 · 单元练习 0</span></h2>
+  <p class="gap-note">面积/体积/弧长在裴书属 §7.2 前的几何应用与 §4.3 例，未单列方法。</p>
+</section>
+
+<section id="c08">
+  <h2><span class="h2-no">08</span>多变量函数的连续性 <span class="meta">裴小节：§6.1 · 一级方法 2 · 例 48 · 单元练习 1</span></h2>
+  <h3>§6.1 欧氏空间·多元函数的极限与连续 <span class="meta">例 48 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>多元函数的极限 <span class="subs">（多元函数极限的计算；关于全面极限与特殊路径极限的进一步讨论；累次极限交换次序问题）</span></li>
+<li>多元连续函数 <span class="subs">（连续性的证明；全面连续与按单变量连续的关系；连续函数性质的应用；给出并证明使等式；一致连续性）</span></li>
+</ol>
+  <p class="meta">裴书把多元极限与多元连续合在 §6.1。</p>
+</section>
+
+<section id="c09">
+  <h2><span class="h2-no">09</span>多变量函数的微分学 <span class="meta">裴小节：§6.2、§6.3、§6.4、§6.5 · 一级方法 13 · 例 79 · 单元练习 4</span></h2>
+  <h3>§6.2 多元函数的偏导数 <span class="meta">例 27 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>偏导数的计算</li>
+<li>复合函数微分法(链式法则)</li>
+<li>偏导数转化为极限</li>
+<li>对微分方程作变量替换 <span class="subs">（对自变量作变量替换；自变量与因变量都变化的变量替换）</span></li>
+<li>多元函数的可微性</li>
+</ol>
+  <h3>§6.3 多元 Taylor 公式 · 凸函数 · 几何应用 · 极值 <span class="meta">例 31 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>多元 Taylor 公式</li>
+<li>凸函数</li>
+<li>几何应用</li>
+<li>极值 <span class="subs">（自由极值；条件极值与Lagrange乘数法；求函数在闭区域上的最大最小值；用极值证明不等式；极值应用问题）</span></li>
+</ol>
+  <h3>§6.4 隐函数存在定理及函数相关 <span class="meta">例 9 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>隐函数存在定理 <span class="subs">（一个方程的情况）</span></li>
+<li>函数相关</li>
+</ol>
+  <h3>§6.5 方向导数与梯度 <span class="meta">例 12 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>方向导数的计算</li>
+<li>梯度的计算</li>
+</ol>
+</section>
+
+<section id="c10">
+  <h2><span class="h2-no">10</span>多重积分 <span class="meta">裴小节：§7.2 · 一级方法 4 · 例 58 · 单元练习 1</span></h2>
+  <h3>§7.2 重积分 <span class="meta">例 58 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>二重积分 <span class="subs">（二重积分定义的应用；二重积分的计算）</span></li>
+<li>三重积分 <span class="subs">（三重积分化为累次积分；三重积分换元）</span></li>
+<li>二重、三重反常积分 <span class="subs">（比较判别法；Cauchy 判别法的利用；Cauchy 准则的利用）</span></li>
+<li>n重积分 <span class="subs">（化为累次积分；换元；化为累次积分；变量替换；递推与降维）</span></li>
+</ol>
+</section>
+
+<section id="c11">
+  <h2><span class="h2-no">11</span>曲线积分 <span class="meta">裴小节：§7.3 · 一级方法 3 · 例 37 · 单元练习 1</span></h2>
+  <h3>§7.3 曲线积分与 Green 公式 <span class="meta">例 37 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>曲线积分的性质与计算 <span class="subs">（对称性；曲线积分的性质）</span></li>
+<li>Green 公式 <span class="subs">（计算封闭曲线上的线积分；计算开口曲线上的线积分；由积分性质导出微分性质）</span></li>
+<li>积分与路径无关问题 <span class="subs">（利用与路径无关性计算线积分；利用线积分求原函数）</span></li>
+</ol>
+</section>
+
+<section id="c12">
+  <h2><span class="h2-no">12</span>曲面积分 <span class="meta">裴小节：§7.4 · 一级方法 4 · 例 35 · 单元练习 1</span></h2>
+  <h3>§7.4 曲面积分、Gauss 公式及 Stokes 公式 <span class="meta">例 35 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>第一型曲面积分的计算 <span class="subs">（利用对称性；利用公式计算第一型曲面积分；利用参数方程的公式）</span></li>
+<li>第二型曲面积分的计算 <span class="subs">（利用对称性；用公式化第二型曲面积分为二重积分；直角坐标公式；参数方程的情况）</span></li>
+<li>Gauss 公式 <span class="subs">（利用 Gauss 公式计算曲面积分；计算第二型曲面积分的例子；利用 Gauss 公式计算第一型曲面积分；个别奇点的处理；从积分性质导出微分性质）</span></li>
+<li>Stokes 公式</li>
+</ol>
+</section>
+
+<section id="c13">
+  <h2><span class="h2-no">13</span>场的数学 <span class="meta">裴小节：§7.5 · 一级方法 4 · 例 20 · 单元练习 1</span></h2>
+  <h3>§7.5 场论 <span class="meta">例 20 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>利用梯度、散度和旋度的定义直接证明有关公式 <span class="subs">（旋度和散度）</span></li>
+<li>梯度、散度、旋度的基本公式及其应用</li>
+<li>借助场论符号表示积分公式</li>
+<li>四种重要的向量场</li>
+</ol>
+</section>
+
+<section id="c14">
+  <h2><span class="h2-no">14</span>数项级数 <span class="meta">裴小节：§5.1 · 一级方法 5 · 例 82 · 单元练习 1</span></h2>
+  <h3>§5.1 数项级数 <span class="meta">例 82 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>求和问题 <span class="subs">（利用已知级数；连锁消去法；利用子列的极限）</span></li>
+<li>级数敛散性的判断 <span class="subs">（Cauchy 准则及其应用；正项级数敛散性的判定；变号级数敛散性的判断）</span></li>
+<li>级数敛散性的应用 <span class="subs">（收敛性的应用）</span></li>
+<li>级数问题的若干反例</li>
+<li>数项级数与反常积分的关系 <span class="subs">（关于收敛性；反常积分作为级数的极限）</span></li>
+</ol>
+</section>
+
+<section id="c15">
+  <h2><span class="h2-no">15</span>函数列与函数项级数 <span class="meta">裴小节：§5.2、§5.3 · 一级方法 8 · 例 135 · 单元练习 2</span></h2>
+  <h3>§5.2 函数项级数 <span class="meta">例 83 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>一致收敛性的判断 <span class="subs">（利用定义证明一致收敛性；利用常用的判别法证明一致收敛性；Abel 判别法与 Dirichlet 判别法；Dini定理及其应用；利用一致有界与等度连续证明一致收敛性）</span></li>
+<li>一致收敛级数的性质 <span class="subs">（关于逐项取极限；和函数的连续性；和函数的可微性与逐项求导；逐项积分与积分号下取极限；和函数的其他性质(综合性问题)）</span></li>
+<li>一致逼近问题</li>
+</ol>
+  <h3>§5.3 幂级数 <span class="meta">例 52 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>幂级数的收敛半径与收敛范围 <span class="subs">（公式法；缺项幂级数的收敛范围）</span></li>
+<li>初等函数展开为幂级数</li>
+<li>求和问题</li>
+<li>幂级数的应用 <span class="subs">（计算积分；证明不等式；近似计算）</span></li>
+<li>综合性问题</li>
+</ol>
+</section>
+
+<section id="c16">
+  <h2><span class="h2-no">16</span>反常积分 <span class="meta">裴小节：§4.5 · 一级方法 6 · 例 65 · 单元练习 1</span></h2>
+  <h3>§4.5 反常积分 <span class="meta">例 65 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>反常积分的计算 <span class="subs">（三大基本方法；其他方法）</span></li>
+<li>反常积分敛散性的判定(十二法)</li>
+<li>无穷限反常积分的敛散性与无穷远处的极限</li>
+<li>反常积分的极限</li>
+<li>反常积分作为“积分和”的极限</li>
+<li>综合性问题</li>
+</ol>
+</section>
+
+<section id="c17">
+  <h2><span class="h2-no">17</span>Fourier 分析 <span class="meta">裴小节：§5.4 · 一级方法 4 · 例 46 · 单元练习 1</span></h2>
+  <h3>§5.4 Fourier 级数 <span class="meta">例 46 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>正交系</li>
+<li>Fourier 系数</li>
+<li>求Fourier展开式 <span class="subs">（求 Fourier 展开式的基本方法；求 Fourier 展开式的一些其他方法）</span></li>
+<li>综合性问题</li>
+</ol>
+</section>
+
+<section id="c18">
+  <h2><span class="h2-no">18</span>含参变量积分 <span class="meta">裴小节：§7.1 · 一级方法 7 · 例 92 · 单元练习 1</span></h2>
+  <h3>§7.1 含参变量积分 <span class="meta">例 92 · 单元练习 1</span></h3>
+  <ol class="methods">
+<li>含参变量的正常积分 <span class="subs">（积分号下取极限与连续性守恒；积分号下求导与积分号下求积分）</span></li>
+<li>判断含参变量反常积分的一致收敛性 <span class="subs">（利用定义判断；用 Cauchy 准则判断；用判别法判断）</span></li>
+<li>含参变量反常积分的极限与连续性 <span class="subs">（积分号下取极限；(2) 右端的积分也收敛.）</span></li>
+<li>含参变量反常积分积分号下求导与积分号下求积分 <span class="subs">（积分号下求导）</span></li>
+<li>反常积分的计算 <span class="subs">（利用积分号下求导；引入收敛因子法；利用反常积分定义及变量替换；利用别的积分）</span></li>
+<li>综合性例题</li>
+<li>Euler积分 <span class="subs">（Euler 积分及其基本变形；Euler 积分的相互转换；余元公式的利用）</span></li>
+</ol>
+</section>
+
+<section id="checklist">
+  <h2><span class="h2-no">98</span>闭卷清单（只勾“能脱稿说出来”）</h2>
+  <p class="meta">勾选只存在本机浏览器，用来筛下一轮复习；勾了也不等于掌握，能写出才算。</p>
+  <ul class="checklist">
+    <li><label><input type="checkbox"> <span>一元极限：定义证法、Stolz、上下极限、递推序列四类入口各能说一句</span></label></li>
+    <li><label><input type="checkbox"> <span>连续性：一致连续的 ε-δ 顺序与否定形式能写</span></label></li>
+    <li><label><input type="checkbox"> <span>导数：Rolle / Lagrange / Cauchy 三定理的条件差异能写</span></label></li>
+    <li><label><input type="checkbox"> <span>Taylor：Lagrange 与 Peano 余项的适用条件、三条常用展开能写</span></label></li>
+    <li><label><input type="checkbox"> <span>积分：可积的 ε-分割定义与 Darboux 判别能写</span></label></li>
+    <li><label><input type="checkbox"> <span>积分不等式：能说出三条常用工具（单调性、Cauchy–Schwarz、Taylor）</span></label></li>
+    <li><label><input type="checkbox"> <span>多元微分：可微定义、方向导数与梯度关系、隐函数定理条件能写</span></label></li>
+    <li><label><input type="checkbox"> <span>重积分：换序与极/球坐标的 Jacobi 因子能写</span></label></li>
+    <li><label><input type="checkbox"> <span>曲线/曲面积分：Green / Gauss / Stokes 的闭合、方向、奇点三条件能说</span></label></li>
+    <li><label><input type="checkbox"> <span>级数：正项判敛五法、交错与绝对收敛、一致收敛三判别能说</span></label></li>
+    <li><label><input type="checkbox"> <span>反常积分：十二法里能说出五类（比较、Dirichlet、Abel、拆区间、Taylor）</span></label></li>
+    <li><label><input type="checkbox"> <span>含参积分：积分号下求导与求积的三条件能写</span></label></li>
+  </ul>
+</section>
+
+<section id="source">
+  <h2><span class="h2-no">99</span>来源与边界</h2>
+  <p><b>来源</b>：`考研/02_数学分析/02_裴砖/` 下 10 份分节文本（MinerU OCR 后经 `MinerU_cleanup_20261013` 清洗，带 LaTeX 公式）。本页只抽取章节标题、方法标题、例号计数与单元练习计数，不复制题干与解答。</p>
+  <p><b>边界</b>：①方法名直接取自原书标题，未改写；个别标题在 OCR 中有截断或错字，遇到读不通的以 PDF 原件为准。②例数按「例 x.y.z」正则计数，同一例多小问只算一次。③本页是检索与自测清单，<b>不构成学习进度或掌握证据</b>；页内 checkbox、阅读时间都不计。</p>
+  <p><b>原始文件</b>：`01_原始资料/02_数学分析/03 补充教材与习题/01 裴礼文_典型问题与方法/`（PDF 与 201–878 页 OCR）；本页的结构化数据由 `Agent非知识性文件存放处/MinerU检索/` 的脚本生成，可重跑。</p>
+</section>
+
+</div>
+</main>
+</div>
+<script src="_html_assets/katex/katex.min.js"></script>
+<script src="_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="_html_assets/guide.js"></script>
+</body>
+</html>
