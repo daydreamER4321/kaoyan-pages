@@ -241,10 +241,11 @@
     }
     tfoot.appendChild(footRow('当年全部题', totals));
 
-    var cur={}; var rs=rowsOf();
-    rs.forEach(function(r){ cur[r.year]=(cur[r.year]||0)+1; });
-    var curLabel = (state.chapters.size||state.years.size||state.q.trim()) ? '当前筛选' : '当前筛选（未筛）';
-    tfoot.appendChild(footRow(curLabel, cur, 'cur'));
+    if(state.chapters.size||state.years.size||state.q.trim()){
+      var cur={}; var rs=rowsOf();
+      rs.forEach(function(r){ cur[r.year]=(cur[r.year]||0)+1; });
+      tfoot.appendChild(footRow('当前筛选', cur, 'cur'));
+    }
     tb.appendChild(tfoot);
 
     scroll.appendChild(tb); d.appendChild(scroll);
