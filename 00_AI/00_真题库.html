@@ -44,6 +44,11 @@
   .stem p:last-child{margin-bottom:0}
   .qnote{font-size:12px;color:var(--muted);background:var(--acc-soft);border-left:3px solid var(--acc);padding:5px 8px;border-radius:5px;margin:4px 0 6px}
   .qpts{font-size:11.5px;color:var(--muted);margin-left:6px}
+  .stem{margin:7px 0 6px;font-size:14.5px;line-height:1.72}
+  .stem p{margin:0 0 4px}
+  .stem p:last-child{margin-bottom:0}
+  .qnote{font-size:12px;color:var(--muted);background:var(--acc-soft);border-left:3px solid var(--acc);padding:5px 8px;border-radius:5px;margin:4px 0 6px}
+  .qpts{font-size:11.5px;color:var(--muted);margin-left:6px}
   .desc .lab{font-size:10.5px;color:var(--muted);opacity:.82;margin-right:5px}
   .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
   .acts a,.acts button{font-size:12px;text-decoration:none;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
@@ -77,16 +82,22 @@
   table.freq tfoot tr.cur th{color:var(--acc)}
   .freqch{font:inherit;font-size:11.5px;border:0;background:transparent;padding:0;cursor:pointer;color:inherit;text-align:left}
   .freqch:hover{color:var(--acc);text-decoration:underline}
-</style>
-</head>
-<body>
-<header>
-  <h1>考研真题库 <span class="meta">610 数学分析 · 801 高等代数</span></h1>
+    .pagenav{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 7px;font-size:12px}
+    .pagenav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:2px 9px;background:var(--card)}
+    .pagenav a:hover{border-color:var(--acc);color:var(--acc)}
+    .pagenav a.cur{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+    .pagenav .sep{color:var(--line)}
+  </style>
+  </head>
+  <body>
+  <header>
+    <nav class="pagenav"><a href="00_页面总入口.html">← 页面总入口</a><a href="00_真题库.html" class="cur">真题库</a><a href="00_复习队列.html">复习队列</a></nav>
+    <h1>考研真题库 <span class="meta">610 数学分析 · 801 高等代数</span></h1>
   <div class="row" id="subjRow"></div>
   <div class="row" style="margin-top:8px" id="modeRow"></div>
 </header>
 <main>
-  <div class="note"><b>数据口径</b>：题干逐字取自原卷（南乔Voy 重排版／手写回忆版），<b>不是考点提要</b>；原卷的空缺、笔误、编者注一律照录并在题下标注，未作补全。答案折叠区仍是该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位）。“做过”只记在本机浏览器。筛选按<b>考纲部分</b>（第几部分），细考点保留在每题卡片上。</div>
+  <div class="note"><b>数据口径</b>：题干逐字取自原卷（南乔Voy 重排版／手写回忆版），<b>不是考点提要</b>；原卷的空缺、笔误、编者注一律照录并在题下标注，未作补全。答案折叠区仍是该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位）。“做过”只记在本机浏览器。筛选按<b>考纲条目</b>（610 六条、801 八条，与 2027 级考纲原文一致），细考点保留在每题卡片上；条目 chip 悬停可看该条考纲细目。</div>
   <div id="filters"></div>
   <div id="freq"></div>
   <div class="bar" id="countBar"></div>
@@ -116,20 +127,25 @@
   }
   var PARTS = {
     '610':[
-      {k:'P1', n:'第一部分', name:'极限论', chs:['01','02']},
-      {k:'P2', n:'第二部分', name:'一元微分学', chs:['03','04']},
-      {k:'P3', n:'第三部分', name:'一元积分学', chs:['05','06','07']},
-      {k:'P4', n:'第四部分', name:'多元微分学', chs:['08','09']},
-      {k:'P5', n:'第五部分', name:'多元积分学', chs:['10','11','12','13']},
-      {k:'P6', n:'第六部分', name:'级数与含参积分', chs:['14','15','16','17','18']}
+      {k:'K1', n:'1)', name:'极限和连续性', chs:['01','02'], d:'考纲 1) 极限和连续性：数列与函数极限、上下极限、左右极限；极限性质与四则运算、夹逼；区间套、确界存在、单调有界、Bolzano-Weierstrass、Heine-Borel、Cauchy 准则；连续性与间断点类型；闭区间连续函数性质（有界、最值、介值、一致连续）'},
+      {k:'K2', n:'2)', name:'一元函数微分学', chs:['03','04'], d:'考纲 2) 一元函数微分学：导数与微分、可导与连续的关系；求导法则与高阶导数、分段函数求导；Rolle、Lagrange、Cauchy 中值定理与 Taylor 公式；单调性、极值、最值、凹凸性；L Hopital 法则与不定式'},
+      {k:'K3', n:'3)', name:'一元函数积分学', chs:['05','06','07','16'], d:'考纲 3) 一元函数积分学：不定积分、换元与分部、有理函数与三角/无理函数积分；定积分概念（Darboux 和、上下积分、可积条件与可积函数类）；定积分性质、微积分基本定理；几何与物理应用；广义积分及比较判别、Abel 与 Dirichlet 判别、积分第二中值定理'},
+      {k:'K4', n:'4)', name:'无穷级数', chs:['14','15','17'], d:'考纲 4) 无穷级数：数项级数敛散性；正项级数判别法；绝对收敛与条件收敛、Leibniz 判别；函数项级数一致收敛（Weierstrass、Abel、Dirichlet）；幂级数与收敛半径（Cauchy-Hadamard、Abel 第一定理）；幂级数性质与函数展开、Weierstrass 逼近；Fourier 级数'},
+      {k:'K5', n:'5)', name:'多元函数微分学与积分学', chs:['08','09','10','11','12','13'], d:'考纲 5) 多元函数微分学与积分学：多元极限与连续、偏导数与全微分；隐函数存在定理、反函数定理；极值与条件极值、Lagrange 乘子法；重积分、第一/二型曲线与曲面积分；梯度、散度、旋度；Gauss、Green、Stokes 公式'},
+      {k:'K6', n:'6)', name:'含参变量积分', chs:['18'], d:'考纲 6) 含参变量积分：含参变量常义积分的概念与性质；含参变量广义积分的一致收敛性及判别法、一致收敛含参积分的性质'}
     ],
     '801':[
-      {k:'P1', n:'第一部分', name:'多项式与方程组', chs:['01','02','03']},
-      {k:'P2', n:'第二部分', name:'矩阵与二次型', chs:['04','05']},
-      {k:'P3', n:'第三部分', name:'线性空间与线性变换', chs:['06','07','08','09']},
-      {k:'P4', n:'第四部分', name:'双线性与辛空间', chs:['10']}
+      {k:'K1', n:'1)', name:'多项式', chs:['01'], d:'考纲 1) 多项式：多项式无重因式的充要条件，复数域及实数域上多项式因式分解理论；多项式的欧几里得除法'},
+      {k:'K2', n:'2)', name:'行列式', chs:['02'], d:'考纲 2) 行列式：行列式、子式、余子式、代数余子式；行列式性质、按行按列展开定理、Cramer 法则、行列式乘法公式；计算行列式的基本方法'},
+      {k:'K3', n:'3)', name:'线性方程组', chs:['03'], d:'考纲 3) 线性方程组：高斯消元法、初等变换求解；向量线性相关与无关、向量组等价、极大无关组、向量组的秩、矩阵的秩、基础解系、解空间；线性方程组有解判别定理、解的结构'},
+      {k:'K4', n:'4)', name:'矩阵', chs:['04'], d:'考纲 4) 矩阵：对角/三角/对称/反对称阵及其性质；线性运算、乘法、转置及运算规律；逆矩阵、可逆充要条件、伴随矩阵；初等变换与初等矩阵、求秩与逆；分块矩阵及初等变换'},
+      {k:'K5', n:'5)', name:'二次型', chs:['05'], d:'考纲 5) 二次型：概念与矩阵表示、二次型的秩、标准形与规范形、惯性定律；合同变换、正交变换化标准形；正定、半正定、负定、半负定及其判别法'},
+      {k:'K6', n:'6)', name:'线性空间', chs:['06'], d:'考纲 6) 线性空间：线性空间、子空间、生成子空间、基底、维数、坐标、过渡矩阵、子空间的和与直和、同构；基扩张定理、维数公式、直和的充要条件'},
+      {k:'K7', n:'7)', name:'线性变换', chs:['07','08'], d:'考纲 7) 线性变换：线性变换、特征值/特征向量/特征多项式/特征子空间、不变子空间、线性变换的矩阵、相似变换与相似矩阵、值域与核、Jordan 标准形、最小多项式；Cayley-Hamilton 定理、广义特征子空间直和分解、最小多项式理论；可相似对角化的条件与方法'},
+      {k:'K8', n:'8)', name:'欧几里得空间', chs:['09'], d:'考纲 8) 欧几里得空间：内积、欧氏空间、长度/夹角/距离、度量矩阵、标准正交基、正交补、正交变换、正交阵、对称变换、同构；Schmidt 正交化；实对称阵正交相似对角化；向量到子空间的距离与最小二乘；酉空间'}
     ]
   };
+  
   function partKey(c){
     var s = String(c), a = s.charAt(0), b = s.charAt(1);
     if(/[0-9]/.test(a) && /[0-9]/.test(b)) return a+b;
@@ -171,7 +187,7 @@
       srow.appendChild(b);
     });
     var mrow = document.getElementById('modeRow'); mrow.innerHTML='';
-    [['paper','套题模式（按年份）'],['point','按考纲部分筛选']].forEach(function(p){
+    [['paper','套题模式（按年份）'],['point','按考纲条目筛选']].forEach(function(p){
       var b=document.createElement('button'); b.textContent=p[1]; b.className = state.mode===p[0]?'on':'';
       b.onclick=function(){ state.mode=p[0]; renderAll(); };
       mrow.appendChild(b);
@@ -192,17 +208,17 @@
       box.appendChild(row);
     } else {
       var r1=document.createElement('div'); r1.className='row';
-      var l1=document.createElement('span'); l1.className='meta'; l1.textContent='按考纲部分筛选（可多选）：'; r1.appendChild(l1);
+      var l1=document.createElement('span'); l1.className='meta'; l1.textContent='按考纲条目筛选（可多选）：'; r1.appendChild(l1);
       partsOf(state.subject).forEach(function(p){
         var b=document.createElement('span'); b.className='chip part'+(state.parts.has(p.k)?' sel':'');
         var nm=document.createElement('span'); nm.className='num'; nm.textContent=p.n; b.appendChild(nm);
-        b.appendChild(document.createTextNode(' · '+p.name));
+        b.appendChild(document.createTextNode(' '+p.name));
         var cnt=document.createElement('span'); cnt.className='cnt'; cnt.textContent='('+partTotal(state.subject,p.k)+' 题)'; b.appendChild(cnt);
-        b.title = p.chs.length ? p.chs.map(function(n){ return '第 '+n+' 章'; }).join(' · ') : '题面缺失，无法归类';
+        b.title = (p.d||'') + (p.chs.length ? '\n\n对应课本：' + p.chs.map(function(n){ return '第 '+n+' 章'; }).join(' · ') : '');
         b.onclick=function(){ if(state.parts.has(p.k)) state.parts.delete(p.k); else state.parts.add(p.k); renderAll(); };
         r1.appendChild(b);
       });
-      var clr=document.createElement('button'); clr.textContent='清空部分'; clr.onclick=function(){state.parts.clear(); renderAll();}; r1.appendChild(clr);
+      var clr=document.createElement('button'); clr.textContent='清空条目'; clr.onclick=function(){state.parts.clear(); renderAll();}; r1.appendChild(clr);
       box.appendChild(r1);
       var r2=document.createElement('div'); r2.className='row'; r2.style.marginTop='8px';
       var l2=document.createElement('span'); l2.className='meta'; l2.textContent='年份（可多选）：'; r2.appendChild(l2);
@@ -242,16 +258,16 @@
 
     var d=document.createElement('details'); d.className='freqwrap'; d.open=true;
     var sm=document.createElement('summary');
-    sm.textContent='考频表：考纲部分 × 年份命中题数';
+    sm.textContent='考频表：考纲条目 × 年份命中题数';
     var hint=document.createElement('span'); hint.className='hint';
-    hint.textContent='（点部分名＝筛选该部分；一题跨两个部分时两边都计数）';
+    hint.textContent='（点条目名＝筛选该条目；一题跨两个条目时两边都计数）';
     sm.appendChild(hint); d.appendChild(sm);
 
     var scroll=document.createElement('div'); scroll.className='freqscroll';
     var tb=document.createElement('table'); tb.className='freq';
 
     var thead=document.createElement('thead'); var htr=document.createElement('tr');
-    var th0=document.createElement('th'); th0.className='c'; th0.textContent='考纲部分'; htr.appendChild(th0);
+    var th0=document.createElement('th'); th0.className='c'; th0.textContent='考纲条目'; htr.appendChild(th0);
     ys.forEach(function(y){
       var th=document.createElement('th'); th.textContent=y;
       if(state.years.size && !state.years.has(y)) th.className='off';
@@ -265,7 +281,7 @@
       var tr=document.createElement('tr');
       if(state.parts.has(p.k)) tr.className='sel';
       var th=document.createElement('th'); th.className='c';
-      var btn=document.createElement('button'); btn.className='freqch'; btn.textContent=p.n+' · '+p.name;
+      var btn=document.createElement('button'); btn.className='freqch'; btn.textContent=p.n+' '+p.name;
       btn.onclick=function(){ if(state.parts.has(p.k)) state.parts.delete(p.k); else state.parts.add(p.k); renderAll(); };
       th.appendChild(btn); tr.appendChild(th);
       ys.forEach(function(y){
@@ -326,6 +342,7 @@
     var head=document.createElement('div'); head.className='qhead';
     var no=document.createElement('span'); no.className='qno';
     no.textContent = (state.mode==='paper'? '' : r.year+' · ') + '第 '+r.no+' 题'; head.appendChild(no);
+    if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
     if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
     if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
     var spacer=document.createElement('span'); spacer.style.flex='1'; head.appendChild(spacer);
