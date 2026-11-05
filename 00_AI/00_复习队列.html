@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>考研复习队列 · R01–R37</title>
+<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/katex/katex.min.css">
+<style>
+  :root{--bg:#f5f6fa;--card:#fff;--ink:#20242e;--muted:#5c6575;--line:#e4e7f0;--acc:#17548a;--acc-soft:#e8f1fa;
+        --red:#c92a2a;--red-bg:#fdefee;--orange:#d9480f;--orange-bg:#fff4e6;--gray:#5c6575;--gray-bg:#f1f3f5;--green:#2f9e44;--green-bg:#eefaf0;}
+  @media (prefers-color-scheme: dark){:root{--bg:#14161d;--card:#1c1f29;--ink:#e7eaf2;--muted:#9aa3b5;--line:#2b3140;--acc:#74b3ea;--acc-soft:#182633;
+        --red:#ff8787;--red-bg:#2a1a1a;--orange:#ffa94d;--orange-bg:#2a2113;--gray:#9aa3b5;--gray-bg:#20242e;--green:#69db7c;--green-bg:#13251a;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,"Segoe UI",system-ui,"Microsoft YaHei",sans-serif}
+  header{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px}
+  h1{font-size:17px;margin:0 0 6px}
+  h1 .sub{font-size:11.5px;color:var(--muted);font-weight:400;margin-left:6px}
+  .stats{display:flex;flex-wrap:wrap;gap:6px;font-size:11.5px;color:var(--muted);margin-bottom:6px}
+  .stats b{color:var(--ink);font-size:12.5px}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0}
+  button,select,input[type=search]{font:inherit;font-size:12.5px;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 9px;cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+  input[type=search]{cursor:text;min-width:180px;flex:1 1 180px}
+  .chip{display:inline-flex;align-items:center;gap:4px;background:var(--gray-bg);color:var(--ink);border:1px solid transparent;border-radius:99px;padding:2px 10px;font-size:12px;cursor:pointer;opacity:.75}
+  .chip.sel{opacity:1;border-color:var(--acc);background:var(--acc-soft);color:var(--acc);font-weight:600}
+  .chip .n{font-size:10.5px;opacity:.7}
+  main{max-width:1000px;margin:0 auto;padding:14px 16px 90px}
+  #list{display:flex;flex-direction:column}
+  .today{background:var(--acc-soft);border:1px solid var(--acc);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+  .today .lab{font-size:11px;letter-spacing:.08em;color:var(--acc);font-weight:700;margin-bottom:4px}
+  .today h2{font-size:15px;margin:0 0 4px}
+  .today p{margin:4px 0;font-size:13px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gray);border-radius:10px;padding:9px 12px;margin:8px 0}
+  .card.s-需要重补{border-left-color:var(--red)}
+  .card.s-仍需锻炼{border-left-color:var(--orange)}
+  .card.s-待评估{border-left-color:var(--gray)}
+  .card.s-优秀{border-left-color:var(--green)}
+  .card.done{opacity:.55}
+  .top{display:flex;flex-wrap:wrap;gap:7px;align-items:baseline}
+  .id{font-weight:700;color:var(--acc);font-size:14px;font-variant-numeric:tabular-nums}
+  .area{font-size:11px;color:var(--muted);background:var(--gray-bg);border-radius:4px;padding:0 5px}
+  .badge{font-size:10.5px;border-radius:4px;padding:0 5px;background:var(--gray-bg);color:var(--muted)}
+  .badge.需要重补{background:var(--red-bg);color:var(--red)}
+  .badge.仍需锻炼{background:var(--orange-bg);color:var(--orange)}
+  .badge.优秀{background:var(--green-bg);color:var(--green)}
+  .topic{font-size:14.5px;font-weight:600;margin:3px 0 2px}
+  .meta{font-size:11.5px;color:var(--muted)}
+  .meta span{margin-right:10px}
+  .memo{font-size:13px;line-height:1.75;margin:6px 0 0;color:var(--ink)}
+  .memo.clip{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .more{font-size:11.5px;color:var(--acc);cursor:pointer;background:none;border:0;padding:2px 0}
+  .note{margin-top:7px;border-top:1px dashed var(--line);padding-top:6px}
+  .note summary{font-size:11.5px;color:var(--muted);cursor:pointer}
+  .note textarea{width:100%;min-height:58px;margin-top:5px;font:inherit;font-size:13px;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:6px 8px;resize:vertical}
+  .note .hint{font-size:10.5px;color:var(--muted);margin-top:3px}
+  .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:6px;font-size:11.5px;color:var(--muted)}
+  .acts label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:12.5px;padding:7px 14px;border-radius:8px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99}
+  .toast.show{opacity:.94}
+  .toTop{position:fixed;right:14px;bottom:14px;border-radius:999px;padding:7px 11px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+</style>
+</head>
+<body>
+<header>
+  <h1>复习队列 <span class="sub">Hermes 维护 · 备注存本机</span></h1>
+  <div class="stats" id="stats"></div>
+  <div class="row" id="subjectRow"></div>
+  <div class="row" id="statusRow"></div>
+  <div class="row">
+    <input id="q" type="search" placeholder="搜知识点 / 备注 / 编号">
+    <button id="sortBtn">排序：状态优先</button>
+    <button id="onlyUndone">只看未复测</button>
+    <button id="exportBtn">导出我的备注</button>
+  </div>
+</header>
+<main>
+  <section id="today"></section>
+  <div id="list"></div>
+</main>
+<div class="toast" id="toast"></div>
+<button class="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="../02_数学分析/01_数分-考纲课本/_html_assets/katex/katex.min.js"></script>
+<script src="../02_数学分析/01_数分-考纲课本/_html_assets/katex/contrib/auto-render.min.js"></script>
+<script src="../02_数学分析/01_数分-考纲课本/_html_assets/annotate-core.js"></script>
+<script src="../02_数学分析/01_数分-考纲课本/_html_assets/annotate.js"></script>
+<script>
+var DATA = [{"id": "R01", "area": "高代四章", "topic": "矩阵单位的左乘与右乘方向：行、列效果及 \\(E_{ij}\\) 的还原", "written": "2026-09-12", "last": "2026-09-11（提示后纠正）", "status": "仍需锻炼", "next": "待安排", "memo": "原误区：左右乘都按 \\(i\\to j\\) 记。已校正为右乘改列、左乘改行；需闭卷写出并用外积验证。", "subject": "高代"}, {"id": "R02", "area": "高代四章", "topic": "分块矩阵求逆：区分单位阵、未知块与运算系数", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "来源是历史矩阵讨论；尚无当前独立推导证据。", "subject": "高代"}, {"id": "R03", "area": "高代一、四章", "topic": "从复杂累加式识别矩阵乘积与 Vandermonde 结构", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "目标是从结构识别入手，而不是只按项计算；需用一个新式子独立解释。", "subject": "高代"}, {"id": "R04", "area": "高代三、四章", "topic": "秩不等式与列空间包含：乘积秩、像空间和可表示关系", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "将历史“秩定义/秩不等式/向量可表示证明”合并为一个中等粒度单元。", "subject": "高代"}, {"id": "R05", "area": "高代四章", "topic": "由 \\(AB+BA=B\\) 推出幂次关系并完成幂零证明", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "重点不是记结论，而是能独立复原迭代链和适用条件。", "subject": "高代"}, {"id": "R06", "area": "高代三章", "topic": "初等变换为何保持方程组解集", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "需分别说明交换、倍乘、倍加的可逆性或等价性。", "subject": "高代"}, {"id": "R07", "area": "高代三章", "topic": "秩判据、秩的定义与非齐次方程组解的结构", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "区分定义、等价刻画和解的数目结论；不把“核过答案”当作掌握。", "subject": "高代"}, {"id": "R08", "area": "高代三章", "topic": "固定 \\(b\\) 与任意 \\(b\\) 的量词切换，以及含参方程组的讨论入口", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "需要明确参数在 \\(A\\) 还是 \\(b\\)、是否方阵，以及何时不能直接除以含参式。", "subject": "高代"}, {"id": "R09", "area": "高代二章", "topic": "排列、逆序数与交换次数的关系", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "先独立说清定义和符号，再处理一个交换变换的小例子。", "subject": "高代"}, {"id": "R10", "area": "高代二章", "topic": "行列式的线性：对单行/单列线性，不是对整个矩阵无条件线性", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "需给出正确展开方式和一个能击破错误推广的反例。", "subject": "高代"}, {"id": "R11", "area": "高代七章", "topic": "Cayley-Hamilton 的结构直觉：特征值、广义特征空间与 Jordan 块", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "历史原话已保留；曾卡在“特征值是根”不能直接推出矩阵代入为零。", "subject": "高代"}, {"id": "R12", "area": "高代七章", "topic": "Cayley-Hamilton 的课本证明主线", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "结构直觉与可书写证明分开验收；第七章专题记录不代表整章学完。", "subject": "高代"}, {"id": "R13", "area": "数分一章", "topic": "阶乘数列放缩与 \\(\\varepsilon\\)-\\(N\\) 证明", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "保留原先估计路径和可能的放缩误区；需独立写出阈值选择。", "subject": "数分"}, {"id": "R14", "area": "数分一、二章", "topic": "极限量词与反三角极限：阈值依赖、尺度替换和定义否定", "written": "2026-09-12；2026-10-08补来源", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "10-08旧题归档补1.2第1题（8—10）、第4题（4）及函数极限否定；与原讨论查重，不算新增复习。出口：无提示写量词顺序、说明阈值可随尺度变化，再给一个反三角误差控制。完整来源见本批数分对齐页。", "subject": "数分"}, {"id": "R15", "area": "数分二章", "topic": "振荡项极限的整体处理：差估计、共同项消去与非零条件", "written": "2026-09-12；2026-10-08补定位", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "原约去因子须检查定义域/非零条件；本批2.5练习第3相关三角差、第4系数和为零是加减消去共同项，不与除法约去混同。完整证明曾由AI补全，重复导入不计独立再做。出口：先说明不能逐项取极限，再独立写消去等式和误差上界；其他未恢复手写过程不补造。", "subject": "数分"}, {"id": "R16", "area": "英语阅读", "topic": "`whether` 从句、逻辑替换与句间关系判断", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "需要用新句子说明语法功能，并判断上下文逻辑，不只记固定翻译。", "subject": "英语"}, {"id": "R17", "area": "英语阅读", "topic": "`have it all`、指代判断与时间连续性", "written": "2026-09-12", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "从历史对话保留表达、指代和时态判断链；新文章中再验证。", "subject": "英语"}, {"id": "R18", "area": "高代五章", "topic": "二次型化标准形：整体配方、合同消元与变换矩阵核验", "written": "2026-09-14", "last": "2026-09-14（本轮代表题完成，含纠错）", "status": "仍需锻炼", "next": "待安排", "memo": "已覆盖零主元、多交叉项、`x=Cy`、`C^TAC` 和三角核验；曾出现交叉项系数抄入 `A` 时忘除以 2、漏展开 `L^2` 交叉项等错误。需间隔后无提示完成一道综合题，才能升级。", "subject": "高代"}, {"id": "R19", "area": "高代五章 §3", "topic": "实、复二次型规范形差异与合同分类", "written": "2026-09-14", "last": "2026-09-14（题目触发后讲解）", "status": "仍需锻炼", "next": "待安排", "memo": "首轮费曼讲述未主动覆盖，AI 也漏问。需无提示说明：复数域为何只由秩分类、实数域为何保留正负惯性指数，并用 `-x^2` 给出最小解释。", "subject": "高代"}, {"id": "R20", "area": "高代五章 §4", "topic": "正定/半正定的定义、合同刻画与主子式判据", "written": "2026-09-15（专题）；2026-09-16 入队", "last": "2026-09-12（半正定反例尝试，提示后纠正）；其后未验收", "status": "仍需锻炼", "next": "2026-09-17 08:00", "memo": "2026-09-15 自报关键词仍模糊，已整理 03_第五章_二次型_专题_正定半正定判别地图，但整理不算复测；2026-09-16 一轮覆盖收口，已创建滴答首次复测任务。下次先无提示对比定义及顺序主子式/所有主子式判据，再独立判别一个小矩阵；交叉项吸收估计随后回收。", "subject": "高代"}, {"id": "R21", "area": "高代六章 §2", "topic": "八条线性空间公理与由公理推出的简单性质", "written": "2026-09-21（历史导入）", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "外部历史费曼复述中把 `0·α=0`、`(-1)α=-α` 等推论混入公理；需闭卷区分定义与推导，并独立证明 `0·α=0`。", "subject": "高代"}, {"id": "R22", "area": "高代六章 §4", "topic": "基变换、过渡矩阵与坐标变换方向", "written": "2026-09-21（历史导入）", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "学习者明确表示对过渡矩阵方向和坐标变换公式不稳定；需从 `η=εP` 独立推出 `X=PX'`。", "subject": "高代"}, {"id": "R23", "area": "高代六章 §6-7", "topic": "维数公式与两个/多个子空间直和判据", "written": "2026-09-21（历史导入）", "last": "2026-10-26（习题22 实作；②判据错误重现）", "status": "仍需锻炼", "next": "待安排", "memo": "维数公式曾停留在“重复基向量”的直观解释；10-25 过渡矩阵路线口述成立但未成文。2026-10-26 习题22：①结论对，但「两两交为零 ⇒ 与其余和之交为零」不成立，须改用零向量表法唯一的两行论证；②目标设错——「两两交为零」推不出直和（s≥3 反例 ⟨e1⟩,⟨e2⟩,⟨e1+e2⟩），其括号内已写出正确定义路线却未采用；中间两行实际上已触逐步条件 `V_i∩Σ_{j<i}V_j={0}`（接课本定理可收尾，原稿未走）。判定不通过；出口：闭卷重写① ②，并补 s=3 反例与充要条件。", "subject": "高代"}, {"id": "R24", "area": "高代六章 §8", "topic": "有限维线性空间同构与单射/满射证明工具", "written": "2026-09-21（历史导入）", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "能口头区分单射与满射，但对有限维同构判定和维数工具尚未完成当前章节边界内的独立验收；外部 AI 提示不计掌握。", "subject": "高代"}, {"id": "R25", "area": "数分二章 §2.9", "topic": "一致连续的定义与证明/否定套路：先量词、再估计、反例与定理", "written": "2026-09-23；2026-10-08对齐旧接续", "last": "2026-09-25（首次顺序错误，随后已提示后重述）", "status": "需要重补", "next": "待安排", "memo": "已有反例直觉；9月25日先把尺度顺序说反，随后按纠正顺序重述，术语与定义域含义仍有混淆，不能再写等待同轮重述。学习者要求先回函数极限基础，当前出口是R14函数极限定义的独立回忆；之后再恢复一致连续/Lipschitz。本批讲解不计通过。", "subject": "数分"}, {"id": "R26", "area": "数分二章 §2.8", "topic": "$1^\\infty$ 型极限的两条完整证明路径", "written": "2026-09-23", "last": "2026-09-23（结构识别正确，证明未展开）", "status": "仍需锻炼", "next": "待安排", "memo": "能识别 $u=1+x,v=1/x$ 与 $v(u-1)\\to1$；尚需独立写出已知 e 极限代换和取对数两条路径，并说明 $\\ln(1+x)\\sim x$ 的作用。", "subject": "数分"}, {"id": "R27", "area": "数分二、三章", "topic": "罗尔证明：全局最值到内部极值，再调用费马", "written": "2026-10-08（历史过程导入）", "last": "未发生（只有外部讨论）", "status": "待评估", "next": "待安排", "memo": "本人提出常值/非常值接费马；外部补完整条件和内部点存在理由。定理2.10.3及3.4.1—3.4.2已回教材核验，没有独立完整证明。出口：闭卷恢复条件，补出为何至少一种最值在内部取得，并说清费马前提。来源：2026-10-08_外部讨论导入_罗尔定理与函数作图。", "subject": "数分"}, {"id": "R28", "area": "数分三章 §3.7", "topic": "作图：候选点、最终判定与渐近线极限", "written": "2026-10-08（09-19过程导入）", "last": "未发生（非独立作图）", "status": "待评估", "next": "待安排", "memo": "第8题本人主动补问二阶导，提示后归纳步骤；运算主要由AI给出。Hermes本轮计算核验不算本人复现。出口：不看旧解完成符号表/关键极限，解释二阶导零点和定义域空洞为何不能直接定为拐点、斜渐近线为何查差极限。来源同R27。", "subject": "数分"}, {"id": "R29", "area": "高代七章", "topic": "换基下矩阵装配：B=P⁻¹AP 与相似自查（迹）", "written": "2026-10-09", "last": "2026-10-09（已尝试；修正未核）", "status": "仍需锻炼", "next": "待安排", "memo": "原形态疑为 A·P（第3、4列未换成 η 坐标、漏左乘 P⁻¹）；tr 自查命中 −5/2≠3/2；四数块（9/2,−5/2;11,−7）得 (−5±√89)/4 属红旗。出口：提交修正 B（tr=3/2）与特征值，再隔次无提示重做小变式。与 R22 同族。", "subject": "高代"}, {"id": "R30", "area": "高代八章 §2–§3", "topic": "标准形存在性机制与唯一性：引理降次三情形＋$D_k\\to d_k$ 唯一性链条", "written": "2026-10-16", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "与 DeepSeek 的 8.1~8.3 深挖对话导入（原文＋核验见 2026-10-16_外部对话导入_8.1-8.3_Smith标准形深挖_核验记录）：学习者讨论中的「case3 处理后原位置仍不能整除」「引理只保证降次、终止才整除」「需次数终止排除循环」「唯一性＝$D_k$ 之比唯一」均核验正确；外部 AI 一处无效 $D$ 序列例子已修正（体检：$d_k=D_k/D_{k-1}$ 须自身成整除链）。出口：闭卷写引理三情形归约＋终止论证，再写唯一性链条；可与 10-15 待执行的基线复现合并执行。", "subject": "高代"}, {"id": "R31", "area": "高代九章 §1", "topic": "内积四公理的判定与四个反例（对称／齐次／可加／正定）", "written": "2026-10-25", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "10-25 DeepSeek 对话导入（原文与核验见 导入总览）：学习者独立意识到复内积需共轭（酉空间，属第十章保底档，不投入），但不知道线性空间可以不带内积，并把内积等同于距离、把 L1/L2 距离当内积。外部 AI 两处错已核：$(x_1y_1+x_2y_2)^2$ 破坏的是齐次性与可加性，**不是**正定性（$(\\alpha,\\alpha)=4$）；L1 平行四边形法则一段自算反复。出口：闭卷写四公理＋各一个反例，再判断一个给定二元函数是否为内积。", "subject": "高代"}, {"id": "R32", "area": "高代八章 §4", "topic": "定理7：$\\lambda E-A$ 与 $\\lambda E-B$ 等价 ⇔ 相似，条件边界与证明骨架", "written": "2026-10-25", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "学习者独立反推「引理1 是特例、引理2 是桥」，方向正确；但收尾把结论推广成「任意含 $A,B$ 的多项式矩阵等价 ⇒ 相似」，外部 AI 判为「完全正确」，实为越界——定理7 只对特征矩阵成立。外部 AI 另把关键一步说成整除、把可逆矩阵写成 $U_0$；教材是次数估计得数字矩阵 $T=U^{-1}-(\\lambda E-B)R$，再证 $E=U_0T$ 故 $T$ 可逆，末式 $\\lambda E-A=T^{-1}(\\lambda E-B)V_0$。出口：闭卷写条件＋五步骨架＋一句「为什么不可推广」。", "subject": "高代"}, {"id": "R33", "area": "高代一章 §9", "topic": "高斯引理推论与有理根定理的完整书写", "written": "2026-10-25", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "本批质量最高的独立思考：自己发现「两数均不被 $p$ 整除但相加可被 $p$ 整除」，据此推翻原思路；独立给出「一个素数系数＋其余与之互素」的本原多项式构造并自加「只是其中一种」的限定。外部 AI 的有理根「高斯引理秒杀版」多乘一个 $s$，比较首项只得 $a_n=b_{n-1}$，推不出 $s\\mid a_n$，证明断裂；教材定理12 由 $f=(sx-r)g$ 直接比较系数得 $a_n=sb_{n-1},\\ a_0=-rb_0$。出口：闭卷写完定理11 推论与定理12，含「商为何必为整系数」。", "subject": "高代"}, {"id": "R34", "area": "高代二章 §7–§8", "topic": "子式／代数余子式记号与按 $k$ 行拉普拉斯展开", "written": "2026-10-25", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "学习者不记得 $D\\begin{pmatrix}i_1\\cdots i_k\\\\ j_1\\cdots j_k\\end{pmatrix}$ 记号，先问「怎么表示子式」再确认「我问的是括号形式」；另对「$|A|=0$ 只是有非零解的必要条件」的笔记提出质疑（质疑正确：方阵齐次时为充要条件）。外部 AI 的 4 阶算例 $D=16$ 已用六项展开与消元两路复核，正确。出口：不看书默写定义9／定义10，并按指定两行展开一个 4 阶行列式且算对数值。", "subject": "高代"}, {"id": "R35", "area": "高代三章 §5–§6", "topic": "有解判定链、解结构与最小二乘缺口", "written": "2026-10-25", "last": "2026-10-25（Q1–Q27 连续口述）", "status": "仍需锻炼", "next": "待安排", "memo": "口述作答 27 问：秩判据、唯一性（列满秩＋相容）、无穷多解、无解三支基本正确；Q22 主动指出「$\\operatorname{rank}=n$ 未说明 $n$ 是列数还是阶数」，是真缺陷，外部 AI 当场承认设问不严谨。缺口：相容／不相容术语不熟；最小二乘自述「这块没怎么记」，只到「正规方程＋列满秩才有唯一解」。出口：闭卷写定理7 三支＋定理8 解结构，并补最小二乘 5 行（正规方程、为何总有解、列满秩唯一、何时退化为原解、投影矩阵）。", "subject": "高代"}, {"id": "R36", "area": "数分六章 §6.5", "topic": "可积判据层：定理6.5.3 三条件等价（尤其\"$\\sum\\omega_i\\Delta x_i\\to0$\"）＋\"值点任意\"由振幅和统一控制＋单调/连续两个充分条件", "written": "2026-10-25（HTML 批注回收）", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "批注 #1 自问\"值点不能取特殊值，这怎么保证\"、#11 怀疑练习6.5 第4题 sup 写反（教材 p.285 原文即 sup，已核）、#10 提出闭区间条件（理由需换成\"黎曼积分只定义在有限闭区间且要求有界\"，反例是无界的 $1/x$ on $(0,1)$）。$\\int$＝上和的下确界，故每个上和 $\\geqslant\\sigma(b-a)$ 即得结论。出口：闭卷写三条件并各举一句用途；用 $|\\sum f(\\xi_i)\\Delta x_i-I|\\leqslant\\sum\\omega_i\\Delta x_i$ 一段解释为何不必逐点管值点。不要求复述定理6.5.2 证明与 §6.6 充分性分类。", "subject": "数分"}, {"id": "R37", "area": "数分三、四章", "topic": "第六章依赖的两个旧工具：Cauchy 余项（第4章定理4.3.1，上册 p.16）与导函数介值性（第3章定理3.4.5 Darboux，上册 p.29）", "written": "2026-10-25（HTML 批注回收 #7 #12）", "last": "未发生", "status": "待评估", "next": "待安排", "memo": "学习者原话\"基础忘记了，柯西余项长什么样子不记得了\"\"$R_n$ 是第 $n$ 阶导数展开后剩下的余项吗\"（半对：展开到 $n$ 阶，余项里是 $n+1$ 阶导）；例3 处只写\"?\"＝不知道导函数介值性。命名撞车：与 §6.5 定理6.5.2 的\"Darboux 定理（上下和极限）\"同名不同事。出口：默写 Cauchy 余项一行并解释 $\\theta$／$(x-\\xi)^n$ 的来源；一句话说出\"导函数不能有第一类间断点\"及其对 $\\operatorname{sgn}x$、Riemann 函数的用法。", "subject": "数分"}];
+var TODAY = "2026-11-05";
+var STATUS_ORDER = { "需要重补":0, "仍需锻炼":1, "待评估":2, "优秀":3 };
+var SUBJ = "", ST = "", Q = "", SORT_STATUS = true, ONLY_UNDONE = false, FIXED = "";
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function noteKey(id){ return "fq-note:" + id; }
+function doneKey(id){ return "fq-done:" + id; }
+function getNote(id){ return localStorage.getItem(noteKey(id)) || ""; }
+function isDone(id){ return localStorage.getItem(doneKey(id)) || ""; }
+function toast(msg){ var t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},1700); }
+function nextDate(s){ var m = String(s||"").match(/(\d{4}-\d{2}-\d{2})/); return m ? m[1] : ""; }
+function isOverdue(r){ var d = nextDate(r.next); return d && d <= TODAY; }
+
+function cardHTML(r){
+  var memo = esc(r.memo);
+  var long = memo.length > 220;
+  var note = esc(getNote(r.id));
+  var d = isDone(r.id);
+  return '<article class="card s-'+esc(r.status)+(d?" done":"")+'" id="card-'+esc(r.id)+'" data-sub="'+esc(r.subject)+'" data-st="'+esc(r.status)+'">'+
+    '<div class="top"><span class="id">'+esc(r.id)+'</span><span class="area">'+esc(r.area)+'</span>'+
+    '<span class="badge '+esc(r.status)+'">'+esc(r.status)+'</span>'+(isOverdue(r)?'<span class="badge 需要重补">逾期</span>':'')+'</div>'+
+    '<div class="topic">'+esc(r.topic)+'</div>'+
+    '<div class="meta"><span>写入 '+esc(r.written)+'</span><span>上次 '+esc(r.last)+'</span><span>下次 '+esc(r.next)+'</span></div>'+
+    '<p class="memo'+(long?" clip":"")+'" id="memo-'+esc(r.id)+'">'+memo+'</p>'+
+    (long?'<button class="more" onclick="toggleMemo(\''+esc(r.id)+'\',this)">展开全部</button>':'')+
+    '<details class="note"><summary>我的备注'+(note?'（已有）':'')+'</summary>'+
+    '<textarea id="note-'+esc(r.id)+'" placeholder="写卡点、复测结果、错法；自动保存在本机">'+note+'</textarea>'+
+    '<div class="hint">本机保存，换设备不同步；导出发我给 Hermes 才会进正式记录。</div></details>'+
+    '<div class="acts"><label><input type="checkbox" '+(d?"checked":"")+' onchange="toggleDone(\''+esc(r.id)+'\')">本次已复测<span class="doneLab">'+(d?'（'+esc(d)+'）':'')+'</span></label></div>'+
+    '</article>';
+}
+
+function buildList(){
+  var list = document.getElementById("list");
+  list.innerHTML = DATA.map(cardHTML).join("");
+  DATA.forEach(function(r){
+    var ta = document.getElementById("note-"+r.id);
+    if(ta) ta.addEventListener("input", function(){
+      if(ta.value.trim()) localStorage.setItem(noteKey(r.id), ta.value);
+      else localStorage.removeItem(noteKey(r.id));
+    });
+  });
+}
+
+function afterMath(){
+  if(window.renderMathInElement){
+    try{
+      renderMathInElement(document.getElementById("list"),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}],throwOnError:false,strict:false});
+    }catch(e){}
+  }
+  window.__guideMathRendered = true;
+  try{ window.dispatchEvent(new Event("guide:math-rendered")); }catch(e){}
+}
+
+function hay(r){ return (r.id+" "+r.area+" "+r.topic+" "+r.memo+" "+getNote(r.id)).toLowerCase(); }
+
+function cmp(a,b){
+  var oa = isOverdue(a)?0:1, ob = isOverdue(b)?0:1;
+  if(oa !== ob) return oa-ob;
+  if(SORT_STATUS){
+    var sa = STATUS_ORDER[a.status], sb = STATUS_ORDER[b.status];
+    if(sa !== sb) return sa-sb;
+  }
+  return a.id.localeCompare(b.id);
+}
+
+function visibleRows(){
+  var out = [];
+  DATA.forEach(function(r){
+    var ok = (!SUBJ || r.subject===SUBJ) && (!ST || r.status===ST)
+          && (!ONLY_UNDONE || !isDone(r.id))
+          && (!Q || hay(r).indexOf(Q.toLowerCase()) >= 0);
+    var el = document.getElementById("card-"+r.id);
+    if(el) el.style.display = ok ? "" : "none";
+    if(ok) out.push(r);
+  });
+  out.sort(cmp);
+  out.forEach(function(r,i){ document.getElementById("card-"+r.id).style.order = i; });
+  return out;
+}
+
+function renderStats(){
+  var c = { "需要重补":0, "仍需锻炼":0, "待评估":0, "优秀":0 }, notes=0, done=0, overdue=0;
+  DATA.forEach(function(r){
+    if(c[r.status] !== undefined) c[r.status]++;
+    if(getNote(r.id)) notes++;
+    if(isDone(r.id)) done++;
+    if(isOverdue(r)) overdue++;
+  });
+  document.getElementById("stats").innerHTML =
+    "共 <b>"+DATA.length+"</b> 项 · 逾期 <b>"+overdue+"</b> · 需要重补 <b>"+c["需要重补"]+"</b> · 仍需锻炼 <b>"+c["仍需锻炼"]+"</b> · 待评估 <b>"+c["待评估"]+"</b> · 我的备注 <b>"+notes+"</b> · 已复测 <b>"+done+"</b>";
+}
+
+function renderChips(){
+  var counts = {};
+  DATA.forEach(function(r){ counts[r.subject]=(counts[r.subject]||0)+1; });
+  document.getElementById("subjectRow").innerHTML = ["","数分","高代","英语"].map(function(s){
+    var n = s ? (counts[s]||0) : DATA.length;
+    return '<span class="chip'+(SUBJ===s?" sel":"")+'" data-subject="'+s+'">'+(s||"全部")+' <span class="n">'+n+'</span></span>';
+  }).join("");
+  document.querySelectorAll("[data-subject]").forEach(function(el){
+    el.onclick = function(){ SUBJ = el.getAttribute("data-subject"); FIXED=""; render(); };
+  });
+  document.getElementById("statusRow").innerHTML = ["","需要重补","仍需锻炼","待评估"].map(function(s){
+    var n = s ? DATA.filter(function(r){return r.status===s;}).length : DATA.length;
+    return '<span class="chip'+(ST===s?" sel":"")+'" data-status="'+s+'">'+(s||"全部状态")+' <span class="n">'+n+'</span></span>';
+  }).join("");
+  document.querySelectorAll("[data-status]").forEach(function(el){
+    el.onclick = function(){ ST = el.getAttribute("data-status"); FIXED=""; render(); };
+  });
+}
+
+function pickToday(rows){
+  var pool = rows.filter(function(r){ return !isDone(r.id); });
+  if(FIXED){ for(var i=0;i<pool.length;i++) if(pool[i].id===FIXED) return pool[i]; }
+  return pool[0] || null;
+}
+
+function renderToday(rows){
+  var r = pickToday(rows);
+  var box = document.getElementById("today");
+  if(!r){ box.innerHTML = '<div class="lab">今日主复测</div><p>当前筛选下没有未复测条目。</p>'; return; }
+  box.innerHTML =
+    '<div class="lab">今日主复测（逾期 &gt; 需要重补 &gt; 仍需锻炼 &gt; 待评估）</div>'+
+    '<h2>'+esc(r.id)+' · '+esc(r.topic)+'</h2>'+
+    '<p>'+esc(r.area)+' ｜ 状态：'+esc(r.status)+' ｜ 上次：'+esc(r.last)+' ｜ 下次：'+esc(r.next)+'</p>'+
+    '<p>出口写在备注末段。复测完在卡片勾「本次已复测」，把结果写进「我的备注」，再点「导出我的备注」发我。</p>'+
+    '<div class="row"><button onclick="jump(\''+r.id+'\')">跳到卡片</button><button onclick="shuffleDay()">换一条</button></div>';
+}
+
+function shuffleDay(){
+  var rows = visibleRows().filter(function(r){ return !isDone(r.id); });
+  if(rows.length < 2) return;
+  var cur = pickToday(rows), idx = 0;
+  for(var i=0;i<rows.length;i++) if(cur && rows[i].id===cur.id) idx=i;
+  FIXED = rows[(idx+1)%rows.length].id;
+  renderToday(visibleRows());
+}
+
+function jump(id){
+  var el = document.getElementById("card-"+id);
+  if(el){ el.scrollIntoView({behavior:"smooth",block:"center"}); el.style.outline="2px solid var(--acc)"; setTimeout(function(){el.style.outline="";},1500); }
+}
+
+function toggleMemo(id, btn){
+  var p = document.getElementById("memo-"+id);
+  p.classList.toggle("clip");
+  btn.textContent = p.classList.contains("clip") ? "展开全部" : "收起";
+}
+
+function toggleDone(id){
+  var k = doneKey(id);
+  if(localStorage.getItem(k)) localStorage.removeItem(k);
+  else localStorage.setItem(k, TODAY);
+  var v = localStorage.getItem(k);
+  var el = document.getElementById("card-"+id);
+  if(el){
+    el.classList.toggle("done", !!v);
+    var cb = el.querySelector('input[type=checkbox]'); if(cb) cb.checked = !!v;
+    var lab = el.querySelector('.doneLab'); if(lab) lab.textContent = v ? '（'+v+'）' : '';
+  }
+  render();
+}
+
+function exportNotes(){
+  var lines = ["# 复习队列 · 我的备注（"+TODAY+" 导出）",""];
+  var n0 = 0;
+  DATA.forEach(function(r){
+    var n = getNote(r.id).trim(), d = isDone(r.id);
+    if(!n && !d) return;
+    n0++;
+    lines.push("## "+r.id+" · "+r.area+" · "+r.topic);
+    lines.push("- 状态："+r.status+"；本次已复测："+(d?d:"否"));
+    if(n) lines.push("- 我的备注："+n.replace(/\n/g,"\n  "));
+    lines.push("");
+  });
+  var text = n0 ? lines.join("\n") : "（本机还没有任何备注）";
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast("已复制 "+n0+" 条，粘贴给 Hermes"); }, function(){ fallbackCopy(text); });
+  } else fallbackCopy(text);
+}
+
+function fallbackCopy(text){
+  var ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); toast("已复制，粘贴给 Hermes"); }catch(e){ alert(text); }
+  document.body.removeChild(ta);
+}
+
+function render(){
+  renderStats(); renderChips();
+  renderToday(visibleRows());
+}
+
+document.getElementById("q").addEventListener("input", function(e){ Q = e.target.value; render(); });
+document.getElementById("sortBtn").onclick = function(){
+  SORT_STATUS = !SORT_STATUS;
+  this.textContent = "排序：" + (SORT_STATUS ? "状态优先" : "编号优先");
+  this.classList.toggle("on", !SORT_STATUS);
+  render();
+};
+document.getElementById("onlyUndone").onclick = function(){
+  ONLY_UNDONE = !ONLY_UNDONE; this.classList.toggle("on", ONLY_UNDONE); render();
+};
+document.getElementById("exportBtn").onclick = exportNotes;
+
+buildList();
+afterMath();
+render();
+</script>
+</body>
+</html>
