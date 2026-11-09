@@ -17,6 +17,8 @@ ASSET_DIRS = [
 ]
 # 总入口（不依赖 assets）
 ENTRY = r"00_AI\00_页面总入口.html"
+# 自包含页（不引 _html_assets，需要显式登记才会同步）
+EXTRA = [r"00_AI\00_今日状态.html"]
 
 def main():
     if not SRC.is_dir():
@@ -37,6 +39,10 @@ def main():
     entry = Path(ENTRY)
     if entry.exists() and entry not in pages:
         pages.append(entry)
+    for x in EXTRA:
+        p = Path(x)
+        if (SRC / p).exists() and p not in pages:
+            pages.append(p)
     pages = sorted(set(pages))
 
     # 2. 清空并重建目标（只清页面区，保留 .git 和脚本）

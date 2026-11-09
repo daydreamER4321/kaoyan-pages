@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>考研今日状态 · 11-09 周一</title>
+<style>
+  :root{--bg:#f5f6fa;--card:#fff;--ink:#20242e;--muted:#5c6575;--line:#e4e7f0;--acc:#17548a;--acc-soft:#e8f1fa;
+        --red:#c92a2a;--red-bg:#fdefee;--orange:#d9480f;--orange-bg:#fff4e6;--gray:#5c6575;--gray-bg:#f1f3f5;
+        --green:#2f9e44;--green-bg:#eefaf0;}
+  @media (prefers-color-scheme: dark){:root{--bg:#14161d;--card:#1c1f29;--ink:#e7eaf2;--muted:#9aa3b5;--line:#2b3140;
+        --acc:#74b3ea;--acc-soft:#182633;--red:#ff8787;--red-bg:#2a1a1a;--orange:#ffa94d;--orange-bg:#2a2113;
+        --gray:#9aa3b5;--gray-bg:#20242e;--green:#69db7c;--green-bg:#13251a;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,"Segoe UI",system-ui,"Microsoft YaHei",sans-serif}
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px}
+  .pagenav{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 9px;font-size:12px}
+  .pagenav a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:2px 9px;background:var(--card)}
+  .pagenav a:hover{border-color:var(--acc);color:var(--acc)}
+  .pagenav a.cur{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+  .hero{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .cd{min-width:96px;text-align:center;background:var(--acc-soft);border:1px solid var(--acc);border-radius:12px;padding:6px 10px}
+  .cd b{display:block;font-size:30px;line-height:1.05;color:var(--acc);font-variant-numeric:tabular-nums}
+  .cd span{font-size:11px;color:var(--muted)}
+  .cd em{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-top:2px}
+  .hinfo h1{font-size:17px;margin:0 0 3px}
+  .hinfo .sub{font-size:12.5px;color:var(--muted)}
+  .hinfo .upd{font-size:11px;color:var(--muted);opacity:.85;margin-top:2px}
+  .stale{margin:9px 0 0;background:var(--red-bg);border:1px solid var(--red);color:var(--red);border-radius:9px;padding:8px 11px;font-size:12.5px}
+  main{max-width:960px;margin:0 auto;padding:14px 16px 70px}
+  h2{font-size:13px;letter-spacing:.06em;color:var(--muted);margin:22px 0 8px;font-weight:700}
+  h2:first-of-type{margin-top:4px}
+  .blk{display:flex;gap:11px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:11px;padding:10px 12px;margin:8px 0}
+  .blk.done{opacity:.5}
+  .blk.over{border-left-color:var(--red)}
+  .kb{flex:0 0 26px;height:26px;border-radius:7px;background:var(--acc);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .body{flex:1;min-width:0}
+  .ttl{font-size:15px;font-weight:600;line-height:1.45}
+  .subj{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);border-radius:4px;padding:1px 5px;margin-right:5px;vertical-align:1px}
+  .det{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;font-size:11px}
+  .meta span{background:var(--gray-bg);color:var(--muted);border-radius:99px;padding:1px 8px}
+  .meta span.hot{background:var(--red-bg);color:var(--red)}
+  .acc{font-size:12.5px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+  .acc b{color:var(--acc);font-weight:700;margin-right:4px}
+  .chk{display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:11.5px;color:var(--muted);cursor:pointer}
+  .chk input{width:15px;height:15px;accent-color:var(--acc)}
+  .count{font-size:11.5px;color:var(--muted);margin:2px 0 0}
+  .debt{background:var(--red-bg);border:1px solid var(--red);border-radius:11px;padding:9px 12px;list-style:none;margin:0}
+  .debt li{margin:6px 0;font-size:13px;line-height:1.55}
+  .debt li:first-child{margin-top:0}
+  .debt .since{font-size:11px;color:var(--red);opacity:.8;margin-left:5px}
+  .debt .note{display:block;font-size:11.5px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{text-align:left;padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;color:var(--muted);font-weight:600;background:var(--gray-bg)}
+  tr:last-child td{border-bottom:0}
+  td.d{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted)}
+  tr.now td{background:var(--acc-soft)}
+  tr.zero td.e{color:var(--red)}
+  tr.tool td{opacity:.72}
+  ul.next{margin:0;padding-left:18px;font-size:13px}
+  ul.next li{margin:5px 0}
+  ul.next b{color:var(--acc)}
+  .rules{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:20px;border-top:1px solid var(--line);padding-top:9px}
+  .rules li{margin:2px 0}
+</style>
+</head>
+<body>
+<header>
+  <nav class="pagenav"><a href="00_今日状态.html" class="cur">今日状态</a><a href="00_复习队列.html">复习队列</a><a href="00_真题库.html">真题库</a><a href="00_页面总入口.html">页面总入口</a></nav>
+  <div class="hero">
+    <div class="cd"><b id="days">—</b><span>天</span><em>距 2026-12-19 初试</em></div>
+    <div class="hinfo">
+      <h1>今日状态 · 11-09 周一</h1>
+      <div class="sub">下调档 11-01~11-10 · 单日 ≤3h · 今日 180 分钟 · 截止 <b>22:10</b></div>
+      <div class="upd">本页由 Hermes 维护，最后更新 2026-11-09 19:20</div>
+    </div>
+  </div>
+  <div id="stale" class="stale" hidden></div>
+</header>
+<main>
+  <h2>今日任务（3 块 · 本机完成 <span id="cnt">0</span>/3）</h2>
+  
+      <article class="blk over" data-k="A">
+        <div class="kb">A</div>
+        <div class="body">
+          <div class="ttl"><span class="subj">数分</span>§6.2 练习 2、练习 10 手写</div>
+          <div class="det">上册 PDF 263 / 264。从 10-25 欠到今天，共 15 天；今日不清即作废，不再顺延。</div>
+          <div class="meta"><span>35 分钟</span><span class="hot">欠 15 天 · 今日到期</span></div>
+          <div class="acc"><b>验收</b>两题手写照片，含关键中间式（换元/分部各写全）</div>
+          <label class="chk"><input type="checkbox" data-k="A"> 本机勾选（不是证据）</label>
+        </div>
+      </article>
+      <article class="blk" data-k="B">
+        <div class="kb">B</div>
+        <div class="body">
+          <div class="ttl"><span class="subj">数分</span>第 09 章 §9.1–§9.2 读 ＋ 练习 9.2 第 1 题手写</div>
+          <div class="det">上册 PDF 367–378。A 档章，60 天表给的预算 4 天，今天是第 1 天。只做第 1 题，不铺开。</div>
+          <div class="meta"><span>85 分钟</span><span class="">A 档开章</span></div>
+          <div class="acc"><b>验收</b>练习 9.2 第 1 题手写照片</div>
+          <label class="chk"><input type="checkbox" data-k="B"> 本机勾选（不是证据）</label>
+        </div>
+      </article>
+      <article class="blk" data-k="C">
+        <div class="kb">C</div>
+        <div class="body">
+          <div class="ttl"><span class="subj">高代</span>第 09 章 §9.1–§9.2 读 ＋ 习题 7 Schmidt 手算</div>
+          <div class="det">高代 PDF 367–379；习题 PDF 401。只算习题 7，证明题留到明天的 D 块。</div>
+          <div class="meta"><span>60 分钟</span><span class="">A 档开章</span></div>
+          <div class="acc"><b>验收</b>Schmidt 正交化手算全过程（α 到 e 逐步，含规范化的开方）</div>
+          <label class="chk"><input type="checkbox" data-k="C"> 本机勾选（不是证据）</label>
+        </div>
+      </article>
+  <p class="count">11-06~11-08 连续 3 天无汇报，按 0 记；11-05 的四块任务无交付，已作废</p>
+
+  <h2>欠项与作废倒计时</h2>
+  <ul class="debt">
+        <li>§6.2 练习 2、练习 10（数分）<span class="since">10-25 起</span>
+          <span class="note">欠 15 天 · 今日 22:10 前不交即作废，不再列为欠项</span></li>
+        <li>§7.1 四公式闭卷复述 ／ 高代 07 §4–§5 手写<span class="since">11-01 起</span>
+          <span class="note">欠 8 天 · 今日不交同样按未完成处理</span></li>
+        <li>高代「行列式基础过完」<span class="since">11-03 起</span>
+          <span class="note">仅自报，无书面抽样 · 不升证据；留到题族②结构行列式时用 3 道抽样一并验</span></li></ul>
+
+  <h2>近 8 天</h2>
+  <table>
+    <thead><tr><th>日期</th><th>做了什么</th><th>证据</th></tr></thead>
+    <tbody>
+        <tr class="now"><td class="d">11-09</td><td>进行中</td><td class="e">未验收</td></tr>
+        <tr class="zero"><td class="d">11-08</td><td>无汇报</td><td class="e">记 0</td></tr>
+        <tr class="zero"><td class="d">11-07</td><td>无汇报</td><td class="e">记 0</td></tr>
+        <tr class="zero"><td class="d">11-06</td><td>无汇报</td><td class="e">记 0</td></tr>
+        <tr class="zero"><td class="d">11-05</td><td>四块任务（自报有空，按 4h10 排）</td><td class="e">库内无交付 · 作废</td></tr>
+        <tr class="tool"><td class="d">11-04</td><td>工具层：资料源分组、丘书下册 OCR</td><td class="e">不计学习进度</td></tr>
+        <tr class="tool"><td class="d">11-03</td><td>报名审核通过；高代行列式自报过完</td><td class="e">报名闭环；学习仅自报</td></tr>
+        <tr class="tool"><td class="d">11-02</td><td>工具层：数分 13 章 HTML 补齐、A 档五章标星</td><td class="e">不计学习进度</td></tr></tbody>
+  </table>
+
+  <h2>下一步</h2>
+  <ul class="next"><li><b>11-10</b> 下调档最后一天（≤3h）：数分 09 章练习 9.2 第 6 题 ＋ 高代 09 §9.3 或习题 10 证明 1 道</li><li><b>11-11</b> 必须重排 5 小时表：数分 06–18 剩 13 章，A 档 09/10/14/15/16/18 六章未开；高代 09 未开＋六题族未动</li></ul>
+
+  <div class="rules"><b>记分口径</b><ul><li>只有手写照片计入「独立做出」；提示后完成、已核答案、已读、口述复现各自单列，不合并成掌握。</li><li>本页勾选框只存在这台设备（localStorage），是提醒不是证据；不勾也不算没做，勾了也不算做了。</li><li>提交方式：手写照片直接发对话；我核完再把结果写回本页与 STATE.md。</li></ul></div>
+</main>
+<script>
+(function(){
+  var EXAM = new Date("2026-12-19T08:30:00+08:00");
+  var DATA_DATE = "2026-11-09";
+  function pad(n){return n<10?"0"+n:""+n}
+  function ymdd(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+  var now = new Date();
+  var ms = EXAM - now;
+  var days = Math.ceil(ms/86400000);
+  document.getElementById("days").textContent = days >= 0 ? days : ("+" + (-days));
+  var todayStr = ymdd(now);
+  if (todayStr !== DATA_DATE) {
+    var el = document.getElementById("stale");
+    el.hidden = false;
+    el.textContent = "本页写的是 " + DATA_DATE + " 的任务，今天已是 " + todayStr + "。今日计划还没写进来 —— 打开对话让我先排，别照旧表做。";
+  }
+  var boxes = document.querySelectorAll(".chk input");
+  var cnt = document.getElementById("cnt");
+  function key(k){return "ks-chk:" + DATA_DATE + ":" + k}
+  function refresh(){
+    var n = 0;
+    boxes.forEach(function(b){
+      b.closest(".blk").classList.toggle("done", b.checked);
+      if (b.checked) n++;
+    });
+    cnt.textContent = n;
+  }
+  boxes.forEach(function(b){
+    var k = b.getAttribute("data-k");
+    try { b.checked = localStorage.getItem(key(k)) === "1"; } catch(e) {}
+    b.addEventListener("change", function(){
+      try { localStorage.setItem(key(k), b.checked ? "1" : "0"); } catch(e) {}
+      refresh();
+    });
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
