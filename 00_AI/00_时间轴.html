@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>考研时间轴</title>
+<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/shell.css">
+<style>
+  :root{--bg:#f5f6fa;--card:#fff;--ink:#20242e;--muted:#5c6575;--line:#e4e7f0;--acc:#17548a;--acc-soft:#e8f1fa;
+        --red:#c92a2a;--red-bg:#fdefee;--orange:#d9480f;--orange-bg:#fff4e6;--gray:#5c6575;--gray-bg:#f1f3f5;
+        --green:#2f9e44;--green-bg:#eefaf0;--violet:#7048e8;--teal:#0b7285;--pink:#a61e4d;--slate:#495057;}
+  @media (prefers-color-scheme: dark){:root{--bg:#14161d;--card:#1c1f29;--ink:#e7eaf2;--muted:#9aa3b5;--line:#2b3140;
+        --acc:#74b3ea;--acc-soft:#182633;--red:#ff8787;--red-bg:#2a1a1a;--orange:#ffa94d;--orange-bg:#2a2113;
+        --gray:#9aa3b5;--gray-bg:#20242e;--green:#69db7c;--green-bg:#13251a;--violet:#b197fc;--teal:#66d9e8;--pink:#f783ac;--slate:#adb5bd;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink)}
+
+  /* 顶部条 */
+  .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);
+       border-radius:12px;padding:9px 12px;margin:0 0 9px}
+  .datesel{display:flex;align-items:center;gap:6px}
+  .datesel button{width:30px;height:32px;border:1px solid var(--line);background:var(--card);color:var(--muted);
+       border-radius:8px;font-size:16px;line-height:1;cursor:pointer}
+  .datesel button:active{background:var(--acc-soft)}
+  .dlabel{min-width:88px;text-align:center;line-height:1.25}
+  .dlabel b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
+  .dlabel span{font-size:11px;color:var(--muted)}
+  .totals{flex:1;min-width:190px;display:flex;gap:6px;flex-wrap:wrap;font-size:11.5px}
+  .totals span{background:var(--gray-bg);color:var(--muted);border-radius:99px;padding:2px 9px}
+  .totals span.study{background:var(--acc-soft);color:var(--acc);font-weight:600}
+  .totals span.escape{background:var(--red-bg);color:var(--red);font-weight:600}
+  .modes{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .modes button{border:0;background:var(--card);color:var(--muted);font-size:11.5px;padding:7px 10px;cursor:pointer}
+  .modes button.on{background:var(--acc);color:#fff;font-weight:600}
+
+  /* 24h 总览条 */
+  .overview{position:relative;height:22px;background:var(--gray-bg);border:1px solid var(--line);border-radius:6px;
+       margin:0 0 10px;overflow:hidden;cursor:pointer}
+  .overview i{position:absolute;top:0;bottom:0;display:block}
+  .overview .hr{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+  .ovlab{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin:-6px 1px 10px}
+
+  /* 时间轴 */
+  .tl{display:flex;gap:0;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .gutter{flex:0 0 52px;position:relative;background:var(--card);border-right:1px solid var(--line);user-select:none}
+  .gutter .h{position:absolute;right:6px;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;
+       transform:translateY(-50%);letter-spacing:.02em}
+  .gutter .h.big{color:var(--ink);opacity:.75}
+  .gutter .h.first{transform:none}      /* 00 顶格 */
+  .gutter .h.last{transform:translateY(-100%)}  /* 24 贴底 */
+  .track{flex:1;position:relative;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair;
+       background:linear-gradient(to bottom,transparent 0,transparent 100%),
+                  repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px 60px)}
+  .track.scrollmode{touch-action:pan-y;cursor:default}
+  .track .half{position:absolute;left:0;right:0;height:1px;background:var(--line);opacity:.45}
+  .track .seg{position:absolute;left:4px;right:4px;border-radius:6px;color:#fff;font-size:10.5px;line-height:1.15;
+       padding:2px 6px;overflow:hidden;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+  .track .seg b{font-weight:600;display:block;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track .seg span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.92}
+  .track .seg.small{padding:1px 5px}
+  .track .seg.small b{font-size:9.5px}
+  .track .seg.small span{display:none}
+  .preview{position:absolute;left:4px;right:4px;background:var(--acc-soft);border:1px dashed var(--acc);border-radius:6px;
+       font-size:10.5px;color:var(--acc);padding:1px 6px;pointer-events:none}
+  .nowline{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--red);pointer-events:none}
+  .nowline span{position:absolute;right:2px;top:-14px;font-size:9.5px;color:var(--red);background:var(--card);padding:0 3px}
+  .hint{font-size:11px;color:var(--muted);margin:6px 2px 0;line-height:1.6}
+
+  /* 明细 */
+  h2{font-size:13px;letter-spacing:.06em;color:var(--muted);margin:20px 0 8px;font-weight:700}
+  .row{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:9px;
+       padding:7px 10px;margin:6px 0;font-size:12.5px;cursor:pointer}
+  .row .dot{flex:0 0 9px;height:9px;border-radius:50%}
+  .row .rg{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;min-width:104px}
+  .row .cat{font-weight:600;min-width:52px}
+  .row .dur{color:var(--muted);white-space:nowrap}
+  .row .note{flex:1;min-width:0;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .empty{font-size:12.5px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:9px;
+       padding:11px 12px;line-height:1.65}
+
+  /* 近 7 天 */
+  .wk{display:flex;align-items:center;gap:8px;font-size:11.5px;margin:5px 0}
+  .wk .d{flex:0 0 44px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .wk .bar{flex:1;height:14px;background:var(--gray-bg);border-radius:4px;overflow:hidden;display:flex}
+  .wk .bar i{display:block;height:100%}
+  .wk .t{flex:0 0 128px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .wk.today .d{color:var(--acc);font-weight:700}
+
+  /* 导出 */
+  .tools{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+  .tools button,.sheetin button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;
+       padding:7px 11px;font-size:12px;cursor:pointer}
+  .tools button:active,.sheetin button:active{background:var(--acc-soft)}
+  .rules{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:22px;border-top:1px solid var(--line);padding-top:9px}
+  .rules li{margin:2px 0}
+
+  /* 底部编辑面板 */
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--card);border-top:1px solid var(--line);
+       box-shadow:0 -8px 26px rgba(0,0,0,.13);padding:11px 13px calc(11px + env(safe-area-inset-bottom))}
+  .sheetin{max-width:1040px;margin:0 auto}
+  .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .sh b{font-size:15px;font-variant-numeric:tabular-nums}
+  .sh button{border:0;background:transparent;font-size:19px;line-height:1;color:var(--muted);padding:0 4px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+  .chips button{border:1px solid var(--line);border-radius:99px;padding:5px 11px;font-size:12px;background:var(--card);
+       color:var(--ink);cursor:pointer}
+  .chips button.on{color:#fff;font-weight:600;border-color:transparent}
+  .sheet input[type=text]{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;
+       background:var(--bg);color:var(--ink);margin-bottom:8px}
+  .times{display:flex;gap:10px;font-size:11.5px;color:var(--muted);align-items:center;margin-bottom:9px;flex-wrap:wrap}
+  .times input{border:1px solid var(--line);border-radius:7px;padding:5px 7px;font-size:13px;background:var(--bg);color:var(--ink)}
+  .acts{display:flex;gap:8px;justify-content:flex-end}
+  .acts .primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+  .acts .danger{color:var(--red);border-color:var(--red)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#20242e;color:#fff;font-size:12.5px;
+       padding:8px 14px;border-radius:99px;z-index:90;opacity:0;transition:opacity .18s;pointer-events:none}
+  .toast.on{opacity:.95}
+</style>
+</head>
+<body>
+<header class="appbar"><div class="inner">
+  <nav class="pagenav"><a href="00_今日状态.html">今日状态</a><a href="00_时间轴.html" class="cur">时间轴</a><a href="00_页面总入口.html">页面总入口</a><a href="00_真题库.html">真题库</a><a href="00_复习队列.html">复习队列</a></nav>
+  <h1>考研时间轴 <span class="sub">拖一段记一段 · 时间去哪儿了</span></h1>
+</div></header>
+
+<main class="page">
+  <section class="bar">
+    <div class="datesel">
+      <button id="prev" aria-label="前一天">‹</button>
+      <div class="dlabel"><b id="dlabel">—</b><span id="dsub"></span></div>
+      <button id="next" aria-label="后一天">›</button>
+    </div>
+    <div class="totals" id="totals"></div>
+    <div class="modes" id="modes">
+      <button data-m="select" class="on">拖拽记录</button>
+      <button data-m="scroll">滚动浏览</button>
+    </div>
+  </section>
+
+  <div class="overview" id="overview" title="点一下就跳过去"></div>
+  <div class="ovlab"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+
+  <div class="tl">
+    <div class="gutter" id="gutter"></div>
+    <div class="track" id="track"></div>
+  </div>
+  <p class="hint" id="hint">在右侧刻度上按住拖动 = 选中一段（5 分钟对齐）；点已有色块 = 改或删。手机上滚动页面请切到「滚动浏览」，或从左侧时间栏拖。</p>
+
+  <h2>明细 <span id="cnt" style="font-weight:400"></span></h2>
+  <div id="list"></div>
+
+  <h2>近 7 天</h2>
+  <div id="week"></div>
+
+  <h2>取回给我</h2>
+  <p class="hint" style="margin-top:0">记录只存在这台设备、这个网址下。手机上记完点「复制摘要」发对话给我；换设备用导出／导入。</p>
+  <div class="tools">
+    <button id="copy">复制摘要</button>
+    <button id="export">导出 JSON</button>
+    <button id="import">导入 JSON</button>
+    <input type="file" id="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="rules"><b>记什么</b>
+    <ul>
+      <li>三栏就够：<b>几点—几点</b>、<b>在做什么</b>（选类别）、<b>卡在哪</b>（备注一行）。</li>
+      <li>类别分三类统计：数分／高代／政治／英语 = 学习；游戏／小说 = 逃逸；杂事／休息／睡眠 = 其他。</li>
+      <li>本页不是证据，是流水。学习是否算数仍只看手写照片与闭卷复现。</li>
+    </ul>
+  </div>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheetin">
+    <div class="sh"><b id="shRange">—</b><button id="shClose" aria-label="关闭">×</button></div>
+    <div class="chips" id="chips"></div>
+    <input type="text" id="note" placeholder="卡在哪 / 在做什么（可留空）" maxlength="80">
+    <div class="times">
+      <label>起 <input type="time" id="tS" step="300"></label>
+      <label>止 <input type="time" id="tE" step="300"></label>
+      <span id="dur"></span>
+    </div>
+    <div class="acts">
+      <button id="del" class="danger" hidden>删除</button>
+      <button id="cancel">取消</button>
+      <button id="save" class="primary">保存</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var CATS = [
+    {id:"sf",  name:"数分",   color:"var(--acc)",    hex:"#17548a", kind:"study",  txt:"学习"},
+    {id:"gd",  name:"高代",   color:"var(--violet)", hex:"#7048e8", kind:"study",  txt:"学习"},
+    {id:"zz",  name:"政治",   color:"var(--orange)", hex:"#d9480f", kind:"study",  txt:"学习"},
+    {id:"yy",  name:"英语",   color:"var(--teal)",   hex:"#0b7285", kind:"study",  txt:"学习"},
+    {id:"you", name:"游戏",   color:"var(--red)",    hex:"#c92a2a", kind:"escape", txt:"逃逸"},
+    {id:"nov", name:"小说",   color:"var(--pink)",   hex:"#a61e4d", kind:"escape", txt:"逃逸"},
+    {id:"misc",name:"杂事",   color:"var(--gray)",   hex:"#6c757d", kind:"other",  txt:"其他"},
+    {id:"rest",name:"休息吃饭",color:"var(--green)",  hex:"#2f9e44", kind:"other",  txt:"其他"},
+    {id:"sleep",name:"睡眠",  color:"var(--slate)",  hex:"#495057", kind:"other",  txt:"其他"}
+  ];
+  var C = {}; CATS.forEach(function(c){ C[c.id] = c; });
+
+  var DAY = 1440, SNAP = 5, PPM = 1.0;   // 1px = 1min -> 整日 1440px
+  var KEY = "ks-time:";
+  var cur = "", segs = [], editing = -1, pending = null, dragging = false;
+  var track = document.getElementById("track"), gutter = document.getElementById("gutter");
+  var sheet = document.getElementById("sheet"), chipsEl = document.getElementById("chips");
+  var noteEl = document.getElementById("note"), tS = document.getElementById("tS"), tE = document.getElementById("tE");
+  var lastCat = "sf", mode = "select";
+
+  function pad(n){ return n<10 ? "0"+n : ""+n; }
+  function ymd(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+  function fmt(m){ m = Math.max(0, Math.min(DAY, Math.round(m))); return pad(Math.floor(m/60))+":"+pad(m%60); }
+  function parseHM(s){ var p = (s||"").split(":"); if(p.length<2) return null; return Math.max(0,Math.min(DAY, (+p[0])*60 + (+p[1]))); }
+  function dur(m){ m = Math.round(m); var h = Math.floor(m/60), r = m%60; return h ? (h+"h"+(r?pad(r):"") ) : (r+"m"); }
+  function shiftDate(iso, delta){ var d = new Date(iso+"T12:00:00"); d.setDate(d.getDate()+delta); return ymd(d); }
+  function toast(msg){ var t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on");
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("on"); }, 1600); }
+
+  function load(){
+    try { segs = JSON.parse(localStorage.getItem(KEY+cur) || "[]"); } catch(e){ segs = []; }
+    if(!Array.isArray(segs)) segs = [];
+    segs = segs.filter(function(s){ return s && s.s >= 0 && s.e > s.s && C[s.cat]; })
+               .sort(function(a,b){ return a.s - b.s; });
+  }
+  function store(){ try { localStorage.setItem(KEY+cur, JSON.stringify(segs)); } catch(e){ toast("本机存储满或被禁用"); } }
+
+  /* ── 轴 ── */
+  function buildAxis(){
+    track.style.height = (DAY*PPM) + "px";
+    gutter.style.height = (DAY*PPM) + "px";
+    var hh = "";
+    for(var h=0; h<=24; h++){
+      var cls = "h" + (h%6===0?" big":"") + (h===0?" first":"") + (h===24?" last":"");
+      hh += '<div class="'+cls+'" style="top:'+(h*60*PPM)+'px">'+pad(h)+'</div>';
+    }
+    gutter.innerHTML = hh;
+    var hl = "";
+    for(var k=0; k<24; k++){
+      hl += '<div class="half" style="top:'+((k*60+30)*PPM)+'px"></div>';
+    }
+    track.querySelectorAll(".half,.seg,.preview,.nowline").forEach(function(n){ n.remove(); });
+    track.insertAdjacentHTML("afterbegin", hl);
+    track.insertAdjacentHTML("beforeend", '<div class="preview" id="preview" hidden></div><div class="nowline" id="nowline" hidden><span>现在</span></div>');
+  }
+
+  function renderSegs(){
+    var host = track;
+    host.querySelectorAll(".seg").forEach(function(n){ n.remove(); });
+    segs.forEach(function(s, i){
+      var d = document.createElement("div");
+      var top = s.s*PPM, hgt = Math.max(9, (s.e-s.s)*PPM - 1);
+      d.className = "seg" + (hgt < 26 ? " small" : "");
+      d.style.top = top + "px"; d.style.height = hgt + "px";
+      d.style.background = C[s.cat].color;
+      d.setAttribute("data-i", i);
+      d.innerHTML = "<b>"+fmt(s.s)+"–"+fmt(s.e)+" · "+dur(s.e-s.s)+"</b><span>"+C[s.cat].name+(s.n?(" · "+esc(s.n)):"")+"</span>";
+      host.appendChild(d);
+    });
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function renderOverview(){
+    var ov = document.getElementById("overview");
+    var h = "";
+    for(var i=1;i<24;i++){ h += '<div class="hr" style="left:'+(i/24*100)+'%"></div>'; }
+    segs.forEach(function(s){
+      h += '<i style="left:'+(s.s/DAY*100)+'%;width:'+((s.e-s.s)/DAY*100)+'%;background:'+C[s.cat].color+';opacity:.85"></i>';
+    });
+    ov.innerHTML = h;
+  }
+
+  function totalsOf(list){
+    var t = {study:0, escape:0, other:0};
+    list.forEach(function(s){ t[C[s.cat].kind] += (s.e - s.s); });
+    t.blank = Math.max(0, DAY - t.study - t.escape - t.other);
+    return t;
+  }
+  function renderTotals(){
+    var t = totalsOf(segs);
+    document.getElementById("totals").innerHTML =
+      '<span class="study">学习 '+dur(t.study)+'</span>' +
+      '<span class="escape">逃逸 '+dur(t.escape)+'</span>' +
+      '<span>其他 '+dur(t.other)+'</span>' +
+      '<span>空白 '+dur(t.blank)+'</span>';
+  }
+
+  function renderList(){
+    var host = document.getElementById("list");
+    document.getElementById("cnt").textContent = segs.length ? "· "+segs.length+" 段" : "";
+    if(!segs.length){
+      host.innerHTML = '<div class="empty">这一天还没记。在刻度上按住往下拖一段，松手选类别就行。<br>先记昨天：几点坐下、几点跑掉、跑去了哪。</div>';
+      return;
+    }
+    host.innerHTML = "";
+    segs.forEach(function(s, i){
+      var d = document.createElement("div");
+      d.className = "row"; d.setAttribute("data-i", i);
+      d.innerHTML = '<span class="dot" style="background:'+C[s.cat].color+'"></span>' +
+        '<span class="rg">'+fmt(s.s)+'–'+fmt(s.e)+'</span>' +
+        '<span class="cat">'+C[s.cat].name+'</span>' +
+        '<span class="dur">'+dur(s.e-s.s)+'</span>' +
+        '<span class="note">'+esc(s.n||"")+'</span>';
+      d.addEventListener("click", function(){ openSheet(i); });
+      host.appendChild(d);
+    });
+  }
+
+  function renderWeek(){
+    var host = document.getElementById("week"), today = ymd(new Date()), h = "";
+    var days = [];
+    for(var k=6;k>=0;k--){ days.push(shiftDate(cur, -k)); }
+    days.forEach(function(d){
+      var list = [];
+      try { list = JSON.parse(localStorage.getItem(KEY+d) || "[]"); } catch(e){}
+      list = (list||[]).filter(function(s){ return s && s.e > s.s && C[s.cat]; });
+      var t = totalsOf(list);
+      var pct = function(m){ return (m/DAY*100).toFixed(2); };
+      h += '<div class="wk'+(d===today?" today":"")+'">' +
+           '<span class="d">'+d.slice(5)+'</span>' +
+           '<span class="bar">' +
+             '<i style="width:'+pct(t.study)+'%;background:var(--acc)"></i>' +
+             '<i style="width:'+pct(t.escape)+'%;background:var(--red)"></i>' +
+             '<i style="width:'+pct(t.other)+'%;background:var(--gray);opacity:.55"></i>' +
+           '</span>' +
+           '<span class="t">学 '+dur(t.study)+' · 逃 '+dur(t.escape)+'</span></div>';
+    });
+    host.innerHTML = h;
+  }
+
+  function renderAll(){ renderSegs(); renderOverview(); renderTotals(); renderList(); renderWeek(); }
+
+  /* ── 日期 ── */
+  function setDate(iso){
+    cur = iso; load();
+    var d = new Date(iso+"T12:00:00"), today = ymd(new Date());
+    var wd = "日一二三四五六".charAt(d.getDay());
+    document.getElementById("dlabel").textContent = iso.slice(5);
+    document.getElementById("dsub").textContent = "周"+wd + (iso===today ? " · 今天" : (iso===shiftDate(today,-1) ? " · 昨天" : ""));
+    renderAll();
+    try { localStorage.setItem("ks-time:last", iso); } catch(e){}
+    nowLine();
+  }
+
+  /* ── 拖拽 ── */
+  function minAt(clientY){
+    var r = track.getBoundingClientRect();
+    var m = (clientY - r.top) / PPM;
+    m = Math.max(0, Math.min(DAY, m));
+    return Math.round(m / SNAP) * SNAP;
+  }
+  function showPreview(a, b){
+    var p = document.getElementById("preview");
+    var s = Math.min(a,b), e = Math.max(a,b);
+    var minE = s + (e - s < SNAP ? 15 : 0);
+    p.hidden = false;
+    p.style.top = (s*PPM) + "px";
+    p.style.height = Math.max(9, ((minE||e) - s)*PPM - 1) + "px";
+    p.textContent = fmt(s) + "–" + fmt(minE||e) + " · " + dur((minE||e) - s);
+  }
+  track.addEventListener("pointerdown", function(ev){
+    if(mode !== "select") return;
+    var seg = ev.target.closest(".seg");
+    if(seg){ openSheet(+seg.getAttribute("data-i")); return; }
+    if(ev.button !== undefined && ev.button !== 0) return;
+    dragging = true; pending = { a: minAt(ev.clientY), b: minAt(ev.clientY) };
+    try { track.setPointerCapture(ev.pointerId); } catch(e){}
+    showPreview(pending.a, pending.b);
+    ev.preventDefault();
+  });
+  track.addEventListener("pointermove", function(ev){
+    if(!dragging) return;
+    pending.b = minAt(ev.clientY);
+    showPreview(pending.a, pending.b);
+    autoScroll(ev.clientY);
+  });
+  function endDrag(ev){
+    if(!dragging) return;
+    dragging = false;
+    if(ev && typeof ev.clientY === "number") pending.b = minAt(ev.clientY);
+    var p = document.getElementById("preview");
+    var s = Math.min(pending.a, pending.b), e = Math.max(pending.a, pending.b);
+    p.hidden = true;
+    pending = null;
+    if(e - s < SNAP){ toast("太短：按住往一个方向拖一段再松手（5 分钟起）"); return; }
+    openSheet(-1, s, e);
+  }
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", function(){ dragging = false; var p = document.getElementById("preview"); if(p) p.hidden = true; pending = null; });
+
+  function autoScroll(clientY){
+    var vh = window.innerHeight;
+    if(clientY > vh - 70) window.scrollBy(0, 16);
+    else if(clientY < 90) window.scrollBy(0, -16);
+  }
+
+  /* ── 编辑面板 ── */
+  function openSheet(idx, s, e){
+    editing = (typeof idx === "number" && idx >= 0) ? idx : -1;
+    if(editing >= 0){ var g = segs[editing]; s = g.s; e = g.e; }
+    pending = { s: s, e: e };
+    var cat = editing >= 0 ? segs[editing].cat : lastCat;
+    document.getElementById("shRange").textContent = fmt(s) + " – " + fmt(e);
+    document.getElementById("dur").textContent = "共 " + dur(e - s);
+    tS.value = fmt(s); tE.value = fmt(e);
+    noteEl.value = editing >= 0 ? (segs[editing].n || "") : "";
+    document.getElementById("del").hidden = editing < 0;
+    chipsEl.innerHTML = "";
+    CATS.forEach(function(c){
+      var b = document.createElement("button");
+      b.textContent = c.name; b.setAttribute("data-cat", c.id);
+      if(c.id === cat) b.classList.add("on");
+      b.style.borderColor = c.hex;
+      b.onclick = function(){
+        chipsEl.querySelectorAll("button").forEach(function(x){ x.classList.remove("on"); x.style.background=""; x.style.color=""; x.style.borderColor=x.getAttribute("data-hex"); });
+        b.classList.add("on"); b.style.background = c.hex; b.style.color = "#fff";
+        noteEl.setAttribute("data-cat", c.id);
+      };
+      b.setAttribute("data-hex", c.hex);
+      if(c.id === cat){ b.style.background = c.hex; b.style.color = "#fff"; }
+      chipsEl.appendChild(b);
+    });
+    noteEl.setAttribute("data-cat", cat);
+    sheet.hidden = false;
+    if(editing < 0 && window.innerWidth > 700){ try { noteEl.focus({preventScroll:true}); } catch(e){ noteEl.focus(); } }
+  }
+  function closeSheet(){ sheet.hidden = true; editing = -1; pending = null; }
+  document.getElementById("shClose").onclick = closeSheet;
+  document.getElementById("cancel").onclick = closeSheet;
+  document.getElementById("del").onclick = function(){
+    if(editing < 0) return;
+    segs.splice(editing, 1); store(); closeSheet(); renderAll(); toast("已删除");
+  };
+  [tS, tE].forEach(function(el){
+    el.addEventListener("input", function(){
+      var s = parseHM(tS.value), e = parseHM(tE.value);
+      if(s === null || e === null) return;
+      if(e > s){ document.getElementById("shRange").textContent = fmt(s)+" – "+fmt(e);
+        document.getElementById("dur").textContent = "共 "+dur(e-s); }
+    });
+  });
+  document.getElementById("save").onclick = function(){
+    var s = parseHM(tS.value), e = parseHM(tE.value);
+    if(s === null || e === null || e <= s){ toast("结束时间要在开始之后"); return; }
+    var cat = noteEl.getAttribute("data-cat") || lastCat;
+    var rec = { s: s, e: e, cat: cat, n: noteEl.value.trim() };
+    lastCat = cat;
+    try { localStorage.setItem("ks-time:lastcat", cat); } catch(err){}
+    if(editing >= 0) segs.splice(editing, 1);
+    insertClipped(rec);
+    store(); closeSheet(); renderAll(); toast("已记 " + fmt(rec.s) + "–" + fmt(rec.e));
+  };
+  function insertClipped(rec){
+    var out = [];
+    segs.forEach(function(x){
+      if(x.e <= rec.s || x.s >= rec.e){ out.push(x); return; }
+      if(x.s < rec.s) out.push({ s:x.s, e:rec.s, cat:x.cat, n:x.n });
+      if(x.e > rec.e)  out.push({ s:rec.e, e:x.e, cat:x.cat, n:x.n });
+    });
+    out.push(rec);
+    out.sort(function(a,b){ return a.s - b.s; });
+    segs = out;
+  }
+
+  /* ── 当前时刻线 ── */
+  function nowLine(){
+    var el = document.getElementById("nowline");
+    if(!el) return;
+    if(cur !== ymd(new Date())){ el.hidden = true; return; }
+    var n = new Date(), m = n.getHours()*60 + n.getMinutes();
+    el.hidden = false; el.style.top = (m*PPM) + "px";
+  }
+  setInterval(nowLine, 30000);
+
+  /* ── 模式 ── */
+  document.getElementById("modes").addEventListener("click", function(ev){
+    var b = ev.target.closest("button"); if(!b) return;
+    mode = b.getAttribute("data-m");
+    this.querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x === b); });
+    track.classList.toggle("scrollmode", mode === "scroll");
+    document.getElementById("hint").textContent = mode === "select"
+      ? "在右侧刻度上按住拖动 = 选中一段（5 分钟对齐）；点已有色块 = 改或删。手机上滚动页面请切到「滚动浏览」，或从左侧时间栏拖。"
+      : "滚动浏览：拖刻度是滚页面，不会新建记录；点色块仍可改或删。要记时间就切回「拖拽记录」。";
+    try { localStorage.setItem("ks-time:mode", mode); } catch(e){}
+  });
+
+  /* ── 跳转 ── */
+  document.getElementById("prev").onclick = function(){ setDate(shiftDate(cur, -1)); };
+  document.getElementById("next").onclick = function(){ setDate(shiftDate(cur, 1)); };
+  document.getElementById("overview").addEventListener("click", function(ev){
+    var r = this.getBoundingClientRect();
+    var p = (ev.clientX - r.left) / r.width;
+    var y = track.getBoundingClientRect().top + window.scrollY + p*DAY*PPM - 160;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  });
+
+  /* ── 导出 / 导入 ── */
+  function summaryText(){
+    var t = totalsOf(segs);
+    var L = ["### 时间流水 " + cur, "", "| 起-止 | 时长 | 类别 | 备注 |", "|---|---|---|---|"];
+    segs.forEach(function(s){
+      L.push("| " + fmt(s.s) + "–" + fmt(s.e) + " | " + dur(s.e-s.s) + " | " + C[s.cat].name + " | " + (s.n||"").replace(/\|/g,"/") + " |");
+    });
+    L.push("", "学习 " + dur(t.study) + " · 逃逸 " + dur(t.escape) + " · 其他 " + dur(t.other) + " · 空白 " + dur(t.blank));
+    return L.join("\n");
+  }
+  function copyText(txt){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ toast("已复制，发对话里"); }, function(){ fallbackCopy(txt); });
+    } else fallbackCopy(txt);
+  }
+  function fallbackCopy(txt){
+    var ta = document.createElement("textarea");
+    ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); toast("已复制，发对话里"); } catch(e){ window.prompt("手动复制：", txt); }
+    document.body.removeChild(ta);
+  }
+  document.getElementById("copy").onclick = function(){ copyText(summaryText()); };
+
+  function allKeys(){
+    var out = {}, i, k, v;
+    for(i=0;i<localStorage.length;i++){
+      k = localStorage.key(i);
+      if(k && k.indexOf(KEY) === 0 && k !== KEY+"last" && k !== KEY+"mode" && k !== KEY+"lastcat"){
+        v = localStorage.getItem(k);
+        try { out[k.slice(KEY.length)] = JSON.parse(v); } catch(e){}
+      }
+    }
+    return out;
+  }
+  document.getElementById("export").onclick = function(){
+    var data = { type: "kaoyan-time", version: 1, exported: new Date().toISOString(), days: allKeys() };
+    var txt = JSON.stringify(data, null, 1);
+    var blob = new Blob([txt], { type:"application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "时间流水_" + ymd(new Date()) + ".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 5000);
+    toast("已导出 JSON 文件");
+  };
+  document.getElementById("import").onclick = function(){ document.getElementById("file").click(); };
+  document.getElementById("file").addEventListener("change", function(ev){
+    var f = ev.target.files && ev.target.files[0]; if(!f) return;
+    var fr = new FileReader();
+    fr.onload = function(){
+      try {
+        var d = JSON.parse(fr.result), n = 0;
+        Object.keys(d.days || {}).forEach(function(day){
+          var list = (d.days[day] || []).filter(function(s){ return s && s.e > s.s && C[s.cat]; });
+          if(!list.length) return;
+          var old = [];
+          try { old = JSON.parse(localStorage.getItem(KEY+day) || "[]"); } catch(e){}
+          var map = {};
+          old.concat(list).forEach(function(s){ map[s.s+"-"+s.e+"-"+s.cat] = s; });
+          var merged = Object.keys(map).map(function(k){ return map[k]; }).sort(function(a,b){ return a.s-b.s; });
+          localStorage.setItem(KEY+day, JSON.stringify(merged));
+          n++;
+        });
+        load(); renderAll();
+        toast("已导入 " + n + " 天");
+      } catch(e){ toast("文件读不出来"); }
+      ev.target.value = "";
+    };
+    fr.readAsText(f);
+  });
+
+  /* ── 初始化 ── */
+  buildAxis();
+  var last = null;
+  try { last = localStorage.getItem(KEY+"last"); } catch(e){}
+  try { mode = localStorage.getItem(KEY+"mode") || "select"; } catch(e){}
+  try { lastCat = localStorage.getItem(KEY+"lastcat") || "sf"; } catch(e){}
+  if(mode === "scroll"){
+    track.classList.add("scrollmode");
+    document.querySelectorAll("#modes button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-m")==="scroll"); });
+  }
+  if(C[lastCat]) {} else lastCat = "sf";
+  setDate(ymd(new Date()));
+  setTimeout(function(){
+    var anchor;
+    if(cur === ymd(new Date())){
+      var n = new Date(); anchor = n.getHours()*60 + n.getMinutes() - 60;
+    } else if(segs.length){
+      anchor = segs[0].s - 20;
+    } else {
+      anchor = 7*60;
+    }
+    anchor = Math.max(0, Math.min(DAY - 240, anchor));
+    var y = track.getBoundingClientRect().top + window.scrollY - 200 + anchor*PPM;
+    window.scrollTo(0, Math.max(0, y));
+  }, 60);
+})();
+</script>
+</body>
+</html>
