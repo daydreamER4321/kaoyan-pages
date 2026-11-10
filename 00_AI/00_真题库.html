@@ -88,15 +88,16 @@
     .pagenav a.cur{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
     .pagenav .sep{color:var(--line)}
   </style>
+  <link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/shell.css">
   </head>
   <body>
-  <header>
+  <header class="appbar"><div class="inner">
     <nav class="pagenav"><a href="00_今日状态.html">今日状态</a><a href="00_页面总入口.html">← 页面总入口</a><a href="00_真题库.html" class="cur">真题库</a><a href="00_复习队列.html">复习队列</a></nav>
     <h1>考研真题库 <span class="meta">610 数学分析 · 801 高等代数</span></h1>
   <div class="row" id="subjRow"></div>
   <div class="row" style="margin-top:8px" id="modeRow"></div>
-</header>
-<main>
+</div></header>
+<main class="page">
   <div class="note"><b>数据口径</b>：题干逐字取自原卷（南乔Voy 重排版／手写回忆版），<b>不是考点提要</b>；原卷的空缺、笔误、编者注一律照录并在题下标注，未作补全。答案折叠区仍是该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位）。“做过”只记在本机浏览器。筛选按<b>考纲条目</b>（610 六条、801 八条，与 2027 级考纲原文一致），细考点保留在每题卡片上；条目 chip 悬停可看该条考纲细目。</div>
   <div id="filters"></div>
   <div id="freq"></div>

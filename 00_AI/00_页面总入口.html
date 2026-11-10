@@ -9,9 +9,8 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
 font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;line-height:1.6}
-.wrap{max-width:1180px;margin:0 auto;padding:38px 22px 70px}
-h1{font-size:26px;margin:0 0 6px}
-.sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+.side{position:sticky;top:92px;display:flex;flex-direction:column;gap:3px;font-size:13px;background:#fff;
+border:1px solid var(--line);border-radius:10px;padding:9px 8px}
 .hint{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;
 font-size:13.5px;color:#374151;margin:0 0 26px}
 .hint b{color:var(--ink)}
@@ -37,8 +36,6 @@ tr.pending td{color:#9aa3af;background:#fcfcfd}
 .pagenav a:hover{border-color:var(--accent);color:var(--accent)}
 .pagenav a.cur{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .layout{display:grid;grid-template-columns:168px minmax(0,1fr);gap:22px;align-items:start}
-.side{position:sticky;top:18px;display:flex;flex-direction:column;gap:3px;font-size:13px;background:#fff;
-border:1px solid var(--line);border-radius:10px;padding:9px 8px}
 .side .t{font-size:11px;color:var(--muted);letter-spacing:.08em;padding:2px 9px 5px}
 .side a{color:#4b5563;text-decoration:none;padding:5px 10px;border-radius:7px;border-left:2px solid transparent}
 .side a:hover{background:#eef4fa;color:var(--accent);border-left-color:var(--accent)}
@@ -48,7 +45,6 @@ border:1px solid var(--line);border-radius:10px;padding:9px 8px}
   .side{position:static;flex-direction:row;flex-wrap:wrap;gap:5px;padding:7px}
   .side .t{width:100%;padding:0 4px 3px}
   .side a{border-left:0;border:1px solid var(--line);padding:3px 9px;font-size:12px}
-  .wrap{padding:20px 14px 60px}
   .main{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{display:table;width:100%;min-width:760px}
   th,td{padding:8px 10px}
@@ -56,12 +52,15 @@ border:1px solid var(--line);border-radius:10px;padding:9px 8px}
 }
 
 </style>
-<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/katex/katex.min.css"></head>
+<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/katex/katex.min.css">
+<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/shell.css"></head>
 <body>
-<div class="wrap">
+<header class="appbar"><div class="inner">
   <nav class="pagenav"><a href="00_今日状态.html">今日状态</a><a href="00_页面总入口.html" class="cur">页面总入口</a><a href="00_真题库.html">真题库</a><a href="00_复习队列.html">复习队列</a></nav>
   <h1>考研页面总入口</h1>
-  <p class="sub">4 条主线：数分考纲 18 章 ｜ 裴礼文 18 章 ｜ 高代考纲 10 章 ｜ 丘维声 6 块 ＋ 真题与工具 · 更新 2026-11-05</p>
+  <p class="sub">4 条主线：数分考纲 18 章 ｜ 裴礼文 18 章 ｜ 高代考纲 10 章 ｜ 丘维声 6 块 ＋ 真题与工具 · 更新 2026-11-09</p>
+</div></header>
+<div class="page">
 
   <div class="hint">
     <b>怎么用</b>：第一列是它在 2027 级考纲里的条目（610 六条、801 八条，与考纲原文一致），第二列整格点开就是那一章的页面。<br>

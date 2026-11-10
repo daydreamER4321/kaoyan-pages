@@ -64,9 +64,10 @@
   .pagenav a:hover{border-color:var(--acc);color:var(--acc)}
   .pagenav a.cur{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
 </style>
+<link rel="stylesheet" href="../02_数学分析/01_数分-考纲课本/_html_assets/shell.css">
 </head>
 <body>
-<header>
+<header class="appbar"><div class="inner">
   <nav class="pagenav"><a href="00_今日状态.html">今日状态</a><a href="00_页面总入口.html">← 页面总入口</a><a href="00_真题库.html">真题库</a><a href="00_复习队列.html" class="cur">复习队列</a></nav>
   <h1>复习队列 <span class="sub">Hermes 维护 · 备注存本机</span></h1>
   <div class="stats" id="stats"></div>
@@ -78,8 +79,9 @@
     <button id="onlyUndone">只看未复测</button>
     <button id="exportBtn">导出我的备注</button>
   </div>
+</div>
 </header>
-<main>
+<main class="page">
   <section id="today"></section>
   <div id="list"></div>
 </main>

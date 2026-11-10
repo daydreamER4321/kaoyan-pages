@@ -1,0 +1,56 @@
+/* 考研页面统一外壳：四页共用（今日状态 / 页面总入口 / 真题库 / 复习队列）
+   必须最后加载，覆盖各页内联样式里的框架尺寸，不改各页内容样式。 */
+:root { --accent: var(--acc, #17548a); }
+
+html, body { margin: 0; }
+body {
+  font: 15px/1.65 -apple-system, "Segoe UI", system-ui, "Microsoft YaHei", sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── 顶栏：位置、内边距、标题字号四页一致 ── */
+.appbar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--card, #fff);
+  border-bottom: 1px solid var(--line, #e4e7f0);
+  padding: 0;
+}
+.appbar > .inner {
+  max-width: 1040px; margin: 0 auto;
+  padding: 9px 16px 8px;
+}
+.appbar h1 {
+  font-size: 17px; line-height: 1.35; font-weight: 700;
+  margin: 2px 0 0; color: var(--ink, #20242e);
+}
+.appbar .sub, .appbar .meta {
+  font-size: 11.5px; font-weight: 400;
+  color: var(--muted, #5c6575); margin: 0;
+}
+
+/* ── 导航：四页同一行、同一尺寸 ── */
+.appbar .pagenav {
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  margin: 0 0 7px; font-size: 12px;
+}
+.appbar .pagenav a {
+  color: var(--muted, #5c6575); text-decoration: none;
+  border: 1px solid var(--line, #e4e7f0); border-radius: 7px;
+  padding: 2px 9px; background: var(--card, #fff); font-weight: 400;
+}
+.appbar .pagenav a:hover { border-color: var(--acc, #17548a); color: var(--acc, #17548a); background: var(--card, #fff); }
+.appbar .pagenav a.cur {
+  background: var(--acc, #17548a); border-color: var(--acc, #17548a);
+  color: #fff; font-weight: 600;
+}
+
+/* ── 内容容器：四页同一宽度与左右边距，切换时左边缘不动 ── */
+.page {
+  max-width: 1040px; margin: 0 auto;
+  padding: 14px 16px 80px;
+}
+
+@media (max-width: 860px) {
+  .appbar > .inner { padding: 8px 13px 7px; }
+  .page { padding: 12px 13px 70px; }
+}
