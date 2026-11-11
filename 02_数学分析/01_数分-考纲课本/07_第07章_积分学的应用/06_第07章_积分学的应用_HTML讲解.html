@@ -15,6 +15,11 @@ padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
 .ann-reply[open]>summary{margin-bottom:8px;padding-bottom:6px;border-bottom:1px dashed rgba(194,65,12,.35);}
 .ann-reply p{margin:6px 0;}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
+.example-card>summary{padding:12px 16px;background:var(--accent-ex-bg);color:var(--ink);}
+.example-card>summary h4{margin:0 0 5px;color:var(--accent-ex);font-size:17px;line-height:1.45}
+.example-card>summary p{margin:0;font-weight:400;line-height:1.75}
+.example-card>summary .formula{margin:7px 0 0;padding:5px 0;background:transparent;border:0}
+.example-card .fold-body{padding:12px 16px 10px;border-top:1px solid var(--line)}
 </style>
 
 </head>
@@ -121,9 +126,11 @@ padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
   <div class="formula">$$\mathrm dS=\tfrac12 r^2(\theta)\,\mathrm d\theta\ \Longrightarrow\ S=\frac12\int_\alpha^\beta r^2(\theta)\,\mathrm d\theta$$</div>
   <p><b>它与二重积分的关系</b>（很多人在这里混）：$\displaystyle\iint_D r\,\mathrm dr\,\mathrm d\theta=\int_\alpha^\beta\!\left(\int_0^{r(\theta)} r\,\mathrm dr\right)\mathrm d\theta=\frac12\int_\alpha^\beta r^2(\theta)\,\mathrm d\theta$。也就是说，定积分版是把内层对 $r$ 先积掉了；“半径恒为 $r$ 的扇形”只是 $r(\theta)\equiv r$ 的特例。</p>
 <details class="ann-reply"><summary>回应：扇形面积是不是 $r$ 不变的特例？</summary><div class="ann-reply-body"><p>方向对，措辞要精确：$\frac12\int r^2\,\mathrm d\theta$ 是<b>二重积分把内层对 $r$ 积到底</b>的结果，$\int_0^{r(\theta)}r\,\mathrm dr=\frac12r^2(\theta)$；“半径恒定的扇形”只是 $r(\theta)\equiv r$ 这一个特例。</p></div></details>
-  <p><b>例（椭圆面积）</b>：$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$。用参数方程最快：</p>
+  <details class="fold example-card"><summary><h4>例（椭圆面积）</h4><p>求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 围成的面积（$a,b&gt;0$）。</p></summary><div class="fold-body">
+  <p>用参数方程最快：</p>
   <div class="formula">$$S=\frac12\oint(x\,\mathrm dy-y\,\mathrm dx)=\frac12\int_0^{2\pi}\bigl(a\cos t\cdot b\cos t+b\sin t\cdot a\sin t\bigr)\mathrm dt=\pi ab$$</div>
-  <p>用极坐标也能做：代入得 $r^2\left(\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2}\right)=1$，于是 $S=\frac12\int_0^{2\pi}\frac{\mathrm d\theta}{\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2}}=\pi ab$。<b>能一路积到 $2\pi$ 的前提见 §7.1.6 的“星形判据”。</b></p>
+  <p>用极坐标也能做：代入得 $r^2(\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2})=1$，于是 $S=\frac12\int_0^{2\pi}\frac{\mathrm d\theta}{\frac{\cos^2\theta}{a^2}+\frac{\sin^2\theta}{b^2}}=\pi ab$。<b>能一路积到 $2\pi$ 的前提见 §7.1.6 的“星形判据”。</b></p>
+  </div></details>
 
   <h3>1.3 弧长</h3>
   <p>用内接折线逼近：把 $[a,b]$ 分成 $n$ 段，折线长</p>
@@ -138,7 +145,9 @@ padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
     <tr><td>参数 $x=x(t),y=y(t)$</td><td>$\mathrm ds=\sqrt{x'^2+y'^2}\,\mathrm dt$</td></tr>
     <tr><td>极坐标 $r=r(\theta)$</td><td>$\mathrm ds=\sqrt{r^2+r'^2}\,\mathrm d\theta$</td></tr>
   </table>
-  <p><b>例（星形线）</b>：$x=a\cos^3t,\ y=a\sin^3t$，$t\in[0,2\pi]$。$x'=-3a\cos^2t\sin t$，$y'=3a\sin^2t\cos t$，故 $\mathrm ds=3a|\sin t\cos t|\,\mathrm dt$，四分之一段积出 $\frac{3a}{2}$，全长为 $6a$。</p>
+  <details class="fold example-card"><summary><h4>例（星形线）</h4><p>求 $x=a\cos^3t,\ y=a\sin^3t$（$t\in[0,2\pi]$）的弧长。</p></summary><div class="fold-body">
+  <p>$x'=-3a\cos^2t\sin t$，$y'=3a\sin^2t\cos t$，故 $\mathrm ds=3a|\sin t\cos t|\,\mathrm dt$，四分之一段积出 $\frac{3a}{2}$，全长为 $6a$。</p>
+  </div></details>
 
   <h3>1.4 体积（截面法）</h3>
   <p>设垂直于 $x$ 轴、过 $x$ 的截面面积为 $A(x)$，则</p>
@@ -206,37 +215,37 @@ padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
   <h3>3.4 例题详解（例 1–例 8，逐题给推导）</h3>
   <p><b>要掌握到哪一层</b>：例 1、2、4、6 是“定理怎么落地”的模板，<b>要能闭卷复现</b>；例 7、8 是工具（Young／Hölder），<b>要会证</b>；例 3 记结论与数值；例 5 记判据形式。</p>
 
-  <h4>例 1（幂和估计）</h4>
+  <details class="fold example-card"><summary><h4>例 1（幂和估计）</h4><p>设 $\lambda&gt;0$，估计 $\sum_{k=1}^{n}k^\lambda$ 的主项及误差。</p></summary><div class="fold-body">
   <p>取 $f(x)=x^\lambda\ (\lambda&gt;0)$，在 $[1,+\infty)$ 非负递增，对 $m=1$、$\xi=n$ 用定理 7.3.1：</p>
-  <div class="formula">$$\left|\sum_{k=1}^{n}k^\lambda-\int_1^{n}x^\lambda\,\mathrm dx\right|\leqslant n^\lambda,\qquad \int_1^n x^\lambda\mathrm dx=\frac{n^{\lambda+1}-1}{\lambda+1}$$</div>
+  <div class="formula">$$|\sum_{k=1}^{n}k^\lambda-\int_1^{n}x^\lambda\,\mathrm dx\,|\leqslant n^\lambda,\qquad \int_1^n x^\lambda\mathrm dx=\frac{n^{\lambda+1}-1}{\lambda+1}$$</div>
   <div class="formula">$$\Longrightarrow\quad \sum_{k=1}^{n}k^\lambda=\frac{n^{\lambda+1}}{\lambda+1}+O(n^\lambda)$$</div>
   <p>主项就是积分，误差是最后一项量级。验算 $\lambda=1$：$\frac{n^2}2+O(n)$，而真值是 $\frac{n(n+1)}2$ ✓。</p>
 
-  <h4>例 2（$n!$ 的粗估）</h4>
+  <details class="fold example-card"><summary><h4>例 2（$n!$ 的粗估）</h4><p>利用面积原理估计 $n!$，写出上下界。</p></summary><div class="fold-body">
   <p>取 $f(x)=\ln x$（递增、非负于 $x\geqslant1$），$\xi=n$：</p>
-  <div class="formula">$$\left|\ln n!-\int_1^{n}\ln x\,\mathrm dx\right|\leqslant\ln n,\qquad \int_1^n\ln x\,\mathrm dx=n\ln n-n+1$$</div>
+  <div class="formula">$$|\ln n!-\int_1^{n}\ln x\,\mathrm dx\,|\leqslant\ln n,\qquad \int_1^n\ln x\,\mathrm dx=n\ln n-n+1$$</div>
   <p>即 $\ln n!=n\ln n-n+1+\theta\ln n$，$|\theta|\leqslant1$。取指数，注意 $\mathrm e^{\theta\ln n}=n^{\theta}\in[n^{-1},n]$：</p>
   <div class="formula">$$n^{\,n-1}\mathrm e^{-n+1}\ \leqslant\ n!\ \leqslant\ n^{\,n+1}\mathrm e^{-n+1}$$</div>
   <p>这就是“不用 Stirling 也能把 $n!$ 夹在 $n^n$ 量级”的标准做法；精确常数 $\sqrt{2\pi n}$ 要靠 §7.4。</p>
 
-  <h4>例 3（Euler 常数 $\gamma$）</h4>
-  <p>取 $f(x)=\frac1x$（递减、非负），$m=1$，用定理 7.3.2：$\alpha=\lim\left(\sum_{k=1}^{n}\frac1k-\ln n\right)$ 存在，且 $0\leqslant\alpha\leqslant f(1)=1$。这个 $\alpha$ 记为 $\gamma=0.5772156649\ldots$，于是</p>
+  <details class="fold example-card"><summary><h4>例 3（Euler 常数 $\gamma$）</h4><p>研究调和和式 $\sum_{k=1}^{n}1/k$ 与 $\ln n$ 的差及其渐近式。</p></summary><div class="fold-body">
+  <p>取 $f(x)=\frac1x$（递减、非负），$m=1$，用定理 7.3.2：$\alpha=\lim(\sum_{k=1}^{n}\frac1k-\ln n)$ 存在，且 $0\leqslant\alpha\leqslant f(1)=1$。这个 $\alpha$ 记为 $\gamma=0.5772156649\ldots$，于是</p>
   <div class="formula">$$H_n=\ln n+\gamma+O\!\left(\frac1n\right)$$</div>
   <p>换成一般的 $m$：$\int_m^n\frac{\mathrm dx}{x}=\ln\frac nm$，相应的常数是 $\alpha_m=\gamma-(H_{m-1}-\ln m)$。</p>
 
-  <h4>例 4（交错调和级数）</h4>
+  <details class="fold example-card"><summary><h4>例 4（交错调和级数）</h4><p>求交错调和级数 $\sum_{k=1}^{\infty}(-1)^{k-1}/k$ 的和。</p></summary><div class="fold-body">
   <p>部分和可以拼成两个调和数之差：$\sum_{k=1}^{2n}\frac{(-1)^{k-1}}{k}=H_{2n}-H_n$。用例 3 的展开：</p>
   <div class="formula">$$H_{2n}-H_n=\bigl(\ln 2n+\gamma\bigr)-\bigl(\ln n+\gamma\bigr)+O\!\left(\frac1n\right)=\ln2+O\!\left(\frac1n\right)\ \longrightarrow\ \ln2$$</div>
   <p>所以 $\sum_{k\geqslant1}\frac{(-1)^{k-1}}{k}=\ln2$。要点：<b>把交错和重排成两个单调和之差</b>，再用同一个定理估两次。</p>
 
-  <h4>例 5（积分判别法）</h4>
+  <details class="fold example-card"><summary><h4>例 5（积分判别法）</h4><p>设 $f$ 非负递减，比较级数 $\sum f(n)$ 与相应反常积分的敛散性。</p></summary><div class="fold-body">
   <p>$f\geqslant0$ 递减时，在 $[k,k+1]$ 上 $f(k+1)\leqslant f\leqslant f(k)$，积分得</p>
   <div class="formula">$$f(k+1)\leqslant\int_k^{k+1}f(x)\,\mathrm dx\leqslant f(k)$$</div>
   <p>对 $k=1,\dots,n-1$ 累加：$\sum_{k=2}^{n}f(k)\leqslant\int_1^{n}f\leqslant\sum_{k=1}^{n-1}f(k)$——两边夹着同一个量，故 $\sum f(n)$ 与 $\int_1^\infty f$ <b>同时收敛、同时发散</b>。</p>
   <p>用法：$\sum\frac1{n\ln n}$ 发散（$\int_2^N\frac{\mathrm dx}{x\ln x}=\ln\ln N\to\infty$）；$\sum\frac1{n\ln^2n}$ 收敛（$\int_2^\infty\frac{\mathrm dx}{x\ln^2x}=\frac1{\ln2}$）。</p>
 
-  <h4>例 6（对数平均不等式）</h4>
-  <p>设 $0&lt;a&lt;b$，要证 $\dfrac{2}{a+b}&lt;\dfrac{\ln b-\ln a}{b-a}&lt;\dfrac1{\sqrt{ab}}$。</p>
+  <details class="fold example-card"><summary><h4>例 6（对数平均不等式）</h4><p>设 $0&lt;a&lt;b$，要证 $\dfrac{2}{a+b}&lt;\dfrac{\ln b-\ln a}{b-a}&lt;\dfrac1{\sqrt{ab}}$。</p></summary><div class="fold-body">
+
   <p><b>弱界（先做容易的）</b>：$\frac1x$ 在 $[a,b]$ 递减，故 $\frac{b-a}{b}&lt;\displaystyle\int_a^b\frac{\mathrm dx}{x}=\ln\frac ba&lt;\frac{b-a}{a}$。</p>
   <p><b>强界</b>：令 $t=\dfrac{b-a}{a+b}\in(0,1)$，则 $\dfrac ba=\dfrac{1+t}{1-t}$，且 $\dfrac{b-a}{\sqrt{ab}}=\dfrac{2t}{\sqrt{1-t^2}}$。于是只需证</p>
   <div class="formula">$$2t\ &lt;\ \ln\frac{1+t}{1-t}\ &lt;\ \frac{2t}{\sqrt{1-t^2}}$$</div>
@@ -244,16 +253,14 @@ padding:8px 12px;margin:12px 0;font-size:15px;line-height:1.75;}
   <div class="formula">$$g'(t)=\frac{2}{(1-t^2)^{3/2}}-\frac{2}{1-t^2}=\frac{2}{1-t^2}\left(\frac1{\sqrt{1-t^2}}-1\right)&gt;0$$</div>
   <p>故 $g&gt;0$，右半得证。<b>这是“构造辅助函数＋求导判号”的模板题</b>，和例 7 是同一手法。</p>
 
-  <h4>例 7（Young 不等式）</h4>
-  <p>设 $\varphi$ 在 $[0,+\infty)$ 连续、严格递增，$\varphi(0)=0$，$a,b&gt;0$，则</p>
-  <div class="formula">$$ab\leqslant\int_0^{a}\varphi(x)\,\mathrm dx+\int_0^{b}\varphi^{-1}(y)\,\mathrm dy,\qquad\text{等号}\iff b=\varphi(a)$$</div>
+  <details class="fold example-card"><summary><h4>例 7（Young 不等式）</h4><p>设 $\varphi$ 在 $[0,+\infty)$ 连续、严格递增，$\varphi(0)=0$，$a,b&gt;0$，则</p><div class="formula">$$ab\leqslant\int_0^{a}\varphi(x)\,\mathrm dx+\int_0^{b}\varphi^{-1}(y)\,\mathrm dy,\qquad\text{等号}\iff b=\varphi(a)$$</div></summary><div class="fold-body">
   <p><b>证明</b>（几何：两块面积盖住矩形）。先看 $b&gt;\varphi(a)$ 的情形。由 $\varphi^{-1}$ 递增，$y\geqslant\varphi(a)$ 时 $\varphi^{-1}(y)\geqslant a$，所以</p>
   <div class="formula">$$\int_0^{a}\varphi+\int_0^{b}\varphi^{-1}=\underbrace{\int_0^{a}\varphi+\int_0^{\varphi(a)}\varphi^{-1}}_{=\,a\varphi(a)}+\int_{\varphi(a)}^{b}\varphi^{-1}\ \geqslant\ a\varphi(a)+a\bigl(b-\varphi(a)\bigr)=ab$$</div>
   <p>其中最后一步用了 $\varphi^{-1}(y)\geqslant a$（等号只在 $y$ 区间退化时成立）。$b&lt;\varphi(a)$ 对称地做（改从 $\int_0^{b}\varphi^{-1}$ 拆）。等号当且仅当 $b=\varphi(a)$。</p>
   <p><b>推论（常用形式）</b>：取 $\varphi(x)=x^{p-1}$（$p&gt;1$），$\varphi^{-1}(y)=y^{q-1}$，$\frac1p+\frac1q=1$：</p>
   <div class="formula">$$ab\leqslant\frac{a^p}{p}+\frac{b^q}{q}$$</div>
 
-  <h4>例 8（Hölder 与 Cauchy–Schwarz）</h4>
+  <details class="fold example-card"><summary><h4>例 8（Hölder 与 Cauchy–Schwarz）</h4><p>由 Young 不等式推出 Hölder 不等式及 Cauchy–Schwarz 特例，并讨论等号条件。</p></summary><div class="fold-body">
   <p>对 $u,v\geqslant0$ 用例 7 的推论（$a=u/A$，$b=v/B$）并求和／积分：</p>
   <div class="formula">$$\int_a^b|fg|\,\mathrm dx\leqslant\left(\int_a^b|f|^p\,\mathrm dx\right)^{1/p}\left(\int_a^b|g|^q\,\mathrm dx\right)^{1/q},\qquad \frac1p+\frac1q=1$$</div>
   <p>取 $p=q=2$ 即 Cauchy–Schwarz：$\left(\int|fg|\right)^2\leqslant\int f^2\int g^2$，等号当 $|f|^p=B|g|^q$。</p>
