@@ -81,6 +81,25 @@
     });
   }
 
+  /* 3b. 本机页面启用教材 PDF 定位，公开 Pages 只保留定位文字 */
+  function setupSourceLinks() {
+    var links = document.querySelectorAll('a.source-link[data-pdf-page]');
+    if (/(^|\.)github\.io$/.test(location.hostname)) {
+      links.forEach(function (a) {
+        a.classList.add('source-unavailable');
+        a.title = '指定教材 PDF 仅在本机页面中可打开；公开 Pages 不发布教材原件。';
+        if (!/本机/.test(a.textContent)) a.textContent += '（本机）';
+      });
+      return;
+    }
+    links.forEach(function (a) {
+      a.href = a.getAttribute('data-pdf-page');
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.title = '打开指定教材原书 PDF 对应页';
+    });
+  }
+
   /* 4a. 语义卡片：定义/定理/引理/推论/例题等，陈述可见、证明折叠 */
   function setupSemanticCards() {
     var body = document.querySelector('main section#body');
@@ -376,6 +395,7 @@
     renderMath();
     setupToc();
     setupChecklist();
+    setupSourceLinks();
     setupToggle();
     setupSemanticCards();
     setupTopicCards();

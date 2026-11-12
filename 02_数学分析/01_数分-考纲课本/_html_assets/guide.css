@@ -156,6 +156,7 @@ a { color: var(--brand-2); }
 .semantic-card .semantic-proof { margin-top: 10px; }
 .semantic-note { margin: 12px 0; padding: 10px 14px; border: 1px solid color-mix(in srgb, var(--accent-warn) 28%, var(--line)); border-left: 4px solid var(--accent-warn); border-radius: 8px; background: var(--accent-warn-bg); }
 .semantic-note .semantic-note-title { margin: 0 0 6px; color: var(--accent-warn); font-weight: 700; }
+.source-link.source-unavailable { color: var(--ink-3); cursor: not-allowed; text-decoration: none; }
 .c-warn { border-left-color: var(--accent-warn); }
 .c-key  { border-left-color: var(--accent-key); }
 .c-plain{ border-left-color: var(--line-2); }

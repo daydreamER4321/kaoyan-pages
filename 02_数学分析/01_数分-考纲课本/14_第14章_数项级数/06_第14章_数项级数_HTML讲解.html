@@ -12,6 +12,9 @@
 hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 .code{background:#f6f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre}
 .ex-list li{margin:6px 0}
+.ex-subitems{margin:6px 0 0 20px;padding-left:20px}
+.source-link{font-size:.92em;color:#5d6b7a;margin-left:5px;white-space:nowrap}
+.source-link:hover{color:#17548a}
 .star{color:#b45309;font-weight:700;letter-spacing:1px;margin-right:4px}
 </style>
 </head>
@@ -673,142 +676,266 @@ hr{border:none;border-top:1px solid #e8ebef;margin:22px 0}
 
 <section id="exercises">
 <h2>课本习题（全录）</h2>
-<p>共 <b>86</b> 道有编号大题，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的页码链指向整本 PDF 的物理页。</p>
+<p>共 <b>86</b> 道有编号大题，含 <b>82</b> 组题内小问/续行，逐题照录自 <code>05_教材习题_OCR核对版.md</code>，未删减、未精选。题目后的「原书 PDF」链接在本机页面中指向指定教材原页；公开 Pages 不发布教材 PDF。</p>
 <p class="starnote"><b>星标只排序投入，不删题</b>：<b class="star">★★★</b>必手写、能闭卷复现的综合或工具题；<b class="star">★★</b>典型模板，能独立写出。<b>未标星的一律照做</b>，不是跳题。依据见页尾「来源与边界」。</p>
 <h3>§14.1 数项级数的基本概念</h3>
 <h4>练习题 14.1（8 题）</h4>
 <ol class="ex-list">
-<li>下面五个级数中，哪些收敛？哪些发散？题干 PDF 174五式 PDF 175</li>
-<li>求下列级数的和：原书 PDF 175</li>
-<li>证明下列等式：原书 PDF 175</li>
-<li>作一个无穷级数，使其部分和 $S_n=1/n$（$n=1,2,\cdots$）。原书 PDF 175</li>
-<li>若 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都是发散级数，对级数 $\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)$、$\displaystyle\sum_{n=1}^{\infty}(a_n-b_n)$、$\displaystyle\sum_{n=1}^{\infty}a_nb_n$、$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{b_n}$ 的敛散性能得出什么结论？原书 PDF 175 [待核验：原页未注明 $b_n\ne0$；最后一个商在零分母时不定义，题面照录。]</li>
-<li>证明下列级数发散：原书 PDF 175</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛。证明：$\displaystyle\sum_{n=1}^{\infty}(a_n+a_{n+1})$ 也收敛。试举例说明其逆命题不成立，但若 $a_n>0$，则逆命题也成立，试证之。原书 PDF 175</li>
-<li>设数列 $\{na_n\}$ 与级数 $\displaystyle\sum_{n=1}^{\infty}n(a_n-a_{n+1})$ 都收敛。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 也收敛。原书 PDF 175</li>
+<li><p>下面五个级数中，哪些收敛？哪些发散？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=174">题干 PDF 174</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">五式 PDF 175</a></p>
+<ul class="ex-subitems">
+<li><p>$\displaystyle\sum_{n=1}^{\infty}n$；</p></li>
+<li><p>$\displaystyle\sum_{n=1}^{\infty}\frac1{\sqrt n}$；</p></li>
+<li><p>$\displaystyle\sum_{n=0}^{\infty}\frac1{5^n}$；</p></li>
+<li><p>$\displaystyle\sum_{n=0}^{\infty}\frac1{2n+3}$；</p></li>
+<li><p>$\displaystyle\sum_{n=2}^{\infty}\frac1{\ln n}$。</p></li>
+</ul></li>
+<li><p>求下列级数的和：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle 1-\frac12+\frac14-\frac18+\cdots+(-1)^{n-1}\frac1{2^{n-1}}+\cdots$；</p></li>
+<li><p>（2）$\displaystyle\frac1{1\cdot3}+\frac1{3\cdot5}+\frac1{5\cdot7}+\cdots$；</p></li>
+<li><p>（3）$\displaystyle\frac1{1\cdot4}+\frac1{4\cdot7}+\frac1{7\cdot10}+\cdots$；</p></li>
+<li><p>（4）$\displaystyle\frac1{1\cdot4}+\frac1{2\cdot5}+\frac1{3\cdot6}+\cdots$；</p></li>
+<li><p>（5）$\displaystyle\frac12+\frac3{2^2}+\frac5{2^3}+\cdots+\frac{2n-1}{2^n}+\cdots$。</p></li>
+</ul></li>
+<li><p>证明下列等式：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac{2n+1}{n^2(n+1)^2}=1$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\bigl(\sqrt{n+2}-2\sqrt{n+1}+\sqrt n\bigr)=1-\sqrt2$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}\ln\frac{n(2n+1)}{(n+1)(2n-1)}=\ln2$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\frac1{n(n+m)}=\frac1m\left(1+\frac12+\cdots+\frac1m\right)$，其中 $m$ 为正整数。</p></li>
+</ul></li>
+<li><p>作一个无穷级数，使其部分和 $S_n=1/n$（$n=1,2,\cdots$）。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p></li>
+<li><p>若 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都是发散级数，对级数 $\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)$、$\displaystyle\sum_{n=1}^{\infty}(a_n-b_n)$、$\displaystyle\sum_{n=1}^{\infty}a_nb_n$、$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{b_n}$ 的敛散性能得出什么结论？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a> [待核验：原页未注明 $b_n\ne0$；最后一个商在零分母时不定义，题面照录。]</p></li>
+<li><p>证明下列级数发散：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac n{n+1}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}(-1)^n\frac{n^2+1}{3n^2-2}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}\frac1{\sqrt[n]n}$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\left(1-\frac1n\right)^n$。</p></li>
+</ul></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛。证明：$\displaystyle\sum_{n=1}^{\infty}(a_n+a_{n+1})$ 也收敛。试举例说明其逆命题不成立，但若 $a_n>0$，则逆命题也成立，试证之。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p></li>
+<li><p>设数列 $\{na_n\}$ 与级数 $\displaystyle\sum_{n=1}^{\infty}n(a_n-a_{n+1})$ 都收敛。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 也收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=175">原书 PDF 175</a></p></li>
 </ol>
 <h4>问题 14.1（5 题）</h4>
 <ol class="ex-list">
-<li>求证：$\displaystyle\sum_{n=1}^{\infty}\frac1{(pn+q)(pn+q+pr)}=\frac1{pr}\left(\frac1{q+p}+\frac1{q+2p}+\cdots+\frac1{q+rp}\right)$，这里 $r$ 是正整数，$pn+q\ne0$（$n=1,2,\cdots$）。原书 PDF 176 [待核验：原页仅列出 $pn+q\ne0$；等式还出现 $p$ 与 $pn+q+pr$ 的分母，条件照录。]</li>
-<li>求证：$\displaystyle\sum_{\substack{n=1\\n\ne m}}^{\infty}\frac1{m^2-n^2}=-\frac3{4m^2}$，这里 $m$ 是给定的正整数。原书 PDF 176</li>
-<li><span class="star">★★★</span> 求证：$\displaystyle 12&lt;1+\frac12+\frac13+\cdots+\frac1{10^6}&lt;15$。原书 PDF 176</li>
-<li>设 $a_n>0$，$\{a_n-a_{n+1}\}$ 为一个严格递减的数列。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，求证：$\displaystyle\lim_{n\to\infty}\left(\frac1{a_{n+1}}-\frac1{a_n}\right)=+\infty$。原书 PDF 176</li>
-<li><span class="star">★★</span> 证明：存在正常数 $K$，使得不等式 $\displaystyle\sum_{n=1}^{\infty}\frac n{a_1+a_2+\cdots+a_n}\le K\sum_{n=1}^{\infty}\frac1{a_n}$ 对任何正数列 $\{a_n\}$ 成立。原书 PDF 176 [待核验：原页写无穷和不等式；若两侧同为 $+\infty$，它并非有限数值比较，题面照录。]</li>
+<li><p>求证：$\displaystyle\sum_{n=1}^{\infty}\frac1{(pn+q)(pn+q+pr)}=\frac1{pr}\left(\frac1{q+p}+\frac1{q+2p}+\cdots+\frac1{q+rp}\right)$，这里 $r$ 是正整数，$pn+q\ne0$（$n=1,2,\cdots$）。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=176">原书 PDF 176</a> [待核验：原页仅列出 $pn+q\ne0$；等式还出现 $p$ 与 $pn+q+pr$ 的分母，条件照录。]</p></li>
+<li><p>求证：$\displaystyle\sum_{\substack{n=1\\n\ne m}}^{\infty}\frac1{m^2-n^2}=-\frac3{4m^2}$，这里 $m$ 是给定的正整数。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=176">原书 PDF 176</a></p></li>
+<li><span class="star">★★★</span> <p>求证：$\displaystyle 12&lt;1+\frac12+\frac13+\cdots+\frac1{10^6}&lt;15$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=176">原书 PDF 176</a></p></li>
+<li><p>设 $a_n>0$，$\{a_n-a_{n+1}\}$ 为一个严格递减的数列。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，求证：$\displaystyle\lim_{n\to\infty}\left(\frac1{a_{n+1}}-\frac1{a_n}\right)=+\infty$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=176">原书 PDF 176</a></p></li>
+<li><span class="star">★★</span> <p>证明：存在正常数 $K$，使得不等式 $\displaystyle\sum_{n=1}^{\infty}\frac n{a_1+a_2+\cdots+a_n}\le K\sum_{n=1}^{\infty}\frac1{a_n}$ 对任何正数列 $\{a_n\}$ 成立。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=176">原书 PDF 176</a> [待核验：原页写无穷和不等式；若两侧同为 $+\infty$，它并非有限数值比较，题面照录。]</p></li>
 </ol>
 <h3>§14.2 正项级数的比较判别法</h3>
 <h4>练习题 14.2（12 题）</h4>
 <ol class="ex-list">
-<li>设 $a_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}b_n$ 收敛，能否断言 $\displaystyle\sum_{n=1}^{\infty}a_n$ 也收敛？试举例说明之。原书 PDF 180</li>
-<li>用比较判别法讨论下列级数的敛散性：（1）—（8）PDF 180（9）—（10）PDF 181</li>
-<li><span class="star">★★</span> 若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 也收敛。但反之不然，举例说明之。原书 PDF 181</li>
-<li>若 $\displaystyle\sum_{n=1}^{\infty}a_n^2$、$\displaystyle\sum_{n=1}^{\infty}b_n^2$ 收敛，试证：$\displaystyle\sum_{n=1}^{\infty}|a_nb_n|$、$\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)^2$ 也收敛。原书 PDF 181</li>
-<li>若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}\sqrt{a_na_{n+1}}$ 也收敛。举例说明其逆命题不成立。但若 $\{a_n\}$ 是递减数列，则逆命题成立。原书 PDF 181</li>
-<li>证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac1{\ln n!}$ 发散。原书 PDF 181</li>
-<li>证明：级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n\ln n\ln\ln n}$ 发散。原书 PDF 181</li>
-<li><span class="star">★★★</span> 问 $p,q$ 取何值时，级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln\ln n)^q}$ 收敛？原书 PDF 181</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛的正项级数。证明：对任何 $\delta>0$，级数 $\displaystyle\sum_{n=1}^{\infty}n^{-(1+\delta)/2}\sqrt{a_n}&lt;+\infty$。当 $\delta=0$ 时情况如何？原书 PDF 181</li>
-<li>设 $\sigma>0$，$a_n>0$（$n=1,2,\cdots$）。试证：原书 PDF 181</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。试证：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 发散，$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+n^2a_n}$ 收敛。原书 PDF 181</li>
-<li>设 $a_n>0$，$\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$，$\alpha>0$，$\beta>0$ 且 $\alpha+\beta>1$。证明：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n^\alpha}{n^\beta}&lt;+\infty$。（第 9 题是本题的特例。）条件与公式 PDF 181末句 PDF 182</li>
+<li><p>设 $a_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}b_n$ 收敛，能否断言 $\displaystyle\sum_{n=1}^{\infty}a_n$ 也收敛？试举例说明之。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=180">原书 PDF 180</a></p></li>
+<li><p>用比较判别法讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=180">（1）—（8）PDF 180</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">（9）—（10）PDF 181</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac1{3n^2+5}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\frac1{n2^n}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}\left(\frac{n^2}{3n^2+1}\right)^n$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\frac1n\sin\frac1n$；</p></li>
+<li><p>（5）$\displaystyle\sum_{n=1}^{\infty}\frac{n+1}{n(n+2)}$；</p></li>
+<li><p>（6）$\displaystyle\sum_{n=1}^{\infty}\frac1{n^{1+(1/n)}}$；</p></li>
+<li><p>（7）$\displaystyle\sum_{n=3}^{\infty}\frac1{(\ln n)^{\ln\ln n}}$；</p></li>
+<li><p>（8）$\displaystyle\sum_{n=1}^{\infty}\left(n\ln\frac{2n+1}{2n-1}-1\right)$；</p></li>
+<li><p>（9）$\displaystyle\sum_{n=1}^{\infty}\left(n^{1/(n^2+1)}-1\right)$；</p></li>
+<li><p>（10）$\displaystyle\sum_{n=1}^{\infty}\left(\frac1{\sqrt n}-\sqrt{\ln\frac{n+1}n}\right)$。</p></li>
+</ul></li>
+<li><span class="star">★★</span> <p>若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 也收敛。但反之不然，举例说明之。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>若 $\displaystyle\sum_{n=1}^{\infty}a_n^2$、$\displaystyle\sum_{n=1}^{\infty}b_n^2$ 收敛，试证：$\displaystyle\sum_{n=1}^{\infty}|a_nb_n|$、$\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)^2$ 也收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，证明：级数 $\displaystyle\sum_{n=1}^{\infty}\sqrt{a_na_{n+1}}$ 也收敛。举例说明其逆命题不成立。但若 $\{a_n\}$ 是递减数列，则逆命题成立。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>证明：级数 $\displaystyle\sum_{n=2}^{\infty}\frac1{\ln n!}$ 发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>证明：级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n\ln n\ln\ln n}$ 发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><span class="star">★★★</span> <p>问 $p,q$ 取何值时，级数 $\displaystyle\sum_{n=3}^{\infty}\frac1{n(\ln n)^p(\ln\ln n)^q}$ 收敛？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛的正项级数。证明：对任何 $\delta>0$，级数 $\displaystyle\sum_{n=1}^{\infty}n^{-(1+\delta)/2}\sqrt{a_n}&lt;+\infty$。当 $\delta=0$ 时情况如何？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>设 $\sigma>0$，$a_n>0$（$n=1,2,\cdots$）。试证：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p>
+<ul class="ex-subitems">
+<li><p>（1）如果当 $n>N$ 时，有 $\displaystyle\left(\ln\frac1{a_n}\right)(\ln n)^{-1}\ge1+\sigma$，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛；</p></li>
+<li><p>（2）如果当 $n>N$ 时，有 $\displaystyle\left(\ln\frac1{a_n}\right)(\ln n)^{-1}\le1$，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 发散；</p></li>
+<li><p>（3）（利用上面的结果）$\displaystyle\sum_{n=2}^{\infty}\frac1{(\ln n)^{\ln n}}$、$\displaystyle\sum_{n=1}^{\infty}\frac1{3^{\ln n}}$ 收敛。</p></li>
+</ul></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。试证：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n}$ 发散，$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+n^2a_n}$ 收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">原书 PDF 181</a></p></li>
+<li><p>设 $a_n>0$，$\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$，$\alpha>0$，$\beta>0$ 且 $\alpha+\beta>1$。证明：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n^\alpha}{n^\beta}&lt;+\infty$。（第 9 题是本题的特例。）<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=181">条件与公式 PDF 181</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">末句 PDF 182</a></p></li>
 </ol>
 <h4>问题 14.2（5 题）</h4>
 <ol class="ex-list">
-<li>试证：级数 $\displaystyle\sum_{n=1}^{\infty}x^{1+\frac12+\cdots+\frac1n}$ 当 $0&lt;x&lt;e^{-1}$ 时收敛，当 $x\ge e^{-1}$ 时发散。原书 PDF 182</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。问 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n^2}$、$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+na_n}$ 的敛散情况如何？原书 PDF 182</li>
-<li>设 $a_n>0$，$S_n=\displaystyle\sum_{k=1}^{n}a_k$。证明：原书 PDF 182</li>
-<li><span class="star">★★</span> 设 $\{a_n\}$ 是递减的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 与 $\displaystyle\sum_{n=0}^{\infty}2^na_{2^n}$ 同收敛。利用这一结果，证明：原书 PDF 182</li>
-<li>证明：从调和级数 $\displaystyle\sum_{n=1}^{\infty}\frac1n$ 中划去所有分母中含有数字 9 的那些项（例如 $\frac19$、$\frac1{19}$、$\frac1{391}$ 等）之后，所得的新级数是收敛的，且其和不超过 80。原书 PDF 182</li>
+<li><p>试证：级数 $\displaystyle\sum_{n=1}^{\infty}x^{1+\frac12+\cdots+\frac1n}$ 当 $0&lt;x&lt;e^{-1}$ 时收敛，当 $x\ge e^{-1}$ 时发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">原书 PDF 182</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个发散的正项级数。问 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+a_n^2}$、$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{1+na_n}$ 的敛散情况如何？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">原书 PDF 182</a></p></li>
+<li><p>设 $a_n>0$，$S_n=\displaystyle\sum_{k=1}^{n}a_k$。证明：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">原书 PDF 182</a></p>
+<ul class="ex-subitems">
+<li><p>（1）当 $\alpha>1$ 时，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{S_n^\alpha}$ 收敛；</p></li>
+<li><p>（2）当 $\alpha\le1$ 且 $S_n\to+\infty$ 时，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{S_n^\alpha}$ 发散。</p></li>
+</ul></li>
+<li><span class="star">★★</span> <p>设 $\{a_n\}$ 是递减的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 与 $\displaystyle\sum_{n=0}^{\infty}2^na_{2^n}$ 同收敛。利用这一结果，证明：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">原书 PDF 182</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac1{n^{1+\alpha}}$ 当 $\alpha>0$ 时收敛，当 $\alpha\le0$ 时发散；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=2}^{\infty}\frac1{n\ln n}$ 发散。</p></li>
+</ul></li>
+<li><p>证明：从调和级数 $\displaystyle\sum_{n=1}^{\infty}\frac1n$ 中划去所有分母中含有数字 9 的那些项（例如 $\frac19$、$\frac1{19}$、$\frac1{391}$ 等）之后，所得的新级数是收敛的，且其和不超过 80。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=182">原书 PDF 182</a></p></li>
 </ol>
 <h3>§14.3 正项级数的其他判别法</h3>
 <h4>练习题 14.3（5 题）</h4>
 <ol class="ex-list">
-<li>讨论下列级数的敛散性：原书 PDF 193</li>
-<li><span class="star">★★</span> 利用 Raabe 判别法，讨论下列级数的敛散性：原书 PDF 193</li>
-<li>证明定理 14.3.5 中最左端的不等式。原书 PDF 193</li>
-<li>证明定理 14.3.7。原书 PDF 193</li>
-<li>利用 Gauss 判别法，判别例 6 中的级数当 $p=q$ 时的敛散性。原书 PDF 193</li>
+<li><p>讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}n\tan\frac{\pi}{2^{n+1}}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\frac{n^2}{3^n}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}\frac{n^5}{3^n}\bigl(\sqrt3+(-1)^n\bigr)^n$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\frac{n^2}{(1+1/n)^n}$；</p></li>
+<li><p>（5）$\displaystyle\sum_{n=1}^{\infty}\frac{n^{n+(1/n)}}{(n+1/n)^n}$；</p></li>
+<li><p>（6）$\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n!}$（$x\ge0$）；</p></li>
+<li><p>（7）$\displaystyle\sum_{n=1}^{\infty}\left(\frac{n-4}{3n+1}\right)^n$；</p></li>
+<li><p>（8）$\displaystyle\sum_{n=2}^{\infty}\frac{n^{\ln n}}{(\ln n)^n}$。</p></li>
+</ul></li>
+<li><span class="star">★★</span> <p>利用 Raabe 判别法，讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac{\sqrt{n!}}{(a+\sqrt1)(a+\sqrt2)\cdots(a+\sqrt n)}$（$a>0$）；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\frac{n!\,n^{-p}}{q(q+1)\cdots(q+n)}$（$p>0,q>0$）。</p></li>
+</ul></li>
+<li><p>证明定理 14.3.5 中最左端的不等式。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p></li>
+<li><p>证明定理 14.3.7。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p></li>
+<li><p>利用 Gauss 判别法，判别例 6 中的级数当 $p=q$ 时的敛散性。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p></li>
 </ol>
 <h4>问题 14.3（3 题）</h4>
 <ol class="ex-list">
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个正项级数。如果存在正数 $\alpha$ 和 $\beta$，使得 $a_n-a_{n+1}\ge\beta a_n^{2-\alpha}$，那么 $\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$，而且 $\displaystyle\sum_{n=N}^{\infty}a_n=O(a_N^\alpha)$（$N\to\infty$）。原书 PDF 193</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个正项级数。如果 $\displaystyle\limsup_{n\to\infty}\frac{a_{n+1}}{a_n}=q&lt;1$ 或 $\displaystyle\limsup_{n\to\infty}\sqrt[n]{a_n}=q&lt;1$，那么对任意 $r\in(q,1)$，有 $\displaystyle\lim_{n\to\infty}\frac{a_n}{r^n}=0$。条件 PDF 193结论 PDF 194</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛的正项级数。试作一个收敛的正项级数 $\displaystyle\sum_{n=1}^{\infty}b_n$，使得 $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n}=0$。原书 PDF 194</li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个正项级数。如果存在正数 $\alpha$ 和 $\beta$，使得 $a_n-a_{n+1}\ge\beta a_n^{2-\alpha}$，那么 $\displaystyle\sum_{n=1}^{\infty}a_n&lt;+\infty$，而且 $\displaystyle\sum_{n=N}^{\infty}a_n=O(a_N^\alpha)$（$N\to\infty$）。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">原书 PDF 193</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个正项级数。如果 $\displaystyle\limsup_{n\to\infty}\frac{a_{n+1}}{a_n}=q&lt;1$ 或 $\displaystyle\limsup_{n\to\infty}\sqrt[n]{a_n}=q&lt;1$，那么对任意 $r\in(q,1)$，有 $\displaystyle\lim_{n\to\infty}\frac{a_n}{r^n}=0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=193">条件 PDF 193</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=194">结论 PDF 194</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛的正项级数。试作一个收敛的正项级数 $\displaystyle\sum_{n=1}^{\infty}b_n$，使得 $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n}=0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=194">原书 PDF 194</a></p></li>
 </ol>
 <h3>§14.4 任意项级数</h3>
 <h4>练习题 14.4（12 题）</h4>
 <ol class="ex-list">
-<li>利用 Cauchy 收敛原理，讨论下列级数的敛散性：原书 PDF 199</li>
-<li><span class="star">★★★</span> 试利用 Cauchy 收敛原理，证明交错级数的 Leibniz 判别法。（提示：证明 $\displaystyle\left|\sum_{n=N+1}^{N+p}(-1)^{n-1}a_n\right|\le a_N$。）原书 PDF 199</li>
-<li>设 $a_n\le c_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都是收敛级数，证明 $\displaystyle\sum_{n=1}^{\infty}c_n$ 也收敛。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都发散，结论如何？首句 PDF 199末句 PDF 200</li>
-<li><span class="star">★★</span> 在交错级数的 Leibniz 判别法中，如果去掉 $\{a_n\}$ 递减这个条件，结论可能不成立。试以 $\displaystyle\sum_{n=3}^{\infty}\frac{(-1)^{n-1}}{\sqrt{\left[\frac{n+1}{2}\right]}+(-1)^n}=\frac1{\sqrt2-1}-\frac1{\sqrt2+1}+\frac1{\sqrt3-1}-\frac1{\sqrt3+1}+\cdots$ 说明之。原书 PDF 200 [待核验：原页用方括号表示整数部分；照录方括号与逐项展开。]</li>
-<li>讨论下列级数的敛散性：原书 PDF 200</li>
-<li>设 $\{a_n\}$ 递减趋于 0。讨论级数 $\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$、$\displaystyle\sum_{n=1}^{\infty}a_n\sin nx$ 的敛散性。原书 PDF 200</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛级数。如果 $\displaystyle\lim_{n\to\infty}\frac{b_n}{a_n}=1$，能否断言 $\displaystyle\sum_{n=1}^{\infty}b_n$ 也是收敛级数？请研究级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt n}$、$\displaystyle\sum_{n=1}^{\infty}\left(\frac{(-1)^{n-1}}{\sqrt n}+\frac1n\right)$。原书 PDF 200</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛。证明：$\displaystyle\lim_{n\to\infty}\frac{a_1+2a_2+\cdots+na_n}{n}=0$。（提示：用 Abel 分部求和公式。）原书 PDF 200</li>
-<li>证明：如果级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{n^\alpha}$ 收敛，那么对任意的 $\beta>\alpha$，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{n^\beta}$ 也收敛。原书 PDF 200</li>
-<li>设级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 的通项递减趋于 0，$p$ 是任意固定的正整数。证明：级数 $\displaystyle a_1+\cdots+a_p-a_{p+1}-a_{p+2}-\cdots-a_{2p}+a_{2p+1}+\cdots+a_{3p}-\cdots$ 是收敛的。（提示：用 Leibniz 判别法。）原书 PDF 200</li>
-<li>讨论下列级数的敛散性：原书 PDF 200</li>
-<li>设 $a_n>0$。证明：如果 $\displaystyle\lim_{n\to\infty}n\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda>0$，那么交错级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$ 收敛。题干 PDF 200条件与结论 PDF 201</li>
+<li><p>利用 Cauchy 收敛原理，讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=199">原书 PDF 199</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac1{2n-1}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\frac{\sin n}{2^n}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}\frac{\cos n!}{n(n+1)}$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\frac{a\cos n+b\sin n}{n(n+\sin n!)}$。</p></li>
+</ul></li>
+<li><span class="star">★★★</span> <p>试利用 Cauchy 收敛原理，证明交错级数的 Leibniz 判别法。（提示：证明 $\displaystyle\left|\sum_{n=N+1}^{N+p}(-1)^{n-1}a_n\right|\le a_N$。）<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=199">原书 PDF 199</a></p></li>
+<li><p>设 $a_n\le c_n\le b_n$（$n=1,2,\cdots$）。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都是收敛级数，证明 $\displaystyle\sum_{n=1}^{\infty}c_n$ 也收敛。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}b_n$ 都发散，结论如何？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=199">首句 PDF 199</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">末句 PDF 200</a></p></li>
+<li><span class="star">★★</span> <p>在交错级数的 Leibniz 判别法中，如果去掉 $\{a_n\}$ 递减这个条件，结论可能不成立。试以 $\displaystyle\sum_{n=3}^{\infty}\frac{(-1)^{n-1}}{\sqrt{\left[\frac{n+1}{2}\right]}+(-1)^n}=\frac1{\sqrt2-1}-\frac1{\sqrt2+1}+\frac1{\sqrt3-1}-\frac1{\sqrt3+1}+\cdots$ 说明之。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a> [待核验：原页用方括号表示整数部分；照录方括号与逐项展开。]</p></li>
+<li><p>讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{\sqrt n}{n+1}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac1{\sqrt[n]n}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\sin\frac1n$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$。</p></li>
+</ul></li>
+<li><p>设 $\{a_n\}$ 递减趋于 0。讨论级数 $\displaystyle\sum_{n=1}^{\infty}a_n\cos nx$、$\displaystyle\sum_{n=1}^{\infty}a_n\sin nx$ 的敛散性。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 是一个收敛级数。如果 $\displaystyle\lim_{n\to\infty}\frac{b_n}{a_n}=1$，能否断言 $\displaystyle\sum_{n=1}^{\infty}b_n$ 也是收敛级数？请研究级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt n}$、$\displaystyle\sum_{n=1}^{\infty}\left(\frac{(-1)^{n-1}}{\sqrt n}+\frac1n\right)$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛。证明：$\displaystyle\lim_{n\to\infty}\frac{a_1+2a_2+\cdots+na_n}{n}=0$。（提示：用 Abel 分部求和公式。）<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p></li>
+<li><p>证明：如果级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{n^\alpha}$ 收敛，那么对任意的 $\beta>\alpha$，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{n^\beta}$ 也收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p></li>
+<li><p>设级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 的通项递减趋于 0，$p$ 是任意固定的正整数。证明：级数 $\displaystyle a_1+\cdots+a_p-a_{p+1}-a_{p+2}-\cdots-a_{2p}+a_{2p+1}+\cdots+a_{3p}-\cdots$ 是收敛的。（提示：用 Leibniz 判别法。）<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p></li>
+<li><p>讨论下列级数的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">原书 PDF 200</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\sin\bigl(\pi\sqrt{n^2+1}\bigr)$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\left(1+\frac12+\cdots+\frac1n\right)\frac{\sin nx}{n}$。</p></li>
+</ul></li>
+<li><p>设 $a_n>0$。证明：如果 $\displaystyle\lim_{n\to\infty}n\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda>0$，那么交错级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$ 收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=200">题干 PDF 200</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">条件与结论 PDF 201</a></p></li>
 </ol>
 <h4>问题 14.4（8 题）</h4>
 <ol class="ex-list">
-<li>设 $\{a_n\}$ 是一个正数列。如果对 $0&lt;\alpha&lt;1$，有 $\displaystyle\lim_{n\to\infty}n^\alpha\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda>0$，或极限是 $+\infty$，证明：对任意的正整数 $k$，$\displaystyle\sum_{n=1}^{\infty}n^ka_n&lt;+\infty$。原书 PDF 201</li>
-<li>设 $a>0$，$b>0$。利用 Raabe 判别法，证明：当 $b-1>a$ 时，级数 $\displaystyle 1+\sum_{n=1}^{\infty}\frac{a(a+1)\cdots(a+n-1)}{b(b+1)\cdots(b+n-1)}$ 收敛，其和为 $\displaystyle\frac{b-1}{b-a-1}$。当 $b-1\le a$ 时，收敛情况如何？原书 PDF 201</li>
-<li>设 $\{a_n\}$ 是一个递增的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}\left(\frac{a_{n+1}}{a_n}-1\right)$ 收敛的充分必要条件是 $\{a_n\}$ 有界。原书 PDF 201</li>
-<li>证明：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{[\sqrt n]}}n$ 收敛。原书 PDF 201 [待核验：原页用 $[\sqrt n]$ 的方括号记号，照录。]</li>
-<li>试作一个收敛级数 $\displaystyle\sum_{n=1}^{\infty}a_n$，使得 $\displaystyle\sum_{n=1}^{\infty}a_n^3$ 发散。原书 PDF 201</li>
-<li>设 $\{b_n\}$ 递减趋于 0，且 $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ 收敛。证明：$\displaystyle\lim_{n\to\infty}(a_1+\cdots+a_n)b_n=0$。原书 PDF 201</li>
-<li>设 $\{b_n\}$ 是递增的趋于 $+\infty$ 的正数列。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，试证：$\displaystyle\lim_{n\to\infty}\frac{a_1b_1+a_2b_2+\cdots+a_nb_n}{b_n}=0$。注意：若令 $b_n=n$，就得到练习题 14.4 中第 8 题的结论。原书 PDF 201</li>
-<li>证明：如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，令 $\displaystyle b_n=\frac{a_1+2a_2+\cdots+na_n}{n(n+1)}$，那么 $\displaystyle\sum_{n=1}^{\infty}b_n$ 也收敛，且 $\displaystyle\sum_{n=1}^{\infty}b_n=\sum_{n=1}^{\infty}a_n$。原书 PDF 201</li>
+<li><p>设 $\{a_n\}$ 是一个正数列。如果对 $0&lt;\alpha&lt;1$，有 $\displaystyle\lim_{n\to\infty}n^\alpha\left(\frac{a_n}{a_{n+1}}-1\right)=\lambda>0$，或极限是 $+\infty$，证明：对任意的正整数 $k$，$\displaystyle\sum_{n=1}^{\infty}n^ka_n&lt;+\infty$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>设 $a>0$，$b>0$。利用 Raabe 判别法，证明：当 $b-1>a$ 时，级数 $\displaystyle 1+\sum_{n=1}^{\infty}\frac{a(a+1)\cdots(a+n-1)}{b(b+1)\cdots(b+n-1)}$ 收敛，其和为 $\displaystyle\frac{b-1}{b-a-1}$。当 $b-1\le a$ 时，收敛情况如何？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>设 $\{a_n\}$ 是一个递增的正数列。证明：级数 $\displaystyle\sum_{n=1}^{\infty}\left(\frac{a_{n+1}}{a_n}-1\right)$ 收敛的充分必要条件是 $\{a_n\}$ 有界。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>证明：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{[\sqrt n]}}n$ 收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a> [待核验：原页用 $[\sqrt n]$ 的方括号记号，照录。]</p></li>
+<li><p>试作一个收敛级数 $\displaystyle\sum_{n=1}^{\infty}a_n$，使得 $\displaystyle\sum_{n=1}^{\infty}a_n^3$ 发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>设 $\{b_n\}$ 递减趋于 0，且 $\displaystyle\sum_{n=1}^{\infty}a_nb_n$ 收敛。证明：$\displaystyle\lim_{n\to\infty}(a_1+\cdots+a_n)b_n=0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>设 $\{b_n\}$ 是递增的趋于 $+\infty$ 的正数列。如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，试证：$\displaystyle\lim_{n\to\infty}\frac{a_1b_1+a_2b_2+\cdots+a_nb_n}{b_n}=0$。注意：若令 $b_n=n$，就得到练习题 14.4 中第 8 题的结论。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
+<li><p>证明：如果 $\displaystyle\sum_{n=1}^{\infty}a_n$ 收敛，令 $\displaystyle b_n=\frac{a_1+2a_2+\cdots+na_n}{n(n+1)}$，那么 $\displaystyle\sum_{n=1}^{\infty}b_n$ 也收敛，且 $\displaystyle\sum_{n=1}^{\infty}b_n=\sum_{n=1}^{\infty}a_n$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=201">原书 PDF 201</a></p></li>
 </ol>
 <h3>§14.5 绝对收敛和条件收敛</h3>
 <h4>练习题 14.5（5 题）</h4>
 <ol class="ex-list">
-<li>在下列级数中，哪些是绝对收敛的？哪些是条件收敛的？原书 PDF 208</li>
-<li>讨论下列级数的绝对收敛性和条件收敛性：原书 PDF 208</li>
-<li>证明：$\displaystyle\sum_{n=1}^{\infty}a_n$ 绝对收敛的充分条件是 $\displaystyle\sum_{n=1}^{\infty}a_n^+$ 和 $\displaystyle\sum_{n=1}^{\infty}a_n^-$ 都收敛。原书 PDF 208</li>
-<li>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 条件收敛。原书 PDF 209</li>
-<li>把级数 $\displaystyle 1-\frac1{2^\alpha}+\frac1{3^\alpha}-\frac1{4^\alpha}+\frac1{5^\alpha}-\frac1{6^\alpha}+\cdots$（$0&lt;\alpha&lt;1$）的项重新安排如下：先依次取 $p$ 个正项，接着依次取 $q$ 个负项，再接着依次取 $p$ 个正项，如此继续下去。证明：所得的新级数收敛的充分必要条件为 $p=q$；当 $p>q$ 时，新级数发散到 $+\infty$，当 $p&lt;q$ 时，新级数发散到 $-\infty$。原书 PDF 209</li>
+<li><p>在下列级数中，哪些是绝对收敛的？哪些是条件收敛的？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=208">原书 PDF 208</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^\alpha}$（$\alpha>1$）；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2^n}\cos nx$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=2}^{\infty}(-1)^n\frac1{n\ln n}$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n(n-1)/2}\frac{n^{10}}{a^n}$（$a>1$）；</p></li>
+<li><p>（5）$\displaystyle\sum_{n=1}^{\infty}(-1)^n\frac{n-1}{n+1}\frac1{\sqrt[3]n}$；</p></li>
+<li><p>（6）$\displaystyle\sum_{n=2}^{\infty}\frac{\sin(n\pi/4)}{\ln n}$。</p></li>
+</ul></li>
+<li><p>讨论下列级数的绝对收敛性和条件收敛性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=208">原书 PDF 208</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{p+(1/n)}}$；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}(-1)^n\frac{\cos2n}{n^p}$；</p></li>
+<li><p>（3）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\left(e-\left(1+\frac1n\right)^n\right)$；</p></li>
+<li><p>（4）$\displaystyle\sum_{n=1}^{\infty}(-1)^n(n^{1/n}-1)$；</p></li>
+<li><p>（5）$\displaystyle\sum_{n=1}^{\infty}\left(a^{1/n}-\frac{b^{1/n}+c^{1/n}}2\right)$（$a>0,b>0,c>0$）。</p></li>
+</ul></li>
+<li><p>证明：$\displaystyle\sum_{n=1}^{\infty}a_n$ 绝对收敛的充分条件是 $\displaystyle\sum_{n=1}^{\infty}a_n^+$ 和 $\displaystyle\sum_{n=1}^{\infty}a_n^-$ 都收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=208">原书 PDF 208</a></p></li>
+<li><p>设 $\displaystyle\sum_{n=1}^{\infty}a_n$ 条件收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p>
+<ul class="ex-subitems">
+<li><p>（1）证明：$\displaystyle\sum_{n=1}^{\infty}a_n^+=\sum_{n=1}^{\infty}a_n^-=+\infty$，其逆命题是否成立？</p></li>
+<li><p>（2）证明：记 $S_N^+=\displaystyle\sum_{n=1}^{N}a_n^+$，$S_N^-=\displaystyle\sum_{n=1}^{N}a_n^-$，那么 $\displaystyle\lim_{N\to\infty}\frac{S_N^+}{S_N^-}=1$。</p></li>
+</ul></li>
+<li><p>把级数 $\displaystyle 1-\frac1{2^\alpha}+\frac1{3^\alpha}-\frac1{4^\alpha}+\frac1{5^\alpha}-\frac1{6^\alpha}+\cdots$（$0&lt;\alpha&lt;1$）的项重新安排如下：先依次取 $p$ 个正项，接着依次取 $q$ 个负项，再接着依次取 $p$ 个正项，如此继续下去。证明：所得的新级数收敛的充分必要条件为 $p=q$；当 $p>q$ 时，新级数发散到 $+\infty$，当 $p&lt;q$ 时，新级数发散到 $-\infty$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p></li>
 </ol>
 <h4>问题 14.5（4 题）</h4>
 <ol class="ex-list">
-<li>讨论下列级数的绝对收敛性和条件收敛性：原书 PDF 209</li>
-<li>如果对任意一个趋于 0 的数列 $\{x_n\}$，级数 $\displaystyle\sum_{n=1}^{\infty}a_nx_n$ 收敛，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 一定绝对收敛，试证之。如果把条件中的“任意一个趋于 0 的数列”改为“任意一个递减趋于 0 的数列”，结论是否成立？原书 PDF 209</li>
-<li>如果改变调和级数 $\displaystyle 1+\frac12+\frac13+\cdots+\frac1n+\cdots$ 中项的符号，使得 $p$ 个正项之后跟 $q$ 个负项，但不变更原来的次序。证明：新的级数当且仅当 $p=q$ 时收敛。原书 PDF 209</li>
-<li>若级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 绝对收敛，$\displaystyle\lim_{n\to\infty}b_n=0$，证明：$\displaystyle\lim_{n\to\infty}(a_1b_n+a_2b_{n-1}+\cdots+a_nb_1)=0$。原书 PDF 209</li>
+<li><p>讨论下列级数的绝对收敛性和条件收敛性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\sum_{n=2}^{\infty}\ln\left(1+\frac{(-1)^n}{n^p}\right)$（$p>0$）；</p></li>
+<li><p>（2）$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\left(\frac{1\cdot3\cdot5\cdots(2n-1)}{2\cdot4\cdot6\cdots(2n)}\right)^p$（$p>0$）；</p></li>
+<li><p>（3）$\displaystyle\frac1{1^p}-\frac1{2^q}+\frac1{3^p}-\frac1{4^q}+\frac1{5^p}-\frac1{6^q}+\cdots$（$p>0,q>0$）。</p></li>
+</ul></li>
+<li><p>如果对任意一个趋于 0 的数列 $\{x_n\}$，级数 $\displaystyle\sum_{n=1}^{\infty}a_nx_n$ 收敛，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 一定绝对收敛，试证之。如果把条件中的“任意一个趋于 0 的数列”改为“任意一个递减趋于 0 的数列”，结论是否成立？<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p></li>
+<li><p>如果改变调和级数 $\displaystyle 1+\frac12+\frac13+\cdots+\frac1n+\cdots$ 中项的符号，使得 $p$ 个正项之后跟 $q$ 个负项，但不变更原来的次序。证明：新的级数当且仅当 $p=q$ 时收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p></li>
+<li><p>若级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 绝对收敛，$\displaystyle\lim_{n\to\infty}b_n=0$，证明：$\displaystyle\lim_{n\to\infty}(a_1b_n+a_2b_{n-1}+\cdots+a_nb_1)=0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=209">原书 PDF 209</a></p></li>
 </ol>
 <h3>§14.6 级数的乘法</h3>
 <h4>练习题 14.6（3 题）</h4>
 <ol class="ex-list">
-<li>设 $|q|&lt;1$。证明：$\displaystyle\left(\sum_{n=1}^{\infty}q^n\right)^2=\sum_{n=0}^{\infty}(n+1)q^n$。原书 PDF 214 [待核验：原页左侧从 $n=1$ 起，右侧从 $n=0$ 起；例如 $q=0$ 左右值分别为 0 和 1，疑为原书笔误；这里只照录，不静默改题。]</li>
-<li>设级数 $\displaystyle\sum_{n=1}^{\infty}a_nx^n$、$\displaystyle\sum_{n=0}^{\infty}b_nx^n$ 对 $(-R,R)$ 中的 $x$ 绝对收敛。证明：$\displaystyle\left(\sum_{n=0}^{\infty}a_nx^n\right)\left(\sum_{n=0}^{\infty}b_nx^n\right)=\sum_{n=0}^{\infty}c_nx^n$，其中 $c_n=\displaystyle\sum_{k=0}^{\infty}a_kb_{n-k}$。原书 PDF 214 [待核验：原页首句 $a$ 级数从 $n=1$ 起，后式从 $n=0$ 起；系数 $c_n$ 的求和上限印为无穷但 $b_{n-k}$ 对 $k>n$ 未定义，均照录。]</li>
-<li>证明：级数 $\displaystyle C(x)=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}$、$\displaystyle S(x)=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}$ 对所有实数 $x$ 绝对收敛，而且 $S(2x)=2S(x)C(x)$。原书 PDF 214</li>
+<li><p>设 $|q|&lt;1$。证明：$\displaystyle\left(\sum_{n=1}^{\infty}q^n\right)^2=\sum_{n=0}^{\infty}(n+1)q^n$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=214">原书 PDF 214</a> [待核验：原页左侧从 $n=1$ 起，右侧从 $n=0$ 起；例如 $q=0$ 左右值分别为 0 和 1，疑为原书笔误；这里只照录，不静默改题。]</p></li>
+<li><p>设级数 $\displaystyle\sum_{n=1}^{\infty}a_nx^n$、$\displaystyle\sum_{n=0}^{\infty}b_nx^n$ 对 $(-R,R)$ 中的 $x$ 绝对收敛。证明：$\displaystyle\left(\sum_{n=0}^{\infty}a_nx^n\right)\left(\sum_{n=0}^{\infty}b_nx^n\right)=\sum_{n=0}^{\infty}c_nx^n$，其中 $c_n=\displaystyle\sum_{k=0}^{\infty}a_kb_{n-k}$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=214">原书 PDF 214</a> [待核验：原页首句 $a$ 级数从 $n=1$ 起，后式从 $n=0$ 起；系数 $c_n$ 的求和上限印为无穷但 $b_{n-k}$ 对 $k>n$ 未定义，均照录。]</p></li>
+<li><p>证明：级数 $\displaystyle C(x)=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}$、$\displaystyle S(x)=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}$ 对所有实数 $x$ 绝对收敛，而且 $S(2x)=2S(x)C(x)$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=214">原书 PDF 214</a></p></li>
 </ol>
 <h4>问题 14.6（2 题）</h4>
 <ol class="ex-list">
-<li>证明：级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac1{n^\alpha}$、$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac1{n^\beta}$（$\alpha>0,\beta>0$）的 Cauchy 乘积当 $\alpha+\beta>1$ 时收敛，当 $\alpha+\beta\le1$ 时发散。原书 PDF 214</li>
-<li>证明：发散级数 $\displaystyle 1-\sum_{n=1}^{\infty}\left(\frac32\right)^n$、$\displaystyle 1+\sum_{n=1}^{\infty}\left(\frac32\right)^{n-1}\left(2^n+\frac1{2^{n+1}}\right)$ 的 Cauchy 乘积是一个绝对收敛级数。原书 PDF 214 [待核验：原页第二个级数中为加号且含 $2^n$；照录原页，即使这可能影响结论。]</li>
+<li><p>证明：级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac1{n^\alpha}$、$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac1{n^\beta}$（$\alpha>0,\beta>0$）的 Cauchy 乘积当 $\alpha+\beta>1$ 时收敛，当 $\alpha+\beta\le1$ 时发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=214">原书 PDF 214</a></p></li>
+<li><p>证明：发散级数 $\displaystyle 1-\sum_{n=1}^{\infty}\left(\frac32\right)^n$、$\displaystyle 1+\sum_{n=1}^{\infty}\left(\frac32\right)^{n-1}\left(2^n+\frac1{2^{n+1}}\right)$ 的 Cauchy 乘积是一个绝对收敛级数。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=214">原书 PDF 214</a> [待核验：原页第二个级数中为加号且含 $2^n$；照录原页，即使这可能影响结论。]</p></li>
 </ol>
 <h3>§14.7 无穷乘积</h3>
 <h4>练习题 14.7（7 题）</h4>
 <ol class="ex-list">
-<li>能否由 $\displaystyle\prod_{n=1}^{\infty}p_n$、$\displaystyle\prod_{n=1}^{\infty}q_n$ 的敛散性，得出下列乘积的敛散性？$\displaystyle\prod_{n=1}^{\infty}(p_n+q_n)$、$\displaystyle\prod_{n=1}^{\infty}p_nq_n$、$\displaystyle\prod_{n=1}^{\infty}\frac{p_n}{q_n}$。原书 PDF 221 [待核验：原页未注明 $q_n\ne0$；商在零分母时不定义，题面照录。]</li>
-<li>证明下列等式：原书 PDF 222</li>
-<li>利用 Wallis 公式，证明：原书 PDF 222</li>
-<li>讨论下列无穷乘积的敛散性：原书 PDF 222</li>
-<li>讨论下列无穷乘积的敛散性：原书 PDF 222</li>
-<li>证明：若级数 $\displaystyle\sum_{n=1}^{\infty}a_n^2&lt;+\infty$，则 $\displaystyle\prod_{n=1}^{\infty}\cos a_n$ 收敛，其中 $\cos a_n\ne0$。原书 PDF 222</li>
-<li>证明定理 14.7.9。原书 PDF 222</li>
+<li><p>能否由 $\displaystyle\prod_{n=1}^{\infty}p_n$、$\displaystyle\prod_{n=1}^{\infty}q_n$ 的敛散性，得出下列乘积的敛散性？$\displaystyle\prod_{n=1}^{\infty}(p_n+q_n)$、$\displaystyle\prod_{n=1}^{\infty}p_nq_n$、$\displaystyle\prod_{n=1}^{\infty}\frac{p_n}{q_n}$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=221">原书 PDF 221</a> [待核验：原页未注明 $q_n\ne0$；商在零分母时不定义，题面照录。]</p></li>
+<li><p>证明下列等式：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\prod_{n=2}^{\infty}\frac{n^3-1}{n^3+1}=\frac23$；</p></li>
+<li><p>（2）$\displaystyle\prod_{n=2}^{\infty}\left(1-\frac2{n(n+1)^2}\right)=\frac13$；</p></li>
+<li><p>（3）$\displaystyle\prod_{n=0}^{\infty}\left(1+\left(\frac12\right)^{2^n}\right)=2$。</p></li>
+</ul></li>
+<li><p>利用 Wallis 公式，证明：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\prod_{n=1}^{\infty}\left(1-\frac1{4n^2}\right)=\frac2\pi$；</p></li>
+<li><p>（2）$\displaystyle\prod_{n=1}^{\infty}\left(1-\frac1{(2n+1)^2}\right)=\frac\pi4$。</p></li>
+</ul></li>
+<li><p>讨论下列无穷乘积的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\prod_{n=1}^{\infty}\frac1n$；</p></li>
+<li><p>（2）$\displaystyle\prod_{n=1}^{\infty}\frac{(n+1)^2}{n(n+2)}$；</p></li>
+<li><p>（3）$\displaystyle\prod_{n=1}^{\infty}\sqrt[n]{1+\frac1n}$。</p></li>
+</ul></li>
+<li><p>讨论下列无穷乘积的敛散性：<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p>
+<ul class="ex-subitems">
+<li><p>（1）$\displaystyle\prod_{n=1}^{\infty}\frac n{\sqrt{n^2+1}}$；</p></li>
+<li><p>（2）$\displaystyle\prod_{n=2}^{\infty}\left(\frac{n^2-1}{n^2+1}\right)^p$（$p$ 为任意的实数）；</p></li>
+<li><p>（3）$\displaystyle\prod_{n=1}^{\infty}\sqrt[n]{\ln(n+x)-\ln n}$（$x>0$）。</p></li>
+</ul></li>
+<li><p>证明：若级数 $\displaystyle\sum_{n=1}^{\infty}a_n^2&lt;+\infty$，则 $\displaystyle\prod_{n=1}^{\infty}\cos a_n$ 收敛，其中 $\cos a_n\ne0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p></li>
+<li><p>证明定理 14.7.9。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p></li>
 </ol>
 <h4>问题 14.7（7 题）</h4>
 <ol class="ex-list">
-<li>证明：$\displaystyle\frac2{\sqrt2}\cdot\frac2{\sqrt{2+\sqrt2}}\cdot\frac2{\sqrt{2+\sqrt{2+\sqrt2}}}\cdots=\frac\pi2$。原书 PDF 222</li>
-<li>设 $a_1=1$，$a_n=n(a_{n-1}+1)$（$n=2,3,\cdots$）。证明：$\displaystyle\prod_{n=1}^{\infty}\left(1+\frac1{a_n}\right)=e$。题干 PDF 222等式 PDF 223</li>
-<li>设 $\displaystyle a_n=\begin{cases}-\dfrac1{\sqrt k},&n=2k-1,\\[3pt]\dfrac1{\sqrt k}+\dfrac1k+\dfrac1{k\sqrt k},&n=2k.\end{cases}$ 证明：$\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 都发散，但 $\displaystyle\prod_{n=1}^{\infty}(1+a_n)$ 收敛。原书 PDF 223 [待核验：当 $k=1$，$a_1=-1$，故乘积含零因子；与教材第 14.7 节“收敛无穷乘积的极限非零”的定义有冲突，照录原页。]</li>
-<li>证明：$\displaystyle\prod_{n=1}^{\infty}\frac1e\left(1+\frac1n\right)^n=0$。由此证明：$\displaystyle\lim_{n\to\infty}\frac{n^ne^{-n}}{n!}=0$。原书 PDF 223</li>
-<li>如果级数 $\displaystyle\sum_{n=1}^{\infty}a_n(x^2-1)(x^2-2^2)\cdots(x^2-n^2)$ 在 $x=x_0$（非整数）处收敛，证明：它对所有的 $x$ 都收敛。原书 PDF 223</li>
-<li>证明：设正数列 $\{a_n\}$ 满足 $\displaystyle\frac{a_n}{a_{n+1}}=1+\frac1n+O(b_n)$（$n\to\infty$），这里 $\displaystyle\sum_{n=1}^{\infty}b_n$ 是一个绝对收敛级数，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 发散。原书 PDF 223</li>
-<li>如果正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 发散，证明：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)}=1$。原书 PDF 223</li>
+<li><p>证明：$\displaystyle\frac2{\sqrt2}\cdot\frac2{\sqrt{2+\sqrt2}}\cdot\frac2{\sqrt{2+\sqrt{2+\sqrt2}}}\cdots=\frac\pi2$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">原书 PDF 222</a></p></li>
+<li><p>设 $a_1=1$，$a_n=n(a_{n-1}+1)$（$n=2,3,\cdots$）。证明：$\displaystyle\prod_{n=1}^{\infty}\left(1+\frac1{a_n}\right)=e$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=222">题干 PDF 222</a><a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">等式 PDF 223</a></p></li>
+<li><p>设 $\displaystyle a_n=\begin{cases}-\dfrac1{\sqrt k},&n=2k-1,\\[3pt]\dfrac1{\sqrt k}+\dfrac1k+\dfrac1{k\sqrt k},&n=2k.\end{cases}$ 证明：$\displaystyle\sum_{n=1}^{\infty}a_n$、$\displaystyle\sum_{n=1}^{\infty}a_n^2$ 都发散，但 $\displaystyle\prod_{n=1}^{\infty}(1+a_n)$ 收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">原书 PDF 223</a> [待核验：当 $k=1$，$a_1=-1$，故乘积含零因子；与教材第 14.7 节“收敛无穷乘积的极限非零”的定义有冲突，照录原页。]</p></li>
+<li><p>证明：$\displaystyle\prod_{n=1}^{\infty}\frac1e\left(1+\frac1n\right)^n=0$。由此证明：$\displaystyle\lim_{n\to\infty}\frac{n^ne^{-n}}{n!}=0$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">原书 PDF 223</a></p></li>
+<li><p>如果级数 $\displaystyle\sum_{n=1}^{\infty}a_n(x^2-1)(x^2-2^2)\cdots(x^2-n^2)$ 在 $x=x_0$（非整数）处收敛，证明：它对所有的 $x$ 都收敛。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">原书 PDF 223</a></p></li>
+<li><p>证明：设正数列 $\{a_n\}$ 满足 $\displaystyle\frac{a_n}{a_{n+1}}=1+\frac1n+O(b_n)$（$n\to\infty$），这里 $\displaystyle\sum_{n=1}^{\infty}b_n$ 是一个绝对收敛级数，那么 $\displaystyle\sum_{n=1}^{\infty}a_n$ 发散。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">原书 PDF 223</a></p></li>
+<li><p>如果正项级数 $\displaystyle\sum_{n=1}^{\infty}a_n$ 发散，证明：$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{(1+a_1)(1+a_2)\cdots(1+a_n)}=1$。<a class="source-link" data-pdf-page="../../../01_原始资料/02_数学分析/01 考纲教材/数学分析教程3ed下册.pdf#page=223">原书 PDF 223</a></p></li>
 </ol>
 </section>
 
