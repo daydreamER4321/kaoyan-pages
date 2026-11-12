@@ -138,6 +138,13 @@ a { color: var(--brand-2); }
 .c-def  { border-left-color: var(--accent-def); background: var(--accent-def-bg); }
 .c-thm  { background: var(--accent-thm-bg); border-left-color: var(--accent-thm); }
 .c-ex   { background: var(--surface); border-left-color: var(--accent-ex); }
+.example-card { margin: 18px 0; border-left-width: 5px; }
+.example-card .example-head { align-items: baseline; margin-bottom: 8px; }
+.example-card .example-head .ctitle { font-size: 17px; }
+.example-card .example-head .pg { color: var(--ink-3); font-size: 12.5px; margin-left: auto; white-space: nowrap; }
+.example-card .example-stem { margin: 8px 0 10px; }
+.example-card .example-stem > :first-child { margin-top: 2px; }
+.example-card > details.fold { margin-top: 10px; }
 .c-warn { border-left-color: var(--accent-warn); }
 .c-key  { border-left-color: var(--accent-key); }
 .c-plain{ border-left-color: var(--line-2); }

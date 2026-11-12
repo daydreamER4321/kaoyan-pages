@@ -61,6 +61,31 @@
   .paper h2{font-size:16px;margin:0 0 6px}
   .empty{color:var(--muted);padding:30px 0;text-align:center}
   .donebox{font-size:11px;color:var(--muted)}
+  .record-controls{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
+  .record-controls .meta{font-size:12px}
+  .record-filter{font-size:12px;padding:3px 8px;border-radius:7px}
+  .record-filter.sel{background:var(--acc);border-color:var(--acc);color:#fff}
+  .record-badge{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+  .record-badge.status-independent,.record-badge.status-spaced{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+  .record-badge.status-attempted,.record-badge.status-checked,.record-badge.status-hinted{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
+  .record-badge.status-unattempted,.record-badge.status-legacy{background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
+  .record-badge.status-unrecorded{background:transparent;color:var(--muted)}
+  .error-summary{display:inline-flex;flex-wrap:wrap;gap:4px;margin-left:4px}
+  .error-chip{display:inline-flex;align-items:center;border-radius:4px;padding:1px 5px;font-size:10.5px;background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);color:var(--warn)}
+  .record-fold{margin-top:10px;border-top:1px dashed var(--line);padding-top:7px}
+  .record-fold>summary{cursor:pointer;color:var(--acc);font-size:12.5px;font-weight:600;list-style:none}
+  .record-fold>summary::-webkit-details-marker{display:none}
+  .record-fold>summary::before{content:'▸ ';color:var(--acc)}
+  .record-fold[open]>summary::before{content:'▾ '}
+  .record-body{padding:8px 0 2px}
+  .record-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+  .record-row>label{font-size:12px;color:var(--muted)}
+  .record-row select,.record-body textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 7px}
+  .record-body textarea{width:100%;min-height:64px;resize:vertical;line-height:1.5}
+  .error-pick{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 6px;cursor:pointer}
+  .error-pick:has(input:checked){background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
+  .record-save{font-size:12px;padding:3px 8px}
+  .record-hint{font-size:11px;color:var(--muted)}
   label.done{display:inline-flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:var(--muted)}
   .diff{font-size:10px;border-radius:4px;padding:0 4px;background:transparent;border:1px solid var(--line);color:var(--muted)}
   .toTop{position:fixed;right:18px;bottom:18px;border-radius:999px;padding:8px 12px;box-shadow:0 4px 16px rgba(0,0,0,.18)}
@@ -98,7 +123,7 @@
   <div class="row" style="margin-top:8px" id="modeRow"></div>
 </div></header>
 <main class="page">
-  <div class="note"><b>数据口径</b>：题干逐字取自原卷（南乔Voy 重排版／手写回忆版），<b>不是考点提要</b>；原卷的空缺、笔误、编者注一律照录并在题下标注，未作补全。答案折叠区仍是该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位）。“做过”只记在本机浏览器。筛选按<b>考纲条目</b>（610 六条、801 八条，与 2027 级考纲原文一致），细考点保留在每题卡片上；条目 chip 悬停可看该条考纲细目。</div>
+  <div class="note"><b>数据口径</b>：题干逐字取自原卷（南乔Voy 重排版／手写回忆版），<b>不是考点提要</b>；原卷的空缺、笔误、编者注一律照录并在题下标注，未作补全。答案折叠区仍是该年的<b>整卷参考解析 PDF</b>（未做逐题页码定位）。作答状态和错因只记在本机浏览器，<b>“未登记”不等于“未做”</b>；导出后再由 Hermes 核验。筛选按<b>考纲条目</b>（610 六条、801 八条，与 2027 级考纲原文一致），细考点保留在每题卡片上；条目 chip 悬停可看该条考纲细目。</div>
   <div id="filters"></div>
   <div id="freq"></div>
   <div class="bar" id="countBar"></div>
@@ -112,9 +137,31 @@
 (function(){
   "use strict";
   var DATA = JSON.parse(document.getElementById('zt-data').textContent);
-  var state = {subject:'610', mode:'paper', year:null, parts:new Set(), years:new Set(), q:''};
+  var state = {subject:'610', mode:'paper', year:null, parts:new Set(), years:new Set(), q:'', recordFilter:'all'};
   var ANS = null; // currently open answer card id
   var IS_WEB = /(^|\.)github\.io$/.test(location.hostname);
+  var STATUS = [
+    {k:'unrecorded', n:'未登记'},
+    {k:'unattempted', n:'未做'},
+    {k:'attempted', n:'已尝试·未核'},
+    {k:'checked', n:'已核答案'},
+    {k:'hinted', n:'提示后完成'},
+    {k:'independent', n:'独立做出'},
+    {k:'spaced', n:'间隔后复现'},
+    {k:'legacy', n:'旧“做过”标记'}
+  ];
+  var RESULTS = [
+    {k:'unknown', n:'未判'},
+    {k:'correct', n:'做对'},
+    {k:'partial', n:'部分正确'},
+    {k:'wrong', n:'做错'}
+  ];
+  var ERRORS = [
+    {k:'tool', n:'未识别出该用哪台工具'},
+    {k:'apply', n:'识别了但不会用'},
+    {k:'calc', n:'会用但算错'},
+    {k:'write', n:'算对但写不出过程'}
+  ];
   function zurl(r, kind){
     if(!r || !r[kind]) return null;
     var p = IS_WEB ? ("_zhenti/"+r.subject+"-"+r.year+"-"+kind+".pdf") : r[kind];
@@ -146,7 +193,7 @@
       {k:'K8', n:'8)', name:'欧几里得空间', chs:['09'], d:'考纲 8) 欧几里得空间：内积、欧氏空间、长度/夹角/距离、度量矩阵、标准正交基、正交补、正交变换、正交阵、对称变换、同构；Schmidt 正交化；实对称阵正交相似对角化；向量到子空间的距离与最小二乘；酉空间'}
     ]
   };
-  
+
   function partKey(c){
     var s = String(c), a = s.charAt(0), b = s.charAt(1);
     if(/[0-9]/.test(a) && /[0-9]/.test(b)) return a+b;
@@ -175,10 +222,85 @@
       if(state.years.size) rs = rs.filter(function(r){return state.years.has(r.year);});
       if(state.q.trim()){ var q=state.q.trim().toLowerCase(); rs = rs.filter(function(r){ return (r.stem+' '+(r.desc||'')+' '+r.chapters.join(' ')+' '+r.type+' '+r.year).toLowerCase().indexOf(q)>=0; }); }
     }
-    return rs;
+    return rs.filter(recordMatches);
   }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function encodePath(p){ return encodeURI(p); }
+
+  function statusLabel(k){
+    var x=STATUS.find(function(v){return v.k===k;}); return x ? x.n : '未登记';
+  }
+  function resultLabel(k){
+    var x=RESULTS.find(function(v){return v.k===k;}); return x ? x.n : '未判';
+  }
+  function errorLabel(k){
+    var x=ERRORS.find(function(v){return v.k===k;}); return x ? x.n : k;
+  }
+  function emptyRecord(){ return {status:'unrecorded',result:'unknown',errors:[],note:'',updated:''}; }
+  function readRecord(id){
+    var d=emptyRecord();
+    try{
+      var raw=localStorage.getItem('zt-record:'+id);
+      if(raw){
+        var x=JSON.parse(raw)||{};
+        d.status=STATUS.some(function(v){return v.k===x.status;})?x.status:'unrecorded';
+        d.result=RESULTS.some(function(v){return v.k===x.result;})?x.result:'unknown';
+        d.errors=Array.isArray(x.errors)?x.errors.filter(function(k){return ERRORS.some(function(v){return v.k===k;});}):[];
+        d.note=typeof x.note==='string'?x.note:'';
+        d.updated=typeof x.updated==='string'?x.updated:'';
+        return d;
+      }
+      if(localStorage.getItem('zt-done:'+id)==='1') d.status='legacy';
+    }catch(e){}
+    return d;
+  }
+  function saveRecord(id, rec){
+    try{
+      localStorage.setItem('zt-record:'+id, JSON.stringify(rec));
+      localStorage.removeItem('zt-done:'+id);
+      return true;
+    }catch(e){ return false; }
+  }
+  function clearRecord(id){
+    try{
+      localStorage.removeItem('zt-record:'+id);
+      localStorage.removeItem('zt-done:'+id);
+      return true;
+    }catch(e){ return false; }
+  }
+  function recordMatches(r){
+    var rec=readRecord(r.id);
+    return state.recordFilter==='all' || (state.recordFilter==='errors' ? rec.errors.length>0 : rec.status===state.recordFilter);
+  }
+  function recordStats(subject){
+    var out={total:0,errors:0};
+    STATUS.forEach(function(s){out[s.k]=0;});
+    DATA.forEach(function(r){
+      if(r.subject!==subject) return;
+      var rec=readRecord(r.id); out.total++; out[rec.status]=(out[rec.status]||0)+1;
+      if(rec.errors.length) out.errors++;
+    });
+    return out;
+  }
+  function downloadText(filename, text){
+    var blob=new Blob([text],{type:'text/markdown;charset=utf-8'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},0);
+  }
+  function exportRecords(){
+    var rs=rowsOf().filter(function(r){return readRecord(r.id).status!=='unrecorded';});
+    var lines=['# 真题库作答记录导出','','> 页面记录只保存在当前浏览器；以下内容待 Hermes 核验后再进入正式状态。',''];
+    rs.forEach(function(r){
+      var rec=readRecord(r.id);
+      lines.push('## '+r.subject+' · '+r.year+' · 第'+r.no+'题');
+      lines.push('- 状态：'+statusLabel(rec.status));
+      lines.push('- 结果：'+resultLabel(rec.result));
+      lines.push('- 错因：'+(rec.errors.length?rec.errors.map(errorLabel).join('；'):'无/未标注'));
+      lines.push('- 备注：'+(rec.note||'无'));
+      lines.push('- 页面题目 ID：`'+r.id+'`','');
+    });
+    downloadText('真题作答记录_'+state.subject+'.md',lines.join('\n'));
+  }
 
   function renderTop(){
     var srow = document.getElementById('subjRow'); srow.innerHTML='';
@@ -233,6 +355,35 @@
       r2.appendChild(inp);
       box.appendChild(r2);
     }
+    renderRecordControls(box);
+  }
+
+  function renderRecordControls(box){
+    var stats=recordStats(state.subject);
+    var wrap=document.createElement('div'); wrap.className='row record-controls';
+    var lab=document.createElement('span'); lab.className='meta'; lab.textContent='作答记录：'; wrap.appendChild(lab);
+    var filters=[
+      {k:'all',n:'全部',c:stats.total},
+      {k:'unrecorded',n:'未登记',c:stats.unrecorded},
+      {k:'unattempted',n:'未做',c:stats.unattempted},
+      {k:'attempted',n:'已尝试·未核',c:stats.attempted},
+      {k:'checked',n:'已核答案',c:stats.checked},
+      {k:'hinted',n:'提示后完成',c:stats.hinted},
+      {k:'independent',n:'独立做出',c:stats.independent},
+      {k:'spaced',n:'间隔后复现',c:stats.spaced},
+      {k:'errors',n:'有错因',c:stats.errors}
+    ];
+    filters.forEach(function(f){
+      var b=document.createElement('button'); b.className='record-filter'+(state.recordFilter===f.k?' sel':'');
+      b.textContent=f.n+' ('+f.c+')';
+      b.onclick=function(){state.recordFilter=f.k; renderAll();};
+      wrap.appendChild(b);
+    });
+    var exp=document.createElement('button'); exp.className='record-filter'; exp.textContent='导出当前记录';
+    exp.onclick=exportRecords; wrap.appendChild(exp);
+    var hint=document.createElement('span'); hint.className='record-hint';
+    hint.textContent='记录只保存在当前浏览器；“未登记”不等于“未做”。'; wrap.appendChild(hint);
+    box.appendChild(wrap);
   }
 
   function renderFreq(){
@@ -339,18 +490,19 @@
   }
 
   function qCard(r){
-    var div=document.createElement('div'); div.className='card';
+    var rec=readRecord(r.id);
+    var div=document.createElement('div'); div.className='card qcard'; div.setAttribute('data-question-id',r.id);
     var head=document.createElement('div'); head.className='qhead';
     var no=document.createElement('span'); no.className='qno';
     no.textContent = (state.mode==='paper'? '' : r.year+' · ') + '第 '+r.no+' 题'; head.appendChild(no);
     if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
-    if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
-    if(r.points){ var pt=document.createElement('span'); pt.className='qpts'; pt.textContent='（'+r.points+' 分）'; head.appendChild(pt); }
     var spacer=document.createElement('span'); spacer.style.flex='1'; head.appendChild(spacer);
-    var lab=document.createElement('label'); lab.className='done'; var cb=document.createElement('input'); cb.type='checkbox';
-    cb.checked = localStorage.getItem('zt-done:'+r.id)==='1';
-    cb.onchange=function(){ if(cb.checked) localStorage.setItem('zt-done:'+r.id,'1'); else localStorage.removeItem('zt-done:'+r.id); };
-    lab.appendChild(cb); var lt=document.createElement('span'); lt.textContent='做过'; lab.appendChild(lt); head.appendChild(lab);
+    var badge=document.createElement('span'); badge.className='record-badge status-'+rec.status; badge.textContent=statusLabel(rec.status); head.appendChild(badge);
+    if(rec.errors.length){
+      var es=document.createElement('span'); es.className='error-summary';
+      rec.errors.forEach(function(k){ var e=document.createElement('span'); e.className='error-chip'; e.textContent=errorLabel(k); es.appendChild(e); });
+      head.appendChild(es);
+    }
     div.appendChild(head);
 
     var mrow=document.createElement('div'); mrow.className='qmeta';
@@ -360,7 +512,7 @@
 
     if(r.stem){
       var st=document.createElement('div'); st.className='stem';
-      st.innerHTML = r.stem.split('\n').map(function(line){ return line.trim()? '<p>'+line+'</p>' : ''; }).join('');
+      st.innerHTML = r.stem.split('\\n').map(function(line){ return line.trim()? '<p>'+line+'</p>' : ''; }).join('');
       div.appendChild(st);
     }
     if(r.note || r.missing){
@@ -369,6 +521,45 @@
       if(r.missing){ nt.innerHTML += (r.note?'<br>':'')+'<b>缺项</b>：'+r.missing; }
       div.appendChild(nt);
     }
+
+    var record=document.createElement('details'); record.className='record-fold';
+    var rsum=document.createElement('summary');
+    rsum.textContent='我的记录：'+statusLabel(rec.status)+(rec.result!=='unknown'?' · '+resultLabel(rec.result):'')+(rec.errors.length?' · '+rec.errors.length+' 类错因':'');
+    record.appendChild(rsum);
+    var rb=document.createElement('div'); rb.className='record-body';
+    var row1=document.createElement('div'); row1.className='record-row';
+    var sl=document.createElement('label'); sl.textContent='状态：'; row1.appendChild(sl);
+    var ss=document.createElement('select');
+    STATUS.forEach(function(x){ var o=document.createElement('option'); o.value=x.k; o.textContent=x.n; ss.appendChild(o); });
+    ss.value=rec.status; row1.appendChild(ss);
+    var rl=document.createElement('label'); rl.textContent='结果：'; row1.appendChild(rl);
+    var rs=document.createElement('select');
+    RESULTS.forEach(function(x){ var o=document.createElement('option'); o.value=x.k; o.textContent=x.n; rs.appendChild(o); });
+    rs.value=rec.result; row1.appendChild(rs); rb.appendChild(row1);
+
+    var row2=document.createElement('div'); row2.className='record-row';
+    var el=document.createElement('label'); el.textContent='错因（可多选）：'; row2.appendChild(el);
+    var errorInputs=[];
+    ERRORS.forEach(function(x){
+      var lab=document.createElement('label'); lab.className='error-pick';
+      var cb=document.createElement('input'); cb.type='checkbox'; cb.value=x.k; cb.checked=rec.errors.indexOf(x.k)>=0;
+      errorInputs.push(cb); lab.appendChild(cb); lab.appendChild(document.createTextNode(x.n)); row2.appendChild(lab);
+    });
+    rb.appendChild(row2);
+
+    var nl=document.createElement('label'); nl.textContent='具体怎么错：'; rb.appendChild(nl);
+    var ta=document.createElement('textarea'); ta.placeholder='写清楚卡在工具判断、推导、计算还是书写哪一步。'; ta.value=rec.note; rb.appendChild(ta);
+    var act=document.createElement('div'); act.className='acts';
+    var save=document.createElement('button'); save.className='record-save'; save.textContent='保存记录'; act.appendChild(save);
+    var clear=document.createElement('button'); clear.className='record-save'; clear.textContent='清除本题记录'; act.appendChild(clear);
+    var hint=document.createElement('span'); hint.className='record-hint'; hint.textContent=rec.updated?'最近保存：'+rec.updated:'尚未保存本题记录'; act.appendChild(hint);
+    rb.appendChild(act); record.appendChild(rb); div.appendChild(record);
+    save.onclick=function(){
+      var errors=errorInputs.filter(function(c){return c.checked;}).map(function(c){return c.value;});
+      var next={status:ss.value,result:rs.value,errors:errors,note:ta.value.trim(),updated:new Date().toISOString()};
+      if(saveRecord(r.id,next)) renderListOnly(); else hint.textContent='保存失败：当前浏览器不允许 localStorage';
+    };
+    clear.onclick=function(){ if(clearRecord(r.id)) renderListOnly(); else hint.textContent='清除失败：当前浏览器不允许 localStorage'; };
 
     var acts=document.createElement('div'); acts.className='acts';
     if(r.test){ var a=document.createElement('a'); a.href=zurl(r,'test'); a.target='_blank'; a.textContent='原卷 PDF'; acts.appendChild(a); }
@@ -402,7 +593,9 @@
     var list=document.getElementById('list'); list.innerHTML='';
     var rs=rowsOf();
     var cb=document.getElementById('countBar');
-    cb.innerHTML = '共 <b>'+rs.length+'</b> 条' + (state.mode==='point' && (state.parts.size||state.years.size||state.q) ? '（已筛选）' : '');
+    var stats=recordStats(state.subject);
+    cb.innerHTML = '当前 <b>'+rs.length+'</b> 条' + (state.mode==='point' && (state.parts.size||state.years.size||state.q) ? '（已筛选）' : '') +
+      ' · 未登记 '+stats.unrecorded+' · 未做 '+stats.unattempted+' · 已尝试 '+stats.attempted+' · 独立做出 '+stats.independent+' · 有错因 '+stats.errors;
     if(!rs.length){ var e=document.createElement('div'); e.className='empty'; e.textContent='没有符合条件的题目'; list.appendChild(e); return; }
     if(state.mode==='paper'){
       var pc = paperCard(state.year); if(pc) list.appendChild(pc);

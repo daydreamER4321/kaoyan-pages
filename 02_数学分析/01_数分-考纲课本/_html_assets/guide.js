@@ -81,6 +81,91 @@
     });
   }
 
+  /* 4a. 例题卡片：把连续正文中的例题包成独立块，证明默认折叠 */
+  function setupExampleCards() {
+    var body = document.querySelector('main section#body');
+    if (!body || body.getAttribute('data-example-cards-ready') === '1') return;
+    body.setAttribute('data-example-cards-ready', '1');
+
+    function isExampleHeading(el) {
+      if (!el || el.tagName !== 'H3') return false;
+      var t = (el.textContent || '').trim();
+      return /例(?:题)?\s*[0-9一二三四五六七八九十]/.test(t) || /^例(?:题)?[：:]/.test(t);
+    }
+
+    var headings = Array.prototype.slice.call(body.children).filter(isExampleHeading);
+    headings.forEach(function (h3, idx) {
+      var article = document.createElement('article');
+      article.className = 'card c-ex example-card';
+      article.setAttribute('data-example-index', String(idx + 1));
+
+      var head = document.createElement('div');
+      head.className = 'card-head example-head';
+      var chip = document.createElement('span');
+      chip.className = 'chip chip-ex';
+      chip.textContent = '例题';
+      head.appendChild(chip);
+      var title = document.createElement('span');
+      title.className = 'ctitle';
+      title.textContent = (h3.textContent || '').trim();
+      head.appendChild(title);
+
+      var nodes = [];
+      var n = h3.nextSibling;
+      while (n) {
+        if (n.nodeType === 1 && /^(H2|H3|HR)$/.test(n.tagName)) break;
+        var next = n.nextSibling;
+        nodes.push(n);
+        n = next;
+      }
+
+      var pageNode = nodes.find(function (node) {
+        return node.nodeType === 1 && node.matches('p.pgref');
+      });
+      if (pageNode) {
+        var pg = document.createElement('span');
+        pg.className = 'pg';
+        pg.textContent = (pageNode.textContent || '').trim();
+        head.appendChild(pg);
+      }
+      article.appendChild(head);
+
+      var stemNodes = [];
+      var proofNodes = [];
+      var inProof = false;
+      nodes.forEach(function (node) {
+        if (node === pageNode) return;
+        var text = node.nodeType === 1 ? (node.textContent || '').trim() : '';
+        var startsProof = node.nodeType === 1 && node.tagName === 'P' &&
+          (/^(课本)?\s*(证明路线|证明|解答)/.test(text) || /证明路线/.test(text));
+        if (startsProof) inProof = true;
+        (inProof ? proofNodes : stemNodes).push(node);
+      });
+
+      if (stemNodes.length) {
+        var stem = document.createElement('div');
+        stem.className = 'example-stem';
+        stemNodes.forEach(function (node) { stem.appendChild(node); });
+        article.appendChild(stem);
+      }
+      if (proofNodes.length) {
+        var details = document.createElement('details');
+        details.className = 'fold example-answer';
+        var summary = document.createElement('summary');
+        summary.textContent = '证明 / 解答（自己先写，再展开）';
+        details.appendChild(summary);
+        var foldBody = document.createElement('div');
+        foldBody.className = 'fold-body';
+        proofNodes.forEach(function (node) { foldBody.appendChild(node); });
+        details.appendChild(foldBody);
+        article.appendChild(details);
+      }
+
+      h3.parentNode.insertBefore(article, h3);
+      h3.remove();
+    });
+  }
+
   /* 4b. 每节折叠（默认展开，状态存本机） */
   function setupSectionFold() {
     var secs = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
@@ -160,6 +245,7 @@
     setupToc();
     setupChecklist();
     setupToggle();
+    setupExampleCards();
     setupSectionFold();
     // 通知批注模块：数学渲染已完成（批注锚点必须以渲染后的文本为基准）
     window.__guideMathRendered = true;
