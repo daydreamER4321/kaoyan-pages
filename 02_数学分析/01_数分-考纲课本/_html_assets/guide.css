@@ -138,16 +138,55 @@ a { color: var(--brand-2); }
 .c-def  { border-left-color: var(--accent-def); background: var(--accent-def-bg); }
 .c-thm  { background: var(--accent-thm-bg); border-left-color: var(--accent-thm); }
 .c-ex   { background: var(--surface); border-left-color: var(--accent-ex); }
-.example-card { margin: 18px 0; border-left-width: 5px; }
-.example-card .example-head { align-items: baseline; margin-bottom: 8px; }
-.example-card .example-head .ctitle { font-size: 17px; }
-.example-card .example-head .pg { color: var(--ink-3); font-size: 12.5px; margin-left: auto; white-space: nowrap; }
-.example-card .example-stem { margin: 8px 0 10px; }
-.example-card .example-stem > :first-child { margin-top: 2px; }
-.example-card > details.fold { margin-top: 10px; }
+.semantic-card { margin: 18px 0; border-left-width: 5px; }
+.semantic-card .semantic-head { align-items: baseline; margin-bottom: 8px; }
+.semantic-card .semantic-head .ctitle { font-size: 17px; }
+.semantic-card .semantic-head .pg { color: var(--ink-3); font-size: 12.5px; margin-left: auto; white-space: nowrap; }
+.semantic-card .semantic-stem { margin: 8px 0 10px; }
+.semantic-card .semantic-stem > :first-child { margin-top: 2px; }
+.semantic-card > details.fold { margin-top: 10px; }
+.semantic-card.kind-example { border-left-color: var(--accent-ex); }
+.semantic-card.kind-theorem,
+.semantic-card.kind-lemma,
+.semantic-card.kind-corollary { border-left-color: var(--accent-thm); background: var(--accent-thm-bg); }
+.semantic-card.kind-definition,
+.semantic-card.kind-concept { border-left-color: var(--accent-def); background: var(--accent-def-bg); }
+.semantic-card.kind-formula { border-left-color: var(--accent-key); }
+.semantic-card .semantic-kind { flex: 0 0 auto; }
+.semantic-card .semantic-proof { margin-top: 10px; }
+.semantic-note { margin: 12px 0; padding: 10px 14px; border: 1px solid color-mix(in srgb, var(--accent-warn) 28%, var(--line)); border-left: 4px solid var(--accent-warn); border-radius: 8px; background: var(--accent-warn-bg); }
+.semantic-note .semantic-note-title { margin: 0 0 6px; color: var(--accent-warn); font-weight: 700; }
 .c-warn { border-left-color: var(--accent-warn); }
 .c-key  { border-left-color: var(--accent-key); }
 .c-plain{ border-left-color: var(--line-2); }
+
+/* ---------- 知识块边界 ---------- */
+/* 章节页的每个 h3 小节会被 guide.js 包成一个 topic-card。
+   这样定义、定理、引理和说明都有明确的起止范围，不再与上下文粘成一段。 */
+.topic-card { margin: 18px 0; border-left-width: 5px; }
+.topic-card .topic-head {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px;
+  padding: 10px 14px; border-bottom: 1px dashed var(--line);
+  background: rgba(255,255,255,.28);
+}
+.topic-card .topic-head .ctitle { font-size: 17px; line-height: 1.5; }
+.topic-card .topic-title { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.topic-card .topic-body { padding: 4px 16px 10px; }
+.topic-card .topic-body > :first-child { margin-top: 5px; }
+.topic-card .topic-body > :last-child { margin-bottom: 4px; }
+.topic-card.c-def  { border-left-color: var(--accent-def); background: var(--accent-def-bg); }
+.topic-card.c-thm  { border-left-color: var(--accent-thm); background: var(--accent-thm-bg); }
+.topic-card.c-plain { border-left-color: var(--line-2); background: var(--surface); }
+.topic-card.c-def .topic-head { background: rgba(47,111,179,.08); }
+.topic-card.c-thm .topic-head { background: rgba(109,75,184,.08); }
+.topic-card.c-plain .topic-head { background: var(--surface-2); }
+.topic-card .topic-head .chip { flex: 0 0 auto; }
+.section-meta {
+  display: inline-block; margin-left: auto; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface-2);
+  color: var(--ink-3); font-size: 12px; font-weight: 500; line-height: 1.3;
+  white-space: nowrap;
+}
 
 .card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
 .card-head .ctitle { font-weight: 700; font-size: 16.5px; }
@@ -277,6 +316,7 @@ table.tbl tr:nth-child(even) td { background: var(--surface-2); }
   .toc-toggle { display: block; }
   .hero h1 { font-size: 24px; }
   .wrap, .hero-inner { padding: 0 18px; }
+  .section-meta { margin-left: 0; }
 }
 
 /* ---------- 打印 ---------- */

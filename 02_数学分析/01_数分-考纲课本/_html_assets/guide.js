@@ -81,29 +81,68 @@
     });
   }
 
-  /* 4a. 例题卡片：把连续正文中的例题包成独立块，证明默认折叠 */
-  function setupExampleCards() {
+  /* 4a. 语义卡片：定义/定理/引理/推论/例题等，陈述可见、证明折叠 */
+  function setupSemanticCards() {
     var body = document.querySelector('main section#body');
-    if (!body || body.getAttribute('data-example-cards-ready') === '1') return;
-    body.setAttribute('data-example-cards-ready', '1');
+    if (!body || body.getAttribute('data-semantic-cards-ready') === '1') return;
+    body.setAttribute('data-semantic-cards-ready', '1');
 
-    function isExampleHeading(el) {
+    function kindOf(el) {
       if (!el || el.tagName !== 'H3') return false;
       var t = (el.textContent || '').trim();
-      return /例(?:题)?\s*[0-9一二三四五六七八九十]/.test(t) || /^例(?:题)?[：:]/.test(t);
+      if (/例(?:题)?\s*[0-9一二三四五六七八九十]/.test(t) || /^例(?:题)?[：:]/.test(t)) return 'example';
+      if (/引理/.test(t)) return 'lemma';
+      if (/推论/.test(t)) return 'corollary';
+      if (/定理/.test(t)) return 'theorem';
+      if (/定义/.test(t)) return 'definition';
+      if (/叙述式/.test(t)) return 'concept';
+      if (/判别法|公式/.test(t)) return 'formula';
+      return '';
     }
 
-    var headings = Array.prototype.slice.call(body.children).filter(isExampleHeading);
-    headings.forEach(function (h3, idx) {
+    var labels = {
+      example: '例题', theorem: '定理', lemma: '引理', corollary: '推论',
+      definition: '定义', concept: '概念', formula: '公式/判别法'
+    };
+    function wrapImportantNotes(container) {
+      var children = Array.prototype.slice.call(container.children);
+      children.forEach(function (node) {
+        if (node.tagName !== 'P' || !/^课本注意/.test((node.textContent || '').trim())) return;
+        var note = document.createElement('div');
+        note.className = 'semantic-note';
+        var title = document.createElement('div');
+        title.className = 'semantic-note-title';
+        title.textContent = '重要注意';
+        note.appendChild(title);
+        var cur = node;
+        while (cur) {
+          var next = cur.nextElementSibling;
+          var text = (cur.textContent || '').trim();
+          note.appendChild(cur);
+          if (!next || next.tagName === 'H3' || (next.tagName === 'P' && /^课本(?:证明|注意|补充|过渡)/.test((next.textContent || '').trim()))) break;
+          if (!/^(UL|OL|DIV)$/.test(next.tagName)) break;
+          cur = next;
+        }
+        container.insertBefore(note, cur ? cur.nextSibling : null);
+      });
+    }
+    var headings = Array.prototype.slice.call(body.children).map(function (el) {
+      return {el: el, kind: kindOf(el)};
+    }).filter(function (x) { return !!x.kind; });
+
+    headings.forEach(function (item, idx) {
+      var h3 = item.el;
+      var kind = item.kind;
       var article = document.createElement('article');
-      article.className = 'card c-ex example-card';
-      article.setAttribute('data-example-index', String(idx + 1));
+      article.className = 'card semantic-card kind-' + kind;
+      article.setAttribute('data-semantic-index', String(idx + 1));
+      article.setAttribute('data-semantic-kind', kind);
 
       var head = document.createElement('div');
-      head.className = 'card-head example-head';
+      head.className = 'card-head semantic-head';
       var chip = document.createElement('span');
-      chip.className = 'chip chip-ex';
-      chip.textContent = '例题';
+      chip.className = 'chip ' + (kind === 'example' ? 'chip-ex' : kind === 'definition' || kind === 'concept' ? 'chip-def' : kind === 'formula' ? 'chip-key' : 'chip-thm');
+      chip.textContent = labels[kind];
       head.appendChild(chip);
       var title = document.createElement('span');
       title.className = 'ctitle';
@@ -137,26 +176,28 @@
         if (node === pageNode) return;
         var text = node.nodeType === 1 ? (node.textContent || '').trim() : '';
         var startsProof = node.nodeType === 1 && node.tagName === 'P' &&
-          (/^(课本)?\s*(证明路线|证明|解答)/.test(text) || /证明路线/.test(text));
+          (/^(课本)?\s*(证明路线|课本解答路线|解答路线)/.test(text) || /^课本证明/.test(text));
         if (startsProof) inProof = true;
         (inProof ? proofNodes : stemNodes).push(node);
       });
 
       if (stemNodes.length) {
         var stem = document.createElement('div');
-        stem.className = 'example-stem';
+        stem.className = 'semantic-stem';
         stemNodes.forEach(function (node) { stem.appendChild(node); });
+        wrapImportantNotes(stem);
         article.appendChild(stem);
       }
       if (proofNodes.length) {
         var details = document.createElement('details');
-        details.className = 'fold example-answer';
+        details.className = 'fold semantic-proof';
         var summary = document.createElement('summary');
-        summary.textContent = '证明 / 解答（自己先写，再展开）';
+        summary.textContent = kind === 'example' ? '解答（自己先做，再展开）' : '证明 / 说明（自己先复述，再展开）';
         details.appendChild(summary);
         var foldBody = document.createElement('div');
         foldBody.className = 'fold-body';
         proofNodes.forEach(function (node) { foldBody.appendChild(node); });
+        wrapImportantNotes(foldBody);
         details.appendChild(foldBody);
         article.appendChild(details);
       }
@@ -166,7 +207,98 @@
     });
   }
 
-  /* 4b. 每节折叠（默认展开，状态存本机） */
+  /* 4b. 定义/定理/说明知识块：把每个 h3 到下一个 h3/h2 的范围框出来 */
+  function setupTopicCards() {
+    var body = document.querySelector('main section#body');
+    if (!body || body.getAttribute('data-topic-cards-ready') === '1') return;
+    body.setAttribute('data-topic-cards-ready', '1');
+
+    function classify(title) {
+      if (/定义|概念|正项级数|任意项级数|交错级数|绝对收敛|无穷乘积/.test(title)) {
+        return { cls: 'c-def', label: '定义 / 概念' };
+      }
+      if (/定理|引理|推论|判别法|性质|原理/.test(title)) {
+        return { cls: 'c-thm', label: '定理 / 方法' };
+      }
+      return { cls: 'c-plain', label: '说明' };
+    }
+
+    var headings = Array.prototype.slice.call(body.children).filter(function (el) {
+      return el.tagName === 'H3' && !el.closest('.topic-card, .example-card');
+    });
+
+    headings.forEach(function (h3) {
+      var title = (h3.textContent || '').trim();
+      var kind = classify(title);
+      var article = document.createElement('article');
+      article.className = 'card topic-card ' + kind.cls;
+      article.setAttribute('data-topic-title', title);
+
+      var head = document.createElement('div');
+      head.className = 'card-head topic-head';
+      var chip = document.createElement('span');
+      chip.className = 'chip ' + (kind.cls === 'c-def' ? 'chip-def' : kind.cls === 'c-thm' ? 'chip-thm' : 'chip-ghost');
+      chip.textContent = kind.label;
+      head.appendChild(chip);
+      var titleNode = document.createElement('h3');
+      titleNode.className = 'topic-title';
+      titleNode.innerHTML = h3.innerHTML;
+      head.appendChild(titleNode);
+
+      var nodes = [];
+      var n = h3.nextSibling;
+      while (n) {
+        if (n.nodeType === 1 && /^(H2|H3|HR)$/.test(n.tagName)) break;
+        var next = n.nextSibling;
+        nodes.push(n);
+        n = next;
+      }
+      var pageNode = nodes.find(function (node) {
+        return node.nodeType === 1 && node.matches('p.pgref');
+      });
+      if (pageNode) {
+        var pg = document.createElement('span');
+        pg.className = 'pg';
+        pg.textContent = (pageNode.textContent || '').trim();
+        head.appendChild(pg);
+      }
+      article.appendChild(head);
+
+      var content = document.createElement('div');
+      content.className = 'topic-body';
+      nodes.forEach(function (node) {
+        if (node !== pageNode) content.appendChild(node);
+      });
+      article.appendChild(content);
+      h3.parentNode.insertBefore(article, h3);
+      h3.remove();
+    });
+  }
+
+  /* 4c. 在节标题处显示本节知识块数量，帮助判断范围和阅读长度 */
+  function setupSectionMeta() {
+    var body = document.querySelector('main section#body');
+    if (!body || body.getAttribute('data-section-meta-ready') === '1') return;
+    body.setAttribute('data-section-meta-ready', '1');
+    var children = Array.prototype.slice.call(body.children);
+    var headings = children.filter(function (el) { return el.tagName === 'H2'; });
+    headings.forEach(function (h2, i) {
+      if (h2.querySelector('.section-meta')) return;
+      var next = headings[i + 1];
+      var count = 0;
+      var node = h2.nextElementSibling;
+      while (node && node !== next) {
+        if (node.matches('.topic-card, .semantic-card')) count += 1;
+        node = node.nextElementSibling;
+      }
+      var meta = document.createElement('span');
+      meta.className = 'section-meta';
+      meta.textContent = count ? ('本节 ' + count + ' 个知识块') : '本节';
+      h2.appendChild(meta);
+    });
+  }
+
+  /* 4d. 每节折叠（默认展开，状态存本机） */
   function setupSectionFold() {
     var secs = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
     if (!secs.length) return;
@@ -245,7 +377,9 @@
     setupToc();
     setupChecklist();
     setupToggle();
-    setupExampleCards();
+    setupSemanticCards();
+    setupTopicCards();
+    setupSectionMeta();
     setupSectionFold();
     // 通知批注模块：数学渲染已完成（批注锚点必须以渲染后的文本为基准）
     window.__guideMathRendered = true;
