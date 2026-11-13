@@ -42,6 +42,10 @@ for page in pages:
         ref = m.group(1)
         if ref.startswith(("http://", "https://", "mailto:", "data:", "#", "javascript:")):
             continue
+        # Ignore href values embedded in JavaScript string templates, e.g.
+        # href="'+questionHref(ref)+'"; these are constructed at runtime.
+        if any(token in ref for token in ("'+", "+'", "${")):
+            continue
         if not ref.strip():
             continue
         ok, why = exact_match(page.parent, ref)
